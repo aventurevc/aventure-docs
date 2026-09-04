@@ -2,6 +2,7 @@
 
 instances:
   - url: aventurevc.docs.buildwithfern.com
+    custom-domain: docs.aventure.vc
     edit-this-page:
       github:
         owner: fern-starter
