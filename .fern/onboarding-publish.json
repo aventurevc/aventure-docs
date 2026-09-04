@@ -1,0 +1,10 @@
+{
+  "desiredContentHash": "a96a7d2ec1e920d98230fc7489d6c93f4aa5edbe02ff94f01ba7edef65a630c6",
+  "docsUrl": "https://aventurevc.docs.buildwithfern.com",
+  "starter": {
+    "repoOwner": "fern-api",
+    "repoName": "docs-starter-internal",
+    "commitSha": "7a136fbd26e750f96d049759bc080129b23e7a5c",
+    "label": "2026-07-layouts-launch"
+  }
+}
