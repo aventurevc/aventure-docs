@@ -1,21 +1,33 @@
 ---
-title: aVenture API
-subtitle: Venture data on companies, people, funding, and news — one REST API.
+title: aVenture Docs
 slug: welcome
 hide-page-actions: true
 hide-nav-links: true
 hide-feedback: true
 layout: overview
+subtitle: Start downloading private company data within minutes with the aVenture API, CLI, MCP server and SDK.
 ---
 
 <div className="welcome-hero-tint">
-  <img src="../assets/welcome-light.jpg" className="block dark:hidden" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
-  <img src="../assets/welcome-dark.jpg" className="hidden dark:block" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
+  <img src="/docs/assets/welcome-light.jpg" className="block dark:hidden" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
+  <img src="/docs/assets/welcome-dark.jpg" className="hidden dark:block" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
 </div>
 
-The aVenture API serves structured venture data over HTTP at `https://api.aventure.vc`.
-Every response is JSON, every list is paginated, and every endpoint is documented
-in the [API reference](/api-reference).
+## Get started
+
+<CardGroup cols={3}>
+  <Card title="aVenture API" icon="duotone plug">
+    Access private company data programmatically with the aVenture REST API
+  </Card>
+
+  <Card title="aVenture CLI" icon="duotone terminal">
+    Download and manage private company data directly from your terminal
+  </Card>
+
+  <Card title="aVenture MCP" icon="duotone robot">
+    Integrate private company data into AI workflows with the aVenture MCP server
+  </Card>
+</CardGroup>
 
 ## What you can query
 
@@ -40,7 +52,7 @@ in the [API reference](/api-reference).
   </Card>
 </CardGroup>
 
-## Get started
+## Your first request
 
 <Steps>
 <Step title="Get a credential">
@@ -51,7 +63,7 @@ can do. Read [Authentication](/authentication) to pick the right one.
 </Step>
 <Step title="Make a request">
 
-Every call is a plain HTTPS request — no SDK required:
+Every call is a plain HTTPS request against `https://api.aventure.vc`:
 
 ```bash
 curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
@@ -73,7 +85,7 @@ the results.
 ## Working in TypeScript
 
 Request and response types are published as [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas)
-on npm. It is a schema package, not a client — bring your own HTTP layer.
+on npm. It ships schemas and types only — bring your own HTTP layer.
 
 ```bash
 npm install @aventurevc/api-schemas
