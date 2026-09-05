@@ -192,7 +192,3 @@
     --font-heading: "Inter", sans-serif !important;
     --font-body: "Inter", sans-serif !important;
 }
-
-:root {
-    --radius: .80rem !important;
-}
