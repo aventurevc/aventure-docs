@@ -1,0 +1,83 @@
+---
+title: Authentication
+subtitle: Pick the credential that matches what your integration needs to do
+slug: authentication
+---
+
+Every aVenture API request carries a credential in a header. There are three
+kinds, and the one you hold determines which endpoints answer you. No endpoint
+accepts all three interchangeably — each is documented with the schemes it
+allows in the [API reference](/api-reference).
+
+## The three credentials
+
+<Tabs>
+<Tab title="Client secret">
+
+Read-only service-to-service access. Send it as `X-Client-Secret`:
+
+```bash
+curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  "https://api.aventure.vc/v1/entities?size=5"
+```
+
+This is the credential for a backend that reads venture data. It reaches the
+public read surface — entity, person, and news listings, detail lookups, filter
+metadata, resolve, and duplicate checks — and it cannot mutate anything.
+
+</Tab>
+<Tab title="User bearer token">
+
+A signed-in user's identity. Send it as a bearer token:
+
+```bash
+curl -H "Authorization: Bearer $TOKEN" \
+  "https://api.aventure.vc/v1/entities/detail/people"
+```
+
+The API accepts a Supabase session JWT, a Clerk session JWT, a Clerk OAuth
+access token, or a Clerk personal API key in this header. Use it when calls act
+on behalf of a person rather than a machine.
+
+</Tab>
+<Tab title="Admin API key">
+
+System-to-system writes. Send it as `X-API-Key`:
+
+```bash
+curl -X POST -H "X-API-Key: $AVENTURE_ADMIN_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ ... }' \
+  "https://api.aventure.vc/v1/entities/detail"
+```
+
+This is the credential behind the write surface — creating and updating
+entities, people, news, media, and classifications.
+
+</Tab>
+</Tabs>
+
+## Which endpoints accept what
+
+Read the `security` block on each endpoint in the reference rather than assuming
+from the HTTP method. Two rules explain most of the surface:
+
+- **A `POST` is not always a write.** Search, batch, filter, and duplicate-check
+  endpoints take a JSON body because their query is too large for a query string
+  — `POST /v1/entities`, `POST /v1/search/all`, and `POST /v1/people/detail/batch`
+  are all reads, and all accept a client secret.
+- **Genuine writes need an admin key or a user bearer token.** A client secret
+  is rejected on every mutating endpoint.
+
+## Keeping credentials safe
+
+All three credentials are bearer-equivalent: anyone holding the string has the
+access it grants. Keep them server-side, load them from your secret manager at
+runtime, and never ship one in browser code or commit one to a repository.
+
+## When authentication fails
+
+A missing, malformed, or unrecognized credential returns `401`. A credential
+that is valid but not permitted on that endpoint returns `403`. Both arrive in
+the standard [problem detail](/errors) body, whose `detail` field names the
+specific reason.

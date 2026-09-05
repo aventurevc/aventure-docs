@@ -1,0 +1,84 @@
+---
+title: Errors
+subtitle: The problem detail body, status codes, and rate limits
+slug: errors
+---
+
+Every error response uses the same body — RFC 9457 problem detail, served as
+`application/problem+json`. Parse one shape and you can handle every failure the
+API produces.
+
+## The problem detail body
+
+`type`, `title`, `status`, `detail`, and `instance` are the RFC standard fields
+and appear on every error. Everything else is an aVenture extension, present
+only when it applies:
+
+- **`code`** — a machine-readable secondary code, from a fixed set covering
+  auth and session, rate limiting, RBAC, job infrastructure, external providers,
+  image processing, storage, search, and inference. It appears when the HTTP
+  status alone does not identify the recovery path, so **branch on `code` rather
+  than on `detail`**, which is prose and may be reworded. Many codes describe
+  infrastructure conditions where the right move is to surface the error and
+  stop, not retry.
+- **`hint`**, **`suggestion`**, **`resolution`** — how to correct the request.
+- **`field`**, **`value`**, **`unknownParameters`**, **`validParameters`** —
+  which part of the request was rejected, on validation failures.
+- **`details`** — structured conflict information on `409`, including the
+  duplicate candidates that let you decide between updating, overriding, or
+  aborting.
+- **`traceId`** and **`spanId`** — quote these when reporting a problem.
+
+## Status codes
+
+| Status | Meaning | What to do |
+|---|---|---|
+| `400` | Malformed request or invalid parameter | Read `field` and `hint`; fix and resend |
+| `401` | Missing, malformed, or unrecognized credential | Check the header name matches your [credential type](/authentication) |
+| `403` | Valid credential, not permitted here | A client secret on a write endpoint returns this |
+| `404` | No such record | — |
+| `406` | Requested content type cannot be served | Accept `application/json` |
+| `409` | Conflict with an existing record | Read `details` for the colliding candidates |
+| `415` | Unsupported request content type | Send `Content-Type: application/json` |
+| `422` | Well-formed but semantically rejected | Read `detail` and `resolution` |
+| `429` | Rate limited | Back off — see below |
+| `500`, `503` | Server error or dependency unavailable | Retry with backoff; `503` is usually transient |
+
+Retry `429`, `500`, and `503`. Do not retry `400`, `401`, `403`, `404`, `409`,
+`415`, or `422` — the same request will fail the same way.
+
+## Rate limits
+
+A `429` carries the limit state in the problem detail:
+
+```json
+{
+  "title": "Too Many Requests",
+  "status": 429,
+  "code": "rateLimited",
+  "limit": 100,
+  "remaining": 0,
+  "used": 100,
+  "windowSeconds": 60,
+  "resetAt": "2026-09-04T12:00:00Z",
+  "retryAfterSeconds": 12,
+  "limitType": "IP"
+}
+```
+
+Wait `retryAfterSeconds` before retrying, and add jitter so parallel workers do
+not resume in lockstep. `resetAt` gives the same deadline as an absolute
+timestamp when you would rather schedule than sleep.
+
+`limitType` names which ceiling you hit — `IP`, `SUBNET`, and `GLOBAL` are
+request-rate limits, while `BILLING_ALLOWANCE`, `NATURAL_SEARCH`, `WEB_SEARCH`,
+and `INFERENCE_PROVIDER` are per-feature quotas. Retrying a different endpoint
+often succeeds when the limit was feature-scoped.
+
+## Redirects on entity slugs
+
+Five detail lookups can answer `301` instead of `404` when a record's slug has
+changed: `GET /v1/entities/detail`, `GET /v1/news/detail`, `GET /v1/people/detail`,
+`GET /v1/people/detail/investments`, and `GET /v1/people/detail/investor-activity`.
+Follow the redirect — `curl -L` and most HTTP clients do by default — and store
+the slug you land on.

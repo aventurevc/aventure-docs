@@ -1,0 +1,100 @@
+---
+title: Pagination and filtering
+subtitle: Page through results and narrow them down
+slug: pagination-and-filtering
+---
+
+Every list endpoint returns one page at a time and accepts the same three
+parameters. `GET /v1/entities` is used throughout this page, but the mechanics
+are identical on people, news, and search.
+
+## Paging
+
+| Parameter | Default | Meaning |
+|---|---|---|
+| `page` | `0` | Zero-based page index — the first page is `0`, not `1` |
+| `size` | `20` | Records per page |
+| `sort` | — | `property,(asc\|desc)`; repeat for multiple criteria |
+
+```bash
+curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  "https://api.aventure.vc/v1/entities?page=2&size=50&sort=entityName,asc"
+```
+
+Sort order defaults to ascending when you omit the direction, so
+`sort=entityName` and `sort=entityName,asc` are the same request.
+
+## Reading the page object
+
+Records live in `content`. The surrounding fields tell you where you are:
+
+```json
+{
+  "content": [ ... ],
+  "number": 2,
+  "size": 50,
+  "numberOfElements": 50,
+  "totalElements": 12345,
+  "totalPages": 247,
+  "first": false,
+  "last": false,
+  "empty": false
+}
+```
+
+Loop until `last` is `true` rather than computing the final index yourself —
+`totalElements` can shift between requests as records are added.
+
+## Filtering
+
+Filters are ordinary query parameters. Most accept repetition, and repeating one
+means **any of these**:
+
+```bash
+# Entities in either country
+"https://api.aventure.vc/v1/entities?headquartersCountry=US&headquartersCountry=CA"
+```
+
+Different filters combine as **and**:
+
+```bash
+# Seed-stage AND headquartered in the US
+"https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US"
+```
+
+`GET /v1/entities` accepts more than sixty filters. The main families are:
+
+- **Identity** — `entityId`, `slug`, `entityName` (exact, normalized), `url`, `urlDomain`
+- **Classification** — `industry`, `mainProduct`, `typeModel`, `typeOwnership`, `typeCustomer`, `typeRecord`, `tag`
+- **Location** — `headquartersCountry`, `headquartersState`, `headquartersCity`
+- **Accelerator** — `acceleratorBrand`, `acceleratorName`, `acceleratorCohort`, `acceleratorStatus`
+- **Fundraising** — the `fundraiseActivity.*` family, covering round, amounts raised and invested, valuation, and last round year
+- **Ranges** — `yearFoundedRange`, `employeeCountRange`, and the `.min`/`.max` pairs on `createdAtRange` and `updatedAtRange`
+- **Presence and quality** — `hasLogo`, `hasFundraising`, `operatingStatus`, `qualityGate`
+
+`GET /v1/entities/filters/search` returns the valid values for a filter, which is
+the reliable way to discover what a taxonomy field accepts.
+
+## Text search versus semantic search
+
+Three parameters look similar and do different things:
+
+- **`entityName`** is an exact match against the normalized brand or legal name.
+  Use it when you know the company.
+- **`textSearch`** is keyword and full-text search across the record.
+- **`semanticQuery`** matches on meaning rather than wording.
+
+For a plain-English or multi-constraint request, reach for the search endpoints
+instead — `POST /v1/search/all` plans the query across entities, people, and
+news rather than making you assemble the filters yourself.
+
+## When the query outgrows a URL
+
+Long filter sets exceed practical query-string limits. `POST /v1/entities` takes
+the same query as a JSON body and is still a read, so a client secret is enough.
+`page`, `size`, and `sort` stay in the query string.
+
+## Counting without fetching
+
+`countOnly=true` returns the match count and skips the records — cheaper than
+requesting a page you intend to throw away.

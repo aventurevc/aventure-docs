@@ -1,0 +1,25 @@
+---
+tags: ["api", "search", "people"]
+---
+
+## Search from a shared article or page URL
+
+`GET /v1/search/link` takes a URL that someone shared — an article, a company
+page — and resolves it against aVenture's entity, person, and news records.
+
+<Button intent="none" outlined rightIcon="arrow-right" href="/api-reference">See the endpoint</Button>
+
+## Update a person's address in place
+
+`PUT` and `PATCH` on `/v1/people/{personId}/addresses/{addressJoinId}` replace or
+amend an existing person-address record. Previously the join had to be deleted
+and recreated.
+
+<Button intent="none" outlined rightIcon="arrow-right" href="/api-reference">See the endpoints</Button>
+
+## Internal endpoints removed from the public surface
+
+Health, readiness, liveness, service info, and the CLI authorization and
+personal-API-key endpoints are no longer part of the published specification.
+They were operational plumbing rather than integration surface. If you were
+calling them, move to the documented `/v1` endpoints.

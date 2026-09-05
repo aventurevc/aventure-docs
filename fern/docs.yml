@@ -5,8 +5,8 @@ instances:
     custom-domain: docs.aventure.vc
     edit-this-page:
       github:
-        owner: fern-starter
-        repo: aventure-62whg0m9
+        owner: aventurevc
+        repo: aventure-docs
         branch: main
       launch: dashboard
 title: aVenture | Documentation
@@ -29,18 +29,18 @@ navigation:
           - page: Welcome
             path: docs/pages/welcome.mdx
             icon: fa-duotone fa-house
-          - page: Edit your docs
-            path: docs/pages/editing-your-docs.mdx
-            icon: fa-duotone fa-pen-to-square
-          - page: Write content
-            path: docs/pages/writing-content.mdx
-            icon: fa-duotone fa-file-lines
-          - page: Set up navigation
-            path: docs/pages/navigation.mdx
-            icon: fa-duotone fa-sitemap
-          - page: Customize your docs
-            path: docs/pages/customization.mdx
-            icon: fa-duotone fa-palette
+          - page: Quickstart
+            path: docs/pages/quickstart.mdx
+            icon: fa-duotone fa-bolt
+          - page: Authentication
+            path: docs/pages/authentication.mdx
+            icon: fa-duotone fa-key
+          - page: Pagination and filtering
+            path: docs/pages/pagination-and-filtering.mdx
+            icon: fa-duotone fa-filter
+          - page: Errors
+            path: docs/pages/errors.mdx
+            icon: fa-duotone fa-triangle-exclamation
           - page: Support
             path: docs/pages/support.mdx
             icon: fa-duotone fa-headset
@@ -58,8 +58,8 @@ navigation:
         flattened: false
 navbar-links:
   - type: filled
-    text: Edit
-    url: https://dashboard.buildwithfern.com
+    text: API reference
+    url: https://docs.aventure.vc/api-reference
 colors:
   accent-primary:
     light: "#0A2540"
@@ -77,7 +77,7 @@ logo:
   dark: docs/assets/logo-dark.svg
   light: docs/assets/logo-light.svg
   height: 20
-  href: https://buildwithfern.com
+  href: https://aventure.vc
 favicon: docs/assets/favicon.png
 css:
   - styles.css
@@ -88,3 +88,23 @@ typography:
   bodyFont:
     name: Inter
 ai-search: {}
+
+redirects:
+  - source: "/editing-your-docs"
+    destination: "/quickstart"
+  - source: "/writing-content"
+    destination: "/quickstart"
+  - source: "/navigation"
+    destination: "/pagination-and-filtering"
+  - source: "/customization"
+    destination: "/api-reference"
+  - source: "/09-01-2025"
+    destination: "/docs/changelog/changelog"
+  - source: "/09-15-2025"
+    destination: "/docs/changelog/changelog"
+  - source: "/10-01-2025"
+    destination: "/docs/changelog/changelog"
+  - source: "/10-15-2025"
+    destination: "/docs/changelog/changelog"
+  - source: "/10-29-2025"
+    destination: "/docs/changelog/changelog"

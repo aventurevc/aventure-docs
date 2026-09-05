@@ -1,6 +1,6 @@
 ---
-title: Welcome to aVenture!
-subtitle: Everything you need to build the best developer experience.
+title: aVenture API
+subtitle: Venture data on companies, people, funding, and news — one REST API.
 slug: welcome
 hide-page-actions: true
 hide-nav-links: true
@@ -13,57 +13,68 @@ layout: overview
   <img src="../assets/welcome-dark.jpg" className="hidden dark:block" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
 </div>
 
-## Products
+The aVenture API serves structured venture data over HTTP at `https://api.aventure.vc`.
+Every response is JSON, every list is paginated, and every endpoint is documented
+in the [API reference](/api-reference).
+
+## What you can query
 
 <CardGroup cols={3}>
-  <Card title="Payments" icon="duotone credit-card">
-    Accept one-time and recurring payments with a simple, unified API
+  <Card title="Entities" icon="duotone building">
+    Companies, investors, and accelerators, filterable by industry, stage, location, funding, and accelerator cohort
   </Card>
-  <Card title="Subscriptions" icon="duotone arrows-repeat">
-    Create and manage recurring billing plans with built-in proration and trials
+  <Card title="People" icon="duotone user">
+    Founders and investors, their roles at entities, and their investment activity
   </Card>
-  <Card title="Invoicing" icon="duotone file-invoice-dollar">
-    Generate, send, and track invoices automatically
+  <Card title="Fundraising" icon="duotone chart-line-up">
+    Rounds, amounts raised, valuations, and investor participation
+  </Card>
+  <Card title="News" icon="duotone newspaper">
+    Articles linked to the entities and people they mention
+  </Card>
+  <Card title="Search" icon="duotone magnifying-glass">
+    Keyword, semantic, and cross-domain search over entities, people, and news
+  </Card>
+  <Card title="Classifications" icon="duotone tags">
+    The canonical industry, product, model, and ownership taxonomies behind the filters
   </Card>
 </CardGroup>
 
 ## Get started
 
 <Steps>
-<Step title="Install the SDK">
+<Step title="Get a credential">
 
-One SDK gives you access to Payments, Subscriptions, and Invoicing. 
-<CodeBlocks>
-  ```bash title="npm"
-  npm install @acme/sdk
-  ```
-
-  ```bash title="pip"
-  pip install acme-sdk
-  ```
-
-  ```bash title="go"
-  go get github.com/acme/acme-go
-  ```
-</CodeBlocks>
+The API accepts three credential types, and which one you hold decides what you
+can do. Read [Authentication](/authentication) to pick the right one.
 
 </Step>
-<Step title="Authenticate">
+<Step title="Make a request">
 
-Create an API key from the Acme Dashboard and add it to your environment:
+Every call is a plain HTTPS request — no SDK required:
 
 ```bash
-export ACME_API_KEY="sk_live_..."
+curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  "https://api.aventure.vc/v1/entities?size=5"
 ```
 
+The [quickstart](/quickstart) walks through the first few calls in full.
+
 </Step>
-<Step title="Explore the docs">
+<Step title="Narrow the results">
 
-You're ready to go. Dive deeper into the platform:
-
-- [API reference](/api-reference) — browse all available endpoints
-- [Write content](/writing-content) — author pages with MDX and components
-- [Edit your docs](/editing-your-docs) — customize content, styling, and structure
+`GET /v1/entities` alone accepts more than sixty filters. [Pagination and
+filtering](/pagination-and-filtering) covers how to combine them and page through
+the results.
 
 </Step>
 </Steps>
+
+## Working in TypeScript
+
+Request and response types are published as [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas)
+on npm. It is a schema package, not a client — bring your own HTTP layer.
+
+```bash
+npm install @aventurevc/api-schemas
+```

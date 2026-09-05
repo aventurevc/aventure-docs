@@ -1,0 +1,78 @@
+---
+title: Quickstart
+subtitle: Your first three requests against the aVenture API
+slug: quickstart
+---
+
+This page assumes a client secret. If you do not have one yet, or you need write
+access, start at [Authentication](/authentication).
+
+Set it once in your shell:
+
+```bash
+export AVENTURE_CLIENT_SECRET="..."
+```
+
+## 1. List entities
+
+`GET /v1/entities` returns a page of companies, investors, and accelerators.
+
+```bash
+curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  "https://api.aventure.vc/v1/entities?size=5"
+```
+
+The response is a page object — the records are in `content`, and the rest
+describes your position in the result set:
+
+```json
+{
+  "content": [ ... ],
+  "number": 0,
+  "size": 5,
+  "totalElements": 12345,
+  "totalPages": 2469,
+  "first": true,
+  "last": false
+}
+```
+
+`number` is zero-based, so the first page is `0`.
+
+## 2. Narrow it with filters
+
+Filters are query parameters, and most accept the parameter more than once to
+mean "any of these":
+
+```bash
+curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US&size=5"
+```
+
+`GET /v1/entities` accepts more than sixty filters covering industry, location,
+accelerator cohort, fundraising activity, and operating status.
+[Pagination and filtering](/pagination-and-filtering) covers how they combine.
+
+## 3. Search across everything
+
+When you have a phrase rather than a set of filters, `POST /v1/search/all` runs
+the entity, person, and news engines and returns a typed result page for each
+scope:
+
+```bash
+curl -X POST \
+  -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "climate tech seed round"}' \
+  "https://api.aventure.vc/v1/search/all?size=10"
+```
+
+`page` and `size` apply to every scope. Cross-domain `sort` is not supported —
+each scope orders its own results by relevance.
+
+## Next
+
+- [Authentication](/authentication) — the three credential types and what each reaches
+- [Pagination and filtering](/pagination-and-filtering) — paging, sorting, and combining filters
+- [Errors](/errors) — the problem detail body and rate limiting
+- [API reference](/api-reference) — every endpoint, parameter, and schema
