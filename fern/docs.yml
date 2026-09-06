@@ -20,6 +20,7 @@ tabs:
     icon: home
   API Reference:
     display-name: API Reference
+    slug: api-reference
     icon: puzzle
 navigation:
   - tab: home
@@ -56,6 +57,78 @@ navigation:
             icon: fa-duotone fa-book
       - api: aVenture API
         flattened: false
+        skip-slug: true
+        # Sections in Fern's default order. Fern derives each section id from
+        # the tag's camelCase and each endpoint slug and title from its summary;
+        # four operations collide with that derivation and lose their page, so
+        # their slug (and one title) are pinned. `resolve` is the endpoint id
+        # too, so that endpoint gets an authored section.
+        layout:
+          - agentChassis
+          - agentHelp
+          - agentInstructions
+          - billing
+          - classificationTags
+          - content
+          - contentEmbedding
+          - semanticSimilarity
+          - entities
+          - entityClassificationsAudit
+          - entityClassificationsReconcile
+          - entityFilters:
+              - endpoint: GET /v1/entities/filters
+                slug: list-entity-filter-options
+          - entityMaintenance
+          - crawlRuns
+          - entityFinancialValuation
+          - entityFundraise
+          - entityNews
+          - entityEmployeeCount
+          - entitySimilarity
+          - entitiesV1
+          - entityRelationships
+          - entityResearch
+          - texts
+          - urlLinks
+          - entityAcquisitions
+          - entityAddressesCanonical
+          - researchBlogPosts:
+              - endpoint: GET /v1/people/{slug}/blog-posts
+                slug: list-person-blog-posts-by-slug
+                title: List person blog posts by slug
+          - entityClassificationsCanonical
+          - completionGates:
+              - endpoint: GET /v1/entities/research/completion/gates
+                slug: list-completion-gates
+          - entityPersonAssociations
+          - entitySuggestions
+          - repositories
+          - urlSlugRedirects
+          - uniqueIDs
+          - media
+          - logoAudit
+          - mediaRetrofit
+          - screenshots
+          - news
+          - newsV1
+          - newsLinker
+          - people
+          - personBatch
+          - personInvestments
+          - personNews
+          - personSimilarity
+          - peopleV1
+          - personMetadata
+          - personAddresses
+          - dataProvenance
+          - section: Resolve
+            slug: resolve
+            contents:
+              - endpoint: GET /v1/resolve/{token}
+                slug: resolve-identifier
+          - search
+          - sec
+          - system
 navbar-links:
   - type: filled
     text: API reference
@@ -90,6 +163,11 @@ typography:
 ai-search: {}
 
 redirects:
+  # skip-slug on the API entry removed the title-derived a-venture-api segment.
+  - source: "/api-reference/a-venture-api"
+    destination: "/api-reference"
+  - source: "/api-reference/a-venture-api/:slug*"
+    destination: "/api-reference/:slug*"
   - source: "/editing-your-docs"
     destination: "/quickstart"
   - source: "/writing-content"

@@ -25,6 +25,18 @@ https://api.aventure.vc
 
 All endpoints are versioned under `/v1`.
 
+## OpenAPI document
+
+The released specification is published unchanged, so it carries the release
+version, every operation's `security` requirement, and the `x-aventure-tool`
+metadata exactly as the API emits them.
+
+<Download src="/apis/openapi/openapi.json">Download openapi.json</Download>
+
+Fern also serves a rendering it regenerates from the same document at
+[/openapi.json](/openapi.json); that copy powers the API Explorer and may
+normalize version and authentication representation.
+
 ## Types for TypeScript
 
 Request and response types are published as

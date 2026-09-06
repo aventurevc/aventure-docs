@@ -25,13 +25,22 @@ jobs:
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
         run: |
-          OUTPUT=$(fern generate --docs --preview 2>&1) || true
+          if ! OUTPUT=$(fern generate --docs --preview 2>&1); then echo "$OUTPUT"; exit 1; fi
           echo "$OUTPUT"
-          URL=$(echo "$OUTPUT" | grep -oP 'Published docs to \K.*(?= \()')
+          # A layout key that no longer matches a spec tag is only a warning to Fern.
+          if grep -q 'Failed to locate API section' <<<"$OUTPUT"; then exit 1; fi
+          URL=$(echo "$OUTPUT" | grep -oP 'Published docs to \K.*(?= \()' | head -n1)
           echo "Preview URL: $URL"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
           echo "🌿 Preview your docs: $URL" > preview_url.txt
 
+      - name: Verify preview against the checked-in OpenAPI input
+        env:
+          PREVIEW_URL: ${{ steps.generate-docs.outputs.url }}
+        run: scripts/check-docs-site.sh "$PREVIEW_URL"
+
       - name: Comment URL in PR
+        if: always() && steps.generate-docs.outputs.url != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
