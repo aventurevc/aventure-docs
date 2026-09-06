@@ -4,11 +4,19 @@ on:
   push:
     branches:
       - main
+    # Only docs release inputs select a publication.
+    paths:
+      - "fern/**"
+      - "scripts/check-docs-site.sh"
+      - ".github/workflows/publish-docs.yml"
+
+concurrency:
+  group: publish-docs
+  cancel-in-progress: false
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && contains(github.ref, 'refs/heads/main') }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -21,7 +29,24 @@ jobs:
       - name: Setup Fern CLI
         uses: fern-api/setup-fern-cli@v1
 
+      - name: Validate the same commit before publishing
+        run: fern check
+
       - name: Publish Docs
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
-        run: fern generate --docs --log-level debug
+        run: |
+          if ! OUTPUT=$(fern generate --docs --log-level debug 2>&1); then echo "$OUTPUT"; exit 1; fi
+          echo "$OUTPUT"
+          # A layout key that no longer matches a spec tag is only a warning to Fern.
+          if grep -q 'Failed to locate API section' <<<"$OUTPUT"; then exit 1; fi
+
+      - name: Verify the live site against the checked-in OpenAPI input
+        # Bounded retry: the edge can serve the previous llms.txt for a short
+        # time after publication.
+        run: |
+          for attempt in 1 2 3 4 5; do
+            scripts/check-docs-site.sh https://docs.aventure.vc && exit 0
+            [ "$attempt" -lt 5 ] && { echo "attempt $attempt failed; retrying in 60s"; sleep 60; }
+          done
+          exit 1
