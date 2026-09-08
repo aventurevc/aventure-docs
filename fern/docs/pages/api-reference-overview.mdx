@@ -1,11 +1,11 @@
 ---
 title: API reference
-subtitle: Every endpoint, parameter, and schema in the aVenture API
+subtitle: Endpoints, parameters, and schemas in the public aVenture API
 slug: api-reference
 ---
 
-The reference is generated from the aVenture OpenAPI specification, so it always
-matches the deployed API. Endpoints are grouped by the domain they operate on —
+The reference is generated from the released public OpenAPI specification.
+Endpoints are grouped by the domain they operate on —
 entities, people, news, fundraising, media, search, and classifications.
 
 ## Before you start
@@ -13,9 +13,9 @@ entities, people, news, fundraising, media, search, and classifications.
 - **[Authentication](/authentication)** — three credential types, and which
   endpoints each one reaches. Read the `security` block on an endpoint rather
   than assuming from its HTTP method: many `POST` endpoints are reads.
-- **[Pagination and filtering](/pagination-and-filtering)** — `page`, `size`,
-  and `sort` behave identically across every list endpoint.
-- **[Errors](/errors)** — one problem detail body covers every failure.
+- **[Pagination and filtering](/pagination-and-filtering)** — use the parameters
+  documented for each list endpoint.
+- **[Errors](/errors)** — interpret API problem details.
 
 ## Base URL
 
@@ -23,21 +23,22 @@ entities, people, news, fundraising, media, search, and classifications.
 https://api.aventure.vc
 ```
 
-All endpoints are versioned under `/v1`.
+Use the path shown for each operation.
 
 ## OpenAPI document
 
 The released specification is published unchanged, so it carries the release
-version, every operation's `security` requirement, and the `x-aventure-tool`
-metadata exactly as the API emits them.
+version, every operation's `security` requirement, media types, and schema
+constraints. Internal generation metadata is excluded from the published document.
 
-<Download src="/apis/openapi/openapi.json">Download openapi.json</Download>
+<Download src="../../../openapi/openapi.json">Download openapi.json</Download>
 
-Current release: `0.7.264`.
+The `info.version` field identifies the released document.
 
 Fern also serves a rendering it regenerates from the same document at
-[/openapi.json](/openapi.json); that copy powers the API Explorer and may
-normalize version and authentication representation.
+[/openapi.json](/openapi.json). That rendering powers the API Explorer, but it
+changes version, authentication, media types, some status codes, examples, and
+schema composition. Use the Download for code generation and contract validation.
 
 ## Types for TypeScript
 

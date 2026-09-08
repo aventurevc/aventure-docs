@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Verify a published Fern site against the checked-in OpenAPI input.
 #   scripts/check-docs-site.sh <site-base-url>
-# 1. Every operation in fern/apis/openapi/openapi.json has exactly one
+# 1. Every operation in openapi/openapi.json has exactly one
 #    reference page in <site>/llms.txt, and each page's Markdown declares the
 #    expected METHOD and path (a missing page returns a 200 "similar pages"
 #    stub, so status codes prove nothing).
@@ -13,7 +13,7 @@ set -euo pipefail
 
 BASE="${1:?usage: $0 <site-base-url>}"
 BASE="${BASE%/}"
-SPEC="$(cd "$(dirname "$0")/.." && pwd)/fern/apis/openapi/openapi.json"
+SPEC="$(cd "$(dirname "$0")/.." && pwd)/openapi/openapi.json"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 CURL=(curl -fsSL --retry 3 --retry-delay 2 --retry-all-errors --max-time 30)
@@ -59,15 +59,15 @@ report duplicate_pages "$TMP/dup"
 report unparsed_pages "$TMP/unparsed"
 
 # --- 2. immutable artifact linked from the API overview page ---------------
-# The <Download> link is a signed URL that only appears in the rendered HTML.
-artifact_url="$("${CURL[@]}" "$BASE/api-reference" | grep -oE 'https?://[^"]+/apis/openapi/openapi\.json[^"]*' | head -n1 | sed 's/&amp;/\&/g' || true)"
+# Publication pins the Download to the immutable public API commit.
+artifact_url="$("${CURL[@]}" "$BASE/api-reference" | grep -oE 'https://raw\.githubusercontent\.com/aventurevc/aventure-docs/[0-9a-f]{40}/openapi/openapi\.json' | head -n1 || true)"
 if [ -z "$artifact_url" ]; then
   echo "artifact_link=missing"; fail=1
 else
   "${CURL[@]}" "$artifact_url" -o "$TMP/artifact.json"
   want="$(shasum -a 256 "$SPEC" | cut -d' ' -f1)"
   got="$(shasum -a 256 "$TMP/artifact.json" | cut -d' ' -f1)"
-  printf 'artifact_url=%s\nartifact_sha256=%s\nexpected_sha256=%s\n' "$artifact_url" "$got" "$want"
+  printf 'artifact_url=%s\nartifact_sha256=%s\nexpected_sha256=%s\n' "${artifact_url%%\?*}" "$got" "$want"
   if [ "$want" = "$got" ]; then echo artifact_identical=true; else echo artifact_identical=false; fail=1; fi
 fi
 
@@ -77,6 +77,8 @@ ops_of "$TMP/managed.json" > "$TMP/managed_ops"
 printf 'managed_version=%s\nmanaged_operations=%s\n' "$(jq -r .info.version "$TMP/managed.json")" "$(wc -l < "$TMP/managed_ops" | tr -d ' ')"
 comm -23 "$TMP/expected" "$TMP/managed_ops" > "$TMP/managed_missing"
 report managed_missing_operations "$TMP/managed_missing"
+comm -13 "$TMP/expected" "$TMP/managed_ops" > "$TMP/managed_extra"
+report managed_extra_operations "$TMP/managed_extra"
 
 if [ "$fail" -eq 0 ]; then echo RESULT=PASS; else echo RESULT=FAIL; fi
 exit "$fail"

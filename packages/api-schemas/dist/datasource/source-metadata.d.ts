@@ -1,0 +1,39 @@
+import { z } from "zod/v4";
+/**
+ * Grouped source/provenance metadata for private v1 response fields
+ *
+ * @openapiSchema DatasourceSourceMetadata
+ * @endpoint GET /v1/entities/detail
+ * @endpoint GET /v1/entities/detail/investors
+ * @endpoint GET /v1/entities/detail/person-investors
+ * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/media
+ * @endpoint GET /v1/people
+ * @endpoint GET /v1/people/detail
+ * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/provenance/latest
+ * @endpoint GET /v1/search/link
+ * @endpoint POST /v1/entities/batch
+ * @endpoint POST /v1/entities/detail/batch
+ * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/people/batch
+ * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search/all
+ * @usedBySchema MediaUploadSchema
+ * @usedBySchema PersonSchema
+ * @contractShape datasource.source-metadata
+ * @contractRole canonical
+ */
+export declare const DatasourceSourceMetadataSchema: z.ZodObject<{
+    changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+}, z.core.$strip>;
+export type DatasourceSourceMetadata = z.infer<typeof DatasourceSourceMetadataSchema>;
+//# sourceMappingURL=source-metadata.d.ts.map

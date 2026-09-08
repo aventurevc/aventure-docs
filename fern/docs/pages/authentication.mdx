@@ -4,10 +4,9 @@ subtitle: Pick the credential that matches what your integration needs to do
 slug: authentication
 ---
 
-Every aVenture API request carries a credential in a header. There are three
-kinds, and the one you hold determines which endpoints answer you. No endpoint
-accepts all three interchangeably — each is documented with the schemes it
-allows in the [API reference](/api-reference).
+Protected aVenture API operations accept the credentials listed in their
+`security` declarations. Some operations allow anonymous access. Read each
+operation in the [API reference](/api-reference) for its accepted schemes.
 
 ## The three credentials
 
@@ -23,7 +22,7 @@ curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
 
 This is the credential for a backend that reads venture data. It reaches the
 public read surface — entity, person, and news listings, detail lookups, filter
-metadata, resolve, and duplicate checks — and it cannot mutate anything.
+metadata and identifier resolution.
 
 </Tab>
 <Tab title="User bearer token">
@@ -32,7 +31,7 @@ A signed-in user's identity. Send it as a bearer token:
 
 ```bash
 curl -H "Authorization: Bearer $TOKEN" \
-  "https://api.aventure.vc/v1/entities/detail/people"
+  "https://api.aventure.vc/v1/auth/api/me/permissions"
 ```
 
 The API accepts a Supabase session JWT, a Clerk session JWT, a Clerk OAuth
@@ -42,17 +41,16 @@ on behalf of a person rather than a machine.
 </Tab>
 <Tab title="Admin API key">
 
-System-to-system writes. Send it as `X-API-Key`:
+An administrative credential for operations that explicitly accept
+`adminApiKeyAuth`. Send it as `X-API-Key`:
 
 ```bash
-curl -X POST -H "X-API-Key: $AVENTURE_ADMIN_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{ ... }' \
-  "https://api.aventure.vc/v1/entities/detail"
+curl -H "X-API-Key: $AVENTURE_ADMIN_KEY" \
+  "https://api.aventure.vc/v1/auth/api/me/permissions"
 ```
 
-This is the credential behind the write surface — creating and updating
-entities, people, news, media, and classifications.
+Administrative dataset-maintenance operations are outside this public
+reference. Possessing a credential does not make an operation public.
 
 </Tab>
 </Tabs>
@@ -62,12 +60,12 @@ entities, people, news, media, and classifications.
 Read the `security` block on each endpoint in the reference rather than assuming
 from the HTTP method. Two rules explain most of the surface:
 
-- **A `POST` is not always a write.** Search, batch, filter, and duplicate-check
+- **A `POST` is not always a write.** Search, batch, and filter
   endpoints take a JSON body because their query is too large for a query string
-  — `POST /v1/entities`, `POST /v1/search/all`, and `POST /v1/people/detail/batch`
+  — `POST /v1/entities/search`, `POST /v1/search/all`, and `POST /v1/people/detail/batch`
   are all reads, and all accept a client secret.
-- **Genuine writes need an admin key or a user bearer token.** A client secret
-  is rejected on every mutating endpoint.
+- **Authentication flows have their own requirements.** Follow the declared
+  security and request parameters for each operation.
 
 ## Keeping credentials safe
 

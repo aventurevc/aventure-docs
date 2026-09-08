@@ -90,7 +90,7 @@ news rather than making you assemble the filters yourself.
 
 ## When the query outgrows a URL
 
-Long filter sets exceed practical query-string limits. `POST /v1/entities` takes
+Long filter sets exceed practical query-string limits. `POST /v1/entities/search` takes
 the same query as a JSON body and is still a read, so a client secret is enough.
 `page`, `size`, and `sort` stay in the query string.
 

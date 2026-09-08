@@ -6,9 +6,11 @@ on:
       - main
     # Only docs release inputs select a publication.
     paths:
+      - ".github/workflows/**"
       - "fern/**"
-      - "scripts/check-docs-site.sh"
-      - ".github/workflows/publish-docs.yml"
+      - "openapi/**"
+      - "packages/api-schemas/**"
+      - "scripts/**"
 
 concurrency:
   group: publish-docs
@@ -36,7 +38,7 @@ jobs:
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
         run: |
-          if ! OUTPUT=$(fern generate --docs --log-level debug 2>&1); then echo "$OUTPUT"; exit 1; fi
+          if ! OUTPUT=$(fern generate --docs --log-level info 2>&1); then echo "$OUTPUT"; exit 1; fi
           echo "$OUTPUT"
           # A layout key that no longer matches a spec tag is only a warning to Fern.
           if grep -q 'Failed to locate API section' <<<"$OUTPUT"; then exit 1; fi

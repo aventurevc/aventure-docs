@@ -1,21 +1,9 @@
-<br/>
-<div align="center">
-  <a href="https://www.buildwithfern.com/?utm_source=github&utm_medium=readme&utm_campaign=fern&utm_content=logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="/fern/docs/assets/fern-logo-white.svg">
-      <source media="(prefers-color-scheme: light)" srcset="/fern/docs/assets/fern-logo-primary.svg">
-      <img alt="logo" src="/fern/docs/assets/fern-logo-primary.svg" height="50" align="center">
-    </picture>
-  </a>
-  
-  <br/>
-  
-# Docs starter template for FTUX
+# aVenture documentation and public API
 
-This is the internal starter template cloned when a user creates a new docs site through the FTUX dashboard flow. It ships with a sample Plant Store API so new users have working documentation out of the box.
+This repository publishes [aVenture documentation](https://docs.aventure.vc), the public OpenAPI document at `openapi/openapi.json`, and its matching Zod package at `packages/api-schemas`.
 
-The docs starter template for CLI users is still at [fern-api/docs-starter](https://github.com/fern-api/docs-starter).
+The release workflow delivers the generated specification and compiled schema package together. Fern imports that same specification; edit API contracts at their source and regenerate them rather than editing generated files here.
 
-## Making changes to this template
+Author documentation under `fern/`. Run `fern check` to validate it and `fern docs dev` to preview it. The existing GitHub workflow publishes documentation changes from `main` and verifies the downloadable specification and operation pages.
 
-Any changes here affect what every new user gets when they create a docs site from the dashboard. Test locally with `fern docs dev` and `fern check` before merging.
+The OpenAPI Download on the API reference page preserves the released document exactly. Fern's managed `/openapi.json` supplies its rendered operation catalog.

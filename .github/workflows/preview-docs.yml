@@ -1,6 +1,13 @@
 name: preview-docs
 
-on: pull_request
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "fern/**"
+      - "openapi/**"
+      - "packages/api-schemas/**"
+      - "scripts/**"
 
 jobs:
   run:

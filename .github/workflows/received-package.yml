@@ -1,0 +1,78 @@
+name: received-package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    outputs:
+      package: ${{ steps.changed.outputs.package }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - id: changed
+        run: |
+          base='${{ github.event.pull_request.base.sha || github.event.before }}'
+          if [ -z "$base" ] || ! git cat-file -e "$base" 2>/dev/null; then
+            echo "package=true" >>"$GITHUB_OUTPUT"
+            exit 0
+          fi
+          changed="$(git diff --name-only "$base" HEAD)"
+          if grep -qE '^(package\.json|package-lock\.json|pnpm-lock\.yaml|yarn\.lock|bun\.lockb?|\.npmrc|packages/api-schemas/|openapi/|scripts/|\.github/workflows/)' <<<"$changed"; then
+            echo "package=true" >>"$GITHUB_OUTPUT"
+          else
+            grep -vE '^(README\.md|LICENSE|skills/|fern/)' <<<"$changed" && exit 1
+            echo "package=false" >>"$GITHUB_OUTPUT"
+          fi
+
+  package:
+    needs: select
+    if: needs.select.outputs.package == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+      - uses: fern-api/setup-fern-cli@v1
+      - name: Validate the unified OpenAPI input
+        run: |
+          test -s openapi/openapi.json
+          test ! -e fern/apis/openapi/openapi.json
+          jq -e '.openapi and .info.version and (.paths | type == "object" and length > 0)' openapi/openapi.json
+          fern check --local
+          bash -n scripts/check-docs-site.sh
+      - name: Pack and install the received public schema package
+        run: |
+          test -d packages/api-schemas/dist
+          test "$(jq -r .version packages/api-schemas/package.json)" = "$(jq -r .info.version openapi/openapi.json)"
+          npm pack ./packages/api-schemas --ignore-scripts --json --pack-destination "$RUNNER_TEMP" > "$RUNNER_TEMP/pack.json"
+          tarball="$RUNNER_TEMP/$(jq -r '.[0].filename' "$RUNNER_TEMP/pack.json")"
+          prefix="$RUNNER_TEMP/schema-install"
+          mkdir -p "$prefix"
+          npm install --prefix "$prefix" --ignore-scripts "$tarball"
+          node --input-type=module - "$prefix/node_modules/@aventurevc/api-schemas" <<'JS'
+          import { readdirSync } from 'node:fs';
+          import { join } from 'node:path';
+          import { pathToFileURL } from 'node:url';
+          const root = process.argv[2];
+          const files = readdirSync(join(root, 'dist'), { recursive: true }).filter(path => path.endsWith('.js'));
+          if (files.length === 0) throw new Error('Public schema package has no JavaScript modules');
+          for (const path of files) await import(pathToFileURL(join(root, 'dist', path)).href);
+          console.log(`Imported ${files.length} installed public schema modules`);
+          JS
+
+  required:
+    needs: [select, package]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          selected='${{ needs.select.outputs.package }}'
+          result='${{ needs.package.result }}'
+          [ '${{ needs.select.result }}' = success ] || exit 1
+          if [ "$selected" = true ]; then [ "$result" = success ]; else [ "$result" = skipped ]; fi

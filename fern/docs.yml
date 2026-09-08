@@ -58,77 +58,21 @@ navigation:
       - api: aVenture API
         flattened: false
         skip-slug: true
-        # Sections in Fern's default order. Fern derives each section id from
-        # the tag's camelCase and each endpoint slug and title from its summary;
-        # four operations collide with that derivation and lose their page, so
-        # their slug (and one title) are pinned. `resolve` is the endpoint id
-        # too, so that endpoint gets an authored section.
+        # Pin only colliding endpoint slugs; Fern includes other sections automatically.
         layout:
-          - agentChassis
-          - agentHelp
-          - agentInstructions
-          - billing
-          - classificationTags
-          - content
-          - contentEmbedding
-          - semanticSimilarity
-          - entities
-          - entityClassificationsAudit
-          - entityClassificationsReconcile
           - entityFilters:
               - endpoint: GET /v1/entities/filters
                 slug: list-entity-filter-options
-          - entityMaintenance
-          - crawlRuns
-          - entityFinancialValuation
-          - entityFundraise
-          - entityNews
-          - entityEmployeeCount
-          - entitySimilarity
-          - entitiesV1
-          - entityRelationships
-          - entityResearch
-          - texts
-          - urlLinks
-          - entityAcquisitions
-          - entityAddressesCanonical
           - researchBlogPosts:
               - endpoint: GET /v1/people/{slug}/blog-posts
                 slug: list-person-blog-posts-by-slug
                 title: List person blog posts by slug
-          - entityClassificationsCanonical
-          - completionGates:
-              - endpoint: GET /v1/entities/research/completion/gates
-                slug: list-completion-gates
-          - entityPersonAssociations
-          - entitySuggestions
-          - repositories
-          - urlSlugRedirects
-          - uniqueIDs
-          - media
-          - logoAudit
-          - mediaRetrofit
-          - screenshots
-          - news
-          - newsV1
-          - newsLinker
-          - people
-          - personBatch
-          - personInvestments
-          - personNews
-          - personSimilarity
-          - peopleV1
-          - personMetadata
-          - personAddresses
-          - dataProvenance
           - section: Resolve
             slug: resolve
             contents:
               - endpoint: GET /v1/resolve/{token}
                 slug: resolve-identifier
-          - search
-          - sec
-          - system
+
 navbar-links:
   - type: filled
     text: API reference

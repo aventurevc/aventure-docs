@@ -2,9 +2,21 @@ name: fern-check
 
 on:
   pull_request:
+    paths:
+      - ".github/workflows/**"
+      - "fern/**"
+      - "openapi/**"
+      - "packages/api-schemas/**"
+      - "scripts/**"
   push:
     branches:
       - main
+    paths:
+      - ".github/workflows/**"
+      - "fern/**"
+      - "openapi/**"
+      - "packages/api-schemas/**"
+      - "scripts/**"
 
 jobs:
   run:
