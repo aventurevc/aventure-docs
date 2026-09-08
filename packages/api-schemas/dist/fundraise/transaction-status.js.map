@@ -1,1 +1,0 @@
-{"version":3,"file":"transaction-status.js","sourceRoot":"","sources":["../../../api-schemas/public/fundraise/transaction-status.ts"],"names":[],"mappings":"AAAA,8LAA8L;AAE9L,OAAO,EAAE,CAAC,EAAE,MAAM,QAAQ,CAAC;AAE3B;;;;;;;;;GASG;AACH,MAAM,CAAC,MAAM,gCAAgC,GAAG,CAAC,CAAC,IAAI,CAAC;IACrD,WAAW;IACX,wDAAwD;IACxD,QAAQ;IACR,QAAQ;IACR,WAAW;IACX,aAAa;IACb,MAAM;CACP,CAAC,CAAC"}

@@ -1,1 +1,0 @@
-{"version":3,"file":"openapi-component-manifest.d.ts","sourceRoot":"","sources":["../../api-schemas/public/openapi-component-manifest.ts"],"names":[],"mappings":"AAEA;;;;;;;;;;;;GAYG;AACH,MAAM,WAAW,uBAAuB;IACtC,QAAQ,CAAC,UAAU,EAAE,MAAM,CAAC;IAC5B,QAAQ,CAAC,UAAU,EAAE,MAAM,CAAC;CAC7B;AAED,eAAO,MAAM,0BAA0B,EAAE,QAAQ,CAAC,MAAM,CAAC,MAAM,EAAE,uBAAuB,CAAC,CAg2BrF,CAAC"}
