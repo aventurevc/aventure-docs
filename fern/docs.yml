@@ -58,7 +58,7 @@ navigation:
       - api: aVenture API
         flattened: false
         skip-slug: true
-        # Pin only colliding endpoint slugs; Fern includes other sections automatically.
+        # Disambiguate endpoint pages while preserving their published URLs.
         layout:
           - entityFilters:
               - endpoint: GET /v1/entities/filters
@@ -67,6 +67,10 @@ navigation:
               - endpoint: GET /v1/people/{slug}/blog-posts
                 slug: list-person-blog-posts-by-slug
                 title: List person blog posts by slug
+          - media:
+              - endpoint: GET /v1/media/identicons/{seed}.svg
+                slug: get-generated-monogram
+                title: Render a deterministic monogram SVG (v1)
           - section: Resolve
             slug: resolve
             contents:
