@@ -16,7 +16,6 @@ const EntityFilterOptionSetSchemaDefinition = z.object({
  * @openapiSchema EntityFilterOptionSet
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
- * @endpoint POST /v1/people/filters
  * @contractShape entity.filter-option-set
  * @contractRole canonical
  */

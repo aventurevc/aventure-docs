@@ -17,6 +17,7 @@ import { RoundLabelSchema } from "../round/label.js";
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/investments
+ * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions

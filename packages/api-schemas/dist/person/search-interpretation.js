@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
 import { PersonFilterSchema } from "./filter.js";
 import { SearchModeExecutionSchema } from "../search/mode-execution.js";
-import { SortSpecPersonSortFieldSchema } from "../sort/spec-person-sort-field.js";
+import { SearchOrderingPersonSortFieldSchema } from "../search/ordering-person-sort-field.js";
 const PersonSearchInterpretationSchemaDefinition = z.object({
     /** Planner confidence in the structured interpretation. */
     confidence: ConfidenceSchema,
@@ -15,8 +15,8 @@ const PersonSearchInterpretationSchemaDefinition = z.object({
     filter: PersonFilterSchema,
     /** Human-readable summary of how the query was interpreted. */
     interpretation: z.string(),
-    /** Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column. */
-    sort: SortSpecPersonSortFieldSchema,
+    /** Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms. */
+    sort: SearchOrderingPersonSortFieldSchema,
     /** Constraint the planner could not translate into the canonical PersonFilter contract; null when every material constraint was supported. */
     unsupported: z.string().nullish(),
 });

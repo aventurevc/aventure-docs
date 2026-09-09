@@ -6,7 +6,6 @@ import { z } from "zod/v4";
  * @openapiSchema EntityFilterOptionMode
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterOptionSetMetaSchema
  * @contractShape entity.filter-option-mode
  * @contractRole canonical

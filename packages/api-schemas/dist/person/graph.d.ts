@@ -471,101 +471,10 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         transactionId?: string | null | undefined;
     }, unknown>>>;
     computedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    rolePeer: z.ZodArray<z.ZodType<{
-        entity: {
-            createdAt?: string | null | undefined;
-            defaultCurrency?: string | null | undefined;
-            foundedYear?: number | null | undefined;
-            id: string;
-            image: {
-                isMonogram: boolean;
-                logo?: string | null | undefined;
-                logoSquare?: string | null | undefined;
-            };
-            lastModifiedAt?: string | null | undefined;
-            nameAlias: {
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }[];
-            nameBrand: string;
-            nameLegal?: string | null | undefined;
-            operatingStatus?: string | null | undefined;
-            publicId?: string | null | undefined;
-            publicUrl?: string | null | undefined;
-            sitemap?: {
-                hasAcquisitions?: boolean | undefined;
-                hasAnalysis: boolean;
-                hasEmployees: boolean;
-                hasFundraising: boolean;
-                hasNews: boolean;
-                productServiceSlug: string[];
-            } | null | undefined;
-            slug: string;
-            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            updatedAt?: string | null | undefined;
-        };
-        person: {
-            isCurrent?: boolean | null | undefined;
-            personId: string;
-            personImage: {
-                isMonogram: boolean;
-                picture?: string | null | undefined;
-            };
-            personName: string;
-            personSlug: string;
-            titleName?: string | null | undefined;
-        };
-    }, unknown, z.core.$ZodTypeInternals<{
-        entity: {
-            createdAt?: string | null | undefined;
-            defaultCurrency?: string | null | undefined;
-            foundedYear?: number | null | undefined;
-            id: string;
-            image: {
-                isMonogram: boolean;
-                logo?: string | null | undefined;
-                logoSquare?: string | null | undefined;
-            };
-            lastModifiedAt?: string | null | undefined;
-            nameAlias: {
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }[];
-            nameBrand: string;
-            nameLegal?: string | null | undefined;
-            operatingStatus?: string | null | undefined;
-            publicId?: string | null | undefined;
-            publicUrl?: string | null | undefined;
-            sitemap?: {
-                hasAcquisitions?: boolean | undefined;
-                hasAnalysis: boolean;
-                hasEmployees: boolean;
-                hasFundraising: boolean;
-                hasNews: boolean;
-                productServiceSlug: string[];
-            } | null | undefined;
-            slug: string;
-            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            updatedAt?: string | null | undefined;
-        };
-        person: {
-            isCurrent?: boolean | null | undefined;
-            personId: string;
-            personImage: {
-                isMonogram: boolean;
-                picture?: string | null | undefined;
-            };
-            personName: string;
-            personSlug: string;
-            titleName?: string | null | undefined;
-        };
-    }, unknown>>>;
 }, z.core.$strip>;
 type PersonGraphDefinition = z.infer<typeof PersonGraphSchemaDefinition>;
 /**
- * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors and role peers. Lists are capped and pre-ranked server-side; the response is the display order. Served from a precomputed store with member names, images, and slugs hydrated from live person records at read time; computedAt is null only when the document has not been materialized yet.
+ * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors. Lists are capped and pre-ranked server-side; the response is the display order. Served from a precomputed store with member names, images, and slugs hydrated from live person records at read time; computedAt is null only when the document has not been materialized yet.
  *
  * @openapiSchema PersonGraph
  * @endpoint GET /v1/people/{personId}/graph

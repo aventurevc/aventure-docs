@@ -15,6 +15,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/investments
+ * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
@@ -43,7 +44,6 @@ import { z } from "zod/v4";
  * @usedBySchema EntityRelationshipSchema
  * @usedBySchema PageEntitySchema
  * @usedBySchema PersonGraphCoInvestorSchema
- * @usedBySchema PersonGraphRolePeerSchema
  * @usedBySchema PersonInvestedCompanySchema
  * @contractShape entity.entity
  * @contractRole canonical

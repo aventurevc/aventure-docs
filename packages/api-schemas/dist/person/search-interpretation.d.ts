@@ -108,11 +108,13 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
             descending: boolean;
             field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
         }[];
+        relevance?: "keyword" | "semantic" | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         order: {
             descending: boolean;
             field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
         }[];
+        relevance?: "keyword" | "semantic" | null | undefined;
     }, unknown>>;
     unsupported: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;

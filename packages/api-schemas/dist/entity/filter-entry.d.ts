@@ -66,7 +66,6 @@ type EntityFilterEntryDefinition = z.infer<typeof EntityFilterEntrySchemaDefinit
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
  * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterOptionSetSchema
  * @usedBySchema EntityFilterRefinedFiltersSchema
  * @contractShape entity.filter-entry

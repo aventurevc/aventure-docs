@@ -8,7 +8,6 @@ import { EntityFilterHeadquartersOptionSetSchema } from "./filter-headquarters-o
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
  * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterMetaSchema
  * @contractShape entity.filter-ui-meta
  * @contractRole canonical

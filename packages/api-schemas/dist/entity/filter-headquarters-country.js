@@ -14,7 +14,6 @@ const EntityFilterHeadquartersCountrySchemaDefinition = z.object({
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
  * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterHeadquartersOptionSetSchema
  * @contractShape entity.filter-headquarters-country
  * @contractRole canonical

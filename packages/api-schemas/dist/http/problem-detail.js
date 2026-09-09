@@ -10,7 +10,6 @@ const ProblemDetailSchemaDefinition = z.object({
     /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes indicate infra/admin-only conditions where the correct agent action is to surface the error and stop, not retry. */
     code: z
         .enum([
-        "session_expired",
         "not_authorized",
         "rateLimited",
         "origin_detail_capacity",
@@ -21,9 +20,6 @@ const ProblemDetailSchemaDefinition = z.object({
         "JOBRUNR_STORAGE_UNAVAILABLE",
         "rbac_lookup_unavailable",
         "GEOCODE_PROVIDER_ERROR",
-        "auth_rest_error",
-        "auth_http_error",
-        "no_session",
         "sentry_api_error",
         "swagger_headers_unconfigured",
         "frontend_cache_epoch_mode_not_targeted",

@@ -51,6 +51,7 @@ const PersonSchemaDefinition = z.object({
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch

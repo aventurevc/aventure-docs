@@ -23,7 +23,6 @@ type EntityTypeGroupMembershipDefinition = z.infer<typeof EntityTypeGroupMembers
  * @openapiSchema EntityTypeGroupMembership
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterOptionSetMetaSchema
  * @contractShape entity.type-group-membership
  * @contractRole canonical

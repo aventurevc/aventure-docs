@@ -12,7 +12,6 @@ const EntityTypeGroupMembershipSchemaDefinition = z.object({
  * @openapiSchema EntityTypeGroupMembership
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterOptionSetMetaSchema
  * @contractShape entity.type-group-membership
  * @contractRole canonical

@@ -16,6 +16,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/investments
+ * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions

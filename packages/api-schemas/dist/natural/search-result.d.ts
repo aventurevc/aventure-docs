@@ -110,6 +110,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 descending: boolean;
                 field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
             }[];
+            relevance?: "keyword" | "semantic" | null | undefined;
         };
         unsupported?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
@@ -222,6 +223,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 descending: boolean;
                 field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
             }[];
+            relevance?: "keyword" | "semantic" | null | undefined;
         };
         unsupported?: string | null | undefined;
     }, unknown>>;

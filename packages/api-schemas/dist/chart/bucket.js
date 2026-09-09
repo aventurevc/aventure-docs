@@ -15,7 +15,6 @@ const ChartBucketSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
  * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterEntrySchema
  * @contractShape chart.bucket
  * @contractRole canonical

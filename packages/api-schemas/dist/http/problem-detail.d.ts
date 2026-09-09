@@ -10,8 +10,6 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         INFERENCE_PROVIDER_RESPONSE_EMPTY: "INFERENCE_PROVIDER_RESPONSE_EMPTY";
         JOBRUNR_DISABLED: "JOBRUNR_DISABLED";
         JOBRUNR_STORAGE_UNAVAILABLE: "JOBRUNR_STORAGE_UNAVAILABLE";
-        auth_http_error: "auth_http_error";
-        auth_rest_error: "auth_rest_error";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
         github_fetch_failed: "github_fetch_failed";
         image_blocklist_match: "image_blocklist_match";
@@ -25,7 +23,6 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";
         news_similarity_embedding_unavailable: "news_similarity_embedding_unavailable";
-        no_session: "no_session";
         not_authorized: "not_authorized";
         origin_detail_capacity: "origin_detail_capacity";
         origin_detail_shutdown: "origin_detail_shutdown";
@@ -38,7 +35,6 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         search_provider_not_configured: "search_provider_not_configured";
         sec_edgar_fetch_failed: "sec_edgar_fetch_failed";
         sentry_api_error: "sentry_api_error";
-        session_expired: "session_expired";
         source_document_body_unavailable: "source_document_body_unavailable";
         source_document_capture_limit_exceeded: "source_document_capture_limit_exceeded";
         suspectedShellStrip: "suspectedShellStrip";

@@ -661,10 +661,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PersonGraphCoInvestorSchema",
     },
     PersonGraphMember: { modulePath: "person/graph-member", schemaName: "PersonGraphMemberSchema" },
-    PersonGraphRolePeer: {
-        modulePath: "person/graph-role-peer",
-        schemaName: "PersonGraphRolePeerSchema",
-    },
     PersonGraphSimilarEntity: {
         modulePath: "person/graph-similar-entity",
         schemaName: "PersonGraphSimilarEntitySchema",
@@ -763,6 +759,15 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/mode-execution",
         schemaName: "SearchModeExecutionSchema",
     },
+    SearchOrderingEntityFilterSortable: {
+        modulePath: "search/ordering-entity-filter-sortable",
+        schemaName: "SearchOrderingEntityFilterSortableSchema",
+    },
+    SearchOrderingPersonSortField: {
+        modulePath: "search/ordering-person-sort-field",
+        schemaName: "SearchOrderingPersonSortFieldSchema",
+    },
+    SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
     SitemapChangeFrequency: {
         modulePath: "sitemap/change-frequency",
@@ -800,14 +805,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SortSpecContentSortField: {
         modulePath: "sort/spec-content-sort-field",
         schemaName: "SortSpecContentSortFieldSchema",
-    },
-    SortSpecEntityFilterSortable: {
-        modulePath: "sort/spec-entity-filter-sortable",
-        schemaName: "SortSpecEntityFilterSortableSchema",
-    },
-    SortSpecPersonSortField: {
-        modulePath: "sort/spec-person-sort-field",
-        schemaName: "SortSpecPersonSortFieldSchema",
     },
     SourceDocumentList: {
         modulePath: "source/document-list",

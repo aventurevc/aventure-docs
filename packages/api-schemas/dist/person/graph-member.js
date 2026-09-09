@@ -24,7 +24,6 @@ const PersonGraphMemberSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/graph
  * @usedBySchema PersonGraphCareerContextSchema
  * @usedBySchema PersonGraphCoInvestorSchema
- * @usedBySchema PersonGraphRolePeerSchema
  * @usedBySchema PersonGraphSimilarEntitySchema
  * @contractShape person.graph-member
  * @contractRole canonical

@@ -9,7 +9,6 @@ import { EntityTypeGroupSchema } from "./type-group.js";
  * @openapiSchema EntityFilterOptionSetMeta
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterOptionSetSchema
  * @contractShape entity.filter-option-set-meta
  * @contractRole canonical

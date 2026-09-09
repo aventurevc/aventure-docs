@@ -11,7 +11,6 @@ type EntityFilterHeadquartersStateCityDefinition = z.infer<typeof EntityFilterHe
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
  * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterHeadquartersCountrySchema
  * @contractShape entity.filter-headquarters-state-city
  * @contractRole canonical

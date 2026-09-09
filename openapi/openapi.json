@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.266"
+    "version": "0.7.268"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -8969,7 +8969,7 @@
     },
     "/v1/entities/search": {
       "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityListFilter JSON body. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. For a plain-English or multi-constraint company request, use POST /v1/entities/natural-search instead. Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety. Use duplicate-check before writes that need identity review.",
+        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityListFilter JSON body. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. For a plain-English or multi-constraint company request, use POST /v1/entities/natural-search instead. Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety. Use duplicate-check before writes that need identity review. Structured search supports sort-aware cursor continuation with unchanged filters and sort; cursors are unsupported with semanticQuery or countOnly.",
         "operationId": "listEntitiesPost",
         "parameters": [
           {
@@ -8997,6 +8997,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque sort-aware entity cursor; reuse the same filters and sort. Unsupported with semanticQuery or countOnly.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -9052,7 +9061,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque sort-aware continuation token when another page is available",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -17494,6 +17512,189 @@
         }
       }
     },
+    "/v1/news/lookup": {
+      "get": {
+        "description": "Resolves news detail by slug, external ID, URL, or bounded title candidate signals. Use the numeric item route for an id; any id query is rejected. Canonical redirects are preserved.",
+        "operationId": "lookupNews",
+        "parameters": [
+          {
+            "description": "Exact news article slug (URL-friendly identifier). Mutually exclusive with id, externalId, url, and title.",
+            "in": "query",
+            "name": "slug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Canonical lowercase URL slug for the resource",
+              "example": "aventure-vc",
+              "maxLength": 255,
+              "pattern": "^[a-z0-9_-]+$"
+            }
+          },
+          {
+            "description": "External ID or RSS GUID for ingestion-key lookup. Mutually exclusive with id, slug, url, and title.",
+            "in": "query",
+            "name": "externalId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "External ID or RSS GUID for ingestion-key lookup. Mutually exclusive with id, slug, url, and title."
+            }
+          },
+          {
+            "description": "Original article URL to resolve via strict host+path or domain-only match. Mutually exclusive with id, slug, and externalId. May pair with title and publication to narrow candidate recovery after an exact URL miss. Pair with urlMatchMode to disambiguate.",
+            "in": "query",
+            "name": "url",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Original article URL to resolve via strict host+path or domain-only match. Mutually exclusive with id, slug, and externalId. May pair with title and publication to narrow candidate recovery after an exact URL miss. Pair with urlMatchMode to disambiguate."
+            }
+          },
+          {
+            "description": "Candidate lookup signal: article title. Mutually exclusive with id, slug, and externalId. Combine with publication, urlDomain, or url for bounded candidate search.",
+            "in": "query",
+            "name": "title",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Candidate lookup signal: article title. Mutually exclusive with id, slug, and externalId. Combine with publication, urlDomain, or url for bounded candidate search."
+            }
+          },
+          {
+            "description": "Publication qualifier (e.g., 'TechCrunch', 'Forbes'). Narrows a title candidate search. Not an identifier on its own.",
+            "in": "query",
+            "name": "publication",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Publication qualifier (e.g., 'TechCrunch', 'Forbes'). Narrows a title candidate search. Not an identifier on its own."
+            }
+          },
+          {
+            "description": "Candidate lookup URL domain qualifier (host only, no path). Narrows a title candidate search. Not an identifier on its own.",
+            "in": "query",
+            "name": "urlDomain",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Candidate lookup URL domain qualifier (host only, no path). Narrows a title candidate search. Not an identifier on its own."
+            }
+          },
+          {
+            "description": "URL match mode qualifier: 'hostPath' (strict host + path match, default) or 'domain' (host-only match). Narrows url and urlDomain matching. Not an identifier on its own.",
+            "in": "query",
+            "name": "urlMatchMode",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "URL match mode qualifier: 'hostPath' (strict host + path match, default) or 'domain' (host-only match). Narrows url and urlDomain matching. Not an identifier on its own."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsDetail"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Look up one news article",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-tool": {
+          "cli": "news lookup"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/news/recent": {
       "get": {
         "description": "Returns recent news articles.",
@@ -20274,114 +20475,6 @@
         "x-aventure-visibility": {
           "scope": "public"
         }
-      },
-      "post": {
-        "description": "Returns available people filter facets for a filter body.",
-        "operationId": "filtersPost",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityFilterOptionSet"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "People filters (POST)",
-        "tags": [
-          "Person Metadata"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
       }
     },
     "/v1/people/filters/search": {
@@ -20624,6 +20717,259 @@
         ],
         "x-aventure-tool": {
           "cli": "sitemap person-letter-counts list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/people/lookup": {
+      "get": {
+        "description": "Resolves person detail by slug, URL or bounded candidate signals with the existing projection and visibility options. Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved.",
+        "operationId": "lookupPerson",
+        "parameters": [
+          {
+            "description": "Group A — exact person slug (URL-friendly identifier). Mutually exclusive with id, url, and every candidate signal in group C.",
+            "in": "query",
+            "name": "slug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group A — exact person slug (URL-friendly identifier). Mutually exclusive with id, url, and every candidate signal in group C."
+            }
+          },
+          {
+            "description": "Group B — current person URL to resolve via strict host+path or domain-only match. Mutually exclusive with id and slug; may be combined with group-C candidate signals for URL-first fallback.",
+            "in": "query",
+            "name": "url",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group B — current person URL to resolve via strict host+path or domain-only match. Mutually exclusive with id and slug; may be combined with group-C candidate signals for URL-first fallback."
+            }
+          },
+          {
+            "description": "Optional URL type qualifier for URL lookup (e.g., 'linkedin', 'twitter'). Narrows Group B (url) and Group C (urlDomain) matching. Not an identifier on its own.",
+            "example": "linkedin",
+            "in": "query",
+            "name": "urlType",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Optional URL type qualifier for URL lookup (e.g., 'linkedin', 'twitter'). Narrows Group B (url) and Group C (urlDomain) matching. Not an identifier on its own.",
+              "example": "linkedin"
+            }
+          },
+          {
+            "description": "URL match mode qualifier: 'hostPath' (strict host + path match, default) or 'domain' (host-only match). Not an identifier on its own.",
+            "in": "query",
+            "name": "urlMatchMode",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "URL match mode qualifier: 'hostPath' (strict host + path match, default) or 'domain' (host-only match). Not an identifier on its own."
+            }
+          },
+          {
+            "description": "Group C — candidate lookup signal: person full name. Combine with other group-C signals (nameAny, location, urlDomain) for bounded candidate search. Mutually exclusive with id and slug; may be combined with url for fallback.",
+            "in": "query",
+            "name": "nameFull",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group C — candidate lookup signal: person full name. Combine with other group-C signals (nameAny, location, urlDomain) for bounded candidate search. Mutually exclusive with id and slug; may be combined with url for fallback."
+            }
+          },
+          {
+            "description": "Group C — candidate lookup signal: loose name match (any of given/family/full). Combine with other group-C signals for disambiguation. Mutually exclusive with id and slug; may be combined with url for fallback.",
+            "in": "query",
+            "name": "nameAny",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group C — candidate lookup signal: loose name match (any of given/family/full). Combine with other group-C signals for disambiguation. Mutually exclusive with id and slug; may be combined with url for fallback."
+            }
+          },
+          {
+            "description": "Group C — candidate lookup signal: person location (city, state, country). Combine with other group-C signals for bounded search. Mutually exclusive with id and slug; may be combined with url for fallback.",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group C — candidate lookup signal: person location (city, state, country). Combine with other group-C signals for bounded search. Mutually exclusive with id and slug; may be combined with url for fallback."
+            }
+          },
+          {
+            "description": "Group C — candidate lookup signal: person URL domain (host only, no path). Combine with other group-C signals for disambiguation. Mutually exclusive with id and slug; may be combined with url for fallback.",
+            "in": "query",
+            "name": "urlDomain",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Group C — candidate lookup signal: person URL domain (host only, no path). Combine with other group-C signals for disambiguation. Mutually exclusive with id and slug; may be combined with url for fallback."
+            }
+          },
+          {
+            "description": "Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array.",
+            "in": "query",
+            "name": "includeUrl",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array."
+            }
+          },
+          {
+            "description": "Projection qualifier — include association values (default: true). Set false to omit association array.",
+            "in": "query",
+            "name": "includeAssociation",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Projection qualifier — include association values (default: true). Set false to omit association array."
+            }
+          },
+          {
+            "description": "Projection qualifier — include address values (default: true). Set false to omit address array.",
+            "in": "query",
+            "name": "includeAddress",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Projection qualifier — include address values (default: true). Set false to omit address array."
+            }
+          },
+          {
+            "description": "Projection qualifier — max association values to return; bounded internally to the association limit. Default: 40.",
+            "in": "query",
+            "name": "maxAssociations",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Projection qualifier — max association values to return; bounded internally to the association limit. Default: 40."
+            }
+          },
+          {
+            "description": "Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response.",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response."
+            }
+          },
+          {
+            "description": "Privileged admin readback scope. Includes hidden or off-sitemap people and privileged private fields. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Privileged admin readback scope. Includes hidden or off-sitemap people and privileged private fields. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonDetail"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Look up one person",
+        "tags": [
+          "People"
+        ],
+        "x-aventure-tool": {
+          "cli": "people lookup"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -22700,7 +23046,7 @@
     },
     "/v1/people/{personId}/graph": {
       "get": {
-        "description": "Returns the precomputed person-graph document: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), co-investors, and role peers. Lists are capped and pre-ranked; the response is the display order. Hidden people and entities are excluded at materialization. When no document has been materialized yet, returns empty lists with computedAt=null and schedules an asynchronous recompute.",
+        "description": "Returns the precomputed person-graph document: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people) and co-investors. Lists are capped and pre-ranked; the response is the display order. Hidden people and entities are excluded at materialization. When no document has been materialized yet, returns empty lists with computedAt=null and schedules an asynchronous recompute.",
         "operationId": "getPersonGraph",
         "parameters": [
           {
@@ -26404,7 +26750,6 @@
             ],
             "description": "Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes indicate infra/admin-only conditions where the correct agent action is to surface the error and stop, not retry.",
             "enum": [
-              "session_expired",
               "not_authorized",
               "rateLimited",
               "origin_detail_capacity",
@@ -26415,9 +26760,6 @@
               "JOBRUNR_STORAGE_UNAVAILABLE",
               "rbac_lookup_unavailable",
               "GEOCODE_PROVIDER_ERROR",
-              "auth_rest_error",
-              "auth_http_error",
-              "no_session",
               "sentry_api_error",
               "swagger_headers_unconfigured",
               "frontend_cache_epoch_mode_not_targeted",
@@ -32779,7 +33121,7 @@
       },
       "PersonGraph": {
         "type": "object",
-        "description": "\n        Precomputed professional-graph document for one person: career context per associated\n        entity (entity facts, recent news, colleagues, similar entities with key people), plus\n        co-investors and role peers. Lists are capped and pre-ranked server-side; the response is\n        the display order. Served from a precomputed store with member names, images, and slugs\n        hydrated from live person records at read time; computedAt is null only when the\n        document has not been materialized yet.\n        ",
+        "description": "\n        Precomputed professional-graph document for one person: career context per associated\n        entity (entity facts, recent news, colleagues, similar entities with key people), plus\n        co-investors. Lists are capped and pre-ranked server-side; the response is the display\n        order. Served from a precomputed store with member names, images, and slugs hydrated from\n        live person records at read time; computedAt is null only when the document has not been\n        materialized yet.\n        ",
         "properties": {
           "careerContext": {
             "type": "array",
@@ -32802,19 +33144,11 @@
             ],
             "format": "date-time",
             "description": "Instant the document was materialized; null only when no document exists yet and an asynchronous recompute has been requested"
-          },
-          "rolePeer": {
-            "type": "array",
-            "description": "People holding the same title at sector-comparable companies, ranked by entity prominence",
-            "items": {
-              "$ref": "#/components/schemas/PersonGraphRolePeer"
-            }
           }
         },
         "required": [
           "careerContext",
-          "coInvestor",
-          "rolePeer"
+          "coInvestor"
         ]
       },
       "DatasourceTrackedProvenanceTable": {
@@ -34333,22 +34667,49 @@
           "person"
         ]
       },
-      "PersonGraphRolePeer": {
+      "PersonGraphMember": {
         "type": "object",
-        "description": "Person holding the same title at a sector-comparable entity",
+        "description": "Lean person rail member with association title facts",
         "properties": {
-          "entity": {
-            "$ref": "#/components/schemas/Entity",
-            "description": "Entity where the peer holds the matched title (association projection)"
+          "isCurrent": {
+            "type": [
+              "boolean",
+              "null"
+            ]
           },
-          "person": {
-            "$ref": "#/components/schemas/PersonGraphMember",
-            "description": "Role-peer person rail member; titleName carries the matched title"
+          "personId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Associated person id"
+          },
+          "personImage": {
+            "$ref": "#/components/schemas/PersonImage",
+            "description": "Person image projection"
+          },
+          "personName": {
+            "type": "string",
+            "description": "Person display name"
+          },
+          "personSlug": {
+            "type": "string",
+            "description": "Canonical lowercase URL slug for the resource",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "titleName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Read-side corporate title text for the association row"
           }
         },
         "required": [
-          "entity",
-          "person"
+          "personId",
+          "personImage",
+          "personName",
+          "personSlug"
         ]
       },
       "Entity": {
@@ -34482,70 +34843,6 @@
           "slug"
         ]
       },
-      "PersonGraphMember": {
-        "type": "object",
-        "description": "Lean person rail member with association title facts",
-        "properties": {
-          "isCurrent": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "personId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Associated person id"
-          },
-          "personImage": {
-            "$ref": "#/components/schemas/PersonImage",
-            "description": "Person image projection"
-          },
-          "personName": {
-            "type": "string",
-            "description": "Person display name"
-          },
-          "personSlug": {
-            "type": "string",
-            "description": "Canonical lowercase URL slug for the resource",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "titleName": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Read-side corporate title text for the association row"
-          }
-        },
-        "required": [
-          "personId",
-          "personImage",
-          "personName",
-          "personSlug"
-        ]
-      },
-      "PersonImage": {
-        "type": "object",
-        "description": "Read projection: person image fields for detail/list responses",
-        "properties": {
-          "isMonogram": {
-            "type": "boolean",
-            "description": "Whether person image monogram"
-          },
-          "picture": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "isMonogram"
-        ]
-      },
       "EntityImage": {
         "type": "object",
         "description": "Grouped entity image fields for square, standard, and monogram logo state",
@@ -34651,6 +34948,25 @@
         "enum": [
           "alternativeDba",
           "relatedLegal"
+        ]
+      },
+      "PersonImage": {
+        "type": "object",
+        "description": "Read projection: person image fields for detail/list responses",
+        "properties": {
+          "isMonogram": {
+            "type": "boolean",
+            "description": "Whether person image monogram"
+          },
+          "picture": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "isMonogram"
         ]
       },
       "EmployeeCount": {
@@ -34923,8 +35239,8 @@
             "description": "Human-readable summary of how the query was interpreted."
           },
           "sort": {
-            "$ref": "#/components/schemas/SortSpecPersonSortField",
-            "description": "Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column."
+            "$ref": "#/components/schemas/SearchOrderingPersonSortField",
+            "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
           },
           "unsupported": {
             "type": [
@@ -35264,16 +35580,27 @@
           "LOW"
         ]
       },
-      "SortSpecPersonSortField": {
+      "SearchOrderingPersonSortField": {
         "type": "object",
-        "description": "Multi-term sort. First term has highest precedence. Used on entity list filters and saved-view payloads. An empty `order` array is valid JSON and means the client did not specify sort terms; the server applies resource-specific defaults.",
+        "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
         "properties": {
           "order": {
             "type": "array",
-            "description": "Ordered sort terms. Empty list means unspecified at the HTTP boundary (defaults apply).",
+            "description": "Sortable-column terms applied after the relevance rank, highest precedence first. Empty when the relevance rank alone ordered the page. Listing priorities that every list page applies ahead of these terms, such as operating-status and logo priority, are not reported.",
             "items": {
               "$ref": "#/components/schemas/SortOrderPersonSortField"
             }
+          },
+          "relevance": {
+            "description": "Relevance rank applied before any column term; absent when no relevance rank ran.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchRelevance"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -35309,6 +35636,14 @@
         "required": [
           "descending",
           "field"
+        ]
+      },
+      "SearchRelevance": {
+        "type": "string",
+        "description": "Relevance rank that ordered a search page before any sortable column.",
+        "enum": [
+          "keyword",
+          "semantic"
         ]
       },
       "PersonSimilarityResult": {
@@ -37416,8 +37751,8 @@
             "description": "Human-readable summary of how the query was interpreted."
           },
           "sort": {
-            "$ref": "#/components/schemas/SortSpecEntityFilterSortable",
-            "description": "Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column."
+            "$ref": "#/components/schemas/SearchOrderingEntityFilterSortable",
+            "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
           },
           "unsupported": {
             "type": [
@@ -37470,16 +37805,27 @@
           "totalPages"
         ]
       },
-      "SortSpecEntityFilterSortable": {
+      "SearchOrderingEntityFilterSortable": {
         "type": "object",
-        "description": "Multi-term sort. First term has highest precedence. Used on entity list filters and saved-view payloads. An empty `order` array is valid JSON and means the client did not specify sort terms; the server applies resource-specific defaults.",
+        "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
         "properties": {
           "order": {
             "type": "array",
-            "description": "Ordered sort terms. Empty list means unspecified at the HTTP boundary (defaults apply).",
+            "description": "Sortable-column terms applied after the relevance rank, highest precedence first. Empty when the relevance rank alone ordered the page. Listing priorities that every list page applies ahead of these terms, such as operating-status and logo priority, are not reported.",
             "items": {
               "$ref": "#/components/schemas/SortOrderEntityFilterSortable"
             }
+          },
+          "relevance": {
+            "description": "Relevance rank applied before any column term; absent when no relevance rank ran.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchRelevance"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -39574,7 +39920,7 @@
       },
       "bearerAuth": {
         "bearerFormat": "JWT or opaque OAuth access token",
-        "description": "User bearer token: Supabase or Clerk session JWT, Clerk OAuth access token, or Clerk personal API key",
+        "description": "User bearer token: Clerk session JWT, Clerk OAuth access token, or Clerk personal API key",
         "scheme": "bearer",
         "type": "http"
       },

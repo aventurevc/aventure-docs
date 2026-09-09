@@ -113,6 +113,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         descending: boolean;
                         field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
                     }[];
+                    relevance?: "keyword" | "semantic" | null | undefined;
                 };
                 unsupported?: string | null | undefined;
             };
@@ -687,6 +688,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         descending: boolean;
                         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
                     }[];
+                    relevance?: "keyword" | "semantic" | null | undefined;
                 };
                 unsupported?: string | null | undefined;
             };
@@ -873,6 +875,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         descending: boolean;
                         field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
                     }[];
+                    relevance?: "keyword" | "semantic" | null | undefined;
                 };
                 unsupported?: string | null | undefined;
             };
@@ -1447,6 +1450,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         descending: boolean;
                         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
                     }[];
+                    relevance?: "keyword" | "semantic" | null | undefined;
                 };
                 unsupported?: string | null | undefined;
             };

@@ -23,6 +23,7 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/investments
  * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions

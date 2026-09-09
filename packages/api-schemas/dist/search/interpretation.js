@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
 import { EntityListFilterSchema } from "../entity/list-filter.js";
 import { SearchModeExecutionSchema } from "./mode-execution.js";
-import { SortSpecEntityFilterSortableSchema } from "../sort/spec-entity-filter-sortable.js";
+import { SearchOrderingEntityFilterSortableSchema } from "./ordering-entity-filter-sortable.js";
 const SearchInterpretationSchemaDefinition = z.object({
     /** Planner confidence in the structured interpretation. */
     confidence: ConfidenceSchema,
@@ -15,8 +15,8 @@ const SearchInterpretationSchemaDefinition = z.object({
     filter: EntityListFilterSchema,
     /** Human-readable summary of how the query was interpreted. */
     interpretation: z.string(),
-    /** Sort applied to the result page. Empty when the page was ordered by semantic relevance rank instead of a sortable column. */
-    sort: SortSpecEntityFilterSortableSchema,
+    /** Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms. */
+    sort: SearchOrderingEntityFilterSortableSchema,
     /** Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported. */
     unsupported: z.string().nullish(),
 });

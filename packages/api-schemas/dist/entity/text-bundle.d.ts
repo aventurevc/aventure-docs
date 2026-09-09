@@ -18,6 +18,7 @@ type EntityTextBundleDefinition = z.infer<typeof EntityTextBundleSchemaDefinitio
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions

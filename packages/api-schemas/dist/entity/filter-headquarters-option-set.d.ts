@@ -6,7 +6,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/filters
  * @endpoint GET /v1/people/filters
  * @endpoint POST /v1/entities/filters/refine
- * @endpoint POST /v1/people/filters
  * @usedBySchema EntityFilterUiMetaSchema
  * @contractShape entity.filter-headquarters-option-set
  * @contractRole canonical
