@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Canonical entity sitemap URL slot kind.
  *
  * @openapiSchema EntitySitemapUrlType
- * @endpoint GET /v1/entities/sitemap-urls
+ * @endpoint GET /v1/sitemap/entities/urls
  * @usedBySchema EntitySitemapUrlSchema
  * @contractShape entity.sitemap-url-type
  * @contractRole canonical

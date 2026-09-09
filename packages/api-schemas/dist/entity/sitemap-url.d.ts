@@ -32,7 +32,7 @@ type EntitySitemapUrlDefinition = z.infer<typeof EntitySitemapUrlSchemaDefinitio
  * Concrete entity sitemap URL slot with backend-owned path and lastmod.
  *
  * @openapiSchema EntitySitemapUrl
- * @endpoint GET /v1/entities/sitemap-urls
+ * @endpoint GET /v1/sitemap/entities/urls
  * @usedBySchema PageEntitySitemapUrlSchema
  * @contractShape entity.sitemap-url
  * @contractRole canonical

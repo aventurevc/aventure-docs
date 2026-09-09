@@ -8,6 +8,7 @@ const EntityTagCountSchemaDefinition = z.object({
  * Summary count for a specific tag.
  *
  * @openapiSchema EntityTagCount
+ * @endpoint GET /v1/entities/filters/counts
  * @endpoint POST /v1/entities/filters/counts
  * @usedBySchema EntityFilterCountResultSchema
  * @contractShape entity.tag-count

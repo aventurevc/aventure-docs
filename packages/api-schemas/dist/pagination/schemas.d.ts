@@ -7614,7 +7614,7 @@ declare const PageEntitySitemapUrlSchemaDefinition: z.ZodObject<{
 type PageEntitySitemapUrlDefinition = z.infer<typeof PageEntitySitemapUrlSchemaDefinition>;
 /**
  * @openapiSchema PageEntitySitemapUrl
- * @endpoint GET /v1/entities/sitemap-urls
+ * @endpoint GET /v1/sitemap/entities/urls
  * @contractShape pagination.page-entity-sitemap-url
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

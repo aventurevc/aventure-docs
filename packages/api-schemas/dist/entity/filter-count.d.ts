@@ -7,7 +7,7 @@ declare const EntityFilterCountSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type EntityFilterCountDefinition = z.infer<typeof EntityFilterCountSchemaDefinition>;
 /**
- * Request body for entity filter tag counts
+ * Entity filter tag count criteria
  *
  * @openapiSchema EntityFilterCount
  * @endpoint POST /v1/entities/filters/counts

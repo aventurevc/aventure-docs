@@ -11,7 +11,7 @@ const EntityFilterCountSchemaDefinition = z.object({
     typeRecord: z.string().nullish(),
 });
 /**
- * Request body for entity filter tag counts
+ * Entity filter tag count criteria
  *
  * @openapiSchema EntityFilterCount
  * @endpoint POST /v1/entities/filters/counts

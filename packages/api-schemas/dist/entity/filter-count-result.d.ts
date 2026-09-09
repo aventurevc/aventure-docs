@@ -16,6 +16,7 @@ declare const EntityFilterCountResultSchemaDefinition: z.ZodObject<{
 type EntityFilterCountResultDefinition = z.infer<typeof EntityFilterCountResultSchemaDefinition>;
 /**
  * @openapiSchema EntityFilterCountResult
+ * @endpoint GET /v1/entities/filters/counts
  * @endpoint POST /v1/entities/filters/counts
  * @contractShape entity.filter-count-result
  * @contractRole canonical

@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.268"
+    "version": "0.7.269"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -7378,6 +7378,175 @@
       }
     },
     "/v1/entities/filters/counts": {
+      "get": {
+        "description": "Return tag counts for entities by repeated name query parameters",
+        "operationId": "listEntityFilterCounts",
+        "parameters": [
+          {
+            "description": "Entity type (Company, Investment Firm, etc.)",
+            "example": "Company",
+            "in": "query",
+            "name": "typeRecord",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Entity type (Company, Investment Firm, etc.)",
+              "example": "Company"
+            }
+          },
+          {
+            "description": "Tag name values to filter counts",
+            "example": [
+              "AI",
+              "FinTech"
+            ],
+            "in": "query",
+            "name": "name",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Tag name values to filter counts",
+              "example": [
+                "AI",
+                "FinTech"
+              ],
+              "items": {
+                "type": "string",
+                "description": "Tag name values to filter counts",
+                "example": [
+                  "AI",
+                  "FinTech"
+                ]
+              },
+              "maxItems": 100,
+              "minItems": 0
+            }
+          },
+          {
+            "description": "Maximum number of results",
+            "example": 35,
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Maximum number of results",
+              "example": 35,
+              "maximum": 200,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Minimum count threshold",
+            "example": 1,
+            "in": "query",
+            "name": "minCount",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Minimum count threshold",
+              "example": 1,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFilterCountResult"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List entity filter tag counts",
+        "tags": [
+          "Entity Filters"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
       "post": {
         "description": "Return tag counts for entities by name",
         "operationId": "entityFilterCounts",
@@ -8230,21 +8399,17 @@
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/EntityDetail"
+                  "type": "string"
                 }
               }
             },
-            "description": "OK"
+            "description": "Entity detail as canonical JSON or the same data rendered as compact text/plain."
+          },
+          "301": {
+            "description": "Redirect to new slug location"
           },
           "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
+            "description": "Conflicting or unusable identity input: name, nameBrand, and nameLegal must identify the same entity, and exactly one identifier form may be supplied."
           },
           "401": {
             "content": {
@@ -8266,6 +8431,9 @@
             },
             "description": "Forbidden"
           },
+          "404": {
+            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — search POST /v1/entities/search with textSearch first (CLI: entities search --text-search). An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true; CLI: --include-private true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
+          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -8275,6 +8443,9 @@
               }
             },
             "description": "Not Acceptable"
+          },
+          "409": {
+            "description": "Ambiguous identity: a candidate set still at the review threshold or carrying unresolved identity proof, multiple stored exact normalized-name matches, or a bare Product/Service slug shared across providers, since those are provider-pair scoped. ProblemDetail carries the candidates plus a resolution naming the duplicate-check candidates endpoint to review them (CLI: entities duplicate-check candidates list); resolve directly by entityId, by companySlug plus slug, or through the provider's productService relationship list."
           },
           "429": {
             "content": {
@@ -9585,156 +9756,6 @@
         ],
         "x-aventure-tool": {
           "cli": "sitemap entity-url-boundaries get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/sitemap-urls": {
-      "get": {
-        "description": "Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface. Returns one row per concrete entity URL; the slot path and lastmod come from a materialized projection refreshed asynchronously after writes, so rows are eventually consistent. XML page limits count URLs, not parent entities.",
-        "operationId": "getSitemapUrls",
-        "parameters": [
-          {
-            "description": "Entity type filters whose sitemap URLs to list. Repeat for multiple types.",
-            "in": "query",
-            "name": "typeRecord",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "description": "Cursor for pagination (format: timestamp::slotKey)",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 5000,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntitySitemapUrl"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Paginated sitemap URL slots for entity types",
-        "tags": [
-          "Entities"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap entity-urls list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -17601,11 +17622,14 @@
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/NewsDetail"
+                  "type": "string"
                 }
               }
             },
-            "description": "OK"
+            "description": "News detail as canonical JSON or compact text."
+          },
+          "301": {
+            "description": "Redirect to new slug location"
           },
           "400": {
             "content": {
@@ -17646,6 +17670,9 @@
               }
             },
             "description": "Not Acceptable"
+          },
+          "409": {
+            "description": "Ambiguous candidate signals: more than one article still matches the supplied title/URL bundle. ProblemDetail carries details.newsCandidate; review those ids, update the matching article, and create only when all candidates are distinct and source evidence supports the target. score and threshold are review ranking, not absence proof. Resolve directly by id, slug, or externalId."
           },
           "429": {
             "content": {
@@ -20882,11 +20909,14 @@
               },
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/PersonDetail"
+                  "type": "string"
                 }
               }
             },
-            "description": "OK"
+            "description": "Person detail as canonical JSON or compact text."
+          },
+          "301": {
+            "description": "Canonical person URL redirect"
           },
           "400": {
             "content": {
@@ -20918,6 +20948,9 @@
             },
             "description": "Forbidden"
           },
+          "404": {
+            "description": "No person resolved: exact URL and bounded candidate signals are exhausted, which does not prove the record is absent — search before creating. An existing but filtered row instead reports its reason as the ProblemDetail title: Person Exists but Is Not Public (retry with includePrivate=true)."
+          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -20927,6 +20960,9 @@
               }
             },
             "description": "Not Acceptable"
+          },
+          "409": {
+            "description": "Ambiguous identity: a strict-URL match or candidate set still at the review threshold resolves to more than one person. ProblemDetail carries details.candidate; review those ids, update the matching candidate, and create only when all candidates are distinct and source evidence supports the target. score and threshold are review ranking, not absence proof. Resolve directly by personId."
           },
           "429": {
             "content": {
@@ -25867,6 +25903,156 @@
         }
       }
     },
+    "/v1/sitemap/entities/urls": {
+      "get": {
+        "description": "Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface. Returns one row per concrete entity URL; the slot path and lastmod come from a materialized projection refreshed asynchronously after writes, so rows are eventually consistent. XML page limits count URLs, not parent entities.",
+        "operationId": "getSitemapUrls",
+        "parameters": [
+          {
+            "description": "Entity type filters whose sitemap URLs to list. Repeat for multiple types.",
+            "in": "query",
+            "name": "typeRecord",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Cursor for pagination (format: timestamp::slotKey)",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5000,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntitySitemapUrl"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Paginated sitemap URL slots for entity types",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap entity-urls list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/sitemap/index-manifest": {
       "get": {
         "description": "O(1) manifest of every dynamic sitemap family with its index path, index path mode, eligible URL count, derived page count, latest timestamp, change frequency, and priority. Front-end sitemap.xml consumer metadata; not an enrichment read or write surface.",
@@ -29386,9 +29572,27 @@
           "rangeFilterEntry"
         ]
       },
+      "EntityFilterCountResult": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityTagCount"
+            }
+          },
+          "meta": {
+            "$ref": "#/components/schemas/EntityFilterCountMeta"
+          }
+        },
+        "required": [
+          "count",
+          "meta"
+        ]
+      },
       "EntityFilterCount": {
         "type": "object",
-        "description": "Request body for entity filter tag counts",
+        "description": "Entity filter tag count criteria",
         "properties": {
           "minCount": {
             "type": [
@@ -29435,24 +29639,6 @@
         },
         "required": [
           "name"
-        ]
-      },
-      "EntityFilterCountResult": {
-        "type": "object",
-        "properties": {
-          "count": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntityTagCount"
-            }
-          },
-          "meta": {
-            "$ref": "#/components/schemas/EntityFilterCountMeta"
-          }
-        },
-        "required": [
-          "count",
-          "meta"
         ]
       },
       "EntityFilterRefinedFilters": {
@@ -30213,52 +30399,6 @@
           "size",
           "total"
         ]
-      },
-      "PageEntitySitemapUrl": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntitySitemapUrl"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
       },
       "PageEntityListSummary": {
         "type": "object",
@@ -33711,6 +33851,52 @@
           "ticker"
         ]
       },
+      "PageEntitySitemapUrl": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntitySitemapUrl"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "SitemapIndexManifest": {
         "type": "object",
         "description": "Manifest of dynamic sitemap families with O(1) freshness summaries",
@@ -34045,6 +34231,77 @@
         "enum": [
           "pageBase",
           "singleFile"
+        ]
+      },
+      "EntitySitemapUrl": {
+        "type": "object",
+        "description": "Concrete entity sitemap URL slot with backend-owned path and lastmod.",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Entity that owns this sitemap URL slot."
+          },
+          "lastUpdatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Latest backend update timestamp affecting this concrete URL."
+          },
+          "path": {
+            "type": "string",
+            "description": "Backend-owned public path, relative to the production origin."
+          },
+          "productServiceSlug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Product/service child slug for productService slots.",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "slotKey": {
+            "type": "string",
+            "description": "Stable cursor and dedupe key for this sitemap URL slot."
+          },
+          "slug": {
+            "type": "string",
+            "description": "Canonical entity slug.",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "typeRecord": {
+            "$ref": "#/components/schemas/EntityType",
+            "description": "Canonical entity type for the owning entity."
+          },
+          "urlType": {
+            "$ref": "#/components/schemas/EntitySitemapUrlType",
+            "description": "Kind of entity URL represented by this slot."
+          }
+        },
+        "required": [
+          "entityId",
+          "lastUpdatedAt",
+          "path",
+          "slotKey",
+          "slug",
+          "typeRecord",
+          "urlType"
+        ]
+      },
+      "EntitySitemapUrlType": {
+        "type": "string",
+        "description": "Canonical entity sitemap URL slot kind.",
+        "enum": [
+          "overview",
+          "acquisitions",
+          "analysis",
+          "fundraising",
+          "employees",
+          "news",
+          "productService"
         ]
       },
       "SourceDocumentList": {
@@ -37454,77 +37711,6 @@
         "required": [
           "entity",
           "fundraiseRound"
-        ]
-      },
-      "EntitySitemapUrl": {
-        "type": "object",
-        "description": "Concrete entity sitemap URL slot with backend-owned path and lastmod.",
-        "properties": {
-          "entityId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Entity that owns this sitemap URL slot."
-          },
-          "lastUpdatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Latest backend update timestamp affecting this concrete URL."
-          },
-          "path": {
-            "type": "string",
-            "description": "Backend-owned public path, relative to the production origin."
-          },
-          "productServiceSlug": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Product/service child slug for productService slots.",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "slotKey": {
-            "type": "string",
-            "description": "Stable cursor and dedupe key for this sitemap URL slot."
-          },
-          "slug": {
-            "type": "string",
-            "description": "Canonical entity slug.",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "typeRecord": {
-            "$ref": "#/components/schemas/EntityType",
-            "description": "Canonical entity type for the owning entity."
-          },
-          "urlType": {
-            "$ref": "#/components/schemas/EntitySitemapUrlType",
-            "description": "Kind of entity URL represented by this slot."
-          }
-        },
-        "required": [
-          "entityId",
-          "lastUpdatedAt",
-          "path",
-          "slotKey",
-          "slug",
-          "typeRecord",
-          "urlType"
-        ]
-      },
-      "EntitySitemapUrlType": {
-        "type": "string",
-        "description": "Canonical entity sitemap URL slot kind.",
-        "enum": [
-          "overview",
-          "acquisitions",
-          "analysis",
-          "fundraising",
-          "employees",
-          "news",
-          "productService"
         ]
       },
       "LocationSitemapBoundary": {

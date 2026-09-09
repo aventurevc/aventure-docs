@@ -17,7 +17,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/detail/trending-news
  * @endpoint GET /v1/entities/sitemap-routes
- * @endpoint GET /v1/entities/sitemap-urls
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/media/screenshots
  * @endpoint GET /v1/news
@@ -28,6 +27,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/detail/news
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/sitemap/entities/urls
  * @endpoint GET /v1/sitemap/url-slots
  * @endpoint GET /v1/addresses/locations/{scope}
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
