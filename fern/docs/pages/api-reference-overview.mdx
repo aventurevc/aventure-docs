@@ -35,6 +35,11 @@ constraints. Internal generation metadata is excluded from the published documen
 
 The `info.version` field identifies the released document.
 
+That Download link pins one release. To always fetch the current released
+document at a fixed address, use
+[https://docs.aventure.vc/openapi/latest.json](https://docs.aventure.vc/openapi/latest.json).
+It serves the same bytes and updates with each release.
+
 Fern also serves a rendering it regenerates from the same document at
 [/openapi.json](/openapi.json). That rendering powers the API Explorer, but it
 changes version, authentication, media types, some status codes, examples, and

@@ -111,6 +111,11 @@ typography:
 ai-search: {}
 
 redirects:
+  # Stable address for the byte-exact released specification. The <Download> on
+  # the API reference overview pins one release; this path always serves the
+  # current one, so a consumer or API catalog can bookmark it.
+  - source: "/openapi/latest.json"
+    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/openapi/openapi.json"
   # skip-slug on the API entry removed the title-derived a-venture-api segment.
   - source: "/api-reference/a-venture-api"
     destination: "/api-reference"
