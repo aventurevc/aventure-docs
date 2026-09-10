@@ -71,6 +71,14 @@ navigation:
               - endpoint: GET /v1/media/identicons/{seed}.svg
                 slug: get-generated-monogram
                 title: Render a deterministic monogram SVG (v1)
+          - entities:
+              - endpoint: POST /v1/entities/lookup/batch
+                slug: lookup-entity-batch
+                title: Batch entity lookup
+          - personBatch:
+              - endpoint: POST /v1/people/lookup/batch
+                slug: lookup-person-batch
+                title: Batch person lookup
           - section: Resolve
             slug: resolve
             contents:
