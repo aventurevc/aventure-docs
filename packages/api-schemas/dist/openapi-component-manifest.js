@@ -705,6 +705,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     ProblemDetail: { modulePath: "http/problem-detail", schemaName: "ProblemDetailSchema" },
     ProblemResolution: { modulePath: "problem/resolution", schemaName: "ProblemResolutionSchema" },
+    ProblemType: { modulePath: "problem/type", schemaName: "ProblemTypeSchema" },
     RedirectSlugPath: {
         modulePath: "redirect/redirect-slug-path",
         schemaName: "RedirectSlugPathSchema",

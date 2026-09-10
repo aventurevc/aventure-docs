@@ -16,6 +16,7 @@ const EntityDetailBatchSchemaDefinition = z.strictObject({
  * @openapiSchema EntityDetailBatch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @contractShape entity.detail-batch
  * @contractRole canonical
  */

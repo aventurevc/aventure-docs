@@ -9,11 +9,11 @@ const LocationSitemapBoundarySchemaDefinition = z.object({
  * Sitemap page boundary with page number and latest timestamp
  *
  * @openapiSchema LocationSitemapBoundary
- * @endpoint GET /v1/entities/sitemap-boundaries
- * @endpoint GET /v1/entities/sitemap-url-boundaries
- * @endpoint GET /v1/news/sitemap-boundaries
- * @endpoint GET /v1/people/sitemap-boundaries
- * @endpoint GET /v1/sitemap/url-slot-boundaries
+ * @endpoint GET /v1/sitemap/entities/boundaries
+ * @endpoint GET /v1/sitemap/entities/urls/boundaries
+ * @endpoint GET /v1/sitemap/news/boundaries
+ * @endpoint GET /v1/sitemap/people/boundaries
+ * @endpoint GET /v1/sitemap/url-slots/boundaries
  * @usedBySchema LocationSitemapBoundaryDetailSchema
  * @contractShape location.sitemap-boundary
  * @contractRole canonical

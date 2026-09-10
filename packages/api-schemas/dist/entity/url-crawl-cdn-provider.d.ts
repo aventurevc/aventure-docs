@@ -13,6 +13,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
@@ -20,6 +21,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
  * @endpoint GET /v1/entities/{entityId}/urls/all
+ * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/urls
@@ -28,10 +30,12 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/search/all
  * @usedBySchema EntityUrlLinkSchema
  * @contractShape entity.url-crawl-cdn-provider

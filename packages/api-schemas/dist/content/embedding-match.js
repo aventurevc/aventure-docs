@@ -16,15 +16,19 @@ import { ContentSourceTypeSchema } from "./source-type.js";
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
+ * @endpoint GET /v1/people/{personId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all

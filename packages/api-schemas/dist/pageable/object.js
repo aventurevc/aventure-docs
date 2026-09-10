@@ -17,7 +17,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/detail/trending-news
- * @endpoint GET /v1/entities/sitemap-routes
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/media/screenshots
  * @endpoint GET /v1/news
@@ -28,6 +27,7 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/people/detail/news
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/sitemap/entities/urls
  * @endpoint GET /v1/sitemap/url-slots
  * @endpoint GET /v1/addresses/locations/{scope}
@@ -59,10 +59,12 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/people/{slug}/blog-posts
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/news
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/people/search
  * @usedBySchema PageBlogPostSchema
  * @usedBySchema PageClassificationSchema

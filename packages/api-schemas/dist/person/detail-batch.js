@@ -43,6 +43,7 @@ const PersonDetailBatchSchemaDefinition = z
  *
  * @openapiSchema PersonDetailBatch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @contractShape person.detail-batch
  * @contractRole canonical
  */

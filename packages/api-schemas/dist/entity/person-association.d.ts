@@ -10,15 +10,19 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
+ * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @usedBySchema PageEntityPersonAssociationSchema
  * @usedBySchema PersonDetailSchema
  * @usedBySchema PersonSimilarityResultSchema

@@ -7,9 +7,9 @@ type LetterCountsDefinition = z.infer<typeof LetterCountsSchemaDefinition>;
  * Per-initial visible-row counts for sitemap directory navigation. Keys are uppercase A–Z initials; values are the visible total for that initial.
  *
  * @openapiSchema LetterCounts
- * @endpoint GET /v1/entities/letter-counts
- * @endpoint GET /v1/news/letter-counts
- * @endpoint GET /v1/people/letter-counts
+ * @endpoint GET /v1/sitemap/entities/letter-counts
+ * @endpoint GET /v1/sitemap/news/letter-counts
+ * @endpoint GET /v1/sitemap/people/letter-counts
  * @contractShape letter.counts
  * @contractRole canonical
  */

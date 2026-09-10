@@ -26,6 +26,7 @@ const UniqueIdSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/unique-ids/lookup
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/unique-ids
  * @endpoint GET /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint GET /v1/people/{personId}/unique-ids
@@ -33,6 +34,7 @@ const UniqueIdSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @usedBySchema EntityDetailSchema
  * @usedBySchema PageUniqueIdSchema
  * @contractShape unique.id

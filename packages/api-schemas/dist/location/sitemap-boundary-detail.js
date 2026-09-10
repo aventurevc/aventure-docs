@@ -10,11 +10,11 @@ const LocationSitemapBoundaryDetailSchemaDefinition = z.object({
  * Complete sitemap boundary metadata for a domain O(1) boundary endpoint payload replacing O(N) cursor traversal for sitemap index lastmod generation
  *
  * @openapiSchema LocationSitemapBoundaryDetail
- * @endpoint GET /v1/entities/sitemap-boundaries
- * @endpoint GET /v1/entities/sitemap-url-boundaries
- * @endpoint GET /v1/news/sitemap-boundaries
- * @endpoint GET /v1/people/sitemap-boundaries
- * @endpoint GET /v1/sitemap/url-slot-boundaries
+ * @endpoint GET /v1/sitemap/entities/boundaries
+ * @endpoint GET /v1/sitemap/entities/urls/boundaries
+ * @endpoint GET /v1/sitemap/news/boundaries
+ * @endpoint GET /v1/sitemap/people/boundaries
+ * @endpoint GET /v1/sitemap/url-slots/boundaries
  * @contractShape location.sitemap-boundary-detail
  * @contractRole canonical
  */

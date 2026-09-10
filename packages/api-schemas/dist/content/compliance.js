@@ -7,6 +7,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research/snippets
  * @endpoint GET /v1/entities/{entityId}/research/snippets/{snippetId}
@@ -17,6 +18,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @usedBySchema EntityResearchSnippetSchema
  * @usedBySchema EntityTextSchema
  * @contractShape content.compliance

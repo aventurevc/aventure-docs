@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityLogoType
  * @endpoint GET /v1/media
+ * @endpoint GET /v1/entities/{entityId}/media/logo
  * @contractShape entity.logo-type
  * @contractRole canonical
  */

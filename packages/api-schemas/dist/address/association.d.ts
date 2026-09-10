@@ -25,12 +25,14 @@ type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefin
  * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/addresses
  * @endpoint GET /v1/entities/{entityId}/addresses/{addressJoinId}
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
+ * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/addresses
  * @endpoint GET /v1/people/{personId}/addresses/{addressJoinId}
  * @endpoint GET /v1/people/{personId}/entities
@@ -39,10 +41,12 @@ type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefin
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/search/all
  * @usedBySchema AddressSchema
  * @contractShape address.association

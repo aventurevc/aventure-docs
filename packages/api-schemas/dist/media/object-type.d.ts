@@ -4,6 +4,9 @@ import { z } from "zod/v4";
  *
  * @openapiSchema MediaObjectType
  * @endpoint GET /v1/media
+ * @endpoint GET /v1/entities/{entityId}/media/logo
+ * @endpoint GET /v1/news/{newsId}/media/thumbnail
+ * @endpoint GET /v1/people/{personId}/media/photo
  * @usedBySchema MediaUploadSchema
  * @contractShape media.object-type
  * @contractRole canonical

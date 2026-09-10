@@ -15,11 +15,18 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/provenance/latest
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/media/logo
+ * @endpoint GET /v1/news/{newsId}/media/thumbnail
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/media/photo
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all

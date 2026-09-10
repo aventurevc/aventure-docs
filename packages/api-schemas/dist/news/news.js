@@ -40,10 +40,13 @@ const NewsSchemaDefinition = z.object({
  * @endpoint GET /v1/news/similar
  * @endpoint GET /v1/people/detail/news
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/news
  * @endpoint POST /v1/search/all
  * @usedBySchema EntityDetailSchema

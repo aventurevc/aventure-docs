@@ -27,11 +27,15 @@ const PersonInvestmentSchemaDefinition = z.object({
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/detail/investments
  * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/people/{personId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @usedBySchema PagePersonInvestmentSchema
  * @usedBySchema PersonDetailSchema
  * @contractShape person.investment

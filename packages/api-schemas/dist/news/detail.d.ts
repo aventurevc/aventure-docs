@@ -84,6 +84,7 @@ type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
  * @openapiSchema NewsDetail
  * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/news/{newsId}
  * @contractShape news.detail
  * @contractRole canonical
  */

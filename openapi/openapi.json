@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.269"
+    "version": "0.7.272"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -21,14 +21,6 @@
   ],
   "tags": [
     {
-      "description": "Entity filter discovery: tag counts, type counts, refinement metadata, and option set search used to drive entity-listing UIs.",
-      "name": "Entity Filters"
-    },
-    {
-      "description": "Sitemap boundary metadata for index generation",
-      "name": "Sitemap"
-    },
-    {
       "description": "Canonical nested address CRUD for entities. Country code is looked up in res_address_country_ref (404 if unknown); state and city are find-or-create on their reference tables; address rows resolve by canonical address fields.",
       "name": "Entity Addresses Canonical"
     },
@@ -37,24 +29,8 @@
       "name": "Entity Classifications Canonical"
     },
     {
-      "description": "Person filter, letter-count, and search metadata endpoints used to drive people-listing UI affordances.",
-      "name": "Person Metadata"
-    },
-    {
-      "description": "Logos, photos, and thumbnails for companies, people, and news",
-      "name": "Media"
-    },
-    {
-      "description": "Universal identifier resolver: map any handle — stable public id, UUID, external registry id (ticker, LEI, EIN, ...), or slug — to its canonical entity or person.",
-      "name": "Resolve"
-    },
-    {
       "description": "Crawl screenshot metadata endpoints — S3 key is the binary asset source of truth",
       "name": "Screenshots"
-    },
-    {
-      "description": "Public content cards: news, blog posts, social posts, repositories, websites, and papers",
-      "name": "Content"
     },
     {
       "description": "Entity and person text endpoints.",
@@ -65,60 +41,20 @@
       "name": "Entities"
     },
     {
-      "description": "Entity employee-count sub-resource: time series for an entity.",
-      "name": "Entity Employee Count"
-    },
-    {
-      "description": "Similar entity discovery",
-      "name": "Entity Similarity"
-    },
-    {
       "description": "Canonical acquisition event CRUD. The path entity is acquired; acquirerEntityId is the buyer.",
       "name": "Entity Acquisitions"
-    },
-    {
-      "description": "Session management and user info endpoints",
-      "name": "Auth Session"
-    },
-    {
-      "description": "Typed research details and snippets for entities, with snippet provenance",
-      "name": "Entity Research"
-    },
-    {
-      "description": "Search the entity classification tag catalog. Use this to look up tagId values before posting to /v1/entities/{id}/classifications.",
-      "name": "Classification Tags"
     },
     {
       "description": "Batch person list and detail endpoints.",
       "name": "Person Batch"
     },
     {
-      "description": "Person investment portfolio sub-resource: paginated investments made by a person, looked up by id or slug, sortable by date/round/amount/amountInvested.",
-      "name": "Person Investments"
-    },
-    {
       "description": "Search companies, people, and news together, or search the live web",
       "name": "Search"
     },
     {
-      "description": "Entity relationship endpoints",
-      "name": "Entity Relationships"
-    },
-    {
-      "description": "Authenticated personal API-key lifecycle",
-      "name": "Personal API Key"
-    },
-    {
-      "description": "External blog and article links for entities and people",
-      "name": "Research Blog Posts"
-    },
-    {
       "description": "Founders, executives, and investors in the venture ecosystem",
       "name": "People"
-    },
-    {
-      "description": "CRUD endpoints for news articles joined to entities",
-      "name": "Entity News"
     },
     {
       "description": "Person-entity association routes",
@@ -145,12 +81,96 @@
       "name": "News"
     },
     {
-      "description": "System health and status endpoints",
-      "name": "System"
-    },
-    {
       "description": "Grounded natural-language platform help with citations",
       "name": "Agent Help"
+    },
+    {
+      "description": "External identifier mappings (EIN, SEC CIK, ticker, LEI, DUNS, ...) for entities and people, plus reverse lookup from an identifier to its owner.",
+      "name": "Unique IDs"
+    },
+    {
+      "description": "Browser-approved CLI credential delivery",
+      "name": "CLI Authorizations"
+    },
+    {
+      "description": "Entity and person URL link endpoints.",
+      "name": "URL Links"
+    },
+    {
+      "description": "Location-based company directory and sitemap endpoints",
+      "name": "Addresses"
+    },
+    {
+      "description": "Advisory, non-exhaustive per-slot semantic suggestions with completion coverage.",
+      "name": "Entity Suggestions"
+    },
+    {
+      "description": "Entity filter discovery: tag counts, type counts, refinement metadata, and option set search used to drive entity-listing UIs.",
+      "name": "Entity Filters"
+    },
+    {
+      "description": "Sitemap boundary metadata for index generation",
+      "name": "Sitemap"
+    },
+    {
+      "description": "Person filter, letter-count, and search metadata endpoints used to drive people-listing UI affordances.",
+      "name": "Person Metadata"
+    },
+    {
+      "description": "Logos, photos, and thumbnails for companies, people, and news",
+      "name": "Media"
+    },
+    {
+      "description": "Universal identifier resolver: map any handle — stable public id, UUID, external registry id (ticker, LEI, EIN, ...), or slug — to its canonical entity or person.",
+      "name": "Resolve"
+    },
+    {
+      "description": "Public content cards: news, blog posts, social posts, repositories, websites, and papers",
+      "name": "Content"
+    },
+    {
+      "description": "Entity employee-count sub-resource: time series for an entity.",
+      "name": "Entity Employee Count"
+    },
+    {
+      "description": "Similar entity discovery",
+      "name": "Entity Similarity"
+    },
+    {
+      "description": "Session management and user info endpoints",
+      "name": "Auth Session"
+    },
+    {
+      "description": "Typed research details and snippets for entities, with snippet provenance",
+      "name": "Entity Research"
+    },
+    {
+      "description": "Search the entity classification tag catalog. Use this to look up tagId values before posting to /v1/entities/{id}/classifications.",
+      "name": "Classification Tags"
+    },
+    {
+      "description": "Person investment portfolio sub-resource: paginated investments made by a person, looked up by id or slug, sortable by date/round/amount/amountInvested.",
+      "name": "Person Investments"
+    },
+    {
+      "description": "Entity relationship endpoints",
+      "name": "Entity Relationships"
+    },
+    {
+      "description": "Authenticated personal API-key lifecycle",
+      "name": "Personal API Key"
+    },
+    {
+      "description": "External blog and article links for entities and people",
+      "name": "Research Blog Posts"
+    },
+    {
+      "description": "CRUD endpoints for news articles joined to entities",
+      "name": "Entity News"
+    },
+    {
+      "description": "System health and status endpoints",
+      "name": "System"
     },
     {
       "description": "Per-domain slug changes and redirect rows",
@@ -169,36 +189,16 @@
       "name": "Person Addresses"
     },
     {
-      "description": "External identifier mappings (EIN, SEC CIK, ticker, LEI, DUNS, ...) for entities and people, plus reverse lookup from an identifier to its owner.",
-      "name": "Unique IDs"
-    },
-    {
       "description": "Global metrics (cached, refreshed frequently) for homepage/overview use",
       "name": "Metrics"
-    },
-    {
-      "description": "Browser-approved CLI credential delivery",
-      "name": "CLI Authorizations"
     },
     {
       "description": "Similar person discovery",
       "name": "Person Similarity"
     },
     {
-      "description": "Entity and person URL link endpoints.",
-      "name": "URL Links"
-    },
-    {
-      "description": "Location-based company directory and sitemap endpoints",
-      "name": "Addresses"
-    },
-    {
       "description": "GitHub repositories synced per entity or person owner.",
       "name": "Repositories"
-    },
-    {
-      "description": "Advisory, non-exhaustive per-slot semantic suggestions with completion coverage.",
-      "name": "Entity Suggestions"
     },
     {
       "description": "Administrative tools for entity data maintenance",
@@ -1482,109 +1482,6 @@
         }
       }
     },
-    "/v1/auth/api/me/permissions": {
-      "get": {
-        "description": "Returns resolved role/permission sets for session JWT auth, explicit permissions for personal API-key auth, or full admin permission for admin API key auth",
-        "operationId": "currentPermissions",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AuthPermissionGrant"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          }
-        ],
-        "summary": "Current user permissions",
-        "tags": [
-          "Auth Session"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/auth/cli-authorizations": {
       "post": {
         "description": "Creates a short-lived browser approval request and returns its poll credential once.",
@@ -1949,6 +1846,109 @@
           "command": "auth login",
           "role": "poll"
         },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/auth/me/permissions": {
+      "get": {
+        "description": "Returns resolved role/permission sets for session JWT auth, explicit permissions for personal API-key auth, or full admin permission for admin API key auth",
+        "operationId": "currentPermissions",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthPermissionGrant"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          }
+        ],
+        "summary": "Current user permissions",
+        "tags": [
+          "Auth Session"
+        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -8115,120 +8115,6 @@
         }
       }
     },
-    "/v1/entities/letter-counts": {
-      "get": {
-        "description": "Returns available entity initials and counts scoped by typeRecord. Front-end directory-browse projection over the full entity inventory; not an enrichment read or write surface.",
-        "operationId": "entityLetterCounts",
-        "parameters": [
-          {
-            "description": "Filter by entity type (Company, Investment Firm, etc.)",
-            "in": "query",
-            "name": "typeRecord",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LetterCounts"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Entity letter counts",
-        "tags": [
-          "Entity Filters"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap entity-letter-counts list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/entities/lookup": {
       "get": {
         "description": "Resolves one entity by slug, URL or candidate signals with the existing detail qualifiers and visibility rules. Use the UUID item route for an id; any id query parameter is rejected. Changed slugs retain their canonical redirect.",
@@ -8489,6 +8375,181 @@
         ],
         "x-aventure-tool": {
           "cli": "entities lookup"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/lookup/batch": {
+      "post": {
+        "description": "Returns a page envelope of entity detail records by id, slug, and/or current joined URL. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. For public reads totalElements counts the entities visible to the caller, so requested identifiers that do not resolve or fail the public visibility filter are excluded. For privileged reads totalElements counts the requested identifiers that resolved to an entity id, which can exceed the number of records returned when an id no longer exists.",
+        "operationId": "lookupEntityBatch",
+        "parameters": [
+          {
+            "description": "Privileged read scope for admin callers. Bypasses the public visibility filter so hidden, unverified, and not-yet-published entities are returned instead of being silently dropped. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N); omit page and size for the full batch.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Zero-based page index (0..N); omit page and size for the full batch."
+            }
+          },
+          {
+            "description": "The size of the page to be returned; omit page and size for the full batch.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The size of the page to be returned; omit page and size for the full batch."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityDetailBatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Batch entity detail retrieval (POST)",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities lookup batch"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -9355,407 +9416,6 @@
         ],
         "x-aventure-tool": {
           "cli": "entities search"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/sitemap-boundaries": {
-      "get": {
-        "description": "Per-page boundary timestamps for entity sitemap index generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
-        "operationId": "entityBoundaries",
-        "parameters": [
-          {
-            "description": "Entity type filter (Company, Investment Firm, etc.)",
-            "in": "query",
-            "name": "typeRecord",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "description": "The size of the page to be returned; only 5000 is supported.",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Entity sitemap boundaries",
-        "tags": [
-          "Sitemap"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap entity-boundaries get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/sitemap-routes": {
-      "get": {
-        "description": "Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface. Returns thin Entity rows enriched with EntitySitemap gate booleans plus a bounded list of product/service child slugs; one row per company. Eligibility for /analysis, /fundraising, /employees, /news, and /products-services/{slug} is served from a materialized projection refreshed asynchronously after writes, so rows are eventually consistent and can lag a recent relationship or visibility change.",
-        "operationId": "getSitemapRoutes",
-        "parameters": [
-          {
-            "description": "Entity type whose sitemap rows to list.",
-            "in": "query",
-            "name": "typeRecord",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/EntityType"
-            }
-          },
-          {
-            "description": "Cursor for pagination (format: timestamp::uuid)",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 5000,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntity"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Paginated sitemap-routes projection for an entity type",
-        "tags": [
-          "Entities"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap entity-routes list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/sitemap-url-boundaries": {
-      "get": {
-        "description": "Per-page URL-slot boundary timestamps for entity sitemap XML generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
-        "operationId": "entityUrlBoundaries",
-        "parameters": [
-          {
-            "description": "Entity type filter (Company, Investment Firm, etc.)",
-            "in": "query",
-            "name": "typeRecord",
-            "required": true,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          {
-            "description": "The size of the page to be returned; only 5000 is supported.",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Entity sitemap URL boundaries",
-        "tags": [
-          "Sitemap"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap entity-url-boundaries get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -11033,6 +10693,168 @@
         ],
         "x-aventure-tool": {
           "auth": "none"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}": {
+      "get": {
+        "description": "Returns entity detail by exact UUID. Use lookup for a slug, URL, or candidate signals.",
+        "operationId": "getEntityById",
+        "parameters": [
+          {
+            "description": "Exact entity UUID.",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+            "example": "Company",
+            "in": "query",
+            "name": "typeRecord",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+              "example": "Company"
+            }
+          },
+          {
+            "description": "Allow generated monogram logo fallback.",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Allow generated monogram logo fallback."
+            }
+          },
+          {
+            "description": "Privileged admin readback scope. Includes hidden or off-sitemap entities and hidden research snippets. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Privileged admin readback scope. Includes hidden or off-sitemap entities and hidden research snippets. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityDetail"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Entity detail as canonical JSON or the same data rendered as compact text/plain."
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get entity by ID",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities by-id get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -12645,6 +12467,138 @@
         "x-aventure-tool": {
           "cli": "entities content search"
         },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/media/logo": {
+      "get": {
+        "description": "Returns the selected square or standard entity logo. Empty slots return 404.",
+        "operationId": "getEntityMedia",
+        "parameters": [
+          {
+            "description": "Canonical entity UUID",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID"
+            }
+          },
+          {
+            "description": "Entity logo variant; defaults to square.",
+            "in": "query",
+            "name": "logoType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EntityLogoType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaUpload"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get entity logo",
+        "tags": [
+          "Media"
+        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -17430,109 +17384,6 @@
         }
       }
     },
-    "/v1/news/letter-counts": {
-      "get": {
-        "description": "Returns available news author initials and counts. Front-end directory-browse projection over the full news-author inventory; not an enrichment read or write surface.",
-        "operationId": "newsLetterCounts",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LetterCounts"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "News author letter counts",
-        "tags": [
-          "News"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap news-letter-counts list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/news/lookup": {
       "get": {
         "description": "Resolves news detail by slug, external ID, URL, or bounded title candidate signals. Use the numeric item route for an id; any id query is rejected. Canonical redirects are preserved.",
@@ -18035,121 +17886,6 @@
         }
       }
     },
-    "/v1/news/sitemap-boundaries": {
-      "get": {
-        "description": "Per-page boundary timestamps for news sitemap index generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
-        "operationId": "newsBoundaries",
-        "parameters": [
-          {
-            "description": "The size of the page to be returned; only 5000 is supported.",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "News sitemap boundaries",
-        "tags": [
-          "Sitemap"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap news-boundaries get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/news/{id}/related-companies": {
       "get": {
         "description": "Returns companies semantically related to a news article.",
@@ -18294,6 +18030,260 @@
         "x-aventure-tool": {
           "cli": "news related-companies get"
         },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/news/{newsId}": {
+      "get": {
+        "description": "Returns news detail by exact positive ID. Use lookup for a slug, external ID, URL, or title candidates.",
+        "operationId": "getNewsById",
+        "parameters": [
+          {
+            "description": "Exact positive news article id.",
+            "in": "path",
+            "name": "newsId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Type-safe identifier for news articles"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsDetail"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "News detail as canonical JSON or compact text."
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get news article by ID",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-tool": {
+          "cli": "news by-id get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/news/{newsId}/media/thumbnail": {
+      "get": {
+        "description": "Returns the article's attached thumbnail. Empty slots return 404.",
+        "operationId": "getNewsMedia",
+        "parameters": [
+          {
+            "description": "Exact positive news article id",
+            "in": "path",
+            "name": "newsId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Type-safe identifier for news articles"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaUpload"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get news thumbnail",
+        "tags": [
+          "Media"
+        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -20647,109 +20637,6 @@
         }
       }
     },
-    "/v1/people/letter-counts": {
-      "get": {
-        "description": "Returns available people initials and counts. Front-end directory-browse projection over the full people inventory; not an enrichment read or write surface.",
-        "operationId": "letterCounts",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LetterCounts"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "People letter counts",
-        "tags": [
-          "Person Metadata"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap person-letter-counts list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/people/lookup": {
       "get": {
         "description": "Resolves person detail by slug, URL or bounded candidate signals with the existing projection and visibility options. Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved.",
@@ -21006,6 +20893,181 @@
         ],
         "x-aventure-tool": {
           "cli": "people lookup"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/people/lookup/batch": {
+      "post": {
+        "description": "Enrich multiple people by id or slug with optional url, association, and address. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response.",
+        "operationId": "lookupPersonBatch",
+        "parameters": [
+          {
+            "description": "Include private fields. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N); omit page and size for the full batch.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Zero-based page index (0..N); omit page and size for the full batch."
+            }
+          },
+          {
+            "description": "The size of the page to be returned; omit page and size for the full batch.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "The size of the page to be returned; omit page and size for the full batch."
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonDetailBatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagePersonDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Batch person detail enrichment",
+        "tags": [
+          "Person Batch"
+        ],
+        "x-aventure-tool": {
+          "cli": "people lookup batch"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -21430,121 +21492,6 @@
         }
       }
     },
-    "/v1/people/sitemap-boundaries": {
-      "get": {
-        "description": "Per-page boundary timestamps for person sitemap index generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
-        "operationId": "personBoundaries",
-        "parameters": [
-          {
-            "description": "The size of the page to be returned; only 5000 is supported.",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Person sitemap boundaries",
-        "tags": [
-          "Sitemap"
-        ],
-        "x-aventure-tool": {
-          "cli": "sitemap person-boundaries get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/people/texts/types": {
       "get": {
         "description": "Returns text type values accepted by person text rows.",
@@ -21723,6 +21670,197 @@
         ],
         "x-aventure-tool": {
           "auth": "none"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/people/{personId}": {
+      "get": {
+        "description": "Returns person detail by exact UUID. Use lookup for a slug, URL, or candidate signals.",
+        "operationId": "getPersonById",
+        "parameters": [
+          {
+            "description": "Exact person UUID.",
+            "in": "path",
+            "name": "personId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array.",
+            "in": "query",
+            "name": "includeUrl",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array."
+            }
+          },
+          {
+            "description": "Projection qualifier — include association values (default: true). Set false to omit association array.",
+            "in": "query",
+            "name": "includeAssociation",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Projection qualifier — include association values (default: true). Set false to omit association array."
+            }
+          },
+          {
+            "description": "Projection qualifier — include address values (default: true). Set false to omit address array.",
+            "in": "query",
+            "name": "includeAddress",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Projection qualifier — include address values (default: true). Set false to omit address array."
+            }
+          },
+          {
+            "description": "Projection qualifier — max association values to return; bounded internally to the association limit. Default: 40.",
+            "in": "query",
+            "name": "maxAssociations",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Projection qualifier — max association values to return; bounded internally to the association limit. Default: 40."
+            }
+          },
+          {
+            "description": "Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response.",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response."
+            }
+          },
+          {
+            "description": "Privileged admin readback scope. Includes hidden or off-sitemap people and privileged private fields. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Privileged admin readback scope. Includes hidden or off-sitemap people and privileged private fields. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PersonDetail"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "Person detail as canonical JSON or compact text."
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get person by ID",
+        "tags": [
+          "People"
+        ],
+        "x-aventure-tool": {
+          "cli": "people by-id get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -22771,6 +22909,15 @@
             }
           },
           {
+            "description": "Include hidden people and entity associations. Defaults false; true requires an admin API key or ROLE_ADMIN.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
@@ -22971,6 +23118,15 @@
             "required": false,
             "schema": {
               "type": "string"
+            }
+          },
+          {
+            "description": "Include hidden people and entity associations. Defaults false; true requires an admin API key or ROLE_ADMIN.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -23197,6 +23353,129 @@
         "summary": "Get person graph",
         "tags": [
           "People"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/people/{personId}/media/photo": {
+      "get": {
+        "description": "Returns the person's attached photo. Empty slots return 404.",
+        "operationId": "getPersonMedia",
+        "parameters": [
+          {
+            "description": "Canonical person UUID",
+            "in": "path",
+            "name": "personId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical person UUID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaUpload"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get person photo",
+        "tags": [
+          "Media"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -25903,6 +26182,403 @@
         }
       }
     },
+    "/v1/sitemap/entities/boundaries": {
+      "get": {
+        "description": "Per-page boundary timestamps for entity sitemap index generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
+        "operationId": "entityBoundaries",
+        "parameters": [
+          {
+            "description": "Entity type filter (Company, Investment Firm, etc.)",
+            "in": "query",
+            "name": "typeRecord",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "The size of the page to be returned; only 5000 is supported.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Entity sitemap boundaries",
+        "tags": [
+          "Sitemap"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap entity-boundaries get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/entities/letter-counts": {
+      "get": {
+        "description": "Returns available entity initials and counts scoped by typeRecord. Front-end directory-browse projection over the full entity inventory; not an enrichment read or write surface.",
+        "operationId": "entityLetterCounts",
+        "parameters": [
+          {
+            "description": "Filter by entity type (Company, Investment Firm, etc.)",
+            "in": "query",
+            "name": "typeRecord",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LetterCounts"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Entity letter counts",
+        "tags": [
+          "Entity Filters"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap entity-letter-counts list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/entities/routes": {
+      "get": {
+        "description": "Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface. Returns thin Entity rows enriched with EntitySitemap gate booleans plus a bounded list of product/service child slugs; one row per company. Eligibility for /analysis, /fundraising, /employees, /news, and /products-services/{slug} is served from a materialized projection refreshed asynchronously after writes, so rows are eventually consistent and can lag a recent relationship or visibility change.",
+        "operationId": "getSitemapRoutes",
+        "parameters": [
+          {
+            "description": "Entity type whose sitemap rows to list.",
+            "in": "query",
+            "name": "typeRecord",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          {
+            "description": "Cursor for pagination (format: timestamp::uuid)",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5000,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntity"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token; reuse the same filters and forward unchanged.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Paginated sitemap-routes projection for an entity type",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap entity-routes list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/sitemap/entities/urls": {
       "get": {
         "description": "Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface. Returns one row per concrete entity URL; the slot path and lastmod come from a materialized projection refreshed asynchronously after writes, so rows are eventually consistent. XML page limits count URLs, not parent entities.",
@@ -25963,7 +26639,16 @@
                 }
               }
             },
-            "description": "OK"
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token; reuse the same filters and forward unchanged.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
           },
           "400": {
             "content": {
@@ -26047,6 +26732,133 @@
         ],
         "x-aventure-tool": {
           "cli": "sitemap entity-urls list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/entities/urls/boundaries": {
+      "get": {
+        "description": "Per-page URL-slot boundary timestamps for entity sitemap XML generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
+        "operationId": "entityUrlBoundaries",
+        "parameters": [
+          {
+            "description": "Entity type filter (Company, Investment Firm, etc.)",
+            "in": "query",
+            "name": "typeRecord",
+            "required": true,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "The size of the page to be returned; only 5000 is supported.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Entity sitemap URL boundaries",
+        "tags": [
+          "Sitemap"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap entity-url-boundaries get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -26153,7 +26965,596 @@
         }
       }
     },
-    "/v1/sitemap/url-slot-boundaries": {
+    "/v1/sitemap/news/boundaries": {
+      "get": {
+        "description": "Per-page boundary timestamps for news sitemap index generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
+        "operationId": "newsBoundaries",
+        "parameters": [
+          {
+            "description": "The size of the page to be returned; only 5000 is supported.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "News sitemap boundaries",
+        "tags": [
+          "Sitemap"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap news-boundaries get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/news/letter-counts": {
+      "get": {
+        "description": "Returns available news author initials and counts. Front-end directory-browse projection over the full news-author inventory; not an enrichment read or write surface.",
+        "operationId": "newsLetterCounts",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LetterCounts"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "News author letter counts",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap news-letter-counts list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/people/boundaries": {
+      "get": {
+        "description": "Per-page boundary timestamps for person sitemap index generation. Front-end sitemap.xml consumer metadata over large URL inventories; not an enrichment read or write surface.",
+        "operationId": "personBoundaries",
+        "parameters": [
+          {
+            "description": "The size of the page to be returned; only 5000 is supported.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationSitemapBoundaryDetail"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Person sitemap boundaries",
+        "tags": [
+          "Sitemap"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap person-boundaries get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/people/letter-counts": {
+      "get": {
+        "description": "Returns available people initials and counts. Front-end directory-browse projection over the full people inventory; not an enrichment read or write surface.",
+        "operationId": "letterCounts",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LetterCounts"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "People letter counts",
+        "tags": [
+          "Person Metadata"
+        ],
+        "x-aventure-tool": {
+          "cli": "sitemap person-letter-counts list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/url-slots": {
+      "get": {
+        "description": "Returns backend-owned URL slots for people, news, people image, and company image sitemaps. Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface.",
+        "operationId": "urlSlots",
+        "parameters": [
+          {
+            "description": "Sitemap family to list, for example person or personImage.",
+            "in": "query",
+            "name": "family",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Cursor for pagination (format: timestamp::slotKey)",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 5000,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageSitemapUrlSlot"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token; reuse the same filters and forward unchanged.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Paginated sitemap URL slots",
+        "tags": [
+          "Sitemap"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/sitemap/url-slots/boundaries": {
       "get": {
         "description": "O(1) page boundaries for canonical 5000-row sitemap URL-slot families. Front-end sitemap.xml consumer metadata; not an enrichment read or write surface.",
         "operationId": "urlSlotBoundaries",
@@ -26259,150 +27660,9 @@
         "tags": [
           "Sitemap"
         ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/sitemap/url-slots": {
-      "get": {
-        "description": "Returns backend-owned URL slots for people, news, people image, and company image sitemaps. Large paginated list serving front-end sitemap.xml generation; not an enrichment read or write surface.",
-        "operationId": "urlSlots",
-        "parameters": [
-          {
-            "description": "Sitemap family to list, for example person or personImage.",
-            "in": "query",
-            "name": "family",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Cursor for pagination (format: timestamp::slotKey)",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 5000,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageSitemapUrlSlot"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
+        "x-aventure-tool": {
+          "cli": "sitemap url-slot-boundaries list"
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Paginated sitemap URL slots",
-        "tags": [
-          "Sitemap"
-        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -27190,7 +28450,15 @@
           },
           "type": {
             "type": "string",
-            "format": "uri"
+            "format": "uri",
+            "anyOf": [
+              {
+                "format": "uri"
+              },
+              {
+                "$ref": "#/components/schemas/ProblemType"
+              }
+            ]
           },
           "unknownParameters": {
             "type": [
@@ -27592,30 +28860,6 @@
           "core"
         ]
       },
-      "AuthPermissionGrant": {
-        "type": "object",
-        "description": "Auth permission grant",
-        "properties": {
-          "permission": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "uniqueItems": true
-          },
-          "role": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "uniqueItems": true
-          }
-        },
-        "required": [
-          "permission",
-          "role"
-        ]
-      },
       "CliAuthorizationMutation": {
         "type": "object",
         "description": "Creates a short-lived CLI authorization request bound to an ephemeral key",
@@ -27849,6 +29093,30 @@
         "required": [
           "expiresAt",
           "status"
+        ]
+      },
+      "AuthPermissionGrant": {
+        "type": "object",
+        "description": "Auth permission grant",
+        "properties": {
+          "permission": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          },
+          "role": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "permission",
+          "role"
         ]
       },
       "PersonalApiKey": {
@@ -29715,23 +30983,6 @@
           "scopeFilter"
         ]
       },
-      "LetterCounts": {
-        "type": "object",
-        "description": "Per-initial visible-row counts for sitemap directory navigation. Keys are uppercase A–Z initials; values are the visible total for that initial.",
-        "properties": {
-          "counts": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "description": "Letter → count map. Keys are single uppercase A–Z characters; missing keys mean zero rows."
-          }
-        },
-        "required": [
-          "counts"
-        ]
-      },
       "EntityNaturalSearch": {
         "type": "object",
         "description": "Plain-English entity search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
@@ -30374,31 +31625,6 @@
             }
           }
         }
-      },
-      "LocationSitemapBoundaryDetail": {
-        "type": "object",
-        "description": "Complete sitemap boundary metadata for a domain O(1) boundary endpoint payload replacing O(N) cursor traversal for sitemap index lastmod generation",
-        "properties": {
-          "boundary": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/LocationSitemapBoundary"
-            }
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "total": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "boundary",
-          "size",
-          "total"
-        ]
       },
       "PageEntityListSummary": {
         "type": "object",
@@ -31244,6 +32470,63 @@
           "rank",
           "score",
           "writable"
+        ]
+      },
+      "EntityLogoType": {
+        "type": "string",
+        "description": "Distinguishes square icon vs standard/horizontal entity logo",
+        "enum": [
+          "SQUARE",
+          "STANDARD"
+        ]
+      },
+      "MediaUpload": {
+        "type": "object",
+        "description": "Managed media asset reference with resolved CDN URL and target metadata",
+        "properties": {
+          "cdnUrl": {
+            "type": "string",
+            "description": "Resolved API CDN URL"
+          },
+          "firstUploadedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Earliest recorded write timestamp for this media asset slot from res_provenance_event (when this entity/person/news first received any image in this slot)."
+          },
+          "mediaType": {
+            "$ref": "#/components/schemas/MediaObjectType",
+            "description": "Target media domain"
+          },
+          "path": {
+            "type": "string",
+            "description": "Attached managed storage path; never an external image URL"
+          },
+          "provenance": {
+            "description": "Latest write source for this media asset slot from res_provenance_event. `changedAt` is the last-modified timestamp of the current attached file.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DatasourceSourceMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "targetId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Attached entity/person/news target id, when known"
+          }
+        },
+        "required": [
+          "cdnUrl",
+          "mediaType",
+          "path"
         ]
       },
       "PageEntityPersonAssociation": {
@@ -32360,63 +33643,6 @@
           "BLOG"
         ],
         "example": "ENTITY"
-      },
-      "EntityLogoType": {
-        "type": "string",
-        "description": "Distinguishes square icon vs standard/horizontal entity logo",
-        "enum": [
-          "SQUARE",
-          "STANDARD"
-        ]
-      },
-      "MediaUpload": {
-        "type": "object",
-        "description": "Managed media asset reference with resolved CDN URL and target metadata",
-        "properties": {
-          "cdnUrl": {
-            "type": "string",
-            "description": "Resolved API CDN URL"
-          },
-          "firstUploadedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time",
-            "description": "Earliest recorded write timestamp for this media asset slot from res_provenance_event (when this entity/person/news first received any image in this slot)."
-          },
-          "mediaType": {
-            "$ref": "#/components/schemas/MediaObjectType",
-            "description": "Target media domain"
-          },
-          "path": {
-            "type": "string",
-            "description": "Attached managed storage path; never an external image URL"
-          },
-          "provenance": {
-            "description": "Latest write source for this media asset slot from res_provenance_event. `changedAt` is the last-modified timestamp of the current attached file.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/DatasourceSourceMetadata"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "targetId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Attached entity/person/news target id, when known"
-          }
-        },
-        "required": [
-          "cdnUrl",
-          "mediaType",
-          "path"
-        ]
       },
       "PageMediaScreenshot": {
         "type": "object",
@@ -33851,6 +35077,48 @@
           "ticker"
         ]
       },
+      "LocationSitemapBoundaryDetail": {
+        "type": "object",
+        "description": "Complete sitemap boundary metadata for a domain O(1) boundary endpoint payload replacing O(N) cursor traversal for sitemap index lastmod generation",
+        "properties": {
+          "boundary": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LocationSitemapBoundary"
+            }
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "boundary",
+          "size",
+          "total"
+        ]
+      },
+      "LetterCounts": {
+        "type": "object",
+        "description": "Per-initial visible-row counts for sitemap directory navigation. Keys are uppercase A–Z initials; values are the visible total for that initial.",
+        "properties": {
+          "counts": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "description": "Letter → count map. Keys are single uppercase A–Z characters; missing keys mean zero rows."
+          }
+        },
+        "required": [
+          "counts"
+        ]
+      },
       "PageEntitySitemapUrl": {
         "type": "object",
         "properties": {
@@ -34302,6 +35570,30 @@
           "employees",
           "news",
           "productService"
+        ]
+      },
+      "LocationSitemapBoundary": {
+        "type": "object",
+        "description": "Sitemap page boundary with page number and latest timestamp",
+        "properties": {
+          "latestUpdatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "latestUpdatedAt",
+          "page"
         ]
       },
       "SourceDocumentList": {
@@ -37713,30 +39005,6 @@
           "fundraiseRound"
         ]
       },
-      "LocationSitemapBoundary": {
-        "type": "object",
-        "description": "Sitemap page boundary with page number and latest timestamp",
-        "properties": {
-          "latestUpdatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "nextCursor": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "page": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "latestUpdatedAt",
-          "page"
-        ]
-      },
       "EntityFundraiseFilterCriteria": {
         "type": "object",
         "description": "Fundraise and investment filters for entity search",
@@ -39753,6 +41021,123 @@
         },
         "required": [
           "action"
+        ]
+      },
+      "ProblemType": {
+        "type": "string",
+        "format": "uri",
+        "description": "Known RFC 9457 error type URIs.",
+        "enum": [
+          "https://api.aventure.vc/errors/validation-failed",
+          "https://api.aventure.vc/errors/missing-parameter",
+          "https://api.aventure.vc/errors/invalid-parameter-type",
+          "https://api.aventure.vc/errors/unknown-parameter",
+          "https://api.aventure.vc/errors/invalid-argument",
+          "https://api.aventure.vc/errors/invalid-request",
+          "https://api.aventure.vc/errors/invalid-token",
+          "https://api.aventure.vc/errors/token-expired",
+          "https://api.aventure.vc/errors/invalid-authentication",
+          "https://api.aventure.vc/errors/client-closed-request",
+          "https://api.aventure.vc/errors/invalid-json",
+          "https://api.aventure.vc/errors/method-not-allowed",
+          "https://api.aventure.vc/errors/not-acceptable",
+          "https://api.aventure.vc/errors/unsupported-media-type",
+          "https://api.aventure.vc/errors/internal-error",
+          "https://api.aventure.vc/errors/unexpected-error",
+          "https://api.aventure.vc/errors/not-implemented",
+          "https://api.aventure.vc/errors/authentication-required",
+          "https://api.aventure.vc/errors/auth.docs-required",
+          "https://api.aventure.vc/errors/auth.admin-key-not-configured",
+          "https://api.aventure.vc/errors/auth.empty-admin-key",
+          "https://api.aventure.vc/errors/auth.empty-admin-bearer",
+          "https://api.aventure.vc/errors/auth.invalid-admin-key",
+          "https://api.aventure.vc/errors/auth.missing-admin-key",
+          "https://api.aventure.vc/errors/auth.metrics-unauthorized",
+          "https://api.aventure.vc/errors/access-denied",
+          "https://api.aventure.vc/errors/not-found",
+          "https://api.aventure.vc/errors/gone",
+          "https://api.aventure.vc/errors/rate-limited",
+          "https://api.aventure.vc/errors/precondition-failed",
+          "https://api.aventure.vc/errors/precondition-required",
+          "https://api.aventure.vc/errors/billing-allowance-exhausted",
+          "https://api.aventure.vc/errors/subscription-required",
+          "https://api.aventure.vc/errors/service-unavailable",
+          "https://api.aventure.vc/errors/malformed-form-body",
+          "https://api.aventure.vc/errors/state-conflict",
+          "https://api.aventure.vc/errors/slug-held-by-record",
+          "https://api.aventure.vc/errors/slug-held-by-redirect",
+          "https://api.aventure.vc/errors/slug-ambiguous",
+          "https://api.aventure.vc/errors/duplicate",
+          "https://api.aventure.vc/errors/duplicate-key",
+          "https://api.aventure.vc/errors/integrity-violation",
+          "https://api.aventure.vc/errors/circuit-breaker-open",
+          "https://api.aventure.vc/errors/bulkhead-full",
+          "https://api.aventure.vc/errors/database-unavailable",
+          "https://api.aventure.vc/errors/database-error",
+          "https://api.aventure.vc/errors/file-too-large",
+          "https://api.aventure.vc/errors/missing-file-part",
+          "https://api.aventure.vc/errors/invalid-multipart-boundary",
+          "https://api.aventure.vc/errors/multipart-parse-error",
+          "https://api.aventure.vc/errors/non-english-article",
+          "https://api.aventure.vc/errors/invalid-image",
+          "https://api.aventure.vc/errors/upstream-edge-challenged",
+          "https://api.aventure.vc/errors/accelerator-detail-restates-target"
+        ],
+        "x-enum-varnames": [
+          "VALIDATION_FAILED",
+          "MISSING_PARAMETER",
+          "INVALID_PARAMETER_TYPE",
+          "UNKNOWN_PARAMETER",
+          "INVALID_ARGUMENT",
+          "INVALID_REQUEST",
+          "INVALID_TOKEN",
+          "TOKEN_EXPIRED",
+          "INVALID_AUTHENTICATION",
+          "CLIENT_CLOSED_REQUEST",
+          "INVALID_JSON",
+          "METHOD_NOT_ALLOWED",
+          "NOT_ACCEPTABLE",
+          "UNSUPPORTED_MEDIA_TYPE",
+          "INTERNAL_ERROR",
+          "UNEXPECTED_ERROR",
+          "NOT_IMPLEMENTED",
+          "AUTHENTICATION_REQUIRED",
+          "AUTH_DOCS_REQUIRED",
+          "AUTH_ADMIN_KEY_NOT_CONFIGURED",
+          "AUTH_EMPTY_ADMIN_KEY",
+          "AUTH_EMPTY_ADMIN_BEARER",
+          "AUTH_INVALID_ADMIN_KEY",
+          "AUTH_MISSING_ADMIN_KEY",
+          "AUTH_METRICS_UNAUTHORIZED",
+          "ACCESS_DENIED",
+          "NOT_FOUND",
+          "GONE",
+          "RATE_LIMITED",
+          "PRECONDITION_FAILED",
+          "PRECONDITION_REQUIRED",
+          "BILLING_ALLOWANCE_EXHAUSTED",
+          "SUBSCRIPTION_REQUIRED",
+          "SERVICE_UNAVAILABLE",
+          "MALFORMED_FORM_BODY",
+          "STATE_CONFLICT",
+          "SLUG_HELD_BY_RECORD",
+          "SLUG_HELD_BY_REDIRECT",
+          "SLUG_AMBIGUOUS",
+          "DUPLICATE",
+          "DUPLICATE_KEY",
+          "INTEGRITY_VIOLATION",
+          "CIRCUIT_BREAKER_OPEN",
+          "BULKHEAD_FULL",
+          "DATABASE_UNAVAILABLE",
+          "DATABASE_ERROR",
+          "FILE_TOO_LARGE",
+          "MISSING_FILE_PART",
+          "INVALID_MULTIPART_BOUNDARY",
+          "MULTIPART_PARSE_ERROR",
+          "NON_ENGLISH_ARTICLE",
+          "INVALID_IMAGE",
+          "UPSTREAM_EDGE_CHALLENGED",
+          "ACCELERATOR_DETAIL_RESTATES_TARGET"
         ]
       },
       "UrlDuplicateConflict": {

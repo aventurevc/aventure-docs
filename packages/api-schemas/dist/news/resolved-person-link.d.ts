@@ -16,6 +16,7 @@ type NewsResolvedPersonLinkDefinition = z.infer<typeof NewsResolvedPersonLinkSch
  * @openapiSchema NewsResolvedPersonLink
  * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/news/{newsId}
  * @usedBySchema NewsDetailSchema
  * @contractShape news.resolved-person-link
  * @contractRole canonical

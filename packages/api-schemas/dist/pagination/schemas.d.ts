@@ -524,7 +524,7 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
 type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
 /**
  * @openapiSchema PageEntity
- * @endpoint GET /v1/entities/sitemap-routes
+ * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
  * @endpoint GET /v1/news/{id}/related-companies
  * @contractShape pagination.page-entity
@@ -2570,6 +2570,7 @@ type PageEntityDetailDefinition = z.infer<typeof PageEntityDetailSchemaDefinitio
  * @openapiSchema PageEntityDetail
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
+ * @endpoint POST /v1/entities/lookup/batch
  * @contractShape pagination.page-entity-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -9061,6 +9062,7 @@ type PagePersonDetailDefinition = z.infer<typeof PagePersonDetailSchemaDefinitio
  * @openapiSchema PagePersonDetail
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/lookup/batch
  * @contractShape pagination.page-person-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

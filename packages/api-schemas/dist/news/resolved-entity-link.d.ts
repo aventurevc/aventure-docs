@@ -28,6 +28,7 @@ type NewsResolvedEntityLinkDefinition = z.infer<typeof NewsResolvedEntityLinkSch
  * @openapiSchema NewsResolvedEntityLink
  * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/news/{newsId}
  * @usedBySchema NewsDetailSchema
  * @contractShape news.resolved-entity-link
  * @contractRole canonical

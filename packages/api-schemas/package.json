@@ -1,6 +1,6 @@
 {
   "name": "@aventurevc/api-schemas",
-  "version": "0.7.269",
+  "version": "0.7.272",
   "private": false,
   "description": "Zod v4 schemas for the public aVenture API.",
   "license": "Apache-2.0",

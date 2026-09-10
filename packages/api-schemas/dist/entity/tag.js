@@ -44,6 +44,7 @@ const EntityTagSchemaDefinition = z.intersection(ClassificationSchema, z.object(
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/classifications
  * @endpoint GET /v1/entities/{entityId}/classifications/suggestions
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
@@ -51,6 +52,7 @@ const EntityTagSchemaDefinition = z.intersection(ClassificationSchema, z.object(
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
