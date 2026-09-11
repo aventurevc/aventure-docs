@@ -9,6 +9,8 @@ const AuthPermissionGrantSchemaDefinition = z.object({
  *
  * @openapiSchema AuthPermissionGrant
  * @endpoint GET /v1/auth/me/permissions
+ * @endpoint POST /v1/auth/me/permissions
+ * @usedBySchema AuthOperationAuthorizationSchema
  * @contractShape auth.permission-grant
  * @contractRole canonical
  */

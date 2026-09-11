@@ -163,7 +163,7 @@ const PageEntitySchemaDefinition = z.object({
  * @openapiSchema PageEntity
  * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/addresses/locations/{scope}/{slug}
- * @endpoint GET /v1/news/{id}/related-companies
+ * @endpoint GET /v1/news/{newsId}/related-companies
  * @contractShape pagination.page-entity
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -422,6 +422,7 @@ const PageEntitySimilarityResultSchemaDefinition = z.object({
 /**
  * @openapiSchema PageEntitySimilarityResult
  * @endpoint GET /v1/entities/detail/similar
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @contractShape pagination.page-entity-similarity-result
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -621,6 +622,7 @@ const PageNewsSchemaDefinition = z.object({
  * @endpoint GET /v1/news/recent
  * @endpoint GET /v1/news/similar
  * @endpoint GET /v1/people/detail/news
+ * @endpoint GET /v1/entities/{entityId}/trending-news
  * @endpoint POST /v1/news
  * @contractShape pagination.page-news
  * @contractRole canonical

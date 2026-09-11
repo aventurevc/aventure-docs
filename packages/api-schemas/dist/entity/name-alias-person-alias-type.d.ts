@@ -29,6 +29,7 @@ type EntityNameAliasPersonAliasTypeDefinition = z.infer<typeof EntityNameAliasPe
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch

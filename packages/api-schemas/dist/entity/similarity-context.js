@@ -27,6 +27,7 @@ const EntitySimilarityContextSchemaDefinition = z.object({
  *
  * @openapiSchema EntitySimilarityContext
  * @endpoint GET /v1/entities/detail/similar
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @usedBySchema EntitySimilarityResultSchema
  * @contractShape entity.similarity-context
  * @contractRole canonical

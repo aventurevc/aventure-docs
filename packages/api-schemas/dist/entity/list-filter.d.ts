@@ -167,6 +167,7 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
         googleplay: "googleplay";
         homebrew: "homebrew";
         hubspotmarketplace: "hubspotmarketplace";
+        huggingface: "huggingface";
         instagram: "instagram";
         linkedin: "linkedin";
         maven: "maven";

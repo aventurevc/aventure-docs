@@ -17,6 +17,7 @@ const EntityListResearchSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search

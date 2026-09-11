@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.273"
+    "version": "0.7.278"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -20,6 +20,10 @@
     }
   ],
   "tags": [
+    {
+      "description": "Authentication entry points and sign-in configuration",
+      "name": "Auth"
+    },
     {
       "description": "Crawl screenshot metadata endpoints — S3 key is the binary asset source of truth",
       "name": "Screenshots"
@@ -39,6 +43,10 @@
     {
       "description": "Batch person list and detail endpoints.",
       "name": "Person Batch"
+    },
+    {
+      "description": "Read browser sign-in availability and CLI OAuth configuration",
+      "name": "Providers"
     },
     {
       "description": "Search companies, people, and news together, or search the live web",
@@ -107,6 +115,10 @@
     {
       "description": "Person filter, letter-count, and search metadata endpoints used to drive people-listing UI affordances.",
       "name": "Person Metadata"
+    },
+    {
+      "description": "Read and mutate a news article by its canonical numeric identifier",
+      "name": "By ID"
     },
     {
       "description": "Logos, photos, and thumbnails for companies, people, and news",
@@ -545,6 +557,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -655,26 +673,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -726,11 +724,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List locations by scope",
         "tags": [
           "Addresses"
@@ -858,26 +851,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -929,11 +902,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List companies by location",
         "tags": [
           "Addresses"
@@ -945,7 +913,7 @@
     },
     "/v1/agents/help": {
       "post": {
-        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command.",
+        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "answerAgentHelpQuestion",
         "requestBody": {
           "content": {
@@ -1094,7 +1062,7 @@
     },
     "/v1/agents/instructions/manifest": {
       "get": {
-        "description": "Returns the latest-pointer manifest of versioned prompt and skill documents.",
+        "description": "Returns the latest-pointer manifest of versioned prompt and skill documents. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getAgentInstructionManifest",
         "responses": {
           "200": {
@@ -1203,7 +1171,7 @@
     },
     "/v1/agents/instructions/{kind}/{name}": {
       "get": {
-        "description": "Returns the current version and markdown content for one prompt, skill, or agent.",
+        "description": "Returns the current version and markdown content for one prompt, skill, or agent. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getAgentInstruction",
         "parameters": [
           {
@@ -1339,7 +1307,7 @@
     },
     "/v1/agents/instructions/{kind}/{name}/versions/{version}": {
       "get": {
-        "description": "Returns an immutable prompt, skill, or agent document by name and version.",
+        "description": "Returns an immutable prompt, skill, or agent document by name and version. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getAgentInstructionVersion",
         "parameters": [
           {
@@ -1596,7 +1564,7 @@
           "bodyOption": [
             "clientLabel"
           ],
-          "command": "auth login",
+          "command": "auth personal-login",
           "localOption": [
             {
               "optionKey": "browser",
@@ -1723,7 +1691,7 @@
           "CLI Authorizations"
         ],
         "x-aventure-cli-composite": {
-          "command": "auth login",
+          "command": "auth personal-login",
           "role": "acknowledge"
         },
         "x-aventure-visibility": {
@@ -1843,7 +1811,7 @@
           "CLI Authorizations"
         ],
         "x-aventure-cli-composite": {
-          "command": "auth login",
+          "command": "auth personal-login",
           "role": "poll"
         },
         "x-aventure-visibility": {
@@ -1853,7 +1821,7 @@
     },
     "/v1/auth/me/permissions": {
       "get": {
-        "description": "Returns resolved role/permission sets for session JWT auth, explicit permissions for personal API-key auth, or full admin permission for admin API key auth",
+        "description": "Returns resolved roles and permissions for Clerk session or OAuth authentication, explicit personal API-key permissions, full admin API-key permissions, or an empty grant for a client secret.",
         "operationId": "currentPermissions",
         "responses": {
           "200": {
@@ -1943,9 +1911,156 @@
           },
           {
             "adminApiKeyAuth": []
+          },
+          {
+            "clientSecretAuth": []
           }
         ],
         "summary": "Current user permissions",
+        "tags": [
+          "Auth Session"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
+      "post": {
+        "description": "Returns the supplied generated API operations that the current caller may call, alongside its existing permission grant and access class. Candidate operations are checked without being executed.",
+        "operationId": "authorizeOperations",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AuthOperationFilter"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthOperationAuthorization"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Authorize API operations",
         "tags": [
           "Auth Session"
         ],
@@ -2060,7 +2175,7 @@
           "Personal API Key"
         ],
         "x-aventure-cli-composite": {
-          "command": "auth logout",
+          "command": "auth personal-logout",
           "localOption": [
             {
               "optionKey": "forgetLocal",
@@ -2168,6 +2283,96 @@
         "tags": [
           "Personal API Key"
         ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/auth/providers": {
+      "get": {
+        "description": "Sign-in provider availability and CLI OAuth configuration. Public — callers read it before any session exists. A non-null Clerk publishable key offers browser sign-in; a non-null OAuth client offers the PKCE CLI sign-in lane.",
+        "operationId": "getAuthProviderCatalog",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthProviderCatalog"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Get the public authentication provider catalog",
+        "tags": [
+          "Auth",
+          "Providers"
+        ],
+        "x-aventure-cli-composite": {
+          "command": "auth login",
+          "localOption": [
+            {
+              "optionKey": "browser",
+              "flag": "--no-browser",
+              "description": "Print the authorization URL without opening a browser."
+            }
+          ],
+          "role": "oauth"
+        },
+        "x-aventure-tool": {
+          "auth": "none"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -2307,6 +2512,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -2430,6 +2641,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -2577,6 +2794,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -2594,7 +2817,7 @@
     },
     "/v1/content": {
       "get": {
-        "description": "Returns a paged public content index across supported source owners.",
+        "description": "Returns a paged public content index across supported source owners. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listContent",
         "parameters": [
           {
@@ -2788,7 +3011,7 @@
     },
     "/v1/content/search": {
       "post": {
-        "description": "Translates plain-English content constraints into canonical filters.",
+        "description": "Translates plain-English content constraints into canonical filters. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "searchContent",
         "parameters": [
           {
@@ -3804,26 +4027,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -3865,11 +4068,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List or search companies and other entities (GET)",
         "tags": [
           "Entities"
@@ -4133,26 +4331,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -4194,11 +4372,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Count entities by type",
         "tags": [
           "Entity Filters"
@@ -4213,7 +4386,7 @@
     },
     "/v1/entities/detail": {
       "get": {
-        "description": "Returns one company or other entity detail record by exact id, slug, strict URL, or deterministic candidate signals. A unique exact normalized brand/legal-name match, a stored-URL match returned as the sole candidate, or one guaranteed identity match with no competing review-level candidate resolves directly. This is identity resolution, not keyword or plain-English discovery; use POST /v1/entities/search with textSearch for keywords or the search entities command (POST /v1/entities/natural-search) for a plain-English company request. Default reads hide hidden or off-sitemap entities; privileged callers can use includePrivate=true for write readback. Use GET /v1/entities or POST /v1/entities/search for filtered lists. Changed slugs return the canonical redirect. Every non-resolving outcome is documented on this operation's error responses.",
+        "description": "Returns one entity by exact id, slug, strict URL, or deterministic candidate signals. A sole exact normalized brand/legal-name or stored-URL match, or a guaranteed identity match without a competing review candidate, resolves directly. For keywords use POST /v1/entities/search with textSearch; for plain English use the search entities command (POST /v1/entities/natural-search). Default reads hide hidden or off-sitemap entities; privileged callers may set includePrivate=true for write readback. GET /v1/entities and POST /v1/entities/search list filtered records. Changed slugs redirect; error responses document every unresolved outcome.",
         "operationId": "getEntityDetail",
         "parameters": [
           {
@@ -4404,26 +4577,6 @@
           "400": {
             "description": "Conflicting or unusable identity input: name, nameBrand, and nameLegal must identify the same entity, and exactly one identifier form may be supplied."
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — search POST /v1/entities/search with textSearch first (CLI: entities search --text-search). An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true; CLI: --include-private true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
@@ -4438,7 +4591,7 @@
             "description": "Not Acceptable"
           },
           "409": {
-            "description": "Ambiguous identity: a candidate set still at the review threshold or carrying unresolved identity proof, multiple stored exact normalized-name matches, or a bare Product/Service slug shared across providers, since those are provider-pair scoped. ProblemDetail carries the candidates plus a resolution naming the duplicate-check candidates endpoint to review them (CLI: entities duplicate-check candidates list); resolve directly by entityId, by companySlug plus slug, or through the provider's productService relationship list."
+            "description": "Ambiguous identity: review-level candidates, unresolved identity proof, multiple exact normalized-name matches, or a Product/Service slug shared across provider pairs. ProblemDetail carries candidates and names the duplicate-check endpoint (CLI: entities duplicate-check candidates list); resolve by entityId, companySlug plus slug, or a provider's productService relationship."
           },
           "429": {
             "content": {
@@ -4471,11 +4624,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get company or entity detail",
         "tags": [
           "Entities"
@@ -4648,6 +4796,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -4665,7 +4819,7 @@
     },
     "/v1/entities/detail/fundraise-investor-joins": {
       "get": {
-        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
+        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; CLI callers use --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
         "operationId": "listFundraiseInvestorJoins",
         "parameters": [
           {
@@ -4822,26 +4976,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -4883,11 +5017,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List fundraise investor joins",
         "tags": [
           "Entity Fundraise"
@@ -4963,26 +5092,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -5034,11 +5143,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get fundraise investor join",
         "tags": [
           "Entity Fundraise"
@@ -5157,26 +5261,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -5218,11 +5302,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List news joined to an entity",
         "tags": [
           "Entity News"
@@ -5237,6 +5316,7 @@
     },
     "/v1/entities/detail/resolve": {
       "post": {
+        "deprecated": true,
         "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments).",
         "operationId": "postEntityDetailResolve",
         "parameters": [
@@ -5376,6 +5456,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -5499,26 +5585,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -5560,11 +5626,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entities similar to one entity",
         "tags": [
           "Entity Similarity"
@@ -5579,6 +5640,7 @@
     },
     "/v1/entities/detail/trending-news": {
       "get": {
+        "deprecated": true,
         "description": "Returns trending news semantically related to an entity.",
         "operationId": "trendingNews",
         "parameters": [
@@ -5653,26 +5715,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -5714,11 +5756,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get trending news for an entity",
         "tags": [
           "Semantic Similarity"
@@ -5810,26 +5847,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -5871,11 +5888,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity filter options",
         "tags": [
           "Entity Filters"
@@ -6044,6 +6056,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -6181,6 +6199,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -6188,6 +6212,9 @@
         "tags": [
           "Entity Filters"
         ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -6321,6 +6348,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -6328,6 +6361,9 @@
         "tags": [
           "Entity Filters"
         ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -6410,26 +6446,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -6471,11 +6487,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Search filter options",
         "tags": [
           "Entity Filters"
@@ -6611,6 +6622,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -6618,6 +6635,9 @@
         "tags": [
           "Entity Filters"
         ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -6625,7 +6645,7 @@
     },
     "/v1/entities/lookup": {
       "get": {
-        "description": "Resolves one entity by slug, URL or candidate signals with the existing detail qualifiers and visibility rules. Use the UUID item route for an id; any id query parameter is rejected. Changed slugs retain their canonical redirect.",
+        "description": "Resolves one entity by slug, URL, or candidate signals with existing detail qualifiers and visibility rules. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically.",
         "operationId": "lookupEntity",
         "parameters": [
           {
@@ -6805,26 +6825,6 @@
           "400": {
             "description": "Conflicting or unusable identity input: name, nameBrand, and nameLegal must identify the same entity, and exactly one identifier form may be supplied."
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — search POST /v1/entities/search with textSearch first (CLI: entities search --text-search). An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true; CLI: --include-private true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
@@ -6839,7 +6839,7 @@
             "description": "Not Acceptable"
           },
           "409": {
-            "description": "Ambiguous identity: a candidate set still at the review threshold or carrying unresolved identity proof, multiple stored exact normalized-name matches, or a bare Product/Service slug shared across providers, since those are provider-pair scoped. ProblemDetail carries the candidates plus a resolution naming the duplicate-check candidates endpoint to review them (CLI: entities duplicate-check candidates list); resolve directly by entityId, by companySlug plus slug, or through the provider's productService relationship list."
+            "description": "Ambiguous identity: review-level candidates, unresolved identity proof, multiple exact normalized-name matches, or a Product/Service slug shared across provider pairs. ProblemDetail carries candidates and names the duplicate-check endpoint (CLI: entities duplicate-check candidates list); resolve by entityId, companySlug plus slug, or a provider's productService relationship."
           },
           "429": {
             "content": {
@@ -6872,11 +6872,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Look up one entity",
         "tags": [
           "Entities"
@@ -7049,6 +7044,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -7057,7 +7058,170 @@
           "Entities"
         ],
         "x-aventure-tool": {
+          "auth": "read",
           "cli": "entities lookup batch"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/lookup/matches": {
+      "post": {
+        "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments).",
+        "operationId": "lookupEntityMatches",
+        "parameters": [
+          {
+            "description": "Privileged read scope for admin callers. Returns hidden, unverified, and not-yet-published entities instead of resolving them as MISSING. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntityDetailBatch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EntityResolution"
+                  }
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Resolve entity identifiers (POST)",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-tool": {
+          "auth": "read"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -7295,26 +7459,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -7356,11 +7500,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List relationship types",
         "tags": [
           "Entity Relationships"
@@ -7406,26 +7545,6 @@
               }
             },
             "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
           },
           "404": {
             "content": {
@@ -7478,11 +7597,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get relationship row by id",
         "tags": [
           "Entity Relationships"
@@ -7632,26 +7746,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -7693,11 +7787,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List research snippet types",
         "tags": [
           "Entity Research"
@@ -7914,6 +8003,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -8727,26 +8822,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -8788,11 +8863,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity summaries",
         "tags": [
           "Entities"
@@ -8842,26 +8912,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -8903,11 +8953,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity text types",
         "tags": [
           "Texts"
@@ -8945,26 +8990,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -9006,11 +9031,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List writable entity typeRecords with accepted alias tokens",
         "tags": [
           "Entity Maintenance"
@@ -9048,26 +9068,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -9109,11 +9109,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List URL surface misclassification rules",
         "tags": [
           "URL Links"
@@ -9281,26 +9276,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -9352,11 +9327,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get entity by ID",
         "tags": [
           "Entities"
@@ -9451,26 +9421,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -9522,11 +9472,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List acquisitions for an entity",
         "tags": [
           "Entity Acquisitions"
@@ -9594,26 +9539,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -9665,11 +9590,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get acquisition for an entity",
         "tags": [
           "Entity Acquisitions"
@@ -9730,26 +9650,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -9801,11 +9701,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity addresses",
         "tags": [
           "Entity Addresses"
@@ -9863,26 +9758,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -9934,11 +9809,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get a single entity address join row",
         "tags": [
           "Entity Addresses"
@@ -10033,26 +9903,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -10104,11 +9954,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity blog posts",
         "tags": [
           "Research Blog Posts"
@@ -10123,7 +9968,7 @@
     },
     "/v1/entities/{entityId}/blog-posts/{blogPostId}": {
       "get": {
-        "description": "Returns one entity-owned external link by id.",
+        "description": "Returns one entity-owned external link by id. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getEntityBlogPost",
         "parameters": [
           {
@@ -10241,6 +10086,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -10561,7 +10412,7 @@
     },
     "/v1/entities/{entityId}/content": {
       "get": {
-        "description": "Returns news articles, blog posts, repositories, websites, and pages related to an entity.",
+        "description": "Returns news articles, blog posts, repositories, websites, and pages related to an entity. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listEntityContent",
         "parameters": [
           {
@@ -10776,7 +10627,7 @@
     },
     "/v1/entities/{entityId}/content/search": {
       "post": {
-        "description": "Translates plain-English constraints for one entity's content index.",
+        "description": "Translates plain-English constraints for one entity's content index. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "searchEntityContent",
         "parameters": [
           {
@@ -11133,26 +10984,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -11204,11 +11035,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List fundraise rounds",
         "tags": [
           "Entity Fundraise"
@@ -11270,26 +11096,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -11341,11 +11147,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get fundraise round",
         "tags": [
           "Entity Fundraise"
@@ -11529,26 +11330,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -11600,11 +11381,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List investments made by an entity",
         "tags": [
           "Entity Fundraise"
@@ -11655,26 +11431,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -11726,11 +11482,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get investor activity",
         "tags": [
           "Entity Fundraise"
@@ -11851,26 +11602,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -11922,11 +11653,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity investors",
         "tags": [
           "Entity Fundraise"
@@ -11986,26 +11712,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -12057,11 +11763,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get entity logo",
         "tags": [
           "Media"
@@ -12247,26 +11948,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -12318,11 +11999,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity people associations",
         "tags": [
           "Entity Person Associations"
@@ -12392,26 +12068,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -12463,11 +12119,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Entity employee count time series",
         "tags": [
           "Entity Employee Count"
@@ -12632,26 +12283,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -12703,11 +12334,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get entity people association",
         "tags": [
           "Entity Person Associations"
@@ -12825,26 +12451,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -12896,11 +12502,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person investors",
         "tags": [
           "Entity Fundraise"
@@ -13171,26 +12772,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -13242,11 +12823,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity relationships",
         "tags": [
           "Entity Relationships"
@@ -14313,9 +13889,188 @@
         }
       }
     },
+    "/v1/entities/{entityId}/similar": {
+      "get": {
+        "description": "Returns similar entities for the UUID at this address, ordered by similarity score. Rows include the entity and similarity provenance. Use relationshipType to filter stored relationships. Custom sorting is unsupported.",
+        "operationId": "listSimilarEntitiesByEntityId",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID)",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Filter by stored relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor.",
+            "example": "competitor",
+            "in": "query",
+            "name": "relationshipType",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional entity typeRecord filter. Repeat to allow multiple entity types.",
+            "example": "Company",
+            "in": "query",
+            "name": "typeRecord",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Permit monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntitySimilarityResult"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List entities similar to one entity by UUID",
+        "tags": [
+          "Entity Similarity"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/entities/{entityId}/slug": {
       "get": {
-        "description": "Returns the current slug, canonical path, and public URL.",
+        "description": "Returns the current slug, canonical path, and public URL. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getEntitySlug",
         "parameters": [
           {
@@ -14444,7 +14199,7 @@
     },
     "/v1/entities/{entityId}/slug/redirects": {
       "get": {
-        "description": "Lists redirects whose newUrl targets the record's current public URL.",
+        "description": "Lists redirects whose newUrl targets the record's current public URL. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listEntityRedirects",
         "parameters": [
           {
@@ -14587,6 +14342,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -14691,26 +14452,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -14762,11 +14503,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity text rows",
         "tags": [
           "Texts"
@@ -14925,13 +14661,14 @@
         }
       }
     },
-    "/v1/entities/{entityId}/type-record": {
+    "/v1/entities/{entityId}/trending-news": {
       "get": {
-        "description": "Returns the current canonical EntityType for an existing entity.",
-        "operationId": "getTypeRecord",
+        "description": "Returns trending news semantically related to an entity.",
+        "operationId": "listEntityTrendingNews",
         "parameters": [
           {
-            "description": "Canonical entity UUID",
+            "description": "Canonical entity UUID.",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
             "in": "path",
             "name": "entityId",
             "required": true,
@@ -14940,14 +14677,38 @@
               "format": "uuid",
               "description": "Canonical entity UUID"
             }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10,
+              "minimum": 1
+            }
           }
         ],
         "responses": {
           "200": {
             "content": {
-              "application/json": {
+              "*/*": {
                 "schema": {
-                  "$ref": "#/components/schemas/EntityType"
+                  "$ref": "#/components/schemas/PageNews"
                 }
               }
             },
@@ -14962,26 +14723,6 @@
               }
             },
             "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
           },
           "404": {
             "content": {
@@ -15034,11 +14775,104 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
+        "summary": "Get trending news for an entity",
+        "tags": [
+          "Semantic Similarity"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/type-record": {
+      "get": {
+        "description": "Returns the current canonical EntityType for an existing entity.",
+        "operationId": "getTypeRecord",
+        "parameters": [
           {
-            "clientSecretAuth": []
+            "description": "Canonical entity UUID",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID"
+            }
           }
         ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityType"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
         "summary": "Get entity typeRecord",
         "tags": [
           "Entity Maintenance"
@@ -15355,7 +15189,7 @@
     },
     "/v1/entities/{entityId}/urls": {
       "get": {
-        "description": "Returns paged primary current URL rows owned by an entity. Set includeInactive=true with read auth to include secondary active and inactive/historical rows.",
+        "description": "Returns paged primary current URL rows owned by an entity. Set includeInactive=true as a signed-in user or with read credentials to include secondary active and inactive/historical rows.",
         "operationId": "listEntityUrls",
         "parameters": [
           {
@@ -15435,26 +15269,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -15506,11 +15320,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List entity URLs",
         "tags": [
           "URL Links"
@@ -15885,26 +15694,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -15956,11 +15745,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Entity valuation time series",
         "tags": [
           "Entity Financial Valuation"
@@ -16042,26 +15826,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -16103,11 +15867,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get attached media asset",
         "tags": [
           "Media"
@@ -16215,7 +15974,7 @@
     },
     "/v1/media/screenshots": {
       "get": {
-        "description": "Returns paginated screenshot metadata for the given URL, newest crawl first.",
+        "description": "Returns paginated screenshot metadata for the given URL, newest crawl first. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listByUrl",
         "parameters": [
           {
@@ -16336,6 +16095,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -16348,19 +16113,22 @@
         }
       }
     },
-    "/v1/media/screenshots/{id}": {
+    "/v1/media/screenshots/{screenshotId}": {
       "get": {
-        "description": "Returns a single screenshot metadata record by its surrogate id.",
+        "description": "Returns a single screenshot metadata record by its surrogate id. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getById",
         "parameters": [
           {
             "description": "Screenshot surrogate id from the crawl_screenshot table.",
             "in": "path",
-            "name": "id",
+            "name": "screenshotId",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int64"
+            },
+            "x-aventure-legacy-name": {
+              "name": "id"
             }
           }
         ],
@@ -16457,6 +16225,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -16731,26 +16505,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -16792,11 +16546,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List news articles",
         "tags": [
           "News"
@@ -16984,6 +16733,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -17184,6 +16939,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -17517,6 +17278,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -17602,26 +17369,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -17663,11 +17410,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List recent news",
         "tags": [
           "News"
@@ -17767,26 +17509,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -17828,166 +17550,12 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Find similar news",
         "tags": [
           "News"
         ],
         "x-aventure-tool": {
           "cli": "news similar list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/news/{id}/related-companies": {
-      "get": {
-        "description": "Returns companies semantically related to a news article.",
-        "operationId": "relatedCompanies",
-        "parameters": [
-          {
-            "description": "News article id whose semantic neighbors should be returned.",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntity"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Get related companies for a news article",
-        "tags": [
-          "Semantic Similarity"
-        ],
-        "x-aventure-tool": {
-          "cli": "news related-companies get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -18110,12 +17678,19 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
         "summary": "Get news article by ID",
         "tags": [
-          "News"
+          "News",
+          "By ID"
         ],
         "x-aventure-tool": {
           "cli": "news by-id get"
@@ -18162,26 +17737,6 @@
               }
             },
             "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
           },
           "404": {
             "content": {
@@ -18234,11 +17789,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get news thumbnail",
         "tags": [
           "Media"
@@ -18248,9 +17798,136 @@
         }
       }
     },
+    "/v1/news/{newsId}/related-companies": {
+      "get": {
+        "description": "Returns companies semantically related to a news article.",
+        "operationId": "relatedCompanies",
+        "parameters": [
+          {
+            "description": "News article id whose semantic neighbors should be returned.",
+            "in": "path",
+            "name": "newsId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "x-aventure-legacy-name": {
+              "name": "id"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntity"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "summary": "Get related companies for a news article",
+        "tags": [
+          "Semantic Similarity"
+        ],
+        "x-aventure-tool": {
+          "cli": "news related-companies get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/news/{newsId}/slug/redirects": {
       "get": {
-        "description": "Lists redirects whose newUrl targets the record's current public URL.",
+        "description": "Lists redirects whose newUrl targets the record's current public URL. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listNewsRedirects",
         "parameters": [
           {
@@ -18392,6 +18069,12 @@
           }
         },
         "security": [
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
           {
             "clientSecretAuth": []
           }
@@ -18793,26 +18476,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -18854,11 +18517,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List or search people",
         "tags": [
           "People"
@@ -19100,12 +18758,21 @@
         "security": [
           {
             "clientSecretAuth": []
+          },
+          {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
           }
         ],
         "summary": "Batch person list",
         "tags": [
           "Person Batch"
         ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -19300,26 +18967,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "description": "No person resolved: exact URL and bounded candidate signals are exhausted, which does not prove the record is absent — search before creating. An existing but filtered row instead reports its reason as the ProblemDetail title: Person Exists but Is Not Public (retry with includePrivate=true)."
           },
@@ -19367,11 +19014,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person detail",
         "tags": [
           "People"
@@ -19544,6 +19186,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -19657,26 +19305,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -19718,11 +19346,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person investments",
         "tags": [
           "Person Investments"
@@ -19790,26 +19413,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -19851,11 +19454,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person investor activity",
         "tags": [
           "Person Investments"
@@ -19974,26 +19572,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -20035,11 +19613,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List news joined to a person",
         "tags": [
           "Person News"
@@ -20077,26 +19650,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -20138,11 +19691,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person filter options",
         "tags": [
           "Person Metadata"
@@ -20220,26 +19768,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -20281,11 +19809,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Search people filter options",
         "tags": [
           "Person Metadata"
@@ -20473,26 +19996,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "description": "No person resolved: exact URL and bounded candidate signals are exhausted, which does not prove the record is absent — search before creating. An existing but filtered row instead reports its reason as the ProblemDetail title: Person Exists but Is Not Public (retry with includePrivate=true)."
           },
@@ -20540,11 +20043,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Look up one person",
         "tags": [
           "People"
@@ -20717,6 +20215,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -20725,6 +20229,7 @@
           "Person Batch"
         ],
         "x-aventure-tool": {
+          "auth": "read",
           "cli": "people lookup batch"
         },
         "x-aventure-visibility": {
@@ -21135,6 +20640,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -21178,26 +20689,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -21239,11 +20730,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person text types",
         "tags": [
           "Texts"
@@ -21437,26 +20923,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -21508,11 +20974,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person by ID",
         "tags": [
           "People"
@@ -21566,26 +21027,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -21637,11 +21078,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person addresses",
         "tags": [
           "Person Addresses"
@@ -21699,26 +21135,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -21770,11 +21186,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person address",
         "tags": [
           "Person Addresses"
@@ -21869,26 +21280,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -21940,11 +21331,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person blog posts",
         "tags": [
           "Research Blog Posts"
@@ -21959,7 +21345,7 @@
     },
     "/v1/people/{personId}/blog-posts/{blogPostId}": {
       "get": {
-        "description": "Returns one person-owned external link by id.",
+        "description": "Returns one person-owned external link by id. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getPersonBlogPost",
         "parameters": [
           {
@@ -22078,6 +21464,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -22095,7 +21487,7 @@
     },
     "/v1/people/{personId}/content": {
       "get": {
-        "description": "Returns news articles, blog posts, repositories, websites, and pages related to a person.",
+        "description": "Returns news articles, blog posts, repositories, websites, and pages related to a person. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listPersonContent",
         "parameters": [
           {
@@ -22310,7 +21702,7 @@
     },
     "/v1/people/{personId}/content/search": {
       "post": {
-        "description": "Translates plain-English constraints for one person's content index.",
+        "description": "Translates plain-English constraints for one person's content index. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "searchPersonContent",
         "parameters": [
           {
@@ -22631,26 +22023,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -22702,11 +22074,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person entity associations",
         "tags": [
           "Entity Person Associations"
@@ -22809,26 +22176,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -22880,11 +22227,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person entity association",
         "tags": [
           "Entity Person Associations"
@@ -22932,26 +22274,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -23003,11 +22325,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person graph",
         "tags": [
           "People"
@@ -23055,26 +22372,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -23126,11 +22423,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Get person photo",
         "tags": [
           "Media"
@@ -23386,26 +22678,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -23457,11 +22729,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List people similar to one person",
         "tags": [
           "Person Similarity"
@@ -23476,7 +22743,7 @@
     },
     "/v1/people/{personId}/slug/redirects": {
       "get": {
-        "description": "Lists redirects whose newUrl targets the record's current public URL.",
+        "description": "Lists redirects whose newUrl targets the record's current public URL. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "listPersonRedirects",
         "parameters": [
           {
@@ -23619,6 +22886,12 @@
         },
         "security": [
           {
+            "bearerAuth": []
+          },
+          {
+            "adminApiKeyAuth": []
+          },
+          {
             "clientSecretAuth": []
           }
         ],
@@ -23713,26 +22986,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -23784,11 +23037,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person text rows",
         "tags": [
           "Texts"
@@ -24244,7 +23492,7 @@
     },
     "/v1/people/{personId}/urls": {
       "get": {
-        "description": "Returns paged primary current URL rows owned by a person. Set includeInactive=true with read auth to include secondary active and inactive/historical rows.",
+        "description": "Returns paged primary current URL rows owned by a person. Set includeInactive=true as a signed-in user or with read credentials to include secondary active and inactive/historical rows.",
         "operationId": "listPersonUrls",
         "parameters": [
           {
@@ -24324,26 +23572,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -24395,11 +23623,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person URLs",
         "tags": [
           "URL Links"
@@ -24792,26 +24015,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -24863,11 +24066,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List person blog posts",
         "tags": [
           "Research Blog Posts"
@@ -24882,7 +24080,7 @@
     },
     "/v1/provenance/history": {
       "get": {
-        "description": "Returns paginated field-level provenance rows ordered by effectiveAt DESC.",
+        "description": "Returns paginated field-level provenance rows ordered by effectiveAt DESC. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getHistory",
         "parameters": [
           {
@@ -25036,7 +24234,7 @@
     },
     "/v1/provenance/latest": {
       "get": {
-        "description": "Returns the most recent provenance row for a tracked record.",
+        "description": "Returns the most recent provenance row for a tracked record. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getLatestSource",
         "parameters": [
           {
@@ -25163,7 +24361,7 @@
     },
     "/v1/provenance/{provenanceId}": {
       "get": {
-        "description": "Returns one field-level provenance row by its surrogate id, in the same shape the provenance history list returns.",
+        "description": "Returns one field-level provenance row by its surrogate id, in the same shape the provenance history list returns. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getProvenance",
         "parameters": [
           {
@@ -25593,7 +24791,7 @@
     },
     "/v1/search/link": {
       "get": {
-        "description": "Fetches the page at the supplied URL, identifies the single company, product, or person the page is primarily about, and returns the federated entity, person, and news results for that name together with the synthesized query itself. A page whose content cannot be read returns 404; a fetch or inference failure returns 503, never an empty result. For direct URL-to-record identity resolution use the entities get operation (GET /v1/entities/detail?url=...) instead.",
+        "description": "Fetches the page at the supplied URL, identifies the single company, product, or person the page is primarily about, and returns the federated entity, person, and news results for that name together with the synthesized query itself. A page whose content cannot be read returns 404; a fetch or inference failure returns 503, never an empty result. For direct URL-to-record identity resolution use the entities lookup operation (GET /v1/entities/lookup?url=...) instead.",
         "operationId": "searchLink",
         "parameters": [
           {
@@ -25650,26 +24848,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -25711,11 +24889,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Search from a shared article or page URL",
         "tags": [
           "Search"
@@ -25730,7 +24903,7 @@
     },
     "/v1/search/web": {
       "post": {
-        "description": "Runs a live web search through SerpAPI, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store.",
+        "description": "Runs a live web search through SerpAPI, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "searchWeb",
         "requestBody": {
           "content": {
@@ -26057,26 +25230,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26118,11 +25271,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Entity sitemap boundaries",
         "tags": [
           "Sitemap"
@@ -26171,26 +25319,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26232,11 +25360,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Entity letter counts",
         "tags": [
           "Entity Filters"
@@ -26327,26 +25450,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26388,11 +25491,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Paginated sitemap-routes projection for an entity type",
         "tags": [
           "Entities"
@@ -26486,26 +25584,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26547,11 +25625,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Paginated sitemap URL slots for entity types",
         "tags": [
           "Entities"
@@ -26613,26 +25686,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26674,11 +25727,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Entity sitemap URL boundaries",
         "tags": [
           "Sitemap"
@@ -26716,26 +25764,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26777,11 +25805,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Sitemap index manifest",
         "tags": [
           "Sitemap"
@@ -26828,26 +25851,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26889,11 +25892,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "News sitemap boundaries",
         "tags": [
           "Sitemap"
@@ -26931,26 +25929,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -26992,11 +25970,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "News author letter counts",
         "tags": [
           "News"
@@ -27046,26 +26019,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -27107,11 +26060,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Person sitemap boundaries",
         "tags": [
           "Sitemap"
@@ -27149,26 +26097,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -27210,11 +26138,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "People letter counts",
         "tags": [
           "Person Metadata"
@@ -27305,26 +26228,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -27366,11 +26269,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Paginated sitemap URL slots",
         "tags": [
           "Sitemap"
@@ -27416,26 +26314,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -27477,11 +26355,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "Sitemap URL-slot boundaries",
         "tags": [
           "Sitemap"
@@ -27496,7 +26369,7 @@
     },
     "/v1/slug-redirects/lookup": {
       "get": {
-        "description": "Read-only public-path resolver used before front-end page rendering so changed slug, entity-family, and Business Line parent-family URLs return a permanent HTTP redirect to the current canonical public path, while missing slug URLs return a real 404 before the App Router starts streaming. One profile sub-path segment is preserved across family redirects; the front-end owns the tab inventory. Direct product/service alias paths /companies/products-services/{slug} return 204 for a public Product/Service with a non-hidden eligible provider, with curated alias redirect rows taking precedence; a 404 on a slug-backed path can also mean the record exists but is not yet publicly visible.",
+        "description": "Read-only public-path resolver used before front-end page rendering so changed slug, entity-family, and Business Line parent-family URLs return a permanent HTTP redirect to the current canonical public path, while missing slug URLs return a real 404 before the App Router starts streaming. One profile sub-path segment is preserved across family redirects; the front-end owns the tab inventory. Direct product/service alias paths /companies/products-services/{slug} return 204 for a public Product/Service with a non-hidden eligible provider, with curated alias redirect rows taking precedence; a 404 on a slug-backed path can also mean the record exists but is not yet publicly visible. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "resolvePathRedirect",
         "parameters": [
           {
@@ -27609,7 +26482,7 @@
     },
     "/v1/status": {
       "get": {
-        "description": "Returns Better Stack uptime SLA. Public — callable with zero credentials. Local CLI auth provenance is reported by the `aventure-cli auth status` builtin, which calls this endpoint for uptime and resolves credential sources locally.",
+        "description": "Returns Better Stack uptime SLA. Public — callable with zero credentials. Local CLI auth provenance is reported by its auth status builtin, which calls this endpoint for uptime and resolves credential sources locally.",
         "operationId": "getStatus",
         "responses": {
           "200": {
@@ -27846,26 +26719,6 @@
             },
             "description": "Bad Request"
           },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
           "406": {
             "content": {
               "application/problem+json": {
@@ -27907,11 +26760,6 @@
             "description": "Service Unavailable"
           }
         },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
         "summary": "List unique-id types",
         "tags": [
           "Unique IDs"
@@ -28945,6 +27793,50 @@
           "role"
         ]
       },
+      "AuthOperationFilter": {
+        "type": "object",
+        "description": "Bounded generated API operations to authorize for the current session.",
+        "properties": {
+          "operation": {
+            "type": "array",
+            "description": "Generated API operation candidates to authorize.",
+            "items": {
+              "$ref": "#/components/schemas/AuthOperation"
+            },
+            "maxItems": 1000,
+            "minItems": 0
+          }
+        },
+        "required": [
+          "operation"
+        ]
+      },
+      "AuthOperationAuthorization": {
+        "type": "object",
+        "description": "Current permission grant, access class, and supplied API operations admitted by the live request authorization policy.",
+        "properties": {
+          "operation": {
+            "type": "array",
+            "description": "Supplied operations admitted by the current session.",
+            "items": {
+              "$ref": "#/components/schemas/AuthOperation"
+            }
+          },
+          "operationAccess": {
+            "$ref": "#/components/schemas/AuthOperationAccess",
+            "description": "Highest access class represented by the current session."
+          },
+          "permissionGrant": {
+            "$ref": "#/components/schemas/AuthPermissionGrant",
+            "description": "Existing role and permission grant for the current session."
+          }
+        },
+        "required": [
+          "operation",
+          "operationAccess",
+          "permissionGrant"
+        ]
+      },
       "PersonalApiKey": {
         "type": "object",
         "description": "Personal API-key metadata sourced from Clerk; never contains the key secret",
@@ -29028,6 +27920,30 @@
           "subject",
           "updatedAt"
         ]
+      },
+      "AuthProviderCatalog": {
+        "type": "object",
+        "properties": {
+          "clerkPublishableKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Clerk publishable key for browser sign-in; absent when the environment has no Clerk instance",
+            "example": "pk_test_cmVmaW5lZC13aWxkY2F0LTMuY2xlcmsuYWNjb3VudHMuZGV2JA"
+          },
+          "oauthClient": {
+            "description": "OAuth PKCE client configuration for the CLI; absent until its client configuration is complete",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AuthClient"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
       },
       "PageClassification": {
         "type": "object",
@@ -29387,7 +28303,8 @@
           "maven",
           "dockerhub",
           "homebrew",
-          "crates"
+          "crates",
+          "huggingface"
         ]
       },
       "UrlMatchMode": {
@@ -40246,6 +39163,98 @@
           "writable"
         ]
       },
+      "AuthClient": {
+        "type": "object",
+        "properties": {
+          "authorizationServer": {
+            "type": "string",
+            "format": "uri",
+            "description": "OAuth authorization server URI"
+          },
+          "clientId": {
+            "type": "string",
+            "description": "Public OAuth client identifier"
+          },
+          "redirectUri": {
+            "type": "string",
+            "format": "uri",
+            "description": "Registered loopback callback URI template"
+          },
+          "resource": {
+            "type": "string",
+            "format": "uri",
+            "description": "OAuth resource indicator accepted by the API"
+          },
+          "scope": {
+            "type": "array",
+            "description": "OAuth scope requested by the CLI",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "authorizationServer",
+          "clientId",
+          "redirectUri",
+          "resource",
+          "scope"
+        ]
+      },
+      "AuthOperation": {
+        "type": "object",
+        "description": "Generated API operation candidate identified by operation id, method, and path.",
+        "properties": {
+          "authorizationPath": {
+            "type": "string",
+            "description": "Concrete path for authorization. Preserve the path template's literal segments and substitute its parameters with values matching their generated schema. No request is executed against this path.",
+            "maxLength": 2048,
+            "minLength": 0
+          },
+          "method": {
+            "$ref": "#/components/schemas/AuthOperationMethod",
+            "description": "HTTP method of the operation."
+          },
+          "operationId": {
+            "type": "string",
+            "description": "Generated OpenAPI operation id.",
+            "maxLength": 128,
+            "minLength": 0
+          },
+          "path": {
+            "type": "string",
+            "description": "Absolute API path. A whole path segment may be an OpenAPI placeholder such as {entityId}.",
+            "maxLength": 2048,
+            "minLength": 0
+          }
+        },
+        "required": [
+          "authorizationPath",
+          "method",
+          "operationId",
+          "path"
+        ]
+      },
+      "AuthOperationAccess": {
+        "type": "string",
+        "description": "Current session access class: ordinary reads, explicit permissions, or admin.",
+        "enum": [
+          "READ",
+          "PERMISSION",
+          "ADMIN"
+        ]
+      },
+      "AuthOperationMethod": {
+        "type": "string",
+        "description": "HTTP method of a generated aVenture API operation.",
+        "enum": [
+          "GET",
+          "POST",
+          "PUT",
+          "PATCH",
+          "DELETE"
+        ]
+      },
       "CliAuthorizationDelivery": {
         "type": "object",
         "description": "RSA-wrapped AES-256-GCM delivery of one personal API-key secret",
@@ -41016,7 +40025,7 @@
       },
       "StrictUrlLookupConflict": {
         "type": "object",
-        "description": "Typed extension on ProblemDetail.details for HTTP 409 when a strict URL lookup (GET /v1/entities/detail?url=...) resolves to more than one current owner. The candidate lists return every current owner that matches the normalized URL key; the caller must add disambiguating signals (urlType, typeRecord, slug) to resolve to a single owner.",
+        "description": "Typed extension on ProblemDetail.details for HTTP 409 when a strict URL lookup (GET /v1/entities/lookup?url=...) resolves to more than one current owner. The candidate lists return every current owner that matches the normalized URL key; the caller must add disambiguating signals (urlType, typeRecord, slug) to resolve to a single owner.",
         "properties": {
           "candidateEntityId": {
             "type": "array",
@@ -41309,12 +40318,6 @@
       }
     },
     "securitySchemes": {
-      "clientSecretAuth": {
-        "description": "Client secret for read-only service-to-service access (no writes)",
-        "in": "header",
-        "name": "X-Client-Secret",
-        "type": "apiKey"
-      },
       "bearerAuth": {
         "bearerFormat": "JWT or opaque OAuth access token",
         "description": "User bearer token: Clerk session JWT, Clerk OAuth access token, or Clerk personal API key",
@@ -41325,6 +40328,12 @@
         "description": "Admin API key for system-to-system write operations",
         "in": "header",
         "name": "X-API-Key",
+        "type": "apiKey"
+      },
+      "clientSecretAuth": {
+        "description": "Client secret for read-only service-to-service access (no writes)",
+        "in": "header",
+        "name": "X-Client-Secret",
         "type": "apiKey"
       }
     }

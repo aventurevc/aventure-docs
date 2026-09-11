@@ -31,9 +31,31 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "agent/instruction-pointer",
         schemaName: "AgentInstructionPointerSchema",
     },
+    AuthClient: { modulePath: "auth/client", schemaName: "AuthClientSchema" },
+    AuthOperation: { modulePath: "auth/operation", schemaName: "AuthOperationSchema" },
+    AuthOperationAccess: {
+        modulePath: "auth/operation-access",
+        schemaName: "AuthOperationAccessSchema",
+    },
+    AuthOperationAuthorization: {
+        modulePath: "auth/operation-authorization",
+        schemaName: "AuthOperationAuthorizationSchema",
+    },
+    AuthOperationFilter: {
+        modulePath: "auth/operation-filter",
+        schemaName: "AuthOperationFilterSchema",
+    },
+    AuthOperationMethod: {
+        modulePath: "auth/operation-method",
+        schemaName: "AuthOperationMethodSchema",
+    },
     AuthPermissionGrant: {
         modulePath: "auth/permission-grant",
         schemaName: "AuthPermissionGrantSchema",
+    },
+    AuthProviderCatalog: {
+        modulePath: "auth/provider-catalog",
+        schemaName: "AuthProviderCatalogSchema",
     },
     BlogPost: { modulePath: "blog/post", schemaName: "BlogPostSchema" },
     BlogPostType: { modulePath: "blog/post-type", schemaName: "BlogPostTypeSchema" },

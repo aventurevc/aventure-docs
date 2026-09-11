@@ -13,6 +13,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @usedBySchema EntityRelationshipSchema
  * @contractShape entity.comparison-signals
  * @contractRole canonical

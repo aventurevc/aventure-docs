@@ -7,6 +7,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @usedBySchema EntitySimilarityContextSchema
  * @usedBySchema EntitySuggestionSchema
  * @contractShape entity.similarity-origin

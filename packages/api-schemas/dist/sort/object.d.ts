@@ -36,13 +36,15 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/repositories
  * @endpoint GET /v1/entities/{entityId}/research/details
  * @endpoint GET /v1/entities/{entityId}/research/snippets
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/slug/redirects
  * @endpoint GET /v1/entities/{entityId}/texts
+ * @endpoint GET /v1/entities/{entityId}/trending-news
  * @endpoint GET /v1/entities/{entityId}/unique-ids
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/all
  * @endpoint GET /v1/entities/{entityId}/valuations
- * @endpoint GET /v1/news/{id}/related-companies
+ * @endpoint GET /v1/news/{newsId}/related-companies
  * @endpoint GET /v1/news/{newsId}/slug/redirects
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/content

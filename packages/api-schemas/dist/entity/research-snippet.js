@@ -16,6 +16,7 @@ import { ContentComplianceSchema } from "../content/compliance.js";
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @usedBySchema EntityResearchSchema
  * @usedBySchema PageEntityResearchSnippetSchema
  * @contractShape entity.research-snippet

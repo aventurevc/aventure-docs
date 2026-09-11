@@ -18,6 +18,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
  * @endpoint GET /v1/entities/{entityId}/urls/all
@@ -32,6 +33,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch

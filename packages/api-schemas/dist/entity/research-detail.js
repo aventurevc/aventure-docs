@@ -36,10 +36,12 @@ const EntityResearchDetailSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research/details
  * @endpoint GET /v1/entities/{entityId}/research/details/{detailId}
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all

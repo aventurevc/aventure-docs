@@ -22,7 +22,7 @@ const MediaScreenshotSchemaDefinition = z.object({
  *
  * @openapiSchema MediaScreenshot
  * @endpoint GET /v1/media/screenshots
- * @endpoint GET /v1/media/screenshots/{id}
+ * @endpoint GET /v1/media/screenshots/{screenshotId}
  * @usedBySchema PageMediaScreenshotSchema
  * @contractShape media.screenshot
  * @contractRole canonical

@@ -24,6 +24,7 @@ const EntityResearchSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @usedBySchema EntityDetailSchema
  * @contractShape entity.research
  * @contractRole canonical

@@ -34,8 +34,9 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/research
+ * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/relationships/{relationshipId}
- * @endpoint GET /v1/news/{id}/related-companies
+ * @endpoint GET /v1/news/{newsId}/related-companies
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
@@ -45,6 +46,7 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch

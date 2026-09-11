@@ -124,6 +124,7 @@ type EntityRelationshipDefinition = z.infer<typeof EntityRelationshipSchemaDefin
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup/matches
  * @usedBySchema EntityDetailSchema
  * @usedBySchema PageEntityRelationshipSchema
  * @contractShape entity.relationship

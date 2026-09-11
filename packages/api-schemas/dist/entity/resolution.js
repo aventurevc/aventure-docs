@@ -18,6 +18,7 @@ const EntityResolutionSchemaDefinition = z.object({
  *
  * @openapiSchema EntityResolution
  * @endpoint POST /v1/entities/detail/resolve
+ * @endpoint POST /v1/entities/lookup/matches
  * @contractShape entity.resolution
  * @contractRole canonical
  */
