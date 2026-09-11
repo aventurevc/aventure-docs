@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.280"
+    "version": "0.7.281"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -5465,7 +5465,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Resolve entity identifiers (POST)",
+        "summary": "Resolve entity identifiers (deprecated detail path)",
         "tags": [
           "Entities"
         ],
@@ -5756,7 +5756,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get trending news for an entity",
+        "summary": "Get trending news for an entity (deprecated detail path)",
         "tags": [
           "Semantic Similarity"
         ],
@@ -7053,7 +7053,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch entity detail retrieval (POST)",
+        "summary": "Batch entity lookup",
         "tags": [
           "Entities"
         ],
@@ -15963,7 +15963,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Render a deterministic monogram SVG",
+        "summary": "Render a deterministic monogram SVG (v1)",
         "tags": [
           "Media"
         ],
@@ -20224,7 +20224,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch person detail enrichment",
+        "summary": "Batch person lookup",
         "tags": [
           "Person Batch"
         ],
@@ -24066,7 +24066,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person blog posts",
+        "summary": "List person blog posts by slug",
         "tags": [
           "Research Blog Posts"
         ],
