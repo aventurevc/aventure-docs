@@ -46,14 +46,29 @@ grep -oE '^- [^[]+ > [^[]+\[[^]]*\]\([^)]+\.md\)' "$TMP/llms.txt" \
 [ -s "$TMP/pages" ] || { echo "llms_operation_pages=0 (empty llms.txt or changed line format)"; echo RESULT=FAIL; exit 1; }
 : > "$TMP/found"
 : > "$TMP/unparsed"
-while read -r url; do
-  "${CURL[@]}" "$url" -o "$TMP/page.md" || : > "$TMP/page.md"
-  line="$(grep -m1 -oE '^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) https?://[^ ]+' "$TMP/page.md" || true)"
-  if [ -z "$line" ]; then echo "$url" >> "$TMP/unparsed"; continue; fi
+# One reference page per operation is ~170 round trips. Serially that is ~45s per
+# run and the caller retries this whole script while the edge catches up, so the
+# fetches dominate the job. They are independent reads: run them concurrently and
+# give each worker its own output file, because appending to one file from
+# parallel writers interleaves lines.
+mkdir -p "$TMP/pagefetch"
+export TMP CURL_MAX_TIME=30
+fetch_page() {
+  local url="$1" body line method full path out
+  out="$TMP/pagefetch/$(printf '%s' "$url" | shasum -a 256 | cut -d' ' -f1)"
+  body="$(curl -fsSL --retry 3 --retry-delay 2 --retry-all-errors \
+    --max-time "$CURL_MAX_TIME" "$url" || true)"
+  line="$(printf '%s\n' "$body" \
+    | grep -m1 -oE '^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) https?://[^ ]+' || true)"
+  if [ -z "$line" ]; then printf '%s\n' "$url" > "$out.unparsed"; return 0; fi
   method="${line%% *}"; full="${line#* }"
   path="/${full#*://*/}"
-  echo "$method $path	$url" >> "$TMP/found"
-done < "$TMP/pages"
+  printf '%s %s\t%s\n' "$method" "$path" "$url" > "$out.found"
+}
+export -f fetch_page
+xargs -P 8 -I{} bash -c 'fetch_page "$1"' _ {} < "$TMP/pages"
+cat "$TMP/pagefetch"/*.found > "$TMP/found" 2>/dev/null || :
+cat "$TMP/pagefetch"/*.unparsed > "$TMP/unparsed" 2>/dev/null || :
 cut -f1 "$TMP/found" | sort > "$TMP/found_ops"
 comm -23 "$TMP/expected" <(sort -u "$TMP/found_ops") > "$TMP/missing"
 comm -13 "$TMP/expected" <(sort -u "$TMP/found_ops") > "$TMP/extra"
