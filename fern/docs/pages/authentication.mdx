@@ -25,6 +25,23 @@ covers these flows, and the
 [MCP configuration](https://github.com/aventurevc/aventure-mcp#connect-with-a-personal-api-key)
 covers personal-key and native OAuth clients.
 
+## Connect an MCP client with OAuth
+
+Use the hosted MCP URL `https://mcp.aventure.vc/mcp` and public client ID
+`KL7mINzGk0le0QiD`. No client secret is required. The client discovers the
+authorization server from the MCP endpoint and completes authorization code
+with PKCE. Dynamic client registration is disabled.
+
+Supported redirects are `http://127.0.0.1/callback`,
+`http://localhost/callback`,
+`https://chatgpt.com/connector_platform_oauth_redirect`, and
+`https://claude.ai/api/mcp/auth_callback`. Loopback redirects may use an
+available port while retaining the `/callback` path. Clients using another
+callback path need their own registered OAuth application.
+
+Follow the [MCP OAuth setup and Inspector example](https://github.com/aventurevc/aventure-mcp#authenticate-with-native-oauth)
+to sign in, approve access, and list the tools.
+
 ## The three credentials
 
 <Tabs>
