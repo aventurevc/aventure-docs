@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Verify a published Fern site against the checked-in OpenAPI input.
 #   scripts/check-docs-site.sh <site-base-url>
-# 1. The custom root <site>/llms.txt is byte-identical to fern/docs/llms.txt.
+# 1. The custom root <site>/llms.txt is byte-identical to fern/llms.txt.
 # 2. Every operation in openapi/openapi.json has exactly one reference page in
 #    <site>/api-reference/llms.txt, and each page's Markdown declares the
 #    expected METHOD and path (a missing page returns a 200 "similar pages"
@@ -16,7 +16,7 @@ BASE="${1:?usage: $0 <site-base-url>}"
 BASE="${BASE%/}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SPEC="$ROOT/openapi/openapi.json"
-ROOT_LLMS="$ROOT/fern/docs/llms.txt"
+ROOT_LLMS="$ROOT/fern/llms.txt"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 CURL=(curl -fsSL --retry 3 --retry-delay 2 --retry-all-errors --max-time 30)
