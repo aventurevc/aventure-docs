@@ -7,14 +7,8 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/classifications/tags
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail/financial/valuation
  * @endpoint GET /v1/entities/detail/fundraise-investor-joins
- * @endpoint GET /v1/entities/detail/fundraise-rounds
- * @endpoint GET /v1/entities/detail/investments
- * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/news
- * @endpoint GET /v1/entities/detail/people/time-series
- * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/detail/trending-news
  * @endpoint GET /v1/entities/summary
@@ -25,7 +19,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/detail/investments
  * @endpoint GET /v1/people/detail/news
- * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/provenance/history
  * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/sitemap/entities/urls
@@ -35,7 +28,12 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
+ * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
+ * @endpoint GET /v1/entities/{entityId}/investments
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/people
+ * @endpoint GET /v1/entities/{entityId}/people/time-series
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/repositories
  * @endpoint GET /v1/entities/{entityId}/research/details
@@ -45,12 +43,14 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/entities/{entityId}/unique-ids
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/all
+ * @endpoint GET /v1/entities/{entityId}/valuations
  * @endpoint GET /v1/news/{id}/related-companies
  * @endpoint GET /v1/news/{newsId}/slug/redirects
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/content
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/repositories
+ * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/people/{personId}/slug/redirects
  * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/unique-ids

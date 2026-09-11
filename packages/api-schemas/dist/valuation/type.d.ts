@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Which side of the pre/post relationship the source declared.
  *
  * @openapiSchema ValuationType
- * @endpoint GET /v1/entities/detail/financial/valuation
+ * @endpoint GET /v1/entities/{entityId}/valuations
  * @usedBySchema EntityValuationTimeSeriesPointSchema
  * @contractShape valuation.type
  * @contractRole canonical

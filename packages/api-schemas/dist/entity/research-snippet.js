@@ -6,9 +6,9 @@ import { ContentComplianceSchema } from "../content/compliance.js";
  *
  * @openapiSchema EntityResearchSnippet
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research/snippets
  * @endpoint GET /v1/entities/{entityId}/research/snippets/{snippetId}

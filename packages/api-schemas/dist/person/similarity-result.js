@@ -13,7 +13,7 @@ const PersonSimilarityResultSchemaDefinition = z.object({
  * Similar person list row with the provenance that explains why it appears. Rows carry the canonical Person projection; load full detail through the person detail endpoints.
  *
  * @openapiSchema PersonSimilarityResult
- * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/{personId}/similar
  * @usedBySchema PagePersonSimilarityResultSchema
  * @contractShape person.similarity-result
  * @contractRole canonical

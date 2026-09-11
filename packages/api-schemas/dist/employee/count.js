@@ -5,7 +5,7 @@ import { EntityResearchFactValueSchema } from "../entity/research-fact-value.js"
  * Employee-count time-series point for an entity
  *
  * @openapiSchema EmployeeCount
- * @endpoint GET /v1/entities/detail/people/time-series
+ * @endpoint GET /v1/entities/{entityId}/people/time-series
  * @endpoint GET /v1/people/{personId}/graph
  * @usedBySchema PageEmployeeCountSchema
  * @usedBySchema PersonGraphCareerContextSchema

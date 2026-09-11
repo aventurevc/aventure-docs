@@ -18,7 +18,7 @@ const PersonSimilarityContextSchemaDefinition = z.object({
  * Per-row provenance for a similar-person result.
  *
  * @openapiSchema PersonSimilarityContext
- * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/{personId}/similar
  * @usedBySchema PersonSimilarityResultSchema
  * @contractShape person.similarity-context
  * @contractRole canonical

@@ -4,7 +4,7 @@ import { z } from "zod/v4";
  * Provenance origin for a similar-person result row.
  *
  * @openapiSchema PersonSimilarityOrigin
- * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/{personId}/similar
  * @usedBySchema PersonSimilarityContextSchema
  * @contractShape person.similarity-origin
  * @contractRole canonical

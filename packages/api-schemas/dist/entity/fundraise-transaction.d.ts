@@ -157,17 +157,17 @@ type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransa
  * @openapiSchema EntityFundraiseTransaction
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/fundraise-rounds
- * @endpoint GET /v1/entities/detail/investments
- * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
+ * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
+ * @endpoint GET /v1/entities/{entityId}/investments
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
- * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve

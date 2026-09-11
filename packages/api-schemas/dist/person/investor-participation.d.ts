@@ -711,7 +711,7 @@ type PersonInvestorParticipationDefinition = z.infer<typeof PersonInvestorPartic
  * Person investor with round participation labels and count
  *
  * @openapiSchema PersonInvestorParticipation
- * @endpoint GET /v1/entities/detail/person-investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @usedBySchema PagePersonInvestorParticipationSchema
  * @contractShape person.investor-participation
  * @contractRole canonical

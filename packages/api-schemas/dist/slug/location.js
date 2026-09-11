@@ -14,7 +14,6 @@ const SlugLocationSchemaDefinition = z.object({
  *
  * @openapiSchema SlugLocation
  * @endpoint GET /v1/entities/{entityId}/slug
- * @endpoint GET /v1/news/{newsId}/slug
  * @contractShape slug.location
  * @contractRole canonical
  */

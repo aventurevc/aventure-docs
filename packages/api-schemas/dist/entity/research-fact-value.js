@@ -17,7 +17,7 @@ const EntityResearchFactValueSchemaDefinition = z.object({
  * Canonical typed fact value nested under entity research fields
  *
  * @openapiSchema EntityResearchFactValue
- * @endpoint GET /v1/entities/detail/people/time-series
+ * @endpoint GET /v1/entities/{entityId}/people/time-series
  * @endpoint GET /v1/people/{personId}/graph
  * @usedBySchema EmployeeCountSchema
  * @contractShape entity.research-fact-value

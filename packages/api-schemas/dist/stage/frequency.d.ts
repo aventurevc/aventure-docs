@@ -8,8 +8,8 @@ type StageFrequencyDefinition = z.infer<typeof StageFrequencySchemaDefinition>;
  * Canonical equity stage derived from a transaction calculatedRoundLabel, with deal frequency ranked by count descending.
  *
  * @openapiSchema StageFrequency
- * @endpoint GET /v1/entities/detail/investor-activity
  * @endpoint GET /v1/people/detail/investor-activity
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @usedBySchema EntityFundraiseInvestorActivitySchema
  * @contractShape stage.frequency
  * @contractRole canonical

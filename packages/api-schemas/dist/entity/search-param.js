@@ -1,6 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { PageParamSchema } from "../client/pagination/page-param.js";
+import { PageParamSchema } from "../pagination/page-param.js";
 export const ENTITY_SEARCH_ENDPOINT = "/v1/entities/search";
 /**
  * Request-side query params for `POST /v1/entities/search`.
