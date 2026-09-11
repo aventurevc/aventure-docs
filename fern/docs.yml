@@ -63,6 +63,10 @@ navigation:
           - entityFilters:
               - endpoint: GET /v1/entities/filters
                 slug: list-entity-filter-options
+          - semanticSimilarity:
+              - endpoint: GET /v1/entities/{entityId}/trending-news
+                slug: list-entity-trending-news
+                title: Get trending news for an entity by UUID
           - researchBlogPosts:
               - endpoint: GET /v1/people/{slug}/blog-posts
                 slug: list-person-blog-posts-by-slug
@@ -75,6 +79,9 @@ navigation:
               - endpoint: POST /v1/entities/lookup/batch
                 slug: lookup-entity-batch
                 title: Batch entity lookup
+              - endpoint: POST /v1/entities/lookup/matches
+                slug: lookup-entity-matches
+                title: Resolve entity identifiers with match outcomes
           - personBatch:
               - endpoint: POST /v1/people/lookup/batch
                 slug: lookup-person-batch
