@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.279"
+    "version": "0.7.280"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
