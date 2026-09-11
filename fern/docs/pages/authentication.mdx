@@ -8,6 +8,23 @@ Protected aVenture API operations accept the credentials listed in their
 `security` declarations. Some operations allow anonymous access. Read each
 operation in the [API reference](/api-reference) for its accepted schemes.
 
+## Get a personal credential
+
+Public users can create their own personal API key. Sign in at
+[aventure.vc](https://aventure.vc), open **Settings → API keys**, and choose
+**Add new key**. Store the key in your secret manager and inject it as
+`AUTH_TOKEN` at runtime. Never commit or print the key itself. Public users do
+not need a client secret or admin API key.
+
+The CLI supports two interactive browser flows: `aventure auth login` uses
+native OAuth with PKCE, while `aventure auth personal-login` creates and stores
+a personal API key. In a headless environment, provide an existing personal
+key through `AUTH_TOKEN`. The
+[CLI authentication guide](https://github.com/aventurevc/aventure-cli#authentication)
+covers these flows, and the
+[MCP configuration](https://github.com/aventurevc/aventure-mcp#connect-with-a-personal-api-key)
+covers personal-key and native OAuth clients.
+
 ## The three credentials
 
 <Tabs>
@@ -16,13 +33,16 @@ operation in the [API reference](/api-reference) for its accepted schemes.
 Read-only service-to-service access. Send it as `X-Client-Secret`:
 
 ```bash
-curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  "https://api.aventure.vc/v1/entities?size=5"
+curl -X POST \
+  -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "climate tech seed round"}' \
+  "https://api.aventure.vc/v1/search/all?size=5"
 ```
 
-This is the credential for a backend that reads venture data. It reaches the
-public read surface — entity, person, and news listings, detail lookups, filter
-metadata and identifier resolution.
+This credential is issued to service integrations rather than created by
+public users. It lets a backend read venture data, including entity, person,
+and news listings, detail lookups, filter metadata, and identifier resolution.
 
 </Tab>
 <Tab title="User bearer token">
@@ -30,12 +50,12 @@ metadata and identifier resolution.
 A signed-in user's identity. Send it as a bearer token:
 
 ```bash
-curl -H "Authorization: Bearer $TOKEN" \
-  "https://api.aventure.vc/v1/auth/api/me/permissions"
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-The API accepts a Supabase session JWT, a Clerk session JWT, a Clerk OAuth
-access token, or a Clerk personal API key in this header. Use it when calls act
+The API accepts a Clerk session JWT, a Clerk OAuth access token, or a Clerk
+personal API key in this header. Use it when calls act
 on behalf of a person rather than a machine.
 
 </Tab>
@@ -46,11 +66,12 @@ An administrative credential for operations that explicitly accept
 
 ```bash
 curl -H "X-API-Key: $AVENTURE_ADMIN_KEY" \
-  "https://api.aventure.vc/v1/auth/api/me/permissions"
+  "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
 Administrative dataset-maintenance operations are outside this public
-reference. Possessing a credential does not make an operation public.
+reference. aVenture administrators manage these keys; public users do not
+create them. Possessing a credential does not make an operation public.
 
 </Tab>
 </Tabs>
@@ -63,7 +84,9 @@ from the HTTP method. Two rules explain most of the surface:
 - **A `POST` is not always a write.** Search, batch, and filter
   endpoints take a JSON body because their query is too large for a query string
   — `POST /v1/entities/search`, `POST /v1/search/all`, and `POST /v1/people/detail/batch`
-  are all reads, and all accept a client secret.
+  are all reads, and all accept a client secret. `POST /v1/search/all` also
+  accepts a public user's bearer token and requires a current Pro subscription
+  or trial for that user.
 - **Authentication flows have their own requirements.** Follow the declared
   security and request parameters for each operation.
 

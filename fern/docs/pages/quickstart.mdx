@@ -4,22 +4,15 @@ subtitle: Your first three requests against the aVenture API
 slug: quickstart
 ---
 
-This page assumes a client secret. If you do not have one yet, or you need write
-access, start at [Authentication](/authentication).
-
-Set it once in your shell:
-
-```bash
-export AVENTURE_CLIENT_SECRET="..."
-```
+The first two requests are anonymous. The final search uses a personal API key
+and requires a current Pro subscription or trial.
 
 ## 1. List entities
 
 `GET /v1/entities` returns a page of companies, investors, and accelerators.
 
 ```bash
-curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  "https://api.aventure.vc/v1/entities?size=5"
+curl "https://api.aventure.vc/v1/entities?size=5"
 ```
 
 The response is a page object — the records are in `content`, and the rest
@@ -45,8 +38,7 @@ Filters are query parameters, and most accept the parameter more than once to
 mean "any of these":
 
 ```bash
-curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US&size=5"
+curl "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US&size=5"
 ```
 
 `GET /v1/entities` accepts more than sixty filters covering industry, location,
@@ -57,11 +49,14 @@ accelerator cohort, fundraising activity, and operating status.
 
 When you have a phrase rather than a set of filters, `POST /v1/search/all` runs
 the entity, person, and news engines and returns a typed result page for each
-scope:
+scope. Your account needs a Pro subscription or trial whose current period has
+not ended. Check [Settings → Subscription](https://aventure.vc/settings/subscription),
+follow the [personal credential setup](/authentication#get-a-personal-credential),
+then expose the key to this process as `AUTH_TOKEN` from your secret manager:
 
 ```bash
 curl -X POST \
-  -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"query": "climate tech seed round"}' \
   "https://api.aventure.vc/v1/search/all?size=10"

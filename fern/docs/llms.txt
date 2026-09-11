@@ -4,7 +4,7 @@
 
 ## Get started
 
-- [Quickstart](https://docs.aventure.vc/quickstart): Make your first API requests with a client secret.
+- [Quickstart](https://docs.aventure.vc/quickstart): Make anonymous API requests, then run an authenticated search with a personal API key.
 - [Authentication](https://docs.aventure.vc/authentication): Choose the credential accepted by an operation.
 - [Pagination and filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
 - [Errors](https://docs.aventure.vc/errors): Interpret problem detail responses and rate limits.
