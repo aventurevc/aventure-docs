@@ -436,7 +436,7 @@ declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
 type PageEmployeeCountDefinition = z.infer<typeof PageEmployeeCountSchemaDefinition>;
 /**
  * @openapiSchema PageEmployeeCount
- * @endpoint GET /v1/entities/detail/people/time-series
+ * @endpoint GET /v1/entities/{entityId}/people/time-series
  * @contractShape pagination.page-employee-count
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -2838,8 +2838,8 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
 type PageEntityFundraiseTransactionDefinition = z.infer<typeof PageEntityFundraiseTransactionSchemaDefinition>;
 /**
  * @openapiSchema PageEntityFundraiseTransaction
- * @endpoint GET /v1/entities/detail/fundraise-rounds
- * @endpoint GET /v1/entities/detail/investments
+ * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
+ * @endpoint GET /v1/entities/{entityId}/investments
  * @contractShape pagination.page-entity-fundraise-transaction
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -4739,7 +4739,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
 type PageEntityInvestorParticipationDefinition = z.infer<typeof PageEntityInvestorParticipationSchemaDefinition>;
 /**
  * @openapiSchema PageEntityInvestorParticipation
- * @endpoint GET /v1/entities/detail/investors
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @contractShape pagination.page-entity-investor-participation
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -7911,7 +7911,7 @@ declare const PageEntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
 type PageEntityValuationTimeSeriesPointDefinition = z.infer<typeof PageEntityValuationTimeSeriesPointSchemaDefinition>;
 /**
  * @openapiSchema PageEntityValuationTimeSeriesPoint
- * @endpoint GET /v1/entities/detail/financial/valuation
+ * @endpoint GET /v1/entities/{entityId}/valuations
  * @contractShape pagination.page-entity-valuation-time-series-point
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -10000,7 +10000,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
 type PagePersonInvestorParticipationDefinition = z.infer<typeof PagePersonInvestorParticipationSchemaDefinition>;
 /**
  * @openapiSchema PagePersonInvestorParticipation
- * @endpoint GET /v1/entities/detail/person-investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @contractShape pagination.page-person-investor-participation
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -10458,7 +10458,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
 type PagePersonSimilarityResultDefinition = z.infer<typeof PagePersonSimilarityResultSchemaDefinition>;
 /**
  * @openapiSchema PagePersonSimilarityResult
- * @endpoint GET /v1/people/detail/similar
+ * @endpoint GET /v1/people/{personId}/similar
  * @contractShape pagination.page-person-similarity-result
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

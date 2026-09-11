@@ -595,12 +595,12 @@ type PersonDetailDefinition = z.infer<typeof PersonDetailSchemaDefinition>;
  *
  * @openapiSchema PersonDetail
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch

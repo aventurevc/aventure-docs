@@ -27,10 +27,10 @@ type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
  *
  * @openapiSchema UniqueId
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/unique-ids/lookup
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/unique-ids
  * @endpoint GET /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint GET /v1/people/{personId}/unique-ids

@@ -1,4 +1,4 @@
-// Generated alternate api-schemas support copy from TypeScript source api-schemas/client/pagination/page-param.ts
+// Generated alternate api-schemas support copy from TypeScript source api-schemas/pagination/page-param.ts
 import { z } from "zod/v4";
 /**
  * Query-string sort parameter: single `"field,dir"` or multi-sort array.
@@ -11,9 +11,9 @@ import { z } from "zod/v4";
  *
  * @shared primitive:single reusable request-side sort parameter; not direct because Spring Pageable flows into OpenAPI as operation parameters, not component schemas
  * @usedByEndpoint none:external-root contract consumed by downstream repos
- * @contractShape client.pagination-sort-param
+ * @contractShape pagination.sort-param
  * @contractRole canonical
- * @ownerModule client/pagination/page-param.ts
+ * @ownerModule pagination/page-param.ts
  */
 export const SortParamSchema = z.union([z.string().min(1), z.array(z.string().min(1))]);
 /**
@@ -24,15 +24,15 @@ export const SortParamSchema = z.union([z.string().min(1), z.array(z.string().mi
  *   size: { type: "integer", default: 25, minimum: 1 }
  *   sort: { type: "array", items: { type: "string" } }
  *
- * This is the client-side canonical owner for pagination request params.
+ * This is the canonical owner for pagination request params.
  * Response-side pagination metadata lives in `pageable/object.ts` (PageableObject)
  * and `pagination/schemas.ts` (Page<T> envelopes).
  *
- * @shared composition:used as building block for other schemas client.pagination-page-param; not direct because Spring Pageable flows into OpenAPI as operation parameters, not component schemas
+ * @shared composition:used as building block for other schemas pagination.page-param; not direct because Spring Pageable flows into OpenAPI as operation parameters, not component schemas
  * @usedByEndpoint none:external-root contract consumed by downstream repos
- * @contractShape client.pagination-page-param
+ * @contractShape pagination.page-param
  * @contractRole canonical
- * @ownerModule client/pagination/page-param.ts
+ * @ownerModule pagination/page-param.ts
  */
 export const PageParamSchema = z.object({
     page: z.int().nonnegative().optional(),

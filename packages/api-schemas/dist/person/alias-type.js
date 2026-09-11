@@ -5,16 +5,16 @@ import { z } from "zod/v4";
  *
  * @openapiSchema PersonAliasType
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/similar
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/detail/resolve

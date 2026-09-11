@@ -37,9 +37,9 @@ const EntityRelationshipSchemaDefinition = z.object({
  *
  * @openapiSchema EntityRelationship
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint POST /v1/entities/batch

@@ -101,17 +101,16 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @openapiSchema EntityUrlLink
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/people/detail/similar
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/urls
@@ -120,6 +119,7 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
+ * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
  * @endpoint GET /v1/people/{personId}/urls/all

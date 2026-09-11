@@ -24,8 +24,8 @@ const EntityFundraiseInvestorActivitySchemaDefinition = z.object({
  * Investor-perspective activity aggregate for entity and person investors.
  *
  * @openapiSchema EntityFundraiseInvestorActivity
- * @endpoint GET /v1/entities/detail/investor-activity
  * @endpoint GET /v1/people/detail/investor-activity
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @contractShape entity.fundraise-investor-activity
  * @contractRole canonical
  */

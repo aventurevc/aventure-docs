@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.272"
+    "version": "0.7.273"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -20,14 +20,6 @@
     }
   ],
   "tags": [
-    {
-      "description": "Canonical nested address CRUD for entities. Country code is looked up in res_address_country_ref (404 if unknown); state and city are find-or-create on their reference tables; address rows resolve by canonical address fields.",
-      "name": "Entity Addresses Canonical"
-    },
-    {
-      "description": "Canonical nested classification CRUD for entities",
-      "name": "Entity Classifications Canonical"
-    },
     {
       "description": "Crawl screenshot metadata endpoints — S3 key is the binary asset source of truth",
       "name": "Screenshots"
@@ -125,6 +117,10 @@
       "name": "Resolve"
     },
     {
+      "description": "Nested classification CRUD for entities",
+      "name": "Entity Classifications"
+    },
+    {
       "description": "Public content cards: news, blog posts, social posts, repositories, websites, and papers",
       "name": "Content"
     },
@@ -151,6 +147,10 @@
     {
       "description": "Person investment portfolio sub-resource: paginated investments made by a person, looked up by id or slug, sortable by date/round/amount/amountInvested.",
       "name": "Person Investments"
+    },
+    {
+      "description": "Nested address CRUD for entities. Country code is looked up in res_address_country_ref (404 if unknown); state and city are find-or-create on their reference tables; address rows resolve by canonical address fields.",
+      "name": "Entity Addresses"
     },
     {
       "description": "Entity relationship endpoints",
@@ -213,7 +213,7 @@
     "/images/monograms/{seed}.svg": {
       "get": {
         "description": "Returns cached fallback SVG.",
-        "operationId": "getGeneratedMonogram_1",
+        "operationId": "getMonogramImage",
         "parameters": [
           {
             "description": "Seed used to render the deterministic monogram",
@@ -3946,7 +3946,7 @@
             }
           },
           {
-            "description": "Privileged read flag. Must be true to return the /v1/entities/detail payload.",
+            "description": "Privileged read flag. Send the exact lowercase literal \"true\" to return the /v1/entities/detail payload, or \"false\" (or omit it) for the list payload. Any other spelling is rejected.",
             "in": "query",
             "name": "includeFullDetail",
             "schema": {
@@ -4663,157 +4663,6 @@
         }
       }
     },
-    "/v1/entities/detail/financial/valuation": {
-      "get": {
-        "description": "Returns newest-first, per-UTC-month valuation points composed from stated latestValuation research details plus fundraise-round valuations. Only researchDetail points have detailId and can be changed here; fundraiseRound points are read-only here. Custom sort is not supported.",
-        "operationId": "getValuationTimeSeries",
-        "parameters": [
-          {
-            "description": "Entity UUID — at least one of `id` or `slug` is required.",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID"
-            }
-          },
-          {
-            "description": "Entity slug — at least one of `id` or `slug` is required.",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 25
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntityValuationTimeSeriesPoint"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Entity valuation time series",
-        "tags": [
-          "Entity Financial Valuation"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities valuations list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/entities/detail/fundraise-investor-joins": {
       "get": {
         "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; aventure-cli uses --amount-invested 220000 or --amount-invested 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with --investor-entity-id or --investor-entity-slug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people/detail, then create the join.",
@@ -5202,995 +5051,6 @@
         }
       }
     },
-    "/v1/entities/detail/fundraise-rounds": {
-      "get": {
-        "description": "Lists fundraise rounds for an entity. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm. For an investment made by an Investment Firm, pass the portfolio company that received the money here, not the investment firm id and not the round id.",
-        "operationId": "entityFundraises",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Round label contains filter",
-            "example": "Series A",
-            "in": "query",
-            "name": "round",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Inclusive minimum announced date",
-            "example": "2022-01-01",
-            "in": "query",
-            "name": "dateFrom",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "description": "Inclusive maximum announced date",
-            "example": "2024-12-31",
-            "in": "query",
-            "name": "dateTo",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "description": "Inclusive minimum amount raised. Use a plain whole-number amount such as 500000; do not include currency signs, codes, comma grouping, decimals, or strings.",
-            "example": 500000,
-            "in": "query",
-            "name": "minAmount",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "description": "Inclusive maximum amount raised. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings.",
-            "example": 50000000,
-            "in": "query",
-            "name": "maxAmount",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "description": "Permit monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntityFundraiseTransaction"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-Next-Cursor": {
-                "description": "Opaque continuation token when cursor traversal has another page.",
-                "schema": {
-                  "type": "string"
-                },
-                "style": "simple"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List fundraise rounds",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise rounds list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/fundraise-rounds/{transactionId}": {
-      "get": {
-        "description": "Gets one fundraise round for an entity. Use --entity-id or --entity-slug for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm. For an investment made by an Investment Firm, pass the portfolio company that received the money here, not the investment firm id and not the round id. Use transactionId for the round id.",
-        "operationId": "getFundraiseTransaction",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Fundraise round transaction id. Use this with the --entity-id or --entity-slug selector that owns the round.",
-            "in": "path",
-            "name": "transactionId",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical fundraise transaction UUID"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityFundraiseTransaction"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Get fundraise round",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise rounds get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/investments": {
-      "get": {
-        "description": "Lists investments made by the requesting investor entity. Use entityId or entitySlug to select the investor, then filter by round, dateFrom/dateTo, minAmount/maxAmount, and latestPerEntity. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values. Deep traversal uses cursor: pass the prior X-Next-Cursor value as cursor and reuse the same filters and sort.",
-        "operationId": "entityInvestments",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Round label contains filter",
-            "example": "Series A",
-            "in": "query",
-            "name": "round",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Inclusive minimum announced date",
-            "example": "2022-01-01",
-            "in": "query",
-            "name": "dateFrom",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "description": "Inclusive maximum announced date",
-            "example": "2024-12-31",
-            "in": "query",
-            "name": "dateTo",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "date"
-            }
-          },
-          {
-            "description": "Inclusive minimum amount raised. Use a plain whole-number amount such as 500000; do not include currency signs, codes, comma grouping, decimals, or strings.",
-            "example": 500000,
-            "in": "query",
-            "name": "minAmount",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "description": "Inclusive maximum amount raised. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings.",
-            "example": 50000000,
-            "in": "query",
-            "name": "maxAmount",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          {
-            "description": "Permit monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Return latest transaction per entity",
-            "in": "query",
-            "name": "latestPerEntity",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntityFundraiseTransaction"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-Next-Cursor": {
-                "description": "Opaque continuation token when cursor traversal has another page.",
-                "schema": {
-                  "type": "string"
-                },
-                "style": "simple"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List investments made by an entity",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise investments list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/investor-activity": {
-      "get": {
-        "description": "Gets the investor-perspective activity aggregate (total investments, current portfolio count, exits, and top investment stages) for an investor. Use --entity-id or --entity-slug for the investor — the fund, investment firm, or company that supplied the capital — not a portfolio company that raised a round.",
-        "operationId": "investorActivity",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/EntityFundraiseInvestorActivity"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Get investor activity",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise investor-activity get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/investors": {
-      "get": {
-        "description": "Lists entity investors with per-round investorAttribution rows. Use --entity-id or --entity-slug for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
-        "operationId": "entityInvestors",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Permit generated monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEntityInvestorParticipation"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-Next-Cursor": {
-                "description": "Opaque continuation token when cursor traversal has another page.",
-                "schema": {
-                  "type": "string"
-                },
-                "style": "simple"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List entity investors",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise investors list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/entities/detail/news": {
       "get": {
         "description": "Returns news joined to the entity directly or via its public products/services; mutations require a direct join. Fixed sort (publishedAt DESC); page/size only.",
@@ -6369,358 +5229,6 @@
         ],
         "x-aventure-tool": {
           "cli": "entities news list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/people/time-series": {
-      "get": {
-        "description": "Returns employee-count time series. Results are sorted newest first. This endpoint does not support custom sorting.",
-        "operationId": "getEmployeeCountTimeSeries",
-        "parameters": [
-          {
-            "description": "Entity unique identifier (UUID) - at least one of id or slug required",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Entity URL-friendly identifier (slug) - at least one of id or slug required",
-            "example": "leantime-charlotte-nc-us",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned; maximum 500.",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 25
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageEmployeeCount"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Entity employee count time series",
-        "tags": [
-          "Entity Employee Count"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities people employee-counts list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/person-investors": {
-      "get": {
-        "description": "Lists person investors with per-round investorAttribution rows. Use --entity-id or --entity-slug for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
-        "operationId": "entityPersonInvestors",
-        "parameters": [
-          {
-            "description": "Owner-scoped resource UUID selector.",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Owner-scoped resource slug selector.",
-            "example": "acme-corp",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Permit generated monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PagePersonInvestorParticipation"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-Next-Cursor": {
-                "description": "Opaque continuation token when cursor traversal has another page.",
-                "schema": {
-                  "type": "string"
-                },
-                "style": "simple"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List person investors",
-        "tags": [
-          "Entity Fundraise"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities fundraise person-investors list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -11174,7 +9682,7 @@
     "/v1/entities/{entityId}/addresses": {
       "get": {
         "description": "Returns current physical addresses with their role-period associations, ordered HQ-first, primary-next, most-recent-first (`updated_at DESC`). Reads directly from the base tables so fresh writes surface immediately (bypassing the mv_entity_addresses materialized view).",
-        "operationId": "listAddresses_1",
+        "operationId": "listEntityAddresses",
         "parameters": [
           {
             "description": "Canonical entity UUID",
@@ -11300,7 +9808,7 @@
         ],
         "summary": "List entity addresses",
         "tags": [
-          "Entity Addresses Canonical"
+          "Entity Addresses"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -11310,7 +9818,7 @@
     "/v1/entities/{entityId}/addresses/{addressJoinId}": {
       "get": {
         "description": "Returns the physical address group containing the selected entity address association.",
-        "operationId": "getAddress_1",
+        "operationId": "getEntityAddress",
         "parameters": [
           {
             "description": "Canonical entity UUID",
@@ -11433,7 +9941,7 @@
         ],
         "summary": "Get a single entity address join row",
         "tags": [
-          "Entity Addresses Canonical"
+          "Entity Addresses"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -11890,7 +10398,7 @@
         ],
         "summary": "Get entity classification joins",
         "tags": [
-          "Entity Classifications Canonical"
+          "Entity Classifications"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -12041,7 +10549,7 @@
         ],
         "summary": "Suggest entity classifications",
         "tags": [
-          "Entity Classifications Canonical"
+          "Entity Classifications"
         ],
         "x-aventure-tool": {
           "cli": "entities classifications suggest"
@@ -12472,6 +10980,965 @@
         }
       }
     },
+    "/v1/entities/{entityId}/fundraise-rounds": {
+      "get": {
+        "description": "Lists fundraise rounds for an entity. Use entityId for the fundraising/portfolio company that raised the round - always a company, never the fund or investment firm. For an investment made by an Investment Firm, pass the portfolio company that received the money here, not the investment firm id and not the round id.",
+        "operationId": "entityFundraises",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Round label contains filter",
+            "example": "Series A",
+            "in": "query",
+            "name": "round",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Inclusive minimum announced date",
+            "example": "2022-01-01",
+            "in": "query",
+            "name": "dateFrom",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "description": "Inclusive maximum announced date",
+            "example": "2024-12-31",
+            "in": "query",
+            "name": "dateTo",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "description": "Inclusive minimum amount raised. Use a plain whole-number amount such as 500000; do not include currency signs, codes, comma grouping, decimals, or strings.",
+            "example": 500000,
+            "in": "query",
+            "name": "minAmount",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "description": "Inclusive maximum amount raised. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings.",
+            "example": 50000000,
+            "in": "query",
+            "name": "maxAmount",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "description": "Permit monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityFundraiseTransaction"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List fundraise rounds",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise rounds list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}": {
+      "get": {
+        "description": "Gets one fundraise round for an entity. Use entityId for the fundraising/portfolio company that raised the round - always a company, never the fund or investment firm. For an investment made by an Investment Firm, pass the portfolio company that received the money here, not the investment firm id and not the round id. Use fundraiseRoundId for the round id.",
+        "operationId": "getFundraiseTransaction",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Fundraise round id. Use this with the entityId path segment that owns the round.",
+            "in": "path",
+            "name": "fundraiseRoundId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical fundraise transaction UUID"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFundraiseTransaction"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get fundraise round",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise rounds get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/investments": {
+      "get": {
+        "description": "Lists investments made by the requesting investor entity. Use entityId to select the investor, then filter by round, dateFrom/dateTo, minAmount/maxAmount, and latestPerEntity. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values. Deep traversal uses cursor: pass the prior X-Next-Cursor value as cursor and reuse the same filters and sort.",
+        "operationId": "entityInvestments",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Round label contains filter",
+            "example": "Series A",
+            "in": "query",
+            "name": "round",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Inclusive minimum announced date",
+            "example": "2022-01-01",
+            "in": "query",
+            "name": "dateFrom",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "description": "Inclusive maximum announced date",
+            "example": "2024-12-31",
+            "in": "query",
+            "name": "dateTo",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "description": "Inclusive minimum amount raised. Use a plain whole-number amount such as 500000; do not include currency signs, codes, comma grouping, decimals, or strings.",
+            "example": 500000,
+            "in": "query",
+            "name": "minAmount",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "description": "Inclusive maximum amount raised. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings.",
+            "example": 50000000,
+            "in": "query",
+            "name": "maxAmount",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "description": "Permit monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Return latest transaction per entity",
+            "in": "query",
+            "name": "latestPerEntity",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityFundraiseTransaction"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List investments made by an entity",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise investments list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/investor-activity": {
+      "get": {
+        "description": "Gets the investor-perspective activity aggregate (total investments, current portfolio count, exits, and top investment stages) for an investor. Use entityId for the investor — the fund, investment firm, or company that supplied the capital — not a portfolio company that raised a round.",
+        "operationId": "investorActivity",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityFundraiseInvestorActivity"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Get investor activity",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise investor-activity get"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/investors": {
+      "get": {
+        "description": "Lists entity investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "operationId": "entityInvestors",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Permit generated monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityInvestorParticipation"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List entity investors",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise investors list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/entities/{entityId}/media/logo": {
       "get": {
         "description": "Returns the selected square or standard entity logo. Empty slots return 404.",
@@ -12865,6 +12332,154 @@
         }
       }
     },
+    "/v1/entities/{entityId}/people/time-series": {
+      "get": {
+        "description": "Returns employee-count time series for the entity at this address. Results are sorted newest first. This endpoint does not support custom sorting.",
+        "operationId": "getEmployeeCountTimeSeries",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID)",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned; maximum 500.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEmployeeCount"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Entity employee count time series",
+        "tags": [
+          "Entity Employee Count"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities people employee-counts list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/entities/{entityId}/people/{associationId}": {
       "get": {
         "description": "Returns one entity-scoped association detail. Public and client-secret reads hide associations to hidden entities; trusted admin credentials can read them back.",
@@ -13097,6 +12712,202 @@
         "tags": [
           "Entity Person Associations"
         ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/person-investors": {
+      "get": {
+        "description": "Lists person investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "operationId": "entityPersonInvestors",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Permit generated monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagePersonInvestorParticipation"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token when cursor traversal has another page.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List person investors",
+        "tags": [
+          "Entity Fundraise"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities fundraise person-investors list"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -16014,6 +15825,154 @@
         }
       }
     },
+    "/v1/entities/{entityId}/valuations": {
+      "get": {
+        "description": "Returns newest-first, per-UTC-month valuation points composed from stated latestValuation research details plus fundraise-round valuations. Only researchDetail points have detailId and can be changed here; fundraiseRound points are read-only here. Custom sort is not supported.",
+        "operationId": "getValuationTimeSeries",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID).",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityValuationTimeSeriesPoint"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "Entity valuation time series",
+        "tags": [
+          "Entity Financial Valuation"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities valuations list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/media": {
       "get": {
         "description": "Returns current managed asset; empty slots 404; inactive media is not listed.",
@@ -18289,135 +18248,6 @@
         }
       }
     },
-    "/v1/news/{newsId}/slug": {
-      "get": {
-        "description": "Returns the current slug, canonical path, and public URL.",
-        "operationId": "getNewsSlug",
-        "parameters": [
-          {
-            "description": "News article id",
-            "in": "path",
-            "name": "newsId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "description": "Type-safe identifier for news articles"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SlugLocation"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Get news slug",
-        "tags": [
-          "URL Slug Redirects"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/news/{newsId}/slug/redirects": {
       "get": {
         "description": "Lists redirects whose newUrl targets the record's current public URL.",
@@ -20216,178 +20046,6 @@
         ],
         "x-aventure-tool": {
           "cli": "people news list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/people/detail/similar": {
-      "get": {
-        "description": "Returns similar people by id or slug. Results include the person row and per-row similarity provenance; load full detail through the person detail endpoints. Results are ordered by similarity score (highest first). This endpoint does not support custom sorting.",
-        "operationId": "listSimilarPeople",
-        "parameters": [
-          {
-            "description": "Person unique identifier (UUID) — at least one of id or slug required",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Person URL-friendly identifier (slug) — at least one of id or slug required",
-            "example": "jane-doe",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Permit monogram fallback",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Attribution token identifying the requesting surface; metrics-only",
-            "in": "header",
-            "name": "X-Request-Origin",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PagePersonSimilarityResult"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List people similar to one person",
-        "tags": [
-          "Person Similarity"
-        ],
-        "x-aventure-tool": {
-          "cli": "people similar list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -23642,6 +23300,174 @@
         ],
         "x-aventure-tool": {
           "cli": "people repositories list"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/people/{personId}/similar": {
+      "get": {
+        "description": "Returns people similar to the person at this address. Rows carry the person shape and per-row similarity provenance; load full detail through the person read endpoint. Results are ordered by similarity score (highest first). This endpoint does not support custom sorting.",
+        "operationId": "listSimilarPeople",
+        "parameters": [
+          {
+            "description": "Person unique identifier (UUID)",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "personId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Permit monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Attribution token identifying the requesting surface; metrics-only",
+            "in": "header",
+            "name": "X-Request-Origin",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagePersonSimilarityResult"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "clientSecretAuth": []
+          }
+        ],
+        "summary": "List people similar to one person",
+        "tags": [
+          "Person Similarity"
+        ],
+        "x-aventure-tool": {
+          "cli": "people similar list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -30111,52 +29937,6 @@
           }
         }
       },
-      "PageEntityValuationTimeSeriesPoint": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntityValuationTimeSeriesPoint"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "PageEntityFundraiseInvestorJoin": {
         "type": "object",
         "properties": {
@@ -30263,302 +30043,6 @@
           "updatedAt"
         ]
       },
-      "PageEntityFundraiseTransaction": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntityFundraiseTransaction"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "EntityFundraiseTransaction": {
-        "type": "object",
-        "description": "Canonical fundraise transaction view. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.",
-        "properties": {
-          "amountRaised": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64"
-          },
-          "createdAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "currency": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "dataConfidence": {
-            "description": "Data confidence level",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/FundraiseDataConfidence"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "dateAnnounced": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "dateFundingComplete": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "dateInvestorExit": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "entity": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityFundraiseTransactionEntity"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Canonical fundraise transaction UUID"
-          },
-          "investorAttribution": {
-            "description": "Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's attributed participation amount for this round.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "investorCount": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor."
-          },
-          "round": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "sourceAttribution": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
-            }
-          },
-          "updatedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "valuationPostMoney": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64"
-          },
-          "valuationPreMoney": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64"
-          }
-        },
-        "required": [
-          "id",
-          "sourceAttribution"
-        ]
-      },
-      "EntityFundraiseInvestorActivity": {
-        "type": "object",
-        "description": "Investor-perspective activity aggregate for entity and person investors.",
-        "properties": {
-          "attributedInvestmentCount": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Count of participations with a USD-attributed investor-level amount — the coverage denominator behind totalAmountInvestedUsd, averageAmountInvestedUsd, largestAmountInvestedUsd, and smallestAmountInvestedUsd."
-          },
-          "averageAmountInvestedUsd": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "description": "Average investor-level attributed amount per participation, restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
-          },
-          "currentPortfolioCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "largestAmountInvestedUsd": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "description": "Largest single investor-level attributed amount, restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
-          },
-          "portfolioCompanyCount": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Distinct portfolio companies this investor has participated in, across all portfolio-company statuses. Counts companies, whereas totalInvestment counts distinct fundraise transactions."
-          },
-          "smallestAmountInvestedUsd": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "description": "Smallest single investor-level attributed amount, restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
-          },
-          "topInvestmentStage": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StageFrequency"
-            }
-          },
-          "totalAmountInvestedUsd": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "description": "Sum of investor-level attributed amounts (amount_invested) restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
-          },
-          "totalInvestment": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPortfolioExit": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalWriteOff": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "attributedInvestmentCount",
-          "currentPortfolioCount",
-          "portfolioCompanyCount",
-          "topInvestmentStage",
-          "totalInvestment",
-          "totalPortfolioExit",
-          "totalWriteOff"
-        ]
-      },
-      "PageEntityInvestorParticipation": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntityInvestorParticipation"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "PageNews": {
         "type": "object",
         "properties": {
@@ -30566,98 +30050,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/News"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "PageEmployeeCount": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EmployeeCount"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "PagePersonInvestorParticipation": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PersonInvestorParticipation"
             }
           },
           "empty": {
@@ -32472,6 +31864,302 @@
           "writable"
         ]
       },
+      "PageEntityFundraiseTransaction": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityFundraiseTransaction"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "EntityFundraiseTransaction": {
+        "type": "object",
+        "description": "Canonical fundraise transaction view. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.",
+        "properties": {
+          "amountRaised": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "currency": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dataConfidence": {
+            "description": "Data confidence level",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FundraiseDataConfidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "dateAnnounced": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "dateFundingComplete": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "dateInvestorExit": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "entity": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityFundraiseTransactionEntity"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Canonical fundraise transaction UUID"
+          },
+          "investorAttribution": {
+            "description": "Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's attributed participation amount for this round.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "investorCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor."
+          },
+          "round": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sourceAttribution": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
+            }
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "valuationPostMoney": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "valuationPreMoney": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          }
+        },
+        "required": [
+          "id",
+          "sourceAttribution"
+        ]
+      },
+      "EntityFundraiseInvestorActivity": {
+        "type": "object",
+        "description": "Investor-perspective activity aggregate for entity and person investors.",
+        "properties": {
+          "attributedInvestmentCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Count of participations with a USD-attributed investor-level amount — the coverage denominator behind totalAmountInvestedUsd, averageAmountInvestedUsd, largestAmountInvestedUsd, and smallestAmountInvestedUsd."
+          },
+          "averageAmountInvestedUsd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Average investor-level attributed amount per participation, restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
+          },
+          "currentPortfolioCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "largestAmountInvestedUsd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Largest single investor-level attributed amount, restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
+          },
+          "portfolioCompanyCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Distinct portfolio companies this investor has participated in, across all portfolio-company statuses. Counts companies, whereas totalInvestment counts distinct fundraise transactions."
+          },
+          "smallestAmountInvestedUsd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Smallest single investor-level attributed amount, restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
+          },
+          "topInvestmentStage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StageFrequency"
+            }
+          },
+          "totalAmountInvestedUsd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Sum of investor-level attributed amounts (amount_invested) restricted to rounds whose transaction functional currency is USD. Null when no USD-attributed amounts exist for this investor."
+          },
+          "totalInvestment": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalPortfolioExit": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalWriteOff": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "attributedInvestmentCount",
+          "currentPortfolioCount",
+          "portfolioCompanyCount",
+          "topInvestmentStage",
+          "totalInvestment",
+          "totalPortfolioExit",
+          "totalWriteOff"
+        ]
+      },
+      "PageEntityInvestorParticipation": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityInvestorParticipation"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "EntityLogoType": {
         "type": "string",
         "description": "Distinguishes square icon vs standard/horizontal entity logo",
@@ -32536,6 +32224,52 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/EntityPersonAssociation"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "PageEmployeeCount": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeCount"
             }
           },
           "empty": {
@@ -32764,6 +32498,52 @@
           "personSlug",
           "personUrlLink"
         ]
+      },
+      "PagePersonInvestorParticipation": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonInvestorParticipation"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
       },
       "EntitySuggestionResult": {
         "type": "object",
@@ -33633,6 +33413,52 @@
           "urlType"
         ]
       },
+      "PageEntityValuationTimeSeriesPoint": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityValuationTimeSeriesPoint"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "MediaObjectType": {
         "type": "string",
         "description": "Target domain for media operations (logos, pictures, thumbnails)",
@@ -34404,52 +34230,6 @@
           }
         }
       },
-      "PagePersonSimilarityResult": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PersonSimilarityResult"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "PersonNaturalSearch": {
         "type": "object",
         "description": "Plain-English people search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
@@ -34516,6 +34296,52 @@
           "careerContext",
           "coInvestor"
         ]
+      },
+      "PagePersonSimilarityResult": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PersonSimilarityResult"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
       },
       "DatasourceTrackedProvenanceTable": {
         "type": "string",
@@ -36112,6 +35938,388 @@
           "modelFamily"
         ]
       },
+      "PersonSimilarityResult": {
+        "type": "object",
+        "description": "Similar person list row with the provenance that explains why it appears. Rows carry the canonical Person projection; load full detail through the person detail endpoints.",
+        "properties": {
+          "currentRole": {
+            "description": "Current titled association for the similar-person card; null when no current titled role is available.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityPersonAssociation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "person": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "similarity": {
+            "$ref": "#/components/schemas/PersonSimilarityContext"
+          }
+        },
+        "required": [
+          "person",
+          "similarity"
+        ]
+      },
+      "Person": {
+        "type": "object",
+        "description": "Canonical person core record",
+        "properties": {
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Record creation timestamp"
+          },
+          "gender": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Canonical person UUID"
+          },
+          "image": {
+            "$ref": "#/components/schemas/PersonImage"
+          },
+          "lastModifiedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Provenance-grounded last-modified watermark (schema.org dateModified): the latest effective time across all writes attributed to this person."
+          },
+          "nameAlias": {
+            "type": "array",
+            "description": "Display and search aliases for this person",
+            "items": {
+              "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
+            }
+          },
+          "nameFirst": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameFull": {
+            "type": "string"
+          },
+          "nameLast": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nameMiddle": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "nickname": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publicId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill.",
+            "example": "pV1StGXR8Z5ab",
+            "pattern": "^p[0-9A-Za-z]{12}$"
+          },
+          "semanticMatch": {
+            "description": "Semantic embedding match evidence populated only for semantic people reads.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContentEmbeddingMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "slug": {
+            "type": "string",
+            "description": "Canonical lowercase URL slug for the resource",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "source": {
+            "$ref": "#/components/schemas/DatasourceSourceMetadata"
+          },
+          "suffix": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "text": {
+            "$ref": "#/components/schemas/EntityTextBundle",
+            "description": "Grouped person text content"
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Last modification timestamp"
+          }
+        },
+        "required": [
+          "id",
+          "image",
+          "nameAlias",
+          "nameFull",
+          "slug",
+          "source",
+          "text"
+        ]
+      },
+      "PersonSimilarityContext": {
+        "type": "object",
+        "description": "Per-row provenance for a similar-person result.",
+        "properties": {
+          "compositeScore": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Composite section-fusion similarity score."
+          },
+          "cosineScore": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Cosine similarity score where higher is closer."
+          },
+          "matchedSectionWeight": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Total normalized source-section weight matched."
+          },
+          "origin": {
+            "$ref": "#/components/schemas/PersonSimilarityOrigin"
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "1-based position in the merged result page"
+          },
+          "sharedSectionCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Number of source/target sections compared."
+          }
+        },
+        "required": [
+          "origin",
+          "rank"
+        ]
+      },
+      "PersonSimilarityOrigin": {
+        "type": "string",
+        "description": "Provenance origin for a similar-person result row.",
+        "enum": [
+          "precomputed",
+          "live"
+        ]
+      },
+      "PersonImage": {
+        "type": "object",
+        "description": "Read projection: person image fields for detail/list responses",
+        "properties": {
+          "isMonogram": {
+            "type": "boolean",
+            "description": "Whether person image monogram"
+          },
+          "picture": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "isMonogram"
+        ]
+      },
+      "EntityNameAliasPersonAliasType": {
+        "type": "object",
+        "description": "Alternate name used for search and display",
+        "properties": {
+          "displayable": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Show this alias in public name displays.",
+            "example": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Alternate name text",
+            "example": "Bun"
+          },
+          "type": {
+            "description": "Alias type classification",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PersonAliasType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "ContentEmbeddingMatch": {
+        "type": "object",
+        "description": "Nearest-neighbor content embedding match evidence.",
+        "properties": {
+          "computedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp when the embedding row was computed."
+          },
+          "cosineDistance": {
+            "type": "number",
+            "format": "double",
+            "description": "pgvector cosine distance where lower is closer."
+          },
+          "cosineScore": {
+            "type": "number",
+            "format": "double",
+            "description": "Cosine similarity score where higher is closer."
+          },
+          "modelVersion": {
+            "type": "string",
+            "description": "Embedding model/profile version for this row."
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "One-based semantic rank within the returned ANN candidate set."
+          },
+          "sourceHash": {
+            "type": "string",
+            "description": "SHA-256 hash of the source content."
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Content embedding source identifier."
+          },
+          "sourceJson": {
+            "type": "string",
+            "description": "Serialized JSONB source document stored for the embedding row."
+          },
+          "sourceText": {
+            "type": "string",
+            "description": "Source text used to compute the stored embedding."
+          },
+          "sourceType": {
+            "$ref": "#/components/schemas/ContentSourceType",
+            "description": "Stored content embedding source partition."
+          }
+        },
+        "required": [
+          "computedAt",
+          "cosineDistance",
+          "cosineScore",
+          "modelVersion",
+          "rank",
+          "sourceHash",
+          "sourceId",
+          "sourceJson",
+          "sourceText",
+          "sourceType"
+        ]
+      },
+      "EntityTextBundle": {
+        "type": "object",
+        "description": "Grouped entity/person text content",
+        "properties": {
+          "expanded": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Expanded summary text",
+            "example": "Canonical expanded summary for grouped text assertions."
+          },
+          "generatedDescription": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Generated SEO meta description text",
+            "example": "Acme AI builds AI copilots for growth teams."
+          },
+          "short": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Short summary text",
+            "example": "Canonical short summary"
+          }
+        }
+      },
+      "ContentSourceType": {
+        "type": "string",
+        "description": "Discriminator for unified content embedding source partitions",
+        "enum": [
+          "entity",
+          "person",
+          "newsArticle",
+          "blogPost",
+          "text",
+          "classificationTag",
+          "classificationCode",
+          "product",
+          "service",
+          "agentHelpDoc"
+        ]
+      },
+      "PersonAliasType": {
+        "type": "string",
+        "description": "Alias types for person NameAlias",
+        "enum": [
+          "nickname",
+          "maidenName",
+          "formerName",
+          "stageName"
+        ]
+      },
       "PersonGraphCareerContext": {
         "type": "object",
         "description": "Entity facts, recent news, colleagues, and similar entities for one associated entity",
@@ -36499,25 +36707,6 @@
           "relatedLegal"
         ]
       },
-      "PersonImage": {
-        "type": "object",
-        "description": "Read projection: person image fields for detail/list responses",
-        "properties": {
-          "isMonogram": {
-            "type": "boolean",
-            "description": "Whether person image monogram"
-          },
-          "picture": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "isMonogram"
-        ]
-      },
       "EmployeeCount": {
         "type": "object",
         "description": "Employee-count time-series point for an entity",
@@ -36842,284 +37031,6 @@
           "totalPages"
         ]
       },
-      "Person": {
-        "type": "object",
-        "description": "Canonical person core record",
-        "properties": {
-          "createdAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time",
-            "description": "Record creation timestamp"
-          },
-          "gender": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Canonical person UUID"
-          },
-          "image": {
-            "$ref": "#/components/schemas/PersonImage"
-          },
-          "lastModifiedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time",
-            "description": "Provenance-grounded last-modified watermark (schema.org dateModified): the latest effective time across all writes attributed to this person."
-          },
-          "nameAlias": {
-            "type": "array",
-            "description": "Display and search aliases for this person",
-            "items": {
-              "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
-            }
-          },
-          "nameFirst": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "nameFull": {
-            "type": "string"
-          },
-          "nameLast": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "nameMiddle": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "nickname": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "publicId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill.",
-            "example": "pV1StGXR8Z5ab",
-            "pattern": "^p[0-9A-Za-z]{12}$"
-          },
-          "semanticMatch": {
-            "description": "Semantic embedding match evidence populated only for semantic people reads.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/ContentEmbeddingMatch"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "slug": {
-            "type": "string",
-            "description": "Canonical lowercase URL slug for the resource",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "source": {
-            "$ref": "#/components/schemas/DatasourceSourceMetadata"
-          },
-          "suffix": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "text": {
-            "$ref": "#/components/schemas/EntityTextBundle",
-            "description": "Grouped person text content"
-          },
-          "updatedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time",
-            "description": "Last modification timestamp"
-          }
-        },
-        "required": [
-          "id",
-          "image",
-          "nameAlias",
-          "nameFull",
-          "slug",
-          "source",
-          "text"
-        ]
-      },
-      "EntityNameAliasPersonAliasType": {
-        "type": "object",
-        "description": "Alternate name used for search and display",
-        "properties": {
-          "displayable": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "description": "Show this alias in public name displays.",
-            "example": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Alternate name text",
-            "example": "Bun"
-          },
-          "type": {
-            "description": "Alias type classification",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/PersonAliasType"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "ContentEmbeddingMatch": {
-        "type": "object",
-        "description": "Nearest-neighbor content embedding match evidence.",
-        "properties": {
-          "computedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Timestamp when the embedding row was computed."
-          },
-          "cosineDistance": {
-            "type": "number",
-            "format": "double",
-            "description": "pgvector cosine distance where lower is closer."
-          },
-          "cosineScore": {
-            "type": "number",
-            "format": "double",
-            "description": "Cosine similarity score where higher is closer."
-          },
-          "modelVersion": {
-            "type": "string",
-            "description": "Embedding model/profile version for this row."
-          },
-          "rank": {
-            "type": "integer",
-            "format": "int32",
-            "description": "One-based semantic rank within the returned ANN candidate set."
-          },
-          "sourceHash": {
-            "type": "string",
-            "description": "SHA-256 hash of the source content."
-          },
-          "sourceId": {
-            "type": "string",
-            "description": "Content embedding source identifier."
-          },
-          "sourceJson": {
-            "type": "string",
-            "description": "Serialized JSONB source document stored for the embedding row."
-          },
-          "sourceText": {
-            "type": "string",
-            "description": "Source text used to compute the stored embedding."
-          },
-          "sourceType": {
-            "$ref": "#/components/schemas/ContentSourceType",
-            "description": "Stored content embedding source partition."
-          }
-        },
-        "required": [
-          "computedAt",
-          "cosineDistance",
-          "cosineScore",
-          "modelVersion",
-          "rank",
-          "sourceHash",
-          "sourceId",
-          "sourceJson",
-          "sourceText",
-          "sourceType"
-        ]
-      },
-      "EntityTextBundle": {
-        "type": "object",
-        "description": "Grouped entity/person text content",
-        "properties": {
-          "expanded": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Expanded summary text",
-            "example": "Canonical expanded summary for grouped text assertions."
-          },
-          "generatedDescription": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Generated SEO meta description text",
-            "example": "Acme AI builds AI copilots for growth teams."
-          },
-          "short": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Short summary text",
-            "example": "Canonical short summary"
-          }
-        }
-      },
-      "ContentSourceType": {
-        "type": "string",
-        "description": "Discriminator for unified content embedding source partitions",
-        "enum": [
-          "entity",
-          "person",
-          "newsArticle",
-          "blogPost",
-          "text",
-          "classificationTag",
-          "classificationCode",
-          "product",
-          "service",
-          "agentHelpDoc"
-        ]
-      },
-      "PersonAliasType": {
-        "type": "string",
-        "description": "Alias types for person NameAlias",
-        "enum": [
-          "nickname",
-          "maidenName",
-          "formerName",
-          "stageName"
-        ]
-      },
       "Confidence": {
         "type": "string",
         "description": "Three-level confidence band for a classifier, model, or probe verdict. The carrying property states what is assessed and what each band licenses.",
@@ -37193,91 +37104,6 @@
         "enum": [
           "keyword",
           "semantic"
-        ]
-      },
-      "PersonSimilarityResult": {
-        "type": "object",
-        "description": "Similar person list row with the provenance that explains why it appears. Rows carry the canonical Person projection; load full detail through the person detail endpoints.",
-        "properties": {
-          "currentRole": {
-            "description": "Current titled association for the similar-person card; null when no current titled role is available.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityPersonAssociation"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "person": {
-            "$ref": "#/components/schemas/Person"
-          },
-          "similarity": {
-            "$ref": "#/components/schemas/PersonSimilarityContext"
-          }
-        },
-        "required": [
-          "person",
-          "similarity"
-        ]
-      },
-      "PersonSimilarityContext": {
-        "type": "object",
-        "description": "Per-row provenance for a similar-person result.",
-        "properties": {
-          "compositeScore": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Composite section-fusion similarity score."
-          },
-          "cosineScore": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Cosine similarity score where higher is closer."
-          },
-          "matchedSectionWeight": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Total normalized source-section weight matched."
-          },
-          "origin": {
-            "$ref": "#/components/schemas/PersonSimilarityOrigin"
-          },
-          "rank": {
-            "type": "integer",
-            "format": "int32",
-            "description": "1-based position in the merged result page"
-          },
-          "sharedSectionCount": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Number of source/target sections compared."
-          }
-        },
-        "required": [
-          "origin",
-          "rank"
-        ]
-      },
-      "PersonSimilarityOrigin": {
-        "type": "string",
-        "description": "Provenance origin for a similar-person result row.",
-        "enum": [
-          "precomputed",
-          "live"
         ]
       },
       "PersonInvestment": {
@@ -37784,6 +37610,116 @@
           "createdAt",
           "personId",
           "updatedAt"
+        ]
+      },
+      "EntityValuationTimeSeriesPoint": {
+        "type": "object",
+        "description": "A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.",
+        "properties": {
+          "amountRaised": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Amount raised in the same currency, only for fundraise rows."
+          },
+          "asOfDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Effective timestamp for this valuation datapoint."
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/EntityValuationDataConfidence",
+            "description": "Confidence tier for this datapoint."
+          },
+          "currency": {
+            "type": "string",
+            "description": "ISO 4217 currency code."
+          },
+          "declaredBasis": {
+            "$ref": "#/components/schemas/ValuationType",
+            "description": "Basis declared by the original source."
+          },
+          "derivation": {
+            "$ref": "#/components/schemas/EntityValuationDerivation",
+            "description": "How pre-money and post-money fields were obtained."
+          },
+          "detailId": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Research detail id for stated valuation rows. Null for fundraise-derived rows, which cannot be updated or deleted on this valuation surface."
+          },
+          "label": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Fundraise round label or legacy detail display text, when present."
+          },
+          "source": {
+            "$ref": "#/components/schemas/EntityValuationSource",
+            "description": "Canonical store that supplied the point."
+          },
+          "sourceRef": {
+            "type": "string",
+            "description": "`detail-<id>` or `fundraise-<transactionId>` display reference."
+          },
+          "valuationPostMoney": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Post-money valuation in full currency units, when known."
+          },
+          "valuationPreMoney": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Pre-money valuation in full currency units, when known."
+          }
+        },
+        "required": [
+          "asOfDate",
+          "confidence",
+          "currency",
+          "declaredBasis",
+          "derivation",
+          "source",
+          "sourceRef"
+        ]
+      },
+      "ValuationType": {
+        "type": "string",
+        "description": "Which side of the pre/post relationship the source declared.",
+        "enum": [
+          "preMoney",
+          "postMoney",
+          "reported"
+        ]
+      },
+      "EntityValuationDerivation": {
+        "type": "string",
+        "description": "How the point's valuationPostMoney and valuationPreMoney were obtained.",
+        "enum": [
+          "stored",
+          "derivedFromPreAndRaised",
+          "derivedFromPostMinusRaised",
+          "reportedAssumedPost"
+        ]
+      },
+      "EntityValuationSource": {
+        "type": "string",
+        "description": "Which canonical store the point came from.",
+        "enum": [
+          "fundraiseRound",
+          "researchDetail"
         ]
       },
       "EntityUrlCrawlCdnProvider": {
@@ -38366,6 +38302,95 @@
           "NOT_EVALUABLE"
         ]
       },
+      "PersonInvestorParticipation": {
+        "type": "object",
+        "description": "Person investor with round participation labels and count",
+        "properties": {
+          "investorAttribution": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
+            }
+          },
+          "person": {
+            "$ref": "#/components/schemas/PersonDetail"
+          },
+          "round": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoundLabel"
+            }
+          },
+          "roundCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "investorAttribution",
+          "person",
+          "round",
+          "roundCount"
+        ]
+      },
+      "EntityInvestorParticipation": {
+        "type": "object",
+        "description": "Entity investor with round participation and enrichment data (addresses, URLs)",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/EntityDetail"
+          },
+          "investorAttribution": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
+            }
+          },
+          "round": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RoundLabel"
+            }
+          },
+          "roundCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "entity",
+          "investorAttribution",
+          "round",
+          "roundCount"
+        ]
+      },
+      "StageFrequency": {
+        "type": "object",
+        "description": "Canonical equity stage derived from a transaction calculatedRoundLabel, with deal frequency ranked by count descending.",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "stage": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "count",
+          "stage"
+        ]
+      },
+      "FundraiseDataConfidence": {
+        "type": "string",
+        "description": "Fundraise data confidence label",
+        "enum": [
+          "High",
+          "Medium",
+          "Low",
+          "Verified"
+        ]
+      },
       "EntityTag": {
         "allOf": [
           {
@@ -38764,16 +38789,6 @@
           "domicile",
           "dominant",
           "origin"
-        ]
-      },
-      "FundraiseDataConfidence": {
-        "type": "string",
-        "description": "Fundraise data confidence label",
-        "enum": [
-          "High",
-          "Medium",
-          "Low",
-          "Verified"
         ]
       },
       "EntityAcquisitionEvidence": {
@@ -39829,85 +39844,6 @@
           "rank"
         ]
       },
-      "PersonInvestorParticipation": {
-        "type": "object",
-        "description": "Person investor with round participation labels and count",
-        "properties": {
-          "investorAttribution": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
-            }
-          },
-          "person": {
-            "$ref": "#/components/schemas/PersonDetail"
-          },
-          "round": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RoundLabel"
-            }
-          },
-          "roundCount": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "investorAttribution",
-          "person",
-          "round",
-          "roundCount"
-        ]
-      },
-      "EntityInvestorParticipation": {
-        "type": "object",
-        "description": "Entity investor with round participation and enrichment data (addresses, URLs)",
-        "properties": {
-          "entity": {
-            "$ref": "#/components/schemas/EntityDetail"
-          },
-          "investorAttribution": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FundraiseInvestmentAttribution"
-            }
-          },
-          "round": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RoundLabel"
-            }
-          },
-          "roundCount": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "entity",
-          "investorAttribution",
-          "round",
-          "roundCount"
-        ]
-      },
-      "StageFrequency": {
-        "type": "object",
-        "description": "Canonical equity stage derived from a transaction calculatedRoundLabel, with deal frequency ranked by count descending.",
-        "properties": {
-          "count": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "stage": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "count",
-          "stage"
-        ]
-      },
       "FundraiseFinancialInstrumentType": {
         "type": "string",
         "description": "Fundraise financial instrument type — the vehicle a round or investor join used",
@@ -39922,116 +39858,6 @@
           "Other Debt",
           "Grant",
           "Token"
-        ]
-      },
-      "EntityValuationTimeSeriesPoint": {
-        "type": "object",
-        "description": "A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.",
-        "properties": {
-          "amountRaised": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64",
-            "description": "Amount raised in the same currency, only for fundraise rows."
-          },
-          "asOfDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Effective timestamp for this valuation datapoint."
-          },
-          "confidence": {
-            "$ref": "#/components/schemas/EntityValuationDataConfidence",
-            "description": "Confidence tier for this datapoint."
-          },
-          "currency": {
-            "type": "string",
-            "description": "ISO 4217 currency code."
-          },
-          "declaredBasis": {
-            "$ref": "#/components/schemas/ValuationType",
-            "description": "Basis declared by the original source."
-          },
-          "derivation": {
-            "$ref": "#/components/schemas/EntityValuationDerivation",
-            "description": "How pre-money and post-money fields were obtained."
-          },
-          "detailId": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Research detail id for stated valuation rows. Null for fundraise-derived rows, which cannot be updated or deleted on this valuation surface."
-          },
-          "label": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Fundraise round label or legacy detail display text, when present."
-          },
-          "source": {
-            "$ref": "#/components/schemas/EntityValuationSource",
-            "description": "Canonical store that supplied the point."
-          },
-          "sourceRef": {
-            "type": "string",
-            "description": "`detail-<id>` or `fundraise-<transactionId>` display reference."
-          },
-          "valuationPostMoney": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64",
-            "description": "Post-money valuation in full currency units, when known."
-          },
-          "valuationPreMoney": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64",
-            "description": "Pre-money valuation in full currency units, when known."
-          }
-        },
-        "required": [
-          "asOfDate",
-          "confidence",
-          "currency",
-          "declaredBasis",
-          "derivation",
-          "source",
-          "sourceRef"
-        ]
-      },
-      "ValuationType": {
-        "type": "string",
-        "description": "Which side of the pre/post relationship the source declared.",
-        "enum": [
-          "preMoney",
-          "postMoney",
-          "reported"
-        ]
-      },
-      "EntityValuationDerivation": {
-        "type": "string",
-        "description": "How the point's valuationPostMoney and valuationPreMoney were obtained.",
-        "enum": [
-          "stored",
-          "derivedFromPreAndRaised",
-          "derivedFromPostMinusRaised",
-          "reportedAssumedPost"
-        ]
-      },
-      "EntityValuationSource": {
-        "type": "string",
-        "description": "Which canonical store the point came from.",
-        "enum": [
-          "fundraiseRound",
-          "researchDetail"
         ]
       },
       "ContentSearchInterpretation": {

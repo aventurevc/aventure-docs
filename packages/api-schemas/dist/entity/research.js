@@ -16,9 +16,9 @@ const EntityResearchSchemaDefinition = z.object({
  *
  * @openapiSchema EntityResearch
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/investors
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch

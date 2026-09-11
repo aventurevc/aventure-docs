@@ -1819,7 +1819,7 @@ type EntityInvestorParticipationDefinition = z.infer<typeof EntityInvestorPartic
  * Entity investor with round participation and enrichment data (addresses, URLs)
  *
  * @openapiSchema EntityInvestorParticipation
- * @endpoint GET /v1/entities/detail/investors
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @usedBySchema PageEntityInvestorParticipationSchema
  * @contractShape entity.investor-participation
  * @contractRole canonical

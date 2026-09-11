@@ -34,7 +34,7 @@ type EntityValuationTimeSeriesPointDefinition = z.infer<typeof EntityValuationTi
  * A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.
  *
  * @openapiSchema EntityValuationTimeSeriesPoint
- * @endpoint GET /v1/entities/detail/financial/valuation
+ * @endpoint GET /v1/entities/{entityId}/valuations
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema
  * @contractShape entity.valuation-time-series-point
  * @contractRole canonical

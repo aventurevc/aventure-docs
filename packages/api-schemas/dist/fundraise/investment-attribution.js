@@ -8,10 +8,6 @@ import { RoundLabelSchema } from "../round/label.js";
  * @openapiSchema FundraiseInvestmentAttribution
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/fundraise-rounds
- * @endpoint GET /v1/entities/detail/investments
- * @endpoint GET /v1/entities/detail/investors
- * @endpoint GET /v1/entities/detail/person-investors
  * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/summary
@@ -20,9 +16,13 @@ import { RoundLabelSchema } from "../round/label.js";
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
+ * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
+ * @endpoint GET /v1/entities/{entityId}/investments
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
- * @endpoint GET /v1/entities/detail/fundraise-rounds/{transactionId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
