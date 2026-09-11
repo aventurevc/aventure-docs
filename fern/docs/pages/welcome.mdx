@@ -5,7 +5,7 @@ hide-page-actions: true
 hide-nav-links: true
 hide-feedback: true
 layout: overview
-subtitle: Start downloading private company data within minutes with the aVenture API, CLI, MCP server and SDK.
+subtitle: Start downloading private company data within minutes with the aVenture API, CLI, and MCP server.
 ---
 
 <div className="welcome-hero-tint">
@@ -16,38 +16,41 @@ subtitle: Start downloading private company data within minutes with the aVentur
 ## Get started
 
 <CardGroup cols={3}>
-  <Card title="aVenture API" icon="duotone plug">
+  <Card title="aVenture API" icon="duotone plug" href="/api-reference">
     Access private company data programmatically with the aVenture REST API
   </Card>
 
-  <Card title="aVenture CLI" icon="duotone terminal">
+  <Card title="aVenture CLI" icon="duotone terminal" href="https://github.com/aventurevc/aventure-cli">
     Download and manage private company data directly from your terminal
   </Card>
 
-  <Card title="aVenture MCP" icon="duotone robot">
+  <Card title="aVenture MCP" icon="duotone robot" href="https://github.com/aventurevc/aventure-mcp">
     Integrate private company data into AI workflows with the aVenture MCP server
   </Card>
 </CardGroup>
 
+Install [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli)
+or [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server).
+
 ## What you can query
 
 <CardGroup cols={3}>
-  <Card title="Entities" icon="duotone building">
+  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entities">
     Companies, investors, and accelerators, filterable by industry, stage, location, funding, and accelerator cohort
   </Card>
-  <Card title="People" icon="duotone user">
+  <Card title="People" icon="duotone user" href="/api-reference/people/list-people">
     Founders and investors, their roles at entities, and their investment activity
   </Card>
-  <Card title="Fundraising" icon="duotone chart-line-up">
+  <Card title="Fundraising" icon="duotone chart-line-up" href="/api-reference/entity-fundraise/entity-fundraises">
     Rounds, amounts raised, valuations, and investor participation
   </Card>
-  <Card title="News" icon="duotone newspaper">
+  <Card title="News" icon="duotone newspaper" href="/api-reference/news/list-news">
     Articles linked to the entities and people they mention
   </Card>
-  <Card title="Search" icon="duotone magnifying-glass">
+  <Card title="Search" icon="duotone magnifying-glass" href="/api-reference/search/all">
     Keyword, semantic, and cross-domain search over entities, people, and news
   </Card>
-  <Card title="Classifications" icon="duotone tags">
+  <Card title="Classifications" icon="duotone tags" href="/api-reference/classification-tags/get-catalog">
     The canonical industry, product, model, and ownership taxonomies behind the filters
   </Card>
 </CardGroup>

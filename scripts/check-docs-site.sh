@@ -1,19 +1,22 @@
 #!/usr/bin/env bash
 # Verify a published Fern site against the checked-in OpenAPI input.
 #   scripts/check-docs-site.sh <site-base-url>
-# 1. Every operation in openapi/openapi.json has exactly one
-#    reference page in <site>/llms.txt, and each page's Markdown declares the
+# 1. The custom root <site>/llms.txt is byte-identical to fern/docs/llms.txt.
+# 2. Every operation in openapi/openapi.json has exactly one reference page in
+#    <site>/api-reference/llms.txt, and each page's Markdown declares the
 #    expected METHOD and path (a missing page returns a 200 "similar pages"
 #    stub, so status codes prove nothing).
-# 2. The immutable OpenAPI artifact linked from the API overview page is
+# 3. The immutable OpenAPI artifact linked from the API overview page is
 #    byte-identical to the checked-in input.
-# 3. The Fern-managed <site>/openapi.json still lists every operation.
-# Requires curl, jq, shasum. Exit 1 on any discrepancy.
+# 4. The Fern-managed <site>/openapi.json still lists every operation.
+# Requires cmp, curl, jq, shasum. Exit 1 on any discrepancy.
 set -euo pipefail
 
 BASE="${1:?usage: $0 <site-base-url>}"
 BASE="${BASE%/}"
-SPEC="$(cd "$(dirname "$0")/.." && pwd)/openapi/openapi.json"
+ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SPEC="$ROOT/openapi/openapi.json"
+ROOT_LLMS="$ROOT/fern/docs/llms.txt"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 CURL=(curl -fsSL --retry 3 --retry-delay 2 --retry-all-errors --max-time 30)
@@ -24,9 +27,19 @@ ops_of() { # spec file -> sorted "METHOD /path" lines
          | ascii_upcase + " " + $p' "$1" | sort
 }
 ops_of "$SPEC" > "$TMP/expected"
+fail=0
 
-# --- 1. llms.txt operation pages -------------------------------------------
-"${CURL[@]}" "$BASE/llms.txt" > "$TMP/llms.txt"
+# --- 1. custom root llms.txt -----------------------------------------------
+"${CURL[@]}" "$BASE/llms.txt" > "$TMP/root-llms.txt"
+if cmp -s "$ROOT_LLMS" "$TMP/root-llms.txt"; then
+  echo custom_root_llms_identical=true
+else
+  echo custom_root_llms_identical=false
+  fail=1
+fi
+
+# --- 2. generated API llms.txt operation pages -----------------------------
+"${CURL[@]}" "$BASE/api-reference/llms.txt" > "$TMP/llms.txt"
 # Operation lines look like: "- <API> > <Section> [Title](https://host/.../slug.md)"
 grep -oE '^- [^[]+ > [^[]+\[[^]]*\]\([^)]+\.md\)' "$TMP/llms.txt" \
   | sed -E 's/.*\(([^)]+)\)$/\1/' > "$TMP/pages" || true
@@ -46,7 +59,6 @@ comm -23 "$TMP/expected" <(sort -u "$TMP/found_ops") > "$TMP/missing"
 comm -13 "$TMP/expected" <(sort -u "$TMP/found_ops") > "$TMP/extra"
 uniq -d "$TMP/found_ops" > "$TMP/dup"
 
-fail=0
 report() { # label file
   local n; n=$(wc -l < "$2" | tr -d ' ')
   printf '%s=%s\n' "$1" "$n"
@@ -58,7 +70,7 @@ report extra_pages "$TMP/extra"
 report duplicate_pages "$TMP/dup"
 report unparsed_pages "$TMP/unparsed"
 
-# --- 2. immutable artifact linked from the API overview page ---------------
+# --- 3. immutable artifact linked from the API overview page ---------------
 # Publication pins the Download to the immutable public API commit.
 artifact_url="$("${CURL[@]}" "$BASE/api-reference" | grep -oE 'https://raw\.githubusercontent\.com/aventurevc/aventure-docs/[0-9a-f]{40}/openapi/openapi\.json' | head -n1 || true)"
 if [ -z "$artifact_url" ]; then
@@ -71,7 +83,7 @@ else
   if [ "$want" = "$got" ]; then echo artifact_identical=true; else echo artifact_identical=false; fail=1; fi
 fi
 
-# --- 3. Fern-managed spec still carries every operation --------------------
+# --- 4. Fern-managed spec still carries every operation --------------------
 "${CURL[@]}" "$BASE/openapi.json" > "$TMP/managed.json"
 ops_of "$TMP/managed.json" > "$TMP/managed_ops"
 printf 'managed_version=%s\nmanaged_operations=%s\n' "$(jq -r .info.version "$TMP/managed.json")" "$(wc -l < "$TMP/managed_ops" | tr -d ' ')"

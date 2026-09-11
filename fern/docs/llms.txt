@@ -1,0 +1,23 @@
+# aVenture documentation
+
+> aVenture provides private company data through a REST API, CLI, and MCP server.
+
+## Get started
+
+- [Quickstart](https://docs.aventure.vc/quickstart): Make your first API requests with a client secret.
+- [Authentication](https://docs.aventure.vc/authentication): Choose the credential accepted by an operation.
+- [Pagination and filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
+- [Errors](https://docs.aventure.vc/errors): Interpret problem detail responses and rate limits.
+- [API reference](https://docs.aventure.vc/api-reference): Read generated endpoint, parameter, and schema documentation.
+- [Generated API operation index](https://docs.aventure.vc/api-reference/llms.txt): Discover Fern's generated API operation pages.
+
+## MCP
+
+- [aVenture data MCP](https://mcp.aventure.vc/mcp): Connect with an MCP client over Streamable HTTP. The endpoint uses OAuth protected-resource discovery; an ordinary GET request is not supported.
+- [Documentation-search MCP](https://docs.aventure.vc/_mcp/server): Optionally search this documentation through Fern's MCP server. It is separate from the aVenture data MCP.
+
+## Packages and source
+
+- [aVenture CLI source](https://github.com/aventurevc/aventure-cli) and [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli) on npm.
+- [aVenture MCP source](https://github.com/aventurevc/aventure-mcp) and [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm.
+- [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas) provides TypeScript schemas and types.

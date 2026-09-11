@@ -117,6 +117,8 @@ typography:
   bodyFont:
     name: Inter
 ai-search: {}
+agents:
+  llms-txt: ./docs/llms.txt
 
 redirects:
   # Stable address for the byte-exact released specification. The <Download> on
