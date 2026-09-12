@@ -16,6 +16,8 @@ export const EntitySearchParamSchema = PageParamSchema.extend({
     countOnly: z.boolean().optional(),
     /** Opaque sort-aware entity cursor; reuse the same filters and sort. Unsupported with semanticQuery or countOnly. */
     cursor: z.string().optional(),
+    /** Privileged read flag. Must be true to return the /v1/entities/detail payload. */
+    includeFullDetail: z.boolean().optional(),
     /** Privileged admin readback scope. Includes hidden or off-sitemap entities. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public. */
     includePrivate: z.boolean().optional(),
     /** Allow generated monogram logos in results. */

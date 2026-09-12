@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.281"
+    "version": "0.7.283"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -35,6 +35,10 @@
     {
       "description": "Companies, funds, investors, accelerators, and other organizations",
       "name": "Entities"
+    },
+    {
+      "description": "External identifier mappings (EIN, SEC CIK, ticker, LEI, DUNS, ...) for entities and people, plus reverse lookup from an identifier to its owner.",
+      "name": "Identifiers"
     },
     {
       "description": "Canonical acquisition event CRUD. The path entity is acquired; acquirerEntityId is the buyer.",
@@ -83,10 +87,6 @@
     {
       "description": "Grounded natural-language platform help with citations",
       "name": "Agent Help"
-    },
-    {
-      "description": "External identifier mappings (EIN, SEC CIK, ticker, LEI, DUNS, ...) for entities and people, plus reverse lookup from an identifier to its owner.",
-      "name": "Unique IDs"
     },
     {
       "description": "Browser-approved CLI credential delivery",
@@ -5470,7 +5470,8 @@
           "Entities"
         ],
         "x-aventure-tool": {
-          "cli": "entities identifiers lookup"
+          "auth": "read",
+          "cli": "entities identifiers resolve"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -7870,6 +7871,14 @@
                 "type": "string"
               }
             }
+          },
+          {
+            "description": "Privileged read flag. Must be true to return the /v1/entities/detail payload.",
+            "in": "query",
+            "name": "includeFullDetail",
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "requestBody": {
@@ -7886,7 +7895,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageEntityList"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/PageEntityList"
+                    },
+                    {
+                      "$ref": "#/components/schemas/PageEntityDetail"
+                    }
+                  ]
                 }
               }
             },
@@ -15037,10 +15053,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List an entity's unique ids",
+        "summary": "List entity identifiers",
         "tags": [
-          "Unique IDs"
+          "Identifiers"
         ],
+        "x-aventure-tool": {
+          "cli": "entities identifiers list"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -15178,10 +15197,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get an entity unique id",
+        "summary": "Get an entity identifier",
         "tags": [
-          "Unique IDs"
+          "Identifiers"
         ],
+        "x-aventure-tool": {
+          "cli": "entities identifiers get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -23340,10 +23362,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List a person's unique ids",
+        "summary": "List person identifiers",
         "tags": [
-          "Unique IDs"
+          "Identifiers"
         ],
+        "x-aventure-tool": {
+          "cli": "people identifiers list"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -23481,10 +23506,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get a person unique id",
+        "summary": "Get a person identifier",
         "tags": [
-          "Unique IDs"
+          "Identifiers"
         ],
+        "x-aventure-tool": {
+          "cli": "people identifiers get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26682,10 +26710,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Resolve an identifier to its owner(s)",
+        "summary": "Look up an identifier owner",
         "tags": [
-          "Unique IDs"
+          "Identifiers"
         ],
+        "x-aventure-tool": {
+          "cli": "entities identifiers lookup",
+          "cliAlias": "people identifiers lookup"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26760,10 +26792,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List unique-id types",
+        "summary": "List identifier types",
         "tags": [
-          "Unique IDs"
+          "Identifiers"
         ],
+        "x-aventure-tool": {
+          "cli": "entities identifiers types get",
+          "cliAlias": "people identifiers types get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -38238,6 +38274,7 @@
               "CREATED_AT",
               "TOTAL_RAISED",
               "AMOUNT_INVESTED",
+              "RECENT_INVESTMENT_AT",
               "STAGE",
               "MOST_RECENT_AMOUNT",
               "LATEST_VALUATION",

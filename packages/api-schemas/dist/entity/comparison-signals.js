@@ -16,6 +16,7 @@ import { FundingStageSchema } from "../funding/stage.js";
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/search
  * @usedBySchema EntityRelationshipSchema
  * @contractShape entity.comparison-signals
  * @contractRole canonical

@@ -13,6 +13,7 @@ const SortOrderEntityFilterSortableSchemaDefinition = z.object({
         "CREATED_AT",
         "TOTAL_RAISED",
         "AMOUNT_INVESTED",
+        "RECENT_INVESTMENT_AT",
         "STAGE",
         "MOST_RECENT_AMOUNT",
         "LATEST_VALUATION",

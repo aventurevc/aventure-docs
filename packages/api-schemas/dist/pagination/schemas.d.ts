@@ -2571,6 +2571,7 @@ type PageEntityDetailDefinition = z.infer<typeof PageEntityDetailSchemaDefinitio
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

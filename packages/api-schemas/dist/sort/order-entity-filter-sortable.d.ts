@@ -13,6 +13,7 @@ declare const SortOrderEntityFilterSortableSchemaDefinition: z.ZodObject<{
         MOST_RECENT_AMOUNT: "MOST_RECENT_AMOUNT";
         MOST_RECENT_DATE: "MOST_RECENT_DATE";
         NAME_BRAND: "NAME_BRAND";
+        RECENT_INVESTMENT_AT: "RECENT_INVESTMENT_AT";
         STAGE: "STAGE";
         STATUS_OPERATING: "STATUS_OPERATING";
         TOTAL_RAISED: "TOTAL_RAISED";

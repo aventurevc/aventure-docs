@@ -29,6 +29,7 @@ const EntityNameAliasPersonAliasTypeSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch

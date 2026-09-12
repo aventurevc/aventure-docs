@@ -153,6 +153,7 @@ type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
  * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/search
  * @usedBySchema EntityDetailSchema
  * @contractShape entity.research
  * @contractRole canonical

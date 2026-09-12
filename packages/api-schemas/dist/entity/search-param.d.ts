@@ -15,6 +15,7 @@ export declare const EntitySearchParamSchema: z.ZodObject<{
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     countOnly: z.ZodOptional<z.ZodBoolean>;
     cursor: z.ZodOptional<z.ZodString>;
+    includeFullDetail: z.ZodOptional<z.ZodBoolean>;
     includePrivate: z.ZodOptional<z.ZodBoolean>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
