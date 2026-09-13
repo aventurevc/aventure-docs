@@ -53,6 +53,7 @@ export declare const ProblemTypeSchema: z.ZodEnum<{
     readonly INTEGRITY_VIOLATION: "https://api.aventure.vc/errors/integrity-violation";
     readonly CIRCUIT_BREAKER_OPEN: "https://api.aventure.vc/errors/circuit-breaker-open";
     readonly BULKHEAD_FULL: "https://api.aventure.vc/errors/bulkhead-full";
+    readonly WRITE_LANE_BUSY: "https://api.aventure.vc/errors/write-lane-busy";
     readonly DATABASE_UNAVAILABLE: "https://api.aventure.vc/errors/database-unavailable";
     readonly DATABASE_ERROR: "https://api.aventure.vc/errors/database-error";
     readonly FILE_TOO_LARGE: "https://api.aventure.vc/errors/file-too-large";

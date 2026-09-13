@@ -12,7 +12,7 @@ export const PERSON_BATCH_ENDPOINT = "/v1/people/batch";
  * @contractRole canonical
  */
 export const PersonBatchParamSchema = PageParamSchema.extend({
-    /** Cursor for pagination (format: timestamp::uuid) */
+    /** Cursor for pagination (format: timestamp::uuid). Omit when search is present; use page pagination for relevance-ranked results. */
     cursor: z.string().optional(),
     /** Prioritize people with images before the default sort */
     hasImageFirst: z.boolean().optional(),

@@ -54,6 +54,7 @@ export const ProblemTypeSchema = z.enum({
     INTEGRITY_VIOLATION: "https://api.aventure.vc/errors/integrity-violation",
     CIRCUIT_BREAKER_OPEN: "https://api.aventure.vc/errors/circuit-breaker-open",
     BULKHEAD_FULL: "https://api.aventure.vc/errors/bulkhead-full",
+    WRITE_LANE_BUSY: "https://api.aventure.vc/errors/write-lane-busy",
     DATABASE_UNAVAILABLE: "https://api.aventure.vc/errors/database-unavailable",
     DATABASE_ERROR: "https://api.aventure.vc/errors/database-error",
     FILE_TOO_LARGE: "https://api.aventure.vc/errors/file-too-large",
