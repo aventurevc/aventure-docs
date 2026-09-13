@@ -81,6 +81,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     } | undefined;
                     mainProduct?: string[] | undefined;
                     operatingStatus?: string[] | undefined;
+                    person?: string[] | undefined;
                     portfolioHeadquartersCity?: string[] | undefined;
                     portfolioHeadquartersCountry?: string[] | undefined;
                     portfolioHeadquartersState?: string[] | undefined;
@@ -843,6 +844,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     } | undefined;
                     mainProduct?: string[] | undefined;
                     operatingStatus?: string[] | undefined;
+                    person?: string[] | undefined;
                     portfolioHeadquartersCity?: string[] | undefined;
                     portfolioHeadquartersCountry?: string[] | undefined;
                     portfolioHeadquartersState?: string[] | undefined;

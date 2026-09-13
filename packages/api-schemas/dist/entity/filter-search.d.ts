@@ -111,6 +111,7 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>;
         mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        person: z.ZodOptional<z.ZodArray<z.ZodString>>;
         portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
         portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
         portfolioHeadquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;

@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.288"
+    "version": "0.7.291"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -103,6 +103,10 @@
     {
       "description": "Advisory, non-exhaustive per-slot semantic suggestions with completion coverage.",
       "name": "Entity Suggestions"
+    },
+    {
+      "description": "Harness enrichment run control plane",
+      "name": "Harness Runs"
     },
     {
       "description": "Entity filter discovery: tag counts, type counts, refinement metadata, and option set search used to drive entity-listing UIs.",
@@ -3415,6 +3419,20 @@
               "items": {
                 "type": "string",
                 "description": "Exact normalized match against entity brand or legal names."
+              }
+            }
+          },
+          {
+            "description": "Associated person, matched by name.",
+            "in": "query",
+            "name": "person",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Associated person, matched by name.",
+              "items": {
+                "type": "string",
+                "description": "Associated person, matched by name."
               }
             }
           },
@@ -8426,6 +8444,20 @@
             }
           },
           {
+            "description": "Associated person, matched by name.",
+            "in": "query",
+            "name": "person",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Associated person, matched by name.",
+              "items": {
+                "type": "string",
+                "description": "Associated person, matched by name."
+              }
+            }
+          },
+          {
             "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type.",
             "in": "query",
             "name": "typeRecord",
@@ -11324,6 +11356,190 @@
         ],
         "x-aventure-tool": {
           "cli": "entities content search"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/{entityId}/enrichments": {
+      "post": {
+        "description": "Queues an enrichment run for the addressed entity, owned by the authenticated principal. The run targets that entity's canonical aVenture profile, so it is billed as an update of a known record and reuses the entity's already-active run.",
+        "operationId": "enrichEntity",
+        "parameters": [
+          {
+            "description": "Canonical entity UUID.",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Enrichment breadth; omitted requests the comprehensive default.",
+            "in": "query",
+            "name": "mode",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EnrichmentMode"
+            }
+          },
+          {
+            "description": "Orchestrator model override; omitted uses the configured role default.",
+            "in": "query",
+            "name": "model",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional steering prompt.",
+            "in": "query",
+            "name": "userPrompt",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Task preset keys that scope or emphasize this run.",
+            "in": "query",
+            "name": "taskPresetKey",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HarnessRun"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Enrich one entity",
+        "tags": [
+          "Harness Runs"
+        ],
+        "x-aventure-tool": {
+          "cli": "entities enrich"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -23031,6 +23247,190 @@
         }
       }
     },
+    "/v1/people/{personId}/enrichments": {
+      "post": {
+        "description": "Queues an enrichment run for the addressed person, owned by the authenticated principal. The run targets that person's canonical aVenture profile, so it is billed as an update of a known record and reuses the person's already-active run.",
+        "operationId": "enrichPerson",
+        "parameters": [
+          {
+            "description": "Canonical person UUID.",
+            "in": "path",
+            "name": "personId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Enrichment breadth; omitted requests the comprehensive default.",
+            "in": "query",
+            "name": "mode",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EnrichmentMode"
+            }
+          },
+          {
+            "description": "Orchestrator model override; omitted uses the configured role default.",
+            "in": "query",
+            "name": "model",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional steering prompt.",
+            "in": "query",
+            "name": "userPrompt",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Task preset keys that scope or emphasize this run.",
+            "in": "query",
+            "name": "taskPresetKey",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HarnessRun"
+                }
+              }
+            },
+            "description": "OK"
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request"
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable"
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content"
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Enrich one person",
+        "tags": [
+          "Harness Runs"
+        ],
+        "x-aventure-tool": {
+          "cli": "people enrich"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/people/{personId}/entities": {
       "get": {
         "description": "Returns entity associations for one person.",
@@ -30041,6 +30441,13 @@
               "type": "string"
             }
           },
+          "person": {
+            "type": "array",
+            "description": "Associated person, matched by name.",
+            "items": {
+              "type": "string"
+            }
+          },
           "portfolioHeadquartersCity": {
             "type": "array",
             "description": "Portfolio-company headquarters city values.",
@@ -31293,6 +31700,13 @@
               "type": "string"
             }
           },
+          "person": {
+            "type": "array",
+            "description": "Associated person, matched by name.",
+            "items": {
+              "type": "string"
+            }
+          },
           "portfolioHeadquartersCity": {
             "type": "array",
             "description": "Portfolio-company headquarters city values.",
@@ -32298,6 +32712,181 @@
           "rank",
           "score",
           "writable"
+        ]
+      },
+      "EnrichmentMode": {
+        "type": "string",
+        "description": "Whether the run performs comprehensive enrichment or only selected tasks",
+        "enum": [
+          "COMPREHENSIVE",
+          "INDIVIDUAL"
+        ]
+      },
+      "HarnessRun": {
+        "type": "object",
+        "description": "One harness enrichment run",
+        "properties": {
+          "attempt": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Retry attempt counter"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creation timestamp"
+          },
+          "entitySlug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical slug of the entity the run produced"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/HarnessRunEnvironment",
+            "description": "API environment"
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Terminal failure reason, when failed"
+          },
+          "failureClass": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Typed terminal-failure class from the harness retry classifier (e.g. runtime_cap, escalated, provider_capacity, context_overflow); null unless failed"
+          },
+          "finishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Run completion timestamp"
+          },
+          "hasSourceDocument": {
+            "type": "boolean",
+            "description": "Whether this run consumes an immutable private source document"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Run id"
+          },
+          "iteration": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Current loop iteration"
+          },
+          "latestStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Latest enrich-loop status as an opaque JSON string"
+          },
+          "maxIteration": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Loop iteration cap"
+          },
+          "maxScoutConcurrent": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Parallel read-only scout fan-out width N"
+          },
+          "mode": {
+            "$ref": "#/components/schemas/EnrichmentMode",
+            "description": "Enrichment breadth selected for this run"
+          },
+          "model": {
+            "type": "string",
+            "description": "Orchestrator model id"
+          },
+          "nextAttemptAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Earliest re-claim time when waiting on retry backoff"
+          },
+          "resumeSafeUntil": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Instant past which a warm resume is no longer guaranteed; the harness writes it with session_resume from the model's cache window. Warm-resumable now iff failed/stopped and this is in the future. Null when there is no resume window."
+          },
+          "startedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Run start timestamp"
+          },
+          "status": {
+            "$ref": "#/components/schemas/HarnessRunStatus",
+            "description": "Current lifecycle state"
+          },
+          "subagentModel": {
+            "type": "string",
+            "description": "Read-only research, cohort, and completion sub-agent model id"
+          },
+          "taskPresetKey": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Selected task preset keys filed with the run",
+            "items": {
+              "type": "string"
+            }
+          },
+          "type": {
+            "$ref": "#/components/schemas/HarnessRunType",
+            "description": "Run kind derived from task-key presence: ENRICHMENT for a client-submitted comprehensive or preset-scoped run, TASK for a platform-scheduled micro-task execution"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+          },
+          "url": {
+            "type": "string",
+            "description": "Company URL under enrichment"
+          },
+          "userPrompt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional steering prompt filed with the run"
+          }
+        },
+        "required": [
+          "attempt",
+          "createdAt",
+          "environment",
+          "hasSourceDocument",
+          "id",
+          "iteration",
+          "maxIteration",
+          "maxScoutConcurrent",
+          "mode",
+          "model",
+          "status",
+          "subagentModel",
+          "type",
+          "updatedAt",
+          "url"
         ]
       },
       "PageEntityFundraiseTransaction": {
@@ -38825,6 +39414,35 @@
           "Medium",
           "Low",
           "Verified"
+        ]
+      },
+      "HarnessRunEnvironment": {
+        "type": "string",
+        "description": "Owning API environment",
+        "enum": [
+          "unassigned",
+          "development",
+          "staging",
+          "production"
+        ]
+      },
+      "HarnessRunStatus": {
+        "type": "string",
+        "description": "Harness run lifecycle state",
+        "enum": [
+          "queued",
+          "running",
+          "completed",
+          "failed",
+          "stopped"
+        ]
+      },
+      "HarnessRunType": {
+        "type": "string",
+        "description": "Harness run kind: full enrichment loop or bounded micro-task",
+        "enum": [
+          "ENRICHMENT",
+          "TASK"
         ]
       },
       "EntityTag": {

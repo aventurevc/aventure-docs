@@ -48,6 +48,8 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     mainProduct: z.array(z.string()).optional(),
     /** Operating status values. */
     operatingStatus: z.array(z.string()).optional(),
+    /** Associated person, matched by name. */
+    person: z.array(z.string()).optional(),
     /** Portfolio-company headquarters city values. */
     portfolioHeadquartersCity: z.array(z.string()).optional(),
     /** Portfolio-company headquarters country values. */

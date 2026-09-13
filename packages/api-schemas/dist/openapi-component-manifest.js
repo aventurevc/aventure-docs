@@ -195,6 +195,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "DuplicateCreateReviewSchema",
     },
     EmployeeCount: { modulePath: "employee/count", schemaName: "EmployeeCountSchema" },
+    EnrichmentMode: { modulePath: "enrichment/mode", schemaName: "EnrichmentModeSchema" },
     Entity: { modulePath: "entity/entity", schemaName: "EntitySchema" },
     EntityAcceleratorParticipation: {
         modulePath: "entity/accelerator-participation",
@@ -479,6 +480,13 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "FundraiseTransactionStatusSchema",
     },
     GithubRepo: { modulePath: "github/repo", schemaName: "GithubRepoSchema" },
+    HarnessRun: { modulePath: "harness/run", schemaName: "HarnessRunSchema" },
+    HarnessRunEnvironment: {
+        modulePath: "harness/run-environment",
+        schemaName: "HarnessRunEnvironmentSchema",
+    },
+    HarnessRunStatus: { modulePath: "harness/run-status", schemaName: "HarnessRunStatusSchema" },
+    HarnessRunType: { modulePath: "harness/run-type", schemaName: "HarnessRunTypeSchema" },
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
     HelpScope: { modulePath: "help/scope", schemaName: "HelpScopeSchema" },
     HelpSourceType: { modulePath: "help/source-type", schemaName: "HelpSourceTypeSchema" },
