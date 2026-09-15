@@ -15,6 +15,10 @@ declare const HarnessRunSchemaDefinition: z.ZodObject<{
     hasSourceDocument: z.ZodBoolean;
     id: z.ZodUUID;
     iteration: z.ZodInt;
+    lane: z.ZodEnum<{
+        background: "background";
+        interactive: "interactive";
+    }>;
     latestStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     maxIteration: z.ZodInt;
     maxScoutConcurrent: z.ZodInt;

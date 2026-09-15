@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity natural-search supports every mode; person natural-search rejects `exact`; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`.
+ * Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`.
  *
  * @openapiSchema SearchMode
  * @endpoint GET /v1/search/link

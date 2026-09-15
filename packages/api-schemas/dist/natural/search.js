@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { SearchModeSchema } from "../search/mode.js";
 const NaturalSearchSchemaDefinition = z.object({
-    /** Search strategy to run. Accepted values narrow per surface: entity and person natural-search take every value (`exact` is entity-only); news and federated search accept only `auto` and `keyword`; content search accepts only `auto`. Defaults to `auto`, which keeps the server-chosen pipeline; any other value forces exactly that strategy. */
+    /** Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`. */
     mode: SearchModeSchema.default("auto").optional(),
     /** Optional chat model for planning; null uses the configured natural-search default. CLIENT_SECRET callers may only choose client-secret-eligible models; admin keys are unrestricted. */
     model: z.string().nullish(),

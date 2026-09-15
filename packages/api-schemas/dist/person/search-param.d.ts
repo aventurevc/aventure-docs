@@ -14,6 +14,7 @@ export declare const PersonSearchParamSchema: z.ZodObject<{
     size: z.ZodOptional<z.ZodInt>;
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     countOnly: z.ZodOptional<z.ZodBoolean>;
+    cursor: z.ZodOptional<z.ZodString>;
     hasImageFirst: z.ZodOptional<z.ZodBoolean>;
     includePrivate: z.ZodOptional<z.ZodBoolean>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;

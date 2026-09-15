@@ -1292,6 +1292,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 isCurrent?: boolean | null | undefined;
                 lastName?: string | null | undefined;
                 letter?: string | null | undefined;
+                personName?: string[] | undefined;
                 role?: string | null | undefined;
                 search?: string | null | undefined;
                 semanticQuery?: string | null | undefined;
@@ -1421,6 +1422,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 isCurrent?: boolean | null | undefined;
                 lastName?: string | null | undefined;
                 letter?: string | null | undefined;
+                personName?: string[] | undefined;
                 role?: string | null | undefined;
                 search?: string | null | undefined;
                 semanticQuery?: string | null | undefined;

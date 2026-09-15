@@ -37,6 +37,8 @@ export const PersonFilterSchema = z.object({
     lastName: z.string().nullish(),
     /** First-name initial. */
     letter: z.string().nullish(),
+    /** Exact normalized match against a person's full name or slug. */
+    personName: z.array(z.string()).optional(),
     /** Associated entity role or title. */
     role: z.string().nullish(),
     /** Search keyword or phrase. Single characters valid; stop words rejected. */

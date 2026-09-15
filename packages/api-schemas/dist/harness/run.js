@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
 import { HarnessRunEnvironmentSchema } from "./run-environment.js";
+import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
 import { HarnessRunTypeSchema } from "./run-type.js";
 const HarnessRunSchemaDefinition = z.object({
@@ -25,6 +26,8 @@ const HarnessRunSchemaDefinition = z.object({
     id: z.uuid(),
     /** Current loop iteration */
     iteration: z.int(),
+    /** Queue lane for admission priority */
+    lane: HarnessRunLaneSchema,
     /** Latest enrich-loop status as an opaque JSON string */
     latestStatus: z.string().nullish(),
     /** Loop iteration cap */

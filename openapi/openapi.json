@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.291"
+    "version": "0.7.295"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -1638,16 +1638,21 @@
           "bodyOption": [
             "clientLabel"
           ],
-          "command": "auth personal-login",
+          "command": "auth login",
           "localOption": [
+            {
+              "optionKey": "key",
+              "flag": "--key",
+              "description": "Sign in with a browser-approved personal API key instead of OAuth; the approval URL opens on any device."
+            },
             {
               "optionKey": "browser",
               "flag": "--no-browser",
-              "description": "Print the approval URL without launching a browser."
+              "description": "Print the sign-in URL without opening a browser."
             }
           ],
           "role": "start",
-          "summary": "Approve a personal CLI key"
+          "summary": "Sign in with a browser-approved personal API key"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -1656,7 +1661,7 @@
     },
     "/v1/auth/cli-authorizations/{cliAuthorizationId}/acknowledge": {
       "post": {
-        "description": "Confirms the CLI stored the delivered personal key in its OS credential store and clears transient delivery material.",
+        "description": "Confirms the CLI stored the delivered personal key in its credential store and clears transient delivery material.",
         "operationId": "acknowledgeCliAuthorization",
         "parameters": [
           {
@@ -1776,7 +1781,7 @@
           "CLI Authorizations"
         ],
         "x-aventure-cli-composite": {
-          "command": "auth personal-login",
+          "command": "auth login",
           "role": "acknowledge"
         },
         "x-aventure-visibility": {
@@ -1906,7 +1911,7 @@
           "CLI Authorizations"
         ],
         "x-aventure-cli-composite": {
-          "command": "auth personal-login",
+          "command": "auth login",
           "role": "poll"
         },
         "x-aventure-visibility": {
@@ -2290,7 +2295,7 @@
           "Personal API Key"
         ],
         "x-aventure-cli-composite": {
-          "command": "auth personal-logout",
+          "command": "auth logout",
           "localOption": [
             {
               "optionKey": "forgetLocal",
@@ -2298,7 +2303,8 @@
               "description": "Remove local bytes even when remote revocation cannot be confirmed."
             }
           ],
-          "role": "revoke"
+          "role": "revoke",
+          "summary": "Sign out: revoke the personal key and forget stored OAuth"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -2496,19 +2502,16 @@
         ],
         "x-aventure-cli-composite": {
           "command": "auth login",
-          "description": "Sign in through your browser and save verified CLI access in the OS credential store.",
+          "description": "Sign in through your browser and save verified CLI access in the credential store.",
           "localOption": [
             {
               "optionKey": "browser",
               "flag": "--no-browser",
-              "description": "Print the authorization URL without opening a browser."
+              "description": "Print the sign-in URL without opening a browser."
             }
           ],
           "role": "oauth",
           "summary": "Sign in through your browser"
-        },
-        "x-aventure-tool": {
-          "auth": "none"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -4160,6 +4163,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque semantic-search continuation from X-Next-Cursor. Repeat the same filters, sort, and size.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -19422,6 +19434,20 @@
             }
           },
           {
+            "description": "Exact normalized match against a person's full name or slug.",
+            "in": "query",
+            "name": "personName",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Exact normalized match against a person's full name or slug.",
+              "items": {
+                "type": "string",
+                "description": "Exact normalized match against a person's full name or slug."
+              }
+            }
+          },
+          {
             "description": "Semantic person search phrase.",
             "in": "query",
             "name": "semanticQuery",
@@ -19599,6 +19625,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque semantic-search continuation from X-Next-Cursor. Repeat the same filters, sort, and size.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -21741,6 +21776,15 @@
             "required": false,
             "schema": {
               "type": "boolean"
+            }
+          },
+          {
+            "description": "Opaque semantic-search continuation from X-Next-Cursor. Repeat the same filters, sort, and size.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
           {
@@ -30085,7 +30129,7 @@
           "mode": {
             "$ref": "#/components/schemas/SearchMode",
             "default": "auto",
-            "description": "Search strategy to run. Accepted values narrow per surface: entity and person natural-search take every value (`exact` is entity-only); news and federated search accept only `auto` and `keyword`; content search accepts only `auto`. Defaults to `auto`, which keeps the server-chosen pipeline; any other value forces exactly that strategy."
+            "description": "Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`."
           },
           "model": {
             "type": [
@@ -32783,6 +32827,10 @@
             "format": "int32",
             "description": "Current loop iteration"
           },
+          "lane": {
+            "$ref": "#/components/schemas/HarnessRunLane",
+            "description": "Queue lane for admission priority"
+          },
           "latestStatus": {
             "type": [
               "string",
@@ -32878,6 +32926,7 @@
           "hasSourceDocument",
           "id",
           "iteration",
+          "lane",
           "maxIteration",
           "maxScoutConcurrent",
           "mode",
@@ -34685,7 +34734,7 @@
       },
       "SearchMode": {
         "type": "string",
-        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity natural-search supports every mode; person natural-search rejects `exact`; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`.",
+        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`.",
         "enum": [
           "auto",
           "exact",
@@ -35010,6 +35059,13 @@
             ],
             "description": "First-name initial.",
             "example": "A"
+          },
+          "personName": {
+            "type": "array",
+            "description": "Exact normalized match against a person's full name or slug.",
+            "items": {
+              "type": "string"
+            }
           },
           "role": {
             "type": [
@@ -39424,6 +39480,14 @@
           "development",
           "staging",
           "production"
+        ]
+      },
+      "HarnessRunLane": {
+        "type": "string",
+        "description": "Queue lane for admission priority: interactive client work vs background backlog",
+        "enum": [
+          "interactive",
+          "background"
         ]
       },
       "HarnessRunStatus": {

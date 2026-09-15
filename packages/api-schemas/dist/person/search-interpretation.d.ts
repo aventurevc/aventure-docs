@@ -97,6 +97,7 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         lastName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        personName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         role: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         search: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;

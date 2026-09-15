@@ -14,6 +14,8 @@ export const PERSON_SEARCH_ENDPOINT = "/v1/people/search";
 export const PersonSearchParamSchema = PageParamSchema.extend({
     /** When true, return only the page total in the body and skip the content payload. */
     countOnly: z.boolean().optional(),
+    /** Opaque semantic-search continuation from X-Next-Cursor. Repeat the same filters, sort, and size. */
+    cursor: z.string().optional(),
     /** When true, sort people who have a photo before those who do not. */
     hasImageFirst: z.boolean().optional(),
     /** Privileged read scope for admin callers. Bypasses the public visibility filter so hidden, unverified, and not-yet-published records are returned instead of being silently dropped. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public. */
