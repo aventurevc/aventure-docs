@@ -47,7 +47,6 @@ const StandardizedClassificationSchemaDefinition = z.intersection(Classification
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search

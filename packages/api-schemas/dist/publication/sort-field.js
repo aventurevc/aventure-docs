@@ -3,15 +3,15 @@ import { z } from "zod/v4";
 /**
  * Sortable fields for public content cards.
  *
- * @openapiSchema ContentSortField
+ * @openapiSchema PublicationSortField
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema SortOrderContentSortFieldSchema
- * @contractShape content.sort-field
+ * @usedBySchema SortOrderPublicationSortFieldSchema
+ * @contractShape publication.sort-field
  * @contractRole canonical
  */
-export const ContentSortFieldSchema = z.enum([
+export const PublicationSortFieldSchema = z.enum([
     "CONTENT_ID",
     "CONTENT_TYPE",
     "RELATION",

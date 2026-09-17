@@ -5,7 +5,6 @@ import { z } from "zod/v4";
  * @openapiSchema DatasourceSourceMetadata
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/media
  * @endpoint GET /v1/people
  * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/lookup
@@ -21,7 +20,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search

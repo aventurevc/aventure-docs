@@ -37,7 +37,7 @@ export const EntityLookupParamSchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .optional(),
-    /** Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list). */
+    /** Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types). */
     typeRecord: z.string().optional(),
     /** Entity URL matched by host and path unless urlMatchMode=domain. */
     url: z.string().optional(),
@@ -45,7 +45,7 @@ export const EntityLookupParamSchema = z.object({
     urlDomain: z.string().optional(),
     /** URL matching mode: hostPath (default for url) or domain. Omit when urlDomain is supplied; urlDomain selects domain mode automatically. */
     urlMatchMode: z.string().optional(),
-    /** URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls types list). */
+    /** URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls list --types). */
     urlType: z.string().optional(),
 });
 //# sourceMappingURL=lookup-param.js.map

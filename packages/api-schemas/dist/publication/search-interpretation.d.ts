@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-declare const ContentSearchInterpretationSchemaDefinition: z.ZodObject<{
+declare const PublicationSearchInterpretationSchemaDefinition: z.ZodObject<{
     confidence: z.ZodEnum<{
         HIGH: "HIGH";
         LOW: "LOW";
@@ -30,19 +30,19 @@ declare const ContentSearchInterpretationSchemaDefinition: z.ZodObject<{
     }, unknown>>;
     unsupported: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
-type ContentSearchInterpretationDefinition = z.infer<typeof ContentSearchInterpretationSchemaDefinition>;
+type PublicationSearchInterpretationDefinition = z.infer<typeof PublicationSearchInterpretationSchemaDefinition>;
 /**
  * Structured interpretation of a natural-language content search.
  *
- * @openapiSchema ContentSearchInterpretation
+ * @openapiSchema PublicationSearchInterpretation
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema ContentSearchResultSchema
- * @contractShape content.search-interpretation
+ * @usedBySchema PublicationSearchResultSchema
+ * @contractShape publication.search-interpretation
  * @contractRole canonical
  */
-export declare const ContentSearchInterpretationSchema: z.ZodType<ContentSearchInterpretationDefinition>;
-export type ContentSearchInterpretation = z.infer<typeof ContentSearchInterpretationSchema>;
+export declare const PublicationSearchInterpretationSchema: z.ZodType<PublicationSearchInterpretationDefinition>;
+export type PublicationSearchInterpretation = z.infer<typeof PublicationSearchInterpretationSchema>;
 export {};
 //# sourceMappingURL=search-interpretation.d.ts.map

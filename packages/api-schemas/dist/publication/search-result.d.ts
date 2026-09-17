@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-declare const ContentSearchResultSchemaDefinition: z.ZodObject<{
+declare const PublicationSearchResultSchemaDefinition: z.ZodObject<{
     interpretation: z.ZodType<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
         filter: {
@@ -77,18 +77,18 @@ declare const ContentSearchResultSchemaDefinition: z.ZodObject<{
         totalPages: number;
     }, unknown>>;
 }, z.core.$strip>;
-type ContentSearchResultDefinition = z.infer<typeof ContentSearchResultSchemaDefinition>;
+type PublicationSearchResultDefinition = z.infer<typeof PublicationSearchResultSchemaDefinition>;
 /**
  * Natural-language content search result: planner interpretation plus page.
  *
- * @openapiSchema ContentSearchResult
+ * @openapiSchema PublicationSearchResult
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @contractShape content.search-result
+ * @contractShape publication.search-result
  * @contractRole canonical
  */
-export declare const ContentSearchResultSchema: z.ZodType<ContentSearchResultDefinition>;
-export type ContentSearchResult = z.infer<typeof ContentSearchResultSchema>;
+export declare const PublicationSearchResultSchema: z.ZodType<PublicationSearchResultDefinition>;
+export type PublicationSearchResult = z.infer<typeof PublicationSearchResultSchema>;
 export {};
 //# sourceMappingURL=search-result.d.ts.map

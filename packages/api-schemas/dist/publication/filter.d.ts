@@ -1,5 +1,5 @@
 import { z } from "zod/v4";
-declare const ContentFilterSchemaDefinition: z.ZodObject<{
+declare const PublicationFilterSchemaDefinition: z.ZodObject<{
     contentType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         blogPost: "blogPost";
         externalSocialPost: "externalSocialPost";
@@ -17,19 +17,19 @@ declare const ContentFilterSchemaDefinition: z.ZodObject<{
     topic: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     year: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
-type ContentFilterDefinition = z.infer<typeof ContentFilterSchemaDefinition>;
+type PublicationFilterDefinition = z.infer<typeof PublicationFilterSchemaDefinition>;
 /**
  * Canonical filters for public content cards.
  *
- * @openapiSchema ContentFilter
+ * @openapiSchema PublicationFilter
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema ContentSearchInterpretationSchema
- * @contractShape content.filter
+ * @usedBySchema PublicationSearchInterpretationSchema
+ * @contractShape publication.filter
  * @contractRole canonical
  */
-export declare const ContentFilterSchema: z.ZodType<ContentFilterDefinition>;
-export type ContentFilter = z.infer<typeof ContentFilterSchema>;
+export declare const PublicationFilterSchema: z.ZodType<PublicationFilterDefinition>;
+export type PublicationFilter = z.infer<typeof PublicationFilterSchema>;
 export {};
 //# sourceMappingURL=filter.d.ts.map

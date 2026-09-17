@@ -118,25 +118,12 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "CompletionGateCoverageSchema",
     },
     Confidence: { modulePath: "confidence/confidence", schemaName: "ConfidenceSchema" },
-    Content: { modulePath: "content/content", schemaName: "ContentSchema" },
     ContentCompliance: { modulePath: "content/compliance", schemaName: "ContentComplianceSchema" },
     ContentEmbeddingMatch: {
         modulePath: "content/embedding-match",
         schemaName: "ContentEmbeddingMatchSchema",
     },
-    ContentFilter: { modulePath: "content/filter", schemaName: "ContentFilterSchema" },
-    ContentRelation: { modulePath: "content/relation", schemaName: "ContentRelationSchema" },
-    ContentSearchInterpretation: {
-        modulePath: "content/search-interpretation",
-        schemaName: "ContentSearchInterpretationSchema",
-    },
-    ContentSearchResult: {
-        modulePath: "content/search-result",
-        schemaName: "ContentSearchResultSchema",
-    },
-    ContentSortField: { modulePath: "content/sort-field", schemaName: "ContentSortFieldSchema" },
     ContentSourceType: { modulePath: "content/source-type", schemaName: "ContentSourceTypeSchema" },
-    ContentType: { modulePath: "content/type", schemaName: "ContentTypeSchema" },
     CurrentSlugOwner: {
         modulePath: "redirect/current-slug-owner",
         schemaName: "CurrentSlugOwnerSchema",
@@ -449,10 +436,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/valuation-time-series-point",
         schemaName: "EntityValuationTimeSeriesPointSchema",
     },
-    ExternalSocialPostPlatform: {
-        modulePath: "external/social-post-platform",
-        schemaName: "ExternalSocialPostPlatformSchema",
-    },
     FederatedSearch: { modulePath: "federated/search", schemaName: "FederatedSearchSchema" },
     FederatedSearchProvenance: {
         modulePath: "federated/search-provenance",
@@ -530,7 +513,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "LocationSlugResolutionSchema",
     },
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
-    MediaScreenshot: { modulePath: "media/screenshot", schemaName: "MediaScreenshotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
     NaturalSearch: { modulePath: "natural/search", schemaName: "NaturalSearchSchema" },
     NaturalSearchResult: {
@@ -567,7 +549,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PageClassificationSchema",
     },
-    PageContent: { modulePath: "pagination/schemas", schemaName: "PageContentSchema" },
     PageDatasourceFieldProvenance: {
         modulePath: "pagination/schemas",
         schemaName: "PageDatasourceFieldProvenanceSchema",
@@ -632,10 +613,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PageLocationDirectoryEntrySchema",
     },
-    PageMediaScreenshot: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageMediaScreenshotSchema",
-    },
     PageNews: { modulePath: "pagination/schemas", schemaName: "PageNewsSchema" },
     PagePerson: { modulePath: "pagination/schemas", schemaName: "PagePersonSchema" },
     PagePersonDetail: { modulePath: "pagination/schemas", schemaName: "PagePersonDetailSchema" },
@@ -651,7 +628,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PagePersonSimilarityResultSchema",
     },
-    PageResultContent: { modulePath: "pagination/schemas", schemaName: "PageResultContentSchema" },
+    PagePublication: { modulePath: "pagination/schemas", schemaName: "PagePublicationSchema" },
     PageResultEntityList: {
         modulePath: "pagination/schemas",
         schemaName: "PageResultEntityListSchema",
@@ -662,6 +639,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     PageResultNews: { modulePath: "pagination/schemas", schemaName: "PageResultNewsSchema" },
     PageResultPerson: { modulePath: "pagination/schemas", schemaName: "PageResultPersonSchema" },
+    PageResultPublication: {
+        modulePath: "pagination/schemas",
+        schemaName: "PageResultPublicationSchema",
+    },
     PageResultSitemapUrlSlot: {
         modulePath: "pagination/schemas",
         schemaName: "PageResultSitemapUrlSlotSchema",
@@ -737,6 +718,25 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ProblemDetail: { modulePath: "http/problem-detail", schemaName: "ProblemDetailSchema" },
     ProblemResolution: { modulePath: "problem/resolution", schemaName: "ProblemResolutionSchema" },
     ProblemType: { modulePath: "problem/type", schemaName: "ProblemTypeSchema" },
+    Publication: { modulePath: "publication/publication", schemaName: "PublicationSchema" },
+    PublicationFilter: { modulePath: "publication/filter", schemaName: "PublicationFilterSchema" },
+    PublicationRelation: {
+        modulePath: "publication/relation",
+        schemaName: "PublicationRelationSchema",
+    },
+    PublicationSearchInterpretation: {
+        modulePath: "publication/search-interpretation",
+        schemaName: "PublicationSearchInterpretationSchema",
+    },
+    PublicationSearchResult: {
+        modulePath: "publication/search-result",
+        schemaName: "PublicationSearchResultSchema",
+    },
+    PublicationSortField: {
+        modulePath: "publication/sort-field",
+        schemaName: "PublicationSortFieldSchema",
+    },
+    PublicationType: { modulePath: "publication/type", schemaName: "PublicationTypeSchema" },
     RedirectSlugPath: {
         modulePath: "redirect/redirect-slug-path",
         schemaName: "RedirectSlugPathSchema",
@@ -822,10 +822,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },
     SlugResource: { modulePath: "redirect/slug-resource", schemaName: "SlugResourceSchema" },
     SortObject: { modulePath: "sort/object", schemaName: "SortObjectSchema" },
-    SortOrderContentSortField: {
-        modulePath: "sort/order-content-sort-field",
-        schemaName: "SortOrderContentSortFieldSchema",
-    },
     SortOrderEntityFilterSortable: {
         modulePath: "sort/order-entity-filter-sortable",
         schemaName: "SortOrderEntityFilterSortableSchema",
@@ -834,9 +830,13 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "sort/order-person-sort-field",
         schemaName: "SortOrderPersonSortFieldSchema",
     },
-    SortSpecContentSortField: {
-        modulePath: "sort/spec-content-sort-field",
-        schemaName: "SortSpecContentSortFieldSchema",
+    SortOrderPublicationSortField: {
+        modulePath: "sort/order-publication-sort-field",
+        schemaName: "SortOrderPublicationSortFieldSchema",
+    },
+    SortSpecPublicationSortField: {
+        modulePath: "sort/spec-publication-sort-field",
+        schemaName: "SortSpecPublicationSortFieldSchema",
     },
     SourceDocumentList: {
         modulePath: "source/document-list",
@@ -880,14 +880,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     UrlDuplicateJoin: { modulePath: "url/duplicate-join", schemaName: "UrlDuplicateJoinSchema" },
     UrlMatchMode: { modulePath: "url/match-mode", schemaName: "UrlMatchModeSchema" },
     UrlSlugRedirect: { modulePath: "url/slug-redirect", schemaName: "UrlSlugRedirectSchema" },
-    UrlSurfaceMisclassificationCatalog: {
-        modulePath: "url/surface-misclassification-catalog",
-        schemaName: "UrlSurfaceMisclassificationCatalogSchema",
-    },
-    UrlSurfaceMisclassificationRoute: {
-        modulePath: "url/surface-misclassification-route",
-        schemaName: "UrlSurfaceMisclassificationRouteSchema",
-    },
     UrlTypeAlias: { modulePath: "url/type-alias", schemaName: "UrlTypeAliasSchema" },
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
     WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },

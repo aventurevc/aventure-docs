@@ -1811,7 +1811,6 @@ type EntityResolutionDefinition = z.infer<typeof EntityResolutionSchemaDefinitio
  * Resolution of one queried identifier (id, slug, or current joined URL) to its current entity. Echoes the raw input; matched rows carry the full detail, ambiguous rows carry the conflicting candidate ids, missing rows carry neither.
  *
  * @openapiSchema EntityResolution
- * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/matches
  * @contractShape entity.resolution
  * @contractRole canonical

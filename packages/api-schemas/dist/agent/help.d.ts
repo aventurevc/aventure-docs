@@ -4,12 +4,12 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
     citation: z.ZodArray<z.ZodType<{
         excerpt: string;
         sourceId: string;
-        sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "SKILL";
+        sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "RESEARCH_DETAIL_TYPE" | "SKILL";
         sourceVersion?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         excerpt: string;
         sourceId: string;
-        sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "SKILL";
+        sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "RESEARCH_DETAIL_TYPE" | "SKILL";
         sourceVersion?: string | null | undefined;
     }, unknown>>>;
     confidence: z.ZodEnum<{

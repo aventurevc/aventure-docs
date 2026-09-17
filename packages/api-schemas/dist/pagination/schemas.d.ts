@@ -195,76 +195,6 @@ type PageClassificationDefinition = z.infer<typeof PageClassificationSchemaDefin
  */
 export declare const PageClassificationSchema: z.ZodType<PageClassificationDefinition>;
 export type PageClassification = z.infer<typeof PageClassificationSchema>;
-declare const PageContentSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        canonicalUrl?: string | null | undefined;
-        contentId: string;
-        contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
-        createdAt?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        relation?: "about" | "by" | null | undefined;
-        sourceDomain?: string | null | undefined;
-        sourceName?: string | null | undefined;
-        summary?: string | null | undefined;
-        title: string;
-        topic?: string | null | undefined;
-        updatedAt?: string | null | undefined;
-        url?: string | null | undefined;
-        year?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        canonicalUrl?: string | null | undefined;
-        contentId: string;
-        contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
-        createdAt?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        relation?: "about" | "by" | null | undefined;
-        sourceDomain?: string | null | undefined;
-        sourceName?: string | null | undefined;
-        summary?: string | null | undefined;
-        title: string;
-        topic?: string | null | undefined;
-        updatedAt?: string | null | undefined;
-        url?: string | null | undefined;
-        year?: number | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageContentDefinition = z.infer<typeof PageContentSchemaDefinition>;
-/**
- * @openapiSchema PageContent
- * @endpoint GET /v1/content
- * @endpoint GET /v1/entities/{entityId}/content
- * @endpoint GET /v1/people/{personId}/content
- * @contractShape pagination.page-content
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageContentSchema: z.ZodType<PageContentDefinition>;
-export type PageContent = z.infer<typeof PageContentSchema>;
 declare const PageDatasourceFieldProvenanceSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         actor?: {
@@ -8063,78 +7993,6 @@ type PageLocationDirectoryEntryDefinition = z.infer<typeof PageLocationDirectory
  */
 export declare const PageLocationDirectoryEntrySchema: z.ZodType<PageLocationDirectoryEntryDefinition>;
 export type PageLocationDirectoryEntry = z.infer<typeof PageLocationDirectoryEntrySchema>;
-declare const PageMediaScreenshotSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        contentType: string;
-        crawledAt: string;
-        createdAt: string;
-        fileSize?: number | null | undefined;
-        id: number;
-        owner?: {
-            entityId?: string | null | undefined;
-            personId?: string | null | undefined;
-        } | null | undefined;
-        position: number;
-        s3Key: string;
-        updatedAt: string;
-        url: string;
-        urlId?: number | null | undefined;
-        viewportHeight?: number | null | undefined;
-        viewportWidth?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        contentType: string;
-        crawledAt: string;
-        createdAt: string;
-        fileSize?: number | null | undefined;
-        id: number;
-        owner?: {
-            entityId?: string | null | undefined;
-            personId?: string | null | undefined;
-        } | null | undefined;
-        position: number;
-        s3Key: string;
-        updatedAt: string;
-        url: string;
-        urlId?: number | null | undefined;
-        viewportHeight?: number | null | undefined;
-        viewportWidth?: number | null | undefined;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageMediaScreenshotDefinition = z.infer<typeof PageMediaScreenshotSchemaDefinition>;
-/**
- * @openapiSchema PageMediaScreenshot
- * @endpoint GET /v1/media/screenshots
- * @contractShape pagination.page-media-screenshot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageMediaScreenshotSchema: z.ZodType<PageMediaScreenshotDefinition>;
-export type PageMediaScreenshot = z.infer<typeof PageMediaScreenshotSchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
@@ -8197,7 +8055,6 @@ type PageNewsDefinition = z.infer<typeof PageNewsSchemaDefinition>;
 /**
  * @openapiSchema PageNews
  * @endpoint GET /v1/entities/detail/news
- * @endpoint GET /v1/entities/detail/trending-news
  * @endpoint GET /v1/news
  * @endpoint GET /v1/news/recent
  * @endpoint GET /v1/news/similar
@@ -10468,8 +10325,8 @@ type PagePersonSimilarityResultDefinition = z.infer<typeof PagePersonSimilarityR
  */
 export declare const PagePersonSimilarityResultSchema: z.ZodType<PagePersonSimilarityResultDefinition>;
 export type PagePersonSimilarityResult = z.infer<typeof PagePersonSimilarityResultSchema>;
-declare const PageResultContentSchemaDefinition: z.ZodObject<{
-    content: z.ZodArray<z.ZodType<{
+declare const PagePublicationSchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodType<{
         canonicalUrl?: string | null | undefined;
         contentId: string;
         contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
@@ -10499,24 +10356,45 @@ declare const PageResultContentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url?: string | null | undefined;
         year?: number | null | undefined;
-    }, unknown>>>;
-    number: z.ZodInt;
-    size: z.ZodInt;
-    totalElements: z.ZodNumber;
-    totalPages: z.ZodInt;
+    }, unknown>>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
-type PageResultContentDefinition = z.infer<typeof PageResultContentSchemaDefinition>;
+type PagePublicationDefinition = z.infer<typeof PagePublicationSchemaDefinition>;
 /**
- * @openapiSchema PageResultContent
- * @endpoint POST /v1/content/search
- * @endpoint POST /v1/entities/{entityId}/content/search
- * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema ContentSearchResultSchema
- * @contractShape pagination.page-result-content
+ * @openapiSchema PagePublication
+ * @endpoint GET /v1/content
+ * @endpoint GET /v1/entities/{entityId}/content
+ * @endpoint GET /v1/people/{personId}/content
+ * @contractShape pagination.page-publication
  * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
  */
-export declare const PageResultContentSchema: z.ZodType<PageResultContentDefinition>;
-export type PageResultContent = z.infer<typeof PageResultContentSchema>;
+export declare const PagePublicationSchema: z.ZodType<PagePublicationDefinition>;
+export type PagePublication = z.infer<typeof PagePublicationSchema>;
 declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
         core: {
@@ -11690,6 +11568,55 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  */
 export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinition>;
 export type PageResultPerson = z.infer<typeof PageResultPersonSchema>;
+declare const PageResultPublicationSchemaDefinition: z.ZodObject<{
+    content: z.ZodArray<z.ZodType<{
+        canonicalUrl?: string | null | undefined;
+        contentId: string;
+        contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
+        createdAt?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        relation?: "about" | "by" | null | undefined;
+        sourceDomain?: string | null | undefined;
+        sourceName?: string | null | undefined;
+        summary?: string | null | undefined;
+        title: string;
+        topic?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url?: string | null | undefined;
+        year?: number | null | undefined;
+    }, unknown, z.core.$ZodTypeInternals<{
+        canonicalUrl?: string | null | undefined;
+        contentId: string;
+        contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
+        createdAt?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        relation?: "about" | "by" | null | undefined;
+        sourceDomain?: string | null | undefined;
+        sourceName?: string | null | undefined;
+        summary?: string | null | undefined;
+        title: string;
+        topic?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url?: string | null | undefined;
+        year?: number | null | undefined;
+    }, unknown>>>;
+    number: z.ZodInt;
+    size: z.ZodInt;
+    totalElements: z.ZodNumber;
+    totalPages: z.ZodInt;
+}, z.core.$strip>;
+type PageResultPublicationDefinition = z.infer<typeof PageResultPublicationSchemaDefinition>;
+/**
+ * @openapiSchema PageResultPublication
+ * @endpoint POST /v1/content/search
+ * @endpoint POST /v1/entities/{entityId}/content/search
+ * @endpoint POST /v1/people/{personId}/content/search
+ * @usedBySchema PublicationSearchResultSchema
+ * @contractShape pagination.page-result-publication
+ * @contractRole canonical
+ */
+export declare const PageResultPublicationSchema: z.ZodType<PageResultPublicationDefinition>;
+export type PageResultPublication = z.infer<typeof PageResultPublicationSchema>;
 /**
  * @openapiSchema PageResultSitemapUrlSlot
  * @endpoint POST /v1/addresses/locations/batch

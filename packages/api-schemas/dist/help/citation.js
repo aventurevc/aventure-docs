@@ -4,7 +4,7 @@ import { HelpSourceTypeSchema } from "./source-type.js";
 const HelpCitationSchemaDefinition = z.object({
     /** Verbatim excerpt from the cited document supporting the answer. */
     excerpt: z.string(),
-    /** Stable id within the source type: an operationId, a skill/prompt name, or a completion gate id. */
+    /** Stable id within the source type: an operationId, a skill/prompt name, a completion gate id, or a research detail type targetPath. */
     sourceId: z.string(),
     /** Which part of the platform corpus this citation comes from. */
     sourceType: HelpSourceTypeSchema,

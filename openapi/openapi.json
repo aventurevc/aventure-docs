@@ -7,7 +7,7 @@
     },
     "description": "Public API docs for aVenture.vc, private company research data on their staff/team, products & services, fundraising and investors, and more.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.297"
+    "version": "0.7.301"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp), [aventure-api](https://github.com/aventurevc/aventure-api).",
@@ -25,16 +25,8 @@
       "name": "Auth"
     },
     {
-      "description": "Crawl screenshot metadata endpoints — S3 key is the binary asset source of truth",
-      "name": "Screenshots"
-    },
-    {
       "description": "Entity and person text endpoints.",
       "name": "Texts"
-    },
-    {
-      "description": "Companies, funds, investors, accelerators, and other organizations",
-      "name": "Entities"
     },
     {
       "description": "External identifier mappings (EIN, SEC CIK, ticker, LEI, DUNS, ...) for entities and people, plus reverse lookup from an identifier to its owner.",
@@ -57,16 +49,12 @@
       "name": "Search"
     },
     {
-      "description": "Founders, executives, and investors in the venture ecosystem",
-      "name": "People"
+      "description": "SEC EDGAR filings, tickers, and CIKs",
+      "name": "SEC"
     },
     {
       "description": "Person-entity association routes",
       "name": "Entity Person Associations"
-    },
-    {
-      "description": "SEC EDGAR filings, tickers, and CIKs for public companies",
-      "name": "SEC"
     },
     {
       "description": "Versioned agent prompt and skill documents",
@@ -81,12 +69,12 @@
       "name": "Entity Fundraise"
     },
     {
-      "description": "Venture news articles linked to companies and people",
-      "name": "News"
-    },
-    {
       "description": "Grounded natural-language platform help with citations",
       "name": "Agent Help"
+    },
+    {
+      "description": "Public publication cards: news, blog posts, social posts, repositories, websites, and papers",
+      "name": "Publication"
     },
     {
       "description": "Browser-approved CLI credential delivery",
@@ -107,6 +95,10 @@
     {
       "description": "Harness enrichment run control plane",
       "name": "Harness Runs"
+    },
+    {
+      "description": "Founders and investors, and what they back",
+      "name": "People"
     },
     {
       "description": "Entity filter discovery: tag counts, type counts, refinement metadata, and option set search used to drive entity-listing UIs.",
@@ -135,10 +127,6 @@
     {
       "description": "Nested classification CRUD for entities",
       "name": "Entity Classifications"
-    },
-    {
-      "description": "Public content cards: news, blog posts, social posts, repositories, websites, and papers",
-      "name": "Content"
     },
     {
       "description": "Entity employee-count sub-resource: time series for an entity.",
@@ -197,6 +185,10 @@
       "name": "Person News"
     },
     {
+      "description": "Companies and funds: people, funding, and news",
+      "name": "Entities"
+    },
+    {
       "description": "Where any stored field value came from: its source, method, and time",
       "name": "Data Provenance"
     },
@@ -223,6 +215,10 @@
     {
       "description": "Entity valuation time-series reads and writes.",
       "name": "Entity Financial Valuation"
+    },
+    {
+      "description": "News linked to the companies and people in it",
+      "name": "News"
     }
   ],
   "paths": {
@@ -1364,6 +1360,9 @@
         "tags": [
           "Agent Instructions"
         ],
+        "x-aventure-tool": {
+          "cli": "agents instructions get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -1519,6 +1518,11 @@
         "tags": [
           "Agent Instructions"
         ],
+        "x-aventure-tool": {
+          "cli": "agents instructions get",
+          "cliAlias": "agents instructions versions get",
+          "mode": "instructionVersion"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -2508,6 +2512,11 @@
               "optionKey": "browser",
               "flag": "--no-browser",
               "description": "Print the sign-in URL without opening a browser."
+            },
+            {
+              "optionKey": "providers",
+              "flag": "--providers",
+              "description": "Print the sign-in providers and CLI OAuth client, then exit without signing in."
             }
           ],
           "role": "oauth",
@@ -2671,12 +2680,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search classifications",
+        "summary": "List classifications",
         "tags": [
           "Classification Tags"
         ],
         "x-aventure-tool": {
-          "cli": "classifications search get"
+          "cli": "entities classifications list",
+          "cliAlias": "classifications search get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -2811,10 +2821,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Fetch the entity classification taxonomy",
+        "summary": "Get the company classification taxonomy",
         "tags": [
           "Classification Tags"
         ],
+        "x-aventure-tool": {
+          "cli": "entities classifications list",
+          "cliAlias": "classifications catalog get",
+          "mode": "buckets"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -2973,12 +2988,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search entity classification tags",
+        "summary": "Search company classification tags",
         "tags": [
           "Classification Tags"
         ],
         "x-aventure-tool": {
-          "cli": "classifications tags search"
+          "cli": "entities classifications list",
+          "cliAlias": "classifications tags search",
+          "mode": "tags"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -3006,7 +3023,7 @@
             "name": "contentType",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContentType"
+              "$ref": "#/components/schemas/PublicationType"
             }
           },
           {
@@ -3015,7 +3032,7 @@
             "name": "relation",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContentRelation"
+              "$ref": "#/components/schemas/PublicationRelation"
             }
           },
           {
@@ -3079,7 +3096,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageContent"
+                  "$ref": "#/components/schemas/PagePublication"
                 }
               }
             },
@@ -3179,7 +3196,7 @@
         ],
         "summary": "List content",
         "tags": [
-          "Content"
+          "Publication"
         ],
         "x-aventure-tool": {
           "cli": "content list"
@@ -3191,7 +3208,7 @@
     },
     "/v1/content/search": {
       "post": {
-        "description": "Translates plain-English content constraints into canonical filters. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Searches news, posts, repositories, sites, and papers published by or about companies and people from a plain-English query. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "searchContent",
         "parameters": [
           {
@@ -3244,7 +3261,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContentSearchResult"
+                  "$ref": "#/components/schemas/PublicationSearchResult"
                 }
               }
             },
@@ -3364,10 +3381,12 @@
         ],
         "summary": "Search content",
         "tags": [
-          "Content"
+          "Publication"
         ],
         "x-aventure-tool": {
-          "cli": "content search"
+          "cli": "search",
+          "cliAlias": "content search",
+          "mode": "publications"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -3376,7 +3395,7 @@
     },
     "/v1/entities": {
       "get": {
-        "description": "Browse paginated entity records or apply explicit query filters. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. Organization expands to the canonical organization type group. For a plain-English or multi-constraint company request, use the search entities command (POST /v1/entities/natural-search) instead. Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety; use duplicate-check before writes that need identity review.",
+        "description": "Browse paginated entity records or apply explicit query filters. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. Organization expands to the canonical organization type group. For a plain-English or multi-constraint company request, use the entities search command with --query (POST /v1/entities/natural-search). Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety; use duplicate-check before writes that need identity review.",
         "operationId": "listEntities",
         "parameters": [
           {
@@ -4281,7 +4300,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List or search companies and other entities (GET)",
+        "summary": "List companies, products, and services, or search them",
         "tags": [
           "Entities"
         ],
@@ -4504,12 +4523,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch entity list",
+        "summary": "Look up companies with a filter",
         "tags": [
           "Entities"
         ],
         "x-aventure-tool": {
-          "cli": "entities batch lookup"
+          "auth": "read",
+          "cli": "entities list",
+          "cliAlias": "entities batch lookup",
+          "mode": "ids"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -4595,12 +4617,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Count entities by type",
+        "summary": "Count records by type",
         "tags": [
           "Entity Filters"
         ],
         "x-aventure-tool": {
-          "cli": "entities counts get"
+          "cli": "entities list",
+          "cliAlias": "entities counts get",
+          "mode": "counts"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -4609,7 +4633,7 @@
     },
     "/v1/entities/detail": {
       "get": {
-        "description": "Returns one entity by exact id, slug, strict URL, or deterministic candidate signals. A sole exact normalized brand/legal-name or stored-URL match, or a guaranteed identity match without a competing review candidate, resolves directly. For keywords use POST /v1/entities/search with textSearch; for plain English use the search entities command (POST /v1/entities/natural-search). Default reads hide hidden or off-sitemap entities; privileged callers may set includePrivate=true for write readback. GET /v1/entities and POST /v1/entities/search list filtered records. Changed slugs redirect; error responses document every unresolved outcome.",
+        "description": "Returns one entity by exact id, slug, strict URL, or deterministic candidate signals. A sole exact normalized brand/legal-name or stored-URL match, or a guaranteed identity match without a competing review candidate, resolves directly. For keywords use POST /v1/entities/search with textSearch; for plain English use the entities search command with --query (POST /v1/entities/natural-search). Default reads hide hidden or off-sitemap entities; privileged callers may set includePrivate=true for write readback. GET /v1/entities and POST /v1/entities/search list filtered records. Changed slugs redirect; error responses document every unresolved outcome.",
         "operationId": "getEntityDetail",
         "parameters": [
           {
@@ -4672,14 +4696,14 @@
             }
           },
           {
-            "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls types list).",
+            "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls list --types).",
             "example": "website",
             "in": "query",
             "name": "urlType",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls types list).",
+              "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls list --types).",
               "example": "website"
             }
           },
@@ -4696,14 +4720,14 @@
             }
           },
           {
-            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types).",
             "example": "Company",
             "in": "query",
             "name": "typeRecord",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types).",
               "example": "Company"
             }
           },
@@ -4857,7 +4881,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get company or entity detail",
+        "summary": "Get one company, product, or service",
         "tags": [
           "Entities"
         ],
@@ -4871,7 +4895,7 @@
     },
     "/v1/entities/detail/batch": {
       "post": {
-        "description": "Returns a page envelope of entity detail records by id, slug, and/or current joined URL. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. For public reads totalElements counts the entities visible to the caller, so requested identifiers that do not resolve or fail the public visibility filter are excluded. For privileged reads totalElements counts the requested identifiers that resolved to an entity id, which can exceed the number of records returned when an id no longer exists.",
+        "description": "Superseded route for the same bulk company lookup served by POST /v1/entities/lookup/batch, which new callers should use. It returns the same page of company detail records for the requested ids, slugs, and joined URLs, and it sends a Deprecation header naming that replacement route. Sort is ignored here: the batch is returned in request order.",
         "operationId": "postEntityDetailBatch",
         "parameters": [
           {
@@ -5038,12 +5062,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch entity detail retrieval (POST)",
+        "summary": "Look up companies in bulk on the superseded route",
         "tags": [
           "Entities"
         ],
         "x-aventure-tool": {
-          "cli": "entities batch detail lookup"
+          "auth": "read",
+          "cli": "entities get",
+          "cliAlias": "entities batch detail lookup",
+          "mode": "batch"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -5260,12 +5287,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List fundraise investor joins",
+        "summary": "List the investors in a funding round",
         "tags": [
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise investor-joins list"
+          "cli": "entities rounds investors list",
+          "cliAlias": "entities fundraise investor-joins list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -5396,12 +5424,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get fundraise investor join",
+        "summary": "Get one investor on a funding round",
         "tags": [
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise investor-joins get"
+          "cli": "entities rounds investors get",
+          "cliAlias": "entities fundraise investor-joins get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -5565,176 +5594,12 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List news joined to an entity",
+        "summary": "List a company's news articles",
         "tags": [
           "Entity News"
         ],
         "x-aventure-tool": {
           "cli": "entities news list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/resolve": {
-      "post": {
-        "deprecated": true,
-        "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments).",
-        "operationId": "postEntityDetailResolve",
-        "parameters": [
-          {
-            "description": "Privileged read scope for admin callers. Returns hidden, unverified, and not-yet-published entities instead of resolving them as MISSING. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityDetailBatch"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/EntityResolution"
-                  }
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict"
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Resolve entity identifiers (deprecated detail path)",
-        "tags": [
-          "Entities"
-        ],
-        "x-aventure-tool": {
-          "auth": "read",
-          "cli": "entities identifiers resolve"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -5900,152 +5765,12 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entities similar to one entity",
+        "summary": "List similar companies",
         "tags": [
           "Entity Similarity"
         ],
         "x-aventure-tool": {
           "cli": "entities similar list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/detail/trending-news": {
-      "get": {
-        "deprecated": true,
-        "description": "Returns trending news semantically related to an entity.",
-        "operationId": "trendingNews",
-        "parameters": [
-          {
-            "description": "Entity unique identifier (UUID) — at least one of id or slug required",
-            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "description": "Entity URL-friendly identifier (slug) — at least one of id or slug required",
-            "example": "leantime-charlotte-nc-us",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 10,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageNews"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "summary": "Get trending news for an entity (deprecated detail path)",
-        "tags": [
-          "Semantic Similarity"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities news trending list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -6182,7 +5907,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity filter options",
+        "summary": "List the company filter options",
         "tags": [
           "Entity Filters"
         ],
@@ -6369,7 +6094,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List entity filter tag counts",
+        "summary": "List the company filter tag counts",
         "tags": [
           "Entity Filters"
         ],
@@ -6512,12 +6237,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Count entity filter tags",
+        "summary": "Count the company filter tags",
         "tags": [
           "Entity Filters"
         ],
         "x-aventure-tool": {
-          "auth": "read"
+          "auth": "read",
+          "cli": "entities filters counts list",
+          "cliAlias": "entities filters counts lookup",
+          "mode": "filter"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -6661,12 +6389,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Refine entity filter options",
+        "summary": "Refine the company filter options",
         "tags": [
           "Entity Filters"
         ],
         "x-aventure-tool": {
-          "auth": "read"
+          "auth": "read",
+          "cli": "entities filters suggest",
+          "cliAlias": "entities filters refine lookup"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -6801,10 +6531,15 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Search filter options",
+        "summary": "Search the values of one filter",
         "tags": [
           "Entity Filters"
         ],
+        "x-aventure-tool": {
+          "cli": "entities filters search",
+          "cliAlias": "entities filters search get",
+          "mode": "search"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -6945,12 +6680,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search filter options (scoped)",
+        "summary": "Look up filter values inside the current search",
         "tags": [
           "Entity Filters"
         ],
         "x-aventure-tool": {
-          "auth": "read"
+          "auth": "read",
+          "cli": "entities filters search",
+          "cliAlias": "entities filters search lookup"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -7011,14 +6748,14 @@
             }
           },
           {
-            "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls types list).",
+            "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls list --types).",
             "example": "website",
             "in": "query",
             "name": "urlType",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls types list).",
+              "description": "URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls list --types).",
               "example": "website"
             }
           },
@@ -7035,14 +6772,14 @@
             }
           },
           {
-            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types).",
             "example": "Company",
             "in": "query",
             "name": "typeRecord",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types).",
               "example": "Company"
             }
           },
@@ -7196,7 +6933,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Look up one entity",
+        "summary": "Look up a company by name, URL, or domain",
         "tags": [
           "Entities"
         ],
@@ -7377,13 +7114,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch entity lookup",
+        "summary": "Look up companies in bulk by id, slug, or URL",
         "tags": [
           "Entities"
         ],
         "x-aventure-tool": {
           "auth": "read",
-          "cli": "entities lookup batch"
+          "cli": "entities lookup",
+          "cliAlias": "entities lookup batch",
+          "mode": "batch"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -7540,12 +7279,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Resolve entity identifiers (POST)",
+        "summary": "Look up which company each identifier matches",
         "tags": [
           "Entities"
         ],
         "x-aventure-tool": {
-          "auth": "read"
+          "auth": "read",
+          "cli": "entities lookup",
+          "cliAlias": "entities lookup matches lookup",
+          "mode": "allMatches"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -7554,7 +7296,7 @@
     },
     "/v1/entities/natural-search": {
       "post": {
-        "description": "Translate a plain-English company, startup, investor, investment firm, or investment manager search into the canonical EntityFilter contract, execute the existing entity list engine, and return both the interpretation and ranked entity list page. Unsupported constraints are named in the interpretation instead of being silently ignored. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset. CLI: search entities --query 'AI infrastructure companies founded since 2020' --size 3. The query accepts plain English; --size limits the page, --page starts at 0, and --year-founded-range-min 2020 imposes a hard founding-year constraint. Use --include-private false for publicly visible results and search entities --help for all available flags.",
+        "description": "Translate a plain-English company, startup, investor, investment firm, or investment manager search into the canonical EntityFilter contract, execute the existing entity list engine, and return both the interpretation and ranked entity list page. Unsupported constraints are named in the interpretation instead of being silently ignored. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset. CLI: entities search --query 'AI infrastructure companies founded since 2020' --size 3. The query accepts plain English; --size limits the page, --page starts at 0, and --year-founded-range-min 2020 imposes a hard founding-year constraint. Use --include-private false for publicly visible results and entities search --help for all available flags.",
         "operationId": "naturalSearchEntities",
         "parameters": [
           {
@@ -7743,12 +7485,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Find companies, startups, and investors with natural language",
+        "summary": "Find companies, startups, and investors in natural language",
         "tags": [
           "Entities"
         ],
         "x-aventure-tool": {
-          "cli": "search entities"
+          "cli": "entities search",
+          "cliAlias": "search entities",
+          "mode": "query"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -7834,10 +7578,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List relationship types",
+        "summary": "List the accepted values for --type",
         "tags": [
           "Entity Relationships"
         ],
+        "x-aventure-tool": {
+          "cli": "entities relationships list",
+          "mode": "types"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -7941,12 +7689,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get relationship row by id",
+        "summary": "Get one relationship by id",
         "tags": [
           "Entity Relationships"
         ],
         "x-aventure-tool": {
-          "cli": "entities relationships row get"
+          "cli": "entities relationships get",
+          "cliAlias": "entities relationships row get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -8063,10 +7812,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List research detail types",
+        "summary": "List the accepted values for --type",
         "tags": [
           "Entity Research"
         ],
+        "x-aventure-tool": {
+          "cli": "entities research details list",
+          "mode": "types"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -8151,10 +7904,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List research snippet types",
+        "summary": "List the accepted values for --text-type",
         "tags": [
           "Entity Research"
         ],
+        "x-aventure-tool": {
+          "cli": "entities research snippets list",
+          "mode": "types"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -8162,7 +7919,7 @@
     },
     "/v1/entities/search": {
       "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityListFilter JSON body. entityName is an exact normalized brand/legal-name filter; textSearch is keyword/full-text search. For a plain-English or multi-constraint company request, use POST /v1/entities/natural-search instead. Set semanticQuery for semantic nearest-neighbor ranking over stored content embeddings; semanticQuery uses the live priority embeddings tier and returns semanticMatch evidence. countOnly is unsupported when semanticQuery is present; count-only pages have no content, so read totalElements rather than empty. Default public visibility can filter hidden/off-sitemap records and does not prove create safety. Use duplicate-check before writes that need identity review. Structured search supports sort-aware cursor continuation with unchanged filters and sort; cursors are unsupported with semanticQuery or countOnly.",
+        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityListFilter JSON body; field semantics and visibility rules match GET /v1/entities. For plain English use the entities search command with --query (POST /v1/entities/natural-search). Cursors are unsupported with semanticQuery or countOnly; count-only pages have no content, so read totalElements.",
         "operationId": "listEntitiesPost",
         "parameters": [
           {
@@ -8392,7 +8149,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search companies and other entities (POST)",
+        "summary": "Search companies, products, and services",
         "tags": [
           "Entities"
         ],
@@ -8406,7 +8163,7 @@
     },
     "/v1/entities/summary": {
       "get": {
-        "description": "List lean entity rows for homepage and card surfaces. Returns core identity, funding rollup, and fundraise rounds while omitting heavier list enrichment, research, address, text, classification, and URL sections.",
+        "description": "List lean entity rows for homepage and card surfaces: core identity, funding rollup, and fundraise rounds without the heavier list enrichment sections.",
         "operationId": "listEntitySummaries",
         "parameters": [
           {
@@ -9266,10 +9023,15 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity summaries",
+        "summary": "List compact company summaries",
         "tags": [
           "Entities"
         ],
+        "x-aventure-tool": {
+          "cli": "entities list",
+          "cliAlias": "entities summary list",
+          "mode": "summary"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -9366,10 +9128,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity text types",
+        "summary": "List the accepted values for a company's --text-type",
         "tags": [
           "Texts"
         ],
+        "x-aventure-tool": {
+          "cli": "entities texts list",
+          "mode": "types"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -9454,100 +9220,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List writable entity typeRecords with accepted alias tokens",
+        "summary": "List the accepted values for --type-record",
         "tags": [
           "Entity Maintenance"
         ],
         "x-aventure-tool": {
-          "cli": "entities type-record types list"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/urls/surface-misclassifications": {
-      "get": {
-        "description": "Returns URL shapes whose attempted write surface is deterministically wrong. Consumers route these before writing; news/press articles belong on News.newsUrlOriginal via news create, not EntityUrl.urlType=website.",
-        "operationId": "urlSurfaceMisclassifications",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UrlSurfaceMisclassificationCatalog"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "summary": "List URL surface misclassification rules",
-        "tags": [
-          "URL Links"
-        ],
-        "x-aventure-tool": {
-          "cli": "entities urls surface-misclassifications list"
+          "cli": "entities list",
+          "mode": "types"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -9633,12 +9312,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity URL types",
+        "summary": "List the accepted values for a company's --url-type",
         "tags": [
           "URL Links"
         ],
         "x-aventure-tool": {
-          "auth": "none"
+          "auth": "none",
+          "cli": "entities urls list",
+          "mode": "types"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -9661,14 +9342,14 @@
             }
           },
           {
-            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+            "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types).",
             "example": "Company",
             "in": "query",
             "name": "typeRecord",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities type-record types list).",
+              "description": "Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types).",
               "example": "Company"
             }
           },
@@ -9780,12 +9461,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get entity by ID",
+        "summary": "Get one company, product, or service by id",
         "tags": [
           "Entities"
         ],
         "x-aventure-tool": {
-          "cli": "entities by-id get"
+          "cli": "entities get",
+          "cliAlias": "entities by-id get",
+          "mode": "id"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -9935,7 +9618,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List acquisitions for an entity",
+        "summary": "List a company's acquisitions",
         "tags": [
           "Entity Acquisitions"
         ],
@@ -10063,7 +9746,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get acquisition for an entity",
+        "summary": "Get one company acquisition",
         "tags": [
           "Entity Acquisitions"
         ],
@@ -10184,7 +9867,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity addresses",
+        "summary": "List a company's locations",
         "tags": [
           "Entity Addresses"
         ],
@@ -10302,7 +9985,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get a single entity address join row",
+        "summary": "Get one company address",
         "tags": [
           "Entity Addresses"
         ],
@@ -10457,12 +10140,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity blog posts",
+        "summary": "List a company's blog posts",
         "tags": [
           "Research Blog Posts"
         ],
         "x-aventure-tool": {
-          "cli": "entities blog-posts list"
+          "cli": "entities posts list",
+          "cliAlias": "entities blog-posts list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -10609,12 +10293,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get entity blog post",
+        "summary": "Get one company blog post",
         "tags": [
           "Research Blog Posts"
         ],
         "x-aventure-tool": {
-          "cli": "entities blog-posts get"
+          "cli": "entities posts get",
+          "cliAlias": "entities blog-posts get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -10770,10 +10455,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get entity classification joins",
+        "summary": "List a company's classifications",
         "tags": [
           "Entity Classifications"
         ],
+        "x-aventure-tool": {
+          "cli": "entities classifications list",
+          "mode": "entityId"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -10931,7 +10620,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Suggest entity classifications",
+        "summary": "Suggest classifications for a company",
         "tags": [
           "Entity Classifications"
         ],
@@ -10949,7 +10638,7 @@
         "operationId": "listEntityContent",
         "parameters": [
           {
-            "description": "Entity UUID whose content is listed.",
+            "description": "Entity UUID whose publications are listed.",
             "in": "path",
             "name": "entityId",
             "required": true,
@@ -10975,7 +10664,7 @@
             "name": "contentType",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContentType"
+              "$ref": "#/components/schemas/PublicationType"
             }
           },
           {
@@ -10984,7 +10673,7 @@
             "name": "relation",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContentRelation"
+              "$ref": "#/components/schemas/PublicationRelation"
             }
           },
           {
@@ -11048,7 +10737,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageContent"
+                  "$ref": "#/components/schemas/PagePublication"
                 }
               }
             },
@@ -11156,12 +10845,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List entity content",
+        "summary": "List a company's publications",
         "tags": [
-          "Content"
+          "Publication"
         ],
         "x-aventure-tool": {
-          "cli": "entities content list"
+          "cli": "entities publications list",
+          "cliAlias": "entities content list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -11174,7 +10864,7 @@
         "operationId": "searchEntityContent",
         "parameters": [
           {
-            "description": "Entity UUID whose content is searched.",
+            "description": "Entity UUID whose publications are searched.",
             "in": "path",
             "name": "entityId",
             "required": true,
@@ -11234,7 +10924,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContentSearchResult"
+                  "$ref": "#/components/schemas/PublicationSearchResult"
                 }
               }
             },
@@ -11362,12 +11052,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search entity content",
+        "summary": "Search a company's publications",
         "tags": [
-          "Content"
+          "Publication"
         ],
         "x-aventure-tool": {
-          "cli": "entities content search"
+          "cli": "entities publications search",
+          "cliAlias": "entities content search"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -11546,7 +11237,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Enrich one entity",
+        "summary": "Enrich one company, product, or service",
         "tags": [
           "Harness Runs"
         ],
@@ -11772,12 +11463,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List fundraise rounds",
+        "summary": "List a company's funding rounds",
         "tags": [
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise rounds list"
+          "cli": "entities rounds list",
+          "cliAlias": "entities fundraise rounds list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -11894,12 +11586,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get fundraise round",
+        "summary": "Get one funding round",
         "tags": [
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise rounds get"
+          "cli": "entities rounds get",
+          "cliAlias": "entities fundraise rounds get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -12138,12 +11831,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List investments made by an entity",
+        "summary": "List the investments a company made",
         "tags": [
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise investments list"
+          "cli": "entities investments list",
+          "cliAlias": "entities fundraise investments list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -12254,7 +11948,8 @@
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise investor-activity get"
+          "cli": "entities investor-activity get",
+          "cliAlias": "entities fundraise investor-activity get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -12430,12 +12125,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity investors",
+        "summary": "List a company's investors",
         "tags": [
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise investors list"
+          "cli": "entities investors list",
+          "cliAlias": "entities fundraise investors list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -12550,10 +12246,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get entity logo",
+        "summary": "Get a company logo",
         "tags": [
           "Media"
         ],
+        "x-aventure-tool": {
+          "cli": "entities logo get",
+          "cliAlias": "entities media logo get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -12796,7 +12496,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity people associations",
+        "summary": "List the people at a company",
         "tags": [
           "Entity Person Associations"
         ],
@@ -12926,12 +12626,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Entity employee count time series",
+        "summary": "List a company's headcount over time",
         "tags": [
           "Entity Employee Count"
         ],
         "x-aventure-tool": {
-          "cli": "entities people employee-counts list"
+          "cli": "entities employee-counts list",
+          "cliAlias": "entities people employee-counts list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -13151,7 +12852,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get entity people association",
+        "summary": "Get one person's role at a company",
         "tags": [
           "Entity Person Associations"
         ],
@@ -13334,7 +13035,9 @@
           "Entity Fundraise"
         ],
         "x-aventure-tool": {
-          "cli": "entities fundraise person-investors list"
+          "cli": "entities investors list",
+          "cliAlias": "entities fundraise person-investors list",
+          "mode": "people"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -13490,7 +13193,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Suggest entity products or services",
+        "summary": "Suggest a company's products or services",
         "tags": [
           "Entity Suggestions"
         ],
@@ -13504,7 +13207,7 @@
     },
     "/v1/entities/{entityId}/relationships": {
       "get": {
-        "description": "Returns relationship rows touching the path entity. Defaults to renderable-only rows where isCurrent=true and isPrimary=true. Set includeNonRenderable=true to surface historic and non-primary curation rows; returned rows include id, isCurrent, and isPrimary so hidden-row cause is explicit. Use entities relationships row get to retrieve one row by id without an entity path.",
+        "description": "Returns relationship rows touching the path entity. Defaults to renderable-only rows where isCurrent=true and isPrimary=true. Set includeNonRenderable=true to surface historic and non-primary curation rows; returned rows include id, isCurrent, and isPrimary so hidden-row cause is explicit. Use entities relationships get to retrieve one row by id without an entity path.",
         "operationId": "listEntityRelationships",
         "parameters": [
           {
@@ -13519,7 +13222,7 @@
             }
           },
           {
-            "description": "Optional EntityRelationshipType filter, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Use entities relationships types for valid values.",
+            "description": "Optional EntityRelationshipType filter, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Use entities relationships list --types for valid values.",
             "in": "query",
             "name": "type",
             "required": false,
@@ -13670,7 +13373,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity relationships",
+        "summary": "List a company's relationships",
         "tags": [
           "Entity Relationships"
         ],
@@ -13828,7 +13531,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Suggest entity relationships",
+        "summary": "Suggest relationships for a company",
         "tags": [
           "Entity Suggestions"
         ],
@@ -14004,7 +13707,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List entity repositories",
+        "summary": "List a company's GitHub repositories",
         "tags": [
           "Repositories"
         ],
@@ -14157,7 +13860,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Entity research projection",
+        "summary": "Get the research gathered about a company",
         "tags": [
           "Entity Research"
         ],
@@ -14208,7 +13911,7 @@
             }
           },
           {
-            "description": "Research detail type filter.",
+            "description": "Research detail type token. Run GET /v1/entities/research/details/types (CLI: entities research details list --types) for the token inventory and each token's value shape.",
             "example": "nameCongruencyScore",
             "in": "query",
             "name": "type",
@@ -14986,10 +14689,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List entities similar to one entity by UUID",
+        "summary": "Get similar companies by id",
         "tags": [
           "Entity Similarity"
         ],
+        "x-aventure-tool": {
+          "cli": "entities similar list",
+          "cliAlias": "entities similar get",
+          "mode": "id"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -15125,10 +14833,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get entity slug",
+        "summary": "Get a company's slug",
         "tags": [
           "URL Slug Redirects"
         ],
+        "x-aventure-tool": {
+          "cli": "entities slug get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -15298,10 +15009,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List entity slug redirects",
+        "summary": "List a company's slug redirects",
         "tags": [
           "URL Slug Redirects"
         ],
+        "x-aventure-tool": {
+          "cli": "entities redirects list",
+          "cliAlias": "entities slug redirects list"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -15460,7 +15175,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity text rows",
+        "summary": "List a company's text",
         "tags": [
           "Texts"
         ],
@@ -15619,7 +15334,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get one entity text row",
+        "summary": "Get one piece of company text",
         "tags": [
           "Texts"
         ],
@@ -15630,7 +15345,7 @@
     },
     "/v1/entities/{entityId}/trending-news": {
       "get": {
-        "description": "Returns trending news semantically related to an entity.",
+        "description": "Returns trending news semantically related to the company named by the entity id path parameter.",
         "operationId": "listEntityTrendingNews",
         "parameters": [
           {
@@ -15752,10 +15467,15 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get trending news for an entity",
+        "summary": "List trending news about a company",
         "tags": [
           "Semantic Similarity"
         ],
+        "x-aventure-tool": {
+          "cli": "entities news list",
+          "cliAlias": "entities trending-news list",
+          "mode": "trending"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -15860,10 +15580,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get entity typeRecord",
+        "summary": "Get a record's type",
         "tags": [
           "Entity Maintenance"
         ],
+        "x-aventure-tool": {
+          "cli": "entities type get",
+          "cliAlias": "entities type-record get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -16034,7 +15758,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List entity identifiers",
+        "summary": "List a company's identifiers",
         "tags": [
           "Identifiers"
         ],
@@ -16188,7 +15912,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get an entity identifier",
+        "summary": "Get one company identifier",
         "tags": [
           "Identifiers"
         ],
@@ -16343,7 +16067,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List entity URLs",
+        "summary": "List a company's URLs",
         "tags": [
           "URL Links"
         ],
@@ -16516,12 +16240,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List all entity URLs",
+        "summary": "List all of a company's URLs",
         "tags": [
           "URL Links"
         ],
         "x-aventure-tool": {
-          "cli": "entities urls all list"
+          "cli": "entities urls list",
+          "cliAlias": "entities urls all list",
+          "mode": "all"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -16668,7 +16394,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get one entity URL",
+        "summary": "Get one company URL",
         "tags": [
           "URL Links"
         ],
@@ -16798,142 +16524,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Entity valuation time series",
+        "summary": "List a company's valuation over time",
         "tags": [
           "Entity Financial Valuation"
         ],
         "x-aventure-tool": {
           "cli": "entities valuations list"
         },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/media": {
-      "get": {
-        "description": "Returns current managed asset; empty slots 404; inactive media is not listed.",
-        "operationId": "getMedia",
-        "parameters": [
-          {
-            "description": "Media target type.",
-            "example": "ENTITY",
-            "in": "query",
-            "name": "mediaType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/MediaObjectType"
-            }
-          },
-          {
-            "description": "Target UUID for entity/person or integer id for news.",
-            "in": "query",
-            "name": "id",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Target UUID for entity/person or integer id for news."
-            }
-          },
-          {
-            "description": "Target slug.",
-            "in": "query",
-            "name": "slug",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Canonical lowercase URL slug for the resource",
-              "example": "aventure-vc",
-              "maxLength": 255,
-              "pattern": "^[a-z0-9_-]+$"
-            }
-          },
-          {
-            "description": "Entity logo variant.",
-            "in": "query",
-            "name": "logoType",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/EntityLogoType"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MediaUpload"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "summary": "Get attached media asset",
-        "tags": [
-          "Media"
-        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -17045,298 +16642,6 @@
         }
       }
     },
-    "/v1/media/screenshots": {
-      "get": {
-        "description": "Returns paginated screenshot metadata for the given URL, newest crawl first. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "listByUrl",
-        "parameters": [
-          {
-            "description": "Page URL whose crawl screenshots should be listed (encoded query value).",
-            "in": "query",
-            "name": "url",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 20,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageMediaScreenshot"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "List screenshots for a URL",
-        "tags": [
-          "Screenshots"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/media/screenshots/{screenshotId}": {
-      "get": {
-        "description": "Returns a single screenshot metadata record by its surrogate id. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "getById",
-        "parameters": [
-          {
-            "description": "Screenshot surrogate id from the crawl_screenshot table.",
-            "in": "path",
-            "name": "screenshotId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "x-aventure-legacy-name": {
-              "name": "id"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "*/*": {
-                "schema": {
-                  "$ref": "#/components/schemas/MediaScreenshot"
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized"
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden"
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          },
-          {
-            "adminApiKeyAuth": []
-          },
-          {
-            "clientSecretAuth": []
-          }
-        ],
-        "summary": "Get screenshot by id",
-        "tags": [
-          "Screenshots"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/metrics": {
       "get": {
         "description": "Global metrics snapshot. Companies tracked, total funding, trailing 30-day funding, investors, people, countries, cities. Cached for high-traffic homepage reads.",
@@ -17413,13 +16718,15 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Global metrics snapshot",
+        "summary": "Get platform totals for companies, funding, and people",
         "tags": [
           "Metrics"
         ],
         "x-aventure-tool": {
           "auth": "none",
-          "cli": "operations metrics get"
+          "cli": "status",
+          "cliAlias": "operations metrics get",
+          "mode": "metrics"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -17861,7 +17168,8 @@
           "News"
         ],
         "x-aventure-tool": {
-          "cli": "search news"
+          "cli": "news search",
+          "cliAlias": "search news"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -18072,7 +17380,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get news detail",
+        "summary": "Get one news article",
         "tags": [
           "News"
         ],
@@ -18558,7 +17866,9 @@
           "News"
         ],
         "x-aventure-tool": {
-          "cli": "news recent list"
+          "cli": "news list",
+          "cliAlias": "news recent list",
+          "mode": "recent"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -18703,7 +18013,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Find similar news",
+        "summary": "List similar news articles",
         "tags": [
           "News"
         ],
@@ -18850,13 +18160,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get news article by ID",
+        "summary": "Get one news article by id",
         "tags": [
           "News",
           "By ID"
         ],
         "x-aventure-tool": {
-          "cli": "news by-id get"
+          "cli": "news get",
+          "cliAlias": "news by-id get",
+          "mode": "id"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -18966,6 +18278,10 @@
         "tags": [
           "Media"
         ],
+        "x-aventure-tool": {
+          "cli": "news thumbnail get",
+          "cliAlias": "news media thumbnail get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -19096,12 +18412,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get related companies for a news article",
+        "summary": "Get the companies a news article is about",
         "tags": [
           "Semantic Similarity"
         ],
         "x-aventure-tool": {
-          "cli": "news related-companies get"
+          "cli": "news entities list",
+          "cliAlias": "news related-companies get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -19276,6 +18593,10 @@
         "tags": [
           "URL Slug Redirects"
         ],
+        "x-aventure-tool": {
+          "cli": "news redirects list",
+          "cliAlias": "news slug redirects list"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -19992,12 +19313,15 @@
             "adminApiKeyAuth": []
           }
         ],
-        "summary": "Batch person list",
+        "summary": "Look up people with a filter",
         "tags": [
           "Person Batch"
         ],
         "x-aventure-tool": {
-          "auth": "read"
+          "auth": "read",
+          "cli": "people list",
+          "cliAlias": "people batch lookup",
+          "mode": "ids"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -20264,7 +19588,7 @@
     },
     "/v1/people/detail/batch": {
       "post": {
-        "description": "Enrich multiple people by id or slug with optional url, association, and address. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response.",
+        "description": "Superseded route for the same bulk people lookup served by POST /v1/people/lookup/batch, which new callers should use. It returns the same page of people for the requested ids and slugs, and it sends a Deprecation header naming that replacement route. Sort is ignored here: the batch is returned in request order.",
         "operationId": "getPersonDetailBatch",
         "parameters": [
           {
@@ -20431,12 +19755,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch person detail enrichment",
+        "summary": "Look up people in bulk on the superseded route",
         "tags": [
           "Person Batch"
         ],
         "x-aventure-tool": {
-          "cli": "people batch detail lookup"
+          "auth": "read",
+          "cli": "people get",
+          "cliAlias": "people batch detail lookup",
+          "mode": "batch"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -20592,7 +19919,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get person investments",
+        "summary": "List a person's investments",
         "tags": [
           "Person Investments"
         ],
@@ -20879,7 +20206,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List news joined to a person",
+        "summary": "List a person's news articles",
         "tags": [
           "Person News"
         ],
@@ -21099,6 +20426,10 @@
         "tags": [
           "Person Metadata"
         ],
+        "x-aventure-tool": {
+          "cli": "people filters search",
+          "cliAlias": "people filters search get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -21520,13 +20851,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Batch person lookup",
+        "summary": "Look up people in bulk by id or slug",
         "tags": [
           "Person Batch"
         ],
         "x-aventure-tool": {
           "auth": "read",
-          "cli": "people lookup batch"
+          "cli": "people lookup",
+          "cliAlias": "people lookup batch",
+          "mode": "batch"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -21729,7 +21062,9 @@
           "People"
         ],
         "x-aventure-tool": {
-          "cli": "search people"
+          "cli": "people search",
+          "cliAlias": "search people",
+          "mode": "query"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -21954,7 +21289,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List people (POST)",
+        "summary": "Search people",
         "tags": [
           "People"
         ],
@@ -22045,10 +21380,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person text types",
+        "summary": "List the accepted values for a person's --text-type",
         "tags": [
           "Texts"
         ],
+        "x-aventure-tool": {
+          "cli": "people texts list",
+          "mode": "types"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -22133,12 +21472,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person URL types",
+        "summary": "List the accepted values for a person's --url-type",
         "tags": [
           "URL Links"
         ],
         "x-aventure-tool": {
-          "auth": "none"
+          "auth": "none",
+          "cli": "people urls list",
+          "mode": "types"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -22309,12 +21650,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get person by ID",
+        "summary": "Get one person by id",
         "tags": [
           "People"
         ],
         "x-aventure-tool": {
-          "cli": "people by-id get"
+          "cli": "people get",
+          "cliAlias": "people by-id get",
+          "mode": "id"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -22423,7 +21766,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person addresses",
+        "summary": "List a person's addresses",
         "tags": [
           "Person Addresses"
         ],
@@ -22541,7 +21884,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get person address",
+        "summary": "Get one person's address",
         "tags": [
           "Person Addresses"
         ],
@@ -22696,12 +22039,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person blog posts",
+        "summary": "List a person's blog posts",
         "tags": [
           "Research Blog Posts"
         ],
         "x-aventure-tool": {
-          "cli": "people blog-posts list"
+          "cli": "people posts list",
+          "cliAlias": "people blog-posts list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -22848,12 +22192,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get person blog post",
+        "summary": "Get one person blog post",
         "tags": [
           "Research Blog Posts"
         ],
         "x-aventure-tool": {
-          "cli": "people blog-posts get"
+          "cli": "people posts get",
+          "cliAlias": "people blog-posts get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -22866,7 +22211,7 @@
         "operationId": "listPersonContent",
         "parameters": [
           {
-            "description": "Person UUID whose content is listed.",
+            "description": "Person UUID whose publications are listed.",
             "in": "path",
             "name": "personId",
             "required": true,
@@ -22892,7 +22237,7 @@
             "name": "contentType",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContentType"
+              "$ref": "#/components/schemas/PublicationType"
             }
           },
           {
@@ -22901,7 +22246,7 @@
             "name": "relation",
             "required": false,
             "schema": {
-              "$ref": "#/components/schemas/ContentRelation"
+              "$ref": "#/components/schemas/PublicationRelation"
             }
           },
           {
@@ -22965,7 +22310,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PageContent"
+                  "$ref": "#/components/schemas/PagePublication"
                 }
               }
             },
@@ -23073,12 +22418,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List person content",
+        "summary": "List a person's publications",
         "tags": [
-          "Content"
+          "Publication"
         ],
         "x-aventure-tool": {
-          "cli": "people content list"
+          "cli": "people publications list",
+          "cliAlias": "people content list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -23091,7 +22437,7 @@
         "operationId": "searchPersonContent",
         "parameters": [
           {
-            "description": "Person UUID whose content is searched.",
+            "description": "Person UUID whose publications are searched.",
             "in": "path",
             "name": "personId",
             "required": true,
@@ -23151,7 +22497,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ContentSearchResult"
+                  "$ref": "#/components/schemas/PublicationSearchResult"
                 }
               }
             },
@@ -23279,12 +22625,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search person content",
+        "summary": "Search a person's publications",
         "tags": [
-          "Content"
+          "Publication"
         ],
         "x-aventure-tool": {
-          "cli": "people content search"
+          "cli": "people publications search",
+          "cliAlias": "people content search"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -23653,7 +23000,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person entity associations",
+        "summary": "List a person's roles at companies",
         "tags": [
           "Entity Person Associations"
         ],
@@ -23816,7 +23163,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Get person entity association",
+        "summary": "Get one of a person's roles at a company",
         "tags": [
           "Entity Person Associations"
         ],
@@ -24036,6 +23383,10 @@
         "tags": [
           "Media"
         ],
+        "x-aventure-tool": {
+          "cli": "people photo get",
+          "cliAlias": "people media photo get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -24205,7 +23556,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List person repositories",
+        "summary": "List a person's GitHub repositories",
         "tags": [
           "Repositories"
         ],
@@ -24538,6 +23889,10 @@
         "tags": [
           "URL Slug Redirects"
         ],
+        "x-aventure-tool": {
+          "cli": "people redirects list",
+          "cliAlias": "people slug redirects list"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -24686,7 +24041,7 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person text rows",
+        "summary": "List text about a person",
         "tags": [
           "Texts"
         ],
@@ -24835,7 +24190,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get one person text row",
+        "summary": "Get one piece of text about a person",
         "tags": [
           "Texts"
         ],
@@ -25009,7 +24364,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "List person identifiers",
+        "summary": "List a person's identifiers",
         "tags": [
           "Identifiers"
         ],
@@ -25163,7 +24518,7 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get a person identifier",
+        "summary": "Get one person identifier",
         "tags": [
           "Identifiers"
         ],
@@ -25496,7 +24851,9 @@
           "URL Links"
         ],
         "x-aventure-tool": {
-          "cli": "people urls all list"
+          "cli": "people urls list",
+          "cliAlias": "people urls all list",
+          "mode": "all"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -25791,12 +25148,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List person blog posts by slug",
+        "summary": "List a person's blog posts by slug",
         "tags": [
           "Research Blog Posts"
         ],
         "x-aventure-tool": {
-          "cli": "people by-slug blog-posts list"
+          "cli": "people posts list",
+          "cliAlias": "people by-slug blog-posts list",
+          "mode": "personSlug"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -25955,12 +25314,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Provenance history for a record",
+        "summary": "List where a record's data came from",
         "tags": [
           "Data Provenance"
         ],
         "x-aventure-tool": {
-          "cli": "provenance history list"
+          "cli": "entities provenance list",
+          "cliAlias": "provenance history list"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -26095,10 +25455,15 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Latest data source for a record",
+        "summary": "Get the newest source for a record",
         "tags": [
           "Data Provenance"
         ],
+        "x-aventure-tool": {
+          "cli": "entities provenance list",
+          "cliAlias": "provenance latest get",
+          "mode": "latest"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26106,7 +25471,7 @@
     },
     "/v1/provenance/{provenanceId}": {
       "get": {
-        "description": "Returns one field-level provenance row by its surrogate id, in the same shape the provenance history list returns. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns one field-level provenance row by its surrogate id, in the same shape the entities provenance list returns. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
         "operationId": "getProvenance",
         "parameters": [
           {
@@ -26234,10 +25599,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Get a provenance row",
+        "summary": "Get one recorded source for a field",
         "tags": [
           "Data Provenance"
         ],
+        "x-aventure-tool": {
+          "cli": "entities provenance get",
+          "cliAlias": "provenance get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26372,10 +25741,14 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Resolve any identifier to its owner",
+        "summary": "Find the record behind an id, slug, or URL",
         "tags": [
           "Resolve"
         ],
+        "x-aventure-tool": {
+          "cli": "lookup",
+          "cliAlias": "resolve get"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26383,7 +25756,7 @@
     },
     "/v1/search/all": {
       "post": {
-        "description": "Runs the canonical entity, person, and news search engines sequentially and returns their typed result pages with per-scope strategy provenance. Supports only auto and keyword modes; unsupported modes are rejected before any scope runs. Page and size apply to every scope; cross-domain sort is not supported.",
+        "description": "Searches enriched details across our company and people dataset from a plain-English query. Runs the canonical entity, person, and news search engines sequentially and returns their typed result pages with per-scope strategy provenance. Supports only auto and keyword modes; unsupported modes are rejected before any scope runs. Page and size apply to every scope; cross-domain sort is not supported.",
         "operationId": "searchAll",
         "parameters": [
           {
@@ -26542,12 +25915,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Search entities, people, and news",
+        "summary": "Search companies, people, and news in plain English",
         "tags": [
           "Search"
         ],
         "x-aventure-tool": {
-          "cli": "search all"
+          "cli": "search",
+          "cliAlias": "search all"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -26664,12 +26038,14 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "Search from a shared article or page URL",
+        "summary": "Search from a page URL",
         "tags": [
           "Search"
         ],
         "x-aventure-tool": {
-          "cli": "search link get"
+          "cli": "search",
+          "cliAlias": "search link get",
+          "mode": "link"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -26818,7 +26194,9 @@
           "Search"
         ],
         "x-aventure-tool": {
-          "cli": "search web"
+          "cli": "search",
+          "cliAlias": "search web",
+          "mode": "web"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -26954,12 +26332,13 @@
             "clientSecretAuth": []
           }
         ],
-        "summary": "Preview a public company from SEC EDGAR",
+        "summary": "Get SEC EDGAR facts for a public company",
         "tags": [
           "SEC"
         ],
         "x-aventure-tool": {
-          "cli": "sec company get"
+          "cli": "entities sec get",
+          "cliAlias": "sec company get"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -28388,7 +27767,9 @@
           "URL Slug Redirects"
         ],
         "x-aventure-tool": {
-          "cli": "slug redirects lookup"
+          "cli": "lookup",
+          "cliAlias": "slug redirects lookup",
+          "mode": "path"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -28477,8 +27858,7 @@
         ],
         "x-aventure-tool": {
           "auth": "none",
-          "cli": "status",
-          "cliAlias": "operations status get"
+          "cli": "status"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -28622,8 +28002,9 @@
           "Identifiers"
         ],
         "x-aventure-tool": {
-          "cli": "entities identifiers lookup",
-          "cliAlias": "people identifiers lookup"
+          "cli": "lookup",
+          "cliAlias": "entities identifiers lookup",
+          "mode": "identifier"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -28709,104 +28090,13 @@
             "description": "Service Unavailable"
           }
         },
-        "summary": "List identifier types",
+        "summary": "List the accepted values for --id-type",
         "tags": [
           "Identifiers"
         ],
         "x-aventure-tool": {
-          "cli": "entities identifiers types get",
-          "cliAlias": "people identifiers types get"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/url-types": {
-      "get": {
-        "description": "Returns canonical URL types and aliases accepted by entity and person URL rows.",
-        "operationId": "listUrlTypes",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/UrlTypeAlias"
-                  }
-                }
-              }
-            },
-            "description": "OK"
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request"
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable"
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content"
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests"
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error"
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable"
-          }
-        },
-        "summary": "List URL types",
-        "tags": [
-          "URL Links"
-        ],
-        "x-aventure-tool": {
-          "auth": "none"
+          "cli": "entities identifiers list",
+          "mode": "types"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -30054,7 +29344,7 @@
           }
         }
       },
-      "ContentType": {
+      "PublicationType": {
         "type": "string",
         "description": "Public source family for canonical content cards.",
         "enum": [
@@ -30068,7 +29358,7 @@
           "researchPaper"
         ]
       },
-      "ContentRelation": {
+      "PublicationRelation": {
         "type": "string",
         "description": "How a content card relates to an entity or person owner.",
         "enum": [
@@ -30076,13 +29366,13 @@
           "about"
         ]
       },
-      "PageContent": {
+      "PagePublication": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Content"
+              "$ref": "#/components/schemas/Publication"
             }
           },
           "empty": {
@@ -30149,17 +29439,17 @@
           "query"
         ]
       },
-      "ContentSearchResult": {
+      "PublicationSearchResult": {
         "type": "object",
         "description": "Natural-language content search result: planner interpretation plus page.",
         "properties": {
           "interpretation": {
-            "$ref": "#/components/schemas/ContentSearchInterpretation",
+            "$ref": "#/components/schemas/PublicationSearchInterpretation",
             "description": "Structured interpretation used to run the content query."
           },
           "result": {
-            "$ref": "#/components/schemas/PageResultContent",
-            "description": "Content page."
+            "$ref": "#/components/schemas/PageResultPublication",
+            "description": "Publication page."
           }
         },
         "required": [
@@ -30976,60 +30266,6 @@
           }
         }
       },
-      "EntityResolution": {
-        "type": "object",
-        "description": "Resolution of one queried identifier (id, slug, or current joined URL) to its current entity. Echoes the raw input; matched rows carry the full detail, ambiguous rows carry the conflicting candidate ids, missing rows carry neither.",
-        "properties": {
-          "candidateEntityId": {
-            "type": "array",
-            "description": "Entity ids that all currently own the queried URL when status is AMBIGUOUS; empty otherwise. Re-query a single id to disambiguate.",
-            "items": {
-              "type": "string",
-              "format": "uuid",
-              "description": "Canonical entity UUID"
-            }
-          },
-          "detail": {
-            "description": "Full entity detail when status is MATCHED; absent otherwise.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityDetail"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "input": {
-            "type": "string",
-            "description": "Raw identifier exactly as queried (UUID string, slug, or URL)."
-          },
-          "inputType": {
-            "type": "string",
-            "description": "Which identifier kind this row was queried by.",
-            "enum": [
-              "ID",
-              "SLUG",
-              "URL"
-            ]
-          },
-          "status": {
-            "type": "string",
-            "description": "Resolution outcome for this input.",
-            "enum": [
-              "MATCHED",
-              "AMBIGUOUS",
-              "MISSING"
-            ]
-          }
-        },
-        "required": [
-          "candidateEntityId",
-          "input",
-          "inputType",
-          "status"
-        ]
-      },
       "PageEntitySimilarityResult": {
         "type": "object",
         "properties": {
@@ -31260,6 +30496,60 @@
           "limit",
           "query",
           "scopeFilter"
+        ]
+      },
+      "EntityResolution": {
+        "type": "object",
+        "description": "Resolution of one queried identifier (id, slug, or current joined URL) to its current entity. Echoes the raw input; matched rows carry the full detail, ambiguous rows carry the conflicting candidate ids, missing rows carry neither.",
+        "properties": {
+          "candidateEntityId": {
+            "type": "array",
+            "description": "Entity ids that all currently own the queried URL when status is AMBIGUOUS; empty otherwise. Re-query a single id to disambiguate.",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID"
+            }
+          },
+          "detail": {
+            "description": "Full entity detail when status is MATCHED; absent otherwise.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityDetail"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "input": {
+            "type": "string",
+            "description": "Raw identifier exactly as queried (UUID string, slug, or URL)."
+          },
+          "inputType": {
+            "type": "string",
+            "description": "Which identifier kind this row was queried by.",
+            "enum": [
+              "ID",
+              "SLUG",
+              "URL"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Resolution outcome for this input.",
+            "enum": [
+              "MATCHED",
+              "AMBIGUOUS",
+              "MISSING"
+            ]
+          }
+        },
+        "required": [
+          "candidateEntityId",
+          "input",
+          "inputType",
+          "status"
         ]
       },
       "EntityNaturalSearch": {
@@ -32049,46 +31339,6 @@
           "description",
           "productServiceRouteSegment",
           "publicPathPrefix"
-        ]
-      },
-      "UrlSurfaceMisclassificationCatalog": {
-        "type": "object",
-        "description": "URL surface misclassification catalog. Consumers MUST route these URL shapes to the named canonical surface instead of writing them to the attempted surface.",
-        "properties": {
-          "assetExtension": {
-            "type": "array",
-            "description": "Binary asset file extensions (no leading dot) — an asset is not a web page.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "newsArticleHost": {
-            "type": "array",
-            "description": "Pure news/press-wire hosts. An article path on these is a news record, never a URL link; the outlet's own root stays a valid website.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "parkingHost": {
-            "type": "array",
-            "description": "Domain-marketplace / for-sale / parking hosts — the domain is unowned, never a URL.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "route": {
-            "type": "array",
-            "description": "Deterministic URL path routes whose canonical surface is not the attempted write surface.",
-            "items": {
-              "$ref": "#/components/schemas/UrlSurfaceMisclassificationRoute"
-            }
-          }
-        },
-        "required": [
-          "assetExtension",
-          "newsArticleHost",
-          "parkingHost",
-          "route"
         ]
       },
       "UrlTypeAlias": {
@@ -34532,147 +33782,6 @@
             "format": "int32"
           }
         }
-      },
-      "MediaObjectType": {
-        "type": "string",
-        "description": "Target domain for media operations (logos, pictures, thumbnails)",
-        "enum": [
-          "ENTITY",
-          "PERSON",
-          "NEWS",
-          "BLOG"
-        ],
-        "example": "ENTITY"
-      },
-      "PageMediaScreenshot": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MediaScreenshot"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "MediaScreenshot": {
-        "type": "object",
-        "description": "Domain record for crawl screenshot metadata - also the API response type",
-        "properties": {
-          "contentType": {
-            "type": "string"
-          },
-          "crawledAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "fileSize": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "id": {
-            "type": "integer",
-            "format": "int64",
-            "description": "Type-safe identifier for crawl screenshots"
-          },
-          "owner": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityPersonOwner"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "position": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "s3Key": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "url": {
-            "type": "string"
-          },
-          "urlId": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "viewportHeight": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "viewportWidth": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          }
-        },
-        "required": [
-          "contentType",
-          "crawledAt",
-          "createdAt",
-          "id",
-          "position",
-          "s3Key",
-          "updatedAt",
-          "url"
-        ]
       },
       "SystemGlobalMetrics": {
         "type": "object",
@@ -39414,6 +38523,17 @@
           "roundCount"
         ]
       },
+      "MediaObjectType": {
+        "type": "string",
+        "description": "Target domain for media operations (logos, pictures, thumbnails)",
+        "enum": [
+          "ENTITY",
+          "PERSON",
+          "NEWS",
+          "BLOG"
+        ],
+        "example": "ENTITY"
+      },
       "EntityInvestorParticipation": {
         "type": "object",
         "description": "Entity investor with round participation and enrichment data (addresses, URLs)",
@@ -39954,122 +39074,6 @@
           "In Progress",
           "Open"
         ]
-      },
-      "UrlSurfaceMisclassificationRoute": {
-        "type": "object",
-        "description": "One deterministic URL shape and the canonical surface it must be routed to.",
-        "properties": {
-          "additionalGuidance": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Additional routing guidance for agents and API clients."
-          },
-          "apiEndpoint": {
-            "type": "string",
-            "description": "Canonical API endpoint or discovery endpoint."
-          },
-          "attemptedSurface": {
-            "type": "array",
-            "description": "Attempted write surfaces this route rejects.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "cliCommand": {
-            "type": "string",
-            "description": "Canonical aventure-cli guidance."
-          },
-          "correctSurface": {
-            "type": "string",
-            "description": "Canonical aVenture write surface."
-          },
-          "deterministicUrlShape": {
-            "type": "string",
-            "description": "Human-readable deterministic URL shape."
-          },
-          "exactPath": {
-            "type": "array",
-            "description": "Exact path segments, when the whole path must match.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "externalSocialPostPlatform": {
-            "description": "Publishing platform for an external-social permalink route.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/ExternalSocialPostPlatform"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "hostSuffix": {
-            "type": "string",
-            "description": "Host suffix matched against the submitted URL host."
-          },
-          "id": {
-            "type": "string",
-            "description": "Stable YAML key for this route."
-          },
-          "pathPrefix": {
-            "type": "array",
-            "description": "Required leading path segments.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "pathTemplate": {
-            "type": "array",
-            "description": "Exact external-social permalink template. Literals match exactly, * matches one nonblank segment, and @* matches one @handle segment.",
-            "items": {
-              "type": "string"
-            }
-          },
-          "requiredLastSegment": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Required final path segment, when applicable."
-          },
-          "requiredSegment": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Required path segment at any position, for shapes whose discriminating segment follows a variable owner handle."
-          }
-        },
-        "required": [
-          "apiEndpoint",
-          "attemptedSurface",
-          "cliCommand",
-          "correctSurface",
-          "deterministicUrlShape",
-          "exactPath",
-          "hostSuffix",
-          "id",
-          "pathPrefix",
-          "pathTemplate"
-        ]
-      },
-      "ExternalSocialPostPlatform": {
-        "type": "string",
-        "description": "Social platform that published an externally-authored post.",
-        "enum": [
-          "linkedin",
-          "xTwitter",
-          "facebook",
-          "tiktok",
-          "instagram",
-          "threads",
-          "other"
-        ],
-        "example": "linkedin"
       },
       "ResearchParagraphShape": {
         "type": "object",
@@ -40979,7 +39983,7 @@
           "Token"
         ]
       },
-      "ContentSearchInterpretation": {
+      "PublicationSearchInterpretation": {
         "type": "object",
         "description": "Structured interpretation of a natural-language content search.",
         "properties": {
@@ -40988,7 +39992,7 @@
             "description": "Planner confidence in the structured interpretation."
           },
           "filter": {
-            "$ref": "#/components/schemas/ContentFilter",
+            "$ref": "#/components/schemas/PublicationFilter",
             "description": "Canonical content filter generated from the query."
           },
           "interpretation": {
@@ -40996,7 +40000,7 @@
             "description": "Human-readable summary of how the query was interpreted."
           },
           "sort": {
-            "$ref": "#/components/schemas/SortSpecContentSortField",
+            "$ref": "#/components/schemas/SortSpecPublicationSortField",
             "description": "Sort generated from the query."
           },
           "unsupported": {
@@ -41014,13 +40018,13 @@
           "sort"
         ]
       },
-      "PageResultContent": {
+      "PageResultPublication": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Content"
+              "$ref": "#/components/schemas/Publication"
             }
           },
           "number": {
@@ -41048,7 +40052,7 @@
           "totalPages"
         ]
       },
-      "Content": {
+      "Publication": {
         "type": "object",
         "description": "Canonical public content card across news, blog posts, social posts, repositories, websites, pages, and research papers.",
         "properties": {
@@ -41064,7 +40068,7 @@
             "description": "Stable content id scoped by contentType."
           },
           "contentType": {
-            "$ref": "#/components/schemas/ContentType",
+            "$ref": "#/components/schemas/PublicationType",
             "description": "Public content source type."
           },
           "createdAt": {
@@ -41073,7 +40077,7 @@
               "null"
             ],
             "format": "date-time",
-            "description": "Content row creation instant when known."
+            "description": "Publication row creation instant when known."
           },
           "publishedAt": {
             "type": [
@@ -41087,7 +40091,7 @@
             "description": "How this content relates to the requested owner.",
             "oneOf": [
               {
-                "$ref": "#/components/schemas/ContentRelation"
+                "$ref": "#/components/schemas/PublicationRelation"
               },
               {
                 "type": "null"
@@ -41132,7 +40136,7 @@
               "null"
             ],
             "format": "date-time",
-            "description": "Content row update instant when known."
+            "description": "Publication row update instant when known."
           },
           "url": {
             "type": [
@@ -41156,7 +40160,7 @@
           "title"
         ]
       },
-      "ContentFilter": {
+      "PublicationFilter": {
         "type": "object",
         "description": "Canonical filters for public content cards.",
         "properties": {
@@ -41164,7 +40168,7 @@
             "description": "Public content type filter.",
             "oneOf": [
               {
-                "$ref": "#/components/schemas/ContentType"
+                "$ref": "#/components/schemas/PublicationType"
               },
               {
                 "type": "null"
@@ -41175,7 +40179,7 @@
             "description": "Owner relation filter.",
             "oneOf": [
               {
-                "$ref": "#/components/schemas/ContentRelation"
+                "$ref": "#/components/schemas/PublicationRelation"
               },
               {
                 "type": "null"
@@ -41199,7 +40203,7 @@
           }
         }
       },
-      "SortSpecContentSortField": {
+      "SortSpecPublicationSortField": {
         "type": "object",
         "description": "Multi-term sort. First term has highest precedence. Used on entity list filters and saved-view payloads. An empty `order` array is valid JSON and means the client did not specify sort terms; the server applies resource-specific defaults.",
         "properties": {
@@ -41207,7 +40211,7 @@
             "type": "array",
             "description": "Ordered sort terms. Empty list means unspecified at the HTTP boundary (defaults apply).",
             "items": {
-              "$ref": "#/components/schemas/SortOrderContentSortField"
+              "$ref": "#/components/schemas/SortOrderPublicationSortField"
             }
           }
         },
@@ -41215,7 +40219,7 @@
           "order"
         ]
       },
-      "SortOrderContentSortField": {
+      "SortOrderPublicationSortField": {
         "type": "object",
         "description": "Single sort term: which enumerated sort field to use and whether direction is descending.",
         "properties": {
@@ -41224,7 +40228,7 @@
             "description": "true for descending (DESC), false for ascending (ASC)"
           },
           "field": {
-            "$ref": "#/components/schemas/ContentSortField",
+            "$ref": "#/components/schemas/PublicationSortField",
             "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys)."
           }
         },
@@ -41233,7 +40237,7 @@
           "field"
         ]
       },
-      "ContentSortField": {
+      "PublicationSortField": {
         "type": "string",
         "description": "Sortable fields for public content cards.",
         "enum": [
@@ -41591,7 +40595,7 @@
           },
           "sourceId": {
             "type": "string",
-            "description": "Stable id within the source type: an operationId, a skill/prompt name, or a completion gate id.",
+            "description": "Stable id within the source type: an operationId, a skill/prompt name, a completion gate id, or a research detail type targetPath.",
             "example": "createEntityText"
           },
           "sourceType": {
@@ -41619,7 +40623,8 @@
           "OPERATION",
           "SKILL",
           "PROMPT",
-          "COMPLETION_GATE"
+          "COMPLETION_GATE",
+          "RESEARCH_DETAIL_TYPE"
         ]
       },
       "HelpScope": {

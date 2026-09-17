@@ -9,7 +9,6 @@ import { z } from "zod/v4";
  * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @usedBySchema EntityTextSchema
  * @usedBySchema EntityUrlLinkSchema
- * @usedBySchema MediaScreenshotSchema
  * @usedBySchema NewsFilterSchema
  * @usedBySchema ResolvedHandleSchema
  * @usedBySchema UniqueIdSchema

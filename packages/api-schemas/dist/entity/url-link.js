@@ -54,7 +54,6 @@ const EntityUrlLinkSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/urls/all
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search

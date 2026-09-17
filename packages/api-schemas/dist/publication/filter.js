@@ -1,12 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { ContentRelationSchema } from "./relation.js";
-import { ContentTypeSchema } from "./type.js";
-const ContentFilterSchemaDefinition = z.object({
+import { PublicationRelationSchema } from "./relation.js";
+import { PublicationTypeSchema } from "./type.js";
+const PublicationFilterSchemaDefinition = z.object({
     /** Public content type filter. */
-    contentType: ContentTypeSchema.nullish(),
+    contentType: PublicationTypeSchema.nullish(),
     /** Owner relation filter. */
-    relation: ContentRelationSchema.nullish(),
+    relation: PublicationRelationSchema.nullish(),
     /** Topic key or source category. */
     topic: z.string().nullish(),
     /** Best-effort content year filter. */
@@ -15,13 +15,13 @@ const ContentFilterSchemaDefinition = z.object({
 /**
  * Canonical filters for public content cards.
  *
- * @openapiSchema ContentFilter
+ * @openapiSchema PublicationFilter
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema ContentSearchInterpretationSchema
- * @contractShape content.filter
+ * @usedBySchema PublicationSearchInterpretationSchema
+ * @contractShape publication.filter
  * @contractRole canonical
  */
-export const ContentFilterSchema = ContentFilterSchemaDefinition;
+export const PublicationFilterSchema = PublicationFilterSchemaDefinition;
 //# sourceMappingURL=filter.js.map

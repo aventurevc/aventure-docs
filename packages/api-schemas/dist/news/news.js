@@ -30,7 +30,6 @@ const NewsSchemaDefinition = z.object({
  * @openapiSchema News
  * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/detail/news
- * @endpoint GET /v1/entities/detail/trending-news
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/news
  * @endpoint GET /v1/news/detail
@@ -46,7 +45,6 @@ const NewsSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/detail/resolve
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search

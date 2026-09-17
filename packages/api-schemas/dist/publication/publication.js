@@ -1,20 +1,20 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { ContentRelationSchema } from "./relation.js";
-import { ContentTypeSchema } from "./type.js";
-const ContentSchemaDefinition = z.object({
+import { PublicationRelationSchema } from "./relation.js";
+import { PublicationTypeSchema } from "./type.js";
+const PublicationSchemaDefinition = z.object({
     /** Canonical URL when known. */
     canonicalUrl: z.string().nullish(),
     /** Stable content id scoped by contentType. */
     contentId: z.string(),
     /** Public content source type. */
-    contentType: ContentTypeSchema,
-    /** Content row creation instant when known. */
+    contentType: PublicationTypeSchema,
+    /** Publication row creation instant when known. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Publication or source activity instant when known. */
     publishedAt: z.iso.datetime({ offset: true }).nullish(),
     /** How this content relates to the requested owner. */
-    relation: ContentRelationSchema.nullish(),
+    relation: PublicationRelationSchema.nullish(),
     /** Registrable source domain when known. */
     sourceDomain: z.string().nullish(),
     /** Publication, platform owner, or source label. */
@@ -25,7 +25,7 @@ const ContentSchemaDefinition = z.object({
     title: z.string(),
     /** Single canonical topic key (web-crawl section vocabulary) or source category (repository language); null when the source has no classified topic. */
     topic: z.string().nullish(),
-    /** Content row update instant when known. */
+    /** Publication row update instant when known. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Primary URL for this content card. */
     url: z.string().nullish(),
@@ -35,17 +35,17 @@ const ContentSchemaDefinition = z.object({
 /**
  * Canonical public content card across news, blog posts, social posts, repositories, websites, pages, and research papers.
  *
- * @openapiSchema Content
+ * @openapiSchema Publication
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema PageContentSchema
- * @usedBySchema PageResultContentSchema
- * @contractShape content.content
+ * @usedBySchema PagePublicationSchema
+ * @usedBySchema PageResultPublicationSchema
+ * @contractShape publication.publication
  * @contractRole canonical
  */
-export const ContentSchema = ContentSchemaDefinition;
-//# sourceMappingURL=content.js.map
+export const PublicationSchema = PublicationSchemaDefinition;
+//# sourceMappingURL=publication.js.map

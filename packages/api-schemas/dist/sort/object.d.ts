@@ -8,9 +8,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/detail/fundraise-investor-joins
  * @endpoint GET /v1/entities/detail/news
  * @endpoint GET /v1/entities/detail/similar
- * @endpoint GET /v1/entities/detail/trending-news
  * @endpoint GET /v1/entities/summary
- * @endpoint GET /v1/media/screenshots
  * @endpoint GET /v1/news
  * @endpoint GET /v1/news/recent
  * @endpoint GET /v1/news/similar
@@ -69,7 +67,6 @@ import { z } from "zod/v4";
  * @usedBySchema PageableObjectSchema
  * @usedBySchema PageBlogPostSchema
  * @usedBySchema PageClassificationSchema
- * @usedBySchema PageContentSchema
  * @usedBySchema PageDatasourceFieldProvenanceSchema
  * @usedBySchema PageEmployeeCountSchema
  * @usedBySchema PageEntityAcquisitionSchema
@@ -92,13 +89,13 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema
  * @usedBySchema PageGithubRepoSchema
  * @usedBySchema PageLocationDirectoryEntrySchema
- * @usedBySchema PageMediaScreenshotSchema
  * @usedBySchema PageNewsSchema
  * @usedBySchema PagePersonDetailSchema
  * @usedBySchema PagePersonInvestmentSchema
  * @usedBySchema PagePersonInvestorParticipationSchema
  * @usedBySchema PagePersonSchema
  * @usedBySchema PagePersonSimilarityResultSchema
+ * @usedBySchema PagePublicationSchema
  * @usedBySchema PageSitemapUrlSlotSchema
  * @usedBySchema PageUniqueIdSchema
  * @usedBySchema PageUrlSlugRedirectSchema

@@ -12,8 +12,8 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
  * @usedBySchema AgentHelpSchema
- * @usedBySchema ContentSearchInterpretationSchema
  * @usedBySchema PersonSearchInterpretationSchema
+ * @usedBySchema PublicationSearchInterpretationSchema
  * @usedBySchema SearchInterpretationSchema
  * @contractShape confidence.confidence
  * @contractRole canonical

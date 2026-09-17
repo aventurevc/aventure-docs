@@ -11,7 +11,6 @@ type UrlTypeAliasDefinition = z.infer<typeof UrlTypeAliasSchemaDefinition>;
  * @openapiSchema UrlTypeAlias
  * @endpoint GET /v1/entities/urls/types
  * @endpoint GET /v1/people/urls/types
- * @endpoint GET /v1/url-types
  * @contractShape url.type-alias
  * @contractRole canonical
  */

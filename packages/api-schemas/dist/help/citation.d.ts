@@ -6,6 +6,7 @@ declare const HelpCitationSchemaDefinition: z.ZodObject<{
         COMPLETION_GATE: "COMPLETION_GATE";
         OPERATION: "OPERATION";
         PROMPT: "PROMPT";
+        RESEARCH_DETAIL_TYPE: "RESEARCH_DETAIL_TYPE";
         SKILL: "SKILL";
     }>;
     sourceVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
