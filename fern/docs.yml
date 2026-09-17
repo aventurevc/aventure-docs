@@ -78,14 +78,11 @@ navigation:
           - entities:
               - endpoint: POST /v1/entities/lookup/batch
                 slug: lookup-entity-batch
-                title: Batch entity lookup
               - endpoint: POST /v1/entities/lookup/matches
                 slug: lookup-entity-matches
-                title: Resolve entity identifiers with match outcomes
           - personBatch:
               - endpoint: POST /v1/people/lookup/batch
                 slug: lookup-person-batch
-                title: Batch person lookup
           - section: Resolve
             slug: resolve
             contents:
