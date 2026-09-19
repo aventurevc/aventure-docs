@@ -4,7 +4,7 @@
 
 ## Get started
 
-- [API quickstart](https://docs.aventure.vc/quickstart): Make anonymous API requests, then authenticate with a personal API key.
+- [API quickstart](https://docs.aventure.vc/quickstart): Make anonymous API requests, resolve a company by name, then authenticate with a personal API key.
 - [CLI quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli`, run a public read, sign in through the browser, and verify with `aventure auth doctor`.
 - [MCP quickstart](https://docs.aventure.vc/mcp): Connect an AI client to the hosted MCP server over OAuth, or self-host `@aventurevc/mcp-server`.
 - [Answer a real question](https://docs.aventure.vc/first-answer): Chain three public reads — filter the entity list, resolve one record by slug, read its funding rounds — in API, CLI, and MCP form.

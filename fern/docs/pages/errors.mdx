@@ -41,7 +41,7 @@ extension, present only when it applies:
 | `403` | Valid credential, not permitted here | A client secret on a write endpoint returns this |
 | `404` | No such record | — |
 | `406` | Requested content type cannot be served | Accept `application/json` |
-| `409` | Conflict with an existing record | Read `details` for the colliding candidates |
+| `409` | Conflict with an existing record, or a lookup that matched more than one | Read `details.candidate` and choose one |
 | `415` | Unsupported request content type | Send `Content-Type: application/json` |
 | `422` | Well-formed but semantically rejected | Read `detail` and `resolution` |
 | `429` | Rate limited | Back off — see below |

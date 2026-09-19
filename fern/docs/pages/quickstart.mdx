@@ -4,7 +4,7 @@ subtitle: Your first requests against the aVenture API
 slug: quickstart
 ---
 
-The first two requests are anonymous — no signup, no credential. The third
+The first three requests are anonymous — no signup, no credential. The fourth
 proves a credential works once you have one.
 
 Prefer a terminal or an AI client? The [CLI quickstart](/cli) and
@@ -48,7 +48,22 @@ curl "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US&size
 accelerator cohort, fundraising activity, and operating status.
 [Pagination and filtering](/pagination-and-filtering) covers how they combine.
 
-## 3. Authenticate
+## 3. Find one company by name
+
+Slugs carry the headquarters location, so resolve a name instead of guessing
+one. `GET /v1/entities/lookup` is anonymous and returns the full record,
+including its `slug` and the `core.id` UUID that funding-round, investor, and
+people routes take:
+
+```bash
+curl "https://api.aventure.vc/v1/entities/lookup?name=Ramp"
+```
+
+`urlDomain=ramp.com` resolves by website instead. When more than one record owns
+the domain, the answer is a [`409`](/errors) whose `details.candidate` lists the
+matches; pick one and read it by `slug`.
+
+## 4. Authenticate
 
 Create a personal API key: sign in at [aventure.vc](https://aventure.vc), open
 **Settings → API keys**, and choose **Add new key**. Load it from your secret
@@ -67,7 +82,7 @@ valid but not permitted there. Both arrive as a
 [problem detail](/errors) whose `detail` field names the reason.
 [Authentication](/authentication) covers the other two credential types.
 
-## 4. Search across everything
+## 5. Search across everything
 
 When you have a phrase rather than a set of filters, `POST /v1/search/all` runs
 the entity, person, and news engines and returns a typed result page for each

@@ -83,9 +83,9 @@ same verbs, so learning one teaches the rest:
 
 ```bash
 aventure entities list --size 3
-aventure entities get --entity-slug calendly-atlanta-ga-us
+aventure entities lookup --name Ramp
+aventure entities get --entity-slug ramp-new-york-city-ny-us
 aventure entities search --query "fintech companies in Austin" --size 3
-aventure lookup --token e9TwndP056X3
 ```
 
 | Verb | What it does |
@@ -94,6 +94,27 @@ aventure lookup --token e9TwndP056X3
 | `search` | Find many from a plain-English `--query` or a filter set |
 | `get` | Read one record |
 | `lookup` | Resolve a name, URL, or domain to one record of that type |
+
+### Start from a name
+
+Slugs carry the headquarters location, so they cannot be guessed:
+`--entity-slug ramp` returns `404`. Resolve the name first; the answer carries
+the `slug` and the `core.id` UUID the other commands take:
+
+```bash
+aventure entities lookup --name Ramp
+```
+
+`--url-domain ramp.com` resolves by website instead. When more than one record
+owns the domain — a company and one of its products, for example — the answer
+is `409`; resolve by `--name` instead.
+
+Records attached to a company — funding rounds, investors, people — sit under
+that company's UUID, so those commands take `--entity-id`, not a slug:
+
+```bash
+aventure entities rounds list --entity-id 07895463-8867-4566-9dc8-a30794076bb6
+```
 
 Each record type names its own slug flag — `--entity-slug`, `--person-slug`,
 `--news-slug` — so the flag tells you which record you are asking for:
@@ -120,10 +141,11 @@ slug, or an external registry id like a ticker or EIN — to whichever record
 owns it.
 
 <Note>
-The first two commands read public data with no credential. `aventure lookup`
-needs a credential, and `aventure search` and `aventure entities search`
-additionally need a Pro subscription or trial — without one they answer
-[`402`](/errors). Run `aventure auth login` first.
+`list`, `get`, and `entities lookup` read public data with no credential.
+`aventure lookup` and a filter-only `aventure entities search` need you signed
+in. A plain-English query — `aventure search`, or `entities search` with
+`--query` or bare text — also needs a Pro subscription or trial; without one it
+answers [`402`](/errors). Run `aventure auth login` first.
 </Note>
 
 ## Output and exit codes
