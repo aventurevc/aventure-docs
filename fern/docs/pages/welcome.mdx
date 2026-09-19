@@ -88,34 +88,13 @@ Both packages require Node.js 24.18 or later in the 24.x series.
   </Card>
 </CardGroup>
 
-## Your first request
+## Once you have a first result
 
-<Steps>
-<Step title="Read something without signing in">
-
-`GET /v1/entities` and the other public listings answer with no credential at
-all, so you can see the data shape before you commit to anything:
-
-```bash
-curl "https://api.aventure.vc/v1/entities?size=5"
-```
-
-</Step>
-<Step title="Get a credential">
-
-Create a personal API key under **Settings → API keys** at
-[aventure.vc](https://aventure.vc). [Authentication](/authentication) explains
-the three credential types and which operations accept each one.
-
-</Step>
-<Step title="Narrow the results">
-
-`GET /v1/entities` alone accepts more than sixty filters. [Pagination and
-filtering](/pagination-and-filtering) covers how to combine them and page through
-the results.
-
-</Step>
-</Steps>
+- [Answer a real question](/first-answer) — filter a list, open one record, read its funding rounds, on all three surfaces
+- [Authentication](/authentication) — the three credential types and which operations accept each one
+- [Pagination and filtering](/pagination-and-filtering) — combining the sixty-plus filters on `GET /v1/entities` and paging through them
+- [Errors](/errors) — the problem detail body, and what `401`, `403`, and `402` each mean
+- [Support](/support) — what to include so a report can be traced
 
 ## Working in TypeScript
 

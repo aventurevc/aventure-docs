@@ -1,0 +1,179 @@
+---
+title: Answer a real question
+subtitle: Go from a question to funding rounds in three calls, on whichever surface you use
+slug: first-answer
+---
+
+The quickstarts each end at a working call. This page ends at an answer.
+
+The question: **which seed-stage companies in Austin are in the dataset, and
+what has one of them raised?** Every call below is a public read — no
+credential, no signup — and the three surfaces run the same three operations,
+so you can follow whichever column you work in.
+
+<Steps>
+<Step title="Narrow the dataset to the companies you mean">
+
+Filters are the entity list's query parameters, and they combine. `stage` and
+`headquartersCity` are two of more than sixty on this one operation.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl "https://api.aventure.vc/v1/entities?headquartersCity=Austin&stage=Seed&size=5"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities list --headquarters-city Austin --stage Seed --size 5
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read` with the operation named:
+
+```json
+{
+  "operationId": "listEntities",
+  "query": { "headquartersCity": "Austin", "stage": "Seed", "size": 5 }
+}
+```
+
+</Tab>
+</Tabs>
+
+`totalElements` is the size of the whole matching set, not of your page — that
+number is the answer to "how many are there". `content` holds the five records,
+each with a `slug` you can carry into the next step.
+
+<Note>
+Location filters take the name, not the postal abbreviation:
+`headquartersState=Texas` matches, `headquartersState=TX` returns zero rows.
+[Pagination and filtering](/pagination-and-filtering) covers how the filters
+combine.
+</Note>
+
+</Step>
+<Step title="Open one record">
+
+Take a `slug` from the previous response — `healthkey-austin-tx-us` below — and
+read the full record. The detail response carries names, locations,
+classifications, text summaries, and a `core.id`, which is the UUID the
+round-level operations key on.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl "https://api.aventure.vc/v1/entities/detail?slug=healthkey-austin-tx-us"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities get --entity-slug healthkey-austin-tx-us
+```
+
+</Tab>
+<Tab title="MCP">
+
+```json
+{
+  "operationId": "getEntityDetail",
+  "query": { "slug": "healthkey-austin-tx-us" }
+}
+```
+
+</Tab>
+</Tabs>
+
+<Note>
+The wire parameter is `slug` on all three surfaces. The CLI qualifies it as
+`--entity-slug` so that one command can also accept the `--batch` body field
+named `slug`; the [CLI quickstart](/cli#the-command-shape) covers that
+distinction.
+</Note>
+
+</Step>
+<Step title="Read the funding rounds">
+
+`core.id` from step 2 is the `entityId` path parameter here.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl "https://api.aventure.vc/v1/entities/019efcaf-7aff-7264-afe1-425afc1e3e11/fundraise-rounds?size=3"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities rounds list --entity-id 019efcaf-7aff-7264-afe1-425afc1e3e11 --size 3
+```
+
+</Tab>
+<Tab title="MCP">
+
+```json
+{
+  "operationId": "entityFundraises",
+  "pathParams": { "entityId": "019efcaf-7aff-7264-afe1-425afc1e3e11" },
+  "query": { "size": 3 }
+}
+```
+
+</Tab>
+</Tabs>
+
+Each round carries `round`, `amountRaised`, `currency`, and `dateAnnounced`:
+
+```json
+{
+  "content": [
+    {
+      "id": "cb71e324-28ee-4114-b1f5-21a66a5dc78c",
+      "round": "Seed",
+      "amountRaised": 500000,
+      "currency": "USD",
+      "dateAnnounced": "2025-01-01T00:00:00.000Z"
+    }
+  ],
+  "totalElements": 1
+}
+```
+
+`amountRaised` is denominated in its own `currency`, so compare rounds only
+after converting — the values are not normalized to USD.
+
+</Step>
+</Steps>
+
+## The shape of every other question
+
+Those three steps are the pattern: **filter a list, resolve one record, read
+what hangs off it.** People and news work the same way, and the operations that
+hang off a record — news, employees, investors, similar companies — all key on
+the same `core.id`.
+
+When you have a phrase rather than a filter set, swap step 1 for search:
+`POST /v1/search/all` runs entities, people, and news together, and
+`aventure search --query "..."` is the CLI form. Search needs a credential and
+a Pro subscription or trial; the three filtered calls above need neither.
+
+To go from an [API reference](/api-reference) operation to the command that
+runs it, `aventure docs api <operationId>` prints the route, the required
+flags, and the matching MCP tool without calling the API.
+
+## Next
+
+- [Pagination and filtering](/pagination-and-filtering) — the filters behind step 1, and how to page a large result set
+- [Authentication](/authentication) — what a credential adds beyond these public reads
+- [Errors](/errors) — the problem detail body, and reading `traceId` out of a failure
+- [API reference](/api-reference) — every operation, parameter, and schema

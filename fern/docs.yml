@@ -39,6 +39,9 @@ navigation:
           - page: MCP quickstart
             path: docs/pages/mcp-quickstart.mdx
             icon: fa-duotone fa-robot
+          - page: Answer a real question
+            path: docs/pages/first-answer.mdx
+            icon: fa-duotone fa-lightbulb
           - page: Authentication
             path: docs/pages/authentication.mdx
             icon: fa-duotone fa-key

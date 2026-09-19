@@ -45,11 +45,7 @@ Or `claude mcp add --transport http --client-id KL7mINzGk0le0QiD
 these settings differently; what matters is that the client ID is set and the
 callback lands on `/callback`.
 
-<Note>
-The endpoint answers OAuth protected-resource discovery, not an ordinary `GET`.
-Opening the URL in a browser is not a useful connectivity test — connect a
-client instead.
-</Note>
+<Accordion title="Registered redirect URIs, and testing the flow on its own">
 
 These redirect URIs are registered:
 
@@ -63,10 +59,11 @@ A loopback redirect may use any available port, such as
 client using a different callback path needs its own registered OAuth
 application — [contact us](/support) to arrange one.
 
-<Accordion title="Verify with MCP Inspector">
-
-Run this in an interactive terminal, sign in to aVenture, and approve access.
-The Inspector exchanges the authorization code and lists the tools:
+The endpoint answers OAuth protected-resource discovery, not an ordinary `GET`,
+so opening the URL in a browser is not a useful connectivity test. To exercise
+the flow without a client, run this in an interactive terminal, sign in to
+aVenture, and approve access — the Inspector exchanges the authorization code
+and lists the tools:
 
 ```bash
 npx @modelcontextprotocol/inspector@2.6.0 --cli \
@@ -190,6 +187,7 @@ This package speaks Streamable HTTP, not stdio. Configure a URL, not a command.
 
 ## Next
 
+- [Answer a real question](/first-answer) — these tools chained into one result
 - [Authentication](/authentication) — the credential types and what each reaches
 - [CLI quickstart](/cli) — the same tools from your terminal
 - [API reference](/api-reference) — the operations behind every tool

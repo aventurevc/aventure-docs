@@ -83,7 +83,7 @@ same verbs, so learning one teaches the rest:
 
 ```bash
 aventure entities list --size 3
-aventure people get --slug jane-doe
+aventure entities get --entity-slug calendly-atlanta-ga-us
 aventure entities search --query "fintech companies in Austin" --size 3
 aventure lookup --token e9TwndP056X3
 ```
@@ -94,6 +94,22 @@ aventure lookup --token e9TwndP056X3
 | `search` | Find many from a plain-English `--query` or a filter set |
 | `get` | Read one record |
 | `lookup` | Resolve a name, URL, or domain to one record of that type |
+
+Each record type names its own slug flag — `--entity-slug`, `--person-slug`,
+`--news-slug` — so the flag tells you which record you are asking for:
+
+```bash
+aventure entities get --entity-slug calendly-atlanta-ga-us
+aventure people   get --person-slug yin-wu
+aventure news     get --news-slug 2026-09-16-pulley-a-carta-rival-is-shutting-down
+```
+
+<Warning>
+Bare `--slug` on these commands is the request **body** field used by `--batch`,
+not the single-record selector. Passing it alone returns
+[`400` or `422`](/errors). Use the owner-qualified flag above for one record,
+and `--batch --slug <slug> <slug>` for many.
+</Warning>
 
 Add `--batch` to `get` or `lookup` to resolve many records in one request.
 
@@ -114,7 +130,7 @@ additionally need a Pro subscription or trial — without one they answer
 
 Each command accepts an output mode:
 
-- `--text` — compact lines, the default in a terminal
+- `--text` — the default in a terminal: a table for a list, labelled fields for one record
 - `--data` — the response data as JSON, the default when piped or non-TTY
 - `--json` — the full envelope, capped at 50KB
 - `--data-full` — uncapped JSON, for bounded programs
@@ -122,8 +138,39 @@ Each command accepts an output mode:
 Exit code `0` means `envelope.ok === true`; `1` means the call failed. Scripts
 can branch on that without parsing output.
 
+## Find the command for an operation
+
+`aventure docs api` prints what an operation needs without calling the API, so
+you can go from an [API reference](/api-reference) `operationId` to the command
+that runs it:
+
+```bash
+aventure docs api getEntityDetail
+```
+
+```
+cli: aventure entities get
+GET /v1/entities/detail
+operationId: getEntityDetail
+resource: entities
+intent: read
+scope: read
+mutates: false
+destructive: false
+mcpTool: aventure_read
+body: none
+required path flags: none
+required query flags: none
+```
+
+`mcpTool` names the [MCP](/mcp) tool that reaches the same operation, and
+`scope` tells you whether a read or write credential is needed before you run
+it. `--help` on any command lists that command's own flags, grouped by whether
+they land in the path, the query string, or the request body.
+
 ## Next
 
+- [Answer a real question](/first-answer) — these commands chained into one result
 - [Authentication](/authentication) — which credential each operation accepts
 - [MCP quickstart](/mcp) — the same data inside an AI client
 - [Pagination and filtering](/pagination-and-filtering) — the filters behind `--size`, `--page`, and the rest
