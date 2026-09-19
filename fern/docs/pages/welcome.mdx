@@ -15,22 +15,55 @@ subtitle: Start downloading private company data within minutes with the aVentur
 
 ## Get started
 
+Pick the surface you want to work in. All three read the same data and accept
+the same credentials, and each quickstart ends with a working query.
+
 <CardGroup cols={3}>
-  <Card title="aVenture API" icon="duotone plug" href="/api-reference">
-    Access private company data programmatically with the aVenture REST API
+  <Card title="API quickstart" icon="duotone plug" href="/quickstart">
+    Plain HTTPS requests. Start anonymously with `curl`, no signup required.
   </Card>
 
-  <Card title="aVenture CLI" icon="duotone terminal" href="https://github.com/aventurevc/aventure-cli">
-    Download and manage private company data directly from your terminal
+  <Card title="CLI quickstart" icon="duotone terminal" href="/cli">
+    Query from your terminal. Sign in through your browser; scriptable output and exit codes.
   </Card>
 
-  <Card title="aVenture MCP" icon="duotone robot" href="https://github.com/aventurevc/aventure-mcp">
-    Integrate private company data into AI workflows with the aVenture MCP server
+  <Card title="MCP quickstart" icon="duotone robot" href="/mcp">
+    Give an AI client the data as tools. The hosted server needs no install.
   </Card>
 </CardGroup>
 
-Install [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli)
-or [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server).
+<Tabs>
+<Tab title="API">
+
+```bash
+curl "https://api.aventure.vc/v1/entities?size=5"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+npm install --global @aventurevc/aventure-cli --registry=https://registry.npmjs.org/
+aventure entities list --size 3
+```
+
+</Tab>
+<Tab title="MCP">
+
+Point an OAuth-capable client at `https://mcp.aventure.vc/mcp` with the public
+client ID `KL7mINzGk0le0QiD`, or self-host:
+
+```bash
+npm install --global @aventurevc/mcp-server --registry=https://registry.npmjs.org/
+aventure-mcp-server
+```
+
+</Tab>
+</Tabs>
+
+<Note>
+Both packages require Node.js 24.18 or later in the 24.x series.
+</Note>
 
 ## What you can query
 
@@ -58,22 +91,21 @@ or [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-serv
 ## Your first request
 
 <Steps>
-<Step title="Get a credential">
+<Step title="Read something without signing in">
 
-The API accepts three credential types, and which one you hold decides what you
-can do. Read [Authentication](/authentication) to pick the right one.
-
-</Step>
-<Step title="Make a request">
-
-Every call is a plain HTTPS request against `https://api.aventure.vc`:
+`GET /v1/entities` and the other public listings answer with no credential at
+all, so you can see the data shape before you commit to anything:
 
 ```bash
-curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  "https://api.aventure.vc/v1/entities?size=5"
+curl "https://api.aventure.vc/v1/entities?size=5"
 ```
 
-The [quickstart](/quickstart) walks through the first few calls in full.
+</Step>
+<Step title="Get a credential">
+
+Create a personal API key under **Settings → API keys** at
+[aventure.vc](https://aventure.vc). [Authentication](/authentication) explains
+the three credential types and which operations accept each one.
 
 </Step>
 <Step title="Narrow the results">

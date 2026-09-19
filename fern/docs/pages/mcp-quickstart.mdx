@@ -1,0 +1,127 @@
+---
+title: MCP quickstart
+subtitle: Give an AI client access to aVenture data
+slug: mcp
+---
+
+The aVenture MCP server exposes the [API](/api-reference) as tools an AI client
+can call. The hosted server needs no install — point an OAuth-capable client at
+it and sign in. Self-hosting is for clients that cannot complete an OAuth flow.
+
+## Connect to the hosted server
+
+Configure your client with:
+
+| Setting | Value |
+|---------|-------|
+| URL | `https://mcp.aventure.vc/mcp` |
+| Transport | Streamable HTTP |
+| Client ID | `KL7mINzGk0le0QiD` |
+| Client secret | none — this is a public client |
+
+The client discovers the authorization server from the MCP endpoint and
+completes authorization code with PKCE. Dynamic client registration is
+disabled, so the client ID above must be configured explicitly.
+
+<Note>
+The endpoint answers OAuth protected-resource discovery, not an ordinary `GET`.
+Opening the URL in a browser is not a useful connectivity test — connect a
+client instead.
+</Note>
+
+These redirect URIs are registered:
+
+- `http://127.0.0.1/callback`
+- `http://localhost/callback`
+- `https://chatgpt.com/connector_platform_oauth_redirect`
+- `https://claude.ai/api/mcp/auth_callback`
+
+A loopback redirect may use any available port, such as
+`http://127.0.0.1:6276/callback`, as long as it keeps the `/callback` path. A
+client using a different callback path needs its own registered OAuth
+application — [contact us](/support) to arrange one.
+
+<Accordion title="Verify with MCP Inspector">
+
+Run this in an interactive terminal, sign in to aVenture, and approve access.
+The Inspector exchanges the authorization code and lists the tools:
+
+```bash
+npx @modelcontextprotocol/inspector@2.6.0 --cli \
+  --server-url https://mcp.aventure.vc/mcp \
+  --client-id KL7mINzGk0le0QiD \
+  --callback-url http://127.0.0.1:6276/callback \
+  --method tools/list
+```
+
+</Accordion>
+
+## Verify the connection
+
+Once the client is connected, call `aventure_status`. It returns the API status,
+the host it reached, and the MCP auth scope your credential actually carries —
+which is the one call that proves transport and credential together. Then call
+`aventure_help` to find the right tool and inputs for a given task.
+
+The tool list reflects the permissions granted to the signed-in user, and the
+API checks permission again when an operation runs — a visible tool is not a
+guarantee that every call it can make will be authorized.
+
+| Tool | What it does |
+|------|--------------|
+| `aventure_status` | Return API status, host, and active MCP auth scope |
+| `aventure_help` | Find the command for a task, with the inputs it needs |
+| `aventure_search` | Find companies, people, news, or publications from a query |
+| `aventure_lookup` | Turn a name, URL, slug, ticker, or other identifier into the record that owns it |
+| `aventure_read` | Read one record, or the records attached to it |
+| `aventure_write` | Create a record, or change one that already exists |
+| `aventure_delete` | Remove one record, or one link between records |
+
+## Self-host instead
+
+Use this when your client configures MCP servers by URL but cannot run an OAuth
+flow, or when you want the server inside your own network.
+
+<Note>
+The server requires Node.js 24.18 or later in the 24.x series.
+</Note>
+
+```bash
+npm install --global @aventurevc/mcp-server --registry=https://registry.npmjs.org/
+aventure-mcp-server
+```
+
+It listens at `http://localhost:3333/mcp`. Leave it running while your client is
+connected. The server starts with no credential of its own — every request must
+carry a [personal API key](/authentication#get-a-personal-credential) as a
+bearer token:
+
+```json
+{
+  "mcpServers": {
+    "aventure": {
+      "url": "http://localhost:3333/mcp",
+      "headers": {
+        "Authorization": "Bearer <personal-api-key>"
+      }
+    }
+  }
+}
+```
+
+Supply the key through your client's own secret storage; its interpolation
+syntax differs by client. Never paste the key into a file you commit.
+
+`AVENTURE_MCP_PORT` and `AVENTURE_MCP_PATH` change the listener — update the
+client URL to match. `AVENTURE_MCP_JSON_LIMIT` bounds the request body size.
+
+<Note>
+This package speaks Streamable HTTP, not stdio. Configure a URL, not a command.
+</Note>
+
+## Next
+
+- [Authentication](/authentication) — the credential types and what each reaches
+- [CLI quickstart](/cli) — the same tools from your terminal
+- [API reference](/api-reference) — the operations behind every tool
+- [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, and its [source](https://github.com/aventurevc/aventure-mcp)

@@ -4,7 +4,9 @@
 
 ## Get started
 
-- [Quickstart](https://docs.aventure.vc/quickstart): Make anonymous API requests, then run an authenticated search with a personal API key.
+- [API quickstart](https://docs.aventure.vc/quickstart): Make anonymous API requests, then authenticate with a personal API key.
+- [CLI quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli`, run a public read, sign in through the browser, and verify with `aventure auth doctor`.
+- [MCP quickstart](https://docs.aventure.vc/mcp): Connect an AI client to the hosted MCP server over OAuth, or self-host `@aventurevc/mcp-server`.
 - [Authentication](https://docs.aventure.vc/authentication): Choose the credential accepted by an operation.
 - [Pagination and filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
 - [Errors](https://docs.aventure.vc/errors): Interpret problem detail responses and rate limits.

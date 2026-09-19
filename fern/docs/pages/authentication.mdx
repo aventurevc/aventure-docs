@@ -16,14 +16,13 @@ Public users can create their own personal API key. Sign in at
 `AUTH_TOKEN` at runtime. Never commit or print the key itself. Public users do
 not need a client secret or admin API key.
 
-The CLI supports two interactive browser flows: `aventure auth login` uses
-native OAuth with PKCE, while `aventure auth personal-login` creates and stores
-a personal API key. In a headless environment, provide an existing personal
-key through `AUTH_TOKEN`. The
-[CLI authentication guide](https://github.com/aventurevc/aventure-cli#authentication)
-covers these flows, and the
-[MCP configuration](https://github.com/aventurevc/aventure-mcp#connect-with-a-personal-api-key)
-covers personal-key and native OAuth clients.
+The CLI signs you in for you. `aventure auth login` runs the OAuth device
+authorization grant — it prints a one-time code and a URL, and works over SSH
+and in containers as well as on a laptop. `aventure auth login --key` creates
+and stores a personal API key through the same browser approval instead. In a
+non-interactive environment, supply an existing key through `AUTH_TOKEN`. The
+[CLI quickstart](/cli) walks through both, and the [MCP quickstart](/mcp)
+covers OAuth and personal-key clients.
 
 ## Connect an MCP client with OAuth
 
@@ -39,8 +38,8 @@ Supported redirects are `http://127.0.0.1/callback`,
 available port while retaining the `/callback` path. Clients using another
 callback path need their own registered OAuth application.
 
-Follow the [MCP OAuth setup and Inspector example](https://github.com/aventurevc/aventure-mcp#authenticate-with-native-oauth)
-to sign in, approve access, and list the tools.
+The [MCP quickstart](/mcp) has the full client configuration and an MCP
+Inspector command for verifying the flow end to end.
 
 ## The three credentials
 

@@ -1,11 +1,14 @@
 ---
-title: Quickstart
-subtitle: Your first three requests against the aVenture API
+title: API quickstart
+subtitle: Your first requests against the aVenture API
 slug: quickstart
 ---
 
-The first two requests are anonymous. The final search uses a personal API key
-and requires a current Pro subscription or trial.
+The first two requests are anonymous — no signup, no credential. The third
+proves a credential works once you have one.
+
+Prefer a terminal or an AI client? The [CLI quickstart](/cli) and
+[MCP quickstart](/mcp) cover the same data through those surfaces.
 
 ## 1. List entities
 
@@ -45,14 +48,30 @@ curl "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US&size
 accelerator cohort, fundraising activity, and operating status.
 [Pagination and filtering](/pagination-and-filtering) covers how they combine.
 
-## 3. Search across everything
+## 3. Authenticate
+
+Create a personal API key: sign in at [aventure.vc](https://aventure.vc), open
+**Settings → API keys**, and choose **Add new key**. Load it from your secret
+manager as `AUTH_TOKEN` rather than pasting it into a shell history.
+
+`GET /v1/auth/me/permissions` is the cheapest way to confirm the credential is
+being read and to see what it reaches:
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/auth/me/permissions"
+```
+
+A `401` means the credential was missing or unrecognized; a `403` means it was
+valid but not permitted there. Both arrive as a
+[problem detail](/errors) whose `detail` field names the reason.
+[Authentication](/authentication) covers the other two credential types.
+
+## 4. Search across everything
 
 When you have a phrase rather than a set of filters, `POST /v1/search/all` runs
 the entity, person, and news engines and returns a typed result page for each
-scope. Your account needs a Pro subscription or trial whose current period has
-not ended. Check [Settings → Subscription](https://aventure.vc/settings/subscription),
-follow the [personal credential setup](/authentication#get-a-personal-credential),
-then expose the key to this process as `AUTH_TOKEN` from your secret manager:
+scope:
 
 ```bash
 curl -X POST \
@@ -61,6 +80,13 @@ curl -X POST \
   -d '{"query": "climate tech seed round"}' \
   "https://api.aventure.vc/v1/search/all?size=10"
 ```
+
+<Note>
+As a signed-in user, this endpoint requires a Pro subscription or trial whose
+current period has not ended — check
+[Settings → Subscription](https://aventure.vc/settings/subscription). A service
+integration holding a client secret reaches it without one.
+</Note>
 
 `page` and `size` apply to every scope. Cross-domain `sort` is not supported —
 each scope orders its own results by relevance.

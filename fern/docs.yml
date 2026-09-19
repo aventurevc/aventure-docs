@@ -30,9 +30,15 @@ navigation:
           - page: Welcome
             path: docs/pages/welcome.mdx
             icon: fa-duotone fa-house
-          - page: Quickstart
+          - page: API quickstart
             path: docs/pages/quickstart.mdx
             icon: fa-duotone fa-bolt
+          - page: CLI quickstart
+            path: docs/pages/cli-quickstart.mdx
+            icon: fa-duotone fa-terminal
+          - page: MCP quickstart
+            path: docs/pages/mcp-quickstart.mdx
+            icon: fa-duotone fa-robot
           - page: Authentication
             path: docs/pages/authentication.mdx
             icon: fa-duotone fa-key
