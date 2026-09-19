@@ -82,10 +82,10 @@ provenance and sign-in providers, never the secret itself.
 same verbs, so learning one teaches the rest:
 
 ```bash
-aventure entities search --query "fintech companies in Austin" --size 3
 aventure entities list --size 3
-aventure people get --person-slug jane-doe
-aventure lookup e9TwndP056X3
+aventure people get --slug jane-doe
+aventure entities search --query "fintech companies in Austin" --size 3
+aventure lookup --token e9TwndP056X3
 ```
 
 | Verb | What it does |
@@ -94,12 +94,21 @@ aventure lookup e9TwndP056X3
 | `search` | Find many from a plain-English `--query` or a filter set |
 | `get` | Read one record |
 | `lookup` | Resolve a name, URL, or domain to one record of that type |
-| `batch` | Read many records or details in one request |
+
+Add `--batch` to `get` or `lookup` to resolve many records in one request.
 
 `aventure search` and `aventure lookup` are the cross-record versions:
-`search` runs companies, people, and news together, and `lookup` resolves any
-identifier — a public handle such as `e9TwndP056X3`, a UUID, a slug, or an
-external registry id like a ticker or EIN — to whichever record owns it.
+`search` runs companies, people, and news together, and `lookup --token`
+resolves any identifier — a public handle such as `e9TwndP056X3`, a UUID, a
+slug, or an external registry id like a ticker or EIN — to whichever record
+owns it.
+
+<Note>
+The first two commands read public data with no credential. `aventure lookup`
+needs a credential, and `aventure search` and `aventure entities search`
+additionally need a Pro subscription or trial — without one they answer
+[`402`](/errors). Run `aventure auth login` first.
+</Note>
 
 ## Output and exit codes
 

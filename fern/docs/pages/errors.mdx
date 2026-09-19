@@ -11,8 +11,11 @@ API produces.
 ## The problem detail body
 
 `type`, `title`, `status`, `detail`, and `instance` are the RFC standard fields
-and appear on every error. Everything else is an aVenture extension, present
-only when it applies:
+and appear on every error. `type` is a URI drawn from a fixed set — values such
+as `https://api.aventure.vc/errors/access-denied`, `.../rate-limited`, and
+`.../subscription-required` — so it is the most reliable field to branch on when
+the status alone does not say what to do. Everything else is an aVenture
+extension, present only when it applies:
 
 - **`code`** — a machine-readable secondary code, from a fixed set covering
   auth and session, rate limiting, RBAC, job infrastructure, external providers,

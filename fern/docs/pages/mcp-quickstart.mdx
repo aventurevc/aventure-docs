@@ -21,7 +21,29 @@ Configure your client with:
 
 The client discovers the authorization server from the MCP endpoint and
 completes authorization code with PKCE. Dynamic client registration is
-disabled, so the client ID above must be configured explicitly.
+disabled, so a client that accepts only a bare URL fails with `Incompatible
+auth server: does not support dynamic client registration`; the client ID above
+must be configured explicitly. In Claude Code that is an `oauth` block:
+
+```json
+{
+  "mcpServers": {
+    "aventure": {
+      "type": "http",
+      "url": "https://mcp.aventure.vc/mcp",
+      "oauth": {
+        "clientId": "KL7mINzGk0le0QiD",
+        "callbackPort": 6276
+      }
+    }
+  }
+}
+```
+
+Or `claude mcp add --transport http --client-id KL7mINzGk0le0QiD
+--callback-port 6276 aventure https://mcp.aventure.vc/mcp`. Other clients name
+these settings differently; what matters is that the client ID is set and the
+callback lands on `/callback`.
 
 <Note>
 The endpoint answers OAuth protected-resource discovery, not an ordinary `GET`.
@@ -77,6 +99,52 @@ guarantee that every call it can make will be authorized.
 | `aventure_write` | Create a record, or change one that already exists |
 | `aventure_delete` | Remove one record, or one link between records |
 
+## Name the operation before you call it
+
+The last five tools are thin wrappers over the [API reference](/api-reference):
+each one runs an operation you name, so every call needs `operationId`, or
+`method` and `path` together. A call carrying only a query is rejected with
+`Pass operationId or method+path.`
+
+`aventure_help` supplies the name. Ask in plain English and set `resolve`:
+
+```json
+{ "q": "look up a company by name", "resolve": true }
+```
+
+It answers with one recommendation instead of a catalog. `mcpTool` names the
+tool to call, `apiRoute` gives the method and path, `pathInput` and `queryInput`
+and `bodyInput` list that operation's argument names, and `missingInputs` lists
+the ones it will not run without. For the query above that is `aventure_lookup`
+and `GET /v1/entities/lookup`, so:
+
+```json
+{ "operationId": "lookupEntity", "query": { "name": "Stripe" } }
+```
+
+That operation needs no credential, which makes it the shortest path to a first
+successful result.
+
+<Note>
+The help parameter is `q`. On the other five tools `query` means the operation's
+URL query parameters, and `aventure_help` ignores it. Help called with no `q`
+is not an error — it returns the head of the full catalog in no particular
+order.
+</Note>
+
+Put each input where the help answer says it goes: `pathInput` values in
+`pathParams`, `queryInput` values in `query`, `bodyInput` values in `body`.
+Do not carry a shape between operations — `entityId` is a path parameter on the
+entity detail routes but a filter on `GET /v1/entities`, and
+`GET /v1/entities/detail/fundraise-investor-joins` calls it `id`.
+
+<Note>
+`responseFormat` applies only to operations that declare a `text/plain`
+response. Setting it to `text` on a JSON-only operation sends
+`Accept: text/plain`, and the API answers [`406`](/errors). Leave it unset
+unless the operation offers both.
+</Note>
+
 ## Self-host instead
 
 Use this when your client configures MCP servers by URL but cannot run an OAuth
@@ -100,6 +168,7 @@ bearer token:
 {
   "mcpServers": {
     "aventure": {
+      "type": "http",
       "url": "http://localhost:3333/mcp",
       "headers": {
         "Authorization": "Bearer <personal-api-key>"
