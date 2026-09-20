@@ -12,7 +12,8 @@ Prefer a terminal or an AI client? The [CLI quickstart](/cli) and
 
 ## 1. List entities
 
-`GET /v1/entities` returns a page of companies, investors, and accelerators.
+`GET /v1/entities` returns a page of organizations, products, and services.
+Add `typeRecord=Company` when you want companies only.
 
 ```bash
 curl "https://api.aventure.vc/v1/entities?size=5"
@@ -52,22 +53,24 @@ accelerator cohort, fundraising activity, and operating status.
 
 Slugs carry the headquarters location, so resolve a name instead of guessing
 one. `GET /v1/entities/lookup` is anonymous and returns the full record,
-including its `slug` and the `core.id` UUID that funding-round, investor, and
+including its `core.slug` and the `core.id` UUID that funding-round, investor, and
 people routes take:
 
 ```bash
 curl "https://api.aventure.vc/v1/entities/lookup?name=Ramp"
 ```
 
-`urlDomain=pulley.com` resolves by website instead. A domain is often shared by a
+`urlDomain=google.com` resolves by website instead. A domain is often shared by a
 company and the product records under it, and then the answer is a
-[`409`](/errors) whose `details.candidate` lists every match; pick one and read
-it by `slug`, or resolve by `name`, which stays unambiguous.
+[`409`](/errors) whose `details.candidate` lists the candidates. Names can also
+match more than one record. If candidates are returned, choose one and read its exact slug. Otherwise,
+list matches with `GET /v1/entities?entityName=Mercury` and select the intended
+`content[].core.slug`. Add `typeRecord=Company` when you want companies only.
 
 ## 4. Authenticate
 
-Create a personal API key: sign in at [aventure.vc](https://aventure.vc), open
-**Settings → API keys**, and choose **Add new key**. Load it from your secret
+Create a personal API key: sign in at [aventure.vc](https://aventure.vc), choose your account menu →
+**Manage account → API keys**, and choose **Add new key**. Load it from your secret
 manager as `AUTH_TOKEN` rather than pasting it into a shell history.
 
 `GET /v1/auth/me/permissions` is the cheapest way to confirm the credential is
@@ -81,7 +84,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 A `401` means the credential was missing or unrecognized; a `403` means it was
 valid but not permitted there. Both arrive as a
 [problem detail](/errors) whose `detail` field names the reason.
-[Authentication](/authentication) covers the other two credential types.
+[Authentication](/authentication) covers service integrations and subscription requirements.
 
 ## 5. Search across everything
 
@@ -110,7 +113,7 @@ each scope orders its own results by relevance.
 ## Next
 
 - [Answer a real question](/first-answer) — these calls chained into one result
-- [Authentication](/authentication) — the three credential types and what each reaches
+- [Authentication](/authentication) — personal credentials, service access, and subscriptions
 - [Pagination and filtering](/pagination-and-filtering) — paging, sorting, and combining filters
 - [Errors](/errors) — the problem detail body and rate limiting
 - [API reference](/api-reference) — every endpoint, parameter, and schema

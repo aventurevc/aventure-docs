@@ -93,12 +93,18 @@ guarantee that every call it can make will be authorized.
 | `aventure_search` | Find companies, people, news, or publications from a query |
 | `aventure_lookup` | Turn a name, URL, slug, ticker, or other identifier into the record that owns it |
 | `aventure_read` | Read one record, or the records attached to it |
-| `aventure_write` | Create a record, or change one that already exists |
-| `aventure_delete` | Remove one record, or one link between records |
+
+Ask your connected assistant a question such as:
+
+> What does Ramp do, who founded it, and what funding rounds does aVenture report? Cite sources and distinguish missing amounts from zero.
+
+The assistant should resolve the company, use its returned identifier for
+related records, and report unavailable information explicitly. The
+[worked example](/first-answer) shows the individual calls.
 
 ## Name the operation before you call it
 
-The last five tools are thin wrappers over the [API reference](/api-reference):
+The search, lookup, and read tools are wrappers over the [API reference](/api-reference):
 each one runs an operation you name, so every call needs `operationId`, or
 `method` and `path` together. A call carrying only a query is rejected with
 `Pass operationId or method+path.`
@@ -125,11 +131,12 @@ rejected with `OpenAPI operationId not found`. Take `operationId` from the
 [API reference](/api-reference) or from an `aventure_help` catalog row, which
 carries it for every operation it lists.
 
-That operation needs no credential, which makes it the shortest path to a first
-successful result.
+The underlying API lookup is public, but the MCP connection still requires
+sign-in. Plain-English search can additionally require a Pro subscription or
+trial; successful connection alone does not prove that entitlement.
 
 <Note>
-The help parameter is `q`. On the other five tools `query` means the operation's
+The help parameter is `q`. On the operation tools `query` means the operation's
 URL query parameters, and `aventure_help` ignores it. Help called with no `q`
 is not an error — it returns the head of the full catalog in no particular
 order.
@@ -143,7 +150,9 @@ entity detail routes but a filter on `GET /v1/entities`, and
 
 <Note>
 `responseFormat` applies only to operations that declare a `text/plain`
-response. Setting it to `text` on a JSON-only operation sends
+response. If a response is truncated, reduce `size` and page through the
+relevant sub-resource instead of changing its media type. Setting it to `text`
+on a JSON-only operation sends
 `Accept: text/plain`, and the API answers [`406`](/errors). Leave it unset
 unless the operation offers both.
 </Note>

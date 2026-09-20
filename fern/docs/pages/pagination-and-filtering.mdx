@@ -4,21 +4,22 @@ subtitle: Page through results and narrow them down
 slug: pagination-and-filtering
 ---
 
-Every list endpoint returns one page at a time and accepts the same three
-parameters. `GET /v1/entities` is used throughout this page, but the mechanics
-are identical on people, news, and search.
+The examples below use `GET /v1/entities`. Other paginated operations use the
+same page fields, but defaults and supported sorting vary by operation; check
+its [API reference](/api-reference) before reusing parameters.
 
 ## Paging
+
+Set `size` explicitly for predictable pages across API versions.
 
 | Parameter | Default | Meaning |
 |---|---|---|
 | `page` | `0` | Zero-based page index — the first page is `0`, not `1` |
-| `size` | `20` | Records per page |
+| `size` | Set explicitly | Records per page |
 | `sort` | — | `property,(asc\|desc)`; repeat for multiple criteria |
 
 ```bash
-curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  "https://api.aventure.vc/v1/entities?page=2&size=50&sort=nameBrand,asc"
+curl "https://api.aventure.vc/v1/entities?page=2&size=50&sort=nameBrand,asc"
 ```
 
 Sort order defaults to ascending when you omit the direction, so
@@ -26,7 +27,8 @@ Sort order defaults to ascending when you omit the direction, so
 
 Only some fields are sortable, and the filter names are a different set — sorting
 by a filter name such as `entityName` is a [`422`](/errors) whose `detail` lists
-every property the endpoint does accept.
+every property the endpoint does accept. Cross-domain search
+(`POST /v1/search/all`) does not accept `sort`; each scope orders its own results.
 
 ## Reading the page object
 
@@ -56,14 +58,14 @@ means **any of these**:
 
 ```bash
 # Entities in either country
-"https://api.aventure.vc/v1/entities?headquartersCountry=US&headquartersCountry=CA"
+curl "https://api.aventure.vc/v1/entities?headquartersCountry=US&headquartersCountry=CA"
 ```
 
 Different filters combine as **and**:
 
 ```bash
 # Seed-stage AND headquartered in the US
-"https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US"
+curl "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US"
 ```
 
 `GET /v1/entities` accepts more than sixty filters. The main families are:
@@ -100,10 +102,12 @@ news rather than making you assemble the filters yourself.
 ## When the query outgrows a URL
 
 Long filter sets exceed practical query-string limits. `POST /v1/entities/search` takes
-the same query as a JSON body and is still a read, so a client secret is enough.
-`page`, `size`, and `sort` stay in the query string.
+the entity filters as a JSON body and is still a read. It requires a
+[credential](/authentication), including a personal bearer token. `page`,
+`size`, and `sort` stay in the query string; its default `size` is `25`.
 
 ## Counting without fetching
 
-`countOnly=true` returns the match count and skips the records — cheaper than
-requesting a page you intend to throw away.
+`countOnly=true` returns the match count in `totalElements` and skips the
+records. `content` is empty even when matches exist, so do not use `empty` to
+decide whether the query matched. Do not combine `countOnly` with `semanticQuery`.

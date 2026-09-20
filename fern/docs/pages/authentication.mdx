@@ -11,7 +11,8 @@ operation in the [API reference](/api-reference) for its accepted schemes.
 ## Get a personal credential
 
 Public users can create their own personal API key. Sign in at
-[aventure.vc](https://aventure.vc), open **Settings → API keys**, and choose
+[aventure.vc](https://aventure.vc), choose your account menu → **Manage account**,
+open **API keys**, and choose
 **Add new key**. Store the key in your secret manager and inject it as
 `AUTH_TOKEN` at runtime. Never commit or print the key itself. Public users do
 not need a client secret or admin API key.
@@ -26,71 +27,31 @@ covers OAuth and personal-key clients.
 
 ## Connect an MCP client with OAuth
 
-Use the hosted MCP URL `https://mcp.aventure.vc/mcp` and public client ID
-`KL7mINzGk0le0QiD`. No client secret is required. The client discovers the
-authorization server from the MCP endpoint and completes authorization code
-with PKCE. Dynamic client registration is disabled.
+The [MCP quickstart](/mcp#connect-to-the-hosted-server) owns the hosted URL,
+public client ID, callback configuration, and first connection check. MCP
+requires authentication even for tools that call anonymous API operations.
 
-Supported redirects are `http://127.0.0.1/callback`,
-`http://localhost/callback`,
-`https://chatgpt.com/connector_platform_oauth_redirect`, and
-`https://claude.ai/api/mcp/auth_callback`. Loopback redirects may use an
-available port while retaining the `/callback` path. Clients using another
-callback path need their own registered OAuth application.
+## Verify personal API access
 
-The [MCP quickstart](/mcp) has the full client configuration and an MCP
-Inspector command for verifying the flow end to end.
-
-## The three credentials
-
-<Tabs>
-<Tab title="Client secret">
-
-Read-only service-to-service access. Send it as `X-Client-Secret`:
-
-```bash
-curl -X POST \
-  -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  -H "Content-Type: application/json" \
-  -d '{"query": "climate tech seed round"}' \
-  "https://api.aventure.vc/v1/search/all?size=5"
-```
-
-This credential is issued to service integrations rather than created by
-public users. It lets a backend read venture data, including entity, person,
-and news listings, detail lookups, filter metadata, and identifier resolution.
-
-</Tab>
-<Tab title="User bearer token">
-
-A signed-in user's identity. Send it as a bearer token:
+Send your personal key or OAuth access token as a bearer token:
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-The API accepts a Clerk session JWT, a Clerk OAuth access token, or a Clerk
-personal API key in this header. Use it when calls act
-on behalf of a person rather than a machine.
+This checks which permissions the API grants your identity. A successful
+sign-in does not enable every operation: plain-English search also requires a
+current Pro subscription or trial. Use [Settings → Subscription](https://aventure.vc/settings/subscription)
+to inspect your plan, or [contact support](/support) about service access.
+Filtered public lists remain available without a subscription.
 
-</Tab>
-<Tab title="Admin API key">
+## Service integrations
 
-An administrative credential for operations that explicitly accept
-`adminApiKeyAuth`. Send it as `X-API-Key`:
-
-```bash
-curl -H "X-API-Key: $AVENTURE_ADMIN_KEY" \
-  "https://api.aventure.vc/v1/auth/me/permissions"
-```
-
-Administrative dataset-maintenance operations are outside this public
-reference. aVenture administrators manage these keys; public users do not
-create them. Possessing a credential does not make an operation public.
-
-</Tab>
-</Tabs>
+An integration issued a client secret sends it as `X-Client-Secret`. Public
+users use their own bearer credential instead. Administrative keys mentioned
+in an endpoint's security declaration are managed by aVenture and are not a
+prerequisite for public developer access.
 
 ## Which endpoints accept what
 
@@ -108,7 +69,7 @@ from the HTTP method. Two rules explain most of the surface:
 
 ## Keeping credentials safe
 
-All three credentials are bearer-equivalent: anyone holding the string has the
+Credentials are bearer-equivalent: anyone holding the string has the
 access it grants. Keep them server-side, load them from your secret manager at
 runtime, and never ship one in browser code or commit one to a repository.
 

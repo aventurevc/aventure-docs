@@ -15,8 +15,10 @@ subtitle: Start downloading private company data within minutes with the aVentur
 
 ## Get started
 
-Pick the surface you want to work in. All three read the same data and accept
-the same credentials, and each quickstart ends with a working query.
+Pick the surface you want to work in. API and CLI public reads work before
+sign-in; MCP requires an authenticated connection. Each quickstart ends with
+a working query. [Authentication](/authentication) explains which operations
+need sign-in or a subscription.
 
 <CardGroup cols={3}>
   <Card title="API quickstart" icon="duotone plug" href="/quickstart">
@@ -50,13 +52,9 @@ aventure entities list --size 3
 </Tab>
 <Tab title="MCP">
 
-Point an OAuth-capable client at `https://mcp.aventure.vc/mcp` with the public
-client ID `KL7mINzGk0le0QiD`, or self-host:
-
-```bash
-npm install --global @aventurevc/mcp-server --registry=https://registry.npmjs.org/
-aventure-mcp-server
-```
+Follow the [MCP quickstart](/mcp) to configure the hosted server, complete
+sign-in, and ask your first company research question. It includes the client
+ID and callback settings required by Claude Code, plus self-hosting instructions.
 
 </Tab>
 </Tabs>
@@ -91,7 +89,7 @@ Both packages require Node.js 24.18 or later in the 24.x series.
 ## Once you have a first result
 
 - [Answer a real question](/first-answer) — filter a list, open one record, read its funding rounds, on all three surfaces
-- [Authentication](/authentication) — the three credential types and which operations accept each one
+- [Authentication](/authentication) — personal access, service integrations, and subscription requirements
 - [Pagination and filtering](/pagination-and-filtering) — combining the sixty-plus filters on `GET /v1/entities` and paging through them
 - [Errors](/errors) — the problem detail body, and what `401`, `403`, and `402` each mean
 - [Support](/support) — what to include so a report can be traced

@@ -7,28 +7,29 @@ slug: first-answer
 The quickstarts each end at a working call. This page ends at an answer.
 
 The question: **which seed-stage companies in Austin are in the dataset, and
-what has one of them raised?** Every call below is a public read — no
-credential, no signup — and the three surfaces run the same three operations,
-so you can follow whichever column you work in.
+what has one of them raised?** The API and CLI calls below need no credential
+or signup. For MCP, first establish the authenticated connection in the
+[MCP quickstart](/mcp). All three surfaces run the same three operations.
 
 <Steps>
 <Step title="Narrow the dataset to the companies you mean">
 
-Filters are the entity list's query parameters, and they combine. `stage` and
-`headquartersCity` are two of more than sixty on this one operation.
+Filters are the entity list's query parameters, and they combine.
+`typeRecord=Company` excludes products, services, and other entity types;
+`stage` and `headquartersCity` narrow the companies further.
 
 <Tabs>
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities?headquartersCity=Austin&stage=Seed&size=5"
+curl "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities list --headquarters-city Austin --stage Seed --size 5
+aventure entities list --type-record Company --headquarters-city Austin --stage Seed --size 5
 ```
 
 </Tab>
@@ -39,7 +40,7 @@ Call `aventure_read` with the operation named:
 ```json
 {
   "operationId": "listEntities",
-  "query": { "headquartersCity": "Austin", "stage": "Seed", "size": 5 }
+  "query": { "typeRecord": ["Company"], "headquartersCity": ["Austin"], "stage": ["Seed"], "size": 5 }
 }
 ```
 
@@ -47,8 +48,8 @@ Call `aventure_read` with the operation named:
 </Tabs>
 
 `totalElements` is the size of the whole matching set, not of your page — that
-number is the answer to "how many are there". `content` holds the five records,
-each with a `slug` you can carry into the next step.
+number is the answer to "how many are there". `content` holds up to five records,
+each with a `core.slug` you can carry into the next step.
 
 <Note>
 Location filters take the name, not the postal abbreviation:
@@ -60,7 +61,8 @@ combine.
 </Step>
 <Step title="Open one record">
 
-Take a `slug` from the previous response — `healthkey-austin-tx-us` below — and
+Take `core.slug` from a record in the previous response —
+`healthkey-austin-tx-us` below — and
 read the full record. The detail response carries names, locations,
 classifications, text summaries, and a `core.id`, which is the UUID the
 round-level operations key on.
@@ -150,7 +152,8 @@ Each round carries `round`, `amountRaised`, `currency`, and `dateAnnounced`:
 ```
 
 `amountRaised` is denominated in its own `currency`, so compare rounds only
-after converting — the values are not normalized to USD.
+after converting — the values are not normalized to USD. Amount, currency,
+round, and announcement date can be `null`; a missing amount does not mean zero.
 
 </Step>
 </Steps>
@@ -165,7 +168,8 @@ the same `core.id`.
 When you have a phrase rather than a filter set, swap step 1 for search:
 `POST /v1/search/all` runs entities, people, and news together, and
 `aventure search --query "..."` is the CLI form. Search needs a credential and
-a Pro subscription or trial; the three filtered calls above need neither.
+a Pro subscription or trial for a signed-in user. The three filtered API and
+CLI calls above need neither.
 
 To go from an [API reference](/api-reference) operation to the command that
 runs it, `aventure docs api <operationId>` prints the route, the required

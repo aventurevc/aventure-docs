@@ -28,8 +28,8 @@ extension, present only when it applies:
 - **`field`**, **`value`**, **`unknownParameters`**, **`validParameters`** —
   which part of the request was rejected, on validation failures.
 - **`details`** — structured conflict information on `409`, including the
-  duplicate candidates that let you decide between updating, overriding, or
-  aborting.
+  candidates from an ambiguous lookup; select the intended record by its
+  returned identifier.
 - **`traceId`** and **`spanId`** — quote these when reporting a problem.
 
 ## Status codes
@@ -42,14 +42,14 @@ extension, present only when it applies:
 | `403` | Valid credential, not permitted here | A client secret on a write endpoint returns this |
 | `404` | No such record | — |
 | `406` | Requested content type cannot be served | Accept `application/json` |
-| `409` | Conflict with an existing record, or a lookup that matched more than one | Read `details.candidate` and choose one |
+| `409` | Conflict with an existing record, or a lookup that matched more than one | Choose from `details.candidate` when present; otherwise list records by name |
 | `415` | Unsupported request content type | Send `Content-Type: application/json` |
 | `422` | Well-formed but semantically rejected | Read `detail` and `resolution` |
 | `429` | Rate limited | Back off — see below |
 | `500`, `503` | Server error or dependency unavailable | Retry with backoff; `503` is usually transient |
 
 Retry `429`, `500`, and `503`. Do not retry `400`, `401`, `402`, `403`, `404`,
-`409`, `415`, or `422` — the same request will fail the same way.
+`406`, `409`, `415`, or `422` — the same request will fail the same way.
 
 ## Rate limits
 

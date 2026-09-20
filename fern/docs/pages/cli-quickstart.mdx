@@ -32,7 +32,8 @@ aventure entities list --size 3
 ```
 
 Companies, products, and services come back as a table. Add `--json` for the
-full envelope or `--data` for the response body alone.
+full envelope. [Output modes](#output-and-exit-codes) explain JSON and
+truncation behavior.
 
 </Step>
 <Step title="Sign in">
@@ -99,15 +100,18 @@ aventure entities search --query "fintech companies in Austin" --size 3
 
 Slugs carry the headquarters location, so they cannot be guessed:
 `--entity-slug ramp` returns `404`. Resolve the name first; the answer carries
-the `slug` and the `core.id` UUID the other commands take:
+the `core.slug` and the `core.id` UUID the other commands take:
 
 ```bash
 aventure entities lookup --name Ramp
 ```
 
-`--url-domain pulley.com` resolves by website instead. A domain is often shared
-by a company and the product records under it, and then the answer is `409`;
-resolve by `--name`, which stays unambiguous.
+`--url-domain google.com` resolves by website instead. A domain is often shared
+by a company and the product records under it, and then the answer is `409`.
+Names can also be ambiguous. Choose a returned candidate and read its exact
+slug. If no candidates are included, use `aventure entities list --entity-name Mercury`
+with the name you searched for and select the intended result. Add
+`--type-record Company` when you want companies only.
 
 Records attached to a company — funding rounds, investors, people — sit under
 that company's UUID, so those commands take `--entity-id`, not a slug:
@@ -153,9 +157,16 @@ answers [`402`](/errors). Run `aventure auth login` first.
 Each command accepts an output mode:
 
 - `--text` — the default in a terminal: a table for a list, labelled fields for one record
-- `--data` — the response data as JSON, the default when piped or non-TTY
+- `--data` — the response data on success; failures and oversized results use an envelope. This is the default when piped or non-TTY.
 - `--json` — the full envelope, capped at 50KB
 - `--data-full` — uncapped JSON, for bounded programs
+
+Use `--json` in scripts that need a stable envelope. Check `ok` before reading
+`data.response`, which holds the API body for these read commands.
+
+JSON modes are bounded at 50KB unless you request `--data-full`. When the
+envelope reports truncation, request a smaller page or the specific funding,
+people, or news sub-resource rather than treating omitted fields as missing data.
 
 Exit code `0` means `envelope.ok === true`; `1` means the call failed. Scripts
 can branch on that without parsing output.
@@ -186,8 +197,9 @@ required query flags: none
 ```
 
 `mcpTool` names the [MCP](/mcp) tool that reaches the same operation, and
-`scope` tells you whether a read or write credential is needed before you run
-it. `--help` on any command lists that command's own flags, grouped by whether
+`scope` classifies the operation as read or write; it does not tell you whether
+an anonymous call is allowed. The [authentication requirements](/authentication)
+come from the operation. `--help` lists that command's own flags, grouped by whether
 they land in the path, the query string, or the request body.
 
 ## Next
