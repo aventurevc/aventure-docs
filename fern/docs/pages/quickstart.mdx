@@ -84,7 +84,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 A `401` means the credential was missing or unrecognized; a `403` means it was
 valid but not permitted there. Both arrive as a
 [problem detail](/errors) whose `detail` field names the reason.
-[Authentication](/authentication) covers service integrations and subscription requirements.
+[Authentication](/authentication) covers bearer access and subscription requirements.
 
 ## 5. Search across everything
 
@@ -101,10 +101,9 @@ curl -X POST \
 ```
 
 <Note>
-As a signed-in user, this endpoint requires a Pro subscription or trial whose
-current period has not ended — check
-[Settings → Subscription](https://aventure.vc/settings/subscription). A service
-integration holding a client secret reaches it without one.
+This endpoint requires a bearer token and an active or trialing subscription tier
+that includes search. A `402` means the account's subscription does not include
+the feature; check [Settings → Subscription](https://aventure.vc/settings/subscription).
 </Note>
 
 `page` and `size` apply to every scope. Cross-domain `sort` is not supported —
@@ -113,7 +112,7 @@ each scope orders its own results by relevance.
 ## Next
 
 - [Answer a real question](/first-answer) — these calls chained into one result
-- [Authentication](/authentication) — personal credentials, service access, and subscriptions
+- [Authentication](/authentication) — personal bearer access and subscriptions
 - [Pagination and filtering](/pagination-and-filtering) — paging, sorting, and combining filters
 - [Errors](/errors) — the problem detail body and rate limiting
 - [API reference](/api-reference) — every endpoint, parameter, and schema

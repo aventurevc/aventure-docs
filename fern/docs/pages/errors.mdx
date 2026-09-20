@@ -10,20 +10,12 @@ API produces.
 
 ## The problem detail body
 
-`type`, `title`, `status`, `detail`, and `instance` are the RFC standard fields
-and appear on every error. `type` is a URI drawn from a fixed set — values such
-as `https://api.aventure.vc/errors/access-denied`, `.../rate-limited`, and
-`.../subscription-required` — so it is the most reliable field to branch on when
-the status alone does not say what to do. Everything else is an aVenture
-extension, present only when it applies:
+`type`, `title`, `status`, `detail`, and `instance` are the RFC standard fields.
+The remaining fields are aVenture extensions, present only when they apply:
 
-- **`code`** — a machine-readable secondary code, from a fixed set covering
-  auth and session, rate limiting, RBAC, job infrastructure, external providers,
-  image processing, storage, search, and inference. It appears when the HTTP
-  status alone does not identify the recovery path, so **branch on `code` rather
-  than on `detail`**, which is prose and may be reworded. Many codes describe
-  infrastructure conditions where the right move is to surface the error and
-  stop, not retry.
+- **`code`** — a machine-readable secondary code when the status alone does not
+  identify the recovery path. Branch on it rather than `detail`, which is prose
+  and may be reworded.
 - **`hint`**, **`suggestion`**, **`resolution`** — how to correct the request.
 - **`field`**, **`value`**, **`unknownParameters`**, **`validParameters`** —
   which part of the request was rejected, on validation failures.
@@ -37,9 +29,9 @@ extension, present only when it applies:
 | Status | Meaning | What to do |
 |---|---|---|
 | `400` | Malformed request or invalid parameter | Read `field` and `hint`; fix and resend |
-| `401` | Missing, malformed, or unrecognized credential | Check the header name matches your [credential type](/authentication) |
-| `402` | The operation needs an entitlement this user does not have | Plain-English search needs a current Pro subscription or trial — check [Settings → Subscription](https://aventure.vc/settings/subscription); a service integration holding a client secret reaches it without one |
-| `403` | Valid credential, not permitted here | A client secret on a write endpoint returns this |
+| `401` | Missing, malformed, or unrecognized bearer token | Send a valid [personal API key or OAuth access token](/authentication) |
+| `402` | The account's subscription tier does not include the operation | `code` is `subscription_required`. Natural-language search, link search, and enrichment routes declare this response; review [Settings → Subscription](https://aventure.vc/settings/subscription) rather than retrying |
+| `403` | Valid bearer token, not permitted here | Check the operation's required permission |
 | `404` | No such record | — |
 | `406` | Requested content type cannot be served | Accept `application/json` |
 | `409` | Conflict with an existing record, or a lookup that matched more than one | Choose from `details.candidate` when present; otherwise list records by name |

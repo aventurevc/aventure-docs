@@ -4,9 +4,15 @@ subtitle: Pick the credential that matches what your integration needs to do
 slug: authentication
 ---
 
-Protected aVenture API operations accept the credentials listed in their
-`security` declarations. Some operations allow anonymous access. Read each
-operation in the [API reference](/api-reference) for its accepted schemes.
+The public API contract defines two access modes:
+
+- An operation with no `security` declaration in the [API reference](/api-reference)
+  is anonymous. `GET /v1/entities` and `GET /v1/entities/lookup` are examples.
+- An operation that declares bearer authentication accepts a personal API key or
+  OAuth access token in the `Authorization` header.
+
+HTTP method alone does not determine access: a `POST` can be a read that carries
+a JSON query. Use each operation's security and response declarations.
 
 ## Get a personal credential
 
@@ -14,8 +20,7 @@ Public users can create their own personal API key. Sign in at
 [aventure.vc](https://aventure.vc), choose your account menu → **Manage account**,
 open **API keys**, and choose
 **Add new key**. Store the key in your secret manager and inject it as
-`AUTH_TOKEN` at runtime. Never commit or print the key itself. Public users do
-not need a client secret or admin API key.
+`AUTH_TOKEN` at runtime. Never commit or print the key itself.
 
 The CLI signs you in for you. `aventure auth login` runs the OAuth device
 authorization grant — it prints a one-time code and a URL, and works over SSH
@@ -40,32 +45,19 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-This checks which permissions the API grants your identity. A successful
-sign-in does not enable every operation: plain-English search also requires a
-current Pro subscription or trial. Use [Settings → Subscription](https://aventure.vc/settings/subscription)
-to inspect your plan, or [contact support](/support) about service access.
-Filtered public lists remain available without a subscription.
+This confirms that the API recognizes the bearer token and returns its resolved
+permissions.
 
-## Service integrations
+## Subscription-gated operations
 
-An integration issued a client secret sends it as `X-Client-Secret`. Public
-users use their own bearer credential instead. Administrative keys mentioned
-in an endpoint's security declaration are managed by aVenture and are not a
-prerequisite for public developer access.
+Some operations need a subscription in addition to a bearer token. The public
+reference declares `402` for natural-language search, link search, and
+enrichment requests. It means the account needs an active or trialing
+subscription tier that includes the feature. Use
+[Settings → Subscription](https://aventure.vc/settings/subscription) to inspect
+the account's plan; [Errors](/errors) explains the response body.
 
-## Which endpoints accept what
-
-Read the `security` block on each endpoint in the reference rather than assuming
-from the HTTP method. Two rules explain most of the surface:
-
-- **A `POST` is not always a write.** Search, batch, and filter
-  endpoints take a JSON body because their query is too large for a query string
-  — `POST /v1/entities/search`, `POST /v1/search/all`, and `POST /v1/people/detail/batch`
-  are all reads, and all accept a client secret. `POST /v1/search/all` also
-  accepts a public user's bearer token and requires a current Pro subscription
-  or trial for that user.
-- **Authentication flows have their own requirements.** Follow the declared
-  security and request parameters for each operation.
+Filtered public lists and lookups remain available without a subscription.
 
 ## Keeping credentials safe
 
@@ -75,7 +67,7 @@ runtime, and never ship one in browser code or commit one to a repository.
 
 ## When authentication fails
 
-A missing, malformed, or unrecognized credential returns `401`. A credential
-that is valid but not permitted on that endpoint returns `403`. Both arrive in
-the standard [problem detail](/errors) body, whose `detail` field names the
-specific reason.
+A missing, malformed, or unrecognized bearer token returns `401`. A recognized
+token that is not permitted on an endpoint returns `403`. Both arrive in the
+standard [problem detail](/errors) body, whose `detail` field names the specific
+reason.
