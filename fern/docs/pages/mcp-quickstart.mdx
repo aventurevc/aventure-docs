@@ -116,8 +116,14 @@ the ones it will not run without. For the query above that is `aventure_lookup`
 and `GET /v1/entities/lookup`, so:
 
 ```json
-{ "operationId": "lookupEntity", "query": { "name": "Stripe" } }
+{ "method": "GET", "path": "/v1/entities/lookup", "query": { "name": "Stripe" } }
 ```
+
+Split `apiRoute` into `method` and `path` and pass both exactly as printed.
+Never derive an `operationId` from a route: an id that does not exist is
+rejected with `OpenAPI operationId not found`. Take `operationId` from the
+[API reference](/api-reference) or from an `aventure_help` catalog row, which
+carries it for every operation it lists.
 
 That operation needs no credential, which makes it the shortest path to a first
 successful result.

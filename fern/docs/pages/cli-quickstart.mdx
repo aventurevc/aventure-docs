@@ -105,9 +105,9 @@ the `slug` and the `core.id` UUID the other commands take:
 aventure entities lookup --name Ramp
 ```
 
-`--url-domain ramp.com` resolves by website instead. When more than one record
-owns the domain — a company and one of its products, for example — the answer
-is `409`; resolve by `--name` instead.
+`--url-domain pulley.com` resolves by website instead. A domain is often shared
+by a company and the product records under it, and then the answer is `409`;
+resolve by `--name`, which stays unambiguous.
 
 Records attached to a company — funding rounds, investors, people — sit under
 that company's UUID, so those commands take `--entity-id`, not a slug:

@@ -38,6 +38,7 @@ extension, present only when it applies:
 |---|---|---|
 | `400` | Malformed request or invalid parameter | Read `field` and `hint`; fix and resend |
 | `401` | Missing, malformed, or unrecognized credential | Check the header name matches your [credential type](/authentication) |
+| `402` | The operation needs an entitlement this user does not have | Plain-English search needs a current Pro subscription or trial — check [Settings → Subscription](https://aventure.vc/settings/subscription); a service integration holding a client secret reaches it without one |
 | `403` | Valid credential, not permitted here | A client secret on a write endpoint returns this |
 | `404` | No such record | — |
 | `406` | Requested content type cannot be served | Accept `application/json` |
@@ -47,8 +48,8 @@ extension, present only when it applies:
 | `429` | Rate limited | Back off — see below |
 | `500`, `503` | Server error or dependency unavailable | Retry with backoff; `503` is usually transient |
 
-Retry `429`, `500`, and `503`. Do not retry `400`, `401`, `403`, `404`, `409`,
-`415`, or `422` — the same request will fail the same way.
+Retry `429`, `500`, and `503`. Do not retry `400`, `401`, `402`, `403`, `404`,
+`409`, `415`, or `422` — the same request will fail the same way.
 
 ## Rate limits
 

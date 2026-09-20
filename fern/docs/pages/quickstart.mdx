@@ -59,9 +59,10 @@ people routes take:
 curl "https://api.aventure.vc/v1/entities/lookup?name=Ramp"
 ```
 
-`urlDomain=ramp.com` resolves by website instead. When more than one record owns
-the domain, the answer is a [`409`](/errors) whose `details.candidate` lists the
-matches; pick one and read it by `slug`.
+`urlDomain=pulley.com` resolves by website instead. A domain is often shared by a
+company and the product records under it, and then the answer is a
+[`409`](/errors) whose `details.candidate` lists every match; pick one and read
+it by `slug`, or resolve by `name`, which stays unambiguous.
 
 ## 4. Authenticate
 

@@ -18,11 +18,15 @@ are identical on people, news, and search.
 
 ```bash
 curl -H "X-Client-Secret: $AVENTURE_CLIENT_SECRET" \
-  "https://api.aventure.vc/v1/entities?page=2&size=50&sort=entityName,asc"
+  "https://api.aventure.vc/v1/entities?page=2&size=50&sort=nameBrand,asc"
 ```
 
 Sort order defaults to ascending when you omit the direction, so
-`sort=entityName` and `sort=entityName,asc` are the same request.
+`sort=nameBrand` and `sort=nameBrand,asc` are the same request.
+
+Only some fields are sortable, and the filter names are a different set — sorting
+by a filter name such as `entityName` is a [`422`](/errors) whose `detail` lists
+every property the endpoint does accept.
 
 ## Reading the page object
 
@@ -73,7 +77,12 @@ Different filters combine as **and**:
 - **Presence and quality** — `hasLogo`, `hasFundraising`, `operatingStatus`, `qualityGate`
 
 `GET /v1/entities/filters/search` returns the valid values for a filter, which is
-the reliable way to discover what a taxonomy field accepts.
+the reliable way to discover what a taxonomy field accepts. It requires both
+`filterKey` and `search`:
+
+```bash
+curl "https://api.aventure.vc/v1/entities/filters/search?filterKey=industry&search=fintech&size=5"
+```
 
 ## Text search versus semantic search
 
