@@ -23,27 +23,22 @@ The client discovers the authorization server from the MCP endpoint and
 completes authorization code with PKCE. Dynamic client registration is
 disabled, so a client that accepts only a bare URL fails with `Incompatible
 auth server: does not support dynamic client registration`; the client ID above
-must be configured explicitly. In Claude Code that is an `oauth` block:
+must be configured explicitly.
 
-```json
-{
-  "mcpServers": {
-    "aventure": {
-      "type": "http",
-      "url": "https://mcp.aventure.vc/mcp",
-      "oauth": {
-        "clientId": "KL7mINzGk0le0QiD",
-        "callbackPort": 6276
-      }
-    }
-  }
-}
+In your terminal, add the server to Claude Code:
+
+```bash
+claude mcp add --scope user --transport http \
+  --client-id KL7mINzGk0le0QiD --callback-port 6276 \
+  aventure https://mcp.aventure.vc/mcp
 ```
 
-Or `claude mcp add --transport http --client-id KL7mINzGk0le0QiD
---callback-port 6276 aventure https://mcp.aventure.vc/mcp`. Other clients name
-these settings differently; what matters is that the client ID is set and the
-callback lands on `/callback`.
+The user scope makes the server available across your projects. Open Claude
+Code, run `/mcp`, select `aventure`, and complete browser sign-in. Then ask
+Claude to call `aventure_status` to [verify the connection](#verify-the-connection).
+
+Other clients name these settings differently; configure the client ID and a
+callback ending in `/callback`.
 
 <Accordion title="Registered redirect URIs, and testing the flow on its own">
 

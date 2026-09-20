@@ -10,9 +10,9 @@ entities, people, news, fundraising, media, search, and classifications.
 
 ## Before you start
 
-- **[Authentication](/authentication)** — three credential types, and which
-  endpoints each one reaches. Read the `security` block on an endpoint rather
-  than assuming from its HTTP method: many `POST` endpoints are reads.
+- **[Authentication](/authentication)** — anonymous reads, personal credentials,
+  and subscription requirements. Read each operation's access requirements
+  rather than assuming from its HTTP method: many `POST` endpoints are reads.
 - **[Pagination and filtering](/pagination-and-filtering)** — use the parameters
   documented for each list endpoint.
 - **[Errors](/errors)** — interpret API problem details.
@@ -51,7 +51,7 @@ Request and response types are published as
 [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas):
 
 ```bash
-npm install @aventurevc/api-schemas
+npm install @aventurevc/api-schemas --@aventurevc:registry=https://registry.npmjs.org/
 ```
 
 It ships schemas and types only — there is no generated client, so use `fetch`
