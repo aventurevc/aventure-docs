@@ -2,4 +2,10 @@
 
 Zod v4 schemas for the public aVenture API.
 
-This package is generated from the canonical back-end OpenAPI spec and must not be hand-edited.
+Generated from the published aVenture OpenAPI specification; do not edit by hand.
+
+```bash
+npm install @aventurevc/api-schemas --@aventurevc:registry=https://registry.npmjs.org/
+```
+
+Endpoint reference: https://docs.aventure.vc/api-reference
