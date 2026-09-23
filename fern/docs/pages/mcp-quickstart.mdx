@@ -16,59 +16,22 @@ Configure your client with:
 |---------|-------|
 | URL | `https://mcp.aventure.vc/mcp` |
 | Transport | Streamable HTTP |
-| Client ID | `KL7mINzGk0le0QiD` |
-| Client secret | none — this is a public client |
+| Client ID and secret | leave empty — the client registers itself |
 
-The client discovers the authorization server from the MCP endpoint and
-completes authorization code with PKCE. Dynamic client registration is
-disabled, so a client that accepts only a bare URL fails with `Incompatible
-auth server: does not support dynamic client registration`; the client ID above
-must be configured explicitly.
+The client discovers the authorization server from the MCP endpoint, registers
+itself, and completes authorization code with PKCE. You sign in to aVenture and
+approve access; every call then runs with your account's permissions.
 
-In your terminal, add the server to Claude Code:
+In Claude or ChatGPT, add the URL as a custom connector. In your terminal, add
+the server to Claude Code:
 
 ```bash
-claude mcp add --scope user --transport http \
-  --client-id KL7mINzGk0le0QiD --callback-port 6276 \
-  aventure https://mcp.aventure.vc/mcp
+claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
 ```
 
 The user scope makes the server available across your projects. Open Claude
 Code, run `/mcp`, select `aventure`, and complete browser sign-in. Then ask
 Claude to call `aventure_status` to [verify the connection](#verify-the-connection).
-
-Other clients name these settings differently; configure the client ID and a
-callback ending in `/callback`.
-
-<Accordion title="Registered redirect URIs, and testing the flow on its own">
-
-These redirect URIs are registered:
-
-- `http://127.0.0.1/callback`
-- `http://localhost/callback`
-- `https://chatgpt.com/connector_platform_oauth_redirect`
-- `https://claude.ai/api/mcp/auth_callback`
-
-A loopback redirect may use any available port, such as
-`http://127.0.0.1:6276/callback`, as long as it keeps the `/callback` path. A
-client using a different callback path needs its own registered OAuth
-application — [contact us](/support) to arrange one.
-
-The endpoint answers OAuth protected-resource discovery, not an ordinary `GET`,
-so opening the URL in a browser is not a useful connectivity test. To exercise
-the flow without a client, run this in an interactive terminal, sign in to
-aVenture, and approve access — the Inspector exchanges the authorization code
-and lists the tools:
-
-```bash
-npx @modelcontextprotocol/inspector@2.6.0 --cli \
-  --server-url https://mcp.aventure.vc/mcp \
-  --client-id KL7mINzGk0le0QiD \
-  --callback-url http://127.0.0.1:6276/callback \
-  --method tools/list
-```
-
-</Accordion>
 
 ## Verify the connection
 
