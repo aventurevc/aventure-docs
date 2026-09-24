@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.329"
+    "version": "0.7.332"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -77,6 +77,10 @@
       "name": "Entity Acquisitions"
     },
     {
+      "description": "Search companies, people, and news, or by URL",
+      "name": "Search"
+    },
+    {
       "description": "System status, build info, health checks, and platform totals",
       "name": "System"
     },
@@ -111,14 +115,6 @@
     {
       "description": "Search the entity classification tag catalog. Use this to look up tagId values before posting to /v1/entities/{id}/classifications.",
       "name": "Classification Tags"
-    },
-    {
-      "description": "Where each stored field value came from",
-      "name": "Data Provenance"
-    },
-    {
-      "description": "Search companies, people, news, or the live web",
-      "name": "Search"
     },
     {
       "description": "Websites, social profiles, and other URLs for companies and people",
@@ -1778,7 +1774,7 @@
     },
     "/v1/auth/api-key": {
       "delete": {
-        "description": "Revokes the stored API key and returns provider metadata so the CLI can confirm remote revocation before removing local bytes.",
+        "description": "Revokes the Clerk API key authenticating this request and returns provider metadata so the CLI can confirm remote revocation before removing local bytes.",
         "operationId": "revokeCurrentApiKey",
         "responses": {
           "200": {
@@ -1923,7 +1919,7 @@
         },
         "security": [
           {
-            "bearerAuth": []
+            "clerkApiKeyAuth": []
           }
         ],
         "summary": "Revoke current API key",
@@ -1947,7 +1943,7 @@
         }
       },
       "get": {
-        "description": "Returns provider metadata for the API key authenticating this request.",
+        "description": "Returns provider metadata for the Clerk API key authenticating this request.",
         "operationId": "getCurrentApiKey",
         "responses": {
           "200": {
@@ -2081,7 +2077,7 @@
         },
         "security": [
           {
-            "bearerAuth": []
+            "clerkApiKeyAuth": []
           }
         ],
         "summary": "Get current API key",
@@ -3217,7 +3213,7 @@
     },
     "/v1/billing/checkout-sessions": {
       "post": {
-        "description": "Start the selected AI Plus or AI Pro plan through hosted Checkout. A caller with a continuing subscription manages it through a Billing Portal Session instead.",
+        "description": "Start the selected AI Plus or AI Pro plan through hosted Checkout. A caller with a continuing subscription changes plan with POST /v1/billing/plan-changes and cancels or resumes it through a Billing Portal Session.",
         "operationId": "createBillingCheckoutSession",
         "requestBody": {
           "content": {
@@ -5721,7 +5717,7 @@
             }
           },
           {
-            "description": "Provider slug for Product/Service slug lookup. Historically named companySlug; providerTypeRecord can narrow this to Company, Nonprofit, or Government routes.",
+            "description": "Provider slug for Product/Service slug lookup; providerTypeRecord can narrow this to Company, Nonprofit, or Government routes.",
             "in": "query",
             "name": "companySlug",
             "required": false,
@@ -26629,544 +26625,10 @@
         }
       }
     },
-    "/v1/provenance": {
-      "get": {
-        "description": "Returns paginated field-level provenance rows ordered by effectiveAt DESC. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "listProvenance",
-        "parameters": [
-          {
-            "description": "Tracked resource. Canonical form is the camelCase wire token (e.g. `entity`, `newsArticle`); the legacy Postgres table name (`res_entity`) is still accepted for backwards compatibility.",
-            "example": "entity",
-            "in": "query",
-            "name": "tableName",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceTrackedProvenanceTable"
-            }
-          },
-          {
-            "description": "Record key of the tracked row (text)",
-            "in": "query",
-            "name": "recordId",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 25,
-              "minimum": 1
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageDatasourceFieldProvenance"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "List where a record's data came from",
-        "tags": [
-          "Data Provenance"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/provenance/latest": {
-      "get": {
-        "description": "Returns the most recent provenance row for a tracked record. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "getLatestSource",
-        "parameters": [
-          {
-            "description": "Tracked resource. Canonical form is the camelCase wire token (e.g. `entity`, `newsArticle`); the legacy Postgres table name (`res_entity`) is still accepted for backwards compatibility.",
-            "example": "entity",
-            "in": "query",
-            "name": "tableName",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/DatasourceTrackedProvenanceTable"
-            }
-          },
-          {
-            "description": "Record key of the tracked row (text)",
-            "in": "query",
-            "name": "recordId",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DatasourceSourceMetadata"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get the newest source for a record",
-        "tags": [
-          "Data Provenance"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/provenance/{provenanceId}": {
-      "get": {
-        "description": "Returns one field-level provenance row by its surrogate id, in the same shape the entities provenance list returns. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "getProvenance",
-        "parameters": [
-          {
-            "description": "Provenance row surrogate id",
-            "example": 42,
-            "in": "path",
-            "name": "provenanceId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DatasourceFieldProvenance"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get one recorded source for a field",
-        "tags": [
-          "Data Provenance"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/resolve/{token}": {
       "get": {
         "deprecated": true,
-        "description": "Deprecated: use lookup --legacy (POST /v1/lookup?legacy=true with body {\"name\":\"<token>\"}). Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners.",
+        "description": "Deprecated: use lookup --legacy (POST /v1/lookup?legacy=true with body {\"name\":\"<token>\"}). Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners. A name or website URL is not a token; resolve it with the entity or person lookup.",
         "operationId": "getResolvedHandle",
         "parameters": [
           {
@@ -32829,11 +32291,13 @@
           },
           "resetAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When used returns to zero and the next period starts"
           },
           "used": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Amount used so far in the period"
           }
         },
         "required": [
@@ -32860,14 +32324,16 @@
         "properties": {
           "expiresAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When the Checkout page stops accepting payment"
           },
           "plan": {
             "$ref": "#/components/schemas/BillingPlanType"
           },
           "url": {
             "type": "string",
-            "format": "uri"
+            "format": "uri",
+            "description": "Hosted Checkout page to open in a browser to pay"
           }
         },
         "required": [
@@ -32982,13 +32448,16 @@
             "$ref": "#/components/schemas/BillingAdditionalUsage"
           },
           "allowance": {
-            "$ref": "#/components/schemas/ResearchAllowanceUsage"
+            "$ref": "#/components/schemas/ResearchAllowanceUsage",
+            "description": "Used, cap, and reset time of each monthly allowance"
           },
           "cancelAtPeriodEnd": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "True when the plan is cancelled and ends at periodEnd"
           },
           "entitled": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "True while the subscription grants its paid tier"
           },
           "pendingPlan": {
             "description": "Plan a scheduled change moves the subscription to at pendingPlanAt; absent when nothing is scheduled",
@@ -33014,16 +32483,19 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "format": "date-time",
+            "description": "When the plan renews, or when access ends if cancelAtPeriodEnd"
           },
           "periodStart": {
             "type": [
               "string",
               "null"
             ],
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Start of the current billing period"
           },
           "plan": {
+            "description": "Paid plan and billing cycle; absent without a paid subscription",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/BillingPlanType"
@@ -33049,6 +32521,7 @@
           },
           "tier": {
             "type": "string",
+            "description": "Tier whose monthly allowances apply now",
             "enum": [
               "ESSENTIAL",
               "PLUS",
@@ -33875,6 +33348,13 @@
             "type": "string",
             "description": "One sentence naming what settled the answer or what the user must decide."
           },
+          "duplicate": {
+            "type": "array",
+            "description": "Other stored records judged to be this same subject stored again: likely duplicate records to merge into match. Empty when none were found.",
+            "items": {
+              "$ref": "#/components/schemas/IdentificationCandidate"
+            }
+          },
           "match": {
             "description": "The matched record when status is MATCHED.",
             "oneOf": [
@@ -33915,6 +33395,7 @@
         "required": [
           "candidate",
           "detail",
+          "duplicate",
           "stage",
           "status"
         ]
@@ -38320,208 +37801,6 @@
           }
         }
       },
-      "DatasourceTrackedProvenanceTable": {
-        "type": "string",
-        "description": "Domain resource whose field-level provenance is tracked",
-        "enum": [
-          "entity",
-          "person",
-          "newsArticle",
-          "entityPersonJoin",
-          "newsArticleEntityJoin",
-          "newsArticlePersonJoin",
-          "entityRelationship",
-          "entityTypeJoin",
-          "entityAddressJoin",
-          "entityClassificationJoin",
-          "entityDetail",
-          "entityResearchSnippets",
-          "personAddressJoin",
-          "fundraiseTransaction",
-          "fundraiseTransactionInvestorJoin",
-          "text",
-          "urlLink",
-          "deployTarget"
-        ],
-        "example": "entity"
-      },
-      "PageDatasourceFieldProvenance": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DatasourceFieldProvenance"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "DatasourceSourceMetadata": {
-        "type": "object",
-        "description": "Grouped source/provenance metadata for private v1 response fields",
-        "properties": {
-          "changedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "dataSourceUpdatedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "detail": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "kind": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "pendingApproval": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "sourceId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "status": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
-      },
-      "DatasourceFieldProvenance": {
-        "type": "object",
-        "description": "Full audit row from research.res_provenance_event",
-        "properties": {
-          "actor": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/DatasourceProvenanceActor"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "changedBy": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "changes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DatasourceProvenanceFieldChange"
-            }
-          },
-          "effectiveAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "entityId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid"
-          },
-          "eventId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "operation": {
-            "$ref": "#/components/schemas/DatasourceProvenanceOperation"
-          },
-          "personId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid"
-          },
-          "recordId": {
-            "type": "string"
-          },
-          "source": {
-            "$ref": "#/components/schemas/DatasourceProvenanceSource"
-          },
-          "status": {
-            "$ref": "#/components/schemas/DatasourceProvenanceStatus"
-          },
-          "tableName": {
-            "$ref": "#/components/schemas/DatasourceTrackedProvenanceTable"
-          }
-        },
-        "required": [
-          "changes",
-          "effectiveAt",
-          "eventId",
-          "id",
-          "operation",
-          "recordId",
-          "source",
-          "status",
-          "tableName"
-        ]
-      },
       "ResolvedHandle": {
         "type": "object",
         "description": "Canonical subject a universal-lookup token resolved to. Exactly one of owner.entityId / owner.personId is set. Echoes the subject's canonical public handle and slug. Fetch display fields with GET /v1/entities/{entityId} or GET /v1/people/{personId}.",
@@ -39764,211 +39043,6 @@
             "description": "Canonical person UUID"
           }
         }
-      },
-      "DatasourceProvenanceActor": {
-        "type": "object",
-        "description": "Authenticated actor that authored a provenance write event",
-        "properties": {
-          "agent": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/DatasourceAgentIdentity"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "employeeDisplayName": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "employeeUserId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "type": {
-            "$ref": "#/components/schemas/DatasourceProvenanceActorType"
-          }
-        },
-        "required": [
-          "displayName",
-          "type"
-        ]
-      },
-      "DatasourceProvenanceFieldChange": {
-        "type": "object",
-        "description": "One changed field inside a provenance write event",
-        "properties": {
-          "fieldName": {
-            "type": "string"
-          },
-          "newPresent": {
-            "type": "boolean"
-          },
-          "newValue": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "oldPresent": {
-            "type": "boolean"
-          },
-          "oldValue": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "fieldName",
-          "newPresent",
-          "oldPresent"
-        ]
-      },
-      "DatasourceProvenanceOperation": {
-        "type": "string",
-        "description": "Write operation captured by a provenance event row",
-        "enum": [
-          "insert",
-          "update",
-          "delete"
-        ]
-      },
-      "DatasourceProvenanceSource": {
-        "type": "object",
-        "description": "Write provenance supplied on mutation query parameters.",
-        "properties": {
-          "actorType": {
-            "$ref": "#/components/schemas/DatasourceProvenanceActorType",
-            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session.",
-            "example": "agent"
-          },
-          "agentChassis": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Agent chassis token for agent-authored writes.",
-            "example": "codex-cli"
-          },
-          "agentModel": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Agent model id for agent-authored writes."
-          },
-          "sourceDetail": {
-            "type": "string",
-            "description": "Source detail or reviewer reference for the write.",
-            "example": "aventure.vc"
-          },
-          "sourceProvider": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Provider name for provider-native IDs or slugs.",
-            "example": "TechCrunch"
-          },
-          "sourceProviderId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Provider-native source ID.",
-            "example": "tc-2026-05-20-example-round"
-          },
-          "sourceProviderSlug": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Provider-native source slug.",
-            "example": "example-round"
-          },
-          "sourceType": {
-            "$ref": "#/components/schemas/DatasourceDataSourceType",
-            "description": "Write provenance source type.",
-            "example": "aventureStaff"
-          }
-        },
-        "required": [
-          "sourceDetail",
-          "sourceType"
-        ]
-      },
-      "DatasourceProvenanceStatus": {
-        "type": "string",
-        "description": "Confidence and dispute state of a field-level provenance row",
-        "enum": [
-          "unconfirmed",
-          "confirmed",
-          "disputedFirstParty",
-          "disputedRelatedParty",
-          "disputedThirdParty",
-          "disputedAnonymous"
-        ]
-      },
-      "DatasourceProvenanceActorType": {
-        "type": "string",
-        "description": "Actor boundary for a provenance write event",
-        "enum": [
-          "agent",
-          "employee"
-        ]
-      },
-      "DatasourceDataSourceType": {
-        "type": "string",
-        "description": "Full read/storage source type for field-level provenance rows. Write query parameters use DatasourceWritableDataSourceType.",
-        "enum": [
-          "requestChangeForm",
-          "newsArticle",
-          "blogArticle",
-          "firstPartyWebsite",
-          "relatedPartyWebsite",
-          "thirdPartyWebsite",
-          "llm",
-          "aventureStaff",
-          "api",
-          "manual",
-          "import"
-        ]
-      },
-      "DatasourceAgentIdentity": {
-        "type": "object",
-        "description": "Validated automated-agent attribution for a write request. Travels on agentChassis and agentModel query parameters; actorType is not required at the OpenAPI/HTTP layer only because the web boundary infers actorType=agent from this complete pair before the domain factory and persistence write lane enforce actor context. Chassis is a CLI/SDK token, modelFamily is the derived LLM family prefix, and model is the full model identifier.",
-        "properties": {
-          "chassis": {
-            "type": "string",
-            "description": "Wire token from app.contracts.agent-provenance.chassis keys.",
-            "example": "claude-code"
-          },
-          "model": {
-            "type": "string",
-            "description": "Full agent model identifier with the family prefix preserved."
-          },
-          "modelFamily": {
-            "type": "string",
-            "description": "Model family derived from the leading token of the model identifier.",
-            "example": "claude"
-          }
-        },
-        "required": [
-          "chassis",
-          "model",
-          "modelFamily"
-        ]
       },
       "PersonSimilarityResult": {
         "type": "object",
@@ -42424,6 +41498,57 @@
           "BLOG"
         ],
         "example": "ENTITY"
+      },
+      "DatasourceSourceMetadata": {
+        "type": "object",
+        "description": "Grouped source/provenance metadata for private v1 response fields",
+        "properties": {
+          "changedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "dataSourceUpdatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "detail": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "pendingApproval": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "sourceId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
       },
       "EntityInvestorParticipation": {
         "type": "object",
@@ -45432,8 +44557,14 @@
     },
     "securitySchemes": {
       "bearerAuth": {
-        "bearerFormat": "JWT or opaque OAuth access token",
+        "bearerFormat": "JWT or opaque Clerk credential",
         "description": "User bearer token: Clerk session JWT, Clerk OAuth access token, or Clerk API key",
+        "scheme": "bearer",
+        "type": "http"
+      },
+      "clerkApiKeyAuth": {
+        "bearerFormat": "Opaque Clerk User API Key",
+        "description": "Clerk User API Key authenticating this request",
         "scheme": "bearer",
         "type": "http"
       }

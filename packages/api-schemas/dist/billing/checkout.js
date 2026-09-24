@@ -2,8 +2,10 @@
 import { z } from "zod/v4";
 import { BillingPlanTypeSchema } from "./plan-type.js";
 const BillingCheckoutSchemaDefinition = z.object({
+    /** When the Checkout page stops accepting payment */
     expiresAt: z.iso.datetime({ offset: true }),
     plan: BillingPlanTypeSchema,
+    /** Hosted Checkout page to open in a browser to pay */
     url: z.string(),
 });
 /**

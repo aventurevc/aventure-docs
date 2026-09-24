@@ -1,7 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { BlogPostSchema } from "../blog/post.js";
-import { DatasourceFieldProvenanceSchema } from "../datasource/field-provenance.js";
 import { EmployeeCountSchema } from "../employee/count.js";
 import { EntityAcquisitionSchema } from "../entity/acquisition.js";
 import { EntityDetailSchema } from "../entity/detail.js";
@@ -79,27 +78,6 @@ const PageClassificationSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageClassificationSchema = PageClassificationSchemaDefinition;
-const PageDatasourceFieldProvenanceSchemaDefinition = z.object({
-    content: z.array(DatasourceFieldProvenanceSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageDatasourceFieldProvenance
- * @endpoint GET /v1/provenance
- * @contractShape pagination.page-datasource-field-provenance
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageDatasourceFieldProvenanceSchema = PageDatasourceFieldProvenanceSchemaDefinition;
 const PageEmployeeCountSchemaDefinition = z.object({
     content: z.array(EmployeeCountSchema).optional(),
     empty: z.boolean().optional(),

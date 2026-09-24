@@ -11,7 +11,7 @@ export const ENTITY_LOOKUP_ENDPOINT = "/v1/entities/lookup";
  * @contractRole canonical
  */
 export const EntityLookupParamSchema = z.object({
-    /** Provider slug for Product/Service slug lookup. Historically named companySlug; providerTypeRecord can narrow this to Company, Nonprofit, or Government routes. */
+    /** Provider slug for Product/Service slug lookup; providerTypeRecord can narrow this to Company, Nonprofit, or Government routes. */
     companySlug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

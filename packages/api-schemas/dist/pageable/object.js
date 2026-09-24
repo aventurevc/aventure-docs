@@ -7,7 +7,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/news
- * @endpoint GET /v1/provenance
  * @endpoint GET /v1/sitemap/entities
  * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/sitemap/entities/urls
@@ -55,7 +54,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint POST /v1/people/search
  * @usedBySchema PageBlogPostSchema
  * @usedBySchema PageClassificationSchema
- * @usedBySchema PageDatasourceFieldProvenanceSchema
  * @usedBySchema PageEmployeeCountSchema
  * @usedBySchema PageEntityAcquisitionSchema
  * @usedBySchema PageEntityDetailSchema

@@ -6,6 +6,8 @@ const IdentificationSchemaDefinition = z.object({
     candidate: z.array(IdentificationCandidateSchema),
     /** One sentence naming what settled the answer or what the user must decide. */
     detail: z.string(),
+    /** Other stored records judged to be this same subject stored again: likely duplicate records to merge into match. Empty when none were found. */
+    duplicate: z.array(IdentificationCandidateSchema),
     /** The matched record when status is MATCHED. */
     match: IdentificationCandidateSchema.nullish(),
     /** The subject's own website or profile page found in web search. Use it as the website when creating the record only if it is the subject's own domain, not a LinkedIn, Crunchbase, or other profile page. */

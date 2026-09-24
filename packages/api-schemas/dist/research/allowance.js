@@ -5,7 +5,9 @@ const ResearchAllowanceSchemaDefinition = z.object({
     limit: z.int().nullish(),
     /** Cap minus used, never negative; absent when there is no cap */
     remaining: z.int().nullish(),
+    /** When used returns to zero and the next period starts */
     resetAt: z.iso.datetime({ offset: true }),
+    /** Amount used so far in the period */
     used: z.int(),
 });
 /**

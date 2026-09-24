@@ -5,15 +5,21 @@ import { BillingPlanTypeSchema } from "./plan-type.js";
 import { ResearchAllowanceUsageSchema } from "../research/allowance-usage.js";
 const BillingSubscriptionSchemaDefinition = z.object({
     additionalUsage: BillingAdditionalUsageSchema,
+    /** Used, cap, and reset time of each monthly allowance */
     allowance: ResearchAllowanceUsageSchema,
+    /** True when the plan is cancelled and ends at periodEnd */
     cancelAtPeriodEnd: z.boolean(),
+    /** True while the subscription grants its paid tier */
     entitled: z.boolean(),
     /** Plan a scheduled change moves the subscription to at pendingPlanAt; absent when nothing is scheduled */
     pendingPlan: BillingPlanTypeSchema.nullish(),
     /** When pendingPlan takes effect; absent when nothing is scheduled */
     pendingPlanAt: z.iso.datetime({ offset: true }).nullish(),
+    /** When the plan renews, or when access ends if cancelAtPeriodEnd */
     periodEnd: z.iso.datetime({ offset: true }).nullish(),
+    /** Start of the current billing period */
     periodStart: z.iso.datetime({ offset: true }).nullish(),
+    /** Paid plan and billing cycle; absent without a paid subscription */
     plan: BillingPlanTypeSchema.nullish(),
     status: z.enum([
         "NONE",
@@ -26,6 +32,7 @@ const BillingSubscriptionSchemaDefinition = z.object({
         "UNPAID",
         "PAUSED",
     ]),
+    /** Tier whose monthly allowances apply now */
     tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
 });
 /**

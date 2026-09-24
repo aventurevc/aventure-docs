@@ -29,6 +29,34 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
         }, unknown>>;
     }, z.core.$strip>>;
     detail: z.ZodString;
+    duplicate: z.ZodArray<z.ZodObject<{
+        owner: z.ZodObject<{
+            entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        }, z.core.$strip>;
+        probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        record: z.ZodType<{
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }, unknown, z.core.$ZodTypeInternals<{
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }, unknown>>;
+    }, z.core.$strip>>;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         owner: z.ZodObject<{
             entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

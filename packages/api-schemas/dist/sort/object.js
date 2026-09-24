@@ -6,7 +6,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/news
- * @endpoint GET /v1/provenance
  * @endpoint GET /v1/sitemap/entities
  * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/sitemap/entities/urls
@@ -55,7 +54,6 @@ import { z } from "zod/v4";
  * @usedBySchema PageableObjectSchema
  * @usedBySchema PageBlogPostSchema
  * @usedBySchema PageClassificationSchema
- * @usedBySchema PageDatasourceFieldProvenanceSchema
  * @usedBySchema PageEmployeeCountSchema
  * @usedBySchema PageEntityAcquisitionSchema
  * @usedBySchema PageEntityDetailSchema

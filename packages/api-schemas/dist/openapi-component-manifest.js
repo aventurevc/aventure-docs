@@ -186,49 +186,9 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "redirect/current-slug-owner",
         schemaName: "CurrentSlugOwnerSchema",
     },
-    DatasourceAgentIdentity: {
-        modulePath: "datasource/agent-identity",
-        schemaName: "DatasourceAgentIdentitySchema",
-    },
-    DatasourceDataSourceType: {
-        modulePath: "datasource/data-source-type",
-        schemaName: "DatasourceDataSourceTypeSchema",
-    },
-    DatasourceFieldProvenance: {
-        modulePath: "datasource/field-provenance",
-        schemaName: "DatasourceFieldProvenanceSchema",
-    },
-    DatasourceProvenanceActor: {
-        modulePath: "datasource/provenance-actor",
-        schemaName: "DatasourceProvenanceActorSchema",
-    },
-    DatasourceProvenanceActorType: {
-        modulePath: "datasource/provenance-actor-type",
-        schemaName: "DatasourceProvenanceActorTypeSchema",
-    },
-    DatasourceProvenanceFieldChange: {
-        modulePath: "datasource/provenance-field-change",
-        schemaName: "DatasourceProvenanceFieldChangeSchema",
-    },
-    DatasourceProvenanceOperation: {
-        modulePath: "datasource/provenance-operation",
-        schemaName: "DatasourceProvenanceOperationSchema",
-    },
-    DatasourceProvenanceSource: {
-        modulePath: "datasource/provenance-source",
-        schemaName: "DatasourceProvenanceSourceSchema",
-    },
-    DatasourceProvenanceStatus: {
-        modulePath: "datasource/provenance-status",
-        schemaName: "DatasourceProvenanceStatusSchema",
-    },
     DatasourceSourceMetadata: {
         modulePath: "datasource/source-metadata",
         schemaName: "DatasourceSourceMetadataSchema",
-    },
-    DatasourceTrackedProvenanceTable: {
-        modulePath: "datasource/tracked-provenance-table",
-        schemaName: "DatasourceTrackedProvenanceTableSchema",
     },
     DecimalRange: { modulePath: "decimal/range", schemaName: "DecimalRangeSchema" },
     DomainConflictDetails: {
@@ -622,10 +582,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     PageClassification: {
         modulePath: "pagination/schemas",
         schemaName: "PageClassificationSchema",
-    },
-    PageDatasourceFieldProvenance: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageDatasourceFieldProvenanceSchema",
     },
     PageEmployeeCount: { modulePath: "pagination/schemas", schemaName: "PageEmployeeCountSchema" },
     PageEntity: { modulePath: "pagination/schemas", schemaName: "PageEntitySchema" },
