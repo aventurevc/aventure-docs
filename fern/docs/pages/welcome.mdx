@@ -1,5 +1,5 @@
 ---
-title: aVenture Docs
+title: Welcome
 slug: welcome
 hide-page-actions: true
 hide-nav-links: true
@@ -9,24 +9,29 @@ subtitle: Query data on private companies, investors, and funding rounds within 
 ---
 
 <div className="welcome-hero-tint">
-  <img src="/docs/assets/welcome-light.jpg" className="block dark:hidden" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
-  <img src="/docs/assets/welcome-dark.jpg" className="hidden dark:block" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
+  <img src="/docs/assets/welcome-light.jpg" alt="" className="block dark:hidden" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
+  <img src="/docs/assets/welcome-dark.jpg" alt="" className="hidden dark:block" style={{pointerEvents:'none',cursor:'default',transform:'none',transition:'none',animation:'none'}} />
 </div>
 
 ## Get started
 
-Pick the surface you want to work in. API and CLI public reads work before
-sign-in; MCP requires an authenticated connection. Each quickstart ends with
-a working query. [Authentication](/authentication) explains which operations
-need sign-in or a subscription.
+aVenture data covers private companies, their investors, funding rounds,
+people, and news. Pick the tool you want to work in. Public API and CLI reads
+work without an account, and MCP requires sign-in. Each quickstart ends with a
+working query.
+
+Calls made with your credential draw on your plan's monthly allowances.
+[Plans and usage](/authentication#plans-and-usage) explains what counts and
+where to check your usage, and the [pricing page](https://aventure.vc/pricing)
+lists current plans.
 
 <CardGroup cols={3}>
   <Card title="API quickstart" icon="duotone plug" href="/quickstart">
-    Plain HTTPS requests. Start anonymously with `curl`, no signup required.
+    Send plain HTTPS requests with `curl`. No account is required to start.
   </Card>
 
   <Card title="CLI quickstart" icon="duotone terminal" href="/cli">
-    Query from your terminal. Sign in through your browser; scriptable output and exit codes.
+    Query from your terminal, sign in through your browser, and script against stable output and exit codes.
   </Card>
 
   <Card title="MCP quickstart" icon="duotone robot" href="/mcp">
@@ -38,7 +43,7 @@ need sign-in or a subscription.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities?size=5"
+curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&size=5"
 ```
 
 </Tab>
@@ -46,58 +51,59 @@ curl "https://api.aventure.vc/v1/entities?size=5"
 
 ```bash
 npm install --global @aventurevc/aventure-cli --@aventurevc:registry=https://registry.npmjs.org/
-aventure entities list --size 3
+aventure entities summary list --type-record Company --size 3
 ```
 
 </Tab>
 <Tab title="MCP">
 
-Follow the [MCP quickstart](/mcp) to configure the hosted server, complete
-sign-in, and ask your first company research question. It includes the client
-ID and callback settings required by Claude Code, plus self-hosting instructions.
+The [MCP quickstart](/mcp) configures the hosted server, signs you in, and ends
+with a first company research question. It lists the client ID and callback
+settings that Claude Code requires, plus self-hosting instructions.
 
 </Tab>
 </Tabs>
 
 <Note>
-Both packages require Node.js 24.18 or later in the 24.x series.
+The CLI and the self-hosted MCP server require Node.js 24.18 or later in the 24.x series.
 </Note>
 
 ## What you can query
 
 <CardGroup cols={3}>
-  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entities">
+  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entity-summaries">
     Companies, investors, and accelerators, filterable by industry, stage, location, funding, and accelerator cohort
   </Card>
-  <Card title="People" icon="duotone user" href="/api-reference/people/list-people">
+  <Card title="People" icon="duotone user" href="/api-reference/people/search-people">
     Founders and investors, their roles at entities, and their investment activity
   </Card>
-  <Card title="Fundraising" icon="duotone chart-line-up" href="/api-reference/entity-fundraise/entity-fundraises">
+  <Card title="Fundraising" icon="duotone chart-line-up" href="/api-reference/entity-fundraise/list-entity-fundraise-rounds">
     Rounds, amounts raised, valuations, and investor participation
   </Card>
   <Card title="News" icon="duotone newspaper" href="/api-reference/news/list-news">
     Articles linked to the entities and people they mention
   </Card>
-  <Card title="Search" icon="duotone magnifying-glass" href="/api-reference/search/all">
+  <Card title="Search" icon="duotone magnifying-glass" href="/api-reference/search/federated">
     Keyword, semantic, and cross-domain search over entities, people, and news
   </Card>
-  <Card title="Classifications" icon="duotone tags" href="/api-reference/classification-tags/get-catalog">
+  <Card title="Classifications" icon="duotone tags" href="/api-reference/classification-tags/get-classification-catalog">
     The canonical industry, product, model, and ownership taxonomies behind the filters
   </Card>
 </CardGroup>
 
-## Once you have a first result
+## After your first result
 
-- [Answer a real question](/first-answer) — filter a list, open one record, read its funding rounds, on all three surfaces
-- [Authentication](/authentication) — personal bearer access and subscription requirements
-- [Pagination and filtering](/pagination-and-filtering) — combining the sixty-plus filters on `GET /v1/entities` and paging through them
-- [Errors](/errors) — the problem detail body, and what `401`, `403`, and `402` each mean
-- [Support](/support) — what to include so a report can be traced
+- [Answer a real question](/first-answer) filters a list, opens one record, and reads its funding rounds on all three surfaces.
+- [Authentication](/authentication) covers personal credentials, plans, and usage.
+- [Pagination and filtering](/pagination-and-filtering) explains how to combine the company filters and page through results.
+- [Errors](/errors) explains the problem detail body and what `401`, `402`, `403`, and `429` each mean.
+- [Support](/support) lists what to include so the team can trace a report.
 
 ## Working in TypeScript
 
 Request and response types are published as [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas)
-on npm. It ships schemas and types only — bring your own HTTP layer.
+on npm. The package contains Zod schemas and TypeScript types only, so use
+`fetch` or any HTTP library to send requests.
 
 ```bash
 npm install @aventurevc/api-schemas --@aventurevc:registry=https://registry.npmjs.org/

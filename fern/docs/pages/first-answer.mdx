@@ -1,45 +1,47 @@
 ---
 title: Answer a real question
-subtitle: Go from a question to funding rounds in three calls, on whichever surface you use
+subtitle: Go from a question to funding rounds in three calls with the API, CLI, or MCP server
 slug: first-answer
 ---
 
-The quickstarts each end at a working call. This page ends at an answer.
+This page is for anyone who has finished a quickstart and wants a complete
+answer instead of a single call. Each step shows the same operation on all three
+surfaces.
 
-The question: **which seed-stage companies in Austin are in the dataset, and
+The question is: **which seed-stage companies in Austin are in the dataset, and
 what has one of them raised?** The API and CLI calls below need no credential
-or signup. For MCP, first establish the authenticated connection in the
-[MCP quickstart](/mcp). All three surfaces run the same three operations.
+or account. For MCP, first connect and sign in with the
+[MCP quickstart](/mcp).
 
 <Steps>
 <Step title="Narrow the dataset to the companies you mean">
 
-Filters are the entity list's query parameters, and they combine.
-`typeRecord=Company` excludes products, services, and other entity types;
+Filters are query parameters on the company list, and they combine.
+`typeRecord=Company` excludes products, services, and other record types.
 `stage` and `headquartersCity` narrow the companies further.
 
 <Tabs>
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
+curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities list --type-record Company --headquarters-city Austin --stage Seed --size 5
+aventure entities summary list --type-record Company --headquarters-city Austin --stage Seed --size 5
 ```
 
 </Tab>
 <Tab title="MCP">
 
-Call `aventure_read` with the operation named:
+Call `aventure_read` and name the operation:
 
 ```json
 {
-  "operationId": "listEntities",
+  "operationId": "listEntitySummaries",
   "query": { "typeRecord": ["Company"], "headquartersCity": ["Austin"], "stage": ["Seed"], "size": 5 }
 }
 ```
@@ -47,47 +49,48 @@ Call `aventure_read` with the operation named:
 </Tab>
 </Tabs>
 
-`totalElements` is the size of the whole matching set, not of your page — that
-number is the answer to "how many are there". `content` holds up to five records,
-each with a `core.slug` you can carry into the next step.
+`totalElements` counts the whole matching set, not only your page, so it
+answers "how many are there". `content` holds up to five records. Each record's
+`entity.core.slug` identifies it for the next step.
 
 <Note>
-Location filters take the name, not the postal abbreviation:
-`headquartersState=Texas` matches, `headquartersState=TX` returns zero rows.
-[Pagination and filtering](/pagination-and-filtering) covers how the filters
+Location filters take the full name, not the postal abbreviation:
+`headquartersState=Texas` matches, and `headquartersState=TX` returns no records.
+[Pagination and filtering](/pagination-and-filtering) explains how filters
 combine.
 </Note>
 
 </Step>
 <Step title="Open one record">
 
-Take `core.slug` from a record in the previous response —
-`healthkey-austin-tx-us` below — and
-read the full record. The detail response carries names, locations,
-classifications, text summaries, and a `core.id`, which is the UUID the
-round-level operations key on.
+Take `entity.core.slug` from a record in the previous response, such as
+`closing-theory-austin-tx-us`, and read the full record. The response includes
+the record's identity, research, linked news, and linked people. Its `core.id`
+is the UUID that funding-round operations take.
 
 <Tabs>
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/detail?slug=healthkey-austin-tx-us"
+curl "https://api.aventure.vc/v1/entities/lookup?slug=closing-theory-austin-tx-us"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities get --entity-slug healthkey-austin-tx-us
+aventure entities lookup get --entity-slug closing-theory-austin-tx-us
 ```
 
 </Tab>
 <Tab title="MCP">
 
+Call `aventure_read`:
+
 ```json
 {
-  "operationId": "getEntityDetail",
-  "query": { "slug": "healthkey-austin-tx-us" }
+  "operationId": "getEntityLookup",
+  "query": { "slug": "closing-theory-austin-tx-us" }
 }
 ```
 
@@ -95,10 +98,9 @@ aventure entities get --entity-slug healthkey-austin-tx-us
 </Tabs>
 
 <Note>
-The wire parameter is `slug` on all three surfaces. The CLI qualifies it as
-`--entity-slug` so that one command can also accept the `--batch` body field
-named `slug`; the [CLI quickstart](/cli#the-command-shape) covers that
-distinction.
+The API parameter is `slug` on every surface. The CLI names the flag
+`--entity-slug` so that it cannot be confused with the `--slug` flag of batch
+commands.
 </Note>
 
 </Step>
@@ -110,23 +112,25 @@ distinction.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/019efcaf-7aff-7264-afe1-425afc1e3e11/fundraise-rounds?size=3"
+curl "https://api.aventure.vc/v1/entities/03418f84-8e9f-4f68-b82c-1fd35a15e083/fundraise-rounds?size=3"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities rounds list --entity-id 019efcaf-7aff-7264-afe1-425afc1e3e11 --size 3
+aventure entities fundraise-rounds list --entity-id 03418f84-8e9f-4f68-b82c-1fd35a15e083 --size 3
 ```
 
 </Tab>
 <Tab title="MCP">
 
+Call `aventure_read`:
+
 ```json
 {
-  "operationId": "entityFundraises",
-  "pathParams": { "entityId": "019efcaf-7aff-7264-afe1-425afc1e3e11" },
+  "operationId": "listEntityFundraiseRounds",
+  "pathParams": { "entityId": "03418f84-8e9f-4f68-b82c-1fd35a15e083" },
   "query": { "size": 3 }
 }
 ```
@@ -134,50 +138,57 @@ aventure entities rounds list --entity-id 019efcaf-7aff-7264-afe1-425afc1e3e11 -
 </Tab>
 </Tabs>
 
-Each round carries `round`, `amountRaised`, `currency`, and `dateAnnounced`:
+Each round carries `round`, `amountRaised`, `currency`, `dateAnnounced`, and
+`investorCount`:
 
 ```json
 {
   "content": [
     {
-      "id": "cb71e324-28ee-4114-b1f5-21a66a5dc78c",
+      "id": "65296e8c-3445-4db2-b69f-929e7ea1484d",
       "round": "Seed",
-      "amountRaised": 500000,
+      "amountRaised": 2300000,
       "currency": "USD",
-      "dateAnnounced": "2025-01-01T00:00:00.000Z"
+      "dateAnnounced": "2023-07-24T00:00:00.000Z",
+      "investorCount": 3
     }
   ],
   "totalElements": 1
 }
 ```
 
-`amountRaised` is denominated in its own `currency`, so compare rounds only
-after converting — the values are not normalized to USD. Amount, currency,
-round, and announcement date can be `null`; a missing amount does not mean zero.
+`amountRaised` is in the round's own `currency`, and the API does not convert
+amounts to USD, so convert before you compare rounds. The amount, currency,
+round, and announcement date can each be `null`, and a missing amount does not
+mean zero.
 
 </Step>
 </Steps>
 
-## The shape of every other question
+## The pattern behind other questions
 
-Those three steps are the pattern: **filter a list, resolve one record, read
-what hangs off it.** People and news work the same way, and the operations that
-hang off a record — news, employees, investors — all key on
-the same `core.id`.
+These three steps are the pattern for most questions: **filter a list, open one
+record, and read what is attached to it.** People and news work the same way.
+Operations for records attached to a company, such as news, people, and
+investors, all take the same `core.id`.
 
-When you have a phrase rather than a filter set, swap step 1 for search:
-`POST /v1/search/all` runs entities, people, and news together, and
-`aventure search --query "..."` is the CLI form. Search needs a credential and
-a Pro subscription or trial for a signed-in user. The three filtered API and
-CLI calls above need neither.
+When you have a phrase instead of a set of filters, replace step 1 with search:
+`POST /v1/search` searches companies, people, and news together, and
+`aventure search --query "..."` is the CLI form. Search requires a credential
+and a plan that includes plain-English search. The three calls above need
+neither.
 
-To go from an [API reference](/api-reference) operation to the command that
-runs it, `aventure docs api <operationId>` prints the route, the required
+Calls you make while signed in draw on your plan's monthly allowances; opening a
+full record counts one profile view.
+[Plans and usage](/authentication#plans-and-usage) explains what counts.
+
+To find the CLI command and MCP tool for any [API reference](/api-reference)
+operation, run `aventure help <operationId>`. It prints the route, the required
 flags, and the matching MCP tool without calling the API.
 
-## Next
+## Next steps
 
-- [Pagination and filtering](/pagination-and-filtering) — the filters behind step 1, and how to page a large result set
-- [Authentication](/authentication) — what a credential adds beyond these public reads
-- [Errors](/errors) — the problem detail body, and reading `traceId` out of a failure
-- [API reference](/api-reference) — every operation, parameter, and schema
+- [Pagination and filtering](/pagination-and-filtering) covers the filters behind step 1 and how to page through a large result set.
+- [Authentication](/authentication) covers what a credential and a plan add beyond these public reads.
+- [Errors](/errors) covers the problem detail body and reading `traceId` from a failure.
+- [API reference](/api-reference) lists every operation, parameter, and schema.
