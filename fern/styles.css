@@ -1,4 +1,4 @@
-/* Custom styles for Fern Docs Starter */
+/* aVenture docs theme overrides */
 
 /* Accent tint on welcome hero images */
 .welcome-hero-tint {
@@ -24,4 +24,41 @@
   pointer-events: none;
   border-radius: inherit;
   z-index: 1;
+}
+
+/* Fern's navbar button and header tabs render no focus ring of their own. */
+.fern-header-navbar-links .fern-button.fern-button:focus-visible,
+.fern-header-tabs a[role="tab"]:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: calc(var(--radius) * 2);
+}
+
+/* Dotted property keys (a.b.c.d) have no break opportunity and widened
+   endpoint pages past a 390px viewport. */
+.fern-api-property-key {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* 10px method badges need 4.5:1; Fern's defaults measure 3.2:1 (solid)
+   and 4.1:1 (subtle, light theme). */
+.fern-docs-badge.solid.green {
+  background-color: #1a7f4b;
+}
+
+html.light .fern-docs-badge.subtle.blue {
+  color: #004f9e;
+}
+
+html.light .fern-docs-badge.subtle.green {
+  color: #00613a;
+}
+
+/* Code-block copy controls appear only on hover, which touch screens lack. */
+@media (hover: none) {
+  .fern-code-block > div:has(> button[aria-label="Copy to clipboard"]) {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }

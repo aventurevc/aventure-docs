@@ -8,8 +8,8 @@ instances:
         owner: aventurevc
         repo: aventure-docs
         branch: main
-      launch: dashboard
-title: aVenture | Documentation
+      launch: github
+title: aVenture Developer Docs
 layout:
   searchbar-placement: header
   page-width: full
@@ -96,12 +96,12 @@ navigation:
 
 navbar-links:
   - type: filled
-    text: API reference
-    url: https://docs.aventure.vc/api-reference
+    text: Get an API key
+    url: https://aventure.vc/settings/api-keys
 colors:
   accent-primary:
     light: "#0A2540"
-    dark: "#FFFFFF"
+    dark: "#A8C7FA"
   background:
     light: "#F8F8F9"
     dark: "#0A2540"
