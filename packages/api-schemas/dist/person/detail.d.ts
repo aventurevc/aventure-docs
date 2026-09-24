@@ -3,8 +3,6 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
     articleCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     association: z.ZodArray<z.ZodObject<{
         associationId: z.ZodInt;
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        creator: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         endDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         entityAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -213,7 +211,6 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         titleId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         titleLevel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>;
     core: z.ZodType<{
         createdAt?: string | null | undefined;
@@ -248,15 +245,6 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -297,15 +285,6 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -441,7 +420,6 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         amount?: number | null | undefined;
         company: {
             entity: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -511,7 +489,6 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         amount?: number | null | undefined;
         company: {
             entity: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -587,28 +564,21 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         name: string;
         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
     }, unknown>>>;
-    pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type PersonDetailDefinition = z.infer<typeof PersonDetailSchemaDefinition>;
 /**
  * Composed person wrapper: core identity + enrichment + associations + investments. Access core fields via .core (for example .core.slug or .core.nameFull).
  *
  * @openapiSchema PersonDetail
- * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch
  * @usedBySchema EntityDetailSchema
  * @usedBySchema PagePersonDetailSchema

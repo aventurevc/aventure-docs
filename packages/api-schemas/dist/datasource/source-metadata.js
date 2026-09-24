@@ -4,34 +4,11 @@ import { z } from "zod/v4";
  * Grouped source/provenance metadata for private v1 response fields
  *
  * @openapiSchema DatasourceSourceMetadata
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people
- * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/provenance/latest
- * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}
- * @endpoint GET /v1/entities/{entityId}/investors
- * @endpoint GET /v1/entities/{entityId}/media/logo
- * @endpoint GET /v1/entities/{entityId}/person-investors
- * @endpoint GET /v1/news/{newsId}/media/thumbnail
- * @endpoint GET /v1/people/{personId}
- * @endpoint GET /v1/people/{personId}/media/photo
- * @endpoint GET /v1/people/{personId}/similar
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
- * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
- * @endpoint POST /v1/people/lookup/batch
- * @endpoint POST /v1/people/natural-search
- * @endpoint POST /v1/people/search
- * @endpoint POST /v1/search/all
+ * @endpoint GET /v1/entities/{entityId}/media/{mediaType}
+ * @endpoint GET /v1/news/{newsId}/media/{mediaType}
+ * @endpoint GET /v1/people/{personId}/media/{mediaType}
  * @usedBySchema MediaUploadSchema
- * @usedBySchema PersonSchema
  * @contractShape datasource.source-metadata
  * @contractRole canonical
  */

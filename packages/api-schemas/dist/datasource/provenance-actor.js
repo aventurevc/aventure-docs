@@ -6,7 +6,7 @@ import { DatasourceProvenanceActorTypeSchema } from "./provenance-actor-type.js"
  * Authenticated actor that authored a provenance write event
  *
  * @openapiSchema DatasourceProvenanceActor
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema DatasourceFieldProvenanceSchema
  * @contractShape datasource.provenance-actor

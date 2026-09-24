@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Full read/storage source type for field-level provenance rows. Write query parameters use DatasourceWritableDataSourceType.
  *
  * @openapiSchema DatasourceDataSourceType
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema DatasourceProvenanceSourceSchema
  * @contractShape datasource.data-source-type

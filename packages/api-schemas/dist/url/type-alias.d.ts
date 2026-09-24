@@ -9,8 +9,8 @@ type UrlTypeAliasDefinition = z.infer<typeof UrlTypeAliasSchemaDefinition>;
  * Canonical urlType value plus accepted alias and platform host tokens.
  *
  * @openapiSchema UrlTypeAlias
- * @endpoint GET /v1/entities/urls/types
- * @endpoint GET /v1/people/urls/types
+ * @endpoint GET /v1/lookup/url-types
+ * @endpoint GET /v1/url-types
  * @contractShape url.type-alias
  * @contractRole canonical
  */

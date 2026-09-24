@@ -11,7 +11,6 @@ const NewsSchemaDefinition = z.object({
     id: z.int(),
     newsImageThumbnail: z.string().nullish(),
     newsUrlOriginal: z.string().nullish(),
-    pendingApproval: z.int().nullish(),
     publication: z.string().nullish(),
     publishedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Canonical lowercase URL slug for the resource */
@@ -28,27 +27,18 @@ const NewsSchemaDefinition = z.object({
  * Canonical news owner for list and core semantics
  *
  * @openapiSchema News
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/news
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/news
- * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
- * @endpoint GET /v1/news/recent
- * @endpoint GET /v1/news/similar
- * @endpoint GET /v1/people/detail/news
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/trending-news
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/news
  * @endpoint POST /v1/search/all
  * @usedBySchema EntityDetailSchema
  * @usedBySchema NewsDetailSchema

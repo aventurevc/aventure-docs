@@ -9,6 +9,7 @@ import { z } from "zod/v4";
 export declare const AuthClientSchema: z.ZodObject<{
     authorizationServer: z.ZodString;
     clientId: z.ZodString;
+    mcpResource: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     redirectUri: z.ZodString;
     resource: z.ZodString;
     scope: z.ZodArray<z.ZodString>;

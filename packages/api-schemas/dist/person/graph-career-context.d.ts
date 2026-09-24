@@ -48,7 +48,6 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     entity: z.ZodObject<{
         core: z.ZodObject<{
-            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             id: z.ZodUUID;
@@ -99,6 +98,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;
             latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -202,7 +202,6 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -217,7 +216,6 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -227,7 +225,6 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
     similarEntity: z.ZodArray<z.ZodType<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -260,6 +257,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -283,7 +281,6 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -316,6 +313,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;

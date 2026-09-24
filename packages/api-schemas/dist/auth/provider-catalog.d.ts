@@ -4,6 +4,7 @@ declare const AuthProviderCatalogSchemaDefinition: z.ZodObject<{
     oauthClient: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         authorizationServer: z.ZodString;
         clientId: z.ZodString;
+        mcpResource: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         redirectUri: z.ZodString;
         resource: z.ZodString;
         scope: z.ZodArray<z.ZodString>;

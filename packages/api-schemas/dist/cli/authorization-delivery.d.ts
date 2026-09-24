@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * RSA-wrapped AES-256-GCM delivery of one personal API-key secret
+ * RSA-wrapped AES-256-GCM delivery of one API-key secret
  *
  * @openapiSchema CliAuthorizationDelivery
  * @endpoint POST /v1/auth/cli-authorizations/{cliAuthorizationId}/poll

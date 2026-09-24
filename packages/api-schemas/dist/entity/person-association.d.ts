@@ -3,9 +3,7 @@ import { z } from "zod/v4";
  * One entity↔person association, naming both sides
  *
  * @openapiSchema EntityPersonAssociation
- * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -16,13 +14,9 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch
  * @usedBySchema PageEntityPersonAssociationSchema
  * @usedBySchema PersonDetailSchema
@@ -32,8 +26,6 @@ import { z } from "zod/v4";
  */
 export declare const EntityPersonAssociationSchema: z.ZodObject<{
     associationId: z.ZodInt;
-    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    creator: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     endDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     entityAddress: z.ZodArray<z.ZodObject<{
         address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -242,7 +234,6 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
     titleId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     titleLevel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 export type EntityPersonAssociation = z.infer<typeof EntityPersonAssociationSchema>;
 //# sourceMappingURL=person-association.d.ts.map

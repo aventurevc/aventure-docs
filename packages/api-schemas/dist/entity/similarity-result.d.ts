@@ -2,7 +2,6 @@ import { z } from "zod/v4";
 declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
     entity: z.ZodType<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -280,6 +279,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -322,7 +322,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -355,6 +354,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -400,7 +400,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -441,9 +440,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -474,7 +470,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -752,6 +747,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -794,7 +790,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -827,6 +822,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -872,7 +868,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -913,9 +908,6 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -974,7 +966,6 @@ type EntitySimilarityResultDefinition = z.infer<typeof EntitySimilarityResultSch
  * Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.
  *
  * @openapiSchema EntitySimilarityResult
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/{entityId}/similar
  * @usedBySchema PageEntitySimilarityResultSchema
  * @contractShape entity.similarity-result

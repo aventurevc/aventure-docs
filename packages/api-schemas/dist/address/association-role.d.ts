@@ -3,11 +3,7 @@ import { z } from "zod/v4";
  * Meaning of an entity or person address association. Domicile is a legal or registered seat and is not evidence of operational presence; dominant is the predominant display location; origin is the founding or historical location.
  *
  * @openapiSchema AddressAssociationRole
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/detail
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -27,16 +23,13 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema AddressAssociationSchema
  * @contractShape address.association-role
  * @contractRole canonical

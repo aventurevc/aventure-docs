@@ -4,7 +4,7 @@ import { z } from "zod/v4";
  * Actor boundary for a provenance write event
  *
  * @openapiSchema DatasourceProvenanceActorType
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema DatasourceProvenanceActorSchema
  * @usedBySchema DatasourceProvenanceSourceSchema

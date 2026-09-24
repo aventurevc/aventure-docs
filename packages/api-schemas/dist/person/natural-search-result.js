@@ -15,6 +15,7 @@ const PersonNaturalSearchResultSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema FederatedSearchSchema
  * @contractShape person.natural-search-result
  * @contractRole canonical

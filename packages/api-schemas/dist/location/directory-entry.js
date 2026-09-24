@@ -5,11 +5,10 @@ import { LocationIdentifierSchema } from "./identifier.js";
  * Single directory entry (country/state/city) for sitemap
  *
  * @openapiSchema LocationDirectoryEntry
- * @endpoint GET /v1/addresses/locations/{scope}
+ * @endpoint GET /v1/addresses/locations/{directory}
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationSitemapSchema
  * @usedBySchema PageLocationDirectoryEntrySchema
- * @usedBySchema PageResultLocationDirectoryEntrySchema
  * @contractShape location.directory-entry
  * @contractRole canonical
  */

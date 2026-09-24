@@ -98,7 +98,7 @@ type DatasourceFieldProvenanceDefinition = z.infer<typeof DatasourceFieldProvena
  * Full audit row from research.res_provenance_event
  *
  * @openapiSchema DatasourceFieldProvenance
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema PageDatasourceFieldProvenanceSchema
  * @contractShape datasource.field-provenance

@@ -31,6 +31,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "agent/instruction-pointer",
         schemaName: "AgentInstructionPointerSchema",
     },
+    ApiKey: { modulePath: "api/key", schemaName: "ApiKeySchema" },
     AuthClient: { modulePath: "auth/client", schemaName: "AuthClientSchema" },
     AuthOperation: { modulePath: "auth/operation", schemaName: "AuthOperationSchema" },
     AuthOperationAccess: {
@@ -56,6 +57,58 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     AuthProviderCatalog: {
         modulePath: "auth/provider-catalog",
         schemaName: "AuthProviderCatalogSchema",
+    },
+    BillingAdditionalUsage: {
+        modulePath: "billing/additional-usage",
+        schemaName: "BillingAdditionalUsageSchema",
+    },
+    BillingAdditionalUsageFundingType: {
+        modulePath: "billing/additional-usage-funding-type",
+        schemaName: "BillingAdditionalUsageFundingTypeSchema",
+    },
+    BillingAdditionalUsageMeter: {
+        modulePath: "billing/additional-usage-meter",
+        schemaName: "BillingAdditionalUsageMeterSchema",
+    },
+    BillingAdditionalUsageType: {
+        modulePath: "billing/additional-usage-type",
+        schemaName: "BillingAdditionalUsageTypeSchema",
+    },
+    BillingCatalog: { modulePath: "billing/catalog", schemaName: "BillingCatalogSchema" },
+    BillingCatalogAdditionalUsage: {
+        modulePath: "billing/catalog-additional-usage",
+        schemaName: "BillingCatalogAdditionalUsageSchema",
+    },
+    BillingCatalogAllowance: {
+        modulePath: "billing/catalog-allowance",
+        schemaName: "BillingCatalogAllowanceSchema",
+    },
+    BillingCatalogCreditPack: {
+        modulePath: "billing/catalog-credit-pack",
+        schemaName: "BillingCatalogCreditPackSchema",
+    },
+    BillingCatalogPlan: {
+        modulePath: "billing/catalog-plan",
+        schemaName: "BillingCatalogPlanSchema",
+    },
+    BillingCatalogTier: {
+        modulePath: "billing/catalog-tier",
+        schemaName: "BillingCatalogTierSchema",
+    },
+    BillingCheckout: { modulePath: "billing/checkout", schemaName: "BillingCheckoutSchema" },
+    BillingCheckoutMutation: {
+        modulePath: "billing/checkout-mutation",
+        schemaName: "BillingCheckoutMutationSchema",
+    },
+    BillingCreditPackType: {
+        modulePath: "billing/credit-pack-type",
+        schemaName: "BillingCreditPackTypeSchema",
+    },
+    BillingPlanType: { modulePath: "billing/plan-type", schemaName: "BillingPlanTypeSchema" },
+    BillingPortal: { modulePath: "billing/portal", schemaName: "BillingPortalSchema" },
+    BillingSubscription: {
+        modulePath: "billing/subscription",
+        schemaName: "BillingSubscriptionSchema",
     },
     BlogPost: { modulePath: "blog/post", schemaName: "BlogPostSchema" },
     BlogPostType: { modulePath: "blog/post-type", schemaName: "BlogPostTypeSchema" },
@@ -234,7 +287,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/filter-control-type",
         schemaName: "EntityFilterControlTypeSchema",
     },
-    EntityFilterCount: { modulePath: "entity/filter-count", schemaName: "EntityFilterCountSchema" },
     EntityFilterCountMeta: {
         modulePath: "entity/filter-count-meta",
         schemaName: "EntityFilterCountMetaSchema",
@@ -343,6 +395,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityNaturalSearch: {
         modulePath: "entity/natural-search",
         schemaName: "EntityNaturalSearchSchema",
+    },
+    EntityOperatingStatus: {
+        modulePath: "entity/operating-status",
+        schemaName: "EntityOperatingStatusSchema",
     },
     EntityPersonAssociation: {
         modulePath: "entity/person-association",
@@ -474,6 +530,18 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
     HelpScope: { modulePath: "help/scope", schemaName: "HelpScopeSchema" },
     HelpSourceType: { modulePath: "help/source-type", schemaName: "HelpSourceTypeSchema" },
+    Identification: {
+        modulePath: "identification/identification",
+        schemaName: "IdentificationSchema",
+    },
+    IdentificationCandidate: {
+        modulePath: "identification/candidate",
+        schemaName: "IdentificationCandidateSchema",
+    },
+    IdentificationSubject: {
+        modulePath: "identification/subject",
+        schemaName: "IdentificationSubjectSchema",
+    },
     IntRange: { modulePath: "int/range", schemaName: "IntRangeSchema" },
     InvestorActivityFilter: {
         modulePath: "investor/activity-filter",
@@ -513,6 +581,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "LocationSlugResolutionSchema",
     },
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
+    MediaSlot: { modulePath: "media/slot", schemaName: "MediaSlotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
     NaturalSearch: { modulePath: "natural/search", schemaName: "NaturalSearchSchema" },
     NaturalSearchResult: {
@@ -530,7 +599,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "news/feedback-acknowledgement",
         schemaName: "NewsFeedbackAcknowledgementSchema",
     },
-    NewsFilter: { modulePath: "news/filter", schemaName: "NewsFilterSchema" },
+    NewsMatchStatus: { modulePath: "news/match-status", schemaName: "NewsMatchStatusSchema" },
     NewsResolvedEntityLink: {
         modulePath: "news/resolved-entity-link",
         schemaName: "NewsResolvedEntityLinkSchema",
@@ -601,7 +670,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PageEntitySitemapUrlSchema",
     },
-    PageEntityTag: { modulePath: "pagination/schemas", schemaName: "PageEntityTagSchema" },
     PageEntityText: { modulePath: "pagination/schemas", schemaName: "PageEntityTextSchema" },
     PageEntityUrlLink: { modulePath: "pagination/schemas", schemaName: "PageEntityUrlLinkSchema" },
     PageEntityValuationTimeSeriesPoint: {
@@ -633,20 +701,8 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "pagination/schemas",
         schemaName: "PageResultEntityListSchema",
     },
-    PageResultLocationDirectoryEntry: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageResultLocationDirectoryEntrySchema",
-    },
     PageResultNews: { modulePath: "pagination/schemas", schemaName: "PageResultNewsSchema" },
     PageResultPerson: { modulePath: "pagination/schemas", schemaName: "PageResultPersonSchema" },
-    PageResultPublication: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageResultPublicationSchema",
-    },
-    PageResultSitemapUrlSlot: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageResultSitemapUrlSlotSchema",
-    },
     PageSitemapUrlSlot: {
         modulePath: "pagination/schemas",
         schemaName: "PageSitemapUrlSlotSchema",
@@ -657,10 +713,8 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PageUrlSlugRedirectSchema",
     },
     Person: { modulePath: "person/person", schemaName: "PersonSchema" },
-    PersonalApiKey: { modulePath: "personal/api-key", schemaName: "PersonalApiKeySchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
     PersonDetail: { modulePath: "person/detail", schemaName: "PersonDetailSchema" },
-    PersonDetailBatch: { modulePath: "person/detail-batch", schemaName: "PersonDetailBatchSchema" },
     PersonEnrichment: { modulePath: "person/enrichment", schemaName: "PersonEnrichmentSchema" },
     PersonFilter: { modulePath: "person/filter", schemaName: "PersonFilterSchema" },
     PersonGraph: { modulePath: "person/graph", schemaName: "PersonGraphSchema" },
@@ -691,6 +745,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "person/list-array-filter",
         schemaName: "PersonListArrayFilterSchema",
     },
+    PersonLookupBatch: { modulePath: "person/lookup-batch", schemaName: "PersonLookupBatchSchema" },
     PersonNaturalSearch: {
         modulePath: "person/natural-search",
         schemaName: "PersonNaturalSearchSchema",
@@ -719,22 +774,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ProblemResolution: { modulePath: "problem/resolution", schemaName: "ProblemResolutionSchema" },
     ProblemType: { modulePath: "problem/type", schemaName: "ProblemTypeSchema" },
     Publication: { modulePath: "publication/publication", schemaName: "PublicationSchema" },
-    PublicationFilter: { modulePath: "publication/filter", schemaName: "PublicationFilterSchema" },
+    PublicationFacet: { modulePath: "publication/facet", schemaName: "PublicationFacetSchema" },
     PublicationRelation: {
         modulePath: "publication/relation",
         schemaName: "PublicationRelationSchema",
-    },
-    PublicationSearchInterpretation: {
-        modulePath: "publication/search-interpretation",
-        schemaName: "PublicationSearchInterpretationSchema",
-    },
-    PublicationSearchResult: {
-        modulePath: "publication/search-result",
-        schemaName: "PublicationSearchResultSchema",
-    },
-    PublicationSortField: {
-        modulePath: "publication/sort-field",
-        schemaName: "PublicationSortFieldSchema",
     },
     PublicationType: { modulePath: "publication/type", schemaName: "PublicationTypeSchema" },
     RedirectSlugPath: {
@@ -745,6 +788,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     RelationshipDirection: {
         modulePath: "relationship/direction",
         schemaName: "RelationshipDirectionSchema",
+    },
+    ResearchAllowance: { modulePath: "research/allowance", schemaName: "ResearchAllowanceSchema" },
+    ResearchAllowanceUsage: {
+        modulePath: "research/allowance-usage",
+        schemaName: "ResearchAllowanceUsageSchema",
     },
     ResearchDerivedBucket: {
         modulePath: "research/derived-bucket",
@@ -829,14 +877,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SortOrderPersonSortField: {
         modulePath: "sort/order-person-sort-field",
         schemaName: "SortOrderPersonSortFieldSchema",
-    },
-    SortOrderPublicationSortField: {
-        modulePath: "sort/order-publication-sort-field",
-        schemaName: "SortOrderPublicationSortFieldSchema",
-    },
-    SortSpecPublicationSortField: {
-        modulePath: "sort/spec-publication-sort-field",
-        schemaName: "SortSpecPublicationSortFieldSchema",
     },
     SourceDocumentList: {
         modulePath: "source/document-list",

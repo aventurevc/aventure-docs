@@ -3,7 +3,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
     alreadyPresent: z.ZodBoolean;
     candidate: z.ZodType<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -281,6 +280,7 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -323,7 +323,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -356,6 +355,7 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -401,7 +401,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -442,9 +441,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -475,7 +471,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -753,6 +748,7 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -795,7 +791,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -828,6 +823,7 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -873,7 +869,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -914,9 +909,6 @@ declare const EntitySuggestionSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";

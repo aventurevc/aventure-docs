@@ -1,5 +1,13 @@
 import { z } from "zod/v4";
 declare const ProblemDetailSchemaDefinition: z.ZodObject<{
+    allowanceType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        ENTITY_VIEW: "ENTITY_VIEW";
+        NEW_COMPANY: "NEW_COMPANY";
+        NEW_PERSON: "NEW_PERSON";
+        PERSON_VIEW: "PERSON_VIEW";
+        UPDATE: "UPDATE";
+        UPDATE_PERSON: "UPDATE_PERSON";
+    }>>>;
     circuitBreaker: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         GEOCODE_PROVIDER_ERROR: "GEOCODE_PROVIDER_ERROR";
@@ -10,7 +18,10 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         INFERENCE_PROVIDER_RESPONSE_EMPTY: "INFERENCE_PROVIDER_RESPONSE_EMPTY";
         JOBRUNR_DISABLED: "JOBRUNR_DISABLED";
         JOBRUNR_STORAGE_UNAVAILABLE: "JOBRUNR_STORAGE_UNAVAILABLE";
+        billing_additional_usage_cap_reached: "billing_additional_usage_cap_reached";
+        billing_allowance_exhausted: "billing_allowance_exhausted";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
+        geocode_provider_error: "geocode_provider_error";
         github_fetch_failed: "github_fetch_failed";
         image_blocklist_match: "image_blocklist_match";
         image_brand_mismatch: "image_brand_mismatch";
@@ -20,16 +31,25 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         image_too_small: "image_too_small";
         image_unreadable: "image_unreadable";
         image_wrong_aspect: "image_wrong_aspect";
+        inference_profile_api_key_missing: "inference_profile_api_key_missing";
+        inference_profiles_missing: "inference_profiles_missing";
+        inference_provider_error: "inference_provider_error";
+        inference_provider_invalid_json: "inference_provider_invalid_json";
+        inference_provider_response_empty: "inference_provider_response_empty";
+        jobrunr_disabled: "jobrunr_disabled";
+        jobrunr_storage_unavailable: "jobrunr_storage_unavailable";
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";
         news_similarity_embedding_unavailable: "news_similarity_embedding_unavailable";
         not_authorized: "not_authorized";
         origin_detail_capacity: "origin_detail_capacity";
         origin_detail_shutdown: "origin_detail_shutdown";
+        primary_website_missing: "primary_website_missing";
         r2_delete_failed: "r2_delete_failed";
         r2_fetch_failed: "r2_fetch_failed";
         r2_upload_failed: "r2_upload_failed";
         rateLimited: "rateLimited";
+        rate_limited: "rate_limited";
         rbac_lookup_unavailable: "rbac_lookup_unavailable";
         search_provider_error: "search_provider_error";
         search_provider_not_configured: "search_provider_not_configured";
@@ -37,8 +57,12 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         sentry_api_error: "sentry_api_error";
         source_document_body_unavailable: "source_document_body_unavailable";
         source_document_capture_limit_exceeded: "source_document_capture_limit_exceeded";
+        subscription_canceled: "subscription_canceled";
+        subscription_past_due: "subscription_past_due";
+        subscription_paused: "subscription_paused";
+        subscription_required: "subscription_required";
         suspectedShellStrip: "suspectedShellStrip";
-        swagger_headers_unconfigured: "swagger_headers_unconfigured";
+        suspected_shell_strip: "suspected_shell_strip";
         url_surface_misclassification: "url_surface_misclassification";
         web_crawl_fetch_failed: "web_crawl_fetch_failed";
     }>>>;
@@ -186,6 +210,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     instance: z.ZodOptional<z.ZodString>;
     limit: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     limitType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        BILLING_ADDITIONAL_USAGE: "BILLING_ADDITIONAL_USAGE";
         BILLING_ALLOWANCE: "BILLING_ALLOWANCE";
         CLERK_PUBLIC_ADMISSION: "CLERK_PUBLIC_ADMISSION";
         CLERK_SCRIPT_LOAD: "CLERK_SCRIPT_LOAD";

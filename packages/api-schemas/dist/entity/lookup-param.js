@@ -17,7 +17,7 @@ export const EntityLookupParamSchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .optional(),
-    /** Privileged admin readback scope. Includes hidden or off-sitemap entities and hidden research snippets. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public. */
+    /** Includes hidden or off-sitemap entities and hidden research snippets when the caller has private-visibility authority. */
     includePrivate: z.boolean().optional(),
     /** Location candidate: city, state, or country. */
     location: z.string().optional(),
@@ -37,7 +37,7 @@ export const EntityLookupParamSchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .optional(),
-    /** Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities list --types). */
+    /** Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities types list). */
     typeRecord: z.string().optional(),
     /** Entity URL matched by host and path unless urlMatchMode=domain. */
     url: z.string().optional(),
@@ -45,7 +45,7 @@ export const EntityLookupParamSchema = z.object({
     urlDomain: z.string().optional(),
     /** URL matching mode: hostPath (default for url) or domain. Omit when urlDomain is supplied; urlDomain selects domain mode automatically. */
     urlMatchMode: z.string().optional(),
-    /** URL type qualifier. List the accepted tokens with GET /v1/entities/urls/types (CLI: entities urls list --types). */
+    /** URL type qualifier. List the accepted tokens with GET /v1/lookup/url-types (CLI: lookup url-types list). */
     urlType: z.string().optional(),
 });
 //# sourceMappingURL=lookup-param.js.map

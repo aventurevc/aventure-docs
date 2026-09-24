@@ -11,7 +11,7 @@ const DatasourceProvenanceFieldChangeSchemaDefinition = z.object({
  * One changed field inside a provenance write event
  *
  * @openapiSchema DatasourceProvenanceFieldChange
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema DatasourceFieldProvenanceSchema
  * @contractShape datasource.provenance-field-change

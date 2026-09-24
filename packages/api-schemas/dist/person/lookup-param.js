@@ -15,7 +15,7 @@ export const PersonLookupParamSchema = z.object({
     includeAddress: z.boolean().optional(),
     /** Projection qualifier — include association values (default: true). Set false to omit association array. */
     includeAssociation: z.boolean().optional(),
-    /** Privileged admin readback scope. Includes hidden or off-sitemap people and privileged private fields. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public. */
+    /** Includes hidden or off-sitemap people and private fields when the caller has private-visibility authority. */
     includePrivate: z.boolean().optional(),
     /** Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array. */
     includeUrl: z.boolean().optional(),

@@ -28,6 +28,7 @@ type AgentInstructionManifestDefinition = z.infer<typeof AgentInstructionManifes
  *
  * @openapiSchema AgentInstructionManifest
  * @endpoint GET /v1/agents/instructions/manifest
+ * @endpoint GET /v1/help/instructions/manifest
  * @contractShape agent.instruction-manifest
  * @contractRole canonical
  */

@@ -15,6 +15,7 @@ const SearchOrderingPersonSortFieldSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonSearchInterpretationSchema
  * @contractShape search.ordering-person-sort-field
  * @contractRole canonical

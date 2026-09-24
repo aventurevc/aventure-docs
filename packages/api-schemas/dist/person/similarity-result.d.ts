@@ -2,8 +2,6 @@ import { z } from "zod/v4";
 declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
     currentRole: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         associationId: z.ZodInt;
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        creator: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         endDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         entityAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -212,7 +210,6 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         titleId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         titleLevel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
     person: z.ZodType<{
         createdAt?: string | null | undefined;
@@ -247,15 +244,6 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -296,15 +284,6 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;

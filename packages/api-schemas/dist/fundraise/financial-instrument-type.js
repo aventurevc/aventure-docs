@@ -4,8 +4,8 @@ import { z } from "zod/v4";
  * Fundraise financial instrument type — the vehicle a round or investor join used
  *
  * @openapiSchema FundraiseFinancialInstrumentType
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins/{joinId}
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @contractShape fundraise.financial-instrument-type
  * @contractRole canonical

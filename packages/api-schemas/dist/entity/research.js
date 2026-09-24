@@ -15,13 +15,10 @@ const EntityResearchSchemaDefinition = z.object({
  * Combined entity research disclosure: governed detail rows, research text snippets, and joined accelerator participation.
  *
  * @openapiSchema EntityResearch
- * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search

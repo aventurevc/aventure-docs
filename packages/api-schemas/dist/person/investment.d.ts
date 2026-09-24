@@ -3,7 +3,6 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
     amount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     company: z.ZodType<{
         entity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -37,7 +36,6 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         };
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -116,22 +114,16 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
  * Domain model for a person's investment in an entity (fundraise transaction)
  *
  * @openapiSchema PersonInvestment
- * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/people/detail/investments
  * @endpoint GET /v1/people/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
+ * @endpoint GET /v1/people/{personId}/investments
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch
  * @usedBySchema PagePersonInvestmentSchema
  * @usedBySchema PersonDetailSchema

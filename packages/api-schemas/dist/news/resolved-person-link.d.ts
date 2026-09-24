@@ -2,8 +2,12 @@ import { z } from "zod/v4";
 declare const NewsResolvedPersonLinkSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodISODateTime;
     href: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    matchScore: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    matchType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    matchStatus: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        approved: "approved";
+        "auto-match": "auto-match";
+        "needs-review": "needs-review";
+        rejected: "rejected";
+    }>>>;
     mention: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     personId: z.ZodUUID;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -14,7 +18,6 @@ type NewsResolvedPersonLinkDefinition = z.infer<typeof NewsResolvedPersonLinkSch
  * Resolved person mention in news content - hyperlink to a person detected in article text
  *
  * @openapiSchema NewsResolvedPersonLink
- * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
  * @endpoint GET /v1/news/{newsId}
  * @usedBySchema NewsDetailSchema

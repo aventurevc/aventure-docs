@@ -8,10 +8,10 @@ import { IntRangeSchema } from "../int/range.js";
  *
  * @openapiSchema PersonListArrayFilter
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonFilterSchema
  * @contractShape person.list-array-filter
  * @contractRole canonical

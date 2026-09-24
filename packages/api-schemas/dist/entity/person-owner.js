@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Exactly one of entityId or personId is set; ids only, no name fields. Resolve display names with GET /v1/entities/detail or GET /v1/people/detail.
+ * Exactly one of entityId or personId is set; ids only, no name fields. Resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}.
  *
  * @openapiSchema EntityPersonOwner
  * @standardProblemResponse
@@ -9,7 +9,6 @@ import { z } from "zod/v4";
  * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @usedBySchema EntityTextSchema
  * @usedBySchema EntityUrlLinkSchema
- * @usedBySchema NewsFilterSchema
  * @usedBySchema ResolvedHandleSchema
  * @usedBySchema UniqueIdSchema
  * @usedBySchema UrlDuplicateConflictSchema

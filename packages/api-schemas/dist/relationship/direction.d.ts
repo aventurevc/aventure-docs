@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * How entities relationships join interprets sourceEntityId and targetEntityId.
+ * How entities relationships create interprets sourceEntityId and targetEntityId.
  *
  * @openapiSchema RelationshipDirection
  * @endpoint GET /v1/entities/relationships/types

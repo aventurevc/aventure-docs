@@ -2,7 +2,6 @@ import { z } from "zod/v4";
 declare const EntityListResearchSchemaDefinition: z.ZodObject<{
     acceleratorParticipation: z.ZodArray<z.ZodType<{
         accelerator: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -42,7 +41,6 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         status?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         accelerator: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -83,9 +81,6 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
     }, unknown>>>;
     detail: z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        creator?: string | null | undefined;
-        dataConfidence?: "high" | "low" | "medium" | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -102,9 +97,6 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, unknown, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        creator?: string | null | undefined;
-        dataConfidence?: "high" | "low" | "medium" | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -126,16 +118,14 @@ type EntityListResearchDefinition = z.infer<typeof EntityListResearchSchemaDefin
  * Nested research projection owned by EntityList rows, excluding snippet text.
  *
  * @openapiSchema EntityListResearch
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityListSchema
  * @contractShape entity.list-research
  * @contractRole canonical

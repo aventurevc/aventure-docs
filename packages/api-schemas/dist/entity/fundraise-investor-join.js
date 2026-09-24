@@ -11,7 +11,7 @@ const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
     financialInstrumentType: FundraiseFinancialInstrumentTypeSchema.nullish(),
     /** Fundraise investor join identifier */
     id: z.uuid(),
-    /** Investor identity, nested: investor.entityId for a firm/fund investor or investor.personId for an angel — exactly one is set. Read responses carry ids only, never flat investor* fields or names; resolve display names with GET /v1/entities/detail or GET /v1/people/detail. */
+    /** Investor identity, nested: investor.entityId for a firm/fund investor or investor.personId for an angel — exactly one is set. Read responses carry ids only, never flat investor* fields or names; resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}. */
     investor: EntityPersonOwnerSchema,
     /** Whether this investor is the lead investor for the round — the lead/anchor investor that set the round terms or made the primary commitment. */
     leadInvestor: z.boolean(),
@@ -24,8 +24,8 @@ const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
  * Canonical fundraise investor join row for API serialization
  *
  * @openapiSchema EntityFundraiseInvestorJoin
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins/{joinId}
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @usedBySchema PageEntityFundraiseInvestorJoinSchema
  * @contractShape entity.fundraise-investor-join
  * @contractRole canonical

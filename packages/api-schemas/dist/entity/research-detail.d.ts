@@ -1,13 +1,6 @@
 import { z } from "zod/v4";
 declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     asOfDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    creator: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    dataConfidence: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-        high: "high";
-        low: "low";
-        medium: "medium";
-    }>>>;
     derivedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         asOfDate: z.ZodISODateTime;
         bucket: z.ZodEnum<{
@@ -41,9 +34,6 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * Canonical research detail row for research.res_entity_detail
  *
  * @openapiSchema EntityResearchDetail
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -51,16 +41,15 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/research
- * @endpoint GET /v1/entities/{entityId}/research/details
- * @endpoint GET /v1/entities/{entityId}/research/details/{detailId}
+ * @endpoint GET /v1/entities/{entityId}/research-details
+ * @endpoint GET /v1/entities/{entityId}/research-details/{detailId}
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityListResearchSchema
  * @usedBySchema EntityResearchSchema
  * @usedBySchema PageEntityResearchDetailSchema

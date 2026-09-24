@@ -13,6 +13,7 @@ const PersonNaturalSearchSchemaDefinition = z.object({
  *
  * @openapiSchema PersonNaturalSearch
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search/natural/people
  * @contractShape person.natural-search
  * @contractRole canonical
  */

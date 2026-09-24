@@ -3,66 +3,53 @@ import { z } from "zod/v4";
 /**
  * @openapiSchema SortObject
  * @endpoint GET /v1/classifications
- * @endpoint GET /v1/classifications/tags
  * @endpoint GET /v1/content
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins
- * @endpoint GET /v1/entities/detail/news
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/news
- * @endpoint GET /v1/news/recent
- * @endpoint GET /v1/news/similar
- * @endpoint GET /v1/people
- * @endpoint GET /v1/people/detail/investments
- * @endpoint GET /v1/people/detail/news
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
+ * @endpoint GET /v1/sitemap/entities
  * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/sitemap/entities/urls
  * @endpoint GET /v1/sitemap/url-slots
- * @endpoint GET /v1/addresses/locations/{scope}
- * @endpoint GET /v1/addresses/locations/{scope}/{slug}
+ * @endpoint GET /v1/slug-redirects
+ * @endpoint GET /v1/addresses/locations/{directory}
+ * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
+ * @endpoint GET /v1/entities/{entityId}/employee-counts
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/people/time-series
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/repositories
- * @endpoint GET /v1/entities/{entityId}/research/details
- * @endpoint GET /v1/entities/{entityId}/research/snippets
+ * @endpoint GET /v1/entities/{entityId}/research-details
+ * @endpoint GET /v1/entities/{entityId}/research-snippets
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint GET /v1/entities/{entityId}/slug/redirects
  * @endpoint GET /v1/entities/{entityId}/texts
  * @endpoint GET /v1/entities/{entityId}/trending-news
  * @endpoint GET /v1/entities/{entityId}/unique-ids
  * @endpoint GET /v1/entities/{entityId}/urls
- * @endpoint GET /v1/entities/{entityId}/urls/all
  * @endpoint GET /v1/entities/{entityId}/valuations
- * @endpoint GET /v1/news/{newsId}/related-companies
- * @endpoint GET /v1/news/{newsId}/slug/redirects
+ * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/content
  * @endpoint GET /v1/people/{personId}/entities
+ * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/repositories
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint GET /v1/people/{personId}/slug/redirects
  * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/urls
- * @endpoint GET /v1/people/{personId}/urls/all
- * @endpoint GET /v1/people/{slug}/blog-posts
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
+ * @endpoint POST /v1/addresses/locations/batch
+ * @endpoint POST /v1/content/search
+ * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/news
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
+ * @endpoint POST /v1/people/{personId}/content/search
  * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/people/search
  * @usedBySchema PageableObjectSchema
@@ -84,7 +71,6 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntitySchema
  * @usedBySchema PageEntitySimilarityResultSchema
  * @usedBySchema PageEntitySitemapUrlSchema
- * @usedBySchema PageEntityTagSchema
  * @usedBySchema PageEntityTextSchema
  * @usedBySchema PageEntityUrlLinkSchema
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema

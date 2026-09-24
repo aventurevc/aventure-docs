@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 const NewsSourceUrlConflictSchemaDefinition = z.object({
     /** Existing article id (NewsId.value) that already owns this publication + URL pair. */
     conflictingArticleId: z.int(),
-    /** Existing article slug, or empty string when the existing article has no slug. Use with GET /v1/news/detail?slug= to fetch the conflicting article. */
+    /** Existing article slug, or empty string when the existing article has no slug. Use with GET /v1/news/lookup?slug= to fetch the conflicting article. */
     conflictingArticleSlug: z.string(),
     /** Existing article title for human-readable diagnostics. */
     conflictingArticleTitle: z.string(),

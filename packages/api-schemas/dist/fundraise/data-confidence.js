@@ -4,9 +4,6 @@ import { z } from "zod/v4";
  * Fundraise data confidence label
  *
  * @openapiSchema FundraiseDataConfidence
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/search/link
@@ -20,13 +17,12 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityAcquisitionSchema
  * @usedBySchema EntityFundraiseTransactionSchema
  * @contractShape fundraise.data-confidence

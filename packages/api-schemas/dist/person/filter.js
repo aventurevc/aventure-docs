@@ -7,10 +7,10 @@ import { PersonListArrayFilterSchema } from "./list-array-filter.js";
  *
  * @openapiSchema PersonFilter
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchSchema
  * @usedBySchema PersonSearchInterpretationSchema
  * @contractShape person.filter
@@ -37,6 +37,8 @@ export const PersonFilterSchema = z.object({
     lastName: z.string().nullish(),
     /** First-name initial. */
     letter: z.string().nullish(),
+    /** Restrict results to specific person IDs. Omit or use [] for no ID restriction. */
+    personId: z.array(z.uuid()).max(200).optional(),
     /** Exact normalized match against a person's full name or slug. */
     personName: z.array(z.string()).optional(),
     /** Associated entity role or title. */

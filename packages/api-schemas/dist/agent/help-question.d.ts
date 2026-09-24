@@ -14,6 +14,7 @@ type AgentHelpQuestionDefinition = z.infer<typeof AgentHelpQuestionSchemaDefinit
  *
  * @openapiSchema AgentHelpQuestion
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/help
  * @contractShape agent.help-question
  * @contractRole canonical
  */

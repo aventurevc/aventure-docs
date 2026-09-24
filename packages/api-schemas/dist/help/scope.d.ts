@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema HelpScope
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/help
  * @usedBySchema AgentHelpQuestionSchema
  * @contractShape help.scope
  * @contractRole canonical

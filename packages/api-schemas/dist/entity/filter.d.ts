@@ -3,10 +3,10 @@ import { z } from "zod/v4";
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
  * @openapiSchema EntityFilter
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
  * @contractShape entity.filter
@@ -112,14 +112,21 @@ export declare const EntityFilterSchema: z.ZodObject<{
     letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     location: z.ZodOptional<z.ZodArray<z.ZodString>>;
     logoOption: z.ZodOptional<z.ZodObject<{
-        sortPriority: z.ZodEnum<{
+        sortPriority: z.ZodOptional<z.ZodEnum<{
             ANY_LOGO_FIRST: "ANY_LOGO_FIRST";
             NONE: "NONE";
             REAL_LOGO_FIRST: "REAL_LOGO_FIRST";
-        }>;
+        }>>;
     }, z.core.$strip>>;
     mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    operatingStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+        Acquired: "Acquired";
+        "Acquired Subsidiary": "Acquired Subsidiary";
+        Closed: "Closed";
+        "Closed (Acquihire)": "Closed (Acquihire)";
+        Inactive: "Inactive";
+        Operating: "Operating";
+    }>>>;
     person: z.ZodOptional<z.ZodArray<z.ZodString>>;
     portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
     portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;

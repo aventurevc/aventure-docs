@@ -1,5 +1,14 @@
 import { z } from "zod/v4";
-declare const NewsDetailSchemaDefinition: z.ZodObject<{
+/**
+ * Canonical news detail owner
+ *
+ * @openapiSchema NewsDetail
+ * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/news/{newsId}
+ * @contractShape news.detail
+ * @contractRole canonical
+ */
+export declare const NewsDetailSchema: z.ZodObject<{
     content: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     core: z.ZodType<{
         author?: string | null | undefined;
@@ -10,7 +19,6 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -25,7 +33,6 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -37,8 +44,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         entityId: string;
         href?: string | null | undefined;
         internal: boolean;
-        matchScore?: number | null | undefined;
-        matchType?: string | null | undefined;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
         mention?: string | null | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
@@ -48,8 +54,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         entityId: string;
         href?: string | null | undefined;
         internal: boolean;
-        matchScore?: number | null | undefined;
-        matchType?: string | null | undefined;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
         mention?: string | null | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
@@ -60,8 +65,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
     personMentionResolved: z.ZodArray<z.ZodType<{
         createdAt: string;
         href?: string | null | undefined;
-        matchScore?: number | null | undefined;
-        matchType?: string | null | undefined;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
         mention?: string | null | undefined;
         personId: string;
         slug?: string | null | undefined;
@@ -69,26 +73,12 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         createdAt: string;
         href?: string | null | undefined;
-        matchScore?: number | null | undefined;
-        matchType?: string | null | undefined;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
         mention?: string | null | undefined;
         personId: string;
         slug?: string | null | undefined;
         updatedAt: string;
     }, unknown>>>;
 }, z.core.$strip>;
-type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
-/**
- * Canonical news detail owner
- *
- * @openapiSchema NewsDetail
- * @endpoint GET /v1/news/detail
- * @endpoint GET /v1/news/lookup
- * @endpoint GET /v1/news/{newsId}
- * @contractShape news.detail
- * @contractRole canonical
- */
-export declare const NewsDetailSchema: z.ZodType<NewsDetailDefinition>;
 export type NewsDetail = z.infer<typeof NewsDetailSchema>;
-export {};
 //# sourceMappingURL=detail.d.ts.map

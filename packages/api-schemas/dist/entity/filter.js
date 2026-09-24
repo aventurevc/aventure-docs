@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityFilterLogoOptionSchema } from "./filter-logo-option.js";
 import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria.js";
 import { EntityListQualityGateSchema } from "./list-quality-gate.js";
+import { EntityOperatingStatusSchema } from "./operating-status.js";
 import { EntityTypeSchema } from "./type.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
@@ -11,10 +12,10 @@ import { UrlMatchModeSchema } from "../url/match-mode.js";
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
  * @openapiSchema EntityFilter
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
  * @contractShape entity.filter
@@ -59,8 +60,8 @@ export const EntityFilterSchema = z.strictObject({
     logoOption: EntityFilterLogoOptionSchema.optional(),
     /** Main product classification values. */
     mainProduct: z.array(z.string()).optional(),
-    /** Operating status values. */
-    operatingStatus: z.array(z.string()).optional(),
+    /** Operating states to include; omit to include every state. */
+    operatingStatus: z.array(EntityOperatingStatusSchema).optional(),
     /** Associated person, matched by name. */
     person: z.array(z.string()).optional(),
     /** Portfolio-company headquarters city values. */

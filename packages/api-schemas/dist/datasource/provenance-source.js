@@ -6,7 +6,7 @@ import { DatasourceProvenanceActorTypeSchema } from "./provenance-actor-type.js"
  * Write provenance supplied on mutation query parameters.
  *
  * @openapiSchema DatasourceProvenanceSource
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema DatasourceFieldProvenanceSchema
  * @contractShape datasource.provenance-source

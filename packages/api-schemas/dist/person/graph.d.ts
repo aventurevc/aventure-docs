@@ -29,7 +29,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -62,6 +61,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -122,7 +122,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
             id: number;
             newsImageThumbnail?: string | null | undefined;
             newsUrlOriginal?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
@@ -132,7 +131,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         similarEntity: {
             entity: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -165,6 +163,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -215,7 +214,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -248,6 +246,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -308,7 +307,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
             id: number;
             newsImageThumbnail?: string | null | undefined;
             newsUrlOriginal?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
@@ -318,7 +316,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         similarEntity: {
             entity: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -351,6 +348,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -388,7 +386,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         };
         round?: string | null | undefined;
         sharedEntity?: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -436,7 +433,6 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
         };
         round?: string | null | undefined;
         sharedEntity?: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;

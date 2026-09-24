@@ -4,7 +4,7 @@ import { z } from "zod/v4";
  * Domain resource whose field-level provenance is tracked
  *
  * @openapiSchema DatasourceTrackedProvenanceTable
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @endpoint GET /v1/provenance/latest
  * @endpoint GET /v1/provenance/{provenanceId}
  * @usedBySchema DatasourceFieldProvenanceSchema

@@ -4,8 +4,12 @@ declare const NewsResolvedEntityLinkSchemaDefinition: z.ZodObject<{
     entityId: z.ZodUUID;
     href: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     internal: z.ZodBoolean;
-    matchScore: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    matchType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    matchStatus: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        approved: "approved";
+        "auto-match": "auto-match";
+        "needs-review": "needs-review";
+        rejected: "rejected";
+    }>>>;
     mention: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
@@ -23,10 +27,9 @@ declare const NewsResolvedEntityLinkSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type NewsResolvedEntityLinkDefinition = z.infer<typeof NewsResolvedEntityLinkSchemaDefinition>;
 /**
- * Resolved entity mention in news content - hyperlink to an entity detected in article text - matchType: composite format "status:score|quote=evidence|user=email|at=timestamp" - m...
+ * Resolved entity mention in news content - hyperlink to an entity detected in article text
  *
  * @openapiSchema NewsResolvedEntityLink
- * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
  * @endpoint GET /v1/news/{newsId}
  * @usedBySchema NewsDetailSchema

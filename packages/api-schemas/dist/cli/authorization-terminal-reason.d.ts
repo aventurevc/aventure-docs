@@ -11,6 +11,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const CliAuthorizationTerminalReasonSchema: z.ZodEnum<{
+    "API-key quota reached": "API-key quota reached";
     "Authorization request expired": "Authorization request expired";
     "CLI authorization expired before acknowledgement": "CLI authorization expired before acknowledgement";
     "Clerk create response validation failed": "Clerk create response validation failed";
@@ -21,7 +22,6 @@ export declare const CliAuthorizationTerminalReasonSchema: z.ZodEnum<{
     "Credential issuance lost its database claim": "Credential issuance lost its database claim";
     "Credential issuance recovery revoked an unrecoverable key": "Credential issuance recovery revoked an unrecoverable key";
     "Denied by user": "Denied by user";
-    "Personal API-key quota reached": "Personal API-key quota reached";
     "Revoked by user": "Revoked by user";
 }>;
 export type CliAuthorizationTerminalReason = z.infer<typeof CliAuthorizationTerminalReasonSchema>;

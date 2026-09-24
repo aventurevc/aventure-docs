@@ -77,10 +77,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     letter?: string | null | undefined;
                     location?: string[] | undefined;
                     logoOption?: {
-                        sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
+                        sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
                     } | undefined;
                     mainProduct?: string[] | undefined;
-                    operatingStatus?: string[] | undefined;
+                    operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
                     person?: string[] | undefined;
                     portfolioHeadquartersCity?: string[] | undefined;
                     portfolioHeadquartersCountry?: string[] | undefined;
@@ -121,7 +121,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             result: {
                 content: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -399,6 +398,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             })[] | undefined;
                         };
                         fundingDetail?: {
+                            currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -441,7 +441,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
                             core: {
-                                createdAt?: string | null | undefined;
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
                                 id: string;
@@ -474,6 +473,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
                                 latestValuation?: number | null | undefined;
@@ -519,7 +519,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     research: {
                         acceleratorParticipation: {
                             accelerator: {
-                                createdAt?: string | null | undefined;
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
                                 id: string;
@@ -560,9 +559,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         detail: {
                             asOfDate?: string | null | undefined;
-                            createdAt?: string | null | undefined;
-                            creator?: string | null | undefined;
-                            dataConfidence?: "high" | "low" | "medium" | null | undefined;
                             derivedRange?: {
                                 asOfDate: string;
                                 bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -608,7 +604,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 id: number;
                 newsImageThumbnail?: string | null | undefined;
                 newsUrlOriginal?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
                 publication?: string | null | undefined;
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
@@ -678,6 +673,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     isCurrent?: boolean | null | undefined;
                     lastName?: string | null | undefined;
                     letter?: string | null | undefined;
+                    personId?: string[] | undefined;
                     personName?: string[] | undefined;
                     role?: string | null | undefined;
                     search?: string | null | undefined;
@@ -728,15 +724,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                     } | null | undefined;
                     slug: string;
-                    source: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    };
                     suffix?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
@@ -841,10 +828,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     letter?: string | null | undefined;
                     location?: string[] | undefined;
                     logoOption?: {
-                        sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
+                        sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
                     } | undefined;
                     mainProduct?: string[] | undefined;
-                    operatingStatus?: string[] | undefined;
+                    operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
                     person?: string[] | undefined;
                     portfolioHeadquartersCity?: string[] | undefined;
                     portfolioHeadquartersCountry?: string[] | undefined;
@@ -885,7 +872,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             result: {
                 content: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -1163,6 +1149,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             })[] | undefined;
                         };
                         fundingDetail?: {
+                            currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -1205,7 +1192,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
                             core: {
-                                createdAt?: string | null | undefined;
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
                                 id: string;
@@ -1238,6 +1224,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
                                 latestValuation?: number | null | undefined;
@@ -1283,7 +1270,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     research: {
                         acceleratorParticipation: {
                             accelerator: {
-                                createdAt?: string | null | undefined;
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
                                 id: string;
@@ -1324,9 +1310,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         detail: {
                             asOfDate?: string | null | undefined;
-                            createdAt?: string | null | undefined;
-                            creator?: string | null | undefined;
-                            dataConfidence?: "high" | "low" | "medium" | null | undefined;
                             derivedRange?: {
                                 asOfDate: string;
                                 bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -1372,7 +1355,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 id: number;
                 newsImageThumbnail?: string | null | undefined;
                 newsUrlOriginal?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
                 publication?: string | null | undefined;
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
@@ -1442,6 +1424,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     isCurrent?: boolean | null | undefined;
                     lastName?: string | null | undefined;
                     letter?: string | null | undefined;
+                    personId?: string[] | undefined;
                     personName?: string[] | undefined;
                     role?: string | null | undefined;
                     search?: string | null | undefined;
@@ -1492,15 +1475,6 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                     } | null | undefined;
                     slug: string;
-                    source: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    };
                     suffix?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;

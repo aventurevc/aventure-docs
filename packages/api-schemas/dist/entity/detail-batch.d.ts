@@ -10,7 +10,6 @@ type EntityDetailBatchDefinition = z.infer<typeof EntityDetailBatchSchemaDefinit
  * Batch request for entity detail retrieval by id, slug, or current joined URL
  *
  * @openapiSchema EntityDetailBatch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @contractShape entity.detail-batch

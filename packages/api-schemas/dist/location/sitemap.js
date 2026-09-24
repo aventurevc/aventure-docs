@@ -2,14 +2,15 @@
 import { z } from "zod/v4";
 import { LocationDirectoryEntrySchema } from "./directory-entry.js";
 import { LocationSlugResolutionSchema } from "./slug-resolution.js";
-import { PageResultLocationDirectoryEntrySchema, PageResultSitemapUrlSlotSchema, } from "../pagination/schemas.js";
+import { PageLocationDirectoryEntrySchema, PageSitemapUrlSlotSchema, } from "../pagination/schemas.js";
 const LocationSitemapSchemaDefinition = z.object({
-    company: PageResultSitemapUrlSlotSchema.nullish(),
-    /** Opaque continuation for the next company URL-slot page. */
+    company: PageSitemapUrlSlotSchema.nullish(),
+    /** Opaque continuation for the next company URL-slot page; absent only when the current address-refresh snapshot holds no further slot for the resolved letter. */
     companyNextCursor: z.string().nullish(),
-    directory: PageResultLocationDirectoryEntrySchema,
+    directory: PageLocationDirectoryEntrySchema,
     directoryLetterCount: z.record(z.string(), z.number().int()),
     location: LocationDirectoryEntrySchema.nullish(),
+    /** Exact company URL-slot count per letter from the same address-refresh snapshot that serves company: locationLetterCount[letter] equals the slots a companyNextCursor traversal of that letter reaches. Both move together at the next refresh, so a traversal that straddles a refresh restarts from a fresh count. */
     locationLetterCount: z.record(z.string(), z.number().int()).nullish(),
     requestedLetter: z.string(),
     resolvedDirectoryLetter: z.string(),

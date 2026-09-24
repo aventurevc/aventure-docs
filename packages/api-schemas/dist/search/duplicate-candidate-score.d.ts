@@ -27,6 +27,7 @@ type SearchDuplicateCandidateScoreDefinition = z.infer<typeof SearchDuplicateCan
  * @openapiSchema SearchDuplicateCandidateScore
  * @standardProblemResponse
  * @usedBySchema DuplicateCreateReviewSchema
+ * @usedBySchema IdentificationCandidateSchema
  * @contractShape search.duplicate-candidate-score
  * @contractRole canonical
  */

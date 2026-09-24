@@ -1,10 +1,10 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { NewsMatchStatusSchema } from "./match-status.js";
 const NewsResolvedPersonLinkSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }),
     href: z.string().nullish(),
-    matchScore: z.number().nullish(),
-    matchType: z.string().nullish(),
+    matchStatus: NewsMatchStatusSchema.nullish(),
     mention: z.string().nullish(),
     /** Canonical person UUID */
     personId: z.uuid(),
@@ -20,7 +20,6 @@ const NewsResolvedPersonLinkSchemaDefinition = z.object({
  * Resolved person mention in news content - hyperlink to a person detected in article text
  *
  * @openapiSchema NewsResolvedPersonLink
- * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
  * @endpoint GET /v1/news/{newsId}
  * @usedBySchema NewsDetailSchema

@@ -5,12 +5,12 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityFilterLogoOption
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityListFilterSchema
  * @contractShape entity.filter-logo-option
@@ -18,6 +18,6 @@ import { z } from "zod/v4";
  */
 export const EntityFilterLogoOptionSchema = z.object({
     /** Logo sort priority. */
-    sortPriority: z.enum(["NONE", "ANY_LOGO_FIRST", "REAL_LOGO_FIRST"]),
+    sortPriority: z.enum(["NONE", "ANY_LOGO_FIRST", "REAL_LOGO_FIRST"]).optional(),
 });
 //# sourceMappingURL=filter-logo-option.js.map

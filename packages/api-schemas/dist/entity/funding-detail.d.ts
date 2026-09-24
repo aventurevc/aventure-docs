@@ -3,9 +3,6 @@ import { z } from "zod/v4";
  * Aggregate view of an entity's fundraising activity
  *
  * @openapiSchema EntityFundingDetail
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/search/link
@@ -18,19 +15,19 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @contractShape entity.funding-detail
  * @contractRole canonical
  */
 export declare const EntityFundingDetailSchema: z.ZodObject<{
+    currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     fundingRoundCount: z.ZodInt;
     investorCount: z.ZodInt;
     latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

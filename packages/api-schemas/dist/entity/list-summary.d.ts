@@ -2,7 +2,6 @@ import { z } from "zod/v4";
 declare const EntityListSummarySchemaDefinition: z.ZodObject<{
     entity: z.ZodObject<{
         core: z.ZodObject<{
-            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             id: z.ZodUUID;
@@ -53,6 +52,7 @@ declare const EntityListSummarySchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;
             latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -109,7 +109,6 @@ declare const EntityListSummarySchemaDefinition: z.ZodObject<{
         dateInvestorExit?: string | null | undefined;
         entity?: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -142,6 +141,7 @@ declare const EntityListSummarySchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -193,7 +193,6 @@ declare const EntityListSummarySchemaDefinition: z.ZodObject<{
         dateInvestorExit?: string | null | undefined;
         entity?: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -226,6 +225,7 @@ declare const EntityListSummarySchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;

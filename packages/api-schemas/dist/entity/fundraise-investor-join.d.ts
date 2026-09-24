@@ -28,8 +28,8 @@ type EntityFundraiseInvestorJoinDefinition = z.infer<typeof EntityFundraiseInves
  * Canonical fundraise investor join row for API serialization
  *
  * @openapiSchema EntityFundraiseInvestorJoin
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins/{joinId}
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @usedBySchema PageEntityFundraiseInvestorJoinSchema
  * @contractShape entity.fundraise-investor-join
  * @contractRole canonical

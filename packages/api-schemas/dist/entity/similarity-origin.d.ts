@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Provenance origin for a similar-entity result row.
  *
  * @openapiSchema EntitySimilarityOrigin
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar

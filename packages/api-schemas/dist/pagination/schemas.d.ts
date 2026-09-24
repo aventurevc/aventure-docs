@@ -74,7 +74,6 @@ type PageBlogPostDefinition = z.infer<typeof PageBlogPostSchemaDefinition>;
  * @openapiSchema PageBlogPost
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/people/{personId}/blog-posts
- * @endpoint GET /v1/people/{slug}/blog-posts
  * @contractShape pagination.page-blog-post
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -304,7 +303,7 @@ declare const PageDatasourceFieldProvenanceSchemaDefinition: z.ZodObject<{
 type PageDatasourceFieldProvenanceDefinition = z.infer<typeof PageDatasourceFieldProvenanceSchemaDefinition>;
 /**
  * @openapiSchema PageDatasourceFieldProvenance
- * @endpoint GET /v1/provenance/history
+ * @endpoint GET /v1/provenance
  * @contractShape pagination.page-datasource-field-provenance
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -366,7 +365,7 @@ declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
 type PageEmployeeCountDefinition = z.infer<typeof PageEmployeeCountSchemaDefinition>;
 /**
  * @openapiSchema PageEmployeeCount
- * @endpoint GET /v1/entities/{entityId}/people/time-series
+ * @endpoint GET /v1/entities/{entityId}/employee-counts
  * @contractShape pagination.page-employee-count
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -375,7 +374,6 @@ export declare const PageEmployeeCountSchema: z.ZodType<PageEmployeeCountDefinit
 export type PageEmployeeCount = z.infer<typeof PageEmployeeCountSchema>;
 declare const PageEntitySchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;
@@ -454,9 +452,10 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
 type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
 /**
  * @openapiSchema PageEntity
+ * @endpoint GET /v1/sitemap/entities
  * @endpoint GET /v1/sitemap/entities/routes
- * @endpoint GET /v1/addresses/locations/{scope}/{slug}
- * @endpoint GET /v1/news/{newsId}/related-companies
+ * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
+ * @endpoint GET /v1/news/{newsId}/related-entities
  * @contractShape pagination.page-entity
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -466,7 +465,6 @@ export type PageEntity = z.infer<typeof PageEntitySchema>;
 declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         acquiredEntity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -499,7 +497,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         };
         acquirerEntity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -553,7 +550,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         acquiredEntity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -586,7 +582,6 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         };
         acquirerEntity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -678,7 +673,6 @@ export type PageEntityAcquisition = z.infer<typeof PageEntityAcquisitionSchema>;
 declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         core: z.ZodObject<{
-            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             id: z.ZodUUID;
@@ -974,6 +968,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -1251,6 +1246,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -1293,7 +1289,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -1326,6 +1321,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -1377,7 +1373,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -1410,6 +1405,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -1461,7 +1457,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             id: number;
             newsImageThumbnail?: string | null | undefined;
             newsUrlOriginal?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
@@ -1476,7 +1471,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             id: number;
             newsImageThumbnail?: string | null | undefined;
             newsUrlOriginal?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
             publication?: string | null | undefined;
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
@@ -1487,8 +1481,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
                 endDate?: string | null | undefined;
                 entityAddress: {
                     address?: number | null | undefined;
@@ -1634,7 +1626,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 titleId?: number | null | undefined;
                 titleLevel?: string | null | undefined;
                 titleName?: string | null | undefined;
-                updatedAt?: string | null | undefined;
             }[];
             core: {
                 createdAt?: string | null | undefined;
@@ -1669,15 +1660,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                 } | null | undefined;
                 slug: string;
-                source: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                };
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -1752,7 +1734,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 amount?: number | null | undefined;
                 company: {
                     entity: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -1824,13 +1805,10 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-            pendingApproval?: number | null | undefined;
         }, unknown, z.core.$ZodTypeInternals<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
                 endDate?: string | null | undefined;
                 entityAddress: {
                     address?: number | null | undefined;
@@ -1976,7 +1954,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 titleId?: number | null | undefined;
                 titleLevel?: string | null | undefined;
                 titleName?: string | null | undefined;
-                updatedAt?: string | null | undefined;
             }[];
             core: {
                 createdAt?: string | null | undefined;
@@ -2011,15 +1988,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                 } | null | undefined;
                 slug: string;
-                source: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                };
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -2094,7 +2062,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 amount?: number | null | undefined;
                 company: {
                     entity: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -2166,7 +2133,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-            pendingApproval?: number | null | undefined;
         }, unknown>>>;
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
@@ -2182,7 +2148,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             createdAt?: string | null | undefined;
             detail?: string | null | undefined;
             entity: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -2236,7 +2201,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             createdAt?: string | null | undefined;
             detail?: string | null | undefined;
             entity: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -2281,7 +2245,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
         research: z.ZodType<{
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -2322,9 +2285,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -2347,20 +2307,15 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     violation: string[];
                     wordCount: number;
                 } | null | undefined;
-                createdAt?: string | null | undefined;
                 entityId: string;
                 id: number;
-                isCurrent: boolean;
-                isPrimary: boolean;
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
-                visible: boolean;
             }[];
         }, unknown, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -2401,9 +2356,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -2426,15 +2378,11 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     violation: string[];
                     wordCount: number;
                 } | null | undefined;
-                createdAt?: string | null | undefined;
                 entityId: string;
                 id: number;
-                isCurrent: boolean;
-                isPrimary: boolean;
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
-                visible: boolean;
             }[];
         }, unknown>>;
         sitemap: z.ZodObject<{
@@ -2498,8 +2446,6 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
 type PageEntityDetailDefinition = z.infer<typeof PageEntityDetailSchemaDefinition>;
 /**
  * @openapiSchema PageEntityDetail
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-detail
@@ -2563,7 +2509,7 @@ declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
 type PageEntityFundraiseInvestorJoinDefinition = z.infer<typeof PageEntityFundraiseInvestorJoinSchemaDefinition>;
 /**
  * @openapiSchema PageEntityFundraiseInvestorJoin
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
  * @contractShape pagination.page-entity-fundraise-investor-join
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -2581,7 +2527,6 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         dateInvestorExit?: string | null | undefined;
         entity?: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -2614,6 +2559,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -2665,7 +2611,6 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         dateInvestorExit?: string | null | undefined;
         entity?: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -2698,6 +2643,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -2781,7 +2727,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -3059,6 +3004,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -3101,7 +3047,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -3134,6 +3079,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -3185,7 +3131,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 id: number;
                 newsImageThumbnail?: string | null | undefined;
                 newsUrlOriginal?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
                 publication?: string | null | undefined;
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
@@ -3196,8 +3141,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 articleCount?: number | null | undefined;
                 association: {
                     associationId: number;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
                     endDate?: string | null | undefined;
                     entityAddress: {
                         address?: number | null | undefined;
@@ -3343,7 +3286,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     titleId?: number | null | undefined;
                     titleLevel?: string | null | undefined;
                     titleName?: string | null | undefined;
-                    updatedAt?: string | null | undefined;
                 }[];
                 core: {
                     createdAt?: string | null | undefined;
@@ -3378,15 +3320,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                     } | null | undefined;
                     slug: string;
-                    source: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    };
                     suffix?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
@@ -3461,7 +3394,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     amount?: number | null | undefined;
                     company: {
                         entity: {
-                            createdAt?: string | null | undefined;
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
                             id: string;
@@ -3533,7 +3465,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
-                pendingApproval?: number | null | undefined;
             }[];
             publicUrl?: string | null | undefined;
             relationship: {
@@ -3549,7 +3480,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 createdAt?: string | null | undefined;
                 detail?: string | null | undefined;
                 entity: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -3594,7 +3524,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             research: {
                 acceleratorParticipation: {
                     accelerator: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -3635,9 +3564,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
-                    dataConfidence?: "high" | "low" | "medium" | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -3660,15 +3586,11 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         violation: string[];
                         wordCount: number;
                     } | null | undefined;
-                    createdAt?: string | null | undefined;
                     entityId: string;
                     id: number;
-                    isCurrent: boolean;
-                    isPrimary: boolean;
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
-                    visible: boolean;
                 }[];
             };
             sitemap: {
@@ -3712,7 +3634,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -3990,6 +3911,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -4032,7 +3954,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -4065,6 +3986,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -4116,7 +4038,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 id: number;
                 newsImageThumbnail?: string | null | undefined;
                 newsUrlOriginal?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
                 publication?: string | null | undefined;
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
@@ -4127,8 +4048,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 articleCount?: number | null | undefined;
                 association: {
                     associationId: number;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
                     endDate?: string | null | undefined;
                     entityAddress: {
                         address?: number | null | undefined;
@@ -4274,7 +4193,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     titleId?: number | null | undefined;
                     titleLevel?: string | null | undefined;
                     titleName?: string | null | undefined;
-                    updatedAt?: string | null | undefined;
                 }[];
                 core: {
                     createdAt?: string | null | undefined;
@@ -4309,15 +4227,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                     } | null | undefined;
                     slug: string;
-                    source: {
-                        changedAt?: string | null | undefined;
-                        dataSourceUpdatedAt?: string | null | undefined;
-                        detail?: string | null | undefined;
-                        kind?: string | null | undefined;
-                        pendingApproval?: number | null | undefined;
-                        sourceId?: string | null | undefined;
-                        status?: string | null | undefined;
-                    };
                     suffix?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
@@ -4392,7 +4301,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     amount?: number | null | undefined;
                     company: {
                         entity: {
-                            createdAt?: string | null | undefined;
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
                             id: string;
@@ -4464,7 +4372,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
-                pendingApproval?: number | null | undefined;
             }[];
             publicUrl?: string | null | undefined;
             relationship: {
@@ -4480,7 +4387,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 createdAt?: string | null | undefined;
                 detail?: string | null | undefined;
                 entity: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -4525,7 +4431,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             research: {
                 acceleratorParticipation: {
                     accelerator: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -4566,9 +4471,6 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
-                    dataConfidence?: "high" | "low" | "medium" | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -4591,15 +4493,11 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         violation: string[];
                         wordCount: number;
                     } | null | undefined;
-                    createdAt?: string | null | undefined;
                     entityId: string;
                     id: number;
-                    isCurrent: boolean;
-                    isPrimary: boolean;
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
-                    visible: boolean;
                 }[];
             };
             sitemap: {
@@ -4680,7 +4578,6 @@ export type PageEntityInvestorParticipation = z.infer<typeof PageEntityInvestorP
 declare const PageEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -4958,6 +4855,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -5000,7 +4898,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -5033,6 +4930,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -5078,7 +4976,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -5119,9 +5016,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -5152,7 +5046,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -5430,6 +5323,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -5472,7 +5366,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -5505,6 +5398,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -5550,7 +5444,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -5591,9 +5484,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -5652,8 +5542,6 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
 type PageEntityListDefinition = z.infer<typeof PageEntityListSchemaDefinition>;
 /**
  * @openapiSchema PageEntityList
- * @endpoint GET /v1/entities
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical
@@ -5665,7 +5553,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -5698,6 +5585,7 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -5717,7 +5605,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -5750,6 +5637,7 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -5795,7 +5683,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -5828,6 +5715,7 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -5847,7 +5735,6 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -5880,6 +5767,7 @@ declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -5962,8 +5850,6 @@ export type PageEntityListSummary = z.infer<typeof PageEntityListSummarySchema>;
 declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         associationId: z.ZodInt;
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        creator: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         endDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         entityAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -6172,7 +6058,6 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
         titleId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         titleLevel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
@@ -6225,7 +6110,6 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         createdAt?: string | null | undefined;
         detail?: string | null | undefined;
         entity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -6279,7 +6163,6 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         createdAt?: string | null | undefined;
         detail?: string | null | undefined;
         entity: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -6360,9 +6243,6 @@ export type PageEntityRelationship = z.infer<typeof PageEntityRelationshipSchema
 declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        creator?: string | null | undefined;
-        dataConfidence?: "high" | "low" | "medium" | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -6379,9 +6259,6 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, unknown, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        creator?: string | null | undefined;
-        dataConfidence?: "high" | "low" | "medium" | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -6426,7 +6303,7 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
 type PageEntityResearchDetailDefinition = z.infer<typeof PageEntityResearchDetailSchemaDefinition>;
 /**
  * @openapiSchema PageEntityResearchDetail
- * @endpoint GET /v1/entities/{entityId}/research/details
+ * @endpoint GET /v1/entities/{entityId}/research-details
  * @contractShape pagination.page-entity-research-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -6441,15 +6318,11 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
             violation: z.ZodArray<z.ZodString>;
             wordCount: z.ZodInt;
         }, z.core.$strip>>>;
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         entityId: z.ZodUUID;
         id: z.ZodInt;
-        isCurrent: z.ZodBoolean;
-        isPrimary: z.ZodBoolean;
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        visible: z.ZodBoolean;
     }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
@@ -6480,7 +6353,7 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
 type PageEntityResearchSnippetDefinition = z.infer<typeof PageEntityResearchSnippetSchemaDefinition>;
 /**
  * @openapiSchema PageEntityResearchSnippet
- * @endpoint GET /v1/entities/{entityId}/research/snippets
+ * @endpoint GET /v1/entities/{entityId}/research-snippets
  * @contractShape pagination.page-entity-research-snippet
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -6491,7 +6364,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -6769,6 +6641,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -6811,7 +6684,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -6844,6 +6716,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -6889,7 +6762,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
             research: {
                 acceleratorParticipation: {
                     accelerator: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -6930,9 +6802,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
-                    dataConfidence?: "high" | "low" | "medium" | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -6977,7 +6846,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -7255,6 +7123,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -7297,7 +7166,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -7330,6 +7198,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -7375,7 +7244,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
             research: {
                 acceleratorParticipation: {
                     accelerator: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -7416,9 +7284,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
-                    dataConfidence?: "high" | "low" | "medium" | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -7490,7 +7355,6 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
 type PageEntitySimilarityResultDefinition = z.infer<typeof PageEntitySimilarityResultSchemaDefinition>;
 /**
  * @openapiSchema PageEntitySimilarityResult
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/{entityId}/similar
  * @contractShape pagination.page-entity-similarity-result
  * @contractRole canonical
@@ -7554,82 +7418,6 @@ type PageEntitySitemapUrlDefinition = z.infer<typeof PageEntitySitemapUrlSchemaD
  */
 export declare const PageEntitySitemapUrlSchema: z.ZodType<PageEntitySitemapUrlDefinition>;
 export type PageEntitySitemapUrl = z.infer<typeof PageEntitySitemapUrlSchema>;
-declare const PageEntityTagSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        creatable: boolean;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
-        creatable: boolean;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageEntityTagDefinition = z.infer<typeof PageEntityTagSchemaDefinition>;
-/**
- * @openapiSchema PageEntityTag
- * @endpoint GET /v1/classifications/tags
- * @contractShape pagination.page-entity-tag
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageEntityTagSchema: z.ZodType<PageEntityTagDefinition>;
-export type PageEntityTag = z.infer<typeof PageEntityTagSchema>;
 declare const PageEntityTextSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         compliance?: {
@@ -7777,9 +7565,7 @@ type PageEntityUrlLinkDefinition = z.infer<typeof PageEntityUrlLinkSchemaDefinit
 /**
  * @openapiSchema PageEntityUrlLink
  * @endpoint GET /v1/entities/{entityId}/urls
- * @endpoint GET /v1/entities/{entityId}/urls/all
  * @endpoint GET /v1/people/{personId}/urls
- * @endpoint GET /v1/people/{personId}/urls/all
  * @contractShape pagination.page-entity-url-link
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -7986,7 +7772,9 @@ declare const PageLocationDirectoryEntrySchemaDefinition: z.ZodObject<{
 type PageLocationDirectoryEntryDefinition = z.infer<typeof PageLocationDirectoryEntrySchemaDefinition>;
 /**
  * @openapiSchema PageLocationDirectoryEntry
- * @endpoint GET /v1/addresses/locations/{scope}
+ * @endpoint GET /v1/addresses/locations/{directory}
+ * @endpoint POST /v1/addresses/locations/batch
+ * @usedBySchema LocationSitemapSchema
  * @contractShape pagination.page-location-directory-entry
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -8003,7 +7791,6 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -8018,7 +7805,6 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -8054,13 +7840,8 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
 type PageNewsDefinition = z.infer<typeof PageNewsSchemaDefinition>;
 /**
  * @openapiSchema PageNews
- * @endpoint GET /v1/entities/detail/news
  * @endpoint GET /v1/news
- * @endpoint GET /v1/news/recent
- * @endpoint GET /v1/news/similar
- * @endpoint GET /v1/people/detail/news
  * @endpoint GET /v1/entities/{entityId}/trending-news
- * @endpoint POST /v1/news
  * @contractShape pagination.page-news
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -8101,15 +7882,6 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -8150,15 +7922,6 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -8196,8 +7959,6 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
 type PagePersonDefinition = z.infer<typeof PagePersonSchemaDefinition>;
 /**
  * @openapiSchema PagePerson
- * @endpoint GET /v1/people
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/search
  * @contractShape pagination.page-person
  * @contractRole canonical
@@ -8210,8 +7971,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
             endDate?: string | null | undefined;
             entityAddress: {
                 address?: number | null | undefined;
@@ -8357,7 +8116,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             titleId?: number | null | undefined;
             titleLevel?: string | null | undefined;
             titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
         }[];
         core: {
             createdAt?: string | null | undefined;
@@ -8392,15 +8150,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -8475,7 +8224,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             amount?: number | null | undefined;
             company: {
                 entity: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -8547,13 +8295,10 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-        pendingApproval?: number | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
             endDate?: string | null | undefined;
             entityAddress: {
                 address?: number | null | undefined;
@@ -8699,7 +8444,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             titleId?: number | null | undefined;
             titleLevel?: string | null | undefined;
             titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
         }[];
         core: {
             createdAt?: string | null | undefined;
@@ -8734,15 +8478,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -8817,7 +8552,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             amount?: number | null | undefined;
             company: {
                 entity: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -8889,7 +8623,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-        pendingApproval?: number | null | undefined;
     }, unknown>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
@@ -8920,8 +8653,6 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
 type PagePersonDetailDefinition = z.infer<typeof PagePersonDetailSchemaDefinition>;
 /**
  * @openapiSchema PagePersonDetail
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
  * @endpoint POST /v1/people/lookup/batch
  * @contractShape pagination.page-person-detail
  * @contractRole canonical
@@ -8934,7 +8665,6 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
         amount?: number | null | undefined;
         company: {
             entity: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -9004,7 +8734,6 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
         amount?: number | null | undefined;
         company: {
             entity: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -9100,7 +8829,7 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
 type PagePersonInvestmentDefinition = z.infer<typeof PagePersonInvestmentSchemaDefinition>;
 /**
  * @openapiSchema PagePersonInvestment
- * @endpoint GET /v1/people/detail/investments
+ * @endpoint GET /v1/people/{personId}/investments
  * @contractShape pagination.page-person-investment
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -9126,8 +8855,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
                 endDate?: string | null | undefined;
                 entityAddress: {
                     address?: number | null | undefined;
@@ -9273,7 +9000,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 titleId?: number | null | undefined;
                 titleLevel?: string | null | undefined;
                 titleName?: string | null | undefined;
-                updatedAt?: string | null | undefined;
             }[];
             core: {
                 createdAt?: string | null | undefined;
@@ -9308,15 +9034,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                 } | null | undefined;
                 slug: string;
-                source: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                };
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -9391,7 +9108,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 amount?: number | null | undefined;
                 company: {
                     entity: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -9463,7 +9179,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-            pendingApproval?: number | null | undefined;
         };
         round: {
             round: string;
@@ -9487,8 +9202,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
                 endDate?: string | null | undefined;
                 entityAddress: {
                     address?: number | null | undefined;
@@ -9634,7 +9347,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 titleId?: number | null | undefined;
                 titleLevel?: string | null | undefined;
                 titleName?: string | null | undefined;
-                updatedAt?: string | null | undefined;
             }[];
             core: {
                 createdAt?: string | null | undefined;
@@ -9669,15 +9381,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
                 } | null | undefined;
                 slug: string;
-                source: {
-                    changedAt?: string | null | undefined;
-                    dataSourceUpdatedAt?: string | null | undefined;
-                    detail?: string | null | undefined;
-                    kind?: string | null | undefined;
-                    pendingApproval?: number | null | undefined;
-                    sourceId?: string | null | undefined;
-                    status?: string | null | undefined;
-                };
                 suffix?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
@@ -9752,7 +9455,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 amount?: number | null | undefined;
                 company: {
                     entity: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -9824,7 +9526,6 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-            pendingApproval?: number | null | undefined;
         };
         round: {
             round: string;
@@ -9871,8 +9572,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         currentRole?: {
             associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
             endDate?: string | null | undefined;
             entityAddress: {
                 address?: number | null | undefined;
@@ -10018,7 +9717,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             titleId?: number | null | undefined;
             titleLevel?: string | null | undefined;
             titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
         } | null | undefined;
         person: {
             createdAt?: string | null | undefined;
@@ -10053,15 +9751,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -10081,8 +9770,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         currentRole?: {
             associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
             endDate?: string | null | undefined;
             entityAddress: {
                 address?: number | null | undefined;
@@ -10228,7 +9915,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             titleId?: number | null | undefined;
             titleLevel?: string | null | undefined;
             titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
         } | null | undefined;
         person: {
             createdAt?: string | null | undefined;
@@ -10263,15 +9949,6 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -10389,6 +10066,9 @@ type PagePublicationDefinition = z.infer<typeof PagePublicationSchemaDefinition>
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
+ * @endpoint POST /v1/content/search
+ * @endpoint POST /v1/entities/{entityId}/content/search
+ * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -10398,7 +10078,6 @@ export type PagePublication = z.infer<typeof PagePublicationSchema>;
 declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -10676,6 +10355,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -10718,7 +10398,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -10751,6 +10430,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -10796,7 +10476,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -10837,9 +10516,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -10870,7 +10546,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         core: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -11148,6 +10823,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -11190,7 +10866,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             dateInvestorExit?: string | null | undefined;
             entity?: {
                 core: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -11223,6 +10898,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -11268,7 +10944,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
         research: {
             acceleratorParticipation: {
                 accelerator: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -11309,9 +10984,6 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
-                createdAt?: string | null | undefined;
-                creator?: string | null | undefined;
-                dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -11352,57 +11024,13 @@ type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaD
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape pagination.page-result-entity-list
  * @contractRole canonical
  */
 export declare const PageResultEntityListSchema: z.ZodType<PageResultEntityListDefinition>;
 export type PageResultEntityList = z.infer<typeof PageResultEntityListSchema>;
-declare const PageResultLocationDirectoryEntrySchemaDefinition: z.ZodObject<{
-    content: z.ZodArray<z.ZodObject<{
-        canonicalSlug: z.ZodString;
-        entityCount: z.ZodNumber;
-        identifier: z.ZodType<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown>>;
-        latestUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        name: z.ZodString;
-        parentLabel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        slug: z.ZodString;
-    }, z.core.$strip>>;
-    number: z.ZodInt;
-    size: z.ZodInt;
-    totalElements: z.ZodNumber;
-    totalPages: z.ZodInt;
-}, z.core.$strip>;
-type PageResultLocationDirectoryEntryDefinition = z.infer<typeof PageResultLocationDirectoryEntrySchemaDefinition>;
-/**
- * @openapiSchema PageResultLocationDirectoryEntry
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-result-location-directory-entry
- * @contractRole canonical
- */
-export declare const PageResultLocationDirectoryEntrySchema: z.ZodType<PageResultLocationDirectoryEntryDefinition>;
-export type PageResultLocationDirectoryEntry = z.infer<typeof PageResultLocationDirectoryEntrySchema>;
 declare const PageResultNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
@@ -11413,7 +11041,6 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -11428,7 +11055,6 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         id: number;
         newsImageThumbnail?: string | null | undefined;
         newsUrlOriginal?: string | null | undefined;
-        pendingApproval?: number | null | undefined;
         publication?: string | null | undefined;
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
@@ -11485,15 +11111,6 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -11534,15 +11151,6 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
         } | null | undefined;
         slug: string;
-        source: {
-            changedAt?: string | null | undefined;
-            dataSourceUpdatedAt?: string | null | undefined;
-            detail?: string | null | undefined;
-            kind?: string | null | undefined;
-            pendingApproval?: number | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-        };
         suffix?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -11562,91 +11170,23 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchResultSchema
  * @contractShape pagination.page-result-person
  * @contractRole canonical
  */
 export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinition>;
 export type PageResultPerson = z.infer<typeof PageResultPersonSchema>;
-declare const PageResultPublicationSchemaDefinition: z.ZodObject<{
-    content: z.ZodArray<z.ZodType<{
-        canonicalUrl?: string | null | undefined;
-        contentId: string;
-        contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
-        createdAt?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        relation?: "about" | "by" | null | undefined;
-        sourceDomain?: string | null | undefined;
-        sourceName?: string | null | undefined;
-        summary?: string | null | undefined;
-        title: string;
-        topic?: string | null | undefined;
-        updatedAt?: string | null | undefined;
-        url?: string | null | undefined;
-        year?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        canonicalUrl?: string | null | undefined;
-        contentId: string;
-        contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
-        createdAt?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        relation?: "about" | "by" | null | undefined;
-        sourceDomain?: string | null | undefined;
-        sourceName?: string | null | undefined;
-        summary?: string | null | undefined;
-        title: string;
-        topic?: string | null | undefined;
-        updatedAt?: string | null | undefined;
-        url?: string | null | undefined;
-        year?: number | null | undefined;
-    }, unknown>>>;
-    number: z.ZodInt;
-    size: z.ZodInt;
-    totalElements: z.ZodNumber;
-    totalPages: z.ZodInt;
-}, z.core.$strip>;
-type PageResultPublicationDefinition = z.infer<typeof PageResultPublicationSchemaDefinition>;
 /**
- * @openapiSchema PageResultPublication
- * @endpoint POST /v1/content/search
- * @endpoint POST /v1/entities/{entityId}/content/search
- * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema PublicationSearchResultSchema
- * @contractShape pagination.page-result-publication
- * @contractRole canonical
- */
-export declare const PageResultPublicationSchema: z.ZodType<PageResultPublicationDefinition>;
-export type PageResultPublication = z.infer<typeof PageResultPublicationSchema>;
-/**
- * @openapiSchema PageResultSitemapUrlSlot
+ * @openapiSchema PageSitemapUrlSlot
+ * @endpoint GET /v1/sitemap/url-slots
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-result-sitemap-url-slot
+ * @contractShape pagination.page-sitemap-url-slot
  * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
  */
-export declare const PageResultSitemapUrlSlotSchema: z.ZodObject<{
-    content: z.ZodArray<z.ZodType<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown>>>;
-    number: z.ZodInt;
-    size: z.ZodInt;
-    totalElements: z.ZodNumber;
-    totalPages: z.ZodInt;
-}, z.core.$strip>;
-export type PageResultSitemapUrlSlot = z.infer<typeof PageResultSitemapUrlSlotSchema>;
-declare const PageSitemapUrlSlotSchemaDefinition: z.ZodObject<{
+export declare const PageSitemapUrlSlotSchema: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
         imagePath?: string | null | undefined;
@@ -11688,15 +11228,6 @@ declare const PageSitemapUrlSlotSchemaDefinition: z.ZodObject<{
     totalElements: z.ZodOptional<z.ZodNumber>;
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
-type PageSitemapUrlSlotDefinition = z.infer<typeof PageSitemapUrlSlotSchemaDefinition>;
-/**
- * @openapiSchema PageSitemapUrlSlot
- * @endpoint GET /v1/sitemap/url-slots
- * @contractShape pagination.page-sitemap-url-slot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageSitemapUrlSlotSchema: z.ZodType<PageSitemapUrlSlotDefinition>;
 export type PageSitemapUrlSlot = z.infer<typeof PageSitemapUrlSlotSchema>;
 declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -11804,9 +11335,7 @@ declare const PageUrlSlugRedirectSchemaDefinition: z.ZodObject<{
 type PageUrlSlugRedirectDefinition = z.infer<typeof PageUrlSlugRedirectSchemaDefinition>;
 /**
  * @openapiSchema PageUrlSlugRedirect
- * @endpoint GET /v1/entities/{entityId}/slug/redirects
- * @endpoint GET /v1/news/{newsId}/slug/redirects
- * @endpoint GET /v1/people/{personId}/slug/redirects
+ * @endpoint GET /v1/slug-redirects
  * @contractShape pagination.page-url-slug-redirect
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

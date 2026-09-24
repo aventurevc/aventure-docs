@@ -2,7 +2,6 @@ import { z } from "zod/v4";
 declare const EntityResearchSchemaDefinition: z.ZodObject<{
     acceleratorParticipation: z.ZodArray<z.ZodType<{
         accelerator: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -42,7 +41,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         status?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         accelerator: {
-            createdAt?: string | null | undefined;
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
             id: string;
@@ -83,9 +81,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
     }, unknown>>>;
     detail: z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        creator?: string | null | undefined;
-        dataConfidence?: "high" | "low" | "medium" | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -102,9 +97,6 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, unknown, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        creator?: string | null | undefined;
-        dataConfidence?: "high" | "low" | "medium" | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -127,15 +119,11 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
             violation: z.ZodArray<z.ZodString>;
             wordCount: z.ZodInt;
         }, z.core.$strip>>>;
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         entityId: z.ZodUUID;
         id: z.ZodInt;
-        isCurrent: z.ZodBoolean;
-        isPrimary: z.ZodBoolean;
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        visible: z.ZodBoolean;
     }, z.core.$strip>>;
 }, z.core.$strip>;
 type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
@@ -143,13 +131,10 @@ type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
  * Combined entity research disclosure: governed detail rows, research text snippets, and joined accelerator participation.
  *
  * @openapiSchema EntityResearch
- * @endpoint GET /v1/entities/detail
  * @endpoint GET /v1/entities/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
  * @endpoint POST /v1/entities/lookup/batch
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/search
