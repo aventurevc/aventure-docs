@@ -8,6 +8,10 @@ const BillingSubscriptionSchemaDefinition = z.object({
     allowance: ResearchAllowanceUsageSchema,
     cancelAtPeriodEnd: z.boolean(),
     entitled: z.boolean(),
+    /** Plan a scheduled change moves the subscription to at pendingPlanAt; absent when nothing is scheduled */
+    pendingPlan: BillingPlanTypeSchema.nullish(),
+    /** When pendingPlan takes effect; absent when nothing is scheduled */
+    pendingPlanAt: z.iso.datetime({ offset: true }).nullish(),
     periodEnd: z.iso.datetime({ offset: true }).nullish(),
     periodStart: z.iso.datetime({ offset: true }).nullish(),
     plan: BillingPlanTypeSchema.nullish(),

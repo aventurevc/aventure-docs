@@ -7,9 +7,12 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/billing/plans
  * @endpoint GET /v1/billing/subscription
  * @endpoint POST /v1/billing/checkout-sessions
+ * @endpoint POST /v1/billing/plan-changes
  * @usedBySchema BillingCatalogPlanSchema
  * @usedBySchema BillingCheckoutMutationSchema
  * @usedBySchema BillingCheckoutSchema
+ * @usedBySchema BillingPlanChangeMutationSchema
+ * @usedBySchema BillingPlanChangeSchema
  * @usedBySchema BillingSubscriptionSchema
  * @contractShape billing.plan-type
  * @contractRole canonical

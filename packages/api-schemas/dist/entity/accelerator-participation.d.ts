@@ -74,6 +74,7 @@ type EntityAcceleratorParticipationDefinition = z.infer<typeof EntityAccelerator
  * @endpoint POST /v1/entities/lookup/matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityListResearchSchema

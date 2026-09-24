@@ -4,12 +4,17 @@ import { z } from "zod/v4";
  *
  * @openapiSchema IdentificationCandidate
  * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
  * @endpoint POST /v1/people/lookup
  * @usedBySchema IdentificationSchema
  * @contractShape identification.candidate
  * @contractRole canonical
  */
 export declare const IdentificationCandidateSchema: z.ZodObject<{
+    owner: z.ZodObject<{
+        entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    }, z.core.$strip>;
     probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     record: z.ZodType<{
         externalId?: string | null | undefined;

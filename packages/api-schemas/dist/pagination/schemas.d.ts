@@ -11023,6 +11023,7 @@ type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaD
  * @openapiSchema PageResultEntityList
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema NaturalSearchResultSchema
@@ -11070,6 +11071,7 @@ type PageResultNewsDefinition = z.infer<typeof PageResultNewsSchemaDefinition>;
 /**
  * @openapiSchema PageResultNews
  * @endpoint GET /v1/search/link
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema
  * @contractShape pagination.page-result-news
@@ -11169,6 +11171,7 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  * @openapiSchema PageResultPerson
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchResultSchema

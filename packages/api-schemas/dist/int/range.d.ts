@@ -16,6 +16,7 @@ type IntRangeDefinition = z.infer<typeof IntRangeSchemaDefinition>;
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people

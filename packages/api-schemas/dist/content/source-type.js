@@ -22,6 +22,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people

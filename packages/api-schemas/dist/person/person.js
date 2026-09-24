@@ -56,6 +56,7 @@ const PersonSchemaDefinition = z.object({
  * @endpoint POST /v1/people/lookup/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema PagePersonSchema

@@ -14,6 +14,7 @@ const FederatedSearchProvenanceSchemaDefinition = z.object({
  *
  * @openapiSchema FederatedSearchProvenance
  * @endpoint GET /v1/search/link
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema
  * @contractShape federated.search-provenance

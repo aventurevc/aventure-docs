@@ -43,6 +43,7 @@ const EntityNameAliasEntityAliasTypeSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntitySchema

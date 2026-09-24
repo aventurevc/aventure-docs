@@ -104,6 +104,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/credit-pack-type",
         schemaName: "BillingCreditPackTypeSchema",
     },
+    BillingPlanChange: { modulePath: "billing/plan-change", schemaName: "BillingPlanChangeSchema" },
+    BillingPlanChangeMutation: {
+        modulePath: "billing/plan-change-mutation",
+        schemaName: "BillingPlanChangeMutationSchema",
+    },
     BillingPlanType: { modulePath: "billing/plan-type", schemaName: "BillingPlanTypeSchema" },
     BillingPortal: { modulePath: "billing/portal", schemaName: "BillingPortalSchema" },
     BillingSubscription: {

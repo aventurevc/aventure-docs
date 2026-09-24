@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it.",
     "title": "aVenture Public API Docs",
-    "version": "0.7.328"
+    "version": "0.7.329"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -113,12 +113,12 @@
       "name": "Classification Tags"
     },
     {
-      "description": "Search companies, people, news, or the live web",
-      "name": "Search"
-    },
-    {
       "description": "Where each stored field value came from",
       "name": "Data Provenance"
+    },
+    {
+      "description": "Search companies, people, news, or the live web",
+      "name": "Search"
     },
     {
       "description": "Websites, social profiles, and other URLs for companies and people",
@@ -3387,6 +3387,186 @@
           }
         ],
         "summary": "Create or recover a hosted Checkout Session",
+        "tags": [
+          "Billing"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/billing/plan-changes": {
+      "post": {
+        "description": "Move an active AI Plus or AI Pro subscription to another plan. A higher tier or a longer billing period applies now and invoices the prorated difference; paymentUrl is set when that invoice needs the customer to pay before the change applies. Any other change takes effect at the current period end. Sending the current plan cancels a scheduled change.",
+        "operationId": "createBillingPlanChange",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingPlanChangeMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPlanChange"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Change the subscription plan",
         "tags": [
           "Billing"
         ],
@@ -18181,31 +18361,54 @@
       }
     },
     "/v1/lookup": {
-      "get": {
-        "description": "Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners.",
-        "operationId": "lookupHandle",
+      "post": {
+        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of entities lookup and people lookup both run. Returns MATCHED when exactly one kind matches and the other finds nothing, NO_MATCH when neither finds the subject, and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched. Takes the same fields as entities lookup and people lookup. Example: lookup --name \"Acme AI\" --url https://acme.ai. Exact id only: lookup --legacy --name eV1StGXR8Z5a. Output: --text (default) is compact text, --json the full envelope, --data the Identification object for scripts.",
+        "operationId": "lookupRecord",
         "parameters": [
           {
-            "description": "Any identifier: a stable public handle (e.g. eV1StGXR8Z5a), a UUID, an external registry id (ticker, LEI, EIN, ...), or a slug.",
-            "example": "eV1StGXR8Z5a",
+            "description": "Also considers hidden and unpublished records; needs private-visibility authority. Without it, NO_MATCH covers only records you can see.",
             "in": "query",
-            "name": "token",
-            "required": true,
+            "name": "includePrivate",
+            "required": false,
             "schema": {
-              "type": "string"
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Treat name only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. An exact match never spends the natural-search quota, with or without this flag.",
+            "in": "query",
+            "name": "legacy",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdentificationSubject"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResolvedHandle"
+                  "$ref": "#/components/schemas/Identification"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
                 }
               }
             },
-            "description": "OK",
+            "description": "The identification as canonical JSON or compact text/plain.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -18260,6 +18463,28 @@
               }
             },
             "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
             "x-aventure-standard-response": true
           },
           "422": {
@@ -18331,10 +18556,13 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find the record behind an id, slug, or URL",
+        "summary": "Find a company or person by name, URL, or id",
         "tags": [
           "Search"
         ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26938,7 +27166,7 @@
     "/v1/resolve/{token}": {
       "get": {
         "deprecated": true,
-        "description": "Deprecated: use lookup (GET /v1/lookup?token=). Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners.",
+        "description": "Deprecated: use lookup --legacy (POST /v1/lookup?legacy=true with body {\"name\":\"<token>\"}). Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners.",
         "operationId": "getResolvedHandle",
         "parameters": [
           {
@@ -27106,10 +27334,10 @@
         }
       }
     },
-    "/v1/search/all": {
+    "/v1/search": {
       "post": {
         "description": "Searches enriched details across our company and people dataset from a plain-English query. Runs the canonical entity, person, and news search engines sequentially and returns their typed result pages with per-scope strategy provenance. Supports only auto and keyword modes; unsupported modes are rejected before any scope runs. Page and size apply to every scope; cross-domain sort is not supported.",
-        "operationId": "searchAll",
+        "operationId": "searchFederated",
         "parameters": [
           {
             "description": "Zero-based page index (0..N)",
@@ -27312,6 +27540,214 @@
           }
         ],
         "summary": "Search companies, people, and news together",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/search/all": {
+      "post": {
+        "deprecated": true,
+        "description": "Deprecated: use search (POST /v1/search) with the same body.",
+        "operationId": "searchAll",
+        "parameters": [
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NaturalSearch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FederatedSearch"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Deprecated: search companies, people, and news together",
         "tags": [
           "Search"
         ],
@@ -32440,6 +32876,46 @@
           "url"
         ]
       },
+      "BillingPlanChangeMutation": {
+        "type": "object",
+        "description": "Caller-selected plan for changing a continuing AI Plus or AI Pro subscription.",
+        "properties": {
+          "plan": {
+            "$ref": "#/components/schemas/BillingPlanType",
+            "description": "AI Plus or AI Pro plan to move to; the current plan cancels a scheduled change"
+          }
+        },
+        "required": [
+          "plan"
+        ]
+      },
+      "BillingPlanChange": {
+        "type": "object",
+        "description": "Plan change outcome: an upgrade applies now with a prorated invoice, a downgrade waits for the current period end.",
+        "properties": {
+          "effectiveAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the plan takes effect: now, or the current period end"
+          },
+          "paymentUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Hosted invoice to pay when the upgrade's prorated charge needs the customer; the upgrade applies only after it is paid. Absent when no payment is pending."
+          },
+          "plan": {
+            "$ref": "#/components/schemas/BillingPlanType",
+            "description": "Plan the subscription moves to"
+          }
+        },
+        "required": [
+          "effectiveAt",
+          "plan"
+        ]
+      },
       "BillingCatalog": {
         "type": "object",
         "description": "Every self-serve subscription tier with its monthly allowance caps, every plan Checkout sells, and the prices of usage past those caps. The operator-only Unlimited tier is omitted.",
@@ -32513,6 +32989,25 @@
           },
           "entitled": {
             "type": "boolean"
+          },
+          "pendingPlan": {
+            "description": "Plan a scheduled change moves the subscription to at pendingPlanAt; absent when nothing is scheduled",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BillingPlanType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "pendingPlanAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When pendingPlan takes effect; absent when nothing is scheduled"
           },
           "periodEnd": {
             "type": [
@@ -37081,47 +37576,6 @@
           }
         }
       },
-      "ResolvedHandle": {
-        "type": "object",
-        "description": "Canonical subject a universal-lookup token resolved to. Exactly one of owner.entityId / owner.personId is set. Echoes the subject's canonical public handle and slug. Fetch display fields with GET /v1/entities/{entityId} or GET /v1/people/{personId}.",
-        "properties": {
-          "matchedBy": {
-            "type": "string",
-            "description": "Which identifier kind matched the token.",
-            "enum": [
-              "PUBLIC_ID",
-              "UUID",
-              "EXTERNAL_ID",
-              "SLUG"
-            ]
-          },
-          "owner": {
-            "$ref": "#/components/schemas/EntityPersonOwner",
-            "description": "Canonical entity/person owner matched by the token."
-          },
-          "publicId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Canonical stable public handle of the resolved subject; null on rows still awaiting handle backfill."
-          },
-          "slug": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Canonical slug of the resolved subject.",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          }
-        },
-        "required": [
-          "matchedBy",
-          "owner"
-        ]
-      },
       "UniqueIdTypeAlias": {
         "type": "object",
         "description": "Canonical uniqueId type value plus its label, accepted aliases, owner scope, and format pattern.",
@@ -38066,6 +38520,47 @@
           "source",
           "status",
           "tableName"
+        ]
+      },
+      "ResolvedHandle": {
+        "type": "object",
+        "description": "Canonical subject a universal-lookup token resolved to. Exactly one of owner.entityId / owner.personId is set. Echoes the subject's canonical public handle and slug. Fetch display fields with GET /v1/entities/{entityId} or GET /v1/people/{personId}.",
+        "properties": {
+          "matchedBy": {
+            "type": "string",
+            "description": "Which identifier kind matched the token.",
+            "enum": [
+              "PUBLIC_ID",
+              "UUID",
+              "EXTERNAL_ID",
+              "SLUG"
+            ]
+          },
+          "owner": {
+            "$ref": "#/components/schemas/EntityPersonOwner",
+            "description": "Canonical entity/person owner matched by the token."
+          },
+          "publicId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical stable public handle of the resolved subject; null on rows still awaiting handle backfill."
+          },
+          "slug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical slug of the resolved subject.",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "matchedBy",
+          "owner"
         ]
       },
       "FederatedSearch": {
@@ -39247,6 +39742,28 @@
           "id",
           "title"
         ]
+      },
+      "EntityPersonOwner": {
+        "type": "object",
+        "description": "Exactly one of entityId or personId is set; ids only, no name fields. Resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}.",
+        "properties": {
+          "entityId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Canonical entity UUID"
+          },
+          "personId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Canonical person UUID"
+          }
+        }
       },
       "DatasourceProvenanceActor": {
         "type": "object",
@@ -41134,28 +41651,6 @@
           "person"
         ]
       },
-      "EntityPersonOwner": {
-        "type": "object",
-        "description": "Exactly one of entityId or personId is set; ids only, no name fields. Resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}.",
-        "properties": {
-          "entityId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid",
-            "description": "Canonical entity UUID"
-          },
-          "personId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid",
-            "description": "Canonical person UUID"
-          }
-        }
-      },
       "EntityValuationTimeSeriesPoint": {
         "type": "object",
         "description": "A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.",
@@ -42873,6 +43368,10 @@
         "type": "object",
         "description": "One existing record considered as the subject.",
         "properties": {
+          "owner": {
+            "$ref": "#/components/schemas/EntityPersonOwner",
+            "description": "Whether the record is a company (entityId) or a person (personId); read it with entities get --entity-id or people get --person-id."
+          },
           "probability": {
             "type": [
               "number",
@@ -42887,6 +43386,7 @@
           }
         },
         "required": [
+          "owner",
           "record"
         ]
       },

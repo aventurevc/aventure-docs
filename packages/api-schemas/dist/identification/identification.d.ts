@@ -1,6 +1,10 @@
 import { z } from "zod/v4";
 declare const IdentificationSchemaDefinition: z.ZodObject<{
     candidate: z.ZodArray<z.ZodObject<{
+        owner: z.ZodObject<{
+            entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        }, z.core.$strip>;
         probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         record: z.ZodType<{
             externalId?: string | null | undefined;
@@ -26,6 +30,10 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>;
     detail: z.ZodString;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        owner: z.ZodObject<{
+            entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        }, z.core.$strip>;
         probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         record: z.ZodType<{
             externalId?: string | null | undefined;
@@ -67,6 +75,7 @@ type IdentificationDefinition = z.infer<typeof IdentificationSchemaDefinition>;
  *
  * @openapiSchema Identification
  * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
  * @endpoint POST /v1/people/lookup
  * @contractShape identification.identification
  * @contractRole canonical

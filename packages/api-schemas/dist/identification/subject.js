@@ -19,6 +19,7 @@ const IdentificationSubjectSchemaDefinition = z.object({
  *
  * @openapiSchema IdentificationSubject
  * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
  * @endpoint POST /v1/people/lookup
  * @contractShape identification.subject
  * @contractRole canonical
