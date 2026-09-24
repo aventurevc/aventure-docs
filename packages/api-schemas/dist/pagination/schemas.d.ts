@@ -336,8 +336,6 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
 type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
 /**
  * @openapiSchema PageEntity
- * @endpoint GET /v1/sitemap/entities
- * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @contractShape pagination.page-entity
@@ -2330,7 +2328,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
 type PageEntityDetailDefinition = z.infer<typeof PageEntityDetailSchemaDefinition>;
 /**
  * @openapiSchema PageEntityDetail
- * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-detail
  * @contractRole canonical
@@ -7246,62 +7244,6 @@ type PageEntitySimilarityResultDefinition = z.infer<typeof PageEntitySimilarityR
  */
 export declare const PageEntitySimilarityResultSchema: z.ZodType<PageEntitySimilarityResultDefinition>;
 export type PageEntitySimilarityResult = z.infer<typeof PageEntitySimilarityResultSchema>;
-declare const PageEntitySitemapUrlSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        entityId: string;
-        lastUpdatedAt: string;
-        path: string;
-        productServiceSlug?: string | null | undefined;
-        slotKey: string;
-        slug: string;
-        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-        urlType: "acquisitions" | "analysis" | "employees" | "fundraising" | "news" | "overview" | "productService";
-    }, unknown, z.core.$ZodTypeInternals<{
-        entityId: string;
-        lastUpdatedAt: string;
-        path: string;
-        productServiceSlug?: string | null | undefined;
-        slotKey: string;
-        slug: string;
-        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-        urlType: "acquisitions" | "analysis" | "employees" | "fundraising" | "news" | "overview" | "productService";
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageEntitySitemapUrlDefinition = z.infer<typeof PageEntitySitemapUrlSchemaDefinition>;
-/**
- * @openapiSchema PageEntitySitemapUrl
- * @endpoint GET /v1/sitemap/entities/urls
- * @contractShape pagination.page-entity-sitemap-url
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageEntitySitemapUrlSchema: z.ZodType<PageEntitySitemapUrlDefinition>;
-export type PageEntitySitemapUrl = z.infer<typeof PageEntitySitemapUrlSchema>;
 declare const PageEntityTextSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         compliance?: {
@@ -8537,7 +8479,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
 type PagePersonDetailDefinition = z.infer<typeof PagePersonDetailSchemaDefinition>;
 /**
  * @openapiSchema PagePersonDetail
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @contractShape pagination.page-person-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -11066,7 +11008,6 @@ export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinitio
 export type PageResultPerson = z.infer<typeof PageResultPersonSchema>;
 /**
  * @openapiSchema PageSitemapUrlSlot
- * @endpoint GET /v1/sitemap/url-slots
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationSitemapSchema
  * @contractShape pagination.page-sitemap-url-slot

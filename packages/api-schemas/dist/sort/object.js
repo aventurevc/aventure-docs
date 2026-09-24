@@ -6,10 +6,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/news
- * @endpoint GET /v1/sitemap/entities
- * @endpoint GET /v1/sitemap/entities/routes
- * @endpoint GET /v1/sitemap/entities/urls
- * @endpoint GET /v1/sitemap/url-slots
  * @endpoint GET /v1/slug-redirects
  * @endpoint GET /v1/addresses/locations/{directory}
  * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
@@ -46,10 +42,10 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/addresses/locations/batch
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
- * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search
  * @usedBySchema PageableObjectSchema
  * @usedBySchema PageBlogPostSchema
@@ -68,7 +64,6 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntityResearchSnippetSchema
  * @usedBySchema PageEntitySchema
  * @usedBySchema PageEntitySimilarityResultSchema
- * @usedBySchema PageEntitySitemapUrlSchema
  * @usedBySchema PageEntityTextSchema
  * @usedBySchema PageEntityUrlLinkSchema
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema

@@ -34,7 +34,7 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * Canonical research detail row for research.res_entity_detail
  *
  * @openapiSchema EntityResearchDetail
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -44,8 +44,8 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @endpoint GET /v1/entities/{entityId}/research-details
  * @endpoint GET /v1/entities/{entityId}/research-details/{detailId}
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search

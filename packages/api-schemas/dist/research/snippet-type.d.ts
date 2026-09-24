@@ -22,7 +22,7 @@ type ResearchSnippetTypeDefinition = z.infer<typeof ResearchSnippetTypeSchemaDef
  * Canonical research snippet type with the governance rules write callers must satisfy.
  *
  * @openapiSchema ResearchSnippetType
- * @endpoint GET /v1/entities/research/snippets/types
+ * @endpoint GET /v1/entities/research-snippets/types
  * @contractShape research.snippet-type
  * @contractRole canonical
  */

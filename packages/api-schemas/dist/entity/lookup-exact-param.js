@@ -1,16 +1,16 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-export const ENTITY_LOOKUP_ENDPOINT = "/v1/entities/lookup";
+export const ENTITY_LOOKUP_EXACT_ENDPOINT = "/v1/entities/lookup-exact";
 /**
- * Request-side query params for `GET /v1/entities/lookup`.
+ * Request-side query params for `GET /v1/entities/lookup-exact`.
  *
  * Generated from inline OpenAPI query parameters published by the backend controller.
  *
- * @endpoint GET /v1/entities/lookup
- * @contractShape entity.lookup-param
+ * @endpoint GET /v1/entities/lookup-exact
+ * @contractShape entity.lookup-exact-param
  * @contractRole canonical
  */
-export const EntityLookupParamSchema = z.object({
+export const EntityLookupExactParamSchema = z.object({
     /** Provider slug for Product/Service slug lookup; providerTypeRecord can narrow this to Company, Nonprofit, or Government routes. */
     companySlug: z
         .string()
@@ -45,7 +45,7 @@ export const EntityLookupParamSchema = z.object({
     urlDomain: z.string().optional(),
     /** URL matching mode: hostPath (default for url) or domain. Omit when urlDomain is supplied; urlDomain selects domain mode automatically. */
     urlMatchMode: z.string().optional(),
-    /** URL type qualifier. List the accepted tokens with GET /v1/lookup/url-types (CLI: lookup url-types list). */
+    /** URL type qualifier. List the accepted tokens with GET /v1/url-types (CLI: url-types list). */
     urlType: z.string().optional(),
 });
-//# sourceMappingURL=lookup-param.js.map
+//# sourceMappingURL=lookup-exact-param.js.map

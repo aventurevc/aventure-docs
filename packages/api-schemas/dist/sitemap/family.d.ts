@@ -3,10 +3,7 @@ import { z } from "zod/v4";
  * Dynamic sitemap family served by the sitemap index manifest
  *
  * @openapiSchema SitemapFamily
- * @endpoint GET /v1/sitemap/index-manifest
- * @endpoint GET /v1/sitemap/url-slots
  * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema SitemapFamilyEntrySchema
  * @usedBySchema SitemapUrlSlotSchema
  * @contractShape sitemap.family
  * @contractRole canonical

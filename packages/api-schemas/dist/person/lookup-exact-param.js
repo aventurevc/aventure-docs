@@ -1,16 +1,16 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-export const PERSON_LOOKUP_ENDPOINT = "/v1/people/lookup";
+export const PERSON_LOOKUP_EXACT_ENDPOINT = "/v1/people/lookup-exact";
 /**
- * Request-side query params for `GET /v1/people/lookup`.
+ * Request-side query params for `GET /v1/people/lookup-exact`.
  *
  * Generated from inline OpenAPI query parameters published by the backend controller.
  *
- * @endpoint GET /v1/people/lookup
- * @contractShape person.lookup-param
+ * @endpoint GET /v1/people/lookup-exact
+ * @contractShape person.lookup-exact-param
  * @contractRole canonical
  */
-export const PersonLookupParamSchema = z.object({
+export const PersonLookupExactParamSchema = z.object({
     /** Projection qualifier — include address values (default: true). Set false to omit address array. */
     includeAddress: z.boolean().optional(),
     /** Projection qualifier — include association values (default: true). Set false to omit association array. */
@@ -40,4 +40,4 @@ export const PersonLookupParamSchema = z.object({
     /** Optional URL type qualifier for URL lookup (e.g., 'linkedin', 'twitter'). Narrows Group B (url) and Group C (urlDomain) matching. Not an identifier on its own. */
     urlType: z.string().optional(),
 });
-//# sourceMappingURL=lookup-param.js.map
+//# sourceMappingURL=lookup-exact-param.js.map

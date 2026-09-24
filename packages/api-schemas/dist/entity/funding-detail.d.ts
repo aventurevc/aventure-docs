@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Aggregate view of an entity's fundraising activity
  *
  * @openapiSchema EntityFundingDetail
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -15,8 +15,8 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search

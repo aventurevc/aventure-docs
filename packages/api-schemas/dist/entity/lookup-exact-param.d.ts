@@ -1,15 +1,15 @@
 import { z } from "zod/v4";
-export declare const ENTITY_LOOKUP_ENDPOINT: "/v1/entities/lookup";
+export declare const ENTITY_LOOKUP_EXACT_ENDPOINT: "/v1/entities/lookup-exact";
 /**
- * Request-side query params for `GET /v1/entities/lookup`.
+ * Request-side query params for `GET /v1/entities/lookup-exact`.
  *
  * Generated from inline OpenAPI query parameters published by the backend controller.
  *
- * @endpoint GET /v1/entities/lookup
- * @contractShape entity.lookup-param
+ * @endpoint GET /v1/entities/lookup-exact
+ * @contractShape entity.lookup-exact-param
  * @contractRole canonical
  */
-export declare const EntityLookupParamSchema: z.ZodObject<{
+export declare const EntityLookupExactParamSchema: z.ZodObject<{
     companySlug: z.ZodOptional<z.ZodString>;
     includePrivate: z.ZodOptional<z.ZodBoolean>;
     location: z.ZodOptional<z.ZodString>;
@@ -25,5 +25,5 @@ export declare const EntityLookupParamSchema: z.ZodObject<{
     urlMatchMode: z.ZodOptional<z.ZodString>;
     urlType: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
-export type EntityLookupParam = z.infer<typeof EntityLookupParamSchema>;
-//# sourceMappingURL=lookup-param.d.ts.map
+export type EntityLookupExactParam = z.infer<typeof EntityLookupExactParamSchema>;
+//# sourceMappingURL=lookup-exact-param.d.ts.map

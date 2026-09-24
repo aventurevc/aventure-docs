@@ -36,7 +36,7 @@ declare const ResearchDetailTypeSchemaDefinition: z.ZodObject<{
 type ResearchDetailTypeDefinition = z.infer<typeof ResearchDetailTypeSchemaDefinition>;
 /**
  * @openapiSchema ResearchDetailType
- * @endpoint GET /v1/entities/research/details/types
+ * @endpoint GET /v1/entities/research-details/types
  * @contractShape research.detail-type
  * @contractRole canonical
  */

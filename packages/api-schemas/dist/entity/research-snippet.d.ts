@@ -3,14 +3,14 @@ import { z } from "zod/v4";
  * Persisted research snippet row for one entity.
  *
  * @openapiSchema EntityResearchSnippet
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research-snippets
  * @endpoint GET /v1/entities/{entityId}/research-snippets/{snippetId}
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @usedBySchema EntityResearchSchema
  * @usedBySchema PageEntityResearchSnippetSchema

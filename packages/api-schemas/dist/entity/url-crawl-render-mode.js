@@ -4,8 +4,8 @@ import { z } from "zod/v4";
  * JavaScript rendering requirement for crawl checks.
  *
  * @openapiSchema EntityUrlCrawlRenderMode
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -23,11 +23,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities

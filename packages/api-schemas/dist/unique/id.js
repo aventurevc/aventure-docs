@@ -22,8 +22,7 @@ const UniqueIdSchemaDefinition = z.object({
  * External identifier mapped to one owner (entity or person): for example a company's EIN, SEC CIK, or ticker symbol. Owner carries exactly one entityId or personId.
  *
  * @openapiSchema UniqueId
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/lookup/unique-ids
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/unique-ids/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -31,8 +30,8 @@ const UniqueIdSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/unique-ids/{uniqueIdId}
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @usedBySchema EntityDetailSchema
  * @usedBySchema PageUniqueIdSchema

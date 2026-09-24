@@ -1,15 +1,15 @@
 import { z } from "zod/v4";
-export declare const PERSON_LOOKUP_ENDPOINT: "/v1/people/lookup";
+export declare const PERSON_LOOKUP_EXACT_ENDPOINT: "/v1/people/lookup-exact";
 /**
- * Request-side query params for `GET /v1/people/lookup`.
+ * Request-side query params for `GET /v1/people/lookup-exact`.
  *
  * Generated from inline OpenAPI query parameters published by the backend controller.
  *
- * @endpoint GET /v1/people/lookup
- * @contractShape person.lookup-param
+ * @endpoint GET /v1/people/lookup-exact
+ * @contractShape person.lookup-exact-param
  * @contractRole canonical
  */
-export declare const PersonLookupParamSchema: z.ZodObject<{
+export declare const PersonLookupExactParamSchema: z.ZodObject<{
     includeAddress: z.ZodOptional<z.ZodBoolean>;
     includeAssociation: z.ZodOptional<z.ZodBoolean>;
     includePrivate: z.ZodOptional<z.ZodBoolean>;
@@ -25,5 +25,5 @@ export declare const PersonLookupParamSchema: z.ZodObject<{
     urlMatchMode: z.ZodOptional<z.ZodString>;
     urlType: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
-export type PersonLookupParam = z.infer<typeof PersonLookupParamSchema>;
-//# sourceMappingURL=lookup-param.d.ts.map
+export type PersonLookupExactParam = z.infer<typeof PersonLookupExactParamSchema>;
+//# sourceMappingURL=lookup-exact-param.d.ts.map

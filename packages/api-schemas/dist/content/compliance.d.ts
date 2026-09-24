@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Derived character/word counts and whether the row text meets its governed type contract (word/character limits and paragraph shape). violation lists each unmet rule and is empty when the row is compliant.
  *
  * @openapiSchema ContentCompliance
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
@@ -13,8 +13,8 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/texts/{textId}
  * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/texts/{textId}
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @usedBySchema EntityResearchSnippetSchema
  * @usedBySchema EntityTextSchema

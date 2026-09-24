@@ -1,11 +1,11 @@
 import { z } from "zod/v4";
-export declare const PERSON_LOOKUP_BATCH_ENDPOINT: "/v1/people/lookup/batch";
+export declare const PERSON_LOOKUP_BATCH_ENDPOINT: "/v1/people/lookup-batch";
 /**
- * Request-side query params for `POST /v1/people/lookup/batch`.
+ * Request-side query params for `POST /v1/people/lookup-batch`.
  *
  * Generated from inline OpenAPI query parameters published by the backend controller.
  *
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @contractShape person.lookup-batch-param
  * @contractRole canonical
  */

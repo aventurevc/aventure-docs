@@ -37,7 +37,7 @@ const EntityTagSchemaDefinition = z.intersection(ClassificationSchema, z.object(
  * @openapiSchema EntityTag
  * @endpoint GET /v1/classifications
  * @endpoint GET /v1/classifications/catalog
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/classifications
@@ -46,8 +46,8 @@ const EntityTagSchemaDefinition = z.intersection(ClassificationSchema, z.object(
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search

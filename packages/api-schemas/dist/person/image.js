@@ -9,8 +9,8 @@ const PersonImageSchemaDefinition = z.object({
  * Read projection: person image fields for detail/list responses
  *
  * @openapiSchema PersonImage
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -22,10 +22,10 @@ const PersonImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search

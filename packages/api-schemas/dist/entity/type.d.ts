@@ -8,7 +8,6 @@ import { z } from "zod/v4";
  * @usedBySchema EntityListFilterSchema
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema EntitySchema
- * @usedBySchema EntitySitemapUrlSchema
  * @usedBySchema EntityTypeCountSchema
  * @usedBySchema EntityTypeGroupMembershipSchema
  * @usedBySchema NewsResolvedEntityLinkSchema

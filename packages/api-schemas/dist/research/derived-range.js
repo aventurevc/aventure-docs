@@ -5,7 +5,7 @@ import { ResearchDerivedBucketSchema } from "./derived-bucket.js";
  * Read-only derived range projection for targetDateAbsolute detail rows
  *
  * @openapiSchema ResearchDerivedRange
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -15,8 +15,8 @@ import { ResearchDerivedBucketSchema } from "./derived-bucket.js";
  * @endpoint GET /v1/entities/{entityId}/research-details
  * @endpoint GET /v1/entities/{entityId}/research-details/{detailId}
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search

@@ -14,7 +14,6 @@ type UniqueIdTypeAliasDefinition = z.infer<typeof UniqueIdTypeAliasSchemaDefinit
  * Canonical uniqueId type value plus its label, accepted aliases, owner scope, and format pattern.
  *
  * @openapiSchema UniqueIdTypeAlias
- * @endpoint GET /v1/lookup/unique-ids/types
  * @endpoint GET /v1/unique-ids/types
  * @contractShape unique.id-type-alias
  * @contractRole canonical

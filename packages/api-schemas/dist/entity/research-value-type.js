@@ -4,8 +4,8 @@ import { z } from "zod/v4";
  * Output kind for governed research detail values
  *
  * @openapiSchema EntityResearchValueType
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/entities/research/details/types
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/entities/research-details/types
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/employee-counts
@@ -17,8 +17,8 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/research-details/{detailId}
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search

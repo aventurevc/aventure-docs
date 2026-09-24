@@ -15,7 +15,6 @@ import { EntityRelationshipSchema } from "../entity/relationship.js";
 import { EntityResearchDetailSchema } from "../entity/research-detail.js";
 import { EntityResearchSnippetSchema } from "../entity/research-snippet.js";
 import { EntitySimilarityResultSchema } from "../entity/similarity-result.js";
-import { EntitySitemapUrlSchema } from "../entity/sitemap-url.js";
 import { EntityTagSchema } from "../entity/tag.js";
 import { EntityTextSchema } from "../entity/text.js";
 import { EntityUrlLinkSchema } from "../entity/url-link.js";
@@ -114,8 +113,6 @@ const PageEntitySchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntity
- * @endpoint GET /v1/sitemap/entities
- * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @contractShape pagination.page-entity
@@ -159,7 +156,7 @@ const PageEntityDetailSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityDetail
- * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-detail
  * @contractRole canonical
@@ -378,27 +375,6 @@ const PageEntitySimilarityResultSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageEntitySimilarityResultSchema = PageEntitySimilarityResultSchemaDefinition;
-const PageEntitySitemapUrlSchemaDefinition = z.object({
-    content: z.array(EntitySitemapUrlSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageEntitySitemapUrl
- * @endpoint GET /v1/sitemap/entities/urls
- * @contractShape pagination.page-entity-sitemap-url
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageEntitySitemapUrlSchema = PageEntitySitemapUrlSchemaDefinition;
 const PageEntityTextSchemaDefinition = z.object({
     content: z.array(EntityTextSchema).optional(),
     empty: z.boolean().optional(),
@@ -567,7 +543,7 @@ const PagePersonDetailSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePersonDetail
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @contractShape pagination.page-person-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -719,7 +695,6 @@ const PageResultPersonSchemaDefinition = z.object({
 export const PageResultPersonSchema = PageResultPersonSchemaDefinition;
 /**
  * @openapiSchema PageSitemapUrlSlot
- * @endpoint GET /v1/sitemap/url-slots
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationSitemapSchema
  * @contractShape pagination.page-sitemap-url-slot

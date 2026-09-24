@@ -9,12 +9,10 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * Grouped entity image fields for square, standard, and monogram logo state
  *
  * @openapiSchema EntityImage
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/summary
- * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/sitemap/entities
- * @endpoint GET /v1/sitemap/entities/routes
  * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
@@ -39,11 +37,11 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities

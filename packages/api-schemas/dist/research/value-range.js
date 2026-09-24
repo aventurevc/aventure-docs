@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 /**
  * @openapiSchema ResearchValueRange
- * @endpoint GET /v1/entities/research/details/types
+ * @endpoint GET /v1/entities/research-details/types
  * @usedBySchema ResearchDetailTypeSchema
  * @contractShape research.value-range
  * @contractRole canonical

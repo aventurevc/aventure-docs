@@ -4,7 +4,7 @@ import { z } from "zod/v4";
  * Closed write-time value shape token. Shape, not valueType, selects which write fields and validation rules apply.
  *
  * @openapiSchema ResearchValueShapeType
- * @endpoint GET /v1/entities/research/details/types
+ * @endpoint GET /v1/entities/research-details/types
  * @usedBySchema ResearchDetailTypeSchema
  * @contractShape research.value-shape-type
  * @contractRole canonical

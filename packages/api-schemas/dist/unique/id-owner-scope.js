@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Owner kind a unique-id type can attach to: entity or person.
  *
  * @openapiSchema UniqueIdOwnerScope
- * @endpoint GET /v1/lookup/unique-ids/types
  * @endpoint GET /v1/unique-ids/types
  * @usedBySchema UniqueIdTypeAliasSchema
  * @contractShape unique.id-owner-scope

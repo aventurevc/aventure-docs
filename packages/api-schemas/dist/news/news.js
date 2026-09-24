@@ -27,7 +27,7 @@ const NewsSchemaDefinition = z.object({
  * Canonical news owner for list and core semantics
  *
  * @openapiSchema News
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/news
  * @endpoint GET /v1/news/lookup
  * @endpoint GET /v1/search/link
@@ -36,8 +36,8 @@ const NewsSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/trending-news
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/people/{personId}/graph
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all

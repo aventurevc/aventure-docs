@@ -409,11 +409,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntitySimilarityResultSchema",
     },
     EntitySitemap: { modulePath: "entity/sitemap", schemaName: "EntitySitemapSchema" },
-    EntitySitemapUrl: { modulePath: "entity/sitemap-url", schemaName: "EntitySitemapUrlSchema" },
-    EntitySitemapUrlType: {
-        modulePath: "entity/sitemap-url-type",
-        schemaName: "EntitySitemapUrlTypeSchema",
-    },
     EntitySuggestion: { modulePath: "entity/suggestion", schemaName: "EntitySuggestionSchema" },
     EntitySuggestionResult: {
         modulePath: "entity/suggestion-result",
@@ -513,7 +508,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "InvestorActivityFilterSchema",
     },
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
-    LetterCounts: { modulePath: "letter/counts", schemaName: "LetterCountsSchema" },
     LinkSearch: { modulePath: "link/search", schemaName: "LinkSearchSchema" },
     LocationDirectoryEntry: {
         modulePath: "location/directory-entry",
@@ -532,14 +526,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     LocationSitemapBatch: {
         modulePath: "location/sitemap-batch",
         schemaName: "LocationSitemapBatchSchema",
-    },
-    LocationSitemapBoundary: {
-        modulePath: "location/sitemap-boundary",
-        schemaName: "LocationSitemapBoundarySchema",
-    },
-    LocationSitemapBoundaryDetail: {
-        modulePath: "location/sitemap-boundary-detail",
-        schemaName: "LocationSitemapBoundaryDetailSchema",
     },
     LocationSlugResolution: {
         modulePath: "location/slug-resolution",
@@ -626,10 +612,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     PageEntitySimilarityResult: {
         modulePath: "pagination/schemas",
         schemaName: "PageEntitySimilarityResultSchema",
-    },
-    PageEntitySitemapUrl: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageEntitySitemapUrlSchema",
     },
     PageEntityText: { modulePath: "pagination/schemas", schemaName: "PageEntityTextSchema" },
     PageEntityUrlLink: { modulePath: "pagination/schemas", schemaName: "PageEntityUrlLinkSchema" },
@@ -810,23 +792,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
-    SitemapChangeFrequency: {
-        modulePath: "sitemap/change-frequency",
-        schemaName: "SitemapChangeFrequencySchema",
-    },
     SitemapFamily: { modulePath: "sitemap/family", schemaName: "SitemapFamilySchema" },
-    SitemapFamilyEntry: {
-        modulePath: "sitemap/family-entry",
-        schemaName: "SitemapFamilyEntrySchema",
-    },
-    SitemapIndexManifest: {
-        modulePath: "sitemap/index-manifest",
-        schemaName: "SitemapIndexManifestSchema",
-    },
-    SitemapIndexPathMode: {
-        modulePath: "sitemap/index-path-mode",
-        schemaName: "SitemapIndexPathModeSchema",
-    },
     SitemapUrlSlot: { modulePath: "sitemap/url-slot", schemaName: "SitemapUrlSlotSchema" },
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },
     SlugResource: { modulePath: "redirect/slug-resource", schemaName: "SlugResourceSchema" },

@@ -89,16 +89,16 @@ type PersonEnrichmentDefinition = z.infer<typeof PersonEnrichmentSchemaDefinitio
  * Supplemental person data — addresses and URL links
  *
  * @openapiSchema PersonEnrichment
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @usedBySchema PersonDetailSchema
  * @contractShape person.enrichment
  * @contractRole canonical

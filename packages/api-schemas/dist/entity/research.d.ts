@@ -131,12 +131,12 @@ type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
  * Combined entity research disclosure: governed detail rows, research text snippets, and joined accelerator participation.
  *
  * @openapiSchema EntityResearch
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @usedBySchema EntityDetailSchema
  * @contractShape entity.research

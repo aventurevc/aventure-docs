@@ -42,7 +42,7 @@ const PersonLookupBatchSchemaDefinition = z
  * Batch request for person detail enrichment. Each selector array accepts at most 200 values, and at most 200 selectors may be submitted across personId, slug, and url.
  *
  * @openapiSchema PersonLookupBatch
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @contractShape person.lookup-batch
  * @contractRole canonical
  */
