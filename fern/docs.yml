@@ -76,10 +76,6 @@ navigation:
               - endpoint: GET /v1/entities/{entityId}/trending-news
                 slug: list-entity-trending-news
                 title: Get trending news for an entity by UUID
-          - researchBlogPosts:
-              - endpoint: GET /v1/people/{slug}/blog-posts
-                slug: list-person-blog-posts-by-slug
-                title: List person blog posts by slug
           - media:
               - endpoint: GET /v1/media/identicons/{seed}.svg
                 slug: get-generated-monogram
@@ -89,7 +85,7 @@ navigation:
                 slug: lookup-entity-batch
               - endpoint: POST /v1/entities/lookup/matches
                 slug: lookup-entity-matches
-          - personBatch:
+          - people:
               - endpoint: POST /v1/people/lookup/batch
                 slug: lookup-person-batch
           - section: Resolve
