@@ -2,13 +2,17 @@
 import { z } from "zod/v4";
 import { UptimeSchema } from "../uptime/uptime.js";
 const SystemStatusSchemaDefinition = z.object({
+    /** Minimum supported App Store iOS build number within the minimum version */
+    minimumIosBuild: z.int().nullish(),
+    /** Minimum supported App Store iOS marketing version; empty disables update enforcement */
+    minimumIosVersion: z.string().nullish(),
     /** Short hash identifying the exact set of operations this deployment serves. A generated client stamps the same value from the OpenAPI document it was built from; an unequal value means the client catalog is stale. `vc.aventure.application.usecase.system.status.OperationInventory` owns how it is computed. */
     operationFingerprint: z.string(),
     /** Uptime SLA data from external uptime monitoring */
     uptime: UptimeSchema,
 });
 /**
- * Uptime SLA and the identity of the served operation set
+ * Uptime SLA, served-operation identity, and minimum supported iOS build
  *
  * @openapiSchema SystemStatus
  * @endpoint GET /v1/status

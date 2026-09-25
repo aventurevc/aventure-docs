@@ -53,7 +53,7 @@ type ClassificationCatalogBucketDefinition = z.infer<typeof ClassificationCatalo
  * Classification bucket with active registry tags and accepted-spelling aliases.
  *
  * @openapiSchema ClassificationCatalogBucket
- * @endpoint GET /v1/classifications/catalog
+ * @endpoint GET /v1/entities/classifications/catalog
  * @usedBySchema ClassificationCatalogSchema
  * @contractShape classification.catalog-bucket
  * @contractRole canonical

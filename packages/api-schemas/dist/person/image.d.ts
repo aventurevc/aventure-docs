@@ -9,6 +9,7 @@ type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
  *
  * @openapiSchema PersonImage
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}

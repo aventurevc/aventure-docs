@@ -3,8 +3,8 @@ import { z } from "zod/v4";
  * Round participation label - shared by entity and person investor participation
  *
  * @openapiSchema RoundLabel
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
- * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -13,8 +13,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investments

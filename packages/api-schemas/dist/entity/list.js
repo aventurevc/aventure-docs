@@ -21,9 +21,8 @@ const EntityListSchemaDefinition = z.object({
  * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins.
  *
  * @openapiSchema EntityList
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
@@ -31,7 +30,6 @@ const EntityListSchemaDefinition = z.object({
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntitySimilarityResultSchema
- * @usedBySchema EntitySuggestionSchema
  * @usedBySchema PageEntityListSchema
  * @usedBySchema PageResultEntityListSchema
  * @contractShape entity.list

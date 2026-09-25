@@ -18,6 +18,7 @@ export const BillingAdditionalUsageTypeSchema = z.enum([
     "UPDATE_PERSON",
     "ENTITY_VIEW",
     "PERSON_VIEW",
+    "WEB_SEARCH",
     "AI_CREDIT",
 ]);
 //# sourceMappingURL=additional-usage-type.js.map

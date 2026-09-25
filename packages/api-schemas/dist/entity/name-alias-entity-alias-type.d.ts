@@ -12,11 +12,10 @@ type EntityNameAliasEntityAliasTypeDefinition = z.infer<typeof EntityNameAliasEn
  * Alternate name used for search and display
  *
  * @openapiSchema EntityNameAliasEntityAliasType
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
- * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
@@ -25,9 +24,7 @@ type EntityNameAliasEntityAliasTypeDefinition = z.infer<typeof EntityNameAliasEn
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/relationships/{relationshipId}

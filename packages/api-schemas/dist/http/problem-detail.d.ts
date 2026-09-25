@@ -7,6 +7,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         PERSON_VIEW: "PERSON_VIEW";
         UPDATE: "UPDATE";
         UPDATE_PERSON: "UPDATE_PERSON";
+        WEB_SEARCH: "WEB_SEARCH";
     }>>>;
     circuitBreaker: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
@@ -210,6 +211,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     instance: z.ZodOptional<z.ZodString>;
     limit: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     limitType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        AGENT_HELP: "AGENT_HELP";
         BILLING_ADDITIONAL_USAGE: "BILLING_ADDITIONAL_USAGE";
         BILLING_ALLOWANCE: "BILLING_ALLOWANCE";
         CLERK_PUBLIC_ADMISSION: "CLERK_PUBLIC_ADMISSION";

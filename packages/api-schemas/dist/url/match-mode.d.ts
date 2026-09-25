@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * URL matching mode for URL-backed filters and duplicate checks.
  *
  * @openapiSchema UrlMatchMode
- * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search

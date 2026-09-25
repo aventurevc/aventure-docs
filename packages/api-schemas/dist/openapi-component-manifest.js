@@ -171,10 +171,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cli/authorization-terminal-reason",
         schemaName: "CliAuthorizationTerminalReasonSchema",
     },
-    CompletionGateCoverage: {
-        modulePath: "completion/gate-coverage",
-        schemaName: "CompletionGateCoverageSchema",
-    },
     Confidence: { modulePath: "confidence/confidence", schemaName: "ConfidenceSchema" },
     ContentCompliance: { modulePath: "content/compliance", schemaName: "ContentComplianceSchema" },
     ContentEmbeddingMatch: {
@@ -238,10 +234,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     EntityDetail: { modulePath: "entity/detail", schemaName: "EntityDetailSchema" },
     EntityDetailBatch: { modulePath: "entity/detail-batch", schemaName: "EntityDetailBatchSchema" },
-    EntityDetailCoverageSlot: {
-        modulePath: "entity/detail-coverage-slot",
-        schemaName: "EntityDetailCoverageSlotSchema",
-    },
     EntityEnrichment: { modulePath: "entity/enrichment", schemaName: "EntityEnrichmentSchema" },
     EntityFilter: { modulePath: "entity/filter", schemaName: "EntityFilterSchema" },
     EntityFilterChoice: {
@@ -251,14 +243,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityFilterControlType: {
         modulePath: "entity/filter-control-type",
         schemaName: "EntityFilterControlTypeSchema",
-    },
-    EntityFilterCountMeta: {
-        modulePath: "entity/filter-count-meta",
-        schemaName: "EntityFilterCountMetaSchema",
-    },
-    EntityFilterCountResult: {
-        modulePath: "entity/filter-count-result",
-        schemaName: "EntityFilterCountResultSchema",
     },
     EntityFilterEntry: { modulePath: "entity/filter-entry", schemaName: "EntityFilterEntrySchema" },
     EntityFilterHeadquartersCountry: {
@@ -347,7 +331,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/list-research",
         schemaName: "EntityListResearchSchema",
     },
-    EntityListSummary: { modulePath: "entity/list-summary", schemaName: "EntityListSummarySchema" },
     EntityLogoType: { modulePath: "entity/logo-type", schemaName: "EntityLogoTypeSchema" },
     EntityNameAliasEntityAliasType: {
         modulePath: "entity/name-alias-entity-alias-type",
@@ -409,18 +392,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntitySimilarityResultSchema",
     },
     EntitySitemap: { modulePath: "entity/sitemap", schemaName: "EntitySitemapSchema" },
-    EntitySuggestion: { modulePath: "entity/suggestion", schemaName: "EntitySuggestionSchema" },
-    EntitySuggestionResult: {
-        modulePath: "entity/suggestion-result",
-        schemaName: "EntitySuggestionResultSchema",
-    },
     EntityTag: { modulePath: "entity/tag", schemaName: "EntityTagSchema" },
-    EntityTagCount: { modulePath: "entity/tag-count", schemaName: "EntityTagCountSchema" },
     EntityText: { modulePath: "entity/text", schemaName: "EntityTextSchema" },
     EntityTextBundle: { modulePath: "entity/text-bundle", schemaName: "EntityTextBundleSchema" },
     EntityType: { modulePath: "entity/type", schemaName: "EntityTypeSchema" },
     EntityTypeAlias: { modulePath: "entity/type-alias", schemaName: "EntityTypeAliasSchema" },
-    EntityTypeCount: { modulePath: "entity/type-count", schemaName: "EntityTypeCountSchema" },
     EntityTypeGroup: { modulePath: "entity/type-group", schemaName: "EntityTypeGroupSchema" },
     EntityTypeGroupMembership: {
         modulePath: "entity/type-group-membership",
@@ -511,28 +487,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
     LinkSearch: { modulePath: "link/search", schemaName: "LinkSearchSchema" },
-    LocationDirectoryEntry: {
-        modulePath: "location/directory-entry",
-        schemaName: "LocationDirectoryEntrySchema",
-    },
-    LocationIdentifier: {
-        modulePath: "location/identifier",
-        schemaName: "LocationIdentifierSchema",
-    },
-    LocationResolutionOutcome: {
-        modulePath: "location/resolution-outcome",
-        schemaName: "LocationResolutionOutcomeSchema",
-    },
-    LocationScope: { modulePath: "location/scope", schemaName: "LocationScopeSchema" },
-    LocationSitemap: { modulePath: "location/sitemap", schemaName: "LocationSitemapSchema" },
-    LocationSitemapBatch: {
-        modulePath: "location/sitemap-batch",
-        schemaName: "LocationSitemapBatchSchema",
-    },
-    LocationSlugResolution: {
-        modulePath: "location/slug-resolution",
-        schemaName: "LocationSlugResolutionSchema",
-    },
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
     MediaSlot: { modulePath: "media/slot", schemaName: "MediaSlotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
@@ -591,10 +545,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PageEntityInvestorParticipationSchema",
     },
     PageEntityList: { modulePath: "pagination/schemas", schemaName: "PageEntityListSchema" },
-    PageEntityListSummary: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageEntityListSummarySchema",
-    },
     PageEntityPersonAssociation: {
         modulePath: "pagination/schemas",
         schemaName: "PageEntityPersonAssociationSchema",
@@ -622,10 +572,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PageEntityValuationTimeSeriesPointSchema",
     },
     PageGithubRepo: { modulePath: "pagination/schemas", schemaName: "PageGithubRepoSchema" },
-    PageLocationDirectoryEntry: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageLocationDirectoryEntrySchema",
-    },
     PageNews: { modulePath: "pagination/schemas", schemaName: "PageNewsSchema" },
     PagePerson: { modulePath: "pagination/schemas", schemaName: "PagePersonSchema" },
     PagePersonDetail: { modulePath: "pagination/schemas", schemaName: "PagePersonDetailSchema" },
@@ -648,10 +594,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     PageResultNews: { modulePath: "pagination/schemas", schemaName: "PageResultNewsSchema" },
     PageResultPerson: { modulePath: "pagination/schemas", schemaName: "PageResultPersonSchema" },
-    PageSitemapUrlSlot: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageSitemapUrlSlotSchema",
-    },
     PageUniqueId: { modulePath: "pagination/schemas", schemaName: "PageUniqueIdSchema" },
     Person: { modulePath: "person/person", schemaName: "PersonSchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
@@ -765,10 +707,12 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
+    Search: { modulePath: "search/search", schemaName: "SearchSchema" },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",
     },
+    SearchHit: { modulePath: "search/hit", schemaName: "SearchHitSchema" },
     SearchInterpretation: {
         modulePath: "search/interpretation",
         schemaName: "SearchInterpretationSchema",
@@ -788,8 +732,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
-    SitemapFamily: { modulePath: "sitemap/family", schemaName: "SitemapFamilySchema" },
-    SitemapUrlSlot: { modulePath: "sitemap/url-slot", schemaName: "SitemapUrlSlotSchema" },
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },
     SlugResource: { modulePath: "redirect/slug-resource", schemaName: "SlugResourceSchema" },
     SortObject: { modulePath: "sort/object", schemaName: "SortObjectSchema" },
@@ -800,6 +742,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SortOrderPersonSortField: {
         modulePath: "sort/order-person-sort-field",
         schemaName: "SortOrderPersonSortFieldSchema",
+    },
+    SourceDocumentList: {
+        modulePath: "source/document-list",
+        schemaName: "SourceDocumentListSchema",
     },
     StageFrequency: { modulePath: "stage/frequency", schemaName: "StageFrequencySchema" },
     StandardizedClassification: {
@@ -840,5 +786,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     UrlMatchMode: { modulePath: "url/match-mode", schemaName: "UrlMatchModeSchema" },
     UrlTypeAlias: { modulePath: "url/type-alias", schemaName: "UrlTypeAliasSchema" },
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
+    WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },
 });
 //# sourceMappingURL=openapi-component-manifest.js.map

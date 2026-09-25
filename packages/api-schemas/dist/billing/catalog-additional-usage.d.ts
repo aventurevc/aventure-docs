@@ -8,6 +8,7 @@ declare const BillingCatalogAdditionalUsageSchemaDefinition: z.ZodObject<{
         PERSON_VIEW: "PERSON_VIEW";
         UPDATE: "UPDATE";
         UPDATE_PERSON: "UPDATE_PERSON";
+        WEB_SEARCH: "WEB_SEARCH";
     }>;
     unitAmount: z.ZodNumber;
 }, z.core.$strip>;

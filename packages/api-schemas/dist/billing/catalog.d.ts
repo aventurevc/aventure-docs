@@ -1,10 +1,10 @@
 import { z } from "zod/v4";
 declare const BillingCatalogSchemaDefinition: z.ZodObject<{
     additionalUsage: z.ZodArray<z.ZodType<{
-        type: "AI_CREDIT" | "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON";
+        type: "AI_CREDIT" | "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON" | "WEB_SEARCH";
         unitAmount: number;
     }, unknown, z.core.$ZodTypeInternals<{
-        type: "AI_CREDIT" | "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON";
+        type: "AI_CREDIT" | "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON" | "WEB_SEARCH";
         unitAmount: number;
     }, unknown>>>;
     creditPack: z.ZodArray<z.ZodType<{
@@ -34,7 +34,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
-            type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON";
+            type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON" | "WEB_SEARCH";
         }[];
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
@@ -42,7 +42,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
-            type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON";
+            type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON" | "WEB_SEARCH";
         }[];
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";

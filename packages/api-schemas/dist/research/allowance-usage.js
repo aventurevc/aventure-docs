@@ -8,6 +8,7 @@ const ResearchAllowanceUsageSchemaDefinition = z.object({
     personView: ResearchAllowanceSchema,
     update: ResearchAllowanceSchema,
     updatePerson: ResearchAllowanceSchema,
+    webSearch: ResearchAllowanceSchema,
 });
 /**
  * @openapiSchema ResearchAllowanceUsage

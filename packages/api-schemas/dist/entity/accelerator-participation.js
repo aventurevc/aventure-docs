@@ -21,12 +21,11 @@ const EntityAcceleratorParticipationSchemaDefinition = z.object({
  * Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.
  *
  * @openapiSchema EntityAcceleratorParticipation
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint POST /v1/entities/lookup-batch

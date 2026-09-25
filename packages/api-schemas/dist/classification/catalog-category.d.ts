@@ -52,7 +52,7 @@ type ClassificationCatalogCategoryDefinition = z.infer<typeof ClassificationCata
  * Standardized classification category with accepted spellings and registry rows.
  *
  * @openapiSchema ClassificationCatalogCategory
- * @endpoint GET /v1/classifications/catalog
+ * @endpoint GET /v1/entities/classifications/catalog
  * @usedBySchema ClassificationCatalogSchema
  * @contractShape classification.catalog-category
  * @contractRole canonical

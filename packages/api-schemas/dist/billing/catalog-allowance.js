@@ -10,6 +10,7 @@ const BillingCatalogAllowanceSchemaDefinition = z.object({
         "UPDATE_PERSON",
         "ENTITY_VIEW",
         "PERSON_VIEW",
+        "WEB_SEARCH",
     ]),
 });
 /**

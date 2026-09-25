@@ -8,7 +8,15 @@ import { RedirectSlugPathSchema } from "../redirect/redirect-slug-path.js";
 const ProblemDetailSchemaDefinition = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: z
-        .enum(["NEW_COMPANY", "UPDATE", "NEW_PERSON", "UPDATE_PERSON", "ENTITY_VIEW", "PERSON_VIEW"])
+        .enum([
+        "NEW_COMPANY",
+        "UPDATE",
+        "NEW_PERSON",
+        "UPDATE_PERSON",
+        "ENTITY_VIEW",
+        "PERSON_VIEW",
+        "WEB_SEARCH",
+    ])
         .nullish(),
     circuitBreaker: z.string().nullish(),
     /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes indicate infra/admin-only conditions where the correct agent action is to surface the error and stop, not retry. */
@@ -16,9 +24,9 @@ const ProblemDetailSchemaDefinition = z.object({
         .enum([
         /** Caller is authenticated but lacks the required role for this operation. Agent action: surface the requiredRole field on the ProblemDetail and stop; do not retry without role escalation. */
         "not_authorized",
-        /** Request was throttled. Agent action: wait at least retryAfterSeconds (also on ProblemDetail) before retrying. Repeated 429s on the same key indicate a burst-rate violation, not a sustained-rate one. */
+        /** Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance. */
         "rateLimited",
-        /** Request was throttled. Agent action: wait at least retryAfterSeconds (also on ProblemDetail) before retrying. Repeated 429s on the same key indicate a burst-rate violation, not a sustained-rate one. */
+        /** Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance. */
         "rate_limited",
         /** Caller is authenticated but the subscription on their account does not include this operation. Agent action: surface ProblemDetail.detail explaining the subscription requirement and stop. The identical request cannot succeed until the account changes plan, so never retry it. */
         "subscription_required",
@@ -149,6 +157,7 @@ const ProblemDetailSchemaDefinition = z.object({
         "UNKNOWN",
         "RESILIENCE4J",
         "WEB_SEARCH",
+        "AGENT_HELP",
         "NATURAL_SEARCH",
         "BILLING_ALLOWANCE",
         "BILLING_ADDITIONAL_USAGE",

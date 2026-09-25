@@ -9,14 +9,14 @@ type EntityTextBundleDefinition = z.infer<typeof EntityTextBundleSchemaDefinitio
  * Grouped entity/person text content
  *
  * @openapiSchema EntityTextBundle
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar

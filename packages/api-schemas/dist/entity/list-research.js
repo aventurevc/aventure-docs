@@ -12,9 +12,8 @@ const EntityListResearchSchemaDefinition = z.object({
  * Nested research projection owned by EntityList rows, excluding snippet text.
  *
  * @openapiSchema EntityListResearch
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search

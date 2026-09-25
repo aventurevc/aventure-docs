@@ -32,10 +32,8 @@ type PublicationDefinition = z.infer<typeof PublicationSchemaDefinition>;
  * Canonical public content card across news, blog posts, social posts, repositories, websites, pages, and research papers.
  *
  * @openapiSchema Publication
- * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
- * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @usedBySchema PagePublicationSchema

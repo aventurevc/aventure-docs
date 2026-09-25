@@ -10,6 +10,7 @@ declare const BillingAdditionalUsageMeterSchemaDefinition: z.ZodObject<{
         PERSON_VIEW: "PERSON_VIEW";
         UPDATE: "UPDATE";
         UPDATE_PERSON: "UPDATE_PERSON";
+        WEB_SEARCH: "WEB_SEARCH";
     }>;
 }, z.core.$strip>;
 type BillingAdditionalUsageMeterDefinition = z.infer<typeof BillingAdditionalUsageMeterSchemaDefinition>;

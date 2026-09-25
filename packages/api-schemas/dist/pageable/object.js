@@ -3,12 +3,10 @@ import { z } from "zod/v4";
 import { SortObjectSchema } from "../sort/object.js";
 /**
  * @openapiSchema PageableObject
- * @endpoint GET /v1/classifications
- * @endpoint GET /v1/content
- * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/classifications/tags
  * @endpoint GET /v1/news
- * @endpoint GET /v1/addresses/locations/{directory}
- * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
@@ -39,8 +37,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/urls
- * @endpoint POST /v1/addresses/locations/batch
- * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/search
@@ -56,7 +52,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @usedBySchema PageEntityFundraiseTransactionSchema
  * @usedBySchema PageEntityInvestorParticipationSchema
  * @usedBySchema PageEntityListSchema
- * @usedBySchema PageEntityListSummarySchema
  * @usedBySchema PageEntityPersonAssociationSchema
  * @usedBySchema PageEntityRelationshipSchema
  * @usedBySchema PageEntityResearchDetailSchema
@@ -67,7 +62,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @usedBySchema PageEntityUrlLinkSchema
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema
  * @usedBySchema PageGithubRepoSchema
- * @usedBySchema PageLocationDirectoryEntrySchema
  * @usedBySchema PageNewsSchema
  * @usedBySchema PagePersonDetailSchema
  * @usedBySchema PagePersonInvestmentSchema
@@ -75,7 +69,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @usedBySchema PagePersonSchema
  * @usedBySchema PagePersonSimilarityResultSchema
  * @usedBySchema PagePublicationSchema
- * @usedBySchema PageSitemapUrlSlotSchema
  * @usedBySchema PageUniqueIdSchema
  * @contractShape pageable.object
  * @contractRole canonical

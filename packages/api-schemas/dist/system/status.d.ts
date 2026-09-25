@@ -1,5 +1,7 @@
 import { z } from "zod/v4";
 declare const SystemStatusSchemaDefinition: z.ZodObject<{
+    minimumIosBuild: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    minimumIosVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     operationFingerprint: z.ZodString;
     uptime: z.ZodType<{
         availability?: number | null | undefined;
@@ -15,7 +17,7 @@ declare const SystemStatusSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type SystemStatusDefinition = z.infer<typeof SystemStatusSchemaDefinition>;
 /**
- * Uptime SLA and the identity of the served operation set
+ * Uptime SLA, served-operation identity, and minimum supported iOS build
  *
  * @openapiSchema SystemStatus
  * @endpoint GET /v1/status

@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Named quality gates for entity list endpoints.
  *
  * @openapiSchema EntityListQualityGate
- * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search

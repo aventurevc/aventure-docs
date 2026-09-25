@@ -3,10 +3,10 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
     aiCreditLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     allowance: z.ZodArray<z.ZodType<{
         limit?: number | null | undefined;
-        type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON";
+        type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON" | "WEB_SEARCH";
     }, unknown, z.core.$ZodTypeInternals<{
         limit?: number | null | undefined;
-        type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON";
+        type: "ENTITY_VIEW" | "NEW_COMPANY" | "NEW_PERSON" | "PERSON_VIEW" | "UPDATE" | "UPDATE_PERSON" | "WEB_SEARCH";
     }, unknown>>>;
     displayName: z.ZodString;
     tier: z.ZodEnum<{

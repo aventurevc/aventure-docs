@@ -15,6 +15,7 @@ type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefin
  * One role and effective period for a physical address association
  *
  * @openapiSchema AddressAssociation
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
@@ -25,8 +26,6 @@ type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefin
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/addresses

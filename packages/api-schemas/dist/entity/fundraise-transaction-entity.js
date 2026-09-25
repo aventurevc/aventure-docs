@@ -6,16 +6,14 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
  * Entity projection used inside FundraiseTransaction responses
  *
  * @openapiSchema EntityFundraiseTransactionEntity
+ * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
- * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
- * @endpoint GET /v1/entities/{entityId}/products/suggestions
- * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint POST /v1/entities/lookup-batch
@@ -26,7 +24,6 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityFundraiseTransactionSchema
- * @usedBySchema EntityListSummarySchema
  * @usedBySchema PersonGraphCareerContextSchema
  * @usedBySchema PersonGraphSimilarEntitySchema
  * @contractShape entity.fundraise-transaction-entity

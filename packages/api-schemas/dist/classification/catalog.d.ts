@@ -127,7 +127,7 @@ type ClassificationCatalogDefinition = z.infer<typeof ClassificationCatalogSchem
  * Full active entity classification taxonomy in one payload. Dormant registry tags are omitted from the catalog and surface through write-time 409 recovery instead.
  *
  * @openapiSchema ClassificationCatalog
- * @endpoint GET /v1/classifications/catalog
+ * @endpoint GET /v1/entities/classifications/catalog
  * @contractShape classification.catalog
  * @contractRole canonical
  */

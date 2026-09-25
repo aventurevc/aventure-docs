@@ -8,6 +8,7 @@ declare const BillingCatalogAllowanceSchemaDefinition: z.ZodObject<{
         PERSON_VIEW: "PERSON_VIEW";
         UPDATE: "UPDATE";
         UPDATE_PERSON: "UPDATE_PERSON";
+        WEB_SEARCH: "WEB_SEARCH";
     }>;
 }, z.core.$strip>;
 type BillingCatalogAllowanceDefinition = z.infer<typeof BillingCatalogAllowanceSchemaDefinition>;

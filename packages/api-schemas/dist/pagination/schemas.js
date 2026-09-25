@@ -8,7 +8,6 @@ import { EntitySchema } from "../entity/entity.js";
 import { EntityFundraiseInvestorJoinSchema } from "../entity/fundraise-investor-join.js";
 import { EntityFundraiseTransactionSchema } from "../entity/fundraise-transaction.js";
 import { EntityInvestorParticipationSchema } from "../entity/investor-participation.js";
-import { EntityListSummarySchema } from "../entity/list-summary.js";
 import { EntityListSchema } from "../entity/list.js";
 import { EntityPersonAssociationSchema } from "../entity/person-association.js";
 import { EntityRelationshipSchema } from "../entity/relationship.js";
@@ -20,7 +19,6 @@ import { EntityTextSchema } from "../entity/text.js";
 import { EntityUrlLinkSchema } from "../entity/url-link.js";
 import { EntityValuationTimeSeriesPointSchema } from "../entity/valuation-time-series-point.js";
 import { GithubRepoSchema } from "../github/repo.js";
-import { LocationDirectoryEntrySchema } from "../location/directory-entry.js";
 import { NewsSchema } from "../news/news.js";
 import { PageableObjectSchema } from "../pageable/object.js";
 import { PersonDetailSchema } from "../person/detail.js";
@@ -29,7 +27,6 @@ import { PersonInvestorParticipationSchema } from "../person/investor-participat
 import { PersonSchema } from "../person/person.js";
 import { PersonSimilarityResultSchema } from "../person/similarity-result.js";
 import { PublicationSchema } from "../publication/publication.js";
-import { SitemapUrlSlotSchema } from "../sitemap/url-slot.js";
 import { SortObjectSchema } from "../sort/object.js";
 import { StandardizedClassificationSchema } from "../standardized/classification.js";
 import { UniqueIdSchema } from "../unique/id.js";
@@ -70,7 +67,7 @@ const PageClassificationSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageClassification
- * @endpoint GET /v1/classifications
+ * @endpoint GET /v1/entities/classifications/tags
  * @contractShape pagination.page-classification
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -112,7 +109,6 @@ const PageEntitySchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntity
- * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @contractShape pagination.page-entity
  * @contractRole canonical
@@ -241,33 +237,13 @@ const PageEntityListSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityList
+ * @endpoint GET /v1/entities
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
 export const PageEntityListSchema = PageEntityListSchemaDefinition;
-const PageEntityListSummarySchemaDefinition = z.object({
-    content: z.array(EntityListSummarySchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageEntityListSummary
- * @endpoint GET /v1/entities/summary
- * @contractShape pagination.page-entity-list-summary
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageEntityListSummarySchema = PageEntityListSummarySchemaDefinition;
 const PageEntityPersonAssociationSchemaDefinition = z.object({
     content: z.array(EntityPersonAssociationSchema).optional(),
     empty: z.boolean().optional(),
@@ -461,29 +437,6 @@ const PageGithubRepoSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageGithubRepoSchema = PageGithubRepoSchemaDefinition;
-const PageLocationDirectoryEntrySchemaDefinition = z.object({
-    content: z.array(LocationDirectoryEntrySchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageLocationDirectoryEntry
- * @endpoint GET /v1/addresses/locations/{directory}
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-location-directory-entry
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageLocationDirectoryEntrySchema = PageLocationDirectoryEntrySchemaDefinition;
 const PageNewsSchemaDefinition = z.object({
     content: z.array(NewsSchema).optional(),
     empty: z.boolean().optional(),
@@ -521,6 +474,7 @@ const PagePersonSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePerson
+ * @endpoint GET /v1/people
  * @endpoint POST /v1/people/search
  * @contractShape pagination.page-person
  * @contractRole canonical
@@ -626,10 +580,8 @@ const PagePublicationSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePublication
- * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
- * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication
@@ -692,27 +644,6 @@ const PageResultPersonSchemaDefinition = z.object({
  * @contractRole canonical
  */
 export const PageResultPersonSchema = PageResultPersonSchemaDefinition;
-/**
- * @openapiSchema PageSitemapUrlSlot
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-sitemap-url-slot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageSitemapUrlSlotSchema = z.object({
-    content: z.array(SitemapUrlSlotSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
 const PageUniqueIdSchemaDefinition = z.object({
     content: z.array(UniqueIdSchema).optional(),
     empty: z.boolean().optional(),

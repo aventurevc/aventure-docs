@@ -5,7 +5,6 @@ import { z } from "zod/v4";
  *
  * @openapiSchema SearchMode
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/people/{personId}/content/search

@@ -66,6 +66,17 @@ declare const ResearchAllowanceUsageSchemaDefinition: z.ZodObject<{
         resetAt: string;
         used: number;
     }, unknown>>;
+    webSearch: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
 }, z.core.$strip>;
 type ResearchAllowanceUsageDefinition = z.infer<typeof ResearchAllowanceUsageSchemaDefinition>;
 /**

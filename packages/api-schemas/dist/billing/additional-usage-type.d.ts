@@ -18,6 +18,7 @@ export declare const BillingAdditionalUsageTypeSchema: z.ZodEnum<{
     PERSON_VIEW: "PERSON_VIEW";
     UPDATE: "UPDATE";
     UPDATE_PERSON: "UPDATE_PERSON";
+    WEB_SEARCH: "WEB_SEARCH";
 }>;
 export type BillingAdditionalUsageType = z.infer<typeof BillingAdditionalUsageTypeSchema>;
 //# sourceMappingURL=additional-usage-type.d.ts.map

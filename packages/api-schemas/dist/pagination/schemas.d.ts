@@ -187,7 +187,7 @@ declare const PageClassificationSchemaDefinition: z.ZodObject<{
 type PageClassificationDefinition = z.infer<typeof PageClassificationSchemaDefinition>;
 /**
  * @openapiSchema PageClassification
- * @endpoint GET /v1/classifications
+ * @endpoint GET /v1/entities/classifications/tags
  * @contractShape pagination.page-classification
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -336,7 +336,6 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
 type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
 /**
  * @openapiSchema PageEntity
- * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @contractShape pagination.page-entity
  * @contractRole canonical
@@ -5424,6 +5423,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
 type PageEntityListDefinition = z.infer<typeof PageEntityListSchemaDefinition>;
 /**
  * @openapiSchema PageEntityList
+ * @endpoint GET /v1/entities
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical
@@ -5431,304 +5431,6 @@ type PageEntityListDefinition = z.infer<typeof PageEntityListSchemaDefinition>;
  */
 export declare const PageEntityListSchema: z.ZodType<PageEntityListDefinition>;
 export type PageEntityList = z.infer<typeof PageEntityListSchema>;
-declare const PageEntityListSummarySchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        entity: {
-            core: {
-                defaultCurrency?: string | null | undefined;
-                foundedYear?: number | null | undefined;
-                id: string;
-                image: {
-                    isMonogram: boolean;
-                    logo?: string | null | undefined;
-                    logoSquare?: string | null | undefined;
-                };
-                lastModifiedAt?: string | null | undefined;
-                nameAlias: {
-                    displayable?: boolean | null | undefined;
-                    name: string;
-                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                }[];
-                nameBrand: string;
-                nameLegal?: string | null | undefined;
-                operatingStatus?: string | null | undefined;
-                publicId?: string | null | undefined;
-                publicUrl?: string | null | undefined;
-                sitemap?: {
-                    hasAcquisitions?: boolean | undefined;
-                    hasAnalysis: boolean;
-                    hasEmployees: boolean;
-                    hasFundraising: boolean;
-                    hasNews: boolean;
-                    productServiceSlug: string[];
-                } | null | undefined;
-                slug: string;
-                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-                updatedAt?: string | null | undefined;
-            };
-            fundingDetail?: {
-                currency?: string | null | undefined;
-                fundingRoundCount: number;
-                investorCount: number;
-                latestValuation?: number | null | undefined;
-                mostRecentAmount?: number | null | undefined;
-                mostRecentDate?: string | null | undefined;
-                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
-                totalRaised: number;
-            } | null | undefined;
-        };
-        fundraiseRound: {
-            amountRaised?: number | null | undefined;
-            createdAt?: string | null | undefined;
-            currency?: string | null | undefined;
-            dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
-            dateAnnounced?: string | null | undefined;
-            dateFundingComplete?: string | null | undefined;
-            dateInvestorExit?: string | null | undefined;
-            entity?: {
-                core: {
-                    defaultCurrency?: string | null | undefined;
-                    foundedYear?: number | null | undefined;
-                    id: string;
-                    image: {
-                        isMonogram: boolean;
-                        logo?: string | null | undefined;
-                        logoSquare?: string | null | undefined;
-                    };
-                    lastModifiedAt?: string | null | undefined;
-                    nameAlias: {
-                        displayable?: boolean | null | undefined;
-                        name: string;
-                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                    }[];
-                    nameBrand: string;
-                    nameLegal?: string | null | undefined;
-                    operatingStatus?: string | null | undefined;
-                    publicId?: string | null | undefined;
-                    publicUrl?: string | null | undefined;
-                    sitemap?: {
-                        hasAcquisitions?: boolean | undefined;
-                        hasAnalysis: boolean;
-                        hasEmployees: boolean;
-                        hasFundraising: boolean;
-                        hasNews: boolean;
-                        productServiceSlug: string[];
-                    } | null | undefined;
-                    slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-                    updatedAt?: string | null | undefined;
-                };
-                fundingDetail?: {
-                    currency?: string | null | undefined;
-                    fundingRoundCount: number;
-                    investorCount: number;
-                    latestValuation?: number | null | undefined;
-                    mostRecentAmount?: number | null | undefined;
-                    mostRecentDate?: string | null | undefined;
-                    stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
-                    totalRaised: number;
-                } | null | undefined;
-            } | null | undefined;
-            id: string;
-            investorAttribution?: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            } | null | undefined;
-            investorCount?: number | null | undefined;
-            round?: string | null | undefined;
-            sourceAttribution: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            }[];
-            updatedAt?: string | null | undefined;
-            valuationPostMoney?: number | null | undefined;
-            valuationPreMoney?: number | null | undefined;
-        }[];
-    }, unknown, z.core.$ZodTypeInternals<{
-        entity: {
-            core: {
-                defaultCurrency?: string | null | undefined;
-                foundedYear?: number | null | undefined;
-                id: string;
-                image: {
-                    isMonogram: boolean;
-                    logo?: string | null | undefined;
-                    logoSquare?: string | null | undefined;
-                };
-                lastModifiedAt?: string | null | undefined;
-                nameAlias: {
-                    displayable?: boolean | null | undefined;
-                    name: string;
-                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                }[];
-                nameBrand: string;
-                nameLegal?: string | null | undefined;
-                operatingStatus?: string | null | undefined;
-                publicId?: string | null | undefined;
-                publicUrl?: string | null | undefined;
-                sitemap?: {
-                    hasAcquisitions?: boolean | undefined;
-                    hasAnalysis: boolean;
-                    hasEmployees: boolean;
-                    hasFundraising: boolean;
-                    hasNews: boolean;
-                    productServiceSlug: string[];
-                } | null | undefined;
-                slug: string;
-                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-                updatedAt?: string | null | undefined;
-            };
-            fundingDetail?: {
-                currency?: string | null | undefined;
-                fundingRoundCount: number;
-                investorCount: number;
-                latestValuation?: number | null | undefined;
-                mostRecentAmount?: number | null | undefined;
-                mostRecentDate?: string | null | undefined;
-                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
-                totalRaised: number;
-            } | null | undefined;
-        };
-        fundraiseRound: {
-            amountRaised?: number | null | undefined;
-            createdAt?: string | null | undefined;
-            currency?: string | null | undefined;
-            dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
-            dateAnnounced?: string | null | undefined;
-            dateFundingComplete?: string | null | undefined;
-            dateInvestorExit?: string | null | undefined;
-            entity?: {
-                core: {
-                    defaultCurrency?: string | null | undefined;
-                    foundedYear?: number | null | undefined;
-                    id: string;
-                    image: {
-                        isMonogram: boolean;
-                        logo?: string | null | undefined;
-                        logoSquare?: string | null | undefined;
-                    };
-                    lastModifiedAt?: string | null | undefined;
-                    nameAlias: {
-                        displayable?: boolean | null | undefined;
-                        name: string;
-                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                    }[];
-                    nameBrand: string;
-                    nameLegal?: string | null | undefined;
-                    operatingStatus?: string | null | undefined;
-                    publicId?: string | null | undefined;
-                    publicUrl?: string | null | undefined;
-                    sitemap?: {
-                        hasAcquisitions?: boolean | undefined;
-                        hasAnalysis: boolean;
-                        hasEmployees: boolean;
-                        hasFundraising: boolean;
-                        hasNews: boolean;
-                        productServiceSlug: string[];
-                    } | null | undefined;
-                    slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-                    updatedAt?: string | null | undefined;
-                };
-                fundingDetail?: {
-                    currency?: string | null | undefined;
-                    fundingRoundCount: number;
-                    investorCount: number;
-                    latestValuation?: number | null | undefined;
-                    mostRecentAmount?: number | null | undefined;
-                    mostRecentDate?: string | null | undefined;
-                    stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
-                    totalRaised: number;
-                } | null | undefined;
-            } | null | undefined;
-            id: string;
-            investorAttribution?: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            } | null | undefined;
-            investorCount?: number | null | undefined;
-            round?: string | null | undefined;
-            sourceAttribution: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            }[];
-            updatedAt?: string | null | undefined;
-            valuationPostMoney?: number | null | undefined;
-            valuationPreMoney?: number | null | undefined;
-        }[];
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageEntityListSummaryDefinition = z.infer<typeof PageEntityListSummarySchemaDefinition>;
-/**
- * @openapiSchema PageEntityListSummary
- * @endpoint GET /v1/entities/summary
- * @contractShape pagination.page-entity-list-summary
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageEntityListSummarySchema: z.ZodType<PageEntityListSummaryDefinition>;
-export type PageEntityListSummary = z.infer<typeof PageEntityListSummarySchema>;
 declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         associationId: z.ZodInt;
@@ -7539,74 +7241,6 @@ type PageGithubRepoDefinition = z.infer<typeof PageGithubRepoSchemaDefinition>;
  */
 export declare const PageGithubRepoSchema: z.ZodType<PageGithubRepoDefinition>;
 export type PageGithubRepo = z.infer<typeof PageGithubRepoSchema>;
-declare const PageLocationDirectoryEntrySchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        canonicalSlug: z.ZodString;
-        entityCount: z.ZodNumber;
-        identifier: z.ZodType<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            cityId?: number | null | undefined;
-            cityName?: string | null | undefined;
-            countryId?: number | null | undefined;
-            countryIso2?: string | null | undefined;
-            countryName?: string | null | undefined;
-            scope: "city" | "country" | "state";
-            stateAbbrev?: string | null | undefined;
-            stateId?: number | null | undefined;
-            stateName?: string | null | undefined;
-        }, unknown>>;
-        latestUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        name: z.ZodString;
-        parentLabel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        slug: z.ZodString;
-    }, z.core.$strip>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageLocationDirectoryEntryDefinition = z.infer<typeof PageLocationDirectoryEntrySchemaDefinition>;
-/**
- * @openapiSchema PageLocationDirectoryEntry
- * @endpoint GET /v1/addresses/locations/{directory}
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-location-directory-entry
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageLocationDirectoryEntrySchema: z.ZodType<PageLocationDirectoryEntryDefinition>;
-export type PageLocationDirectoryEntry = z.infer<typeof PageLocationDirectoryEntrySchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
@@ -7785,6 +7419,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
 type PagePersonDefinition = z.infer<typeof PagePersonSchemaDefinition>;
 /**
  * @openapiSchema PagePerson
+ * @endpoint GET /v1/people
  * @endpoint POST /v1/people/search
  * @contractShape pagination.page-person
  * @contractRole canonical
@@ -9889,10 +9524,8 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
 type PagePublicationDefinition = z.infer<typeof PagePublicationSchemaDefinition>;
 /**
  * @openapiSchema PagePublication
- * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
- * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication
@@ -11006,57 +10639,6 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  */
 export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinition>;
 export type PageResultPerson = z.infer<typeof PageResultPersonSchema>;
-/**
- * @openapiSchema PageSitemapUrlSlot
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-sitemap-url-slot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageSitemapUrlSlotSchema: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
-        imagePath?: string | null | undefined;
-        lastUpdatedAt: string;
-        path: string;
-        slotKey: string;
-        slug: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-export type PageSitemapUrlSlot = z.infer<typeof PageSitemapUrlSlotSchema>;
 declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         createdAt: string;

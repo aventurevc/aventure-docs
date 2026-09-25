@@ -43,6 +43,7 @@ const PersonSchemaDefinition = z.object({
  *
  * @openapiSchema Person
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}

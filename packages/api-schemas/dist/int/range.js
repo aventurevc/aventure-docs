@@ -10,7 +10,8 @@ const IntRangeSchemaDefinition = z.object({
  * Integer range for count-based filter criteria
  *
  * @openapiSchema IntRange
- * @endpoint GET /v1/entities/summary
+ * @endpoint GET /v1/entities
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search

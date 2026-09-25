@@ -30,7 +30,7 @@ type SecCompanyDefinition = z.infer<typeof SecCompanySchemaDefinition>;
  * Public-company identity facts from SEC EDGAR (legal name, former names, ticker, exchange, industry, incorporation, headquarters). SEC supplies no brand name, website, or summary text — those stay enrichment-owned and are not part of this shape.
  *
  * @openapiSchema SecCompany
- * @endpoint GET /v1/sec/company
+ * @endpoint GET /v1/entities/sec
  * @contractShape sec.company
  * @contractRole canonical
  */
