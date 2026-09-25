@@ -479,6 +479,8 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "FundraiseTransactionStatusSchema",
     },
     GithubRepo: { modulePath: "github/repo", schemaName: "GithubRepoSchema" },
+    HarnessChassis: { modulePath: "harness/chassis", schemaName: "HarnessChassisSchema" },
+    HarnessLlmApi: { modulePath: "harness/llm-api", schemaName: "HarnessLlmApiSchema" },
     HarnessRun: { modulePath: "harness/run", schemaName: "HarnessRunSchema" },
     HarnessRunEnvironment: {
         modulePath: "harness/run-environment",
@@ -651,10 +653,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PageSitemapUrlSlotSchema",
     },
     PageUniqueId: { modulePath: "pagination/schemas", schemaName: "PageUniqueIdSchema" },
-    PageUrlSlugRedirect: {
-        modulePath: "pagination/schemas",
-        schemaName: "PageUrlSlugRedirectSchema",
-    },
     Person: { modulePath: "person/person", schemaName: "PersonSchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
     PersonDetail: { modulePath: "person/detail", schemaName: "PersonDetailSchema" },
@@ -767,12 +765,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
-    Search: { modulePath: "search/search", schemaName: "SearchSchema" },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",
     },
-    SearchHit: { modulePath: "search/hit", schemaName: "SearchHitSchema" },
     SearchInterpretation: {
         modulePath: "search/interpretation",
         schemaName: "SearchInterpretationSchema",
@@ -804,10 +800,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SortOrderPersonSortField: {
         modulePath: "sort/order-person-sort-field",
         schemaName: "SortOrderPersonSortFieldSchema",
-    },
-    SourceDocumentList: {
-        modulePath: "source/document-list",
-        schemaName: "SourceDocumentListSchema",
     },
     StageFrequency: { modulePath: "stage/frequency", schemaName: "StageFrequencySchema" },
     StandardizedClassification: {
@@ -846,9 +838,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     UrlDuplicateJoin: { modulePath: "url/duplicate-join", schemaName: "UrlDuplicateJoinSchema" },
     UrlMatchMode: { modulePath: "url/match-mode", schemaName: "UrlMatchModeSchema" },
-    UrlSlugRedirect: { modulePath: "url/slug-redirect", schemaName: "UrlSlugRedirectSchema" },
     UrlTypeAlias: { modulePath: "url/type-alias", schemaName: "UrlTypeAliasSchema" },
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
-    WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },
 });
 //# sourceMappingURL=openapi-component-manifest.js.map

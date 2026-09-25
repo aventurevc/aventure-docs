@@ -1,6 +1,11 @@
 import { z } from "zod/v4";
 declare const HarnessRunSchemaDefinition: z.ZodObject<{
     attempt: z.ZodInt;
+    chassis: z.ZodEnum<{
+        "claude-agent-sdk": "claude-agent-sdk";
+        "pi-agent-sdk": "pi-agent-sdk";
+    }>;
+    chassisRouted: z.ZodBoolean;
     createdAt: z.ZodISODateTime;
     entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     environment: z.ZodEnum<{
@@ -20,6 +25,11 @@ declare const HarnessRunSchemaDefinition: z.ZodObject<{
         interactive: "interactive";
     }>;
     latestStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    llmApi: z.ZodEnum<{
+        anthropic: "anthropic";
+        "openai-chat": "openai-chat";
+        "openai-responses": "openai-responses";
+    }>;
     maxIteration: z.ZodInt;
     maxScoutConcurrent: z.ZodInt;
     mode: z.ZodEnum<{

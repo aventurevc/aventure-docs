@@ -7,7 +7,7 @@ declare const UptimeSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type UptimeDefinition = z.infer<typeof UptimeSchemaDefinition>;
 /**
- * Uptime SLA data from Better Stack monitoring
+ * Uptime SLA data from external uptime monitoring
  *
  * @openapiSchema Uptime
  * @endpoint GET /v1/status

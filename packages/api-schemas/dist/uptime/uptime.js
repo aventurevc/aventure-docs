@@ -11,7 +11,7 @@ const UptimeSchemaDefinition = z.object({
     incidents: z.int().nullish(),
 });
 /**
- * Uptime SLA data from Better Stack monitoring
+ * Uptime SLA data from external uptime monitoring
  *
  * @openapiSchema Uptime
  * @endpoint GET /v1/status

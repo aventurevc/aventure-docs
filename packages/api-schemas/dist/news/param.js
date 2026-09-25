@@ -20,11 +20,13 @@ export const NewsParamSchema = PageParamSchema.extend({
     cursor: z.string().optional(),
     /** Exclude one news article by id. */
     excludeId: z.int().optional(),
-    /** Deprecated author-initial alias; use authorInitial. */
+    /** Deprecated: use the author-initial filter. */
     letter: z.string().optional(),
-    /** Response mode; use thin for cursor-paginated index reads. */
-    mode: z.string().optional(),
+    /** Response mode: thin returns cursor-paginated index rows; omit for the standard list. */
+    mode: z.enum(["thin"]).optional(),
+    /** Owning entity id; set only when personId is absent. */
     "owner.entityId": z.uuid().optional(),
+    /** Owning person id; set only when entityId is absent. */
     "owner.personId": z.uuid().optional(),
     /** Earliest publication date, inclusive. */
     publishedAfter: z.iso.date().optional(),

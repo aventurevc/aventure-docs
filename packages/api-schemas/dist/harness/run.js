@@ -1,6 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
+import { HarnessChassisSchema } from "./chassis.js";
+import { HarnessLlmApiSchema } from "./llm-api.js";
 import { HarnessRunEnvironmentSchema } from "./run-environment.js";
 import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
@@ -8,6 +10,10 @@ import { HarnessRunTypeSchema } from "./run-type.js";
 const HarnessRunSchemaDefinition = z.object({
     /** Retry attempt counter */
     attempt: z.int(),
+    /** Agent loop this run executes on */
+    chassis: HarnessChassisSchema,
+    /** True when the chassis router, not a caller, picked `chassis` */
+    chassisRouted: z.boolean(),
     /** Creation timestamp */
     createdAt: z.iso.datetime({ offset: true }),
     /** Canonical slug of the entity the run produced */
@@ -30,6 +36,8 @@ const HarnessRunSchemaDefinition = z.object({
     lane: HarnessRunLaneSchema,
     /** Latest enrich-loop status as an opaque JSON string */
     latestStatus: z.string().nullish(),
+    /** Gateway wire API every LLM call of this run uses */
+    llmApi: HarnessLlmApiSchema,
     /** Loop iteration cap */
     maxIteration: z.int(),
     /** Parallel read-only scout fan-out width N */

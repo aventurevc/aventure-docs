@@ -10,6 +10,10 @@ const IdentificationSchemaDefinition = z.object({
     duplicate: z.array(IdentificationCandidateSchema),
     /** The matched record when status is MATCHED. */
     match: IdentificationCandidateSchema.nullish(),
+    /** Decision-model confidence, 0 to 1, in its pick: the candidate it named as the subject, or, when it picked none, that no candidate is. Present whenever a judgment ran, including a none pick; absent when no judgment ran. The kind-agnostic lookup reports the side whose answer it returns. */
+    matchConfidence: z.number().nullish(),
+    /** Decision-model probability, 0 to 1, that the evidence can tell the subject apart from namesakes. Absent when no judgment ran. The kind-agnostic lookup reports the side whose answer it returns. */
+    matchEvidenceProbability: z.number().nullish(),
     /** The subject's own website or profile page found in web search. Use it as the website when creating the record only if it is the subject's own domain, not a LinkedIn, Crunchbase, or other profile page. */
     officialUrl: z.string().nullish(),
     /** The ladder step that settled the answer. */

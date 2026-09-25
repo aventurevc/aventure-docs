@@ -18,7 +18,9 @@ export declare const NewsParamSchema: z.ZodObject<{
     cursor: z.ZodOptional<z.ZodString>;
     excludeId: z.ZodOptional<z.ZodInt>;
     letter: z.ZodOptional<z.ZodString>;
-    mode: z.ZodOptional<z.ZodString>;
+    mode: z.ZodOptional<z.ZodEnum<{
+        thin: "thin";
+    }>>;
     "owner.entityId": z.ZodOptional<z.ZodUUID>;
     "owner.personId": z.ZodOptional<z.ZodUUID>;
     publishedAfter: z.ZodOptional<z.ZodISODate>;

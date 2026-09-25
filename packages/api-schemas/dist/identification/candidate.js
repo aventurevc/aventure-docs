@@ -14,7 +14,11 @@ import { SearchDuplicateCandidateScoreSchema } from "../search/duplicate-candida
  * @contractRole canonical
  */
 export const IdentificationCandidateSchema = z.object({
-    /** Whether the record is a company (entityId) or a person (personId); read it with entities get --entity-id or people get --person-id. */
+    /** How this record was checked as the picked record stored again; absent when it was not checked. */
+    duplicateBasis: z.enum(["STUB", "SHARED_FACT", "JUDGED"]).nullish(),
+    /** Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED. */
+    duplicateProbability: z.number().nullish(),
+    /** Whether the record is a company (entityId) or a person (personId); read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}. */
     owner: EntityPersonOwnerSchema,
     /** Decision-model probability, 0 to 1, that this record is the subject; absent when the answer came from URL proof or the model did not judge this record. */
     probability: z.number().nullish(),

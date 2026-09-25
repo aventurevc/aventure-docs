@@ -7,7 +7,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/news
- * @endpoint GET /v1/slug-redirects
  * @endpoint GET /v1/addresses/locations/{directory}
  * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
@@ -78,7 +77,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @usedBySchema PagePublicationSchema
  * @usedBySchema PageSitemapUrlSlotSchema
  * @usedBySchema PageUniqueIdSchema
- * @usedBySchema PageUrlSlugRedirectSchema
  * @contractShape pageable.object
  * @contractRole canonical
  * @ownerModule pageable/object.ts

@@ -36,9 +36,9 @@ const ProblemDetailSchemaDefinition = z.object({
         "origin_detail_capacity",
         /** Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation. */
         "origin_detail_shutdown",
-        /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-run with JSON body input via --from-file or stdin, or ANSI-C $'...' quoting; use allowSuspectedShellStrip only when the value is intentional. */
+        /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
         "suspectedShellStrip",
-        /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-run with JSON body input via --from-file or stdin, or ANSI-C $'...' quoting; use allowSuspectedShellStrip only when the value is intentional. */
+        /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
         "suspected_shell_strip",
         /** A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal. */
         "url_surface_misclassification",
@@ -96,7 +96,7 @@ const ProblemDetailSchemaDefinition = z.object({
         "source_document_capture_limit_exceeded",
         /** News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking. */
         "news_similarity_embedding_unavailable",
-        /** Search provider (e.g., SerpAPI) is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed. */
+        /** The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed. */
         "search_provider_not_configured",
         /** Search provider call failed. Agent action: surface; provider outages affect search endpoints only. */
         "search_provider_error",

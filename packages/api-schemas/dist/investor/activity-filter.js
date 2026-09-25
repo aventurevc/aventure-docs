@@ -23,10 +23,15 @@ import { IntRangeSchema } from "../int/range.js";
  * @contractRole canonical
  */
 export const InvestorActivityFilterSchema = z.object({
+    /** Average USD amount-invested ranges with inclusive bounds. */
     averageAmountInvestedUsdRange: z.array(DecimalRangeSchema).optional(),
+    /** Largest USD amount-invested ranges with inclusive bounds. */
     largestAmountInvestedUsdRange: z.array(DecimalRangeSchema).optional(),
+    /** Smallest USD amount-invested ranges with inclusive bounds. */
     smallestAmountInvestedUsdRange: z.array(DecimalRangeSchema).optional(),
+    /** Total USD amount-invested ranges with inclusive bounds. */
     totalAmountInvestedUsdRange: z.array(DecimalRangeSchema).optional(),
+    /** Distinct fundraise-deal count ranges for an investor, with inclusive integer bounds. */
     totalInvestmentRange: z.array(IntRangeSchema).optional(),
 });
 //# sourceMappingURL=activity-filter.js.map
