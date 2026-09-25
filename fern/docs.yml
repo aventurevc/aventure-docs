@@ -76,10 +76,6 @@ navigation:
               - endpoint: GET /v1/entities/{entityId}/trending-news
                 slug: list-entity-trending-news
                 title: Get trending news for an entity by UUID
-          - media:
-              - endpoint: GET /v1/media/identicons/{seed}.svg
-                slug: get-generated-monogram
-                title: Render a deterministic monogram SVG (v1)
           - entities:
               - endpoint: POST /v1/entities/lookup-batch
                 slug: lookup-entity-batch
@@ -140,6 +136,10 @@ redirects:
     destination: "/api-reference"
   - source: "/api-reference/a-venture-api/:slug*"
     destination: "/api-reference/:slug*"
+  # The identicon endpoint is private (x-aventure-visibility scope private) and
+  # left the public spec; its generated page survives here as a redirect.
+  - source: "/api-reference/media/get-generated-monogram"
+    destination: "/api-reference"
   - source: "/editing-your-docs"
     destination: "/quickstart"
   - source: "/writing-content"
