@@ -7,6 +7,8 @@ const BillingCatalogPlanSchemaDefinition = z.object({
     /** ISO 4217 currency code. */
     currency: z.string(),
     displayName: z.string(),
+    /** First invoice amount when an automatic, one-time Checkout offer is available; absent otherwise. Renewals use unitAmount. */
+    introductoryAmount: z.number().int().nullish(),
     plan: BillingPlanTypeSchema,
     tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
     /** Price per cadence in the currency's minor unit, such as cents. */

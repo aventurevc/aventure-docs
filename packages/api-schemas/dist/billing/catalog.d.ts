@@ -19,6 +19,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         cadence: string;
         currency: string;
         displayName: string;
+        introductoryAmount?: number | null | undefined;
         plan: "PLUS_MONTHLY" | "PLUS_YEARLY" | "PRO_MONTHLY" | "PRO_YEARLY" | "PRO_YEARLY_PROMOTION";
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
         unitAmount: number;
@@ -26,6 +27,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         cadence: string;
         currency: string;
         displayName: string;
+        introductoryAmount?: number | null | undefined;
         plan: "PLUS_MONTHLY" | "PLUS_YEARLY" | "PRO_MONTHLY" | "PRO_YEARLY" | "PRO_YEARLY_PROMOTION";
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
         unitAmount: number;

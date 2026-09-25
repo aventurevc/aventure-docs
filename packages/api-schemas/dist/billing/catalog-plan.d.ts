@@ -3,6 +3,7 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
     cadence: z.ZodString;
     currency: z.ZodString;
     displayName: z.ZodString;
+    introductoryAmount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     plan: z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";

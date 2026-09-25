@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.3"
+    "version": "0.8.4"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -27716,6 +27716,17 @@
               }
             ]
           },
+          "recurringPrice": {
+            "description": "Subscribed renewal price before discounts; absent without a known paid Price",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BillingRecurringPrice"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -37957,6 +37968,31 @@
           "PRO_YEARLY_PROMOTION"
         ]
       },
+      "BillingRecurringPrice": {
+        "type": "object",
+        "properties": {
+          "cadence": {
+            "type": "string",
+            "description": "ISO 8601 billing period.",
+            "example": "P1Y"
+          },
+          "currency": {
+            "type": "string",
+            "description": "ISO 4217 currency code.",
+            "example": "USD"
+          },
+          "unitAmount": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Recurring charge in the currency's minor unit, before discounts"
+          }
+        },
+        "required": [
+          "cadence",
+          "currency",
+          "unitAmount"
+        ]
+      },
       "BillingAdditionalUsageFundingType": {
         "type": "string",
         "description": "PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, up to spendCapCents per month.",
@@ -38052,6 +38088,14 @@
           },
           "displayName": {
             "type": "string"
+          },
+          "introductoryAmount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "First invoice amount when an automatic, one-time Checkout offer is available; absent otherwise. Renewals use unitAmount."
           },
           "plan": {
             "$ref": "#/components/schemas/BillingPlanType"

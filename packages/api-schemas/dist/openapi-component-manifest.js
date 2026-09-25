@@ -111,6 +111,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     BillingPlanType: { modulePath: "billing/plan-type", schemaName: "BillingPlanTypeSchema" },
     BillingPortal: { modulePath: "billing/portal", schemaName: "BillingPortalSchema" },
+    BillingRecurringPrice: {
+        modulePath: "billing/recurring-price",
+        schemaName: "BillingRecurringPriceSchema",
+    },
     BillingSubscription: {
         modulePath: "billing/subscription",
         schemaName: "BillingSubscriptionSchema",

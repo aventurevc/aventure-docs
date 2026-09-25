@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { BillingAdditionalUsageSchema } from "./additional-usage.js";
 import { BillingPlanTypeSchema } from "./plan-type.js";
+import { BillingRecurringPriceSchema } from "./recurring-price.js";
 import { ResearchAllowanceUsageSchema } from "../research/allowance-usage.js";
 const BillingSubscriptionSchemaDefinition = z.object({
     additionalUsage: BillingAdditionalUsageSchema,
@@ -21,6 +22,8 @@ const BillingSubscriptionSchemaDefinition = z.object({
     periodStart: z.iso.datetime({ offset: true }).nullish(),
     /** Paid plan and billing cycle; absent without a paid subscription */
     plan: BillingPlanTypeSchema.nullish(),
+    /** Subscribed renewal price before discounts; absent without a known paid Price */
+    recurringPrice: BillingRecurringPriceSchema.nullish(),
     status: z.enum([
         "NONE",
         "INCOMPLETE",

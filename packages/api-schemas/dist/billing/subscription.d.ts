@@ -137,6 +137,11 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     }>>>;
+    recurringPrice: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        cadence: z.ZodString;
+        currency: z.ZodString;
+        unitAmount: z.ZodNumber;
+    }, z.core.$strip>>>;
     status: z.ZodEnum<{
         ACTIVE: "ACTIVE";
         CANCELED: "CANCELED";
