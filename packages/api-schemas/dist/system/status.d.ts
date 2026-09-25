@@ -15,7 +15,7 @@ declare const SystemStatusSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type SystemStatusDefinition = z.infer<typeof SystemStatusSchemaDefinition>;
 /**
- * Uptime SLA from Better Stack and the identity of the served operation set
+ * Uptime SLA and the identity of the served operation set
  *
  * @openapiSchema SystemStatus
  * @endpoint GET /v1/status

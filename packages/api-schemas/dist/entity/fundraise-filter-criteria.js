@@ -21,16 +21,21 @@ import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
  * @contractRole canonical
  */
 export const EntityFundraiseFilterCriteriaSchema = z.object({
+    /** Investor-level amount-invested ranges in the transaction currency. Use plain JSON numbers. */
     amountInvestedRange: z.array(DecimalRangeSchema).optional(),
+    /** Per-round amount-raised ranges in USD. Use plain JSON numbers. */
     amountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies. */
     investedCompanyName: z.array(z.string()).optional(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
+    /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),
     /** Fundraise round labels, such as Seed or Series A. */
     round: z.array(z.string()).optional(),
+    /** Total-raised ranges across all rounds in USD. Use plain JSON numbers. */
     totalRaisedRange: z.array(DecimalRangeSchema).optional(),
+    /** Post-money valuation ranges in USD. */
     valuationRange: z.array(DecimalRangeSchema).optional(),
 });
 //# sourceMappingURL=fundraise-filter-criteria.js.map

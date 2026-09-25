@@ -1,6 +1,12 @@
 import { z } from "zod/v4";
 declare const IdentificationSchemaDefinition: z.ZodObject<{
     candidate: z.ZodArray<z.ZodObject<{
+        duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            JUDGED: "JUDGED";
+            SHARED_FACT: "SHARED_FACT";
+            STUB: "STUB";
+        }>>>;
+        duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         owner: z.ZodObject<{
             entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
             personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -30,6 +36,12 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>;
     detail: z.ZodString;
     duplicate: z.ZodArray<z.ZodObject<{
+        duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            JUDGED: "JUDGED";
+            SHARED_FACT: "SHARED_FACT";
+            STUB: "STUB";
+        }>>>;
+        duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         owner: z.ZodObject<{
             entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
             personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -58,6 +70,12 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
         }, unknown>>;
     }, z.core.$strip>>;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            JUDGED: "JUDGED";
+            SHARED_FACT: "SHARED_FACT";
+            STUB: "STUB";
+        }>>>;
+        duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         owner: z.ZodObject<{
             entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
             personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -85,6 +103,8 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, unknown>>;
     }, z.core.$strip>>>;
+    matchConfidence: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    matchEvidenceProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     officialUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     stage: z.ZodEnum<{
         DETERMINISTIC: "DETERMINISTIC";

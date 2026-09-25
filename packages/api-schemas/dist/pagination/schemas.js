@@ -33,7 +33,6 @@ import { SitemapUrlSlotSchema } from "../sitemap/url-slot.js";
 import { SortObjectSchema } from "../sort/object.js";
 import { StandardizedClassificationSchema } from "../standardized/classification.js";
 import { UniqueIdSchema } from "../unique/id.js";
-import { UrlSlugRedirectSchema } from "../url/slug-redirect.js";
 const PageBlogPostSchemaDefinition = z.object({
     content: z.array(BlogPostSchema).optional(),
     empty: z.boolean().optional(),
@@ -736,25 +735,4 @@ const PageUniqueIdSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageUniqueIdSchema = PageUniqueIdSchemaDefinition;
-const PageUrlSlugRedirectSchemaDefinition = z.object({
-    content: z.array(UrlSlugRedirectSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageUrlSlugRedirect
- * @endpoint GET /v1/slug-redirects
- * @contractShape pagination.page-url-slug-redirect
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageUrlSlugRedirectSchema = PageUrlSlugRedirectSchemaDefinition;
 //# sourceMappingURL=schemas.js.map

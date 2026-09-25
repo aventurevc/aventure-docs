@@ -11,6 +11,12 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const IdentificationCandidateSchema: z.ZodObject<{
+    duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        JUDGED: "JUDGED";
+        SHARED_FACT: "SHARED_FACT";
+        STUB: "STUB";
+    }>>>;
+    duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     owner: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

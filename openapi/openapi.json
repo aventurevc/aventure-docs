@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.0"
+    "version": "0.8.1"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -45,8 +45,8 @@
       "name": "Harness"
     },
     {
-      "description": "Redirect rows left by slug changes: list, resolve, and delete them",
-      "name": "URL Slug Redirects"
+      "description": "Entity type records and record maintenance operations",
+      "name": "Entity Maintenance"
     },
     {
       "description": "Person filter options, letter counts, and search metadata for people listings",
@@ -157,10 +157,6 @@
       "name": "Entity Suggestions"
     },
     {
-      "description": "Administrative tools for entity data maintenance",
-      "name": "Entity Maintenance"
-    },
-    {
       "description": "Sign-in, session, API key, and CLI authorization endpoints",
       "name": "Auth"
     },
@@ -172,7 +168,7 @@
   "paths": {
     "/images/monograms/{seed}.svg": {
       "get": {
-        "description": "Returns cached fallback SVG.",
+        "description": "Returns the placeholder monogram SVG for a seed. Stored placeholder image URLs point at this path; the same seed always renders the same image, cacheable for 30 days.",
         "operationId": "getMonogramImage",
         "parameters": [
           {
@@ -315,7 +311,7 @@
     },
     "/info": {
       "get": {
-        "description": "Returns typed build metadata equivalent to the actuator info build payload",
+        "description": "Returns the running build's version, build time, and source revision",
         "operationId": "getSystemBuild",
         "responses": {
           "200": {
@@ -651,7 +647,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Batch directory + companies payload",
+        "summary": "Get the location directory with company URLs",
         "tags": [
           "Addresses"
         ],
@@ -1794,7 +1790,7 @@
     },
     "/v1/auth/api-key": {
       "delete": {
-        "description": "Revokes the Clerk API key authenticating this request and returns provider metadata so the CLI can confirm remote revocation before removing local bytes.",
+        "description": "Revokes the aVenture API key authenticating this request and returns its metadata so the CLI can confirm revocation before deleting its saved copy.",
         "operationId": "revokeCurrentApiKey",
         "responses": {
           "200": {
@@ -1952,7 +1948,7 @@
             {
               "optionKey": "forgetLocal",
               "flag": "--forget-local",
-              "description": "Remove local bytes even when remote revocation cannot be confirmed."
+              "description": "Delete the saved key even when revocation cannot be confirmed."
             }
           ],
           "role": "revoke",
@@ -1963,7 +1959,7 @@
         }
       },
       "get": {
-        "description": "Returns provider metadata for the Clerk API key authenticating this request.",
+        "description": "Returns provider metadata for the aVenture API key authenticating this request.",
         "operationId": "getCurrentApiKey",
         "responses": {
           "200": {
@@ -2266,7 +2262,7 @@
             {
               "optionKey": "key",
               "flag": "--key",
-              "description": "Sign in with a browser-approved Clerk API key instead of OAuth; the approval URL opens on any device."
+              "description": "Sign in with a browser-approved aVenture API key instead of OAuth; the approval URL opens on any device."
             },
             {
               "optionKey": "browser",
@@ -2275,7 +2271,7 @@
             }
           ],
           "role": "start",
-          "summary": "Sign in with a browser-approved Clerk API key"
+          "summary": "Sign in with a browser-approved aVenture API key"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -4215,7 +4211,7 @@
     },
     "/v1/classifications/catalog": {
       "get": {
-        "description": "Returns active classification buckets with optional tag lists. Each bucket carries its canonical `type`, accepted `alias[]` spellings, `tagCount`, and (when includeTags=true) the active `tag[]`. Use bucketType to scope to one bucket and includeTags=false to fetch metadata only. For tag ids, prefer `classifications list --category <bucket> --q <name>` over broad catalog JSON; use returned tag.id as EntityClassificationMutation.tagId when writing classifications. Dormant registry tags are intentionally omitted; type + name writes that find one return 409 with inactiveTagOverride recovery choices.",
+        "description": "Returns active classification buckets with optional tag lists. Each bucket carries its canonical `type`, accepted `alias[]` spellings, `tagCount`, and (when includeTags=true) the active `tag[]`. Use bucketType to scope to one bucket and includeTags=false to fetch metadata only. For tag ids, prefer the classification tag list filtered by category and name over broad catalog JSON; use returned tag.id as EntityClassificationMutation.tagId when writing classifications. Dormant registry tags are intentionally omitted; type + name writes that find one return 409 with inactiveTagOverride recovery choices.",
         "operationId": "getClassificationCatalog",
         "parameters": [
           {
@@ -4384,7 +4380,7 @@
     },
     "/v1/content": {
       "get": {
-        "description": "Returns a paged public content index across supported source owners. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns a paged public content index across supported source owners. Any signed-in user may call this.",
         "operationId": "listContent",
         "parameters": [
           {
@@ -4617,7 +4613,7 @@
     },
     "/v1/content/search": {
       "post": {
-        "description": "Searches news, posts, repositories, sites, and papers published by or about companies and people from a plain-English query. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Searches news, posts, repositories, sites, and papers published by or about companies and people from a plain-English query. Any signed-in user may call this.",
         "operationId": "searchContent",
         "parameters": [
           {
@@ -5720,7 +5716,7 @@
     },
     "/v1/entities/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.record.id is the company; read its detail with entities get --entity-id. NO_MATCH: no record you can see is this company; create it, using officialUrl as its website when present. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether it is new; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use entities lookup-exact get. Example: entities lookup --name \"Acme AI\" --url https://acme.ai --location \"Austin, TX\". Output: --text (default) is compact text, --json the full envelope, --data the Identification object for scripts.",
+        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.record.id is the company; read its detail with GET /v1/entities/{entityId}. NO_MATCH: no record you can see is this company; create it, using officialUrl as its website when present. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether it is new; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use GET /v1/entities/lookup-exact. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"],\"location\":\"Austin, TX\"}.",
         "operationId": "lookupEntity",
         "parameters": [
           {
@@ -5919,7 +5915,7 @@
     },
     "/v1/entities/lookup-batch": {
       "post": {
-        "description": "Returns a page envelope of entity detail records by id, slug, and/or current joined URL. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. For public reads totalElements counts the entities visible to the caller, so requested identifiers that do not resolve or fail the public visibility filter are excluded. For privileged reads totalElements counts the requested identifiers that resolved to an entity id, which can exceed the number of records returned when an id no longer exists. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Returns a page envelope of entity detail records by id, slug, and/or current joined URL. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. For public reads totalElements counts the entities visible to the caller, so requested identifiers that do not resolve or fail the public visibility filter are excluded. For privileged reads totalElements counts the requested identifiers that resolved to an entity id, which can exceed the number of records returned when an id no longer exists. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "lookupEntityBatch",
         "parameters": [
           {
@@ -6134,7 +6130,7 @@
     },
     "/v1/entities/lookup-exact": {
       "get": {
-        "description": "Exact read: returns the full detail of the one entity a slug, URL, or domain proves, and 404 or 409 instead of guessing. To identify a company by name and clues, use the POST lookup (CLI entities lookup). Detail qualifiers and visibility rules apply. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Exact read: returns the full detail of the one entity a slug, URL, or domain proves, and 404 or 409 instead of guessing. To identify a company by name and clues, use the POST lookup (CLI entities lookup). Detail qualifiers and visibility rules apply. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "getEntityLookup",
         "parameters": [
           {
@@ -6346,7 +6342,7 @@
                 }
               }
             },
-            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — search POST /v1/entities/search with textSearch first (searchEntities). An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true; CLI: `--include-private` true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
+            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — search POST /v1/entities/search with textSearch first (searchEntities). An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
           "406": {
             "content": {
@@ -6444,7 +6440,7 @@
     },
     "/v1/entities/lookup-matches": {
       "post": {
-        "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments). A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments). A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "lookupEntityMatches",
         "parameters": [
           {
@@ -6991,7 +6987,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted values for --type",
+        "summary": "List entity relationship types",
         "tags": [
           "Entity Relationships"
         ],
@@ -7421,7 +7417,7 @@
     },
     "/v1/entities/search": {
       "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with an EntityListFilter JSON body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain English use search natural entities `--query` (POST /v1/search/natural/entities). Semantic results can emit signed cursors; reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with semanticQuery or cursor; count-only pages have no content; read totalElements.",
+        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. Semantic results can emit signed cursors; reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with semanticQuery or cursor; count-only pages have no content; read totalElements.",
         "operationId": "searchEntities",
         "parameters": [
           {
@@ -8306,6 +8302,7 @@
             }
           },
           {
+            "description": "Per-round amount-raised ranges in USD. Use plain JSON numbers.",
             "in": "query",
             "name": "fundraiseActivity.amountRaisedRange",
             "required": false,
@@ -8318,6 +8315,7 @@
             }
           },
           {
+            "description": "Investor-level amount-invested ranges in the transaction currency. Use plain JSON numbers.",
             "in": "query",
             "name": "fundraiseActivity.amountInvestedRange",
             "required": false,
@@ -8330,6 +8328,7 @@
             }
           },
           {
+            "description": "Total-raised ranges across all rounds in USD. Use plain JSON numbers.",
             "in": "query",
             "name": "fundraiseActivity.totalRaisedRange",
             "required": false,
@@ -8342,6 +8341,7 @@
             }
           },
           {
+            "description": "Post-money valuation ranges in USD.",
             "in": "query",
             "name": "fundraiseActivity.valuationRange",
             "required": false,
@@ -8354,6 +8354,7 @@
             }
           },
           {
+            "description": "Last-round-year ranges for each entity's most recent fundraise round.",
             "in": "query",
             "name": "fundraiseActivity.lastRoundYearRange",
             "required": false,
@@ -8380,6 +8381,7 @@
             }
           },
           {
+            "description": "Distinct fundraise-deal count ranges for an investor, with inclusive integer bounds.",
             "in": "query",
             "name": "fundraiseActivity.investorActivity.totalInvestmentRange",
             "required": false,
@@ -8392,6 +8394,7 @@
             }
           },
           {
+            "description": "Total USD amount-invested ranges with inclusive bounds.",
             "in": "query",
             "name": "fundraiseActivity.investorActivity.totalAmountInvestedUsdRange",
             "required": false,
@@ -8404,6 +8407,7 @@
             }
           },
           {
+            "description": "Average USD amount-invested ranges with inclusive bounds.",
             "in": "query",
             "name": "fundraiseActivity.investorActivity.averageAmountInvestedUsdRange",
             "required": false,
@@ -8416,6 +8420,7 @@
             }
           },
           {
+            "description": "Largest USD amount-invested ranges with inclusive bounds.",
             "in": "query",
             "name": "fundraiseActivity.investorActivity.largestAmountInvestedUsdRange",
             "required": false,
@@ -8428,6 +8433,7 @@
             }
           },
           {
+            "description": "Smallest USD amount-invested ranges with inclusive bounds.",
             "in": "query",
             "name": "fundraiseActivity.investorActivity.smallestAmountInvestedUsdRange",
             "required": false,
@@ -8863,7 +8869,7 @@
     },
     "/v1/entities/{entityId}": {
       "get": {
-        "description": "Returns entity detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Returns entity detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "getEntity",
         "parameters": [
           {
@@ -9930,7 +9936,7 @@
     },
     "/v1/entities/{entityId}/blog-posts/{blogPostId}": {
       "get": {
-        "description": "Returns one entity-owned external link by id. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns one entity-owned external link by id. Any signed-in user may call this.",
         "operationId": "getEntityBlogPost",
         "parameters": [
           {
@@ -10497,7 +10503,7 @@
     },
     "/v1/entities/{entityId}/content": {
       "get": {
-        "description": "Returns news articles, blog posts, repositories, websites, and pages related to an entity. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns news articles, blog posts, repositories, websites, and pages related to an entity. Any signed-in user may call this.",
         "operationId": "listEntityContent",
         "parameters": [
           {
@@ -10752,7 +10758,7 @@
     },
     "/v1/entities/{entityId}/content/facets": {
       "get": {
-        "description": "Counts one entity's content cards by topic and content type across the whole index, so filters show exact totals before every page loads. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Counts one entity's content cards by topic and content type across the whole index, so filters show exact totals before every page loads. Any signed-in user may call this.",
         "operationId": "listEntityContentFacets",
         "parameters": [
           {
@@ -10927,7 +10933,7 @@
     },
     "/v1/entities/{entityId}/content/search": {
       "post": {
-        "description": "Translates plain-English constraints for one entity's content index. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Translates plain-English constraints for one entity's content index. Any signed-in user may call this.",
         "operationId": "searchEntityContent",
         "parameters": [
           {
@@ -11566,7 +11572,7 @@
     },
     "/v1/entities/{entityId}/fundraise-investor-joins": {
       "get": {
-        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. API and MCP request bodies use JSON numbers such as 220000 or 123456.78; CLI callers use `--amount-invested` 220000 or `--amount-invested` 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with `--investor-entity-id` or `--investor-entity-slug`. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people, then create the join.",
+        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people, then create the join.",
         "operationId": "listEntityFundraiseInvestorJoins",
         "parameters": [
           {
@@ -12386,7 +12392,7 @@
     },
     "/v1/entities/{entityId}/investments": {
       "get": {
-        "description": "Lists investments made by the requesting investor entity. Use entityId to select the investor, then filter by round, dateFrom/dateTo, minAmount/maxAmount, and latestPerEntity. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or `--sort` amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values. Deep traversal uses cursor: pass the prior X-Next-Cursor value as cursor and reuse the same filters and sort.",
+        "description": "Lists investments made by the requesting investor entity. Use entityId to select the investor, then filter by round, dateFrom/dateTo, minAmount/maxAmount, and latestPerEntity. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values. Deep traversal uses cursor: pass the prior X-Next-Cursor value as cursor and reuse the same filters and sort.",
         "operationId": "listEntityInvestments",
         "parameters": [
           {
@@ -12807,7 +12813,7 @@
     },
     "/v1/entities/{entityId}/investors": {
       "get": {
-        "description": "Lists entity investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or `--sort` amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "description": "Lists entity investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
         "operationId": "listEntityInvestors",
         "parameters": [
           {
@@ -13679,7 +13685,7 @@
     },
     "/v1/entities/{entityId}/person-investors": {
       "get": {
-        "description": "Lists person investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc or `--sort` amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "description": "Lists person investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
         "operationId": "listEntityPersonInvestors",
         "parameters": [
           {
@@ -15875,7 +15881,7 @@
     },
     "/v1/entities/{entityId}/slug": {
       "get": {
-        "description": "Returns the current slug, canonical path, and public URL. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns the current slug, canonical path, and public URL. Any signed-in user may call this.",
         "operationId": "getEntitySlug",
         "parameters": [
           {
@@ -17682,7 +17688,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Any signed-in user may call this.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -17865,7 +17871,7 @@
     },
     "/v1/help/instructions/manifest": {
       "get": {
-        "description": "Returns the latest-pointer manifest of versioned prompt and skill documents. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns the latest-pointer manifest of versioned prompt and skill documents. Any signed-in user may call this.",
         "operationId": "getAgentInstructionManifest",
         "responses": {
           "200": {
@@ -18013,7 +18019,7 @@
     },
     "/v1/help/instructions/{kind}/{name}": {
       "get": {
-        "description": "Returns the current version and markdown content for one prompt, skill, or agent. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns the current version and markdown content for one prompt, skill, or agent. Any signed-in user may call this.",
         "operationId": "getAgentInstruction",
         "parameters": [
           {
@@ -18192,7 +18198,7 @@
     },
     "/v1/help/instructions/{kind}/{name}/versions/{version}": {
       "get": {
-        "description": "Returns an immutable prompt, skill, or agent document by name and version. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns an immutable prompt, skill, or agent document by name and version. Any signed-in user may call this.",
         "operationId": "getAgentInstructionVersion",
         "parameters": [
           {
@@ -18380,7 +18386,7 @@
     },
     "/v1/lookup": {
       "post": {
-        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of entities lookup and people lookup both run. Returns MATCHED when exactly one kind matches and the other finds nothing, NO_MATCH when neither finds the subject, and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched. Takes the same fields as entities lookup and people lookup. Example: lookup --name \"Acme AI\" --url https://acme.ai. Exact id only: lookup --legacy --name eV1StGXR8Z5a. Output: --text (default) is compact text, --json the full envelope, --data the Identification object for scripts.",
+        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when exactly one kind matches and the other finds nothing, NO_MATCH when neither finds the subject, and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -18588,7 +18594,7 @@
     },
     "/v1/media/identicons/{seed}.svg": {
       "get": {
-        "description": "Returns cached fallback SVG.",
+        "description": "Returns the placeholder monogram SVG for a seed at the legacy identicon path; /images/monograms/{seed}.svg serves the same image.",
         "operationId": "getGeneratedMonogram",
         "parameters": [
           {
@@ -18731,7 +18737,7 @@
     },
     "/v1/metrics": {
       "get": {
-        "description": "Global metrics snapshot. Companies tracked, total funding, trailing 30-day funding, investors, people, countries, cities. Cached for high-traffic homepage reads.",
+        "description": "Global metrics snapshot. Companies tracked, total funding, trailing 30-day funding, investors, people, countries, cities. Totals are a periodically refreshed snapshot, so they can trail recent changes.",
         "operationId": "getSystemGlobalMetrics",
         "responses": {
           "200": {
@@ -18859,6 +18865,17 @@
         "operationId": "listNews",
         "parameters": [
           {
+            "description": "The size of the page to be returned; default and maximum 25 for the standard list, where larger values are reduced to that maximum. Entity, person, author-initial, and thin-mode reads accept larger pages.",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 25,
+              "minimum": 1
+            }
+          },
+          {
             "description": "Full-text news search term.",
             "in": "query",
             "name": "search",
@@ -18879,6 +18896,7 @@
             }
           },
           {
+            "description": "Owning entity id; set only when personId is absent.",
             "in": "query",
             "name": "owner.entityId",
             "required": false,
@@ -18889,6 +18907,7 @@
             }
           },
           {
+            "description": "Owning person id; set only when entityId is absent.",
             "in": "query",
             "name": "owner.personId",
             "required": false,
@@ -18953,7 +18972,7 @@
           },
           {
             "deprecated": true,
-            "description": "Deprecated author-initial alias; use authorInitial.",
+            "description": "Deprecated: use the author-initial filter.",
             "in": "query",
             "name": "letter",
             "required": false,
@@ -18962,12 +18981,15 @@
             }
           },
           {
-            "description": "Response mode; use thin for cursor-paginated index reads.",
+            "description": "Response mode: thin returns cursor-paginated index rows; omit for the standard list.",
             "in": "query",
             "name": "mode",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "thin"
+              ]
             }
           },
           {
@@ -18979,17 +19001,6 @@
               "type": "integer",
               "default": 0,
               "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 25,
-              "minimum": 1
             }
           },
           {
@@ -20345,7 +20356,7 @@
     },
     "/v1/people/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.record.id is the person; read their detail with people get --person-id. NO_MATCH: no record you can see is this person; create them. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether the person is new; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use people lookup-exact get. Example: people lookup --name \"Jane Doe\" --context \"CEO at Acme AI\". Output: --text (default) is compact text, --json the full envelope, --data the Identification object for scripts.",
+        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.record.id is the person; read their detail with GET /v1/people/{personId}. NO_MATCH: no record you can see is this person; create them. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether the person is new; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
         "operationId": "lookupPerson",
         "parameters": [
           {
@@ -20544,7 +20555,7 @@
     },
     "/v1/people/lookup-batch": {
       "post": {
-        "description": "Enrich multiple people by id or slug with optional url, association, and address. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Enrich multiple people by id or slug with optional url, association, and address. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "lookupPersonBatch",
         "parameters": [
           {
@@ -20759,7 +20770,7 @@
     },
     "/v1/people/lookup-exact": {
       "get": {
-        "description": "Exact read: returns the full detail of the one person a slug, URL, or candidate signals prove, and 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI people lookup). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Exact read: returns the full detail of the one person a slug, URL, or candidate signals prove, and 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI people lookup). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "getPersonLookup",
         "parameters": [
           {
@@ -21692,7 +21703,7 @@
     },
     "/v1/people/{personId}": {
       "get": {
-        "description": "Returns person detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Service-credential (client secret or admin API key) and anonymous reads are never charged.",
+        "description": "Returns person detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
         "operationId": "getPerson",
         "parameters": [
           {
@@ -22397,7 +22408,7 @@
     },
     "/v1/people/{personId}/blog-posts/{blogPostId}": {
       "get": {
-        "description": "Returns one person-owned external link by id. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns one person-owned external link by id. Any signed-in user may call this.",
         "operationId": "getPersonBlogPost",
         "parameters": [
           {
@@ -22579,7 +22590,7 @@
     },
     "/v1/people/{personId}/content": {
       "get": {
-        "description": "Returns news articles, blog posts, repositories, websites, and pages related to a person. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Returns news articles, blog posts, repositories, websites, and pages related to a person. Any signed-in user may call this.",
         "operationId": "listPersonContent",
         "parameters": [
           {
@@ -22834,7 +22845,7 @@
     },
     "/v1/people/{personId}/content/facets": {
       "get": {
-        "description": "Counts one person's content cards by topic and content type across the whole index, so filters show exact totals before every page loads. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Counts one person's content cards by topic and content type across the whole index, so filters show exact totals before every page loads. Any signed-in user may call this.",
         "operationId": "listPersonContentFacets",
         "parameters": [
           {
@@ -23009,7 +23020,7 @@
     },
     "/v1/people/{personId}/content/search": {
       "post": {
-        "description": "Translates plain-English constraints for one person's content index. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
+        "description": "Translates plain-English constraints for one person's content index. Any signed-in user may call this.",
         "operationId": "searchPersonContent",
         "parameters": [
           {
@@ -24040,7 +24051,7 @@
     },
     "/v1/people/{personId}/investments": {
       "get": {
-        "description": "Returns a paginated investment portfolio for a person with investorAttribution. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amount. Valid sort syntax is sort=amountInvested,desc or --sort amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "description": "Returns a paginated investment portfolio for a person with investorAttribution. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amount. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
         "operationId": "listPersonInvestments",
         "parameters": [
           {
@@ -26081,7 +26092,7 @@
     "/v1/resolve/{token}": {
       "get": {
         "deprecated": true,
-        "description": "Deprecated: use lookup --legacy (POST /v1/lookup?legacy=true with body {\"name\":\"<token>\"}). Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners. A name or website URL is not a token; resolve it with the entity or person lookup.",
+        "description": "Deprecated: use POST /v1/lookup?legacy=true with body {\"name\":\"<token>\"}. Resolve any identifier token to its canonical entity or person. Tries UUID, then the stable public handle, then external registry ids, then the slug (with redirects). Returns 404 when nothing matches and 409 when an external id maps to multiple owners. A name or website URL is not a token; resolve it with the entity or person lookup.",
         "operationId": "getResolvedHandle",
         "parameters": [
           {
@@ -26868,7 +26879,7 @@
     },
     "/v1/search/natural/entities": {
       "post": {
-        "description": "Translate a plain-English company, startup, investor, investment firm, or investment manager search into the canonical EntityFilter contract, execute the existing entity list engine, and return both the interpretation and ranked entity list page. Unsupported constraints are named in the interpretation instead of being silently ignored. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset. CLI: search natural entities `--query` 'AI infrastructure companies founded since 2020' `--size` 3. The query accepts plain English; `--size` limits the page, `--page` starts at 0, and `--year-founded-range-min` 2020 imposes a hard founding-year constraint. Use `--include-private` false for publicly visible results and search natural entities `--help` for all available flags.",
+        "description": "Translate a plain-English company, startup, investor, investment firm, or investment manager search into the canonical EntityFilter contract, execute the existing entity list engine, and return both the interpretation and ranked entity list page. Unsupported constraints are named in the interpretation instead of being silently ignored. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset. Example: search.query 'AI infrastructure companies founded since 2020' with size=3. The query accepts plain English; size limits the page, page starts at 0, and filter.yearFoundedRange [{\"min\":2020}] imposes a hard founding-year constraint. Set includePrivate=false for publicly visible results.",
         "operationId": "searchNaturalEntities",
         "parameters": [
           {
@@ -27530,358 +27541,9 @@
         }
       }
     },
-    "/v1/slug-redirects": {
-      "get": {
-        "description": "Lists redirects whose newUrl targets the record's current public URL. Bearer access requires ROLE_ADMIN or ROLE_CLIENT; blog and content redirects answer 403 unless the caller may view private records.",
-        "operationId": "listSlugRedirects",
-        "parameters": [
-          {
-            "description": "Type of the record whose redirects are listed",
-            "in": "query",
-            "name": "resourceType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/SlugResource"
-            }
-          },
-          {
-            "description": "Record id: entity or person UUID, or news, blog, or page id",
-            "in": "query",
-            "name": "resourceId",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 20,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PageUrlSlugRedirect"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "List a record's slug redirects",
-        "tags": [
-          "URL Slug Redirects"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/slug-redirects/lookup": {
-      "get": {
-        "description": "Read-only public-path resolver used before front-end page rendering so changed slug, entity-family, and Business Line parent-family URLs return a permanent HTTP redirect to the current canonical public path, while missing slug URLs return a real 404 before the App Router starts streaming. One profile sub-path segment is preserved across family redirects; the front-end owns the tab inventory. Direct product/service alias paths /companies/products-services/{slug} return 204 for a public Product/Service with a non-hidden eligible provider, with curated alias redirect rows taking precedence; a 404 on a slug-backed path can also mean the record exists but is not yet publicly visible. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "lookupSlugRedirect",
-        "parameters": [
-          {
-            "description": "Public site path, such as /companies/old-slug",
-            "in": "query",
-            "name": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "301": {
-            "description": "Permanent redirect to the canonical public route.",
-            "headers": {
-              "Location": {
-                "description": "Redirect target",
-                "style": "simple"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Resolve slug redirect path",
-        "tags": [
-          "URL Slug Redirects"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/status": {
       "get": {
-        "description": "Returns Better Stack uptime SLA. Public — callable with zero credentials. Local CLI auth provenance is reported by its auth status builtin, which calls this endpoint for uptime and resolves credential sources locally.",
+        "description": "Returns the API's uptime SLA and the identity of the served operation set. Callable without credentials, so it confirms the API is reachable.",
         "operationId": "getSystemStatus",
         "responses": {
           "200": {
@@ -28415,193 +28077,13 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted values for --url-type",
+        "summary": "List URL types",
         "tags": [
           "URL Links"
         ],
         "x-aventure-tool": {
           "auth": "none"
         },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/web/search": {
-      "post": {
-        "description": "Runs a live web search through SerpAPI, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Bearer access requires ROLE_ADMIN or ROLE_CLIENT.",
-        "operationId": "searchWeb",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Search"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/WebSearch"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict",
-            "x-aventure-standard-response": true
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Search the live web",
-        "tags": [
-          "Search"
-        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -28738,8 +28220,8 @@
               "The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt.",
               "Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle.",
               "Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation.",
-              "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-run with JSON body input via --from-file or stdin, or ANSI-C $'...' quoting; use allowSuspectedShellStrip only when the value is intentional.",
-              "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-run with JSON body input via --from-file or stdin, or ANSI-C $'...' quoting; use allowSuspectedShellStrip only when the value is intentional.",
+              "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
+              "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
               "A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal.",
               "JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error).",
               "JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error).",
@@ -28766,7 +28248,7 @@
               "Stored source-document raw bytes could not be served: the row's inline-or-R2 raw authority is incomplete or failed digest verification. Agent action: surface; the stored authority needs operator reconciliation before this body can be read.",
               "A source-document capture stopped before retaining a provider response over this service's configured byte limit. Agent action: this is a designed containment boundary, not a provider outage or a service defect; do not retry the same request expecting a different outcome.",
               "News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking.",
-              "Search provider (e.g., SerpAPI) is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed.",
+              "The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed.",
               "Search provider call failed. Agent action: surface; provider outages affect search endpoints only.",
               "SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or rate limiting affect the public-company preview endpoint only.",
               "GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only.",
@@ -29933,7 +29415,7 @@
       },
       "BillingCatalog": {
         "type": "object",
-        "description": "Every self-serve subscription tier with its monthly allowance caps, every plan Checkout sells, and the prices of usage past those caps. The operator-only Unlimited tier is omitted.",
+        "description": "Every self-serve subscription tier with its monthly allowance caps, every plan Checkout sells, and the prices of usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.",
         "properties": {
           "additionalUsage": {
             "type": "array",
@@ -30839,6 +30321,22 @@
                 "type": "null"
               }
             ]
+          },
+          "matchConfidence": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Decision-model confidence, 0 to 1, in its pick: the candidate it named as the subject, or, when it picked none, that no candidate is. Present whenever a judgment ran, including a none pick; absent when no judgment ran. The kind-agnostic lookup reports the side whose answer it returns."
+          },
+          "matchEvidenceProbability": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Decision-model probability, 0 to 1, that the evidence can tell the subject apart from namesakes. Absent when no judgment ran. The kind-agnostic lookup reports the side whose answer it returns."
           },
           "officialUrl": {
             "type": [
@@ -32791,6 +32289,16 @@
             "format": "int32",
             "description": "Retry attempt counter"
           },
+          "chassis": {
+            "$ref": "#/components/schemas/HarnessChassis",
+            "description": "Agent loop this run executes on",
+            "x-aventure-detail": true
+          },
+          "chassisRouted": {
+            "type": "boolean",
+            "description": "True when the chassis router, not a caller, picked `chassis`",
+            "x-aventure-detail": true
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -32855,6 +32363,11 @@
               "null"
             ],
             "description": "Latest enrich-loop status as an opaque JSON string",
+            "x-aventure-detail": true
+          },
+          "llmApi": {
+            "$ref": "#/components/schemas/HarnessLlmApi",
+            "description": "Gateway wire API every LLM call of this run uses",
             "x-aventure-detail": true
           },
           "maxIteration": {
@@ -32945,12 +32458,15 @@
         },
         "required": [
           "attempt",
+          "chassis",
+          "chassisRouted",
           "createdAt",
           "environment",
           "hasSourceDocument",
           "id",
           "iteration",
           "lane",
+          "llmApi",
           "maxIteration",
           "maxScoutConcurrent",
           "mode",
@@ -35552,66 +35068,9 @@
           "ticker"
         ]
       },
-      "SlugResource": {
-        "type": "string",
-        "description": "Resource type whose slug is being changed",
-        "enum": [
-          "entity",
-          "person",
-          "news",
-          "blog",
-          "content"
-        ]
-      },
-      "PageUrlSlugRedirect": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/UrlSlugRedirect"
-            }
-          },
-          "empty": {
-            "type": "boolean"
-          },
-          "first": {
-            "type": "boolean"
-          },
-          "last": {
-            "type": "boolean"
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfElements": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageable": {
-            "$ref": "#/components/schemas/PageableObject"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
       "SystemStatus": {
         "type": "object",
-        "description": "Uptime SLA from Better Stack and the identity of the served operation set",
+        "description": "Uptime SLA and the identity of the served operation set",
         "properties": {
           "operationFingerprint": {
             "type": "string",
@@ -35620,7 +35079,7 @@
           },
           "uptime": {
             "$ref": "#/components/schemas/Uptime",
-            "description": "Uptime SLA data from Better Stack monitoring"
+            "description": "Uptime SLA data from external uptime monitoring"
           }
         },
         "required": [
@@ -35698,206 +35157,6 @@
           "hostDomain"
         ]
       },
-      "Search": {
-        "type": "object",
-        "description": "Live web search request with cache controls",
-        "properties": {
-          "bypassCache": {
-            "type": "boolean",
-            "default": false,
-            "description": "Skip cache lookup and refresh from the search provider"
-          },
-          "cacheKey": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Stable lookup text for cache keying when generated search text varies between runs",
-            "example": "OpenAI"
-          },
-          "language": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Search language code",
-            "example": "en"
-          },
-          "region": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Search region code",
-            "example": "us"
-          },
-          "resultLimit": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Maximum number of normalized results to keep",
-            "example": 5
-          },
-          "search": {
-            "type": "string",
-            "description": "Search text sent to the upstream web search provider",
-            "example": "OpenAI latest funding news"
-          },
-          "source": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Optional caller identity for source-document attribution and abuse triage. Any non-blank string up to 64 characters is accepted and persisted with the resolved request context.",
-            "maxLength": 64
-          }
-        },
-        "required": [
-          "search"
-        ]
-      },
-      "WebSearch": {
-        "type": "object",
-        "description": "Live web search result with its backing source-document row and normalized items",
-        "properties": {
-          "document": {
-            "$ref": "#/components/schemas/SourceDocumentList",
-            "description": "Source-document ledger row backing this result"
-          },
-          "result": {
-            "type": "array",
-            "description": "Normalized result items in provider rank order",
-            "items": {
-              "$ref": "#/components/schemas/SearchHit"
-            }
-          },
-          "search": {
-            "$ref": "#/components/schemas/Search",
-            "description": "Web search request represented by this result"
-          }
-        },
-        "required": [
-          "document",
-          "result",
-          "search"
-        ]
-      },
-      "SourceDocumentList": {
-        "type": "object",
-        "description": "Metadata-only ledger row for source-document lists",
-        "properties": {
-          "cacheHitCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "documentType": {
-            "type": "string"
-          },
-          "expiresAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "httpStatus": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Document id"
-          },
-          "lastAccessedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "provider": {
-            "type": "string"
-          },
-          "providerRequestId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "rawByteCount": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64"
-          },
-          "rawCharset": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "rawMediaType": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "sourceKey": {
-            "type": "string",
-            "description": "Canonical fetch identity: canonical URL, query hash, or dataset + external id"
-          },
-          "upstreamContentEncoding": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "cacheHitCount",
-          "createdAt",
-          "documentType",
-          "id",
-          "provider",
-          "sourceKey"
-        ]
-      },
-      "SearchHit": {
-        "type": "object",
-        "description": "One normalized web-search hit with its title, URL, snippet, and relevance score",
-        "properties": {
-          "relevanceScore": {
-            "type": "number",
-            "format": "double"
-          },
-          "snippet": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "relevanceScore",
-          "snippet",
-          "title",
-          "url"
-        ]
-      },
       "UniqueIdOwnerScope": {
         "type": "string",
         "description": "Owner kind a unique-id type can attach to: entity or person.",
@@ -35908,7 +35167,7 @@
       },
       "Uptime": {
         "type": "object",
-        "description": "Uptime SLA data from Better Stack monitoring",
+        "description": "Uptime SLA data from external uptime monitoring",
         "properties": {
           "availability": {
             "type": [
@@ -35942,89 +35201,6 @@
             "format": "int32",
             "description": "Number of incidents",
             "example": 82
-          }
-        }
-      },
-      "UrlSlugRedirect": {
-        "type": "object",
-        "description": "URL slug redirect row",
-        "properties": {
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Redirect row creation timestamp"
-          },
-          "newUrl": {
-            "type": "string",
-            "description": "New public URL, e.g., /companies/new-slug"
-          },
-          "oldUrl": {
-            "type": "string",
-            "description": "Old public URL, e.g., /companies/old-slug"
-          },
-          "redirectId": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Redirect row id",
-            "example": 42
-          },
-          "redirectType": {
-            "type": "integer",
-            "format": "int32",
-            "description": "HTTP redirect type; permanent 301"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Redirect row update timestamp"
-          }
-        },
-        "required": [
-          "createdAt",
-          "newUrl",
-          "oldUrl",
-          "redirectId",
-          "redirectType",
-          "updatedAt"
-        ]
-      },
-      "PageableObject": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "paged": {
-            "type": "boolean"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "unpaged": {
-            "type": "boolean"
-          }
-        }
-      },
-      "SortObject": {
-        "type": "object",
-        "properties": {
-          "empty": {
-            "type": "boolean"
-          },
-          "sorted": {
-            "type": "boolean"
-          },
-          "unsorted": {
-            "type": "boolean"
           }
         }
       },
@@ -36217,7 +35393,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Canonical entity UUID"
+            "description": "Owning entity id; set only when personId is absent."
           },
           "personId": {
             "type": [
@@ -36225,7 +35401,7 @@
               "null"
             ],
             "format": "uuid",
-            "description": "Canonical person UUID"
+            "description": "Owning person id; set only when entityId is absent."
           }
         }
       },
@@ -36255,6 +35431,46 @@
           "person",
           "similarity"
         ]
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          }
+        }
       },
       "Person": {
         "type": "object",
@@ -37558,30 +36774,35 @@
         "properties": {
           "averageAmountInvestedUsdRange": {
             "type": "array",
+            "description": "Average USD amount-invested ranges with inclusive bounds.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
           "largestAmountInvestedUsdRange": {
             "type": "array",
+            "description": "Largest USD amount-invested ranges with inclusive bounds.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
           "smallestAmountInvestedUsdRange": {
             "type": "array",
+            "description": "Smallest USD amount-invested ranges with inclusive bounds.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
           "totalAmountInvestedUsdRange": {
             "type": "array",
+            "description": "Total USD amount-invested ranges with inclusive bounds.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
           "totalInvestmentRange": {
             "type": "array",
+            "description": "Distinct fundraise-deal count ranges for an investor, with inclusive integer bounds.",
             "items": {
               "$ref": "#/components/schemas/IntRange"
             }
@@ -38093,6 +37314,17 @@
           "meetsRequirements",
           "violation",
           "wordCount"
+        ]
+      },
+      "SlugResource": {
+        "type": "string",
+        "description": "Resource type whose slug is being changed",
+        "enum": [
+          "entity",
+          "person",
+          "news",
+          "blog",
+          "content"
         ]
       },
       "EntitySimilarityResult": {
@@ -38801,6 +38033,14 @@
           "Token"
         ]
       },
+      "HarnessChassis": {
+        "type": "string",
+        "description": "Agent loop a harness run executes on: the Claude Agent SDK or the Pi agent SDK",
+        "enum": [
+          "claude-agent-sdk",
+          "pi-agent-sdk"
+        ]
+      },
       "HarnessRunEnvironment": {
         "type": "string",
         "description": "Owning API environment",
@@ -38817,6 +38057,15 @@
         "enum": [
           "interactive",
           "background"
+        ]
+      },
+      "HarnessLlmApi": {
+        "type": "string",
+        "description": "Gateway wire API for a run's LLM calls: Anthropic Messages, OpenAI Chat Completions, or OpenAI Responses",
+        "enum": [
+          "anthropic",
+          "openai-chat",
+          "openai-responses"
         ]
       },
       "HarnessRunStatus": {
@@ -39357,12 +38606,14 @@
         "properties": {
           "amountInvestedRange": {
             "type": "array",
+            "description": "Investor-level amount-invested ranges in the transaction currency. Use plain JSON numbers.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
           "amountRaisedRange": {
             "type": "array",
+            "description": "Per-round amount-raised ranges in USD. Use plain JSON numbers.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
@@ -39380,6 +38631,7 @@
           },
           "lastRoundYearRange": {
             "type": "array",
+            "description": "Last-round-year ranges for each entity's most recent fundraise round.",
             "items": {
               "$ref": "#/components/schemas/IntRange"
             }
@@ -39393,12 +38645,14 @@
           },
           "totalRaisedRange": {
             "type": "array",
+            "description": "Total-raised ranges across all rounds in USD. Use plain JSON numbers.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
           "valuationRange": {
             "type": "array",
+            "description": "Post-money valuation ranges in USD.",
             "items": {
               "$ref": "#/components/schemas/DecimalRange"
             }
@@ -39670,9 +38924,29 @@
         "type": "object",
         "description": "One existing record considered as the subject.",
         "properties": {
+          "duplicateBasis": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "How this record was checked as the picked record stored again; absent when it was not checked.",
+            "enum": [
+              "STUB",
+              "SHARED_FACT",
+              "JUDGED"
+            ]
+          },
+          "duplicateProbability": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED."
+          },
           "owner": {
             "$ref": "#/components/schemas/EntityPersonOwner",
-            "description": "Whether the record is a company (entityId) or a person (personId); read it with entities get --entity-id or people get --person-id."
+            "description": "Whether the record is a company (entityId) or a person (personId); read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}."
           },
           "probability": {
             "type": [
@@ -41840,7 +41114,7 @@
     "securitySchemes": {
       "bearerAuth": {
         "bearerFormat": "JWT or opaque Clerk credential",
-        "description": "User bearer token: Clerk session JWT, Clerk OAuth access token, or Clerk API key",
+        "description": "User bearer token: an aVenture API key, an OAuth access token, or a signed-in session token",
         "scheme": "bearer",
         "type": "http"
       },

@@ -18,9 +18,9 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export const EntityPersonOwnerSchema = z.object({
-    /** Canonical entity UUID */
+    /** Owning entity id; set only when personId is absent. */
     entityId: z.uuid().nullish(),
-    /** Canonical person UUID */
+    /** Owning person id; set only when entityId is absent. */
     personId: z.uuid().nullish(),
 });
 //# sourceMappingURL=person-owner.js.map

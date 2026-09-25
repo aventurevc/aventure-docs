@@ -11118,57 +11118,5 @@ type PageUniqueIdDefinition = z.infer<typeof PageUniqueIdSchemaDefinition>;
  */
 export declare const PageUniqueIdSchema: z.ZodType<PageUniqueIdDefinition>;
 export type PageUniqueId = z.infer<typeof PageUniqueIdSchema>;
-declare const PageUrlSlugRedirectSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        createdAt: string;
-        newUrl: string;
-        oldUrl: string;
-        redirectId: number;
-        redirectType: number;
-        updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
-        createdAt: string;
-        newUrl: string;
-        oldUrl: string;
-        redirectId: number;
-        redirectType: number;
-        updatedAt: string;
-    }, unknown>>>>;
-    empty: z.ZodOptional<z.ZodBoolean>;
-    first: z.ZodOptional<z.ZodBoolean>;
-    last: z.ZodOptional<z.ZodBoolean>;
-    number: z.ZodOptional<z.ZodInt>;
-    numberOfElements: z.ZodOptional<z.ZodInt>;
-    pageable: z.ZodOptional<z.ZodObject<{
-        offset: z.ZodOptional<z.ZodNumber>;
-        paged: z.ZodOptional<z.ZodBoolean>;
-        pageNumber: z.ZodOptional<z.ZodInt>;
-        pageSize: z.ZodOptional<z.ZodInt>;
-        sort: z.ZodOptional<z.ZodObject<{
-            empty: z.ZodOptional<z.ZodBoolean>;
-            sorted: z.ZodOptional<z.ZodBoolean>;
-            unsorted: z.ZodOptional<z.ZodBoolean>;
-        }, z.core.$strip>>;
-        unpaged: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    size: z.ZodOptional<z.ZodInt>;
-    sort: z.ZodOptional<z.ZodObject<{
-        empty: z.ZodOptional<z.ZodBoolean>;
-        sorted: z.ZodOptional<z.ZodBoolean>;
-        unsorted: z.ZodOptional<z.ZodBoolean>;
-    }, z.core.$strip>>;
-    totalElements: z.ZodOptional<z.ZodNumber>;
-    totalPages: z.ZodOptional<z.ZodInt>;
-}, z.core.$strip>;
-type PageUrlSlugRedirectDefinition = z.infer<typeof PageUrlSlugRedirectSchemaDefinition>;
-/**
- * @openapiSchema PageUrlSlugRedirect
- * @endpoint GET /v1/slug-redirects
- * @contractShape pagination.page-url-slug-redirect
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export declare const PageUrlSlugRedirectSchema: z.ZodType<PageUrlSlugRedirectDefinition>;
-export type PageUrlSlugRedirect = z.infer<typeof PageUrlSlugRedirectSchema>;
 export {};
 //# sourceMappingURL=schemas.d.ts.map
