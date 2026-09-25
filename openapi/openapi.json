@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.1"
+    "version": "0.8.2"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -26687,7 +26687,7 @@
     },
     "/v1/search/link": {
       "get": {
-        "description": "Fetches the page at the supplied URL, identifies the single company, product, or person the page is primarily about, and returns the federated entity, person, and news results for that name together with the synthesized query itself. A page whose content cannot be read returns 404; a fetch or inference failure returns 503, never an empty result. For direct URL-to-record identity resolution use the entities lookup operation with the url instead.",
+        "description": "Fetches the page at the supplied URL, identifies the single company, product, or person the page is primarily about, and returns the federated entity, person, and news results for that name together with the synthesized query itself. A page whose content cannot be read returns 404; a fetch or inference failure returns a problem (503 only when a retry can succeed), never an empty result. For direct URL-to-record identity resolution use the entities lookup operation with the url instead.",
         "operationId": "searchLink",
         "parameters": [
           {
