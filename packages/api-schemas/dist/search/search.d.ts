@@ -13,7 +13,7 @@ type SearchDefinition = z.infer<typeof SearchSchemaDefinition>;
  * Live web search request with cache controls
  *
  * @openapiSchema Search
- * @endpoint POST /v1/search/web
+ * @endpoint POST /v1/web/search
  * @usedBySchema WebSearchSchema
  * @contractShape search.search
  * @contractRole canonical

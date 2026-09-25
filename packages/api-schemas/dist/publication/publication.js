@@ -23,7 +23,7 @@ const PublicationSchemaDefinition = z.object({
     summary: z.string().nullish(),
     /** Human title or best available display label. webPage rows restate the page URL when the crawl captured no label; renderers may humanize that fallback. */
     title: z.string(),
-    /** Single canonical topic key (web-crawl section vocabulary) or source category (repository language); null when the source has no classified topic. */
+    /** Single canonical topic key (web-crawl section or news-event topic) or source category (repository language); null when the source has no classified topic. */
     topic: z.string().nullish(),
     /** Publication row update instant when known. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
@@ -43,7 +43,6 @@ const PublicationSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @usedBySchema PagePublicationSchema
- * @usedBySchema PageResultPublicationSchema
  * @contractShape publication.publication
  * @contractRole canonical
  */

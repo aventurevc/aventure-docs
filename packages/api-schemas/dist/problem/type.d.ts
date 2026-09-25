@@ -41,6 +41,7 @@ export declare const ProblemTypeSchema: z.ZodEnum<{
     readonly PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed";
     readonly PRECONDITION_REQUIRED: "https://api.aventure.vc/errors/precondition-required";
     readonly BILLING_ALLOWANCE_EXHAUSTED: "https://api.aventure.vc/errors/billing-allowance-exhausted";
+    readonly BILLING_ADDITIONAL_USAGE_CAP_REACHED: "https://api.aventure.vc/errors/billing-additional-usage-cap-reached";
     readonly SUBSCRIPTION_REQUIRED: "https://api.aventure.vc/errors/subscription-required";
     readonly SERVICE_UNAVAILABLE: "https://api.aventure.vc/errors/service-unavailable";
     readonly MALFORMED_FORM_BODY: "https://api.aventure.vc/errors/malformed-form-body";

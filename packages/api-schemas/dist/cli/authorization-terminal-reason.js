@@ -20,7 +20,7 @@ export const CliAuthorizationTerminalReasonSchema = z.enum([
     "Clerk create response validation failed",
     "Credential issuance failed",
     "Credential issuance could not be recovered",
-    "Personal API-key quota reached",
+    "API-key quota reached",
     "Credential issuance lost its database claim",
     "Credential delivery encryption failed",
     "Credential issuance finalization was lost",

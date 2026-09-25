@@ -13,6 +13,7 @@ const EntityNaturalSearchSchemaDefinition = z.object({
  *
  * @openapiSchema EntityNaturalSearch
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search/natural/entities
  * @contractShape entity.natural-search
  * @contractRole canonical
  */

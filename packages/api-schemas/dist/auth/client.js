@@ -12,6 +12,8 @@ export const AuthClientSchema = z.object({
     authorizationServer: z.string(),
     /** Public OAuth client identifier */
     clientId: z.string(),
+    /** OAuth resource indicator accepted for this environment's MCP server */
+    mcpResource: z.string().nullish(),
     /** Registered loopback callback URI template */
     redirectUri: z.string(),
     /** OAuth resource indicator accepted by the API */

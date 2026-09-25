@@ -16,7 +16,7 @@ const ResolvedHandleSchemaDefinition = z.object({
         .nullish(),
 });
 /**
- * Canonical subject a universal-lookup token resolved to. Exactly one of owner.entityId / owner.personId is set. Echoes the subject's canonical public handle and slug. Fetch display fields with GET /v1/entities/detail or GET /v1/people/detail.
+ * Canonical subject a universal-lookup token resolved to. Exactly one of owner.entityId / owner.personId is set. Echoes the subject's canonical public handle and slug. Fetch display fields with GET /v1/entities/{entityId} or GET /v1/people/{personId}.
  *
  * @openapiSchema ResolvedHandle
  * @endpoint GET /v1/resolve/{token}

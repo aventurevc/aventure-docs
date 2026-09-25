@@ -1,7 +1,6 @@
 import { z } from "zod/v4";
 declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
     acquiredEntity: z.ZodObject<{
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;
@@ -52,7 +51,6 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
     acquirerEntity: z.ZodObject<{
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;

@@ -8,19 +8,18 @@ type IntRangeDefinition = z.infer<typeof IntRangeSchemaDefinition>;
  * Integer range for count-based filter criteria
  *
  * @openapiSchema IntRange
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/summary
- * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityFundraiseFilterCriteriaSchema
  * @usedBySchema EntityListFilterSchema

@@ -7,15 +7,16 @@ import { IntRangeSchema } from "../int/range.js";
  *
  * @openapiSchema InvestorActivityFilter
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema EntityFundraiseFilterCriteriaSchema
  * @usedBySchema PersonFilterSchema
  * @contractShape investor.activity-filter

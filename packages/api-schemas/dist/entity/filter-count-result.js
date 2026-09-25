@@ -9,7 +9,6 @@ const EntityFilterCountResultSchemaDefinition = z.object({
 /**
  * @openapiSchema EntityFilterCountResult
  * @endpoint GET /v1/entities/filters/counts
- * @endpoint POST /v1/entities/filters/counts
  * @contractShape entity.filter-count-result
  * @contractRole canonical
  */

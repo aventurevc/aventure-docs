@@ -9,7 +9,6 @@ type EntityTagCountDefinition = z.infer<typeof EntityTagCountSchemaDefinition>;
  *
  * @openapiSchema EntityTagCount
  * @endpoint GET /v1/entities/filters/counts
- * @endpoint POST /v1/entities/filters/counts
  * @usedBySchema EntityFilterCountResultSchema
  * @contractShape entity.tag-count
  * @contractRole canonical

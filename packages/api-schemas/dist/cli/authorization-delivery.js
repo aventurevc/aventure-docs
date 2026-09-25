@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { CliAuthorizationEncryptionAlgorithmSchema } from "./authorization-encryption-algorithm.js";
 /**
- * RSA-wrapped AES-256-GCM delivery of one personal API-key secret
+ * RSA-wrapped AES-256-GCM delivery of one API-key secret
  *
  * @openapiSchema CliAuthorizationDelivery
  * @endpoint POST /v1/auth/cli-authorizations/{cliAuthorizationId}/poll
@@ -15,7 +15,7 @@ export const CliAuthorizationDeliverySchema = z.object({
     algorithm: CliAuthorizationEncryptionAlgorithmSchema,
     /** Base64-encoded 16-byte AES-GCM authentication tag */
     authenticationTag: z.string(),
-    /** Base64-encoded encrypted UTF-8 personal API-key secret bytes */
+    /** Base64-encoded encrypted UTF-8 API-key secret bytes */
     ciphertext: z.string(),
     /** Base64-encoded 12-byte AES-GCM nonce */
     nonce: z.string(),

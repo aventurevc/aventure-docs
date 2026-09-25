@@ -42,6 +42,7 @@ export const ProblemTypeSchema = z.enum({
     PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed",
     PRECONDITION_REQUIRED: "https://api.aventure.vc/errors/precondition-required",
     BILLING_ALLOWANCE_EXHAUSTED: "https://api.aventure.vc/errors/billing-allowance-exhausted",
+    BILLING_ADDITIONAL_USAGE_CAP_REACHED: "https://api.aventure.vc/errors/billing-additional-usage-cap-reached",
     SUBSCRIPTION_REQUIRED: "https://api.aventure.vc/errors/subscription-required",
     SERVICE_UNAVAILABLE: "https://api.aventure.vc/errors/service-unavailable",
     MALFORMED_FORM_BODY: "https://api.aventure.vc/errors/malformed-form-body",

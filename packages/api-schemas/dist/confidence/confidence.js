@@ -6,15 +6,15 @@ import { z } from "zod/v4";
  * @openapiSchema Confidence
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/agents/help
- * @endpoint POST /v1/content/search
- * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/natural-search
- * @endpoint POST /v1/people/{personId}/content/search
+ * @endpoint POST /v1/help
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema AgentHelpSchema
  * @usedBySchema PersonSearchInterpretationSchema
- * @usedBySchema PublicationSearchInterpretationSchema
  * @usedBySchema SearchInterpretationSchema
  * @contractShape confidence.confidence
  * @contractRole canonical

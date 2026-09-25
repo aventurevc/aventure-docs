@@ -57,6 +57,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             isCurrent?: boolean | null | undefined;
             lastName?: string | null | undefined;
             letter?: string | null | undefined;
+            personId?: string[] | undefined;
             personName?: string[] | undefined;
             role?: string | null | undefined;
             search?: string | null | undefined;
@@ -129,6 +130,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             isCurrent?: boolean | null | undefined;
             lastName?: string | null | undefined;
             letter?: string | null | undefined;
+            personId?: string[] | undefined;
             personName?: string[] | undefined;
             role?: string | null | undefined;
             search?: string | null | undefined;
@@ -179,15 +181,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -234,15 +227,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -264,7 +248,9 @@ type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchRes
  * @openapiSchema PersonNaturalSearchResult
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema FederatedSearchSchema
  * @contractShape person.natural-search-result
  * @contractRole canonical

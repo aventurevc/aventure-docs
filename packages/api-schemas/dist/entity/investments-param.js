@@ -18,7 +18,7 @@ export const EntityInvestmentsParamSchema = PageParamSchema.extend({
     dateFrom: z.iso.date().optional(),
     /** Inclusive maximum announced date */
     dateTo: z.iso.date().optional(),
-    /** Privileged private readback scope. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret frontend reads stay public. */
+    /** Includes private fundraise data when the caller has private-visibility authority. Omit to use the caller's default visibility. */
     includePrivate: z.boolean().optional(),
     /** Return latest transaction per entity */
     latestPerEntity: z.boolean().optional(),

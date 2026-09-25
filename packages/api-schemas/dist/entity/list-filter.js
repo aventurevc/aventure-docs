@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityFilterLogoOptionSchema } from "./filter-logo-option.js";
 import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria.js";
 import { EntityListQualityGateSchema } from "./list-quality-gate.js";
+import { EntityOperatingStatusSchema } from "./operating-status.js";
 import { EntityTypeSchema } from "./type.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
@@ -46,8 +47,8 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     logoOption: EntityFilterLogoOptionSchema.optional(),
     /** Main product classification values. */
     mainProduct: z.array(z.string()).optional(),
-    /** Operating status values. */
-    operatingStatus: z.array(z.string()).optional(),
+    /** Operating states to include; omit to include every state. */
+    operatingStatus: z.array(EntityOperatingStatusSchema).optional(),
     /** Associated person, matched by name. */
     person: z.array(z.string()).optional(),
     /** Portfolio-company headquarters city values. */
@@ -58,7 +59,7 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     portfolioHeadquartersState: z.array(z.string()).optional(),
     /** Named server-owned list quality gate. */
     qualityGate: EntityListQualityGateSchema.optional(),
-    /** Semantic entity search phrase. Supported by GET /v1/entities and POST /v1/entities/search. */
+    /** Semantic entity search phrase. Executable on POST /v1/entities/search; saved views persist it for replay. */
     semanticQuery: z.string().nullish(),
     /** Restrict results to entity slugs. */
     slug: z
@@ -101,13 +102,15 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     yearFoundedRange: z.array(IntRangeSchema).optional(),
 });
 /**
- * Entity list and search filters including semantic entity search. Supported by GET /v1/entities and POST /v1/entities/search; every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema SearchInterpretationSchema
  * @contractShape entity.list-filter
  * @contractRole canonical

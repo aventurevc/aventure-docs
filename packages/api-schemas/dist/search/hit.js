@@ -10,7 +10,7 @@ const SearchHitSchemaDefinition = z.object({
  * One normalized web-search hit with its title, URL, snippet, and relevance score
  *
  * @openapiSchema SearchHit
- * @endpoint POST /v1/search/web
+ * @endpoint POST /v1/web/search
  * @usedBySchema WebSearchSchema
  * @contractShape search.hit
  * @contractRole canonical

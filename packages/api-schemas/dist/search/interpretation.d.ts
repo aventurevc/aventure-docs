@@ -80,10 +80,10 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         letter?: string | null | undefined;
         location?: string[] | undefined;
         logoOption?: {
-            sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
+            sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
         } | undefined;
         mainProduct?: string[] | undefined;
-        operatingStatus?: string[] | undefined;
+        operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
         person?: string[] | undefined;
         portfolioHeadquartersCity?: string[] | undefined;
         portfolioHeadquartersCountry?: string[] | undefined;
@@ -177,10 +177,10 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         letter?: string | null | undefined;
         location?: string[] | undefined;
         logoOption?: {
-            sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
+            sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
         } | undefined;
         mainProduct?: string[] | undefined;
-        operatingStatus?: string[] | undefined;
+        operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
         person?: string[] | undefined;
         portfolioHeadquartersCity?: string[] | undefined;
         portfolioHeadquartersCountry?: string[] | undefined;
@@ -231,7 +231,9 @@ type SearchInterpretationDefinition = z.infer<typeof SearchInterpretationSchemaD
  * @openapiSchema SearchInterpretation
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape search.interpretation
  * @contractRole canonical

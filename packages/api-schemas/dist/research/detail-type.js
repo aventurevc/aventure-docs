@@ -21,7 +21,7 @@ const ResearchDetailTypeSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema ResearchDetailType
- * @endpoint GET /v1/entities/research/details/types
+ * @endpoint GET /v1/entities/research-details/types
  * @contractShape research.detail-type
  * @contractRole canonical
  */

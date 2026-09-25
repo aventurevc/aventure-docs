@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Geographic scope tier for location directory
  *
  * @openapiSchema LocationScope
- * @endpoint GET /v1/addresses/locations/{scope}
+ * @endpoint GET /v1/addresses/locations/{directory}
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationIdentifierSchema
  * @contractShape location.scope

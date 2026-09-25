@@ -14,11 +14,11 @@ export const ENTITY_SEARCH_ENDPOINT = "/v1/entities/search";
 export const EntitySearchParamSchema = PageParamSchema.extend({
     /** Return only the matching entity count in totalElements. Content is empty by design, so the page empty flag describes content, not whether matches exist. Unsupported with semanticQuery. */
     countOnly: z.boolean().optional(),
-    /** Opaque sort-aware entity cursor; reuse the same filters and sort. Unsupported with semanticQuery or countOnly. */
+    /** Opaque entity cursor; reuse filters and sort. Cursor is unsupported with countOnly; semanticQuery depends on the endpoint. */
     cursor: z.string().optional(),
     /** Privileged read flag. Must be true to return the /v1/entities/detail payload. */
     includeFullDetail: z.boolean().optional(),
-    /** Privileged admin readback scope. Includes hidden or off-sitemap entities. Defaults to private for admin API key or ROLE_ADMIN callers; client-secret/client-read callers stay public. */
+    /** Includes hidden or off-sitemap entities when the caller has private-visibility authority. Omit to use the caller's default visibility. */
     includePrivate: z.boolean().optional(),
     /** Allow generated monogram logos in results. */
     permitMonogram: z.boolean().optional(),

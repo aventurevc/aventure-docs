@@ -4,7 +4,7 @@ import { z } from "zod/v4";
  * Distinguishes square icon vs standard/horizontal entity logo
  *
  * @openapiSchema EntityLogoType
- * @endpoint GET /v1/entities/{entityId}/media/logo
+ * @endpoint GET /v1/entities/{entityId}/media/{mediaType}
  * @contractShape entity.logo-type
  * @contractRole canonical
  */

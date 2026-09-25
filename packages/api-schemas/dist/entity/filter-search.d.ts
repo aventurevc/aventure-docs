@@ -103,14 +103,21 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
         letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         location: z.ZodOptional<z.ZodArray<z.ZodString>>;
         logoOption: z.ZodOptional<z.ZodObject<{
-            sortPriority: z.ZodEnum<{
+            sortPriority: z.ZodOptional<z.ZodEnum<{
                 ANY_LOGO_FIRST: "ANY_LOGO_FIRST";
                 NONE: "NONE";
                 REAL_LOGO_FIRST: "REAL_LOGO_FIRST";
-            }>;
+            }>>;
         }, z.core.$strip>>;
         mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
-        operatingStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            Closed: "Closed";
+            "Closed (Acquihire)": "Closed (Acquihire)";
+            Inactive: "Inactive";
+            Operating: "Operating";
+        }>>>;
         person: z.ZodOptional<z.ZodArray<z.ZodString>>;
         portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
         portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;

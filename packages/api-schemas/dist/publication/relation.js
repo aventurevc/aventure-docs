@@ -10,7 +10,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema PublicationFilterSchema
  * @usedBySchema PublicationSchema
  * @contractShape publication.relation
  * @contractRole canonical

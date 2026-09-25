@@ -9,14 +9,13 @@ const AgentHelpSchemaDefinition = z.object({
     citation: z.array(HelpCitationSchema),
     /** Confidence the answer is fully supported by the cited corpus. LOW signals an abstention. */
     confidence: ConfidenceSchema,
-    /** Canonical CLI/MCP/API command the asker should run, when one is supported by the cited corpus; null when no single command applies or the model abstains. */
-    recommendedCommand: z.string().nullish(),
 });
 /**
  * Grounded natural-language help answer with citations to specific operations, skills, or completion gates. Unsupported questions abstain (LOW confidence) rather than guess.
  *
  * @openapiSchema AgentHelp
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/help
  * @contractShape agent.help
  * @contractRole canonical
  */

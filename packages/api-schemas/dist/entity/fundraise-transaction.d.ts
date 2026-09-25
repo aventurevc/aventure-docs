@@ -14,7 +14,6 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
     dateInvestorExit: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     entity: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         core: z.ZodObject<{
-            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             id: z.ZodUUID;
@@ -65,6 +64,7 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;
             latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -155,10 +155,7 @@ type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransa
  * Canonical fundraise transaction view. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.
  *
  * @openapiSchema EntityFundraiseTransaction
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/similar
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/summary
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -169,13 +166,13 @@ type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransa
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityListSchema
  * @usedBySchema EntityListSummarySchema

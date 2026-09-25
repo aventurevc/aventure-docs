@@ -39,7 +39,6 @@ type PublicationDefinition = z.infer<typeof PublicationSchemaDefinition>;
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @usedBySchema PagePublicationSchema
- * @usedBySchema PageResultPublicationSchema
  * @contractShape publication.publication
  * @contractRole canonical
  */

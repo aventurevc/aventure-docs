@@ -49,7 +49,6 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entity: z.ZodObject<{
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;
@@ -114,16 +113,13 @@ type EntityRelationshipDefinition = z.infer<typeof EntityRelationshipSchemaDefin
  * Domain record for entity relationships - oriented from the requested entity to the joined entity
  *
  * @openapiSchema EntityRelationship
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/lookup
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/relationships/{relationshipId}
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @usedBySchema EntityDetailSchema
  * @usedBySchema PageEntityRelationshipSchema

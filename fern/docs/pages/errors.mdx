@@ -1,51 +1,74 @@
 ---
 title: Errors
-subtitle: The problem detail body, status codes, and rate limits
+subtitle: The problem detail body, status codes, rate limits, and allowance limits
 slug: errors
 ---
 
-Every error response uses the same body — RFC 9457 problem detail, served as
-`application/problem+json`. Parse one shape and you can handle every failure the
-API produces.
+This page is for anyone writing code that handles a failed aVenture API, CLI, or
+MCP call. Every error response uses one body: an RFC 9457 problem detail, served
+as `application/problem+json`. Parse that one shape and you can handle every
+failure the API produces.
 
 ## The problem detail body
 
 `type`, `title`, `status`, `detail`, and `instance` are the RFC standard fields.
 The remaining fields are aVenture extensions, present only when they apply:
 
-- **`code`** — a machine-readable secondary code when the status alone does not
-  identify the recovery path. Branch on it rather than `detail`, which is prose
-  and may be reworded.
-- **`hint`**, **`suggestion`**, **`resolution`** — how to correct the request.
-- **`field`**, **`value`**, **`unknownParameters`**, **`validParameters`** —
-  which part of the request was rejected, on validation failures.
-- **`details`** — structured conflict information on `409`, including the
-  candidates from an ambiguous lookup; select the intended record by its
-  returned identifier.
-- **`traceId`** and **`spanId`** — quote these when reporting a problem.
+- **`code`** is a machine-readable secondary code for when the status alone does
+  not identify the recovery path. Branch on `code`, not on `detail`, because
+  `detail` is prose and can be reworded.
+- **`hint`**, **`suggestion`**, and **`resolution`** say how to correct the
+  request. `resolution` can name the endpoint that clears the problem.
+- **`field`**, **`value`**, **`unknownParameters`**, and **`validParameters`**
+  identify the rejected part of the request on a validation failure.
+- **`details`** carries structured conflict information on a `409`, including
+  the candidates from an ambiguous lookup. Select the intended record by its
+  returned `id`.
+- **`limitType`**, **`limit`**, **`used`**, **`remaining`**, **`resetAt`**, and
+  **`retryAfterSeconds`** describe the limit that refused a `429`.
+- **`traceId`** and **`spanId`** identify the request. Quote them when you
+  [contact support](/support).
 
 ## Status codes
 
 | Status | Meaning | What to do |
 |---|---|---|
-| `400` | Malformed request or invalid parameter | Read `field` and `hint`; fix and resend |
+| `400` | Malformed request or invalid parameter | Read `field` and `hint`, fix the request, and resend |
 | `401` | Missing, malformed, or unrecognized bearer token | Send a valid [personal API key or OAuth access token](/authentication) |
-| `402` | The account's subscription tier does not include the operation | `code` is `subscription_required`. Natural-language search, link search, and enrichment routes declare this response; review [Settings → Subscription](https://aventure.vc/settings/subscription) rather than retrying |
-| `403` | Valid bearer token, not permitted here | Check the operation's required permission |
-| `404` | No such record | — |
-| `406` | Requested content type cannot be served | Accept `application/json` |
-| `409` | Conflict with an existing record, or a lookup that matched more than one | Choose from `details.candidate` when present; otherwise list records by name |
+| `402` | Your plan does not include the operation, or your subscription is canceled, past due, or paused | Read `code`, then fix the subscription as described in [subscription refusals](#subscription-refusals) |
+| `403` | Valid bearer token that lacks permission for this operation | Check the permission the operation requires |
+| `404` | No record matches | Resolve the record by name or URL before reading it |
+| `406` | The requested content type cannot be served | Send `Accept: application/json` |
+| `409` | Conflict with an existing record, or a lookup that matched more than one record | Choose from `details.candidate` when present; otherwise list records by name |
 | `415` | Unsupported request content type | Send `Content-Type: application/json` |
 | `422` | Well-formed but semantically rejected | Read `detail` and `resolution` |
-| `429` | Rate limited | Back off — see below |
-| `500`, `503` | Server error or dependency unavailable | Retry with backoff; `503` is usually transient |
+| `429` | A request-rate limit or a monthly allowance refused the call | Read `limitType`, then follow [rate limits](#rate-limits) or [allowance limits](#allowance-limits) |
+| `500`, `503` | Server error or unavailable dependency | Retry with backoff; `503` is usually transient |
 
-Retry `429`, `500`, and `503`. Do not retry `400`, `401`, `402`, `403`, `404`,
-`406`, `409`, `415`, or `422` — the same request will fail the same way.
+Retry `500`, `503`, and a `429` from a request-rate limit. Do not retry `400`,
+`401`, `402`, `403`, `404`, `406`, `409`, `415`, or `422`, because the same
+request fails the same way.
+
+## Subscription refusals
+
+A `402` means the operation needs a subscription state your account does not
+have. `code` names the cause:
+
+| `code` | Cause | Fix |
+|---|---|---|
+| `subscription_required` | Your plan does not include this feature | Choose a plan that includes it on the [pricing page](https://aventure.vc/pricing) |
+| `subscription_canceled` | The subscription was canceled | Subscribe again from the [pricing page](https://aventure.vc/pricing) |
+| `subscription_past_due` | A payment failed or is unfinished | Update the payment method from [your subscription settings](https://aventure.vc/settings/subscription) |
+| `subscription_paused` | The subscription is paused | Resume it from [your subscription settings](https://aventure.vc/settings/subscription) |
+
+In the public API, plain-English search (`POST /v1/search` and the natural-search
+routes), link search, and enrichment requests declare this response.
+[Plans and usage](/authentication#plans-and-usage) explains how plans gate features.
 
 ## Rate limits
 
-A `429` carries the limit state in the problem detail:
+A request-rate limit answers `429` and carries its state in the problem detail
+and in the `Retry-After` header:
 
 ```json
 {
@@ -62,19 +85,35 @@ A `429` carries the limit state in the problem detail:
 }
 ```
 
-Wait `retryAfterSeconds` before retrying, and add jitter so parallel workers do
-not resume in lockstep. `resetAt` gives the same deadline as an absolute
-timestamp when you would rather schedule than sleep.
+Wait `retryAfterSeconds` before retrying, and add random jitter so parallel
+workers do not resume at the same moment. `resetAt` gives the same deadline as
+an absolute timestamp.
 
-`limitType` names which ceiling you hit — `IP`, `SUBNET`, and `GLOBAL` are
-request-rate limits, while `BILLING_ALLOWANCE`, `NATURAL_SEARCH`, `WEB_SEARCH`,
-and `INFERENCE_PROVIDER` are per-feature quotas. Retrying a different endpoint
-often succeeds when the limit was feature-scoped.
+`limitType` names the limit you hit. `IP`, `SUBNET`, and `GLOBAL` are
+request-rate limits. `NATURAL_SEARCH`, `WEB_SEARCH`, and `INFERENCE_PROVIDER`
+limit one feature, so other endpoints can still succeed.
 
-## Redirects on entity slugs
+## Allowance limits
 
-Five detail lookups can answer `301` instead of `404` when a record's slug has
-changed: `GET /v1/entities/detail`, `GET /v1/news/detail`, `GET /v1/people/detail`,
-`GET /v1/people/detail/investments`, and `GET /v1/people/detail/investor-activity`.
-Follow the redirect — `curl -L` and most HTTP clients do by default — and store
-the slug you land on.
+A `429` whose `limitType` is `BILLING_ALLOWANCE` or `BILLING_ADDITIONAL_USAGE`
+is not a short throttle. It means the account has used up a monthly allowance:
+
+- **`BILLING_ALLOWANCE`**, with `code` `billing_allowance_exhausted`: the plan's
+  monthly allowance named in `allowanceType` is used up. `resetAt` is the start
+  of the next calendar month (UTC), so `retryAfterSeconds` can be weeks.
+- **`BILLING_ADDITIONAL_USAGE`**, with `code`
+  `billing_additional_usage_cap_reached`: the account had additional usage
+  turned on and reached its spending cap or used its prepaid credit.
+
+Stop sending that kind of request instead of retrying in a loop. Check usage in
+[your subscription settings](https://aventure.vc/settings/subscription), then
+raise the allowance with a different plan or additional usage, or wait for
+`resetAt`. [Plans and usage](/authentication#plans-and-usage) explains what
+counts against an allowance.
+
+## Redirects on changed slugs
+
+`GET /v1/entities/lookup`, `GET /v1/people/lookup`, and `GET /v1/news/lookup`
+can answer `301` instead of `404` when a record's slug has changed. Follow the
+redirect, which `curl -L` and most HTTP clients do by default, and store the
+slug you land on.

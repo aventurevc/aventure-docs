@@ -22,7 +22,9 @@ type SortOrderPersonSortFieldDefinition = z.infer<typeof SortOrderPersonSortFiel
  * @openapiSchema SortOrderPersonSortField
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema SearchOrderingPersonSortFieldSchema
  * @contractShape sort.order-person-sort-field
  * @contractRole canonical

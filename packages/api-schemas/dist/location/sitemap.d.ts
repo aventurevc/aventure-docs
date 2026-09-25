@@ -1,7 +1,7 @@
 import { z } from "zod/v4";
 declare const LocationSitemapSchemaDefinition: z.ZodObject<{
     company: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        content: z.ZodArray<z.ZodType<{
+        content: z.ZodOptional<z.ZodArray<z.ZodType<{
             family: "blogArticle" | "blogCategory" | "blogTag" | "companyImage" | "companyUrl" | "governmentUrl" | "investorUrl" | "locationCity" | "locationCountry" | "locationState" | "news" | "nonprofitUrl" | "person" | "personImage";
             imagePath?: string | null | undefined;
             lastUpdatedAt: string;
@@ -15,15 +15,36 @@ declare const LocationSitemapSchemaDefinition: z.ZodObject<{
             path: string;
             slotKey: string;
             slug: string;
-        }, unknown>>>;
-        number: z.ZodInt;
-        size: z.ZodInt;
-        totalElements: z.ZodNumber;
-        totalPages: z.ZodInt;
+        }, unknown>>>>;
+        empty: z.ZodOptional<z.ZodBoolean>;
+        first: z.ZodOptional<z.ZodBoolean>;
+        last: z.ZodOptional<z.ZodBoolean>;
+        number: z.ZodOptional<z.ZodInt>;
+        numberOfElements: z.ZodOptional<z.ZodInt>;
+        pageable: z.ZodOptional<z.ZodObject<{
+            offset: z.ZodOptional<z.ZodNumber>;
+            paged: z.ZodOptional<z.ZodBoolean>;
+            pageNumber: z.ZodOptional<z.ZodInt>;
+            pageSize: z.ZodOptional<z.ZodInt>;
+            sort: z.ZodOptional<z.ZodObject<{
+                empty: z.ZodOptional<z.ZodBoolean>;
+                sorted: z.ZodOptional<z.ZodBoolean>;
+                unsorted: z.ZodOptional<z.ZodBoolean>;
+            }, z.core.$strip>>;
+            unpaged: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        size: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        totalElements: z.ZodOptional<z.ZodNumber>;
+        totalPages: z.ZodOptional<z.ZodInt>;
     }, z.core.$strip>>>;
     companyNextCursor: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     directory: z.ZodType<{
-        content: {
+        content?: {
             canonicalSlug: string;
             entityCount: number;
             identifier: {
@@ -41,13 +62,34 @@ declare const LocationSitemapSchemaDefinition: z.ZodObject<{
             name: string;
             parentLabel?: string | null | undefined;
             slug: string;
-        }[];
-        number: number;
-        size: number;
-        totalElements: number;
-        totalPages: number;
+        }[] | undefined;
+        empty?: boolean | undefined;
+        first?: boolean | undefined;
+        last?: boolean | undefined;
+        number?: number | undefined;
+        numberOfElements?: number | undefined;
+        pageable?: {
+            offset?: number | undefined;
+            paged?: boolean | undefined;
+            pageNumber?: number | undefined;
+            pageSize?: number | undefined;
+            sort?: {
+                empty?: boolean | undefined;
+                sorted?: boolean | undefined;
+                unsorted?: boolean | undefined;
+            } | undefined;
+            unpaged?: boolean | undefined;
+        } | undefined;
+        size?: number | undefined;
+        sort?: {
+            empty?: boolean | undefined;
+            sorted?: boolean | undefined;
+            unsorted?: boolean | undefined;
+        } | undefined;
+        totalElements?: number | undefined;
+        totalPages?: number | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
-        content: {
+        content?: {
             canonicalSlug: string;
             entityCount: number;
             identifier: {
@@ -65,11 +107,32 @@ declare const LocationSitemapSchemaDefinition: z.ZodObject<{
             name: string;
             parentLabel?: string | null | undefined;
             slug: string;
-        }[];
-        number: number;
-        size: number;
-        totalElements: number;
-        totalPages: number;
+        }[] | undefined;
+        empty?: boolean | undefined;
+        first?: boolean | undefined;
+        last?: boolean | undefined;
+        number?: number | undefined;
+        numberOfElements?: number | undefined;
+        pageable?: {
+            offset?: number | undefined;
+            paged?: boolean | undefined;
+            pageNumber?: number | undefined;
+            pageSize?: number | undefined;
+            sort?: {
+                empty?: boolean | undefined;
+                sorted?: boolean | undefined;
+                unsorted?: boolean | undefined;
+            } | undefined;
+            unpaged?: boolean | undefined;
+        } | undefined;
+        size?: number | undefined;
+        sort?: {
+            empty?: boolean | undefined;
+            sorted?: boolean | undefined;
+            unsorted?: boolean | undefined;
+        } | undefined;
+        totalElements?: number | undefined;
+        totalPages?: number | undefined;
     }, unknown>>;
     directoryLetterCount: z.ZodRecord<z.ZodString, z.ZodNumber>;
     location: z.ZodOptional<z.ZodNullable<z.ZodObject<{

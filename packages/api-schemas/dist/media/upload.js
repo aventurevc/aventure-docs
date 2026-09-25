@@ -6,9 +6,9 @@ import { MediaObjectTypeSchema } from "./object-type.js";
  * Managed media asset reference with resolved CDN URL and target metadata
  *
  * @openapiSchema MediaUpload
- * @endpoint GET /v1/entities/{entityId}/media/logo
- * @endpoint GET /v1/news/{newsId}/media/thumbnail
- * @endpoint GET /v1/people/{personId}/media/photo
+ * @endpoint GET /v1/entities/{entityId}/media/{mediaType}
+ * @endpoint GET /v1/news/{newsId}/media/{mediaType}
+ * @endpoint GET /v1/people/{personId}/media/{mediaType}
  * @contractShape media.upload
  * @contractRole canonical
  */

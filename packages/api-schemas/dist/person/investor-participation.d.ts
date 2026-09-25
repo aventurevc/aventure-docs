@@ -20,8 +20,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
             endDate?: string | null | undefined;
             entityAddress: {
                 address?: number | null | undefined;
@@ -167,7 +165,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             titleId?: number | null | undefined;
             titleLevel?: string | null | undefined;
             titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
         }[];
         core: {
             createdAt?: string | null | undefined;
@@ -202,15 +199,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -285,7 +273,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             amount?: number | null | undefined;
             company: {
                 entity: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -357,13 +344,10 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-        pendingApproval?: number | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
             endDate?: string | null | undefined;
             entityAddress: {
                 address?: number | null | undefined;
@@ -509,7 +493,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             titleId?: number | null | undefined;
             titleLevel?: string | null | undefined;
             titleName?: string | null | undefined;
-            updatedAt?: string | null | undefined;
         }[];
         core: {
             createdAt?: string | null | undefined;
@@ -544,15 +527,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
             } | null | undefined;
             slug: string;
-            source: {
-                changedAt?: string | null | undefined;
-                dataSourceUpdatedAt?: string | null | undefined;
-                detail?: string | null | undefined;
-                kind?: string | null | undefined;
-                pendingApproval?: number | null | undefined;
-                sourceId?: string | null | undefined;
-                status?: string | null | undefined;
-            };
             suffix?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
@@ -627,7 +601,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             amount?: number | null | undefined;
             company: {
                 entity: {
-                    createdAt?: string | null | undefined;
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
                     id: string;
@@ -699,7 +672,6 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-        pendingApproval?: number | null | undefined;
     }, unknown>>;
     round: z.ZodArray<z.ZodObject<{
         round: z.ZodString;

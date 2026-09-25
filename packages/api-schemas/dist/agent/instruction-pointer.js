@@ -11,6 +11,7 @@ const AgentInstructionPointerSchemaDefinition = z.object({
  *
  * @openapiSchema AgentInstructionPointer
  * @endpoint GET /v1/agents/instructions/manifest
+ * @endpoint GET /v1/help/instructions/manifest
  * @usedBySchema AgentInstructionManifestSchema
  * @contractShape agent.instruction-pointer
  * @contractRole canonical

@@ -1,73 +1,101 @@
 ---
 title: Authentication
-subtitle: Pick the credential that matches what your integration needs to do
+subtitle: Credentials, plans, and usage for the aVenture API, CLI, and MCP server
 slug: authentication
-keywords: API key, personal API key, authentication, OAuth
+keywords: API key, personal API key, authentication, OAuth, usage, allowance, subscription, pricing
 ---
 
-The public API contract defines two access modes:
+This page is for anyone deciding whether a call needs a credential or a plan.
+The public API has two access modes:
 
 - An operation with no `security` declaration in the [API reference](/api-reference)
-  is anonymous. `GET /v1/entities` and `GET /v1/entities/lookup` are examples.
+  is anonymous. `GET /v1/entities/summary` and `GET /v1/entities/lookup` are
+  examples.
 - An operation that declares bearer authentication accepts a personal API key or
-  OAuth access token in the `Authorization` header.
+  an OAuth access token in the `Authorization` header.
 
-HTTP method alone does not determine access: a `POST` can be a read that carries
-a JSON query. Use each operation's security and response declarations.
+The HTTP method does not decide access, because a `POST` can be a read that
+carries a JSON query. Check each operation's security and response declarations.
 
-## Get a personal credential
+## Get a personal API key
 
-Public users can create their own personal API key. Sign in, open
-[aventure.vc/settings/api-keys](https://aventure.vc/settings/api-keys), and choose
-**Add new key**. Store the key in your secret manager and inject it as
-`AUTH_TOKEN` at runtime. Never commit or print the key itself.
+Any aVenture account can create personal API keys:
 
-The CLI signs you in for you. `aventure auth login` runs the OAuth device
-authorization grant — it prints a one-time code and a URL, and works over SSH
-and in containers as well as on a laptop. `aventure auth login --key` creates
-and stores a personal API key through the same browser approval instead. In a
+1. Sign in to aVenture.
+2. Open [your API key settings](https://aventure.vc/settings/api-keys).
+3. Choose **Add new key**.
+
+Store the key in your secret manager and load it into the `AUTH_TOKEN`
+environment variable at runtime. The same page lists and revokes your keys.
+
+## Sign in from the CLI
+
+`aventure auth login` uses the OAuth device authorization grant. It prints a
+one-time code and a sign-in URL, and it works on a laptop, over SSH, and inside
+a container. You approve the request at
+[your developer access settings](https://aventure.vc/settings/developer), which
+also lists past CLI sign-ins and revokes them. `aventure auth login --key`
+creates and stores a personal API key through the same approval instead. In a
 non-interactive environment, supply an existing key through `AUTH_TOKEN`. The
-[CLI quickstart](/cli) walks through both, and the [MCP quickstart](/mcp)
-covers OAuth and personal-key clients.
+[CLI quickstart](/cli) walks through each path.
 
-## Connect an MCP client with OAuth
+## Connect an MCP client
 
-The [MCP quickstart](/mcp#connect-to-the-hosted-server) owns the hosted URL,
-public client ID, callback configuration, and first connection check. MCP
-requires authentication even for tools that call anonymous API operations.
+The [MCP quickstart](/mcp#connect-to-the-hosted-server) lists the hosted URL,
+public client ID, and callback settings. MCP requires sign-in even for tools
+that call anonymous API operations.
 
-## Verify personal API access
+## Verify a credential
 
-Send your personal key or OAuth access token as a bearer token:
+Send your personal API key or OAuth access token as a bearer token:
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-This confirms that the API recognizes the bearer token and returns its resolved
-permissions.
+A `200` confirms that the API recognized the token, and the body lists the
+permissions it carries.
 
-## Subscription-gated operations
+## Plans and usage
 
-Some operations need a subscription in addition to a bearer token. The public
-reference declares `402` for natural-language search, link search, and
-enrichment requests. It means the account needs an active or trialing
-subscription tier that includes the feature. Use
-[Settings → Subscription](https://aventure.vc/settings/subscription) to inspect
-the account's plan; [Errors](/errors) explains the response body.
+Your aVenture plan decides two things: which features your account can use, and
+how much monthly usage it includes. API, CLI, and MCP calls made with your
+credential draw on the same account, because the CLI and the MCP server call the
+API as you.
 
-Filtered public lists and lookups remain available without a subscription.
+- **Anonymous calls** are not charged to any account. Request-rate limits still
+  apply.
+- **Signed-in reads of one full record** count one profile view against the
+  matching company or person allowance. A repeat read of the same record in the
+  same calendar month (UTC) is free.
+- **Research and enrichment requests** count against the allowance for adding or
+  updating a company or person.
+- **Features outside your plan**, such as plain-English search on a plan that
+  does not include it, answer `402` with `code` `subscription_required`.
 
-## Keeping credentials safe
+Allowances reset at the start of each calendar month (UTC). When an allowance
+runs out, the API answers `429` with `limitType` `BILLING_ALLOWANCE` until the
+reset. On plans that offer additional usage, you can turn it on so requests
+continue past the allowance up to a spending cap you set.
+[Allowance limits](/errors#allowance-limits) describes the response fields.
 
-Credentials are bearer-equivalent: anyone holding the string has the
-access it grants. Keep them server-side, load them from your secret manager at
-runtime, and never ship one in browser code or commit one to a repository.
+[Your subscription settings](https://aventure.vc/settings/subscription) show
+your plan, renewal date, and how much of each monthly allowance you have used.
+`GET /v1/billing/subscription` returns the same usage to a signed-in caller, and
+`aventure billing subscription get` prints it in the CLI. The
+[pricing page](https://aventure.vc/pricing) lists current plans, what each
+includes, and its allowances.
+
+## Keep credentials safe
+
+A credential is a bearer secret: anyone holding the string has the access it
+grants, and their calls use your allowances. Keep credentials server-side, load
+them from a secret manager at runtime, and never ship one in browser code or
+commit one to a repository.
 
 ## When authentication fails
 
 A missing, malformed, or unrecognized bearer token returns `401`. A recognized
-token that is not permitted on an endpoint returns `403`. Both arrive in the
-standard [problem detail](/errors) body, whose `detail` field names the specific
-reason.
+token that lacks permission for an operation returns `403`. Both arrive in the
+standard [problem detail](/errors) body, whose `detail` field names the reason.

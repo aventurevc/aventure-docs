@@ -17,6 +17,7 @@ type HelpCitationDefinition = z.infer<typeof HelpCitationSchemaDefinition>;
  *
  * @openapiSchema HelpCitation
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/help
  * @usedBySchema AgentHelpSchema
  * @contractShape help.citation
  * @contractRole canonical

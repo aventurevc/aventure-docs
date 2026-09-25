@@ -1,7 +1,6 @@
 import { z } from "zod/v4";
 declare const EntityListSchemaDefinition: z.ZodObject<{
     core: z.ZodObject<{
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;
@@ -297,6 +296,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             })[] | undefined;
         };
         fundingDetail?: {
+            currency?: string | null | undefined;
             fundingRoundCount: number;
             investorCount: number;
             latestValuation?: number | null | undefined;
@@ -574,6 +574,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             })[] | undefined;
         };
         fundingDetail?: {
+            currency?: string | null | undefined;
             fundingRoundCount: number;
             investorCount: number;
             latestValuation?: number | null | undefined;
@@ -616,7 +617,6 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         dateInvestorExit?: string | null | undefined;
         entity?: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -649,6 +649,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -700,7 +701,6 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         dateInvestorExit?: string | null | undefined;
         entity?: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -733,6 +733,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -778,7 +779,6 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
     research: z.ZodType<{
         acceleratorParticipation: {
             accelerator: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -819,9 +819,6 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         }[];
         detail: {
             asOfDate?: string | null | undefined;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
-            dataConfidence?: "high" | "low" | "medium" | null | undefined;
             derivedRange?: {
                 asOfDate: string;
                 bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -840,7 +837,6 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         acceleratorParticipation: {
             accelerator: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -881,9 +877,6 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         }[];
         detail: {
             asOfDate?: string | null | undefined;
-            createdAt?: string | null | undefined;
-            creator?: string | null | undefined;
-            dataConfidence?: "high" | "low" | "medium" | null | undefined;
             derivedRange?: {
                 asOfDate: string;
                 bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -929,16 +922,15 @@ type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
  * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins.
  *
  * @openapiSchema EntityList
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/products/suggestions
  * @endpoint GET /v1/entities/{entityId}/relationships/suggestions
  * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntitySimilarityResultSchema
  * @usedBySchema EntitySuggestionSchema
  * @usedBySchema PageEntityListSchema

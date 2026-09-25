@@ -17,9 +17,7 @@ const SitemapUrlSlotSchemaDefinition = z.object({
  * Concrete sitemap URL slot with backend-owned path and lastmod.
  *
  * @openapiSchema SitemapUrlSlot
- * @endpoint GET /v1/sitemap/url-slots
  * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema PageResultSitemapUrlSlotSchema
  * @usedBySchema PageSitemapUrlSlotSchema
  * @contractShape sitemap.url-slot
  * @contractRole canonical

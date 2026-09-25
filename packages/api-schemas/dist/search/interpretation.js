@@ -26,7 +26,9 @@ const SearchInterpretationSchemaDefinition = z.object({
  * @openapiSchema SearchInterpretation
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape search.interpretation
  * @contractRole canonical

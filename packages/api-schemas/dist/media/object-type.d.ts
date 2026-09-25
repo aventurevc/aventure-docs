@@ -3,9 +3,9 @@ import { z } from "zod/v4";
  * Target domain for media operations (logos, pictures, thumbnails)
  *
  * @openapiSchema MediaObjectType
- * @endpoint GET /v1/entities/{entityId}/media/logo
- * @endpoint GET /v1/news/{newsId}/media/thumbnail
- * @endpoint GET /v1/people/{personId}/media/photo
+ * @endpoint GET /v1/entities/{entityId}/media/{mediaType}
+ * @endpoint GET /v1/news/{newsId}/media/{mediaType}
+ * @endpoint GET /v1/people/{personId}/media/{mediaType}
  * @usedBySchema MediaUploadSchema
  * @contractShape media.object-type
  * @contractRole canonical

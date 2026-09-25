@@ -24,7 +24,6 @@ declare const PersonGraphCoInvestorSchemaDefinition: z.ZodObject<{
     }, unknown>>;
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sharedEntity: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;

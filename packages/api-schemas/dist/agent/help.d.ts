@@ -17,7 +17,6 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
         LOW: "LOW";
         MEDIUM: "MEDIUM";
     }>;
-    recommendedCommand: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;
 /**
@@ -25,6 +24,7 @@ type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;
  *
  * @openapiSchema AgentHelp
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/help
  * @contractShape agent.help
  * @contractRole canonical
  */

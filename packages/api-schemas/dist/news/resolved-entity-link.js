@@ -1,14 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityTypeSchema } from "../entity/type.js";
+import { NewsMatchStatusSchema } from "./match-status.js";
 const NewsResolvedEntityLinkSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }),
     /** Canonical entity UUID */
     entityId: z.uuid(),
     href: z.string().nullish(),
     internal: z.boolean(),
-    matchScore: z.number().nullish(),
-    matchType: z.string().nullish(),
+    matchStatus: NewsMatchStatusSchema.nullish(),
     mention: z.string().nullish(),
     /** Canonical lowercase URL slug for the resource */
     slug: z
@@ -20,10 +20,9 @@ const NewsResolvedEntityLinkSchemaDefinition = z.object({
     updatedAt: z.iso.datetime({ offset: true }),
 });
 /**
- * Resolved entity mention in news content - hyperlink to an entity detected in article text - matchType: composite format "status:score|quote=evidence|user=email|at=timestamp" - m...
+ * Resolved entity mention in news content - hyperlink to an entity detected in article text
  *
  * @openapiSchema NewsResolvedEntityLink
- * @endpoint GET /v1/news/detail
  * @endpoint GET /v1/news/lookup
  * @endpoint GET /v1/news/{newsId}
  * @usedBySchema NewsDetailSchema

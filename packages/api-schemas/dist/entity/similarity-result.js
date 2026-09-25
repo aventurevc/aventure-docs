@@ -10,7 +10,6 @@ const EntitySimilarityResultSchemaDefinition = z.object({
  * Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.
  *
  * @openapiSchema EntitySimilarityResult
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/{entityId}/similar
  * @usedBySchema PageEntitySimilarityResultSchema
  * @contractShape entity.similarity-result

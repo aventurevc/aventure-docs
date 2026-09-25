@@ -4,35 +4,37 @@ subtitle: Page through results and narrow them down
 slug: pagination-and-filtering
 ---
 
-The examples below use `GET /v1/entities`. Other paginated operations use the
-same page fields, but defaults and supported sorting vary by operation; check
-its [API reference](/api-reference) before reusing parameters.
+This page is for developers who list records and need a specific subset or
+every page of a large result set. The examples use `GET /v1/entities/summary`,
+which is anonymous. Other list operations use the same page fields, but their
+defaults and sortable fields differ, so check each operation in the
+[API reference](/api-reference) before you reuse parameters.
 
 ## Paging
 
-Set `size` explicitly for predictable pages across API versions.
+Set `size` explicitly so page sizes stay predictable across API versions.
 
 | Parameter | Default | Meaning |
 |---|---|---|
-| `page` | `0` | Zero-based page index — the first page is `0`, not `1` |
-| `size` | Set explicitly | Records per page |
-| `sort` | — | `property,(asc\|desc)`; repeat for multiple criteria |
+| `page` | `0` | Zero-based page index; the first page is `0`, not `1` |
+| `size` | Varies by operation | Records per page |
+| `sort` | None | `property,(asc\|desc)`; repeat the parameter for more criteria |
 
 ```bash
-curl "https://api.aventure.vc/v1/entities?page=2&size=50&sort=nameBrand,asc"
+curl "https://api.aventure.vc/v1/entities/summary?page=2&size=50&sort=nameBrand,asc"
 ```
 
-Sort order defaults to ascending when you omit the direction, so
-`sort=nameBrand` and `sort=nameBrand,asc` are the same request.
+Sort order is ascending when you omit the direction, so `sort=nameBrand` and
+`sort=nameBrand,asc` are the same request.
 
-Only some fields are sortable, and the filter names are a different set — sorting
-by a filter name such as `entityName` is a [`422`](/errors) whose `detail` lists
-every property the endpoint does accept. Cross-domain search
-(`POST /v1/search/all`) does not accept `sort`; each scope orders its own results.
+Only some fields are sortable, and they are not the same set as the filter
+names. Sorting by a filter name such as `entityName` returns [`422`](/errors),
+and its `detail` lists every sortable property. `POST /v1/search` does not accept
+`sort`, because each record type in its response is ordered by relevance.
 
 ## Reading the page object
 
-Records live in `content`. The surrounding fields tell you where you are:
+Records are in `content`. The other fields tell you where you are:
 
 ```json
 {
@@ -48,66 +50,69 @@ Records live in `content`. The surrounding fields tell you where you are:
 }
 ```
 
-Loop until `last` is `true` rather than computing the final index yourself —
-`totalElements` can shift between requests as records are added.
+Request pages until `last` is `true` instead of computing the final page index
+yourself, because `totalElements` can change between requests as records are
+added.
 
 ## Filtering
 
-Filters are ordinary query parameters. Most accept repetition, and repeating one
+Filters are query parameters. Most accept repetition, and repeating a filter
 means **any of these**:
 
 ```bash
-# Entities in either country
-curl "https://api.aventure.vc/v1/entities?headquartersCountry=US&headquartersCountry=CA"
+# Companies headquartered in either country
+curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&headquartersCountry=US&headquartersCountry=CA"
 ```
 
-Different filters combine as **and**:
+Different filters must all match:
 
 ```bash
-# Seed-stage AND headquartered in the US
-curl "https://api.aventure.vc/v1/entities?stage=seed&headquartersCountry=US"
+# Seed-stage companies headquartered in the US
+curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&stage=Seed&headquartersCountry=US"
 ```
 
-`GET /v1/entities` accepts more than sixty filters. The main families are:
+`GET /v1/entities/summary` accepts more than sixty filters. The main groups are:
 
-- **Identity** — `entityId`, `slug`, `entityName` (exact, normalized), `url`, `urlDomain`
-- **Classification** — `industry`, `mainProduct`, `typeModel`, `typeOwnership`, `typeCustomer`, `typeRecord`, `tag`
-- **Location** — `headquartersCountry`, `headquartersState`, `headquartersCity`
-- **Accelerator** — `acceleratorBrand`, `acceleratorName`, `acceleratorCohort`, `acceleratorStatus`
-- **Fundraising** — the `fundraiseActivity.*` family, covering round, amounts raised and invested, valuation, and last round year
-- **Ranges** — `yearFoundedRange`, `employeeCountRange`, and the `.min`/`.max` pairs on `createdAtRange` and `updatedAtRange`
-- **Presence and quality** — `hasLogo`, `hasFundraising`, `operatingStatus`, `qualityGate`
+- **Identity:** `entityId`, `slug`, `entityName` (exact match on the normalized name), `url`, `urlDomain`
+- **Classification:** `industry`, `mainProduct`, `typeModel`, `typeOwnership`, `typeCustomer`, `typeRecord`, `tag`
+- **Location:** `headquartersCountry`, `headquartersState`, `headquartersCity`
+- **Accelerator:** `acceleratorBrand`, `acceleratorName`, `acceleratorCohort`, `acceleratorStatus`
+- **Funding:** the `fundraiseActivity.*` parameters, covering round, amounts raised and invested, valuation, and last round year
+- **Ranges:** `yearFoundedRange`, `employeeCountRange`, and the `.min` and `.max` parameters of `createdAtRange` and `updatedAtRange`
+- **Presence and quality:** `hasLogo`, `hasFundraising`, `operatingStatus`, `qualityGate`
 
-`GET /v1/entities/filters/search` returns the valid values for a filter, which is
-the reliable way to discover what a taxonomy field accepts. It requires both
-`filterKey` and `search`:
+Location filters take full names, not postal abbreviations:
+`headquartersState=Texas` matches, and `headquartersState=TX` returns no
+records.
+
+`GET /v1/entities/filters` lists each filter with its accepted values, so use it
+to discover what a classification filter accepts:
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/filters/search?filterKey=industry&search=fintech&size=5"
+curl "https://api.aventure.vc/v1/entities/filters?typeRecord=Company"
 ```
 
-## Text search versus semantic search
+## Keyword, exact-name, and plain-English search
 
-Three parameters look similar and do different things:
+Three inputs look similar and do different things:
 
-- **`entityName`** is an exact match against the normalized brand or legal name.
-  Use it when you know the company.
-- **`textSearch`** is keyword and full-text search across the record.
-- **`semanticQuery`** matches on meaning rather than wording.
-
-For a plain-English or multi-constraint request, reach for the search endpoints
-instead — `POST /v1/search/all` plans the query across entities, people, and
-news rather than making you assemble the filters yourself.
+- **`entityName`** matches the normalized brand or legal name exactly. Use it
+  when you know the company's name.
+- **`textSearch`** runs keyword and full-text search across the record.
+- **`POST /v1/search`** takes a plain-English request, turns it into filters,
+  and searches companies, people, and news together. It requires a credential
+  and a plan that includes search.
 
 ## When the query outgrows a URL
 
-Long filter sets exceed practical query-string limits. `POST /v1/entities/search` takes
-the entity filters as a JSON body and is still a read. It requires a
-[credential](/authentication), including a personal bearer token. `page`,
-`size`, and `sort` stay in the query string; its default `size` is `25`.
+A long filter set can exceed practical query-string limits.
+`POST /v1/entities/search` takes the same company filters as a JSON body and is
+still a read. It requires a [credential](/authentication). `page`, `size`, and
+`sort` stay in the query string, and its default `size` is `25`. Its body also
+accepts `semanticQuery`, which matches on meaning instead of wording.
 
 ## Counting without fetching
 
-`countOnly=true` returns the match count in `totalElements` and skips the
-records. `content` is empty even when matches exist, so do not use `empty` to
-decide whether the query matched. Do not combine `countOnly` with `semanticQuery`.
+On `POST /v1/entities/search`, `countOnly=true` returns the number of matches in
+`totalElements` and returns no records. `content` is empty even when records
+match, so do not use `empty` to decide whether the query matched.

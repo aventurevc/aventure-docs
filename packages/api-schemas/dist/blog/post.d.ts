@@ -39,7 +39,6 @@ type BlogPostDefinition = z.infer<typeof BlogPostSchemaDefinition>;
  * @endpoint GET /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/blog-posts/{blogPostId}
- * @endpoint GET /v1/people/{slug}/blog-posts
  * @usedBySchema PageBlogPostSchema
  * @contractShape blog.post
  * @contractRole canonical

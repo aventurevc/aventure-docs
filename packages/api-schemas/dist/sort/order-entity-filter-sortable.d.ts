@@ -28,7 +28,9 @@ type SortOrderEntityFilterSortableDefinition = z.infer<typeof SortOrderEntityFil
  * @openapiSchema SortOrderEntityFilterSortable
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema SearchOrderingEntityFilterSortableSchema
  * @contractShape sort.order-entity-filter-sortable
  * @contractRole canonical

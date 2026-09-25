@@ -15,6 +15,8 @@ type AgentInstructionDefinition = z.infer<typeof AgentInstructionSchemaDefinitio
  * @openapiSchema AgentInstruction
  * @endpoint GET /v1/agents/instructions/{kind}/{name}
  * @endpoint GET /v1/agents/instructions/{kind}/{name}/versions/{version}
+ * @endpoint GET /v1/help/instructions/{kind}/{name}
+ * @endpoint GET /v1/help/instructions/{kind}/{name}/versions/{version}
  * @usedBySchema AgentInstructionDetailSchema
  * @contractShape agent.instruction
  * @contractRole canonical

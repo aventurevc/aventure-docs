@@ -97,6 +97,7 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         lastName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        personId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
         personName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         role: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         search: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -126,7 +127,9 @@ type PersonSearchInterpretationDefinition = z.infer<typeof PersonSearchInterpret
  * @openapiSchema PersonSearchInterpretation
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchResultSchema
  * @contractShape person.search-interpretation
  * @contractRole canonical

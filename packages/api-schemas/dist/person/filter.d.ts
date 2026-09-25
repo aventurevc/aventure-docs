@@ -4,10 +4,11 @@ import { z } from "zod/v4";
  *
  * @openapiSchema PersonFilter
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchSchema
  * @usedBySchema PersonSearchInterpretationSchema
  * @contractShape person.filter
@@ -97,6 +98,7 @@ export declare const PersonFilterSchema: z.ZodObject<{
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     lastName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    personId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
     personName: z.ZodOptional<z.ZodArray<z.ZodString>>;
     role: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     search: z.ZodOptional<z.ZodNullable<z.ZodString>>;

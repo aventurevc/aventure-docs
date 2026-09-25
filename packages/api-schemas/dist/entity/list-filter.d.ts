@@ -99,14 +99,21 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
     letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     location: z.ZodOptional<z.ZodArray<z.ZodString>>;
     logoOption: z.ZodOptional<z.ZodObject<{
-        sortPriority: z.ZodEnum<{
+        sortPriority: z.ZodOptional<z.ZodEnum<{
             ANY_LOGO_FIRST: "ANY_LOGO_FIRST";
             NONE: "NONE";
             REAL_LOGO_FIRST: "REAL_LOGO_FIRST";
-        }>;
+        }>>;
     }, z.core.$strip>>;
     mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
-    operatingStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+        Acquired: "Acquired";
+        "Acquired Subsidiary": "Acquired Subsidiary";
+        Closed: "Closed";
+        "Closed (Acquihire)": "Closed (Acquihire)";
+        Inactive: "Inactive";
+        Operating: "Operating";
+    }>>>;
     person: z.ZodOptional<z.ZodArray<z.ZodString>>;
     portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
     portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -208,13 +215,15 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
 }, z.core.$strict>;
 type EntityListFilterDefinition = z.infer<typeof EntityListFilterSchemaDefinition>;
 /**
- * Entity list and search filters including semantic entity search. Supported by GET /v1/entities and POST /v1/entities/search; every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema SearchInterpretationSchema
  * @contractShape entity.list-filter
  * @contractRole canonical

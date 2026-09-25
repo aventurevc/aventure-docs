@@ -2,7 +2,6 @@ import { z } from "zod/v4";
 declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
     entity: z.ZodObject<{
         core: z.ZodObject<{
-            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             id: z.ZodUUID;
@@ -53,6 +52,7 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;
             latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

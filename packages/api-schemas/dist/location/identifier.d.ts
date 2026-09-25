@@ -19,7 +19,7 @@ type LocationIdentifierDefinition = z.infer<typeof LocationIdentifierSchemaDefin
  * Canonical multi-scope location identifier with hierarchical IDs
  *
  * @openapiSchema LocationIdentifier
- * @endpoint GET /v1/addresses/locations/{scope}
+ * @endpoint GET /v1/addresses/locations/{directory}
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationDirectoryEntrySchema
  * @contractShape location.identifier

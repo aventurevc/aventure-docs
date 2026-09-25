@@ -4,9 +4,15 @@ subtitle: Give an AI client access to aVenture data
 slug: mcp
 ---
 
-The aVenture MCP server exposes the [API](/api-reference) as tools an AI client
-can call. The hosted server needs no install — point an OAuth-capable client at
-it and sign in. Self-hosting is for clients that cannot complete an OAuth flow.
+This page is for people connecting an AI client, such as Claude Code, to
+aVenture data. The aVenture MCP server exposes the [API](/api-reference) as
+tools the client can call. The hosted server needs no install: point an
+OAuth-capable client at it and sign in. Self-host the server only when your
+client cannot complete an OAuth flow.
+
+Tool calls run as your account, so they draw on your plan's monthly allowances
+the same way API calls do. [Plans and usage](/authentication#plans-and-usage)
+explains what counts and where to check it.
 
 ## Connect to the hosted server
 
@@ -16,33 +22,72 @@ Configure your client with:
 |---------|-------|
 | URL | `https://mcp.aventure.vc/mcp` |
 | Transport | Streamable HTTP |
-| Client ID and secret | leave empty — the client registers itself |
+| Client ID | `KL7mINzGk0le0QiD` |
+| Client secret | none — this is a public client |
 
-The client discovers the authorization server from the MCP endpoint, registers
-itself, and completes authorization code with PKCE. You sign in to aVenture and
-approve access; every call then runs with your account's permissions.
+The client discovers the authorization server from the MCP endpoint and signs
+in with the OAuth authorization code flow and PKCE. Dynamic client registration
+is disabled, so you must configure the client ID above. A client that accepts
+only a bare URL fails with `Incompatible auth server: does not support dynamic
+client registration`.
 
-In Claude or ChatGPT, add the URL as a custom connector. In your terminal, add
-the server to Claude Code:
+In your terminal, add the server to Claude Code:
 
 ```bash
-claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
+claude mcp add --scope user --transport http \
+  --client-id KL7mINzGk0le0QiD --callback-port 6276 \
+  aventure https://mcp.aventure.vc/mcp
 ```
 
 The user scope makes the server available across your projects. Open Claude
 Code, run `/mcp`, select `aventure`, and complete browser sign-in. Then ask
 Claude to call `aventure_status` to [verify the connection](#verify-the-connection).
 
+In Claude or ChatGPT, add the URL as a custom connector.
+
+Other clients name these settings differently. Configure the client ID and a
+callback URL whose path is `/callback`.
+
+<Accordion title="Registered redirect URIs, and testing the flow on its own">
+
+These redirect URIs are registered:
+
+- `http://127.0.0.1/callback`
+- `http://localhost/callback`
+- `https://chatgpt.com/connector_platform_oauth_redirect`
+- `https://claude.ai/api/mcp/auth_callback`
+
+A loopback redirect may use any available port, such as
+`http://127.0.0.1:6276/callback`, as long as it keeps the `/callback` path. A
+client using a different callback path needs its own registered OAuth
+application; [contact support](/support) to arrange one.
+
+Opening the URL in a browser does not test connectivity, because the endpoint
+answers MCP and OAuth discovery requests, not an ordinary `GET`. To test the
+sign-in flow without a client, run the MCP Inspector in an interactive
+terminal, sign in to aVenture, and approve access. The Inspector exchanges the
+authorization code and lists the tools:
+
+```bash
+npx @modelcontextprotocol/inspector@2.6.0 --cli \
+  --server-url https://mcp.aventure.vc/mcp \
+  --client-id KL7mINzGk0le0QiD \
+  --callback-url http://127.0.0.1:6276/callback \
+  --method tools/list
+```
+
+</Accordion>
+
 ## Verify the connection
 
 Once the client is connected, call `aventure_status`. It returns the API status,
-the host it reached, and the MCP auth scope your credential actually carries —
-which is the one call that proves transport and credential together. Then call
-`aventure_help` to find the right tool and inputs for a given task.
+the host it reached, and the MCP auth scope your credential carries, so one call
+proves both the connection and the credential. Then call `aventure_help` to find
+the right tool and inputs for a task.
 
-The tool list reflects the permissions granted to the signed-in user, and the
-API checks permission again when an operation runs — a visible tool is not a
-guarantee that every call it can make will be authorized.
+The tool list reflects the permissions granted to the signed-in user. The API
+checks permission again when an operation runs, so a visible tool does not
+guarantee that every operation it can run is allowed for you.
 
 | Tool | What it does |
 |------|--------------|
@@ -50,22 +95,24 @@ guarantee that every call it can make will be authorized.
 | `aventure_help` | Find the command for a task, with the inputs it needs |
 | `aventure_search` | Find companies, people, news, or publications from a query |
 | `aventure_lookup` | Turn a name, URL, slug, ticker, or other identifier into the record that owns it |
-| `aventure_read` | Read one record, or the records attached to it |
+| `aventure_read` | Read one record, the records attached to it, or a filtered list |
+| `aventure_write` | Create or change records; needs write permission |
+| `aventure_delete` | Remove a record or a link between records; needs delete permission |
 
 Ask your connected assistant a question such as:
 
 > What does Ramp do, who founded it, and what funding rounds does aVenture report? Cite sources and distinguish missing amounts from zero.
 
-The assistant should resolve the company, use its returned identifier for
-related records, and report unavailable information explicitly. The
+The assistant resolves the company, uses its returned `id` to read related
+records, and reports missing information explicitly. The
 [worked example](/first-answer) shows the individual calls.
 
 ## Name the operation before you call it
 
-The search, lookup, and read tools are wrappers over the [API reference](/api-reference):
-each one runs an operation you name, so every call needs `operationId`, or
-`method` and `path` together. A call carrying only a query is rejected with
-`Pass operationId or method+path.`
+The read, lookup, search, write, and delete tools each run one operation from
+the [API reference](/api-reference). Every call must name that operation with
+`operationId`, or with `method` and `path` together. A call that carries only a
+query is rejected with `Pass operationId or method+path.`
 
 `aventure_help` supplies the name. Ask in plain English and set `resolve`:
 
@@ -73,15 +120,21 @@ each one runs an operation you name, so every call needs `operationId`, or
 { "q": "look up a company by name", "resolve": true }
 ```
 
-It answers with one recommendation instead of a catalog. `mcpTool` names the
-tool to call, `apiRoute` gives the method and path, `pathInput` and `queryInput`
-and `bodyInput` list that operation's argument names, and `missingInputs` lists
-the ones it will not run without. For the query above that is `aventure_lookup`
-and `GET /v1/entities/lookup`, so:
+With `resolve`, help returns one recommendation instead of a catalog. In the
+answer, `mcpTool` names the tool to call, and `apiRoute` gives the method and
+path. `pathInput`, `queryInput`, and `bodyInput` list the operation's argument
+names, and `missingInputs` lists the arguments the call still needs.
+
+For example, finding the company a name refers to is `lookupEntity`
+(`POST /v1/entities/lookup`), which runs through `aventure_lookup` and takes the
+name in its JSON body:
 
 ```json
-{ "method": "GET", "path": "/v1/entities/lookup", "query": { "name": "Stripe" } }
+{ "operationId": "lookupEntity", "body": { "name": "Stripe" } }
 ```
+
+The answer reports whether the name matched a record and, when it did, the
+record's `id` and `slug` for the reads that follow.
 
 Split `apiRoute` into `method` and `path` and pass both exactly as printed.
 Never derive an `operationId` from a route: an id that does not exist is
@@ -89,30 +142,29 @@ rejected with `OpenAPI operationId not found`. Take `operationId` from the
 [API reference](/api-reference) or from an `aventure_help` catalog row, which
 carries it for every operation it lists.
 
-The underlying API lookup is public, but the MCP connection still requires
-sign-in. Plain-English search can additionally require a Pro subscription or
-trial; successful connection alone does not prove that entitlement.
+`lookupEntity` requires a signed-in caller, and the MCP connection's sign-in
+supplies that credential. Plain-English search also requires a plan that includes it, and a
+working connection does not prove your plan includes it. Without it, the call
+fails with [`402`](/errors).
 
 <Note>
-The help parameter is `q`. On the operation tools `query` means the operation's
-URL query parameters, and `aventure_help` ignores it. Help called with no `q`
-is not an error — it returns the head of the full catalog in no particular
-order.
+The help parameter is `q`. On the operation tools, `query` holds the
+operation's URL query parameters, and `aventure_help` ignores it. Calling help
+without `q` is not an error; it returns the start of the full catalog, unranked.
 </Note>
 
 Put each input where the help answer says it goes: `pathInput` values in
 `pathParams`, `queryInput` values in `query`, `bodyInput` values in `body`.
-Do not carry a shape between operations — `entityId` is a path parameter on the
-entity detail routes but a filter on `GET /v1/entities`, and
-`GET /v1/entities/detail/fundraise-investor-joins` calls it `id`.
+Do not reuse argument placement between operations. For example, `entityId` is
+a path parameter on `GET /v1/entities/{entityId}` but a repeatable query filter
+on `GET /v1/entities/summary`.
 
 <Note>
 `responseFormat` applies only to operations that declare a `text/plain`
-response. If a response is truncated, reduce `size` and page through the
-relevant sub-resource instead of changing its media type. Setting it to `text`
-on a JSON-only operation sends
-`Accept: text/plain`, and the API answers [`406`](/errors). Leave it unset
-unless the operation offers both.
+response. Setting it to `text` on a JSON-only operation fails with `does not
+offer text/plain`, so leave it unset unless the operation offers both. If a
+response is truncated, reduce `size` and page through the relevant
+sub-resource instead of changing the format.
 </Note>
 
 ## Self-host instead
@@ -130,8 +182,8 @@ aventure-mcp-server
 ```
 
 It listens at `http://localhost:3333/mcp`. Leave it running while your client is
-connected. The server starts with no credential of its own — every request must
-carry a [personal API key](/authentication#get-a-personal-credential) as a
+connected. The server starts with no credential of its own, so every request
+must carry a [personal API key](/authentication#get-a-personal-api-key) as a
 bearer token:
 
 ```json
@@ -151,17 +203,17 @@ bearer token:
 Supply the key through your client's own secret storage; its interpolation
 syntax differs by client. Never paste the key into a file you commit.
 
-`AVENTURE_MCP_PORT` and `AVENTURE_MCP_PATH` change the listener — update the
+`AVENTURE_MCP_PORT` and `AVENTURE_MCP_PATH` change the listener; update the
 client URL to match. `AVENTURE_MCP_JSON_LIMIT` bounds the request body size.
 
 <Note>
 This package speaks Streamable HTTP, not stdio. Configure a URL, not a command.
 </Note>
 
-## Next
+## Next steps
 
-- [Answer a real question](/first-answer) — these tools chained into one result
-- [Authentication](/authentication) — the credential types and what each reaches
-- [CLI quickstart](/cli) — the same tools from your terminal
-- [API reference](/api-reference) — the operations behind every tool
-- [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, and its [source](https://github.com/aventurevc/aventure-mcp)
+- [Answer a real question](/first-answer) chains these tools into one result.
+- [Authentication](/authentication) covers credentials, plans, and usage.
+- [CLI quickstart](/cli) runs the same operations from your terminal.
+- [API reference](/api-reference) lists the operations behind every tool.
+- The server is published as [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).

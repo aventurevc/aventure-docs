@@ -3,12 +3,8 @@ import { z } from "zod/v4";
  * JavaScript rendering requirement for crawl checks.
  *
  * @openapiSchema EntityUrlCrawlRenderMode
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/entities/detail
- * @endpoint GET /v1/entities/detail/similar
- * @endpoint GET /v1/entities/lookup
- * @endpoint GET /v1/people/detail
- * @endpoint GET /v1/people/lookup
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -20,24 +16,20 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
- * @endpoint GET /v1/entities/{entityId}/urls/all
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
- * @endpoint GET /v1/people/{personId}/urls/all
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/lookup/batch
- * @endpoint POST /v1/entities/lookup/matches
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityUrlLinkSchema
  * @contractShape entity.url-crawl-render-mode
  * @contractRole canonical

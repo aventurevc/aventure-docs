@@ -74,10 +74,10 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             letter?: string | null | undefined;
             location?: string[] | undefined;
             logoOption?: {
-                sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
+                sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
             } | undefined;
             mainProduct?: string[] | undefined;
-            operatingStatus?: string[] | undefined;
+            operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
             person?: string[] | undefined;
             portfolioHeadquartersCity?: string[] | undefined;
             portfolioHeadquartersCountry?: string[] | undefined;
@@ -188,10 +188,10 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             letter?: string | null | undefined;
             location?: string[] | undefined;
             logoOption?: {
-                sortPriority: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST";
+                sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
             } | undefined;
             mainProduct?: string[] | undefined;
-            operatingStatus?: string[] | undefined;
+            operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
             person?: string[] | undefined;
             portfolioHeadquartersCity?: string[] | undefined;
             portfolioHeadquartersCountry?: string[] | undefined;
@@ -232,7 +232,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
     result: z.ZodType<{
         content: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -510,6 +509,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -552,7 +552,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -585,6 +584,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -630,7 +630,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             research: {
                 acceleratorParticipation: {
                     accelerator: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -671,9 +670,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
-                    dataConfidence?: "high" | "low" | "medium" | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -710,7 +706,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         content: {
             core: {
-                createdAt?: string | null | undefined;
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
                 id: string;
@@ -988,6 +983,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -1030,7 +1026,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
                     core: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -1063,6 +1058,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -1108,7 +1104,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             research: {
                 acceleratorParticipation: {
                     accelerator: {
-                        createdAt?: string | null | undefined;
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
                         id: string;
@@ -1149,9 +1144,6 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
-                    createdAt?: string | null | undefined;
-                    creator?: string | null | undefined;
-                    dataConfidence?: "high" | "low" | "medium" | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -1194,7 +1186,9 @@ type NaturalSearchResultDefinition = z.infer<typeof NaturalSearchResultSchemaDef
  * @openapiSchema NaturalSearchResult
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema FederatedSearchSchema
  * @contractShape natural.search-result
  * @contractRole canonical

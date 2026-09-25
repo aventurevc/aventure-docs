@@ -1,7 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { BlogPostSchema } from "../blog/post.js";
-import { DatasourceFieldProvenanceSchema } from "../datasource/field-provenance.js";
 import { EmployeeCountSchema } from "../employee/count.js";
 import { EntityAcquisitionSchema } from "../entity/acquisition.js";
 import { EntityDetailSchema } from "../entity/detail.js";
@@ -16,7 +15,6 @@ import { EntityRelationshipSchema } from "../entity/relationship.js";
 import { EntityResearchDetailSchema } from "../entity/research-detail.js";
 import { EntityResearchSnippetSchema } from "../entity/research-snippet.js";
 import { EntitySimilarityResultSchema } from "../entity/similarity-result.js";
-import { EntitySitemapUrlSchema } from "../entity/sitemap-url.js";
 import { EntityTagSchema } from "../entity/tag.js";
 import { EntityTextSchema } from "../entity/text.js";
 import { EntityUrlLinkSchema } from "../entity/url-link.js";
@@ -53,7 +51,6 @@ const PageBlogPostSchemaDefinition = z.object({
  * @openapiSchema PageBlogPost
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/people/{personId}/blog-posts
- * @endpoint GET /v1/people/{slug}/blog-posts
  * @contractShape pagination.page-blog-post
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -80,27 +77,6 @@ const PageClassificationSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageClassificationSchema = PageClassificationSchemaDefinition;
-const PageDatasourceFieldProvenanceSchemaDefinition = z.object({
-    content: z.array(DatasourceFieldProvenanceSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageDatasourceFieldProvenance
- * @endpoint GET /v1/provenance/history
- * @contractShape pagination.page-datasource-field-provenance
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageDatasourceFieldProvenanceSchema = PageDatasourceFieldProvenanceSchemaDefinition;
 const PageEmployeeCountSchemaDefinition = z.object({
     content: z.array(EmployeeCountSchema).optional(),
     empty: z.boolean().optional(),
@@ -116,7 +92,7 @@ const PageEmployeeCountSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEmployeeCount
- * @endpoint GET /v1/entities/{entityId}/people/time-series
+ * @endpoint GET /v1/entities/{entityId}/employee-counts
  * @contractShape pagination.page-employee-count
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -137,9 +113,8 @@ const PageEntitySchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntity
- * @endpoint GET /v1/sitemap/entities/routes
- * @endpoint GET /v1/addresses/locations/{scope}/{slug}
- * @endpoint GET /v1/news/{newsId}/related-companies
+ * @endpoint GET /v1/addresses/locations/{directory}/{locationSlug}
+ * @endpoint GET /v1/news/{newsId}/related-entities
  * @contractShape pagination.page-entity
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -181,9 +156,7 @@ const PageEntityDetailSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityDetail
- * @endpoint POST /v1/entities/batch
- * @endpoint POST /v1/entities/detail/batch
- * @endpoint POST /v1/entities/lookup/batch
+ * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-detail
  * @contractRole canonical
@@ -205,7 +178,7 @@ const PageEntityFundraiseInvestorJoinSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityFundraiseInvestorJoin
- * @endpoint GET /v1/entities/detail/fundraise-investor-joins
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
  * @contractShape pagination.page-entity-fundraise-investor-join
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -269,8 +242,6 @@ const PageEntityListSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityList
- * @endpoint GET /v1/entities
- * @endpoint POST /v1/entities/batch
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical
@@ -356,7 +327,7 @@ const PageEntityResearchDetailSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityResearchDetail
- * @endpoint GET /v1/entities/{entityId}/research/details
+ * @endpoint GET /v1/entities/{entityId}/research-details
  * @contractShape pagination.page-entity-research-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -377,7 +348,7 @@ const PageEntityResearchSnippetSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityResearchSnippet
- * @endpoint GET /v1/entities/{entityId}/research/snippets
+ * @endpoint GET /v1/entities/{entityId}/research-snippets
  * @contractShape pagination.page-entity-research-snippet
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -398,55 +369,12 @@ const PageEntitySimilarityResultSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntitySimilarityResult
- * @endpoint GET /v1/entities/detail/similar
  * @endpoint GET /v1/entities/{entityId}/similar
  * @contractShape pagination.page-entity-similarity-result
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
 export const PageEntitySimilarityResultSchema = PageEntitySimilarityResultSchemaDefinition;
-const PageEntitySitemapUrlSchemaDefinition = z.object({
-    content: z.array(EntitySitemapUrlSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageEntitySitemapUrl
- * @endpoint GET /v1/sitemap/entities/urls
- * @contractShape pagination.page-entity-sitemap-url
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageEntitySitemapUrlSchema = PageEntitySitemapUrlSchemaDefinition;
-const PageEntityTagSchemaDefinition = z.object({
-    content: z.array(EntityTagSchema).optional(),
-    empty: z.boolean().optional(),
-    first: z.boolean().optional(),
-    last: z.boolean().optional(),
-    number: z.int().optional(),
-    numberOfElements: z.int().optional(),
-    pageable: PageableObjectSchema.optional(),
-    size: z.int().optional(),
-    sort: SortObjectSchema.optional(),
-    totalElements: z.number().int().optional(),
-    totalPages: z.int().optional(),
-});
-/**
- * @openapiSchema PageEntityTag
- * @endpoint GET /v1/classifications/tags
- * @contractShape pagination.page-entity-tag
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageEntityTagSchema = PageEntityTagSchemaDefinition;
 const PageEntityTextSchemaDefinition = z.object({
     content: z.array(EntityTextSchema).optional(),
     empty: z.boolean().optional(),
@@ -485,9 +413,7 @@ const PageEntityUrlLinkSchemaDefinition = z.object({
 /**
  * @openapiSchema PageEntityUrlLink
  * @endpoint GET /v1/entities/{entityId}/urls
- * @endpoint GET /v1/entities/{entityId}/urls/all
  * @endpoint GET /v1/people/{personId}/urls
- * @endpoint GET /v1/people/{personId}/urls/all
  * @contractShape pagination.page-entity-url-link
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -551,7 +477,9 @@ const PageLocationDirectoryEntrySchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageLocationDirectoryEntry
- * @endpoint GET /v1/addresses/locations/{scope}
+ * @endpoint GET /v1/addresses/locations/{directory}
+ * @endpoint POST /v1/addresses/locations/batch
+ * @usedBySchema LocationSitemapSchema
  * @contractShape pagination.page-location-directory-entry
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -572,13 +500,8 @@ const PageNewsSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageNews
- * @endpoint GET /v1/entities/detail/news
  * @endpoint GET /v1/news
- * @endpoint GET /v1/news/recent
- * @endpoint GET /v1/news/similar
- * @endpoint GET /v1/people/detail/news
  * @endpoint GET /v1/entities/{entityId}/trending-news
- * @endpoint POST /v1/news
  * @contractShape pagination.page-news
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -599,8 +522,6 @@ const PagePersonSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePerson
- * @endpoint GET /v1/people
- * @endpoint POST /v1/people/batch
  * @endpoint POST /v1/people/search
  * @contractShape pagination.page-person
  * @contractRole canonical
@@ -622,9 +543,7 @@ const PagePersonDetailSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePersonDetail
- * @endpoint POST /v1/people/batch
- * @endpoint POST /v1/people/detail/batch
- * @endpoint POST /v1/people/lookup/batch
+ * @endpoint POST /v1/people/lookup-batch
  * @contractShape pagination.page-person-detail
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -645,7 +564,7 @@ const PagePersonInvestmentSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePersonInvestment
- * @endpoint GET /v1/people/detail/investments
+ * @endpoint GET /v1/people/{personId}/investments
  * @contractShape pagination.page-person-investment
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -711,6 +630,9 @@ const PagePublicationSchemaDefinition = z.object({
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
+ * @endpoint POST /v1/content/search
+ * @endpoint POST /v1/entities/{entityId}/content/search
+ * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -727,27 +649,14 @@ const PageResultEntityListSchemaDefinition = z.object({
  * @openapiSchema PageResultEntityList
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/entities/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/entities
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape pagination.page-result-entity-list
  * @contractRole canonical
  */
 export const PageResultEntityListSchema = PageResultEntityListSchemaDefinition;
-const PageResultLocationDirectoryEntrySchemaDefinition = z.object({
-    content: z.array(LocationDirectoryEntrySchema),
-    number: z.int(),
-    size: z.int(),
-    totalElements: z.number().int(),
-    totalPages: z.int(),
-});
-/**
- * @openapiSchema PageResultLocationDirectoryEntry
- * @endpoint POST /v1/addresses/locations/batch
- * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-result-location-directory-entry
- * @contractRole canonical
- */
-export const PageResultLocationDirectoryEntrySchema = PageResultLocationDirectoryEntrySchemaDefinition;
 const PageResultNewsSchemaDefinition = z.object({
     content: z.array(NewsSchema),
     number: z.int(),
@@ -758,6 +667,7 @@ const PageResultNewsSchemaDefinition = z.object({
 /**
  * @openapiSchema PageResultNews
  * @endpoint GET /v1/search/link
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema
  * @contractShape pagination.page-result-news
@@ -775,44 +685,23 @@ const PageResultPersonSchemaDefinition = z.object({
  * @openapiSchema PageResultPerson
  * @endpoint GET /v1/search/link
  * @endpoint POST /v1/people/natural-search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
+ * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchResultSchema
  * @contractShape pagination.page-result-person
  * @contractRole canonical
  */
 export const PageResultPersonSchema = PageResultPersonSchemaDefinition;
-const PageResultPublicationSchemaDefinition = z.object({
-    content: z.array(PublicationSchema),
-    number: z.int(),
-    size: z.int(),
-    totalElements: z.number().int(),
-    totalPages: z.int(),
-});
 /**
- * @openapiSchema PageResultPublication
- * @endpoint POST /v1/content/search
- * @endpoint POST /v1/entities/{entityId}/content/search
- * @endpoint POST /v1/people/{personId}/content/search
- * @usedBySchema PublicationSearchResultSchema
- * @contractShape pagination.page-result-publication
- * @contractRole canonical
- */
-export const PageResultPublicationSchema = PageResultPublicationSchemaDefinition;
-/**
- * @openapiSchema PageResultSitemapUrlSlot
+ * @openapiSchema PageSitemapUrlSlot
  * @endpoint POST /v1/addresses/locations/batch
  * @usedBySchema LocationSitemapSchema
- * @contractShape pagination.page-result-sitemap-url-slot
+ * @contractShape pagination.page-sitemap-url-slot
  * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
  */
-export const PageResultSitemapUrlSlotSchema = z.object({
-    content: z.array(SitemapUrlSlotSchema),
-    number: z.int(),
-    size: z.int(),
-    totalElements: z.number().int(),
-    totalPages: z.int(),
-});
-const PageSitemapUrlSlotSchemaDefinition = z.object({
+export const PageSitemapUrlSlotSchema = z.object({
     content: z.array(SitemapUrlSlotSchema).optional(),
     empty: z.boolean().optional(),
     first: z.boolean().optional(),
@@ -825,14 +714,6 @@ const PageSitemapUrlSlotSchemaDefinition = z.object({
     totalElements: z.number().int().optional(),
     totalPages: z.int().optional(),
 });
-/**
- * @openapiSchema PageSitemapUrlSlot
- * @endpoint GET /v1/sitemap/url-slots
- * @contractShape pagination.page-sitemap-url-slot
- * @contractRole canonical
- * @ownerModule pagination/schemas.ts
- */
-export const PageSitemapUrlSlotSchema = PageSitemapUrlSlotSchemaDefinition;
 const PageUniqueIdSchemaDefinition = z.object({
     content: z.array(UniqueIdSchema).optional(),
     empty: z.boolean().optional(),
@@ -870,9 +751,7 @@ const PageUrlSlugRedirectSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageUrlSlugRedirect
- * @endpoint GET /v1/entities/{entityId}/slug/redirects
- * @endpoint GET /v1/news/{newsId}/slug/redirects
- * @endpoint GET /v1/people/{personId}/slug/redirects
+ * @endpoint GET /v1/slug-redirects
  * @contractShape pagination.page-url-slug-redirect
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

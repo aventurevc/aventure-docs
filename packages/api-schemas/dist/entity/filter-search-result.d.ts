@@ -8,7 +8,6 @@ type EntityFilterSearchResultDefinition = z.infer<typeof EntityFilterSearchResul
  * Typeahead search result pairing a filter key with matching option values
  *
  * @openapiSchema EntityFilterSearchResult
- * @endpoint GET /v1/entities/filters/search
  * @endpoint GET /v1/people/filters/search
  * @endpoint POST /v1/entities/filters/search
  * @contractShape entity.filter-search-result

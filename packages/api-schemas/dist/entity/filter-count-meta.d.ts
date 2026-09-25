@@ -6,7 +6,6 @@ type EntityFilterCountMetaDefinition = z.infer<typeof EntityFilterCountMetaSchem
 /**
  * @openapiSchema EntityFilterCountMeta
  * @endpoint GET /v1/entities/filters/counts
- * @endpoint POST /v1/entities/filters/counts
  * @usedBySchema EntityFilterCountResultSchema
  * @contractShape entity.filter-count-meta
  * @contractRole canonical

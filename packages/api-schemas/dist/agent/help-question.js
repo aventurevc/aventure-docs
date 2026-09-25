@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { HelpScopeSchema } from "../help/scope.js";
 const AgentHelpQuestionSchemaDefinition = z.object({
-    /** Optional chat model that answers the question; null uses the configured default. A CLIENT_SECRET (non-admin) caller may only choose a client-secret-eligible model (owned by app.inference.client-secret-eligible-chat-model); an ineligible model is rejected with 422. Admin keys are unrestricted. */
+    /** Optional chat model that answers the question; null uses the configured default. A caller without admin authority may only choose an allowlisted model; an ineligible model is rejected with 422. Admin callers are unrestricted. */
     model: z.string().nullish(),
     /** The question to answer, in natural language. */
     question: z.string().min(1),
@@ -14,6 +14,7 @@ const AgentHelpQuestionSchemaDefinition = z.object({
  *
  * @openapiSchema AgentHelpQuestion
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/help
  * @contractShape agent.help-question
  * @contractRole canonical
  */
