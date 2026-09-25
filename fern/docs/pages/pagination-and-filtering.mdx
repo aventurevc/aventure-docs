@@ -5,7 +5,7 @@ slug: pagination-and-filtering
 ---
 
 This page is for developers who list records and need a specific subset or
-every page of a large result set. The examples use `GET /v1/entities/summary`,
+every page of a large result set. The examples use `GET /v1/entities`,
 which is anonymous. Other list operations use the same page fields, but their
 defaults and sortable fields differ, so check each operation in the
 [API reference](/api-reference) before you reuse parameters.
@@ -21,7 +21,7 @@ Set `size` explicitly so page sizes stay predictable across API versions.
 | `sort` | None | `property,(asc\|desc)`; repeat the parameter for more criteria |
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/summary?page=2&size=50&sort=nameBrand,asc"
+curl "https://api.aventure.vc/v1/entities?page=2&size=50&sort=nameBrand,asc"
 ```
 
 Sort order is ascending when you omit the direction, so `sort=nameBrand` and
@@ -61,17 +61,17 @@ means **any of these**:
 
 ```bash
 # Companies headquartered in either country
-curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&headquartersCountry=US&headquartersCountry=CA"
+curl "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCountry=US&headquartersCountry=CA"
 ```
 
 Different filters must all match:
 
 ```bash
 # Seed-stage companies headquartered in the US
-curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&stage=Seed&headquartersCountry=US"
+curl "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&headquartersCountry=US"
 ```
 
-`GET /v1/entities/summary` accepts more than sixty filters. The main groups are:
+`GET /v1/entities` accepts more than sixty filters. The main groups are:
 
 - **Identity:** `entityId`, `slug`, `entityName` (exact match on the normalized name), `url`, `urlDomain`
 - **Classification:** `industry`, `mainProduct`, `typeModel`, `typeOwnership`, `typeCustomer`, `typeRecord`, `tag`

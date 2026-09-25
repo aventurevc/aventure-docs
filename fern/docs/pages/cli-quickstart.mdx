@@ -29,7 +29,7 @@ The command is `aventure`. `aventure --version` prints the installed version.
 This command needs no credential:
 
 ```bash
-aventure entities summary list --type-record Company --size 3
+aventure entities list --type-record Company --size 3
 ```
 
 In a terminal, the result is a table with each company's name, `slug`, and
@@ -87,23 +87,23 @@ and which API build answered. It never prints the secret itself.
 pattern `aventure <record type> <action>`:
 
 ```bash
-aventure entities summary list --stage Seed --headquarters-city Austin --size 3
-aventure entities lookup get --name Ramp
+aventure entities list --stage Seed --headquarters-city Austin --size 3
+aventure entities lookup-exact get --name Ramp
 aventure entities get --entity-id 07895463-8867-4566-9dc8-a30794076bb6
 aventure entities fundraise-rounds list --entity-id 07895463-8867-4566-9dc8-a30794076bb6
 ```
 
 | Command | What it does | Credential |
 |------|--------------|------------|
-| `entities summary list` | List companies, products, and services, with filters | None |
-| `entities lookup get` | Read one full record by name, slug, URL, or domain | None |
+| `entities list` | List companies, products, and services, with filters | None |
+| `entities lookup-exact get` | Read one full record by exact name, slug, URL, or domain | None |
 | `entities get` | Read one full record by its `id` | None |
 | `entities fundraise-rounds list` | List one company's funding rounds | None |
 | `entities search` | Filter companies with a JSON body or flags | Signed in |
 | `entities lookup` | Decide which company a name refers to, or confirm it is new | Signed in |
 
-`people` has the same `get`, `lookup`, and `search` commands, and `news` has
-`get`, `lookup`, and `list`. Run `aventure <record type> --help` for the full list.
+`people` has the same `get`, `lookup-exact get`, `lookup`, and `search`
+commands, and `news` has `get`, `lookup`, and `list`. Run `aventure <record type> --help` for the full list.
 
 ### Start from a name
 
@@ -112,7 +112,7 @@ A slug includes the headquarters location, so you cannot guess it:
 the `core.slug` and the `core.id` UUID that other commands take:
 
 ```bash
-aventure entities lookup get --name Ramp
+aventure entities lookup-exact get --name Ramp
 ```
 
 `--url-domain stripe.com` resolves by website instead. When a name or domain
@@ -121,21 +121,22 @@ lists candidates, choose one and read it with `aventure entities get --entity-id
 Otherwise, list the matches and pick the intended record:
 
 ```bash
-aventure entities summary list --entity-name Mercury
+aventure entities list --entity-name Mercury
 ```
 
 Records attached to a company, such as funding rounds, investors, and people,
 sit under the company's UUID, so those commands take `--entity-id`, not a slug.
 
 To read many records in one request, sign in and pass several `--entity-id`,
-`--slug`, or `--url` values to `aventure entities lookup batch`.
+`--slug`, or `--url` values to `aventure entities lookup-batch`.
 
 ### Search across record types
 
 `aventure search --query "fintech companies in Austin"` searches companies,
 people, and news together from a plain-English phrase. `aventure lookup --name`
 finds a company or person from a name, with optional `--url`, `--location`, and
-`--context` evidence.
+`--context` evidence; [Identify a company or person](/lookup) explains its
+answers.
 
 <Note>
 `aventure search` and `aventure lookup` require you to be signed in.

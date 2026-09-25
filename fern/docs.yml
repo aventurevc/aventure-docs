@@ -42,6 +42,9 @@ navigation:
           - page: Answer a real question
             path: docs/pages/first-answer.mdx
             icon: fa-duotone fa-lightbulb
+          - page: Identify a company or person
+            path: docs/pages/lookup.mdx
+            icon: fa-duotone fa-magnifying-glass
           - page: Authentication
             path: docs/pages/authentication.mdx
             icon: fa-duotone fa-key

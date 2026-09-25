@@ -24,14 +24,14 @@ Filters are query parameters on the company list, and they combine.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
+curl "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities summary list --type-record Company --headquarters-city Austin --stage Seed --size 5
+aventure entities list --type-record Company --headquarters-city Austin --stage Seed --size 5
 ```
 
 </Tab>
@@ -41,7 +41,7 @@ Call `aventure_read` and name the operation:
 
 ```json
 {
-  "operationId": "listEntitySummaries",
+  "operationId": "listEntities",
   "query": { "typeRecord": ["Company"], "headquartersCity": ["Austin"], "stage": ["Seed"], "size": 5 }
 }
 ```
@@ -51,7 +51,7 @@ Call `aventure_read` and name the operation:
 
 `totalElements` counts the whole matching set, not only your page, so it
 answers "how many are there". `content` holds up to five records. Each record's
-`entity.core.slug` identifies it for the next step.
+`core.slug` identifies it for the next step.
 
 <Note>
 Location filters take the full name, not the postal abbreviation:
@@ -63,7 +63,7 @@ combine.
 </Step>
 <Step title="Open one record">
 
-Take `entity.core.slug` from a record in the previous response, such as
+Take `core.slug` from a record in the previous response, such as
 `closing-theory-austin-tx-us`, and read the full record. The response includes
 the record's identity, research, linked news, and linked people. Its `core.id`
 is the UUID that funding-round operations take.
@@ -72,14 +72,14 @@ is the UUID that funding-round operations take.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/lookup?slug=closing-theory-austin-tx-us"
+curl "https://api.aventure.vc/v1/entities/lookup-exact?slug=closing-theory-austin-tx-us"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities lookup get --entity-slug closing-theory-austin-tx-us
+aventure entities lookup-exact get --entity-slug closing-theory-austin-tx-us
 ```
 
 </Tab>

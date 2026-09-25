@@ -13,12 +13,14 @@ and [MCP quickstart](/mcp) cover the same data through those tools.
 
 ## 1. List companies
 
-`GET /v1/entities/summary` returns a page of compact records: identity, a
-funding rollup, and funding rounds. `typeRecord=Company` keeps companies and
+`GET /v1/entities` returns a page of list records. Each record carries its
+identity in `core`, supplemental data such as addresses, tags, and funding in
+`enrichment`, its funding rounds in `fundraiseRound`, and a research summary in
+`research`. `typeRecord=Company` keeps companies and
 excludes products, services, funds, and other record types.
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&size=5"
+curl "https://api.aventure.vc/v1/entities?typeRecord=Company&size=5"
 ```
 
 The response is a page object. The records are in `content`, and the other
@@ -37,7 +39,7 @@ fields describe your position in the result set:
 ```
 
 `number` is zero-based, so the first page is `0`. Each record's identity is in
-`content[].entity.core`, including its `slug` and its `id`.
+`content[].core`, including its `slug` and its `id`.
 
 ## 2. Narrow the list with filters
 
@@ -45,7 +47,7 @@ Filters are query parameters. Repeating a parameter means "any of these", and
 different parameters must all match:
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/summary?typeRecord=Company&stage=Seed&headquartersCountry=US&size=5"
+curl "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&headquartersCountry=US&size=5"
 ```
 
 The endpoint accepts more than sixty filters for industry, location,
@@ -55,19 +57,21 @@ accelerator cohort, funding activity, and operating status.
 ## 3. Find one company by name
 
 A slug includes the headquarters location, such as `ramp-new-york-city-ny-us`,
-so resolve a name instead of guessing its slug. `GET /v1/entities/lookup` is
+so resolve a name instead of guessing its slug. `GET /v1/entities/lookup-exact` is
 anonymous and returns the full record, including `core.slug` and the `core.id`
 UUID that funding, investor, and people routes take:
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/lookup?name=Ramp"
+curl "https://api.aventure.vc/v1/entities/lookup-exact?name=Ramp"
 ```
 
 `urlDomain=stripe.com` resolves by website instead. When a name or domain
 matches more than one record, the API answers [`409`](/errors). If the problem
 detail includes `details.candidate`, choose one candidate and read it by its
 `id` with `GET /v1/entities/{entityId}`. Otherwise, list the matches with
-`GET /v1/entities/summary?entityName=Mercury` and pick the intended record.
+`GET /v1/entities?entityName=Mercury` and pick the intended record.
+When you only have a name and clues such as a location or a source article,
+[identify the company](/lookup) instead.
 
 ## 4. Authenticate
 

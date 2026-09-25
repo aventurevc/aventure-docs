@@ -1,0 +1,172 @@
+---
+title: Identify a company or person
+subtitle: Turn a name and a few clues into the record it refers to, or learn that it is new
+slug: lookup
+availability: beta
+---
+
+<Warning>
+Lookup is an experimental feature. Its behavior and response fields can change
+between releases. If an answer looks wrong for the clues you sent, report the
+request body and the response through [Support](/support).
+</Warning>
+
+Lookup answers one question: **which aVenture record is this name?** You send a
+name as your source writes it plus any clues you have. The answer says whether
+one record matches, none does, or a person has to decide.
+
+## Pick an entry point
+
+| Operation | Use it when | CLI | MCP `operationId` |
+|-----------|-------------|-----|-------------------|
+| `POST /v1/lookup` | You do not know whether the name is a company or a person | `aventure lookup` | `lookupRecord` |
+| `POST /v1/entities/lookup` | The subject is a company | `aventure entities lookup` | `lookupEntity` |
+| `POST /v1/people/lookup` | The subject is a person | `aventure people lookup` | `lookupPerson` |
+
+All three take the same request body and return the same response shape.
+
+The universal `POST /v1/lookup` first checks whether the name is exactly a
+record's id, public handle, slug, or registry id such as a ticker, LEI, or EIN.
+If it is, that record is the answer. Otherwise it runs the company lookup and
+the person lookup together. `match.owner` says which kind matched: `entityId`
+for a company, `personId` for a person. When a company and a person share the
+name, the answer is `NEEDS_REVIEW`.
+
+If you already hold an exact slug, URL, or domain and want the full record, use
+`GET /v1/entities/lookup-exact` or `GET /v1/people/lookup-exact` instead. Those
+reads return `404` or `409` rather than guessing.
+
+## Send every clue you have
+
+Only `name` is required. Each other field narrows the answer.
+
+| Field | What to send | Why it helps |
+|-------|--------------|--------------|
+| `name` | The name exactly as the source writes it, such as `Acme AI` or `Jane Doe` | Starting point for every match |
+| `url` | Up to 10 URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page | A URL the record already holds proves the match without further judgment |
+| `location` | City, region, or country, such as `Austin, TX` | Tells namesakes apart; not proof on its own |
+| `context` | Specific facts: product, industry, employer and title, or founder names | Separates companies or people with the same name. Generic words like "startup" add nothing |
+| `sourceUrl` | The URL of the article that mentions the subject | Supplies the surrounding text as evidence |
+| `sourceNewsId` | The aVenture news id of that article, instead of `sourceUrl` | Same as `sourceUrl`; an unknown id returns `400` |
+
+Put articles in `sourceUrl`, not in `url`: `url` is only for pages the subject
+owns. A parent company, subsidiary, or namesake is a different company. The same
+person name at a different employer is a different person.
+
+## Act on the answer
+
+Every response has a `status`, a one-sentence `detail`, and a `candidate` list
+ordered most probable first.
+
+| `status` | Meaning | What to do next |
+|----------|---------|-----------------|
+| `MATCHED` | One record is the subject | Read it by `match.record.id`: `GET /v1/entities/{entityId}` for a company or `GET /v1/people/{personId}` for a person |
+| `NO_MATCH` | No record you can see is the subject | Treat the subject as new. For a company, use `officialUrl` as its website when it is present and is the company's own domain |
+| `NEEDS_REVIEW` | The clues fit more than one record, or cannot rule one in | Show `candidate` to the user and ask which record it is, or whether the subject is new. Never create a record on `NEEDS_REVIEW` |
+
+`duplicate` lists other stored records that appear to be the same subject
+stored again. `NO_MATCH` covers only the records your credential can see.
+
+## How the answer was settled
+
+`stage` names the step that settled the answer:
+
+- **`DETERMINISTIC`**: exact proof. A URL you sent is already held by the
+  record, or the name is an exact id, slug, or registry id. No judgment is
+  involved.
+- **`JUDGMENT`**: a decision model compared the candidates against your name
+  and clues. `matchConfidence` and each candidate's `probability` carry its
+  scores from 0 to 1.
+- **`WEB_EVIDENCE`**: the judgment also used a web search. `officialUrl` holds
+  the subject's own website or profile when the search found one.
+
+Deterministic answers are the most reliable. Sending the subject's website or
+LinkedIn URL is the best way to reach one.
+
+## Examples
+
+A company with its website and location:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/entities/lookup" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Acme AI","url":["https://acme.ai"],"location":"Austin, TX"}'
+```
+
+```bash title="CLI"
+aventure entities lookup --name "Acme AI" --url https://acme.ai --location "Austin, TX"
+```
+
+```json title="MCP (aventure_lookup)"
+{
+  "operationId": "lookupEntity",
+  "body": { "name": "Acme AI", "url": ["https://acme.ai"], "location": "Austin, TX" }
+}
+```
+</CodeBlocks>
+
+A person, with their employer as context:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/people/lookup" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Jane Doe","context":"CEO at Acme AI"}'
+```
+
+```bash title="CLI"
+aventure people lookup --name "Jane Doe" --context "CEO at Acme AI"
+```
+
+```json title="MCP (aventure_lookup)"
+{ "operationId": "lookupPerson", "body": { "name": "Jane Doe", "context": "CEO at Acme AI" } }
+```
+</CodeBlocks>
+
+A name when you do not know whether it is a company or a person:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/lookup" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Acme AI","url":["https://acme.ai"]}'
+```
+
+```bash title="CLI"
+aventure lookup --name "Acme AI" --url https://acme.ai
+```
+
+```json title="MCP (aventure_lookup)"
+{ "operationId": "lookupRecord", "body": { "name": "Acme AI", "url": ["https://acme.ai"] } }
+```
+</CodeBlocks>
+
+To accept only an exact id, handle, registry id, or slug on `POST /v1/lookup`,
+add `legacy=true` (`--legacy true` in the CLI). The lookup then skips judgment
+and web search and returns `404` when nothing matches exactly.
+
+## Access and limits
+
+All three operations require a signed-in caller: an API key or a CLI or MCP
+sign-in (see [Authentication](/authentication)).
+
+Each company or person lookup spends one call of your natural-search quota. On
+`POST /v1/lookup`, a name that exactly matches an id, handle, registry id, or
+slug settles for free; only names that go on to the company and person lookups
+spend quota. When the quota is exhausted the call returns [`429`](/errors)
+with a `Retry-After` header. [Plans and usage](/authentication#plans-and-usage)
+explains what counts against an allowance.
+
+## Coming next
+
+These additions are experimental and rolling out; their fields and operations
+are not final:
+
+- Answers will report how complete the matched record is
+  (`dataCompletionCoverage`) and when it last changed (`updatedAt`).
+- Lookup for news articles.
+- Batch enrichment of many looked-up records in one request.

@@ -9,7 +9,7 @@ This page is for anyone deciding whether a call needs a credential or a plan.
 The public API has two access modes:
 
 - An operation with no `security` declaration in the [API reference](/api-reference)
-  is anonymous. `GET /v1/entities/summary` and `GET /v1/entities/lookup` are
+  is anonymous. `GET /v1/entities` and `GET /v1/entities/lookup-exact` are
   examples.
 - An operation that declares bearer authentication accepts a personal API key or
   an OAuth access token in the `Authorization` header.
