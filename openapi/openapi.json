@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.6"
+    "version": "0.8.7"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -14290,7 +14290,7 @@
     },
     "/v1/entities/{entityId}/similar/summary": {
       "get": {
-        "description": "Returns the same similar entities, order, and totals as GET /v1/entities/{entityId:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}}/similar with lean rows: entity core, current URL links, and similarity provenance. Use it for rails and cards that do not render list enrichment. Custom sorting is unsupported. Any signed-in user may call this on every plan. The list is free: it never counts against the monthly record-view allowance, which charges only a separate full-detail view of one record.",
+        "description": "Returns the same similar entities, order, and totals as GET /v1/entities/{entityId}/similar with lean rows: entity core, current URL links, and similarity provenance. Use it for rails and cards that do not render list enrichment. Custom sorting is unsupported. Any signed-in user may call this on every plan. The list is free: it never counts against the monthly record-view allowance, which charges only a separate full-detail view of one record.",
         "operationId": "listEntitySimilarSummaries",
         "parameters": [
           {
