@@ -8,7 +8,7 @@
 - [CLI quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli`, run a public read, sign in through the browser, and verify with `aventure auth doctor`.
 - [MCP quickstart](https://docs.aventure.vc/mcp): Connect an AI client to the hosted MCP server over OAuth, or self-host `@aventurevc/mcp-server`.
 - [Answer a real question](https://docs.aventure.vc/first-answer): Chain three public reads — filter the entity list, resolve one record by slug, read its funding rounds — in API, CLI, and MCP form.
-- [Identify a company or person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues into the matching record, or learn that it is new.
+- [Identify a company or person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues, or every name in a news article, into the matching records; judge record freshness and queue single or batch research updates.
 - [Authentication](https://docs.aventure.vc/authentication): Choose the credential accepted by an operation.
 - [Pagination and filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
 - [Errors](https://docs.aventure.vc/errors): Interpret problem detail responses and rate limits.

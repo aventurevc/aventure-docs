@@ -1,6 +1,6 @@
 ---
 title: Identify a company or person
-subtitle: Turn a name and a few clues into the record it refers to, or learn that it is new
+subtitle: Turn a name or an article into the records it refers to, then queue research to update them
 slug: lookup
 availability: beta
 ---
@@ -151,8 +151,10 @@ and web search and returns `404` when nothing matches exactly.
 
 ## Access and limits
 
-All three operations require a signed-in caller: an API key or a CLI or MCP
-sign-in (see [Authentication](/authentication)).
+Lookup and article lookup require a signed-in caller: an API key or a CLI or
+MCP sign-in (see [Authentication](/authentication)). A signed-in caller whose
+plan does not include natural search receives [`402`](/errors) with `code`
+`subscription_required`.
 
 Each company or person lookup spends one call of your natural-search quota. On
 `POST /v1/lookup`, a name that exactly matches an id, handle, registry id, or
@@ -161,12 +163,144 @@ spend quota. When the quota is exhausted the call returns [`429`](/errors)
 with a `Retry-After` header. [Plans and usage](/authentication#plans-and-usage)
 explains what counts against an allowance.
 
-## Coming next
+## Pick records worth a research update
 
-These additions are experimental and rolling out; their fields and operations
-are not final:
+Each candidate, including `match`, carries two fields that tell you how current
+the stored record is:
 
-- Answers will report how complete the matched record is
-  (`dataCompletionCoverage`) and when it last changed (`updatedAt`).
-- Lookup for news articles.
-- Batch enrichment of many looked-up records in one request.
+| Field | Meaning |
+|-------|---------|
+| `dataCompletionCoverage` | Companies only. The share, from 0 to 100, of the required profile facts the record holds. Absent for people and for companies whose coverage has not been computed yet |
+| `updatedAt` | When the stored record last changed |
+
+A low `dataCompletionCoverage` or an old `updatedAt` marks a record that a
+[research update](#update-records-with-research) is likely to improve. A
+company near 100 that changed recently rarely needs one. When coverage is
+absent, decide from `updatedAt` alone.
+
+## Identify everything an article names
+
+An article lookup reads one article, extracts every company and person it
+names, and identifies each name as `POST /v1/lookup` would, with the article as
+the source.
+
+1. Start the job with `POST /v1/lookup-jobs` and a body holding `sourceUrl`,
+   `sourceNewsId`, or both. The call returns `202` with a `jobId`. Sending the
+   same article again soon returns the earlier job.
+2. Read the job with `GET /v1/lookup-jobs/{jobId}` until `state` is
+   `COMPLETED` or `FAILED`. Only the caller that started the job can read it.
+3. Act on each entry in `mention`. Every entry has the `name` as the article
+   writes it and a `mentionType` of `COMPANY` or `PERSON`:
+   - `identification` is the lookup answer, read exactly as in
+     [Act on the answer](#act-on-the-answer).
+   - `shell` is set when the answer is `NO_MATCH` and the job created a hidden
+     placeholder record for the name. The job creates one only when the article
+     and a live page on another site both name the subject. `shell` holds its
+     `entityId` or `personId`; creating it costs nothing, and you can send it
+     straight to a research update.
+   - `shellDetail` says, in one sentence, why no placeholder was created for a
+     `NO_MATCH` name.
+   - `failureReason` replaces `identification` when a name could not be
+     identified. Send that name alone to `POST /v1/lookup`.
+
+When the job is accepted it spends one natural-search quota call for each name
+it may identify, up to its per-article limit. A repeat of the same article that
+returns the earlier job spends nothing. The job answers `402` and `429` under
+the same rules as a single lookup.
+
+## Update records with research
+
+A research update queues a run that researches one record and updates its
+aVenture profile.
+
+| Operation | Use it for | CLI |
+|-----------|------------|-----|
+| `POST /v1/entities/{entityId}/enrichments` | One company, product, or service | `aventure entities enrichments enrich` |
+| `POST /v1/people/{personId}/enrichments` | One person | `aventure people enrichments enrich` |
+| `POST /v1/enrichments` | Many records: a body with `entityId` and `personId` arrays | `aventure enrichments enrich` |
+
+Take the id from `match.owner` on a `MATCHED` answer, from the candidate the
+user chose on `NEEDS_REVIEW`, or from an article lookup's `shell`. When a run
+for the same record is already queued or running, the call returns that run
+instead of starting and charging another.
+
+The batch call files one run per distinct id, companies first, and returns one
+outcome per record in request order: its `run`, or a `refusal` of `NOT_FOUND`
+for an unknown id or `ALLOWANCE_EXHAUSTED` once your research allowance runs
+out. Runs filed before the allowance ran out stay queued. A list longer than
+the batch limit is refused before any run is filed.
+
+Each new run is billed as one company research ($2.50) or one person research
+($0.65). Runs first draw on your plan's monthly research allowance: AI Plus
+includes 30 company and 30 person researches, and AI Pro includes 270 of each.
+Past the allowance, runs continue only as additional usage if you turned it on;
+otherwise a single-record call answers `429` and the batch call marks the
+remaining records `ALLOWANCE_EXHAUSTED`. A plan without research runs answers `402`.
+[Plans and usage](/authentication#plans-and-usage) explains allowances and
+additional usage.
+
+Check a run with `GET /v1/harness/runs/{runId}` (`aventure harness runs get`),
+using the `id` of the returned run. `run.status` moves through `queued` and
+`running` to `completed`, `failed`, or `stopped`. When it is `completed`, read
+the updated record with `GET /v1/entities/{entityId}` or
+`GET /v1/people/{personId}`.
+
+## From article to researched records
+
+Start an article lookup:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/lookup-jobs" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"sourceUrl":"https://techcrunch.com/2024/01/01/example"}'
+```
+
+```bash title="CLI"
+aventure lookup-jobs create --source-url https://techcrunch.com/2024/01/01/example
+```
+</CodeBlocks>
+
+Read the job with the returned `jobId` until `state` is `COMPLETED`:
+
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/lookup-jobs/$JOB_ID" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure lookup-jobs get --job-id "$JOB_ID"
+```
+</CodeBlocks>
+
+Collect the company and person ids from each mention's `match.owner` or
+`shell`, keep the ones worth updating, and queue research on all of them in one
+call:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/enrichments" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"entityId":["'"$ENTITY_ID"'"],"personId":["'"$PERSON_ID"'"]}'
+```
+
+```bash title="CLI"
+aventure enrichments enrich --entity-id "$ENTITY_ID" --person-id "$PERSON_ID"
+```
+</CodeBlocks>
+
+Check each returned run:
+
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/harness/runs/$RUN_ID" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure harness runs get --run-id "$RUN_ID"
+```
+</CodeBlocks>
