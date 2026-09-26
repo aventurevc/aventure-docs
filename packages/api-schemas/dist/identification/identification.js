@@ -1,7 +1,19 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { IdentificationCandidateSchema } from "./candidate.js";
-const IdentificationSchemaDefinition = z.object({
+/**
+ * Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.
+ *
+ * @openapiSchema Identification
+ * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
+ * @endpoint POST /v1/people/lookup
+ * @usedBySchema LookupJobMentionSchema
+ * @contractShape identification.identification
+ * @contractRole canonical
+ */
+export const IdentificationSchema = z.object({
     /** Records considered, most probable first. */
     candidate: z.array(IdentificationCandidateSchema),
     /** One sentence naming what settled the answer or what the user must decide. */
@@ -21,15 +33,4 @@ const IdentificationSchemaDefinition = z.object({
     /** What the caller does next: act on match, create, or ask the user. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
 });
-/**
- * Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.
- *
- * @openapiSchema Identification
- * @endpoint POST /v1/entities/lookup
- * @endpoint POST /v1/lookup
- * @endpoint POST /v1/people/lookup
- * @contractShape identification.identification
- * @contractRole canonical
- */
-export const IdentificationSchema = IdentificationSchemaDefinition;
 //# sourceMappingURL=identification.js.map

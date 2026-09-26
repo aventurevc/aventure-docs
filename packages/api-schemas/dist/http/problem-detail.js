@@ -8,15 +8,7 @@ import { RedirectSlugPathSchema } from "../redirect/redirect-slug-path.js";
 const ProblemDetailSchemaDefinition = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: z
-        .enum([
-        "NEW_COMPANY",
-        "UPDATE",
-        "NEW_PERSON",
-        "UPDATE_PERSON",
-        "ENTITY_VIEW",
-        "PERSON_VIEW",
-        "WEB_SEARCH",
-    ])
+        .enum(["COMPANY", "PERSON", "ENTITY_VIEW", "PERSON_VIEW", "WEB_SEARCH"])
         .nullish(),
     circuitBreaker: z.string().nullish(),
     /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes indicate infra/admin-only conditions where the correct agent action is to surface the error and stop, not retry. */

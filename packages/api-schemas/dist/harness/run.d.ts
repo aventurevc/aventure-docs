@@ -1,5 +1,18 @@
 import { z } from "zod/v4";
-declare const HarnessRunSchemaDefinition: z.ZodObject<{
+/**
+ * One harness enrichment run
+ *
+ * @openapiSchema HarnessRun
+ * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint POST /v1/enrichments
+ * @endpoint POST /v1/entities/{entityId}/enrichments
+ * @endpoint POST /v1/people/{personId}/enrichments
+ * @usedBySchema EnrichmentSchema
+ * @usedBySchema HarnessRunDetailSchema
+ * @contractShape harness.run
+ * @contractRole canonical
+ */
+export declare const HarnessRunSchema: z.ZodObject<{
     attempt: z.ZodInt;
     chassis: z.ZodEnum<{
         "claude-agent-sdk": "claude-agent-sdk";
@@ -57,17 +70,5 @@ declare const HarnessRunSchemaDefinition: z.ZodObject<{
     url: z.ZodString;
     userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
-type HarnessRunDefinition = z.infer<typeof HarnessRunSchemaDefinition>;
-/**
- * One harness enrichment run
- *
- * @openapiSchema HarnessRun
- * @endpoint POST /v1/entities/{entityId}/enrichments
- * @endpoint POST /v1/people/{personId}/enrichments
- * @contractShape harness.run
- * @contractRole canonical
- */
-export declare const HarnessRunSchema: z.ZodType<HarnessRunDefinition>;
 export type HarnessRun = z.infer<typeof HarnessRunSchema>;
-export {};
 //# sourceMappingURL=run.d.ts.map

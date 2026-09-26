@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * One existing record considered as the subject.
  *
  * @openapiSchema IdentificationCandidate
+ * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/people/lookup
@@ -11,6 +12,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const IdentificationCandidateSchema: z.ZodObject<{
+    dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         JUDGED: "JUDGED";
         SHARED_FACT: "SHARED_FACT";
@@ -43,6 +45,7 @@ export declare const IdentificationCandidateSchema: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, unknown>>;
+    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 export type IdentificationCandidate = z.infer<typeof IdentificationCandidateSchema>;
 //# sourceMappingURL=candidate.d.ts.map

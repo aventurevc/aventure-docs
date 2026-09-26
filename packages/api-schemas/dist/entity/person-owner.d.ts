@@ -5,10 +5,12 @@ import { z } from "zod/v4";
  * @openapiSchema EntityPersonOwner
  * @standardProblemResponse
  * @usedBySchema BlogPostSchema
+ * @usedBySchema EnrichmentSchema
  * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @usedBySchema EntityTextSchema
  * @usedBySchema EntityUrlLinkSchema
  * @usedBySchema IdentificationCandidateSchema
+ * @usedBySchema LookupJobMentionSchema
  * @usedBySchema ResolvedHandleSchema
  * @usedBySchema UniqueIdSchema
  * @usedBySchema UrlDuplicateConflictSchema

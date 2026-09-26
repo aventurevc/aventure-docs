@@ -7,7 +7,20 @@ import { HarnessRunEnvironmentSchema } from "./run-environment.js";
 import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
 import { HarnessRunTypeSchema } from "./run-type.js";
-const HarnessRunSchemaDefinition = z.object({
+/**
+ * One harness enrichment run
+ *
+ * @openapiSchema HarnessRun
+ * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint POST /v1/enrichments
+ * @endpoint POST /v1/entities/{entityId}/enrichments
+ * @endpoint POST /v1/people/{personId}/enrichments
+ * @usedBySchema EnrichmentSchema
+ * @usedBySchema HarnessRunDetailSchema
+ * @contractShape harness.run
+ * @contractRole canonical
+ */
+export const HarnessRunSchema = z.object({
     /** Retry attempt counter */
     attempt: z.int(),
     /** Agent loop this run executes on */
@@ -67,14 +80,4 @@ const HarnessRunSchemaDefinition = z.object({
     /** Optional steering prompt filed with the run */
     userPrompt: z.string().nullish(),
 });
-/**
- * One harness enrichment run
- *
- * @openapiSchema HarnessRun
- * @endpoint POST /v1/entities/{entityId}/enrichments
- * @endpoint POST /v1/people/{personId}/enrichments
- * @contractShape harness.run
- * @contractRole canonical
- */
-export const HarnessRunSchema = HarnessRunSchemaDefinition;
 //# sourceMappingURL=run.js.map

@@ -3,15 +3,7 @@ import { z } from "zod/v4";
 const BillingCatalogAllowanceSchemaDefinition = z.object({
     /** Monthly cap; 0 withholds the allowance and absent means uncapped. */
     limit: z.int().nullish(),
-    type: z.enum([
-        "NEW_COMPANY",
-        "UPDATE",
-        "NEW_PERSON",
-        "UPDATE_PERSON",
-        "ENTITY_VIEW",
-        "PERSON_VIEW",
-        "WEB_SEARCH",
-    ]),
+    type: z.enum(["COMPANY", "PERSON", "ENTITY_VIEW", "PERSON_VIEW", "WEB_SEARCH"]),
 });
 /**
  * A tier's monthly cap for one allowance.

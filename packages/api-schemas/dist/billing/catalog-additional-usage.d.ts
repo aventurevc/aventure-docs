@@ -2,12 +2,10 @@ import { z } from "zod/v4";
 declare const BillingCatalogAdditionalUsageSchemaDefinition: z.ZodObject<{
     type: z.ZodEnum<{
         AI_CREDIT: "AI_CREDIT";
+        COMPANY: "COMPANY";
         ENTITY_VIEW: "ENTITY_VIEW";
-        NEW_COMPANY: "NEW_COMPANY";
-        NEW_PERSON: "NEW_PERSON";
+        PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";
-        UPDATE: "UPDATE";
-        UPDATE_PERSON: "UPDATE_PERSON";
         WEB_SEARCH: "WEB_SEARCH";
     }>;
     unitAmount: z.ZodNumber;

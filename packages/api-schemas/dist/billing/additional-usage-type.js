@@ -12,10 +12,8 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export const BillingAdditionalUsageTypeSchema = z.enum([
-    "NEW_COMPANY",
-    "UPDATE",
-    "NEW_PERSON",
-    "UPDATE_PERSON",
+    "COMPANY",
+    "PERSON",
     "ENTITY_VIEW",
     "PERSON_VIEW",
     "WEB_SEARCH",

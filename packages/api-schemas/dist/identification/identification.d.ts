@@ -1,6 +1,19 @@
 import { z } from "zod/v4";
-declare const IdentificationSchemaDefinition: z.ZodObject<{
+/**
+ * Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.
+ *
+ * @openapiSchema Identification
+ * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
+ * @endpoint POST /v1/people/lookup
+ * @usedBySchema LookupJobMentionSchema
+ * @contractShape identification.identification
+ * @contractRole canonical
+ */
+export declare const IdentificationSchema: z.ZodObject<{
     candidate: z.ZodArray<z.ZodObject<{
+        dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             JUDGED: "JUDGED";
             SHARED_FACT: "SHARED_FACT";
@@ -33,9 +46,11 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, unknown>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>;
     detail: z.ZodString;
     duplicate: z.ZodArray<z.ZodObject<{
+        dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             JUDGED: "JUDGED";
             SHARED_FACT: "SHARED_FACT";
@@ -68,8 +83,10 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, unknown>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             JUDGED: "JUDGED";
             SHARED_FACT: "SHARED_FACT";
@@ -102,6 +119,7 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, unknown>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
     matchConfidence: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     matchEvidenceProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -117,18 +135,5 @@ declare const IdentificationSchemaDefinition: z.ZodObject<{
         NO_MATCH: "NO_MATCH";
     }>;
 }, z.core.$strip>;
-type IdentificationDefinition = z.infer<typeof IdentificationSchemaDefinition>;
-/**
- * Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.
- *
- * @openapiSchema Identification
- * @endpoint POST /v1/entities/lookup
- * @endpoint POST /v1/lookup
- * @endpoint POST /v1/people/lookup
- * @contractShape identification.identification
- * @contractRole canonical
- */
-export declare const IdentificationSchema: z.ZodType<IdentificationDefinition>;
 export type Identification = z.infer<typeof IdentificationSchema>;
-export {};
 //# sourceMappingURL=identification.d.ts.map

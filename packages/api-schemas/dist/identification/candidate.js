@@ -6,6 +6,7 @@ import { SearchDuplicateCandidateScoreSchema } from "../search/duplicate-candida
  * One existing record considered as the subject.
  *
  * @openapiSchema IdentificationCandidate
+ * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/people/lookup
@@ -14,6 +15,8 @@ import { SearchDuplicateCandidateScoreSchema } from "../search/duplicate-candida
  * @contractRole canonical
  */
 export const IdentificationCandidateSchema = z.object({
+    /** Percentage, 0 to 100, of the company's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for companies not yet computed. */
+    dataCompletionCoverage: z.int().min(0).max(100).nullish(),
     /** How this record was checked as the picked record stored again; absent when it was not checked. */
     duplicateBasis: z.enum(["STUB", "SHARED_FACT", "JUDGED"]).nullish(),
     /** Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED. */
@@ -24,5 +27,7 @@ export const IdentificationCandidateSchema = z.object({
     probability: z.number().nullish(),
     /** The record with its duplicate-check score and reasons; score 0 with no reason means only vector similarity proposed it. */
     record: SearchDuplicateCandidateScoreSchema,
+    /** When the stored record was last updated. */
+    updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 //# sourceMappingURL=candidate.js.map

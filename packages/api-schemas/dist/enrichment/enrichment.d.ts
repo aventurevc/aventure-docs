@@ -1,0 +1,82 @@
+import { z } from "zod/v4";
+declare const EnrichmentSchemaDefinition: z.ZodObject<{
+    record: z.ZodObject<{
+        entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    }, z.core.$strip>;
+    refusal: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        ALLOWANCE_EXHAUSTED: "ALLOWANCE_EXHAUSTED";
+        NOT_FOUND: "NOT_FOUND";
+    }>>>;
+    run: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        attempt: z.ZodInt;
+        chassis: z.ZodEnum<{
+            "claude-agent-sdk": "claude-agent-sdk";
+            "pi-agent-sdk": "pi-agent-sdk";
+        }>;
+        chassisRouted: z.ZodBoolean;
+        createdAt: z.ZodISODateTime;
+        entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        environment: z.ZodEnum<{
+            development: "development";
+            production: "production";
+            staging: "staging";
+            unassigned: "unassigned";
+        }>;
+        error: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        failureClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        hasSourceDocument: z.ZodBoolean;
+        id: z.ZodUUID;
+        iteration: z.ZodInt;
+        lane: z.ZodEnum<{
+            background: "background";
+            interactive: "interactive";
+        }>;
+        latestStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        llmApi: z.ZodEnum<{
+            anthropic: "anthropic";
+            "openai-chat": "openai-chat";
+            "openai-responses": "openai-responses";
+        }>;
+        maxIteration: z.ZodInt;
+        maxScoutConcurrent: z.ZodInt;
+        mode: z.ZodEnum<{
+            COMPREHENSIVE: "COMPREHENSIVE";
+            INDIVIDUAL: "INDIVIDUAL";
+        }>;
+        model: z.ZodString;
+        nextAttemptAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        resumeSafeUntil: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        startedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        status: z.ZodEnum<{
+            completed: "completed";
+            failed: "failed";
+            queued: "queued";
+            running: "running";
+            stopped: "stopped";
+        }>;
+        subagentModel: z.ZodString;
+        taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+        type: z.ZodEnum<{
+            ENRICHMENT: "ENRICHMENT";
+            TASK: "TASK";
+        }>;
+        updatedAt: z.ZodISODateTime;
+        url: z.ZodString;
+        userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
+}, z.core.$strip>;
+type EnrichmentDefinition = z.infer<typeof EnrichmentSchemaDefinition>;
+/**
+ * One requested record's batch enrichment outcome: the filed run or the refusal
+ *
+ * @openapiSchema Enrichment
+ * @endpoint POST /v1/enrichments
+ * @contractShape enrichment.enrichment
+ * @contractRole canonical
+ */
+export declare const EnrichmentSchema: z.ZodType<EnrichmentDefinition>;
+export type Enrichment = z.infer<typeof EnrichmentSchema>;
+export {};
+//# sourceMappingURL=enrichment.d.ts.map

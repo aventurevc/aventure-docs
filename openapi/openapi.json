@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.4"
+    "version": "0.8.5"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -103,6 +103,10 @@
     {
       "description": "Acquisitions a company made or was part of. The path entity is acquired; acquirerEntityId is the buyer.",
       "name": "Entity Acquisitions"
+    },
+    {
+      "description": "Identify every company and person an article names",
+      "name": "Lookup jobs"
     },
     {
       "description": "Search companies, people, and news, or by URL",
@@ -3204,6 +3208,199 @@
         }
       }
     },
+    "/v1/enrichments": {
+      "post": {
+        "description": "Queues one enrichment run per listed entity and person, in order, each owned by the authenticated principal and billed exactly as the single-record enrich call is. A repeated id is filed once. Returns one outcome per distinct record: its run, or NOT_FOUND for an unknown record. Once the research allowance runs out, the remaining records are returned as ALLOWANCE_EXHAUSTED without being filed, and runs already filed stay queued. A list longer than the configured batch limit is refused before any run is filed. Check each run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
+        "operationId": "enrichRecords",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrichmentBatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Enrichment"
+                  }
+                }
+              }
+            },
+            "description": "One outcome per distinct requested record, in request order.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The authenticated caller's subscription tier does not include research runs."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Enrich many companies and people",
+        "tags": [
+          "Harness"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/entities": {
       "get": {
         "description": "List entities with the same filters and sort as POST /v1/entities/search, passed as query parameters. Use the POST search for semantic ranking or a JSON EntityListFilter body, and POST /v1/search/natural/entities for plain English.",
@@ -5043,7 +5240,7 @@
     },
     "/v1/entities/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.record.id is the company; read its detail with GET /v1/entities/{entityId}. NO_MATCH: no record you can see is this company; create it, using officialUrl as its website when present. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether it is new; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use GET /v1/entities/lookup-exact. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"],\"location\":\"Austin, TX\"}.",
+        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.entityId is the company; read it with GET /v1/entities/{entityId} (CLI: entities get) or queue research on it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich). NO_MATCH: no record you can see is this company; a caller with write access creates it, using officialUrl as its website when present. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether it is new, then use the chosen candidate's owner.entityId; never create on NEEDS_REVIEW. Resending with the company's website or LinkedIn company URL settles it without a model call when a stored record holds that URL. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use GET /v1/entities/lookup-exact. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"],\"location\":\"Austin, TX\"}.",
         "operationId": "lookupEntity",
         "parameters": [
           {
@@ -5115,6 +5312,16 @@
             "description": "Unauthorized",
             "x-aventure-standard-response": true
           },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The signed-in caller's plan does not include natural search."
+          },
           "403": {
             "content": {
               "application/problem+json": {
@@ -5178,7 +5385,7 @@
                 }
               }
             },
-            "description": "Too Many Requests",
+            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -5192,8 +5399,7 @@
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
               }
-            },
-            "x-aventure-standard-response": true
+            }
           },
           "500": {
             "content": {
@@ -9922,7 +10128,7 @@
     },
     "/v1/entities/{entityId}/enrichments": {
       "post": {
-        "description": "Queues an enrichment run for the addressed entity, owned by the authenticated principal. The run targets that entity's canonical aVenture profile, so it is billed as an update of a known record and reuses the entity's already-active run.",
+        "description": "Queues a run that researches the addressed entity and updates its aVenture profile, owned by the authenticated caller. Take entityId from match.owner when POST /v1/lookup or POST /v1/entities/lookup returns MATCHED (CLI: lookup, entities lookup). When a run for this entity is already queued or running, returns that run instead of queuing and charging another; a new run spends one `company` research unit from the plan's research allowance. After the run completes, read the updated profile with GET /v1/entities/{entityId} (CLI: entities get). Check the run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
         "operationId": "enrichEntity",
         "parameters": [
           {
@@ -9936,7 +10142,7 @@
             }
           },
           {
-            "description": "Enrichment breadth; omitted requests the comprehensive default.",
+            "description": "COMPREHENSIVE (the default) researches the whole profile; INDIVIDUAL runs only the tasks named in taskPresetKey.",
             "in": "query",
             "name": "mode",
             "required": false,
@@ -9945,7 +10151,7 @@
             }
           },
           {
-            "description": "Orchestrator model override; omitted uses the configured role default.",
+            "description": "Model id for the run's lead agent; omit to use aVenture's default model.",
             "in": "query",
             "name": "model",
             "required": false,
@@ -9954,7 +10160,7 @@
             }
           },
           {
-            "description": "Optional steering prompt.",
+            "description": "Plain-language instruction for this run, such as which facts or sources to check first.",
             "in": "query",
             "name": "userPrompt",
             "required": false,
@@ -9963,7 +10169,7 @@
             }
           },
           {
-            "description": "Task preset keys that scope or emphasize this run.",
+            "description": "Task preset keys that scope or emphasize this run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400.",
             "in": "query",
             "name": "taskPresetKey",
             "required": false,
@@ -15740,6 +15946,177 @@
         }
       }
     },
+    "/v1/harness/runs/{runId}": {
+      "get": {
+        "description": "Returns one run with its resolved public entity and exact renderable profile URL when available. An admin API key or admin bearer credential addresses every run and receives the privileged projection; any other authenticated caller addresses only runs it owns.",
+        "operationId": "getHarnessRun",
+        "parameters": [
+          {
+            "description": "Harness run id",
+            "in": "path",
+            "name": "runId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HarnessRunDetail"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get one run",
+        "tags": [
+          "Harness"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/help": {
       "post": {
         "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Free for Clerk callers; legacy client and admin keys remain accepted during migration.",
@@ -16440,7 +16817,7 @@
     },
     "/v1/lookup": {
       "post": {
-        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when exactly one kind matches and the other finds nothing, NO_MATCH when neither finds the subject, and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
+        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, or when exactly one kind matches and the other finds nothing; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW ask the user which candidate it is, then use its owner the same way; when you already know the kind, the company-only or person-only lookup answers without the other kind's namesakes. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -16521,6 +16898,16 @@
             "description": "Unauthorized",
             "x-aventure-standard-response": true
           },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The signed-in caller's plan does not include natural search."
+          },
           "403": {
             "content": {
               "application/problem+json": {
@@ -16563,6 +16950,388 @@
               }
             },
             "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Find a company or person by name, URL, or id",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-tool": {
+          "auth": "read"
+        },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/lookup-jobs": {
+      "post": {
+        "description": "Reads one article (sourceUrl or sourceNewsId), extracts the companies and people it names, and identifies each one as POST /v1/lookup would with the article as its source. Poll the returned status URL with GET /v1/lookup-jobs/{jobId}. Spends one natural-search quota slot for each name the job may identify, up to its per-article limit, when it is accepted. For a name no stored record is, the job creates a hidden shell record at no charge only when a second live page on another site names it too; enrich that shell by its id. The same article sent again soon returns the earlier job without spending quota again. Example body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"}.",
+        "operationId": "createLookupJob",
+        "parameters": [
+          {
+            "description": "Also considers hidden and unpublished records; needs private-visibility authority. Without it, NO_MATCH covers only records you can see.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LookupJobMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "The lookup job was accepted; poll its status URL.",
+            "headers": {
+              "Location": {
+                "description": "Endpoint to poll for the job state and result.",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The signed-in caller's plan does not include natural search."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Start identifying every company and person an article names",
+        "tags": [
+          "Search",
+          "Lookup jobs"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/lookup-jobs/{jobId}": {
+      "get": {
+        "description": "Returns the job state and, once COMPLETED, one mention per company or person the article names: its identification (MATCHED gives the stored record, NEEDS_REVIEW the candidates) and, for NO_MATCH, the hidden shell record created for it or shellDetail saying why none was. A name whose lookup failed carries failureReason instead; send it alone to POST /v1/lookup. Only the caller that started the job can read it.",
+        "operationId": "getLookupJob",
+        "parameters": [
+          {
+            "description": "Lookup job id from the create response.",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupJob"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
             "x-aventure-standard-response": true
           },
           "422": {
@@ -16634,13 +17403,11 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find a company or person by name, URL, or id",
+        "summary": "Get a lookup job's state and the records its article names",
         "tags": [
-          "Search"
+          "Search",
+          "Lookup jobs"
         ],
-        "x-aventure-tool": {
-          "auth": "read"
-        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -18777,7 +19544,7 @@
     },
     "/v1/people/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.record.id is the person; read their detail with GET /v1/people/{personId}. NO_MATCH: no record you can see is this person; create them. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether the person is new; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
+        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} (CLI: people get) or queue research on them with POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). NO_MATCH: no record you can see is this person; a caller with write access creates them. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether the person is new, then use the chosen candidate's owner.personId; never create on NEEDS_REVIEW. Resending with their LinkedIn profile URL settles it without a model call when a stored record holds that URL. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
         "operationId": "lookupPerson",
         "parameters": [
           {
@@ -18849,6 +19616,16 @@
             "description": "Unauthorized",
             "x-aventure-standard-response": true
           },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The signed-in caller's plan does not include natural search."
+          },
           "403": {
             "content": {
               "application/problem+json": {
@@ -18912,7 +19689,7 @@
                 }
               }
             },
-            "description": "Too Many Requests",
+            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -18926,8 +19703,7 @@
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
               }
-            },
-            "x-aventure-standard-response": true
+            }
           },
           "500": {
             "content": {
@@ -21682,7 +22458,7 @@
     },
     "/v1/people/{personId}/enrichments": {
       "post": {
-        "description": "Queues an enrichment run for the addressed person, owned by the authenticated principal. The run targets that person's canonical aVenture profile, so it is billed as an update of a known record and reuses the person's already-active run.",
+        "description": "Queues a run that researches the addressed person and updates their aVenture profile, owned by the authenticated caller. Take personId from match.owner when POST /v1/lookup or POST /v1/people/lookup returns MATCHED (CLI: lookup, people lookup). When a run for this person is already queued or running, returns that run instead of queuing and charging another; a new run spends one `person` research unit from the plan's research allowance. After the run completes, read the updated profile with GET /v1/people/{personId} (CLI: people get). Check the run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
         "operationId": "enrichPerson",
         "parameters": [
           {
@@ -21696,7 +22472,7 @@
             }
           },
           {
-            "description": "Enrichment breadth; omitted requests the comprehensive default.",
+            "description": "COMPREHENSIVE (the default) researches the whole profile; INDIVIDUAL runs only the tasks named in taskPresetKey.",
             "in": "query",
             "name": "mode",
             "required": false,
@@ -21705,7 +22481,7 @@
             }
           },
           {
-            "description": "Orchestrator model override; omitted uses the configured role default.",
+            "description": "Model id for the run's lead agent; omit to use aVenture's default model.",
             "in": "query",
             "name": "model",
             "required": false,
@@ -21714,7 +22490,7 @@
             }
           },
           {
-            "description": "Optional steering prompt.",
+            "description": "Plain-language instruction for this run, such as which facts or sources to check first.",
             "in": "query",
             "name": "userPrompt",
             "required": false,
@@ -21723,7 +22499,7 @@
             }
           },
           {
-            "description": "Task preset keys that scope or emphasize this run.",
+            "description": "Task preset keys that scope or emphasize this run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400.",
             "in": "query",
             "name": "taskPresetKey",
             "required": false,
@@ -26342,7 +27118,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search attributed to a Clerk user, including an owner-acting machine run, uses one web search from that user's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429. Bare machine and legacy client/admin credentials remain admitted without a user allowance during migration.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search attributed to a Clerk user, including an owner-acting machine run, uses one web search from that user's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429. Bare machine and legacy client/admin credentials remain admitted without a user allowance during migration. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain.",
         "operationId": "searchWeb",
         "requestBody": {
           "content": {
@@ -26547,10 +27323,8 @@
             ],
             "description": "Which monthly allowance a BILLING_ALLOWANCE refusal exhausted.",
             "enum": [
-              "NEW_COMPANY",
-              "UPDATE",
-              "NEW_PERSON",
-              "UPDATE_PERSON",
+              "COMPANY",
+              "PERSON",
               "ENTITY_VIEW",
               "PERSON_VIEW",
               "WEB_SEARCH"
@@ -27759,6 +28533,93 @@
           "entitled",
           "status",
           "tier"
+        ]
+      },
+      "EnrichmentBatch": {
+        "type": "object",
+        "description": "Existing records to enrich in one call, with the run options every run shares",
+        "properties": {
+          "entityId": {
+            "type": "array",
+            "description": "Canonical entity UUIDs to enrich, filed in order before any person",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical entity UUID"
+            }
+          },
+          "mode": {
+            "$ref": "#/components/schemas/EnrichmentMode",
+            "description": "Enrichment breadth; omitted requests the comprehensive default"
+          },
+          "model": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Orchestrator model override; omitted uses the configured role default"
+          },
+          "personId": {
+            "type": "array",
+            "description": "Canonical person UUIDs to enrich, filed in order after every entity",
+            "items": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Canonical person UUID"
+            }
+          },
+          "taskPresetKey": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Task preset keys that scope or emphasize every run",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userPrompt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional steering prompt"
+          }
+        }
+      },
+      "Enrichment": {
+        "type": "object",
+        "description": "One requested record's batch enrichment outcome: the filed run or the refusal",
+        "properties": {
+          "record": {
+            "$ref": "#/components/schemas/EntityPersonOwner",
+            "description": "The requested entity or person"
+          },
+          "refusal": {
+            "description": "Why no run was filed; absent when run is set",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EnrichmentRefusalType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "run": {
+            "description": "The queued or reused run; absent when refusal is set",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HarnessRun"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "record"
         ]
       },
       "EntityType": {
@@ -32372,6 +33233,161 @@
           }
         }
       },
+      "HarnessRunDetail": {
+        "type": "object",
+        "description": "Harness run with its resolved public entity",
+        "properties": {
+          "entity": {
+            "description": "Current public entity resolved from the run slug",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Entity"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "latestStatus": {
+            "description": "Parsed principal-facing loop progress; null when the raw run status is absent or invalid",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HarnessRunProgress"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provider": {
+            "description": "Parent organization's core record when the resolved entity is a Product/Service; null for every other entity type",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Entity"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "x-aventure-detail": true
+          },
+          "publicUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uri",
+            "description": "Exact renderable public profile URL for the resolved entity"
+          },
+          "run": {
+            "$ref": "#/components/schemas/HarnessRun",
+            "description": "Canonical harness run"
+          }
+        },
+        "required": [
+          "run"
+        ]
+      },
+      "LookupJobMutation": {
+        "type": "object",
+        "description": "The article whose companies and people a lookup job identifies. Send sourceUrl, sourceNewsId, or both.",
+        "properties": {
+          "sourceNewsId": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "aVenture news id of the article; an unknown id fails the job.",
+            "example": 123456
+          },
+          "sourceUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL of the article; read from aVenture news when stored there, otherwise fetched.",
+            "example": "https://techcrunch.com/2024/01/01/example",
+            "maxLength": 2000,
+            "minLength": 0
+          }
+        }
+      },
+      "JobEnqueue": {
+        "type": "object",
+        "description": "Accepted asynchronous app job enqueue response.",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "statusUrl": {
+            "type": "string",
+            "description": "Endpoint to poll for asynchronous job state and result.",
+            "example": "/v1/jobs/runs/550e8400-e29b-41d4-a716-446655440000"
+          }
+        },
+        "required": [
+          "jobId",
+          "mode",
+          "statusUrl"
+        ]
+      },
+      "LookupJob": {
+        "type": "object",
+        "description": "An async lookup job's state and, once COMPLETED, every company and person the article names, each identified against stored records.",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the job was requested."
+          },
+          "failureReason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Why the job failed; absent unless state is FAILED."
+          },
+          "jobId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Lookup job id."
+          },
+          "mention": {
+            "type": "array",
+            "description": "Each distinct company and person the article names; empty until COMPLETED.",
+            "items": {
+              "$ref": "#/components/schemas/LookupJobMention"
+            }
+          },
+          "source": {
+            "$ref": "#/components/schemas/LookupJobMutation",
+            "description": "The article the job reads."
+          },
+          "state": {
+            "$ref": "#/components/schemas/JobState",
+            "description": "Current job state.",
+            "example": "COMPLETED"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the job last changed state."
+          }
+        },
+        "required": [
+          "createdAt",
+          "jobId",
+          "mention",
+          "source",
+          "state",
+          "updatedAt"
+        ]
+      },
       "SystemGlobalMetrics": {
         "type": "object",
         "description": "Global platform metrics snapshot",
@@ -35456,6 +36472,131 @@
           "rejected"
         ]
       },
+      "LookupJobMention": {
+        "type": "object",
+        "description": "One company or person the article names, which stored record it is, and the hidden shell record filed for it when it is new.",
+        "properties": {
+          "failureReason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "One sentence on why this name could not be identified; absent otherwise."
+          },
+          "identification": {
+            "description": "The lookup of this name with the article as its source: MATCHED names the stored record, NEEDS_REVIEW lists the candidates, NO_MATCH means none is stored. Absent when failureReason is set.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Identification"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mentionType": {
+            "type": "string",
+            "description": "Whether the article names a company or a person.",
+            "enum": [
+              "COMPANY",
+              "PERSON"
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Name as the article writes it."
+          },
+          "shell": {
+            "description": "The hidden record this job created for a NO_MATCH name after the article and one independent live page both showed it exists; enrich it by its entityId or personId. Absent when no record was created.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityPersonOwner"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "shellDetail": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "One sentence on why no shell was created for a NO_MATCH name, or why a created shell lacks its URL; absent otherwise."
+          }
+        },
+        "required": [
+          "mentionType",
+          "name"
+        ]
+      },
+      "JobState": {
+        "type": "string",
+        "description": "Shared lifecycle states for async jobs (duplicate-check, logo-audit, etc.)",
+        "enum": [
+          "PENDING",
+          "RUNNING",
+          "COMPLETED",
+          "FAILED",
+          "CANCELED",
+          "UNKNOWN"
+        ]
+      },
+      "HarnessRunProgress": {
+        "type": "object",
+        "description": "Current public progress of a harness run",
+        "properties": {
+          "complete": {
+            "type": "boolean",
+            "description": "Whether the enrichment loop reports completion"
+          },
+          "entitySlug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical entity slug currently reported by the loop",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "gateRemaining": {
+            "type": "array",
+            "description": "Concrete completion gates that remain unmet",
+            "items": {
+              "type": "string"
+            }
+          },
+          "note": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional progress note from the loop"
+          },
+          "whatElseRemaining": {
+            "type": "array",
+            "description": "Additional work the loop reports as remaining",
+            "items": {
+              "type": "string"
+            }
+          },
+          "writeThisIteration": {
+            "type": "array",
+            "description": "Writes completed during the current loop iteration",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "complete",
+          "entitySlug",
+          "gateRemaining",
+          "whatElseRemaining",
+          "writeThisIteration"
+        ]
+      },
       "EntityValuationTimeSeriesPoint": {
         "type": "object",
         "description": "A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.",
@@ -37232,6 +38373,16 @@
         "type": "object",
         "description": "One existing record considered as the subject.",
         "properties": {
+          "dataCompletionCoverage": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Percentage, 0 to 100, of the company's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for companies not yet computed.",
+            "maximum": 100,
+            "minimum": 0
+          },
           "duplicateBasis": {
             "type": [
               "string",
@@ -37267,6 +38418,14 @@
           "record": {
             "$ref": "#/components/schemas/SearchDuplicateCandidateScore",
             "description": "The record with its duplicate-check score and reasons; score 0 with no reason means only vector similarity proposed it."
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When the stored record was last updated."
           }
         },
         "required": [
@@ -37850,6 +39009,14 @@
           "writable"
         ]
       },
+      "EnrichmentRefusalType": {
+        "type": "string",
+        "description": "Why a batch enrichment filed no run: NOT_FOUND for an unknown record, ALLOWANCE_EXHAUSTED once the caller's research allowance ran out during the batch",
+        "enum": [
+          "NOT_FOUND",
+          "ALLOWANCE_EXHAUSTED"
+        ]
+      },
       "BillingAdditionalUsage": {
         "type": "object",
         "description": "Opt-in metered usage past the monthly allowance: settings, spend this UTC month, prepaid credit, and unbilled usage.",
@@ -37925,35 +39092,49 @@
       "ResearchAllowanceUsage": {
         "type": "object",
         "properties": {
+          "company": {
+            "$ref": "#/components/schemas/ResearchAllowance",
+            "description": "Research runs on company targets, new or existing"
+          },
           "entityView": {
             "$ref": "#/components/schemas/ResearchAllowance"
           },
           "newCompany": {
-            "$ref": "#/components/schemas/ResearchAllowance"
+            "$ref": "#/components/schemas/ResearchAllowance",
+            "deprecated": true,
+            "description": "Deprecated: replaced by company, which it mirrors."
           },
           "newPerson": {
-            "$ref": "#/components/schemas/ResearchAllowance"
+            "$ref": "#/components/schemas/ResearchAllowance",
+            "deprecated": true,
+            "description": "Deprecated: replaced by person, which it mirrors."
+          },
+          "person": {
+            "$ref": "#/components/schemas/ResearchAllowance",
+            "description": "Research runs on person-profile targets, new or existing"
           },
           "personView": {
             "$ref": "#/components/schemas/ResearchAllowance"
           },
           "update": {
-            "$ref": "#/components/schemas/ResearchAllowance"
+            "$ref": "#/components/schemas/ResearchAllowance",
+            "deprecated": true,
+            "description": "Deprecated: replaced by company, which it mirrors."
           },
           "updatePerson": {
-            "$ref": "#/components/schemas/ResearchAllowance"
+            "$ref": "#/components/schemas/ResearchAllowance",
+            "deprecated": true,
+            "description": "Deprecated: replaced by person, which it mirrors."
           },
           "webSearch": {
             "$ref": "#/components/schemas/ResearchAllowance"
           }
         },
         "required": [
+          "company",
           "entityView",
-          "newCompany",
-          "newPerson",
+          "person",
           "personView",
-          "update",
-          "updatePerson",
           "webSearch"
         ]
       },
@@ -38027,10 +39208,8 @@
         "type": "string",
         "description": "One metered allowance a paid subscriber may use past its monthly cap.",
         "enum": [
-          "NEW_COMPANY",
-          "UPDATE",
-          "NEW_PERSON",
-          "UPDATE_PERSON",
+          "COMPANY",
+          "PERSON",
           "ENTITY_VIEW",
           "PERSON_VIEW",
           "WEB_SEARCH",
@@ -38176,10 +39355,8 @@
           "type": {
             "type": "string",
             "enum": [
-              "NEW_COMPANY",
-              "UPDATE",
-              "NEW_PERSON",
-              "UPDATE_PERSON",
+              "COMPANY",
+              "PERSON",
               "ENTITY_VIEW",
               "PERSON_VIEW",
               "WEB_SEARCH"

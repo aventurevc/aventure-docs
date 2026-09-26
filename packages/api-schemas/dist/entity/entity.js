@@ -24,6 +24,7 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/relationships/{relationshipId}
+ * @endpoint GET /v1/harness/runs/{runId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -42,6 +43,7 @@ import { EntityTypeSchema } from "./type.js";
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @usedBySchema EntityListSchema
  * @usedBySchema EntityRelationshipSchema
+ * @usedBySchema HarnessRunDetailSchema
  * @usedBySchema PageEntitySchema
  * @usedBySchema PersonGraphCoInvestorSchema
  * @usedBySchema PersonInvestedCompanySchema

@@ -3,6 +3,8 @@ import { z } from "zod/v4";
  * Queue lane for admission priority: interactive client work vs background backlog
  *
  * @openapiSchema HarnessRunLane
+ * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments
  * @endpoint POST /v1/people/{personId}/enrichments
  * @usedBySchema HarnessRunSchema

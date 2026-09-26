@@ -2,12 +2,20 @@
 import { z } from "zod/v4";
 import { ResearchAllowanceSchema } from "./allowance.js";
 const ResearchAllowanceUsageSchemaDefinition = z.object({
+    /** Research runs on company targets, new or existing */
+    company: ResearchAllowanceSchema,
     entityView: ResearchAllowanceSchema,
-    newCompany: ResearchAllowanceSchema,
-    newPerson: ResearchAllowanceSchema,
+    /** Deprecated: replaced by company, which it mirrors. */
+    newCompany: ResearchAllowanceSchema.optional(),
+    /** Deprecated: replaced by person, which it mirrors. */
+    newPerson: ResearchAllowanceSchema.optional(),
+    /** Research runs on person-profile targets, new or existing */
+    person: ResearchAllowanceSchema,
     personView: ResearchAllowanceSchema,
-    update: ResearchAllowanceSchema,
-    updatePerson: ResearchAllowanceSchema,
+    /** Deprecated: replaced by company, which it mirrors. */
+    update: ResearchAllowanceSchema.optional(),
+    /** Deprecated: replaced by person, which it mirrors. */
+    updatePerson: ResearchAllowanceSchema.optional(),
     webSearch: ResearchAllowanceSchema,
 });
 /**
