@@ -6,7 +6,9 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>;
     refusal: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         ALLOWANCE_EXHAUSTED: "ALLOWANCE_EXHAUSTED";
+        AMBIGUOUS: "AMBIGUOUS";
         NOT_FOUND: "NOT_FOUND";
+        SUBSCRIPTION_REQUIRED: "SUBSCRIPTION_REQUIRED";
     }>>>;
     run: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         attempt: z.ZodInt;

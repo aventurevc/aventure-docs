@@ -401,6 +401,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/similarity-result",
         schemaName: "EntitySimilarityResultSchema",
     },
+    EntitySimilaritySummary: {
+        modulePath: "entity/similarity-summary",
+        schemaName: "EntitySimilaritySummarySchema",
+    },
     EntitySitemap: { modulePath: "entity/sitemap", schemaName: "EntitySitemapSchema" },
     EntityTag: { modulePath: "entity/tag", schemaName: "EntityTagSchema" },
     EntityText: { modulePath: "entity/text", schemaName: "EntityTextSchema" },
@@ -584,6 +588,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     PageEntitySimilarityResult: {
         modulePath: "pagination/schemas",
         schemaName: "PageEntitySimilarityResultSchema",
+    },
+    PageEntitySimilaritySummary: {
+        modulePath: "pagination/schemas",
+        schemaName: "PageEntitySimilaritySummarySchema",
     },
     PageEntityText: { modulePath: "pagination/schemas", schemaName: "PageEntityTextSchema" },
     PageEntityUrlLink: { modulePath: "pagination/schemas", schemaName: "PageEntityUrlLinkSchema" },

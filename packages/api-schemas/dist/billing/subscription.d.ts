@@ -44,18 +44,18 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-        newCompany?: {
+        newCompany: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
-        newPerson?: {
+        };
+        newPerson: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
+        };
         person: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
@@ -68,18 +68,18 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-        update?: {
+        update: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
-        updatePerson?: {
+        };
+        updatePerson: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
+        };
         webSearch: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
@@ -99,18 +99,18 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-        newCompany?: {
+        newCompany: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
-        newPerson?: {
+        };
+        newPerson: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
+        };
         person: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
@@ -123,18 +123,18 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-        update?: {
+        update: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
-        updatePerson?: {
+        };
+        updatePerson: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
-        } | undefined;
+        };
         webSearch: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;

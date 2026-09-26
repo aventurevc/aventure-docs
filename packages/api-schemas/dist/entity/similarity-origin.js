@@ -5,6 +5,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntitySimilarityOrigin
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @usedBySchema EntitySimilarityContextSchema
  * @contractShape entity.similarity-origin
  * @contractRole canonical

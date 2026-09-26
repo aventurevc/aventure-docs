@@ -6946,6 +6946,170 @@ type PageEntitySimilarityResultDefinition = z.infer<typeof PageEntitySimilarityR
  */
 export declare const PageEntitySimilarityResultSchema: z.ZodType<PageEntitySimilarityResultDefinition>;
 export type PageEntitySimilarityResult = z.infer<typeof PageEntitySimilarityResultSchema>;
+declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        core: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            updatedAt?: string | null | undefined;
+        };
+        similarity: {
+            compositeScore?: number | null | undefined;
+            cosineScore?: number | null | undefined;
+            curatedAsOf?: string | null | undefined;
+            curatedRelationshipType?: string | null | undefined;
+            curatedSource?: string | null | undefined;
+            derivedFromEntityId?: string | null | undefined;
+            matchedSectionWeight?: number | null | undefined;
+            origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
+            rank: number;
+            sharedSectionCount?: number | null | undefined;
+        };
+        urlLink: {
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "huggingface" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
+        }[];
+    }, unknown, z.core.$ZodTypeInternals<{
+        core: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            updatedAt?: string | null | undefined;
+        };
+        similarity: {
+            compositeScore?: number | null | undefined;
+            cosineScore?: number | null | undefined;
+            curatedAsOf?: string | null | undefined;
+            curatedRelationshipType?: string | null | undefined;
+            curatedSource?: string | null | undefined;
+            derivedFromEntityId?: string | null | undefined;
+            matchedSectionWeight?: number | null | undefined;
+            origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
+            rank: number;
+            sharedSectionCount?: number | null | undefined;
+        };
+        urlLink: {
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "huggingface" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
+        }[];
+    }, unknown>>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
+}, z.core.$strip>;
+type PageEntitySimilaritySummaryDefinition = z.infer<typeof PageEntitySimilaritySummarySchemaDefinition>;
+/**
+ * @openapiSchema PageEntitySimilaritySummary
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
+ * @contractShape pagination.page-entity-similarity-summary
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export declare const PageEntitySimilaritySummarySchema: z.ZodType<PageEntitySimilaritySummaryDefinition>;
+export type PageEntitySimilaritySummary = z.infer<typeof PageEntitySimilaritySummarySchema>;
 declare const PageEntityTextSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         compliance?: {

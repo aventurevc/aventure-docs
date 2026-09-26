@@ -4,15 +4,15 @@ import { EnrichmentModeSchema } from "./mode.js";
 const EnrichmentBatchSchemaDefinition = z.object({
     /** Canonical entity UUIDs to enrich, filed in order before any person */
     entityId: z.array(z.uuid()).optional(),
-    /** Enrichment breadth; omitted requests the comprehensive default */
+    /** COMPREHENSIVE (the default) researches each whole profile; INDIVIDUAL runs only the tasks named in taskPresetKey */
     mode: EnrichmentModeSchema.optional(),
-    /** Orchestrator model override; omitted uses the configured role default */
+    /** Model id for each run's lead agent; omit to use aVenture's default model */
     model: z.string().nullish(),
     /** Canonical person UUIDs to enrich, filed in order after every entity */
     personId: z.array(z.uuid()).optional(),
-    /** Task preset keys that scope or emphasize every run */
+    /** Task preset keys that scope or emphasize every run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400 */
     taskPresetKey: z.array(z.string()).nullish(),
-    /** Optional steering prompt */
+    /** Plain-language instruction for every run, such as which facts or sources to check first */
     userPrompt: z.string().nullish(),
 });
 /**

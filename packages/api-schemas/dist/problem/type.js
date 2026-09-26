@@ -50,6 +50,7 @@ export const ProblemTypeSchema = z.enum({
     SLUG_HELD_BY_RECORD: "https://api.aventure.vc/errors/slug-held-by-record",
     SLUG_HELD_BY_REDIRECT: "https://api.aventure.vc/errors/slug-held-by-redirect",
     SLUG_AMBIGUOUS: "https://api.aventure.vc/errors/slug-ambiguous",
+    TARGET_AMBIGUOUS: "https://api.aventure.vc/errors/target-ambiguous",
     DUPLICATE: "https://api.aventure.vc/errors/duplicate",
     DUPLICATE_KEY: "https://api.aventure.vc/errors/duplicate-key",
     INTEGRITY_VIOLATION: "https://api.aventure.vc/errors/integrity-violation",

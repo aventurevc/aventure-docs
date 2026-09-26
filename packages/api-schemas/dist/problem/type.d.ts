@@ -49,6 +49,7 @@ export declare const ProblemTypeSchema: z.ZodEnum<{
     readonly SLUG_HELD_BY_RECORD: "https://api.aventure.vc/errors/slug-held-by-record";
     readonly SLUG_HELD_BY_REDIRECT: "https://api.aventure.vc/errors/slug-held-by-redirect";
     readonly SLUG_AMBIGUOUS: "https://api.aventure.vc/errors/slug-ambiguous";
+    readonly TARGET_AMBIGUOUS: "https://api.aventure.vc/errors/target-ambiguous";
     readonly DUPLICATE: "https://api.aventure.vc/errors/duplicate";
     readonly DUPLICATE_KEY: "https://api.aventure.vc/errors/duplicate-key";
     readonly INTEGRITY_VIOLATION: "https://api.aventure.vc/errors/integrity-violation";

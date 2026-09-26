@@ -110,6 +110,7 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
  * @endpoint GET /v1/people/{personId}
@@ -128,6 +129,7 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityPersonAssociationSchema
+ * @usedBySchema EntitySimilaritySummarySchema
  * @usedBySchema PageEntityUrlLinkSchema
  * @usedBySchema PersonEnrichmentSchema
  * @contractShape entity.url-link

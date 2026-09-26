@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.5"
+    "version": "0.8.6"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -147,6 +147,10 @@
     {
       "description": "Descriptions and other written text for companies and people",
       "name": "Texts"
+    },
+    {
+      "description": "Find companies and people in natural language",
+      "name": "Natural Search"
     },
     {
       "description": "Sign-in, session, API key, and CLI authorization endpoints",
@@ -3210,7 +3214,7 @@
     },
     "/v1/enrichments": {
       "post": {
-        "description": "Queues one enrichment run per listed entity and person, in order, each owned by the authenticated principal and billed exactly as the single-record enrich call is. A repeated id is filed once. Returns one outcome per distinct record: its run, or NOT_FOUND for an unknown record. Once the research allowance runs out, the remaining records are returned as ALLOWANCE_EXHAUSTED without being filed, and runs already filed stay queued. A list longer than the configured batch limit is refused before any run is filed. Check each run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
+        "description": "Queues one enrichment run per listed entity and person, in order, each owned by the authenticated principal and billed exactly as the single-record enrich call is. A repeated id is filed once. Returns one outcome per distinct record: its run, or a refusal (NOT_FOUND, ALLOWANCE_EXHAUSTED, AMBIGUOUS, SUBSCRIPTION_REQUIRED) for a record that cannot be filed; other records still file, and runs already filed stay queued. A caller without a research subscription gets 402 before any run is filed. A transient failure fails the request; retrying it reuses runs still in progress without charging them again. A list longer than the configured batch limit is refused before any run is filed. Check each run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
         "operationId": "enrichRecords",
         "requestBody": {
           "content": {
@@ -6395,7 +6399,7 @@
         ],
         "summary": "Deprecated: find companies in natural language",
         "tags": [
-          "Search"
+          "Natural Search"
         ],
         "x-aventure-tool": {
           "auth": "read"
@@ -14284,6 +14288,234 @@
         }
       }
     },
+    "/v1/entities/{entityId}/similar/summary": {
+      "get": {
+        "description": "Returns the same similar entities, order, and totals as GET /v1/entities/{entityId:[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}}/similar with lean rows: entity core, current URL links, and similarity provenance. Use it for rails and cards that do not render list enrichment. Custom sorting is unsupported. Any signed-in user may call this on every plan. The list is free: it never counts against the monthly record-view allowance, which charges only a separate full-detail view of one record.",
+        "operationId": "listEntitySimilarSummaries",
+        "parameters": [
+          {
+            "description": "Entity unique identifier (UUID)",
+            "example": "04e2bf9c-a100-72ad-83ff-ba69c647b30b",
+            "in": "path",
+            "name": "entityId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "description": "Filter by stored relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor.",
+            "example": "competitor",
+            "in": "query",
+            "name": "relationshipType",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Optional entity typeRecord filter. Repeat to allow multiple entity types.",
+            "example": "Company",
+            "in": "query",
+            "name": "typeRecord",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "Permit monogram fallback",
+            "in": "query",
+            "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Zero-based page index (0..N)",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 10,
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntitySimilaritySummary"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get similar company summaries by id",
+        "tags": [
+          "Semantic Similarity"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/entities/{entityId}/slug": {
       "get": {
         "description": "Returns the current slug, canonical path, and public URL. Any signed-in user may call this.",
@@ -20493,7 +20725,7 @@
         ],
         "summary": "Deprecated: find people in natural language",
         "tags": [
-          "Search"
+          "Natural Search"
         ],
         "x-aventure-tool": {
           "auth": "read"
@@ -26311,7 +26543,7 @@
         ],
         "summary": "Find companies, startups, and investors in natural language",
         "tags": [
-          "Search"
+          "Natural Search"
         ],
         "x-aventure-tool": {
           "auth": "read"
@@ -26558,7 +26790,7 @@
         ],
         "summary": "Find people with natural language",
         "tags": [
-          "Search"
+          "Natural Search"
         ],
         "x-aventure-tool": {
           "auth": "read"
@@ -28550,14 +28782,14 @@
           },
           "mode": {
             "$ref": "#/components/schemas/EnrichmentMode",
-            "description": "Enrichment breadth; omitted requests the comprehensive default"
+            "description": "COMPREHENSIVE (the default) researches each whole profile; INDIVIDUAL runs only the tasks named in taskPresetKey"
           },
           "model": {
             "type": [
               "string",
               "null"
             ],
-            "description": "Orchestrator model override; omitted uses the configured role default"
+            "description": "Model id for each run's lead agent; omit to use aVenture's default model"
           },
           "personId": {
             "type": "array",
@@ -28573,7 +28805,7 @@
               "array",
               "null"
             ],
-            "description": "Task preset keys that scope or emphasize every run",
+            "description": "Task preset keys that scope or emphasize every run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400",
             "items": {
               "type": "string"
             }
@@ -28583,7 +28815,7 @@
               "string",
               "null"
             ],
-            "description": "Optional steering prompt"
+            "description": "Plain-language instruction for every run, such as which facts or sources to check first"
           }
         }
       },
@@ -32733,6 +32965,52 @@
           }
         }
       },
+      "PageEntitySimilaritySummary": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntitySimilaritySummary"
+            }
+          },
+          "empty": {
+            "type": "boolean"
+          },
+          "first": {
+            "type": "boolean"
+          },
+          "last": {
+            "type": "boolean"
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "numberOfElements": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageable": {
+            "$ref": "#/components/schemas/PageableObject"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
       "SlugLocation": {
         "type": "object",
         "description": "Current slug location for a resource",
@@ -36801,62 +37079,28 @@
           "content"
         ]
       },
-      "EntitySimilarityResult": {
+      "EntitySimilaritySummary": {
         "type": "object",
-        "description": "Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.",
+        "description": "Lean similar-entity rail row: core identity, current URL links, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.",
         "properties": {
-          "entity": {
-            "$ref": "#/components/schemas/EntityList"
+          "core": {
+            "$ref": "#/components/schemas/Entity"
           },
           "similarity": {
             "$ref": "#/components/schemas/EntitySimilarityContext"
-          }
-        },
-        "required": [
-          "entity",
-          "similarity"
-        ]
-      },
-      "EntityList": {
-        "type": "object",
-        "description": "\n        Narrow entity row for list and batch-list reads. Keeps core identity, enrichment,\n        governed research detail, accelerator participation, and fundraise rounds while omitting\n        detail-only relationship, newsArticle, person, sitemap, and research snippet sections.\n        Classification enrichment is current-only on list rows; use the entity classifications\n        subresource with includeInactive=true to audit historical joins.\n        ",
-        "properties": {
-          "core": {
-            "$ref": "#/components/schemas/Entity",
-            "description": "Flat entity core — identity, naming, status, image, and source metadata"
           },
-          "enrichment": {
-            "$ref": "#/components/schemas/EntityEnrichment",
-            "description": "Supplemental entity data — addresses, classification tags, funding, text content, and URL links"
-          },
-          "fundraiseRound": {
+          "urlLink": {
             "type": "array",
-            "description": "Fundraise rounds associated with this entity",
+            "description": "Current primary URL links, one per URL type",
             "items": {
-              "$ref": "#/components/schemas/EntityFundraiseTransaction"
+              "$ref": "#/components/schemas/EntityUrlLink"
             }
-          },
-          "research": {
-            "$ref": "#/components/schemas/EntityListResearch",
-            "description": "List-safe research disclosure without text snippets"
-          },
-          "semanticMatch": {
-            "description": "Semantic embedding match evidence populated only for semantic list reads.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/ContentEmbeddingMatch"
-              },
-              {
-                "type": "null"
-              }
-            ]
           }
         },
         "required": [
           "core",
-          "enrichment",
-          "fundraiseRound",
-          "research"
+          "similarity",
+          "urlLink"
         ]
       },
       "EntitySimilarityContext": {
@@ -36948,6 +37192,64 @@
           "precomputed",
           "derived",
           "computed"
+        ]
+      },
+      "EntitySimilarityResult": {
+        "type": "object",
+        "description": "Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/EntityList"
+          },
+          "similarity": {
+            "$ref": "#/components/schemas/EntitySimilarityContext"
+          }
+        },
+        "required": [
+          "entity",
+          "similarity"
+        ]
+      },
+      "EntityList": {
+        "type": "object",
+        "description": "\n        Narrow entity row for list and batch-list reads. Keeps core identity, enrichment,\n        governed research detail, accelerator participation, and fundraise rounds while omitting\n        detail-only relationship, newsArticle, person, sitemap, and research snippet sections.\n        Classification enrichment is current-only on list rows; use the entity classifications\n        subresource with includeInactive=true to audit historical joins.\n        ",
+        "properties": {
+          "core": {
+            "$ref": "#/components/schemas/Entity",
+            "description": "Flat entity core — identity, naming, status, image, and source metadata"
+          },
+          "enrichment": {
+            "$ref": "#/components/schemas/EntityEnrichment",
+            "description": "Supplemental entity data — addresses, classification tags, funding, text content, and URL links"
+          },
+          "fundraiseRound": {
+            "type": "array",
+            "description": "Fundraise rounds associated with this entity",
+            "items": {
+              "$ref": "#/components/schemas/EntityFundraiseTransaction"
+            }
+          },
+          "research": {
+            "$ref": "#/components/schemas/EntityListResearch",
+            "description": "List-safe research disclosure without text snippets"
+          },
+          "semanticMatch": {
+            "description": "Semantic embedding match evidence populated only for semantic list reads.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContentEmbeddingMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "core",
+          "enrichment",
+          "fundraiseRound",
+          "research"
         ]
       },
       "EntityEnrichment": {
@@ -39011,10 +39313,12 @@
       },
       "EnrichmentRefusalType": {
         "type": "string",
-        "description": "Why a batch enrichment filed no run: NOT_FOUND for an unknown record, ALLOWANCE_EXHAUSTED once the caller's research allowance ran out during the batch",
+        "description": "Why a batch enrichment filed no run: NOT_FOUND for an unknown record; ALLOWANCE_EXHAUSTED when the record's company or person research allowance is spent and additional usage is off or at its spend cap or prepaid credit; AMBIGUOUS when the record's profile matches more than one current record; SUBSCRIPTION_REQUIRED when the subscription stopped covering research mid-batch, such as additional usage while past due",
         "enum": [
           "NOT_FOUND",
-          "ALLOWANCE_EXHAUSTED"
+          "ALLOWANCE_EXHAUSTED",
+          "AMBIGUOUS",
+          "SUBSCRIPTION_REQUIRED"
         ]
       },
       "BillingAdditionalUsage": {
@@ -39133,8 +39437,12 @@
         "required": [
           "company",
           "entityView",
+          "newCompany",
+          "newPerson",
           "person",
           "personView",
+          "update",
+          "updatePerson",
           "webSearch"
         ]
       },
@@ -39854,6 +40162,7 @@
           "https://api.aventure.vc/errors/slug-held-by-record",
           "https://api.aventure.vc/errors/slug-held-by-redirect",
           "https://api.aventure.vc/errors/slug-ambiguous",
+          "https://api.aventure.vc/errors/target-ambiguous",
           "https://api.aventure.vc/errors/duplicate",
           "https://api.aventure.vc/errors/duplicate-key",
           "https://api.aventure.vc/errors/integrity-violation",
@@ -39909,6 +40218,7 @@
           "SLUG_HELD_BY_RECORD",
           "SLUG_HELD_BY_REDIRECT",
           "SLUG_AMBIGUOUS",
+          "TARGET_AMBIGUOUS",
           "DUPLICATE",
           "DUPLICATE_KEY",
           "INTEGRITY_VIOLATION",

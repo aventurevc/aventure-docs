@@ -14,6 +14,7 @@ import { EntityRelationshipSchema } from "../entity/relationship.js";
 import { EntityResearchDetailSchema } from "../entity/research-detail.js";
 import { EntityResearchSnippetSchema } from "../entity/research-snippet.js";
 import { EntitySimilarityResultSchema } from "../entity/similarity-result.js";
+import { EntitySimilaritySummarySchema } from "../entity/similarity-summary.js";
 import { EntityTagSchema } from "../entity/tag.js";
 import { EntityTextSchema } from "../entity/text.js";
 import { EntityUrlLinkSchema } from "../entity/url-link.js";
@@ -350,6 +351,27 @@ const PageEntitySimilarityResultSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageEntitySimilarityResultSchema = PageEntitySimilarityResultSchemaDefinition;
+const PageEntitySimilaritySummarySchemaDefinition = z.object({
+    content: z.array(EntitySimilaritySummarySchema).optional(),
+    empty: z.boolean().optional(),
+    first: z.boolean().optional(),
+    last: z.boolean().optional(),
+    number: z.int().optional(),
+    numberOfElements: z.int().optional(),
+    pageable: PageableObjectSchema.optional(),
+    size: z.int().optional(),
+    sort: SortObjectSchema.optional(),
+    totalElements: z.number().int().optional(),
+    totalPages: z.int().optional(),
+});
+/**
+ * @openapiSchema PageEntitySimilaritySummary
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
+ * @contractShape pagination.page-entity-similarity-summary
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export const PageEntitySimilaritySummarySchema = PageEntitySimilaritySummarySchemaDefinition;
 const PageEntityTextSchemaDefinition = z.object({
     content: z.array(EntityTextSchema).optional(),
     empty: z.boolean().optional(),

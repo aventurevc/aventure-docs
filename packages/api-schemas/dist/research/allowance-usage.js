@@ -6,16 +6,16 @@ const ResearchAllowanceUsageSchemaDefinition = z.object({
     company: ResearchAllowanceSchema,
     entityView: ResearchAllowanceSchema,
     /** Deprecated: replaced by company, which it mirrors. */
-    newCompany: ResearchAllowanceSchema.optional(),
+    newCompany: ResearchAllowanceSchema,
     /** Deprecated: replaced by person, which it mirrors. */
-    newPerson: ResearchAllowanceSchema.optional(),
+    newPerson: ResearchAllowanceSchema,
     /** Research runs on person-profile targets, new or existing */
     person: ResearchAllowanceSchema,
     personView: ResearchAllowanceSchema,
     /** Deprecated: replaced by company, which it mirrors. */
-    update: ResearchAllowanceSchema.optional(),
+    update: ResearchAllowanceSchema,
     /** Deprecated: replaced by person, which it mirrors. */
-    updatePerson: ResearchAllowanceSchema.optional(),
+    updatePerson: ResearchAllowanceSchema,
     webSearch: ResearchAllowanceSchema,
 });
 /**

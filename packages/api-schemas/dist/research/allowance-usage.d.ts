@@ -1,59 +1,104 @@
 import { z } from "zod/v4";
 declare const ResearchAllowanceUsageSchemaDefinition: z.ZodObject<{
-    company: z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>;
-    entityView: z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>;
-    newCompany: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>>;
-    newPerson: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>>;
-    person: z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>;
-    personView: z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>;
-    update: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>>;
-    updatePerson: z.ZodOptional<z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>>;
-    webSearch: z.ZodObject<{
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>;
+    company: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    entityView: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    newCompany: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    newPerson: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    person: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    personView: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    update: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    updatePerson: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
+    webSearch: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
 }, z.core.$strip>;
 type ResearchAllowanceUsageDefinition = z.infer<typeof ResearchAllowanceUsageSchemaDefinition>;
 /**
