@@ -5,13 +5,33 @@ slug: cli
 ---
 
 The `aventure` CLI finds companies and people by name, website, or description,
-and reads their funding, founders, investors, and news. It requires an aVenture
+and reads their funding, founders, investors, and news. You need an aVenture
 account; free and paid plans both work.
-[Create an account](https://aventure.vc/sign-up) before you start.
+[Create an account](https://aventure.vc/sign-up).
 
-<Note>
-The CLI requires Node.js 24.18 or later in the 24.x series.
-</Note>
+## Get started in one step
+
+Paste this into Claude Code, Codex, ChatGPT, or any assistant that can run
+terminal commands:
+
+```text
+Set up the aVenture CLI for me. Install it with
+`npm install --global @aventurevc/aventure-cli` (it needs Node.js 24.18.0 or
+later), then run `aventure auth login` and show me the sign-in link and code so I
+can approve it. When I'm signed in, run `aventure lookup Stripe` to confirm it
+works. Use `aventure --help` to find other commands.
+Docs: https://docs.aventure.vc/cli
+```
+
+## CLI, MCP, or Researchly?
+
+| Where you work | Use |
+|---|---|
+| A terminal, shell scripts, or a coding agent with a shell | The CLI on this page |
+| Claude, ChatGPT, or another desktop, web, or cloud AI app | The [MCP server](/mcp) |
+| [Researchly](https://researchly.chat) | Nothing to install: open [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and choose **Connect aVenture** |
+
+## Set up by hand
 
 <Steps>
 <Step title="Install">
@@ -19,6 +39,8 @@ The CLI requires Node.js 24.18 or later in the 24.x series.
 ```bash
 npm install --global @aventurevc/aventure-cli
 ```
+
+The CLI requires Node.js 24.18.0 or later.
 
 </Step>
 <Step title="Sign in">

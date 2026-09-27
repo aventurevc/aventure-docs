@@ -11,9 +11,10 @@ choose how you sign in:
 
 | Where you work | How you sign in |
 |---|---|
-| API | Send an API key as a bearer token |
+| MCP client (Claude, ChatGPT, and other AI apps) | Sign in through the browser when your client connects |
 | CLI | Run `aventure auth login`, or set `AUTH_TOKEN` to an API key |
-| MCP client | Sign in through the browser when your client connects |
+| Researchly | Choose **Connect aVenture** under [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) |
+| API | Send an API key as a bearer token |
 
 ## Create an API key
 
@@ -45,9 +46,9 @@ CLI sign-ins and revokes them. In CI, set `AUTH_TOKEN` to an API key instead.
 
 ## Connect an MCP client
 
-The [MCP quickstart](/mcp#connect-to-the-hosted-server) lists the hosted URL,
-OAuth client ID, and callback settings. Your client signs you in through the
-browser when it connects.
+The [MCP quickstart](/mcp#get-started-in-one-step) has a prompt that connects
+your AI app, plus the URL and OAuth client ID to enter by hand. Your client signs
+you in through the browser when it connects.
 
 ## Plans and usage
 

@@ -1,30 +1,57 @@
 ---
 title: MCP quickstart
-subtitle: Give an AI client access to aVenture data
+subtitle: Ask Claude, ChatGPT, or any AI app about companies and people
 slug: mcp
 ---
 
 Connect Claude, ChatGPT, Claude Code, or any MCP client to aVenture, then ask
-about companies, founders, investors, and funding in plain English. The MCP
-server requires an aVenture account; free and paid plans both work.
-[Create an account](https://aventure.vc/sign-up) before you connect.
+about companies, founders, investors, and funding in plain English. aVenture
+hosts the server, so there is nothing to install. You need an aVenture account;
+free and paid plans both work. [Create an account](https://aventure.vc/sign-up).
 
-The hosted server needs no install: point your client at it and sign in.
+## Get started in one step
 
-## Connect to the hosted server
+Paste this into your AI app:
 
-Configure your client with:
+```text
+Connect the aVenture MCP server for me.
+- URL: https://mcp.aventure.vc/mcp
+- Transport: Streamable HTTP
+- OAuth client ID: KL7mINzGk0le0QiD
+If you can add it yourself (in Claude Code, run
+`claude mcp add --scope user --transport http --client-id KL7mINzGk0le0QiD --callback-port 6276 aventure https://mcp.aventure.vc/mcp`),
+do that. Otherwise tell me exactly where to enter these settings in this app.
+When it's connected and I've signed in, look up Stripe on aVenture to confirm
+it works. Docs: https://docs.aventure.vc/mcp
+```
+
+## MCP, CLI, or Researchly?
+
+| Where you work | Use |
+|---|---|
+| Claude, ChatGPT, or another desktop, web, or cloud AI app | The MCP server on this page |
+| A terminal, shell scripts, or a coding agent with a shell | The [CLI](/cli) |
+| [Researchly](https://researchly.chat) | Nothing to install: open [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and choose **Connect aVenture** |
+
+## Connect by hand
+
+Add a custom connector (or MCP server) in your app with these settings, then
+sign in to aVenture in the browser window it opens:
 
 | Setting | Value |
 |---------|-------|
 | URL | `https://mcp.aventure.vc/mcp` |
 | Transport | Streamable HTTP |
-| Client ID | `KL7mINzGk0le0QiD` |
+| OAuth client ID | `KL7mINzGk0le0QiD` |
 
-Enter the client ID above in your client's OAuth settings. A client that
-accepts only a URL fails with `does not support dynamic client registration`.
+<Tabs>
+<Tab title="Claude and ChatGPT">
 
-In your terminal, add the server to Claude Code:
+Add the URL as a custom connector, and enter the OAuth client ID if the app asks
+for one. Sign in when the app opens aVenture in your browser.
+
+</Tab>
+<Tab title="Claude Code">
 
 ```bash
 claude mcp add --scope user --transport http \
@@ -32,14 +59,18 @@ claude mcp add --scope user --transport http \
   aventure https://mcp.aventure.vc/mcp
 ```
 
-The user scope makes the server available across your projects. Open Claude
-Code, run `/mcp`, select `aventure`, and complete browser sign-in. Then ask
-Claude to call `aventure_status` to [verify the connection](#verify-the-connection).
+Then run `/mcp`, select `aventure`, and complete browser sign-in. The user scope
+makes the server available in every project.
 
-In Claude or ChatGPT, add the URL as a custom connector.
+</Tab>
+<Tab title="Other clients">
 
-Other clients name these settings differently. Configure the client ID and a
-callback URL whose path is `/callback`.
+Enter the client ID in the client's OAuth settings, with a callback URL whose
+path is `/callback`. A client that accepts only a URL fails with
+`does not support dynamic client registration`.
+
+</Tab>
+</Tabs>
 
 <Accordion title="Registered redirect URIs, and testing the flow on its own">
 
@@ -97,7 +128,10 @@ prices, or to upgrade you; it uses the same plan list and checkout as the
 website. [When you reach a limit](/authentication#when-you-reach-a-limit) has
 the details.
 
-## Name the operation before you call it
+## For developers: calling tools directly
+
+Assistants pick tools and inputs on their own. Read this section only when you
+write code or prompts that call the tools directly.
 
 The read, lookup, search, write, and delete tools each run one operation from
 the [API reference](/api-reference). Every call must name that operation with
@@ -155,14 +189,13 @@ response is truncated, reduce `size` and page through the relevant
 sub-resource instead of changing the format.
 </Note>
 
-## Self-host instead
+## Advanced: run the server locally
 
-Use this when your client configures MCP servers by URL but cannot run an OAuth
-flow, or when you want the server inside your own network.
+<Accordion title="Run your own MCP server (rarely needed)">
 
-<Note>
-The server requires Node.js 24.18 or later in the 24.x series.
-</Note>
+Most people never need this. Run the server yourself only when your client can't
+complete an OAuth sign-in, or when you need it inside your own network. It
+requires Node.js 24.18.0 or later.
 
 ```bash
 npm install --global @aventurevc/mcp-server
@@ -180,22 +213,19 @@ token on every request:
       "type": "http",
       "url": "http://localhost:3333/mcp",
       "headers": {
-        "Authorization": "Bearer <personal-api-key>"
+        "Authorization": "Bearer <your-api-key>"
       }
     }
   }
 }
 ```
 
-Supply the key through your client's own secret storage; its interpolation
-syntax differs by client. Never paste the key into a file you commit.
+Supply the key through your client's secret storage. Never paste it into a file
+you commit. `AVENTURE_MCP_PORT` and `AVENTURE_MCP_PATH` change the port and
+route; update the client URL to match. The server speaks Streamable HTTP, so
+configure a URL, not a command.
 
-`AVENTURE_MCP_PORT` and `AVENTURE_MCP_PATH` change the listener; update the
-client URL to match. `AVENTURE_MCP_JSON_LIMIT` bounds the request body size.
-
-<Note>
-This package speaks Streamable HTTP, not stdio. Configure a URL, not a command.
-</Note>
+</Accordion>
 
 ## Next steps
 
@@ -203,4 +233,4 @@ This package speaks Streamable HTTP, not stdio. Configure a URL, not a command.
 - [Authentication](/authentication) covers sign-in, plans, and usage.
 - [CLI quickstart](/cli) runs the same operations from your terminal.
 - [API reference](/api-reference) lists the operations behind every tool.
-- The server is published as [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).
+- The local server package is [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).

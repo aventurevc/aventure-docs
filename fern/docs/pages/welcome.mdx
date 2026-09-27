@@ -5,7 +5,7 @@ hide-page-actions: true
 hide-nav-links: true
 hide-feedback: true
 layout: overview
-subtitle: Query data on private companies, investors, and funding rounds within minutes through the aVenture API, CLI, and MCP server.
+subtitle: Research private companies, founders, investors, and funding rounds from Claude, ChatGPT, your terminal, or your own code.
 ---
 
 <div className="welcome-hero-tint">
@@ -15,65 +15,42 @@ subtitle: Query data on private companies, investors, and funding rounds within 
 
 ## Get started
 
-aVenture data covers private companies, their founders, investors, funding
-rounds, and news. The API, CLI, and MCP server all require an aVenture account,
-and free and paid plans both work. [Create an account](https://aventure.vc/sign-up),
-then pick the tool you want to work in. Each quickstart ends with a real answer.
+aVenture covers private companies, their founders, investors, funding rounds,
+and news. Every way in needs an aVenture account; free and paid plans both work.
+[Create an account](https://aventure.vc/sign-up), then pick where you work:
+
+| Where you work | Use | Setup |
+|---|---|---|
+| Claude, ChatGPT, or another desktop, web, or cloud AI app | [MCP server](/mcp) | Add a connector; nothing to install |
+| A terminal, shell scripts, or a coding agent with a shell | [CLI](/cli) | One `npm install` |
+| [Researchly](https://researchly.chat) | Built in | Open [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and choose **Connect aVenture** |
+| Your own code | [API](/quickstart) | An API key |
+
+The MCP and CLI quickstarts each start with a prompt you can paste into your AI
+app to set everything up for you.
+
+<CardGroup cols={3}>
+  <Card title="MCP quickstart" icon="duotone robot" href="/mcp">
+    Ask Claude, ChatGPT, or any AI app about companies and people. Hosted by aVenture, nothing to install.
+  </Card>
+
+  <Card title="CLI quickstart" icon="duotone terminal" href="/cli">
+    Find companies and people by name, website, or description from your terminal.
+  </Card>
+
+  <Card title="API quickstart" icon="duotone plug" href="/quickstart">
+    Call the API from your own code with an API key.
+  </Card>
+</CardGroup>
 
 Profile views, searches, and web searches draw on your plan's monthly
 allowances. [Plans and usage](/authentication#plans-and-usage) explains what
 counts, and the [pricing page](https://aventure.vc/pricing) lists current plans.
 
-<CardGroup cols={3}>
-  <Card title="API quickstart" icon="duotone plug" href="/quickstart">
-    Send HTTPS requests with `curl` and an API key.
-  </Card>
-
-  <Card title="CLI quickstart" icon="duotone terminal" href="/cli">
-    Sign in from your terminal, then find companies and people by name, website, or description.
-  </Card>
-
-  <Card title="MCP quickstart" icon="duotone robot" href="/mcp">
-    Ask Claude, ChatGPT, or any MCP client about companies and people. The hosted server needs no install.
-  </Card>
-</CardGroup>
-
-<Tabs>
-<Tab title="API">
-
-```bash
-curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities/lookup-exact?urlDomain=stripe.com"
-```
-
-</Tab>
-<Tab title="CLI">
-
-```bash
-npm install --global @aventurevc/aventure-cli
-aventure auth login
-aventure lookup Stripe
-```
-
-</Tab>
-<Tab title="MCP">
-
-Add `https://mcp.aventure.vc/mcp` to your client with OAuth client ID
-`KL7mINzGk0le0QiD`, sign in, and ask a question such as "Who founded Ramp and
-how much has it raised?" The [MCP quickstart](/mcp) has the setup for each
-client.
-
-</Tab>
-</Tabs>
-
-<Note>
-The CLI and the self-hosted MCP server require Node.js 24.18 or later in the 24.x series.
-</Note>
-
 ## What you can query
 
 <CardGroup cols={3}>
-  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entity-summaries">
+  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entities">
     Companies, investors, and accelerators, filterable by industry, stage, location, funding, and accelerator cohort
   </Card>
   <Card title="People" icon="duotone user" href="/api-reference/people/search-people">

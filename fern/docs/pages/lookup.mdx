@@ -230,12 +230,12 @@ for an unknown id or `ALLOWANCE_EXHAUSTED` once your research allowance runs
 out. Runs filed before the allowance ran out stay queued. A list longer than
 the batch limit is refused before any run is filed.
 
-Each new run is billed as one company research ($2.50) or one person research
-($0.65). Runs first draw on your plan's monthly research allowance: AI Plus
-includes 30 company and 30 person researches, and AI Pro includes 270 of each.
-Past the allowance, runs continue only as additional usage if you turned it on;
-otherwise a single-record call answers `429` and the batch call marks the
-remaining records `ALLOWANCE_EXHAUSTED`. A plan without research runs answers `402`.
+Each new run uses one company or person research from your plan's monthly
+allowance: AI Plus includes 30 of each, and AI Pro includes 270 of each. Past the
+allowance, runs continue only if you turned on additional usage, at $2.50 per
+company and $0.65 per person research. Otherwise a single-record call answers
+`429` with a usage-limit message and upgrade links, and the batch call marks the
+remaining records `ALLOWANCE_EXHAUSTED`. The free plan answers `402`.
 [Plans and usage](/authentication#plans-and-usage) explains allowances and
 additional usage.
 
