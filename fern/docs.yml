@@ -119,7 +119,6 @@ navigation:
                   - endpoint: GET /v1/entities/{entityId}/trending-news
                     slug: list-entity-trending-news
                     title: Get trending news for an entity by UUID
-              - lookupJobs
               - identifiers
               - recordSlugs
               - classificationTags

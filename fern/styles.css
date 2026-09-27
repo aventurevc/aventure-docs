@@ -43,7 +43,7 @@ h1.fern-page-heading {
 
 /* Inline code takes the accent by default; under the orange dark accent that
    made every identifier compete with links. */
-.fern-prose :not(pre) > code {
+.dark .fern-prose :not(pre) > code {
   color: var(--grayscale-12);
   border-color: var(--border);
 }
