@@ -1,0 +1,67 @@
+---
+title: Identify names in an article
+subtitle: Extract every company and person an article names and identify each one
+slug: lookup-articles
+availability: beta
+---
+
+An article lookup reads one article, extracts every company and person it
+names, and identifies each name as [`POST /v1/lookup`](/lookup) would, with the article
+as the source. It shares the lookup's [plan requirement](/lookup#access-and-limits).
+
+1. Start the job with `POST /v1/lookup-jobs` and a body holding `sourceUrl`,
+   `sourceNewsId`, or both. The call returns `202` with a `jobId`. Sending the
+   same article again soon returns the earlier job.
+2. Read the job with `GET /v1/lookup-jobs/{jobId}` until `state` is
+   `COMPLETED` or `FAILED`. Only the caller that started the job can read it.
+3. Act on each entry in `mention`. Every entry has the `name` as the article
+   writes it and a `mentionType` of `COMPANY` or `PERSON`:
+   - `identification` is the lookup answer, read exactly as in
+     [Act on the answer](/lookup#act-on-the-answer).
+   - `shell` is set when the answer is `NO_MATCH` and the job created a hidden
+     placeholder record for the name. The job creates one only when the article
+     and a live page on another site both name the subject. `shell` holds its
+     `entityId` or `personId`; creating it costs nothing, and you can send it
+     straight to a [research update](/research-updates).
+   - `shellDetail` says, in one sentence, why no placeholder was created for a
+     `NO_MATCH` name.
+   - `failureReason` replaces `identification` when a name could not be
+     identified. Send that name alone to `POST /v1/lookup`.
+
+When the job is accepted it spends one natural-search quota call for each name
+it may identify, up to its per-article limit. A repeat of the same article that
+returns the earlier job spends nothing. The job answers `402` and `429` under
+the same rules as a single lookup.
+
+## Example
+
+Set `ARTICLE_URL` to the article's address and start a job:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/lookup-jobs" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"sourceUrl":"'"$ARTICLE_URL"'"}'
+```
+
+```bash title="CLI"
+aventure lookup-jobs create --source-url "$ARTICLE_URL"
+```
+</CodeBlocks>
+
+Read the job with the returned `jobId` until `state` is `COMPLETED`:
+
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/lookup-jobs/$JOB_ID" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure lookup-jobs get --job-id "$JOB_ID"
+```
+</CodeBlocks>
+
+Collect the ids from each mention's `match.owner` or `shell`, then
+[queue research](/research-updates) on the ones worth updating.

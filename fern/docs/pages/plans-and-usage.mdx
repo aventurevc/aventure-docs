@@ -1,0 +1,44 @@
+---
+title: Plans and usage
+subtitle: What your plan includes, what counts against it, and how to upgrade
+slug: plans-and-usage
+keywords: usage, allowance, subscription, pricing, upgrade, limit
+---
+
+API, CLI, and MCP calls all draw on the same account. The
+[pricing page](https://aventure.vc/pricing) lists current plans.
+
+## What counts
+
+- **Company and person profile views** count one view per record, per calendar
+  month (UTC). Reading the same record again that month is free.
+- **Web searches** count one each.
+- **Plain-English searches** have no monthly allowance. They are rate-limited
+  per account instead: a `429` with `limitType` `NATURAL_SEARCH` means wait the
+  `Retry-After` seconds, not upgrade.
+- **Research requests** count against the allowance for adding or updating a
+  company or person.
+- **Features outside your plan**, such as plain-English search on a plan that
+  does not include it, answer `402` with `code` `subscription_required`.
+
+Allowances reset at the start of each calendar month (UTC).
+
+## When you reach a limit
+
+When an allowance runs out, the API answers `429` with `code`
+`billing_allowance_exhausted`. The message names the limit you reached and how
+to upgrade. Upgrade in any of three places:
+
+- **Website**: [subscription settings](https://aventure.vc/settings/subscription)
+  shows your plan, your usage, and every plan you can move to.
+- **CLI**: `aventure billing plans list` lists plans with monthly and annual
+  prices. `aventure billing plan-changes create --plan <plan>` upgrades a paid
+  plan using the card already on file. From the free plan,
+  `aventure billing checkout-sessions create --plan <plan>` returns a checkout
+  link where you enter a card.
+- **MCP**: ask your assistant to list aVenture plans and upgrade you. It uses
+  the same plan list and checkout.
+
+If an upgrade needs a payment you have not made yet, the response includes a
+payment link to finish it. On plans that offer additional usage, you can turn it
+on so requests continue past the allowance up to a spending cap you set.

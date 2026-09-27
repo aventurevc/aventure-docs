@@ -1,13 +1,13 @@
 ---
 title: Authentication
-subtitle: Accounts, API keys, sign-in, plans, and usage
+subtitle: Accounts, API keys, and sign-in
 slug: authentication
-keywords: API key, authentication, OAuth, sign in, account, usage, allowance, subscription, pricing, upgrade
+keywords: API key, authentication, OAuth, sign in, account
 ---
 
-The aVenture API, CLI, and MCP server all require an aVenture account. Free and
-paid plans both work. [Create an account](https://aventure.vc/sign-up), then
-choose how you sign in:
+The API, CLI, and MCP server all require an
+[aVenture account](https://aventure.vc/sign-up); free and paid plans both work.
+How you sign in depends on where you work:
 
 | Where you work | How you sign in |
 |---|---|
@@ -50,44 +50,6 @@ CLI sign-ins and revokes them. In CI, set `AUTH_TOKEN` to an API key instead.
 The [MCP quickstart](/mcp#get-started-in-one-step) has a prompt that connects
 your AI app, plus the URL and OAuth client ID to enter by hand. Your client signs
 you in through the browser when it connects.
-
-## Plans and usage
-
-Your plan decides which features you can use and how much monthly usage it
-includes. API, CLI, and MCP calls all draw on the same account.
-
-- **Company and person profile views** count one view per record, per calendar
-  month (UTC). Reading the same record again that month is free.
-- **Web searches** count one each.
-- **Plain-English searches** have no monthly allowance. They are rate-limited
-  per account instead: a `429` with `limitType` `NATURAL_SEARCH` means wait the
-  `Retry-After` seconds, not upgrade.
-- **Research requests** count against the allowance for adding or updating a
-  company or person.
-- **Features outside your plan**, such as plain-English search on a plan that
-  does not include it, answer `402` with `code` `subscription_required`.
-
-Allowances reset at the start of each calendar month (UTC).
-
-### When you reach a limit
-
-When an allowance runs out, the API answers `429` with `code`
-`billing_allowance_exhausted`. The message names the limit you reached and how
-to upgrade. Upgrade in any of three places:
-
-- **Website**: [subscription settings](https://aventure.vc/settings/subscription)
-  shows your plan, your usage, and every plan you can move to.
-- **CLI**: `aventure billing plans list` lists plans with monthly and annual
-  prices. `aventure billing plan-changes create --plan <plan>` upgrades a paid
-  plan using the card already on file. From the free plan,
-  `aventure billing checkout-sessions create --plan <plan>` returns a checkout
-  link where you enter a card.
-- **MCP**: ask your assistant to list aVenture plans and upgrade you. It uses
-  the same plan list and checkout.
-
-If an upgrade needs a payment you have not made yet, the response includes a
-payment link to finish it. On plans that offer additional usage, you can turn it
-on so requests continue past the allowance up to a spending cap you set.
 
 ## Keep credentials safe
 

@@ -1,0 +1,85 @@
+---
+title: Update records with research
+subtitle: Queue a research run that refreshes a company or person profile
+slug: research-updates
+availability: beta
+---
+
+A research update queues a run that researches one record and updates its
+aVenture profile.
+
+| Operation | Use it for | CLI |
+|-----------|------------|-----|
+| `POST /v1/entities/{entityId}/enrichments` | One company, product, or service | `aventure entities enrichments enrich` |
+| `POST /v1/people/{personId}/enrichments` | One person | `aventure people enrichments enrich` |
+| `POST /v1/enrichments` | Many records: a body with `entityId` and `personId` arrays | `aventure enrichments enrich` |
+
+Take the id from `match.owner` on a `MATCHED` answer, from the candidate the
+user chose on `NEEDS_REVIEW`, or from an [article lookup's](/lookup-articles) `shell`. When a run
+for the same record is already queued or running, the call returns that run
+instead of starting and charging another.
+
+The batch call files one run per distinct id, companies first, and returns one
+outcome per record in request order: its `run`, or a `refusal` of `NOT_FOUND`
+for an unknown id or `ALLOWANCE_EXHAUSTED` once your research allowance runs
+out. Runs filed before the allowance ran out stay queued. A list longer than
+the batch limit is refused before any run is filed.
+
+Each new run uses one company or person research from your plan's monthly
+allowance: AI Plus includes 30 of each, and AI Pro includes 270 of each. Past the
+allowance, runs continue only if you turned on additional usage, at $2.50 per
+company and $0.65 per person research. Otherwise a single-record call answers
+`429` with a usage-limit message and upgrade links, and the batch call marks the
+remaining records `ALLOWANCE_EXHAUSTED`. The free plan answers `402`.
+[Plans and usage](/plans-and-usage) explains allowances and additional usage.
+
+Check a run with `GET /v1/harness/runs/{runId}` (`aventure harness runs get`),
+using the `id` of the returned run. `run.status` moves through `queued` and
+`running` to `completed`, `failed`, or `stopped`. When it is `completed`, read
+the updated record with `GET /v1/entities/{entityId}` or
+`GET /v1/people/{personId}`.
+
+## Pick records worth updating
+
+Each lookup candidate, including `match`, carries two fields that tell you how current
+the stored record is:
+
+| Field | Meaning |
+|-------|---------|
+| `dataCompletionCoverage` | Companies only. The share, from 0 to 100, of the required profile facts the record holds. Absent for people and for companies whose coverage has not been computed yet |
+| `updatedAt` | When the stored record last changed |
+
+A low `dataCompletionCoverage` or an old `updatedAt` marks a record that a
+research update is likely to improve. A
+company near 100 that changed recently rarely needs one. When coverage is
+absent, decide from `updatedAt` alone.
+
+## Example
+
+Queue research on several companies and people in one call:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/enrichments" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"entityId":["'"$ENTITY_ID"'"],"personId":["'"$PERSON_ID"'"]}'
+```
+
+```bash title="CLI"
+aventure enrichments enrich --entity-id "$ENTITY_ID" --person-id "$PERSON_ID"
+```
+</CodeBlocks>
+
+Check each returned run:
+
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/harness/runs/$RUN_ID" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure harness runs get --run-id "$RUN_ID"
+```
+</CodeBlocks>

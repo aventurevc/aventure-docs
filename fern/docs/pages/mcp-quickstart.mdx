@@ -4,10 +4,13 @@ subtitle: Ask Claude, ChatGPT, or any AI app about companies and people
 slug: mcp
 ---
 
-Connect Claude, ChatGPT, Claude Code, or any MCP client to aVenture, then ask
-about companies, founders, investors, and funding in plain English. aVenture
-hosts the server, so there is nothing to install. You need an aVenture account;
-free and paid plans both work. [Create an account](https://aventure.vc/sign-up).
+Connect Claude, ChatGPT, Claude Code, or any MCP client to aVenture's hosted
+server, then ask in plain English. You need an
+[aVenture account](https://aventure.vc/sign-up); free and paid plans both work.
+Working in a terminal or a coding agent with a shell? Use the [CLI](/cli). In
+[Researchly](https://researchly.chat), aVenture is built in: open
+[Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and
+choose **Connect aVenture**.
 
 ## Get started in one step
 
@@ -18,20 +21,14 @@ Connect the aVenture MCP server for me.
 - URL: https://mcp.aventure.vc/mcp
 - Transport: Streamable HTTP
 - OAuth client ID: KL7mINzGk0le0QiD
-If you can add it yourself (in Claude Code, run
-`claude mcp add --scope user --transport http --client-id KL7mINzGk0le0QiD --callback-port 6276 aventure https://mcp.aventure.vc/mcp`),
-do that. Otherwise tell me exactly where to enter these settings in this app.
-When it's connected and I've signed in, read aVenture's profile for stripe.com to confirm
-it works. Docs: https://docs.aventure.vc/mcp
+If you can add it yourself, do that. In Claude Code, run:
+  claude mcp add --scope user --transport http \
+    --client-id KL7mINzGk0le0QiD --callback-port 6276 \
+    aventure https://mcp.aventure.vc/mcp
+Otherwise, tell me exactly where to enter these settings in this app.
+When it's connected and I've signed in, read aVenture's profile for
+stripe.com to confirm it works. Docs: https://docs.aventure.vc/mcp
 ```
-
-## MCP, CLI, or Researchly?
-
-| Where you work | Use |
-|---|---|
-| Claude, ChatGPT, or another desktop, web, or cloud AI app | The MCP server on this page |
-| A terminal, shell scripts, or a coding agent with a shell | The [CLI](/cli) |
-| [Researchly](https://researchly.chat) | Nothing to install: open [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and choose **Connect aVenture** |
 
 ## Connect by hand
 
@@ -103,15 +100,17 @@ npx @modelcontextprotocol/inspector@2.6.0 --cli \
 
 Once connected, ask things like:
 
-Looking up a company or person by name, or describing what you want, needs a paid
-plan (AI Plus or AI Pro). On the free plan, ask about a company by its website, such
-as "Read aVenture's profile for ramp.com."
-
 - "Look up Stripe on aVenture and summarize its funding history."
 - "Which company owns ramp.com, and who founded it?"
 - "Find seed-stage climate software companies in Austin."
 - "Who is Patrick Collison, and which companies is he connected to?"
 - "Find fintech founders who previously worked at PayPal."
+
+<Note>
+Finding a company or person by name or description needs a paid plan (AI Plus
+or AI Pro). On the free plan, ask by website: "Read aVenture's profile for
+ramp.com."
+</Note>
 
 The assistant picks the tools itself:
 
@@ -123,81 +122,15 @@ The assistant picks the tools itself:
 | `aventure_help` | Finds the right operation for a task |
 | `aventure_status` | Confirms the connection and your sign-in |
 
-## Plans and usage
+Calls draw on your plan's monthly allowances. When one runs out, the answer
+names the limit and how to upgrade; you can also ask the assistant to list plans
+or upgrade you. [Plans and usage](/plans-and-usage) has the details. To call the
+tools from your own code or prompts, read
+[Call MCP tools directly](/mcp-tools).
 
-Profile views, web searches, and research requests count toward your plan's monthly
-allowance. When one runs out, the tool answer names the limit and how to
-upgrade. Ask your assistant to list aVenture plans with their monthly and annual
-prices, or to upgrade you; it uses the same plan list and checkout as the
-website. [When you reach a limit](/authentication#when-you-reach-a-limit) has
-the details.
+<Accordion title="Run the server yourself (rarely needed)">
 
-## For developers: calling tools directly
-
-Assistants pick tools and inputs on their own. Read this section only when you
-write code or prompts that call the tools directly.
-
-The read, lookup, search, write, and delete tools each run one operation from
-the [API reference](/api-reference). Every call must name that operation with
-`operationId`, or with `method` and `path` together. A call that carries only a
-query is rejected with `Pass operationId or method+path.`
-
-`aventure_help` supplies the name. Ask in plain English and set `resolve`:
-
-```json
-{ "q": "look up a company by name", "resolve": true }
-```
-
-With `resolve`, help returns one recommendation instead of a catalog. In the
-answer, `mcpTool` names the tool to call, and `apiRoute` gives the method and
-path. `pathInput`, `queryInput`, and `bodyInput` list the operation's argument
-names, and `missingInputs` lists the arguments the call still needs.
-
-For example, finding the company a name refers to is `lookupEntity`
-(`POST /v1/entities/lookup`), which runs through `aventure_lookup` and takes the
-name in its JSON body:
-
-```json
-{ "operationId": "lookupEntity", "body": { "name": "Stripe" } }
-```
-
-The answer reports whether the name matched a record and, when it did, the
-record's `id` and `slug` for the reads that follow.
-
-Split `apiRoute` into `method` and `path` and pass both exactly as printed.
-Never derive an `operationId` from a route: an id that does not exist is
-rejected with `OpenAPI operationId not found`. Take `operationId` from the
-[API reference](/api-reference) or from an `aventure_help` catalog row, which
-carries it for every operation it lists.
-
-Plain-English search requires a plan that includes it; without one, the call
-fails with [`402`](/errors).
-
-<Note>
-The help parameter is `q`. On the operation tools, `query` holds the
-operation's URL query parameters, and `aventure_help` ignores it. Calling help
-without `q` is not an error; it returns the start of the full catalog, unranked.
-</Note>
-
-Put each input where the help answer says it goes: `pathInput` values in
-`pathParams`, `queryInput` values in `query`, `bodyInput` values in `body`.
-Do not reuse argument placement between operations. For example, `entityId` is
-a path parameter on `GET /v1/entities/{entityId}` but a repeatable query filter
-on `GET /v1/entities`.
-
-<Note>
-`responseFormat` applies only to operations that declare a `text/plain`
-response. Setting it to `text` on a JSON-only operation fails with `does not
-offer text/plain`, so leave it unset unless the operation offers both. If a
-response is truncated, reduce `size` and page through the relevant
-sub-resource instead of changing the format.
-</Note>
-
-## Advanced: run the server locally
-
-<Accordion title="Run your own MCP server (rarely needed)">
-
-Most people never need this. Run the server yourself only when your client can't
+Run the server yourself only when your client can't
 complete an OAuth sign-in, or when you need it inside your own network. It
 requires Node.js 24.18.0 or later.
 
@@ -234,7 +167,5 @@ configure a URL, not a command.
 ## Next steps
 
 - [Answer a real question](/first-answer) chains these tools into one result.
-- [Authentication](/authentication) covers sign-in, plans, and usage.
-- [CLI quickstart](/cli) runs the same operations from your terminal.
 - [API reference](/api-reference) lists the operations behind every tool.
-- The local server package is [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).
+- The local server is [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).

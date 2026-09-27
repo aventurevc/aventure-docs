@@ -4,11 +4,8 @@ subtitle: Find companies and people with the aVenture API
 slug: quickstart
 ---
 
-This page walks you from an API key to real answers: find a company by its
-website, by its name, or by describing it, then do the same for a person.
-
-If you work in a terminal or an AI client instead, the [CLI quickstart](/cli)
-and [MCP quickstart](/mcp) cover the same data through those tools.
+Go from an API key to real answers: a company by website, by name, or by
+description, then a person, then funding rounds.
 
 ## 1. Create an API key
 
@@ -100,12 +97,9 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 
 ## Plans and usage
 
-Profile views, web searches, and research requests count toward your plan's monthly
-allowance. When one runs out, the API answers `429` with `code`
-`billing_allowance_exhausted` and a message that names the limit and how to
-upgrade. `GET /v1/billing/plans` lists plans with monthly and annual prices, and
-[subscription settings](https://aventure.vc/settings/subscription) shows your
-usage. [Plans and usage](/authentication#plans-and-usage) has the details.
+Calls draw on your plan's monthly allowances. When one runs out, the API answers
+`429` with `code` `billing_allowance_exhausted`.
+[Plans and usage](/plans-and-usage) explains what counts and how to upgrade.
 
 ## Next steps
 
