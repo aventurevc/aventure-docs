@@ -178,8 +178,8 @@ investors, all take the same `core.id`.
 
 When you have a phrase instead of a set of filters, replace step 1 with search:
 `POST /v1/search` searches companies, people, and news together, and
-`aventure search --query "..."` is the CLI form. Search is rate-limited per
-account; a `429` with `limitType` `NATURAL_SEARCH` means wait the `Retry-After`
+`aventure search --query "..."` is the CLI form. Search needs a paid plan (AI
+Plus or AI Pro) and is rate-limited per account; a `429` with `limitType` `NATURAL_SEARCH` means wait the `Retry-After`
 seconds before retrying.
 
 Calls draw on your plan's monthly allowances; opening a full record counts one
