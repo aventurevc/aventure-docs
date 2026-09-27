@@ -89,6 +89,7 @@ navigation:
               - entityAddresses
               - entityMedia
               - entityResearch
+              - entitySimilar
               - entityMaintenance
           - section: People
             skip-slug: true
