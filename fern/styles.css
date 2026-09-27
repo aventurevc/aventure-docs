@@ -66,6 +66,13 @@ div:has(> .fern-x-overflow > h6[role="tab"]) {
   margin-top: 1.25rem;
 }
 
+/* docs.yml sets page-actions.options.ask-ai: false, but the published site
+   still renders the page-level Ask button, duplicating the header's Ask AI. */
+.fern-page-actions > button[title="Ask a question about this page"],
+.fern-page-actions > button[title="Ask a question about this page"] + span[aria-hidden="true"] {
+  display: none;
+}
+
 /* Welcome hero: a short brand band, tinted with the accent. */
 .welcome-hero-tint {
   position: relative;
