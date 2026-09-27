@@ -25,6 +25,12 @@ one record matches, none does, or a person has to decide.
 
 All three take the same request body and return the same response shape.
 
+A name that is exactly a record's id, handle, registry id, or slug settles on every
+plan. Any other name needs a paid plan (AI Plus or AI Pro); on the free plan it
+answers `402` with `code` `subscription_required`. On every plan, `GET /v1/entities/lookup-exact`
+(CLI: `aventure entities lookup-exact get`) returns the record for an exact website,
+domain, or slug.
+
 The universal `POST /v1/lookup` first checks whether the name is exactly a
 record's id, public handle, slug, or registry id such as a ticker, LEI, or EIN.
 If it is, that record is the answer. Otherwise it runs the company lookup and
