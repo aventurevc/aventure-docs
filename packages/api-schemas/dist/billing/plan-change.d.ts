@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const BillingPlanChangeSchemaDefinition: z.ZodObject<{
     effectiveAt: z.ZodISODateTime;
+    paymentClientSecret: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     paymentUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     plan: z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
@@ -9,6 +10,7 @@ declare const BillingPlanChangeSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     }>;
+    publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingPlanChangeDefinition = z.infer<typeof BillingPlanChangeSchemaDefinition>;
 /**

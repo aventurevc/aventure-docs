@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const BillingCheckoutSchemaDefinition: z.ZodObject<{
+    clientSecret: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     expiresAt: z.ZodISODateTime;
     plan: z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
@@ -8,11 +9,12 @@ declare const BillingCheckoutSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     }>;
-    url: z.ZodString;
+    publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingCheckoutDefinition = z.infer<typeof BillingCheckoutSchemaDefinition>;
 /**
- * Hosted Checkout destination and expiry without provider identifiers.
+ * Checkout Session destination or client secret and expiry without provider identifiers.
  *
  * @openapiSchema BillingCheckout
  * @endpoint POST /v1/billing/checkout-sessions

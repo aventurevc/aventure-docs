@@ -2,14 +2,18 @@
 import { z } from "zod/v4";
 import { BillingPlanTypeSchema } from "./plan-type.js";
 const BillingCheckoutSchemaDefinition = z.object({
-    /** When the Checkout page stops accepting payment */
+    /** Checkout Session client secret for Stripe.js initCheckout; set for ELEMENTS */
+    clientSecret: z.string().nullish(),
+    /** When the Checkout Session stops accepting payment */
     expiresAt: z.iso.datetime({ offset: true }),
     plan: BillingPlanTypeSchema,
-    /** Hosted Checkout page to open in a browser to pay */
-    url: z.string(),
+    /** Stripe publishable key that loads Stripe.js; set for ELEMENTS */
+    publishableKey: z.string().nullish(),
+    /** Hosted Checkout page to open in a browser; set for HOSTED_PAGE */
+    url: z.string().nullish(),
 });
 /**
- * Hosted Checkout destination and expiry without provider identifiers.
+ * Checkout Session destination or client secret and expiry without provider identifiers.
  *
  * @openapiSchema BillingCheckout
  * @endpoint POST /v1/billing/checkout-sessions

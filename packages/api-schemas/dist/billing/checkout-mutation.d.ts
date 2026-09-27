@@ -7,10 +7,14 @@ declare const BillingCheckoutMutationSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     }>;
+    uiMode: z.ZodOptional<z.ZodEnum<{
+        ELEMENTS: "ELEMENTS";
+        HOSTED_PAGE: "HOSTED_PAGE";
+    }>>;
 }, z.core.$strip>;
 type BillingCheckoutMutationDefinition = z.infer<typeof BillingCheckoutMutationSchemaDefinition>;
 /**
- * Caller-selected plan for server-owned hosted Checkout creation.
+ * Caller-selected plan and Checkout presentation for server-owned Checkout creation.
  *
  * @openapiSchema BillingCheckoutMutation
  * @endpoint POST /v1/billing/checkout-sessions

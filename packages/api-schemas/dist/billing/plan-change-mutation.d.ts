@@ -13,6 +13,7 @@ type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutat
  * Caller-selected plan for changing a continuing AI Plus or AI Pro subscription.
  *
  * @openapiSchema BillingPlanChangeMutation
+ * @endpoint POST /v1/billing/plan-change-previews
  * @endpoint POST /v1/billing/plan-changes
  * @contractShape billing.plan-change-mutation
  * @contractRole canonical

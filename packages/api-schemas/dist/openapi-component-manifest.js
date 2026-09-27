@@ -100,14 +100,26 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/checkout-mutation",
         schemaName: "BillingCheckoutMutationSchema",
     },
+    BillingCheckoutUiMode: {
+        modulePath: "billing/checkout-ui-mode",
+        schemaName: "BillingCheckoutUiModeSchema",
+    },
     BillingCreditPackType: {
         modulePath: "billing/credit-pack-type",
         schemaName: "BillingCreditPackTypeSchema",
+    },
+    BillingPaymentMethod: {
+        modulePath: "billing/payment-method",
+        schemaName: "BillingPaymentMethodSchema",
     },
     BillingPlanChange: { modulePath: "billing/plan-change", schemaName: "BillingPlanChangeSchema" },
     BillingPlanChangeMutation: {
         modulePath: "billing/plan-change-mutation",
         schemaName: "BillingPlanChangeMutationSchema",
+    },
+    BillingPlanChangePreview: {
+        modulePath: "billing/plan-change-preview",
+        schemaName: "BillingPlanChangePreviewSchema",
     },
     BillingPlanType: { modulePath: "billing/plan-type", schemaName: "BillingPlanTypeSchema" },
     BillingPortal: { modulePath: "billing/portal", schemaName: "BillingPortalSchema" },

@@ -2,6 +2,8 @@ import { z } from "zod/v4";
 /**
  * @openapiSchema BillingRecurringPrice
  * @endpoint GET /v1/billing/subscription
+ * @endpoint POST /v1/billing/plan-change-previews
+ * @usedBySchema BillingPlanChangePreviewSchema
  * @usedBySchema BillingSubscriptionSchema
  * @contractShape billing.recurring-price
  * @contractRole canonical
