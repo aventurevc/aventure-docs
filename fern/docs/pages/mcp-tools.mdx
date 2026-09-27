@@ -1,0 +1,65 @@
+---
+title: Call MCP tools directly
+subtitle: Name the operation, put each input where it belongs, and read the answer
+slug: mcp-tools
+---
+
+Assistants pick tools and inputs on their own. This page is for code or prompts
+that call the aVenture MCP tools directly. Connect first with the
+[MCP quickstart](/mcp).
+
+The read, lookup, search, write, and delete tools each run one operation from
+the [API reference](/api-reference). Every call must name that operation with
+`operationId`, or with `method` and `path` together. A call that carries only a
+query is rejected with `Pass operationId or method+path.`
+
+`aventure_help` supplies the name. Ask in plain English and set `resolve`:
+
+```json
+{ "q": "look up a company by name", "resolve": true }
+```
+
+With `resolve`, help returns one recommendation instead of a catalog. In the
+answer, `mcpTool` names the tool to call, and `apiRoute` gives the method and
+path. `pathInput`, `queryInput`, and `bodyInput` list the operation's argument
+names, and `missingInputs` lists the arguments the call still needs.
+
+For example, finding the company a name refers to is `lookupEntity`
+(`POST /v1/entities/lookup`), which runs through `aventure_lookup` and takes the
+name in its JSON body:
+
+```json
+{ "operationId": "lookupEntity", "body": { "name": "Stripe" } }
+```
+
+The answer reports whether the name matched a record and, when it did, the
+record's `id` and `slug` for the reads that follow.
+
+Split `apiRoute` into `method` and `path` and pass both exactly as printed.
+Never derive an `operationId` from a route: an id that does not exist is
+rejected with `OpenAPI operationId not found`. Take `operationId` from the
+[API reference](/api-reference) or from an `aventure_help` catalog row, which
+carries it for every operation it lists.
+
+Plain-English search requires a plan that includes it; without one, the call
+fails with [`402`](/errors).
+
+<Note>
+The help parameter is `q`. On the operation tools, `query` holds the
+operation's URL query parameters, and `aventure_help` ignores it. Calling help
+without `q` is not an error; it returns the start of the full catalog, unranked.
+</Note>
+
+Put each input where the help answer says it goes: `pathInput` values in
+`pathParams`, `queryInput` values in `query`, `bodyInput` values in `body`.
+Do not reuse argument placement between operations. For example, `entityId` is
+a path parameter on `GET /v1/entities/{entityId}` but a repeatable query filter
+on `GET /v1/entities`.
+
+<Note>
+`responseFormat` applies only to operations that declare a `text/plain`
+response. Setting it to `text` on a JSON-only operation fails with `does not
+offer text/plain`, so leave it unset unless the operation offers both. If a
+response is truncated, reduce `size` and page through the relevant
+sub-resource instead of changing the format.
+</Note>

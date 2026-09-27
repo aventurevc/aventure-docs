@@ -1,6 +1,72 @@
-/* aVenture docs theme overrides */
+/* aVenture docs theme overrides. Colors and fonts come from docs.yml; this file
+   only tunes what those tokens cannot reach. */
 
-/* Accent tint on welcome hero images */
+/* Crimson Pro has a small x-height, so headings need more size and less
+   weight than Fern's Inter-tuned defaults. */
+h1.fern-page-heading {
+  font-size: 2.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.fern-prose h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.fern-prose h3 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+/* Section headings render at item weight by default, which flattens the
+   nested navigation into one list. */
+.fern-sidebar-heading {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--grayscale-a11);
+}
+
+/* Fern's accent-alpha fill turns brown under the orange dark accent. */
+.dark .fern-sidebar-link[data-state="active"] {
+  background-color: rgb(255 255 255 / 0.08);
+}
+
+/* Links use the exact brand accent instead of Fern's derived step. */
+.fern-mdx-link {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* Inline code takes the accent by default; under the orange dark accent that
+   made every identifier compete with links. */
+.fern-prose :not(pre) > code {
+  color: var(--grayscale-12);
+  border-color: var(--border);
+}
+
+.fern-mdx-link code {
+  color: inherit;
+}
+
+.fern-card.interactive:hover {
+  border-color: var(--accent);
+}
+
+/* MDX tab titles are h6 elements, so they inherit the serif heading font;
+   their first-child negative margin also pulls the bar onto a preceding table. */
+h6[role="tab"] {
+  font-family: inherit;
+}
+
+div:has(> .fern-x-overflow > h6[role="tab"]) {
+  margin-top: 1.25rem;
+}
+
+/* Welcome hero: a short brand band, tinted with the accent. */
 .welcome-hero-tint {
   position: relative;
   display: block;
@@ -10,7 +76,8 @@
 
 .welcome-hero-tint img {
   width: 100%;
-  height: auto;
+  aspect-ratio: 5 / 1;
+  object-fit: cover;
   margin: 0 !important;
 }
 
@@ -41,10 +108,35 @@
   overflow-wrap: anywhere;
 }
 
-/* 10px method badges need 4.5:1; Fern's defaults measure 3.2:1 (solid)
-   and 4.1:1 (subtle, light theme). */
+/* Endpoint URL path segments render at grayscale step 9 (3.5:1 on navy). */
+.font-mono > [class~="text-(color:--grayscale-a9)"] {
+  color: var(--grayscale-a11);
+}
+
+/* Code blocks always use the dark syntax theme (docs.yml dark-mode-code). It
+   colors nested JSON keys #916B53, 2.8:1 on the code background; this brown
+   keeps the hue at 5.6:1. */
+span[style*="#916B53" i] {
+  --shiki-dark: #c9a07f !important;
+}
+
+/* Comments render #8a8a8a, 3.9:1 on the code background. */
+span[style*="#8a8a8a" i] {
+  --shiki-dark: #a9b4c2 !important;
+}
+
+/* 10-12px method and status badges need 4.5:1; Fern's defaults measure
+   3.2:1 (solid) and 4.1 to 4.5:1 (subtle, light theme). */
 .fern-docs-badge.solid.green {
   background-color: #1a7f4b;
+}
+
+.fern-docs-badge.solid.blue {
+  background-color: #134e88;
+}
+
+html.light .fern-docs-badge.subtle.red {
+  color: #a3000a;
 }
 
 html.light .fern-docs-badge.subtle.blue {
@@ -53,6 +145,36 @@ html.light .fern-docs-badge.subtle.blue {
 
 html.light .fern-docs-badge.subtle.green {
   color: #00613a;
+}
+
+/* Subtle blue badges measure 3.3:1 on navy. Snippet cards are always dark
+   (dark-mode-code), but Fern keeps light-theme badge colors inside them in
+   light mode, which left POST and 200 at 1.2:1. */
+html.dark .fern-docs-badge.subtle.blue,
+html.light .fern-endpoint-code-snippets .fern-docs-badge.subtle.blue {
+  color: #8ec5ff;
+}
+
+html.light .fern-endpoint-code-snippets .fern-docs-badge.subtle {
+  color: #d6dee8;
+  background-color: rgb(255 255 255 / 0.1);
+}
+
+html.light .fern-endpoint-code-snippets .fern-docs-badge.subtle.green {
+  color: #7ee2a8;
+}
+
+html.light .fern-endpoint-code-snippets .fern-docs-badge.subtle:is(.red, .orange, .amber) {
+  color: #ffb08a;
+}
+
+/* Note and warning callout text measure 4.3 to 4.4:1 in the light theme. */
+html.light .fern-callout[data-intent="note"] {
+  color: #00579f;
+}
+
+html.light .fern-callout[data-intent="warning"] {
+  color: #8a5000;
 }
 
 /* Code-block copy controls appear only on hover, which touch screens lack. */

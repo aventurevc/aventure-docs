@@ -5,9 +5,8 @@ slug: cli
 ---
 
 The `aventure` CLI finds companies and people by name, website, or description,
-and reads their funding, founders, investors, and news. You need an aVenture
-account; free and paid plans both work.
-[Create an account](https://aventure.vc/sign-up).
+and reads their funding, founders, investors, and news. You need an
+[aVenture account](https://aventure.vc/sign-up); free and paid plans both work.
 
 ## Get started in one step
 
@@ -15,21 +14,15 @@ Paste this into Claude Code, Codex, ChatGPT, or any assistant that can run
 terminal commands:
 
 ```text
-Set up the aVenture CLI for me. Install it with
-`npm install --global @aventurevc/aventure-cli` (it needs Node.js 24.18.0 or
-later), then run `aventure auth login` so I can approve the sign-in in my browser (if no
-browser opens, show me the sign-in link and code it prints). When I'm signed in, run `aventure entities lookup-exact get --url https://stripe.com` to confirm it
-works. Use `aventure --help` to find other commands.
+Set up the aVenture CLI for me. It needs Node.js 24.18.0 or later.
+1. Install it: npm install --global @aventurevc/aventure-cli
+2. Run `aventure auth login` so I can approve the sign-in in my browser.
+   If no browser opens, show me the sign-in link and code it prints.
+3. When I'm signed in, confirm it works:
+   aventure entities lookup-exact get --url https://stripe.com
+Use `aventure --help` to find other commands.
 Docs: https://docs.aventure.vc/cli
 ```
-
-## CLI, MCP, or Researchly?
-
-| Where you work | Use |
-|---|---|
-| A terminal, shell scripts, or a coding agent with a shell | The CLI on this page |
-| Claude, ChatGPT, or another desktop, web, or cloud AI app | The [MCP server](/mcp) |
-| [Researchly](https://researchly.chat) | Nothing to install: open [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and choose **Connect aVenture** |
 
 ## Set up by hand
 
@@ -69,10 +62,11 @@ This works on every plan.
 
 ## Find a company
 
-Finding a company or person by name (`lookup`) or by description (`search`) needs a
-paid plan (AI Plus or AI Pro). On the free plan, find a company by its website with
-`aventure entities lookup-exact get --url https://stripe.com` or by keyword with
-`aventure entities search --text-search Stripe`.
+<Note>
+`lookup` and `search` need a paid plan (AI Plus or AI Pro). On the free plan,
+use a website with `aventure entities lookup-exact get --url https://stripe.com`
+or a keyword with `aventure entities search --text-search Stripe`.
+</Note>
 
 | You have | Command |
 |---|---|
@@ -111,18 +105,15 @@ Run `aventure entities --help` or `aventure people --help` for every command.
 
 ## Plans and usage
 
-Profile views, web searches, and research requests count toward your plan's monthly
-allowance. When one runs out, the command stops with a message that names the
-limit and how to upgrade.
+Calls draw on your plan's monthly allowances. When one runs out, the command
+stops with a message that names the limit and how to upgrade.
 
 ```bash
-aventure billing subscription get                        # your plan and usage
-aventure billing plans list                              # plans with monthly and annual prices
-aventure billing plan-changes create --plan <plan>       # upgrade a paid plan with the card on file
-aventure billing checkout-sessions create --plan <plan>  # subscribe from the free plan
+aventure billing subscription get   # your plan and usage
+aventure billing plans list         # plans with monthly and annual prices
 ```
 
-[When you reach a limit](/authentication#when-you-reach-a-limit) covers each path.
+[Plans and usage](/plans-and-usage#when-you-reach-a-limit) covers upgrading.
 
 ## Output and exit codes
 

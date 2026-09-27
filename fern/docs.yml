@@ -3,12 +3,6 @@
 instances:
   - url: aventurevc.docs.buildwithfern.com
     custom-domain: docs.aventure.vc
-    edit-this-page:
-      github:
-        owner: aventurevc
-        repo: aventure-docs
-        branch: main
-      launch: github
 title: aVenture Developer Docs
 layout:
   searchbar-placement: header
@@ -17,11 +11,9 @@ layout:
 tabs:
   home:
     display-name: Docs
-    icon: home
   API Reference:
     display-name: API Reference
     slug: api-reference
-    icon: puzzle
 navigation:
   - tab: home
     layout:
@@ -29,34 +21,39 @@ navigation:
         contents:
           - page: Welcome
             path: docs/pages/welcome.mdx
-            icon: fa-duotone fa-house
-          - page: MCP quickstart
+          - page: AI apps (MCP)
             path: docs/pages/mcp-quickstart.mdx
-            icon: fa-duotone fa-robot
-          - page: CLI quickstart
+          - page: Terminal (CLI)
             path: docs/pages/cli-quickstart.mdx
-            icon: fa-duotone fa-terminal
-          - page: API quickstart
+          - page: Your code (API)
             path: docs/pages/quickstart.mdx
-            icon: fa-duotone fa-bolt
+      - section: Guides
+        contents:
           - page: Answer a real question
             path: docs/pages/first-answer.mdx
-            icon: fa-duotone fa-lightbulb
-          - page: Identify a company or person
-            path: docs/pages/lookup.mdx
-            icon: fa-duotone fa-magnifying-glass
+          - section: Identify records
+            collapsed: true
+            contents:
+              - page: Identify a company or person
+                path: docs/pages/lookup.mdx
+              - page: Identify names in an article
+                path: docs/pages/lookup-articles.mdx
+              - page: Update records with research
+                path: docs/pages/research-updates.mdx
+          - page: Call MCP tools directly
+            path: docs/pages/mcp-tools.mdx
+      - section: Reference
+        contents:
           - page: Authentication
             path: docs/pages/authentication.mdx
-            icon: fa-duotone fa-key
+          - page: Plans and usage
+            path: docs/pages/plans-and-usage.mdx
           - page: Pagination and filtering
             path: docs/pages/pagination-and-filtering.mdx
-            icon: fa-duotone fa-filter
           - page: Errors
             path: docs/pages/errors.mdx
-            icon: fa-duotone fa-triangle-exclamation
           - page: Support
             path: docs/pages/support.mdx
-            icon: fa-duotone fa-headset
       - section: Changelog
         contents:
           - changelog: docs/changelog
@@ -66,50 +63,119 @@ navigation:
         contents:
           - page: API reference
             path: docs/pages/api-reference-overview.mdx
-            icon: fa-duotone fa-book
       - api: aVenture API
         flattened: false
         skip-slug: true
-        # Disambiguate endpoint pages while preserving their published URLs.
+        # Sections group tags by task and skip their slug, so endpoint URLs stay
+        # /api-reference/<tag>/<endpoint>. The endpoint overrides disambiguate
+        # pages while preserving their published URLs.
         layout:
-          - entityFilters:
-              - endpoint: GET /v1/entities/filters
-                slug: list-entity-filter-options
-          - semanticSimilarity:
-              - endpoint: GET /v1/entities/{entityId}/trending-news
-                slug: list-entity-trending-news
-                title: Get trending news for an entity by UUID
-          - entities:
-              - endpoint: POST /v1/entities/lookup-batch
-                slug: lookup-entity-batch
-              - endpoint: POST /v1/entities/lookup-matches
-                slug: lookup-entity-matches
-          - people:
-              - endpoint: POST /v1/people/lookup-batch
-                slug: lookup-person-batch
-          - section: Resolve
-            slug: resolve
+          - section: Companies
+            skip-slug: true
             contents:
-              - endpoint: GET /v1/resolve/{token}
-                slug: resolve-identifier
+              - entities:
+                  - endpoint: POST /v1/entities/lookup-batch
+                    slug: lookup-entity-batch
+                  - endpoint: POST /v1/entities/lookup-matches
+                    slug: lookup-entity-matches
+              - entityFilters:
+                  - endpoint: GET /v1/entities/filters
+                    slug: list-entity-filter-options
+              - entityFundraise
+              - entityPersonAssociations
+              - entityRelationships
+              - entityAcquisitions
+              - entityClassifications
+              - entityAddresses
+              - entityMedia
+              - entityResearch
+              - entityMaintenance
+          - section: People
+            skip-slug: true
+            contents:
+              - people:
+                  - endpoint: POST /v1/people/lookup-batch
+                    slug: lookup-person-batch
+              - personInvestments
+              - personMetadata
+              - personAddresses
+              - personMedia
+          - section: News and content
+            skip-slug: true
+            contents:
+              - news
+              - newsMedia
+              - publications
+              - researchBlogPosts
+              - texts
+              - urlLinks
+              - repositories
+          - section: Search and identify
+            skip-slug: true
+            contents:
+              - search
+              - naturalSearch
+              - semanticSimilarity:
+                  - endpoint: GET /v1/entities/{entityId}/trending-news
+                    slug: list-entity-trending-news
+                    title: Get trending news for an entity by UUID
+              - lookupJobs
+              - identifiers
+              - recordSlugs
+              - classificationTags
+              - section: Resolve
+                slug: resolve
+                contents:
+                  - endpoint: GET /v1/resolve/{token}
+                    slug: resolve-identifier
+          - section: Account and billing
+            skip-slug: true
+            contents:
+              - auth
+              - billing
+          - section: Agents and system
+            skip-slug: true
+            contents:
+              - agents
+              - harness
+              - system
 
 navbar-links:
   - type: filled
     text: Get an API key
     url: https://aventure.vc/settings/api-keys
+# Brand tokens from aventure.vc (front-end src/styles/themeColors.ts, surfaceTheme.css).
 colors:
   accent-primary:
-    light: "#0A2540"
-    dark: "#A8C7FA"
+    light: "#134E88"
+    dark: "#F9B25B"
   background:
-    light: "#F8F8F9"
+    light: "#FBFBFB"
     dark: "#0A2540"
   border:
-    light: "#C9CBCC"
-    dark: "#26282A"
+    light: "#CCD2E3"
+    dark: "#3A5470"
+  sidebar-background:
+    light: "#F0F2F5"
+    dark: "#071C31"
+  header-background:
+    light: "#FBFBFB"
+    dark: "#071C31"
+  card-background:
+    light: "#F0F2F5"
+    dark: "#12304F"
 theme:
+  sidebar: minimal
   page-actions: toolbar
   footer-nav: minimal
+# Keep only page copy and export; Ask AI lives in the header, and the
+# Claude Code and Cursor buttons install the docs-search MCP, which readers
+# confuse with the aVenture data MCP.
+page-actions:
+  options:
+    ask-ai: false
+    claude-code: false
+    cursor: false
 logo:
   dark: docs/assets/logo-dark.svg
   light: docs/assets/logo-light.svg
@@ -118,12 +184,27 @@ logo:
 favicon: docs/assets/favicon.png
 css:
   - styles.css
-  - docs/assets/onboarding-theme.css
 typography:
   headingsFont:
-    name: Inter
+    name: Crimson Pro
+    paths:
+      - path: docs/assets/fonts/CrimsonPro-Variable.woff2
+        weight: 200 900
+        style: normal
   bodyFont:
-    name: Inter
+    name: Archivo
+    paths:
+      - path: docs/assets/fonts/Archivo-Variable.woff2
+        weight: 100 900
+        style: normal
+  codeFont:
+    name: JetBrains Mono
+    paths:
+      - path: docs/assets/fonts/JetBrainsMono-Variable.woff2
+        weight: 400 800
+        style: normal
+settings:
+  dark-mode-code: true
 ai-search: {}
 agents:
   llms-txt: ./llms.txt

@@ -8,8 +8,12 @@
 - [CLI quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli` (Node.js 24.18.0 or later) with a copy-paste prompt, sign in, and find a company or person by name, website, or description; recommended for terminals and coding agents.
 - [API quickstart](https://docs.aventure.vc/quickstart): Create an API key, find a company or person by name, website, or description, and read its funding rounds.
 - [Answer a real question](https://docs.aventure.vc/first-answer): Filter companies, open one record, and read its funding rounds in API, CLI, and MCP form.
-- [Identify a company or person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues, or every name in a news article, into the matching records; judge record freshness and queue single or batch research updates.
-- [Authentication](https://docs.aventure.vc/authentication): Sign in, create an API key, and understand plans and usage limits.
+- [Identify a company or person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues into the matching record.
+- [Identify names in an article](https://docs.aventure.vc/lookup-articles): Experimental. Extract every company and person a news article names and identify each one.
+- [Update records with research](https://docs.aventure.vc/research-updates): Experimental. Judge record freshness and queue single or batch research updates.
+- [Call MCP tools directly](https://docs.aventure.vc/mcp-tools): Name the operation, place each input, and read tool answers from your own code or prompts.
+- [Authentication](https://docs.aventure.vc/authentication): Create an API key and sign in from the CLI or an MCP client.
+- [Plans and usage](https://docs.aventure.vc/plans-and-usage): What counts against your plan's allowances and how to upgrade.
 - [Pagination and filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
 - [Errors](https://docs.aventure.vc/errors): Interpret error responses, rate limits, and plan usage limits.
 - [API reference](https://docs.aventure.vc/api-reference): Every endpoint, parameter, and schema.

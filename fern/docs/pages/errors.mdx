@@ -4,10 +4,9 @@ subtitle: The problem detail body, status codes, rate limits, and allowance limi
 slug: errors
 ---
 
-This page is for anyone writing code that handles a failed aVenture API, CLI, or
-MCP call. Every error response uses one body: an RFC 9457 problem detail, served
-as `application/problem+json`. Parse that one shape and you can handle every
-failure the API produces.
+Every failed API, CLI, or MCP call returns one body: an RFC 9457 problem
+detail, served as `application/problem+json`. Parse that one shape to handle
+every failure.
 
 ## The problem detail body
 
@@ -62,7 +61,7 @@ have. `code` names the cause:
 | `subscription_paused` | The subscription is paused | Resume it from [your subscription settings](https://aventure.vc/settings/subscription) |
 
 Plain-English search, link search, and research requests can answer `402`.
-[Plans and usage](/authentication#plans-and-usage) explains how plans gate features.
+[Plans and usage](/plans-and-usage) explains how plans gate features.
 
 ## Rate limits
 
@@ -118,7 +117,7 @@ profile views, or web searches, the API answers `429` with `code`
 Stop sending that kind of request instead of retrying. Upgrade from
 [subscription settings](https://aventure.vc/settings/subscription), from the CLI,
 or from your MCP client as described in
-[When you reach a limit](/authentication#when-you-reach-a-limit), or wait for
+[When you reach a limit](/plans-and-usage#when-you-reach-a-limit), or wait for
 `resetAt`. `resolution.endpoint` names the call that starts the upgrade:
 checkout for the free plan, a plan change for a paid one.
 
