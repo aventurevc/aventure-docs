@@ -5,7 +5,7 @@ hide-page-actions: true
 hide-nav-links: true
 hide-feedback: true
 layout: overview
-subtitle: Query data on private companies, investors, and funding rounds within minutes through the aVenture API, CLI, and MCP server.
+subtitle: Research private companies, founders, investors, and funding rounds from Claude, ChatGPT, your terminal, or your own code.
 ---
 
 <div className="welcome-hero-tint">
@@ -15,63 +15,42 @@ subtitle: Query data on private companies, investors, and funding rounds within 
 
 ## Get started
 
-aVenture data covers private companies, their investors, funding rounds,
-people, and news. Pick the tool you want to work in. Public API and CLI reads
-work without an account, and MCP requires sign-in. Each quickstart ends with a
-working query.
+aVenture covers private companies, their founders, investors, funding rounds,
+and news. Every way in needs an aVenture account; free and paid plans both work.
+[Create an account](https://aventure.vc/sign-up), then pick where you work:
 
-Calls made with your credential draw on your plan's monthly allowances.
-[Plans and usage](/authentication#plans-and-usage) explains what counts and
-where to check your usage, and the [pricing page](https://aventure.vc/pricing)
-lists current plans.
+| Where you work | Use | Setup |
+|---|---|---|
+| Claude, ChatGPT, or another desktop, web, or cloud AI app | [MCP server](/mcp) | Add a connector; nothing to install |
+| A terminal, shell scripts, or a coding agent with a shell | [CLI](/cli) | One `npm install` |
+| [Researchly](https://researchly.chat) | Built in | Open [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and choose **Connect aVenture** |
+| Your own code | [API](/quickstart) | An API key |
+
+The MCP and CLI quickstarts each start with a prompt you can paste into your AI
+app to set everything up for you.
 
 <CardGroup cols={3}>
-  <Card title="API quickstart" icon="duotone plug" href="/quickstart">
-    Send plain HTTPS requests with `curl`. No account is required to start.
+  <Card title="MCP quickstart" icon="duotone robot" href="/mcp">
+    Ask Claude, ChatGPT, or any AI app about companies and people. Hosted by aVenture, nothing to install.
   </Card>
 
   <Card title="CLI quickstart" icon="duotone terminal" href="/cli">
-    Query from your terminal, sign in through your browser, and script against stable output and exit codes.
+    Find companies and people by name, website, or description from your terminal.
   </Card>
 
-  <Card title="MCP quickstart" icon="duotone robot" href="/mcp">
-    Give an AI client the data as tools. The hosted server needs no install.
+  <Card title="API quickstart" icon="duotone plug" href="/quickstart">
+    Call the API from your own code with an API key.
   </Card>
 </CardGroup>
 
-<Tabs>
-<Tab title="API">
-
-```bash
-curl "https://api.aventure.vc/v1/entities?typeRecord=Company&size=5"
-```
-
-</Tab>
-<Tab title="CLI">
-
-```bash
-npm install --global @aventurevc/aventure-cli --@aventurevc:registry=https://registry.npmjs.org/
-aventure entities list --type-record Company --size 3
-```
-
-</Tab>
-<Tab title="MCP">
-
-The [MCP quickstart](/mcp) configures the hosted server, signs you in, and ends
-with a first company research question. It lists the client ID and callback
-settings that Claude Code requires, plus self-hosting instructions.
-
-</Tab>
-</Tabs>
-
-<Note>
-The CLI and the self-hosted MCP server require Node.js 24.18 or later in the 24.x series.
-</Note>
+Profile views, web searches, and research requests draw on your plan's monthly
+allowances. [Plans and usage](/authentication#plans-and-usage) explains what
+counts, and the [pricing page](https://aventure.vc/pricing) lists current plans.
 
 ## What you can query
 
 <CardGroup cols={3}>
-  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entity-summaries">
+  <Card title="Entities" icon="duotone building" href="/api-reference/entities/list-entities">
     Companies, investors, and accelerators, filterable by industry, stage, location, funding, and accelerator cohort
   </Card>
   <Card title="People" icon="duotone user" href="/api-reference/people/search-people">
@@ -94,9 +73,9 @@ The CLI and the self-hosted MCP server require Node.js 24.18 or later in the 24.
 ## After your first result
 
 - [Answer a real question](/first-answer) filters a list, opens one record, and reads its funding rounds on all three surfaces.
-- [Authentication](/authentication) covers personal credentials, plans, and usage.
+- [Authentication](/authentication) covers API keys, sign-in, plans, and usage.
 - [Pagination and filtering](/pagination-and-filtering) explains how to combine the company filters and page through results.
-- [Errors](/errors) explains the problem detail body and what `401`, `402`, `403`, and `429` each mean.
+- [Errors](/errors) explains error bodies and what to do when you reach a usage limit.
 - [Support](/support) lists what to include so the team can trace a report.
 
 ## Working in TypeScript
@@ -106,5 +85,5 @@ on npm. The package contains Zod schemas and TypeScript types only, so use
 `fetch` or any HTTP library to send requests.
 
 ```bash
-npm install @aventurevc/api-schemas --@aventurevc:registry=https://registry.npmjs.org/
+npm install @aventurevc/api-schemas
 ```

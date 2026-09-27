@@ -1,101 +1,102 @@
 ---
 title: Authentication
-subtitle: Credentials, plans, and usage for the aVenture API, CLI, and MCP server
+subtitle: Accounts, API keys, sign-in, plans, and usage
 slug: authentication
-keywords: API key, personal API key, authentication, OAuth, usage, allowance, subscription, pricing
+keywords: API key, authentication, OAuth, sign in, account, usage, allowance, subscription, pricing, upgrade
 ---
 
-This page is for anyone deciding whether a call needs a credential or a plan.
-The public API has two access modes:
+The aVenture API, CLI, and MCP server all require an aVenture account. Free and
+paid plans both work. [Create an account](https://aventure.vc/sign-up), then
+choose how you sign in:
 
-- An operation with no `security` declaration in the [API reference](/api-reference)
-  is anonymous. `GET /v1/entities` and `GET /v1/entities/lookup-exact` are
-  examples.
-- An operation that declares bearer authentication accepts a personal API key or
-  an OAuth access token in the `Authorization` header.
+| Where you work | How you sign in |
+|---|---|
+| MCP client (Claude, ChatGPT, and other AI apps) | Sign in through the browser when your client connects |
+| CLI | Run `aventure auth login`, or set `AUTH_TOKEN` to an API key |
+| Researchly | Choose **Connect aVenture** under [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) |
+| API | Send an API key as a bearer token |
 
-The HTTP method does not decide access, because a `POST` can be a read that
-carries a JSON query. Check each operation's security and response declarations.
-
-## Get a personal API key
-
-Any aVenture account can create personal API keys:
+## Create an API key
 
 1. Sign in to aVenture.
-2. Open [your API key settings](https://aventure.vc/settings/api-keys).
+2. Open [API key settings](https://aventure.vc/settings/api-keys).
 3. Choose **Add new key**.
 
 Store the key in your secret manager and load it into the `AUTH_TOKEN`
 environment variable at runtime. The same page lists and revokes your keys.
-
-## Sign in from the CLI
-
-`aventure auth login` uses the OAuth device authorization grant. It prints a
-one-time code and a sign-in URL, and it works on a laptop, over SSH, and inside
-a container. You approve the request at
-[your developer access settings](https://aventure.vc/settings/developer), which
-also lists past CLI sign-ins and revokes them. `aventure auth login --key`
-creates and stores a personal API key through the same approval instead. In a
-non-interactive environment, supply an existing key through `AUTH_TOKEN`. The
-[CLI quickstart](/cli) walks through each path.
-
-## Connect an MCP client
-
-The [MCP quickstart](/mcp#connect-to-the-hosted-server) lists the hosted URL,
-public client ID, and callback settings. MCP requires sign-in even for tools
-that call anonymous API operations.
-
-## Verify a credential
-
-Send your personal API key or OAuth access token as a bearer token:
+Send it on every request:
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-A `200` confirms that the API recognized the token, and the body lists the
-permissions it carries.
+A `200` confirms the key works and lists what it can reach.
+
+## Sign in from the CLI
+
+```bash
+aventure auth login
+```
+
+The command opens your browser to sign in and waits while you approve. Without
+a browser, such as over SSH or in a container, it prints a sign-in URL and a
+one-time code to approve on any device; `--no-browser` forces that mode.
+[Developer access settings](https://aventure.vc/settings/developer) lists past
+CLI sign-ins and revokes them. In CI, set `AUTH_TOKEN` to an API key instead.
+
+## Connect an MCP client
+
+The [MCP quickstart](/mcp#get-started-in-one-step) has a prompt that connects
+your AI app, plus the URL and OAuth client ID to enter by hand. Your client signs
+you in through the browser when it connects.
 
 ## Plans and usage
 
-Your aVenture plan decides two things: which features your account can use, and
-how much monthly usage it includes. API, CLI, and MCP calls made with your
-credential draw on the same account, because the CLI and the MCP server call the
-API as you.
+Your plan decides which features you can use and how much monthly usage it
+includes. API, CLI, and MCP calls all draw on the same account.
 
-- **Anonymous calls** are not charged to any account. Request-rate limits still
-  apply.
-- **Signed-in reads of one full record** count one profile view against the
-  matching company or person allowance. A repeat read of the same record in the
-  same calendar month (UTC) is free.
-- **Research and enrichment requests** count against the allowance for adding or
-  updating a company or person.
+- **Company and person profile views** count one view per record, per calendar
+  month (UTC). Reading the same record again that month is free.
+- **Web searches** count one each.
+- **Plain-English searches** have no monthly allowance. They are rate-limited
+  per account instead: a `429` with `limitType` `NATURAL_SEARCH` means wait the
+  `Retry-After` seconds, not upgrade.
+- **Research requests** count against the allowance for adding or updating a
+  company or person.
 - **Features outside your plan**, such as plain-English search on a plan that
   does not include it, answer `402` with `code` `subscription_required`.
 
-Allowances reset at the start of each calendar month (UTC). When an allowance
-runs out, the API answers `429` with `limitType` `BILLING_ALLOWANCE` until the
-reset. On plans that offer additional usage, you can turn it on so requests
-continue past the allowance up to a spending cap you set.
-[Allowance limits](/errors#allowance-limits) describes the response fields.
+Allowances reset at the start of each calendar month (UTC).
 
-[Your subscription settings](https://aventure.vc/settings/subscription) show
-your plan, renewal date, and how much of each monthly allowance you have used.
-`GET /v1/billing/subscription` returns the same usage to a signed-in caller, and
-`aventure billing subscription get` prints it in the CLI. The
-[pricing page](https://aventure.vc/pricing) lists current plans, what each
-includes, and its allowances.
+### When you reach a limit
+
+When an allowance runs out, the API answers `429` with `code`
+`billing_allowance_exhausted`. The message names the limit you reached and how
+to upgrade. Upgrade in any of three places:
+
+- **Website**: [subscription settings](https://aventure.vc/settings/subscription)
+  shows your plan, your usage, and every plan you can move to.
+- **CLI**: `aventure billing plans list` lists plans with monthly and annual
+  prices. `aventure billing plan-changes create --plan <plan>` upgrades a paid
+  plan using the card already on file. From the free plan,
+  `aventure billing checkout-sessions create --plan <plan>` returns a checkout
+  link where you enter a card.
+- **MCP**: ask your assistant to list aVenture plans and upgrade you. It uses
+  the same plan list and checkout.
+
+If an upgrade needs a payment you have not made yet, the response includes a
+payment link to finish it. On plans that offer additional usage, you can turn it
+on so requests continue past the allowance up to a spending cap you set.
 
 ## Keep credentials safe
 
-A credential is a bearer secret: anyone holding the string has the access it
-grants, and their calls use your allowances. Keep credentials server-side, load
-them from a secret manager at runtime, and never ship one in browser code or
-commit one to a repository.
+Anyone holding an API key or token has the access it grants, and their calls
+use your allowances. Keep credentials server-side, load them from a secret
+manager, and never ship one in browser code or commit one to a repository.
 
 ## When authentication fails
 
-A missing, malformed, or unrecognized bearer token returns `401`. A recognized
-token that lacks permission for an operation returns `403`. Both arrive in the
-standard [problem detail](/errors) body, whose `detail` field names the reason.
+A missing or unrecognized credential returns `401`, and the message says how to
+sign in. A valid credential that lacks permission for an operation returns
+`403`. Both use the standard [error body](/errors).

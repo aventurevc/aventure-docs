@@ -1,21 +1,21 @@
 ---
 title: API reference
-subtitle: Endpoints, parameters, and schemas in the public aVenture API
+subtitle: Endpoints, parameters, and schemas in the aVenture API
 slug: api-reference
 ---
 
-The reference is generated from the released public OpenAPI specification.
-Endpoints are grouped by the domain they operate on —
-entities, people, news, fundraising, media, search, and classifications.
+Endpoints are grouped by what they operate on: entities, people, news,
+fundraising, media, search, and classifications. Every endpoint except the plan
+list and the status check requires an aVenture account; [create one](https://aventure.vc/sign-up) and send an API key
+or OAuth access token as described in [Authentication](/authentication).
 
 ## Before you start
 
-- **[Authentication](/authentication)** — anonymous reads, personal credentials,
-  and subscription requirements. Read each operation's access requirements
-  rather than assuming from its HTTP method: many `POST` endpoints are reads.
-- **[Pagination and filtering](/pagination-and-filtering)** — use the parameters
-  documented for each list endpoint.
-- **[Errors](/errors)** — interpret API problem details.
+- **[Authentication](/authentication)** covers API keys, sign-in, and plans.
+  Many `POST` endpoints are reads that carry a JSON query.
+- **[Pagination and filtering](/pagination-and-filtering)** covers the
+  parameters for list endpoints.
+- **[Errors](/errors)** covers error bodies and usage limits.
 
 ## Base URL
 
@@ -23,36 +23,22 @@ entities, people, news, fundraising, media, search, and classifications.
 https://api.aventure.vc
 ```
 
-Use the path shown for each operation.
-
 ## OpenAPI document
 
-The released specification is published unchanged, so it carries the release
-version, every operation's `security` requirement, media types, and schema
-constraints. Internal generation metadata is excluded from the published document.
+Download the OpenAPI document for code generation and contract validation:
 
 <Download sources={["https://raw.githubusercontent.com/aventurevc/aventure-docs/91e9736f0c618dae8c4fd562febd915161903fcd/openapi/openapi.json"]} filename="openapi.json">Download openapi.json</Download>
 
-The `info.version` field identifies the released document.
-
-That Download link pins one release. To always fetch the current released
-document at a fixed address, use
-[https://docs.aventure.vc/openapi/latest.json](https://docs.aventure.vc/openapi/latest.json).
-It serves the same bytes and updates with each release.
-
-Fern also serves a rendering it regenerates from the same document at
-[/openapi.json](/openapi.json). That rendering powers the API Explorer, but it
-changes version, authentication, media types, some status codes, examples, and
-schema composition. Use the Download for code generation and contract validation.
+[https://docs.aventure.vc/openapi/latest.json](https://docs.aventure.vc/openapi/latest.json)
+always serves the latest release.
 
 ## Types for TypeScript
 
 Request and response types are published as
-[`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas):
+[`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas).
+It contains Zod schemas and types, so use `fetch` or any HTTP library to send
+requests.
 
 ```bash
-npm install @aventurevc/api-schemas --@aventurevc:registry=https://registry.npmjs.org/
+npm install @aventurevc/api-schemas
 ```
-
-It ships schemas and types only — there is no generated client, so use `fetch`
-or any HTTP library you prefer.
