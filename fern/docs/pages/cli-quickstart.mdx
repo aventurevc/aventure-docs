@@ -1,40 +1,24 @@
 ---
 title: CLI quickstart
-subtitle: Query aVenture from your terminal
+subtitle: Research companies and people from your terminal
 slug: cli
 ---
 
-This page is for people who want aVenture data in a terminal or a shell script.
-The `aventure` CLI calls the same [API](/api-reference) with the same
-[credentials](/authentication). Public reads need no credential, so you can run
-a real query before you sign in.
+The `aventure` CLI finds companies and people by name, website, or description,
+and reads their funding, founders, investors, and news. It requires an aVenture
+account; free and paid plans both work.
+[Create an account](https://aventure.vc/sign-up) before you start.
 
 <Note>
-The CLI requires Node.js 24.18 or later in the 24.x series. The package declares
-`node >=24.18.0 <25`.
+The CLI requires Node.js 24.18 or later in the 24.x series.
 </Note>
 
 <Steps>
 <Step title="Install">
 
 ```bash
-npm install --global @aventurevc/aventure-cli --@aventurevc:registry=https://registry.npmjs.org/
+npm install --global @aventurevc/aventure-cli
 ```
-
-The command is `aventure`. `aventure --version` prints the installed version.
-
-</Step>
-<Step title="Run a public read">
-
-This command needs no credential:
-
-```bash
-aventure entities list --type-record Company --size 3
-```
-
-In a terminal, the result is a table with each company's name, `slug`, and
-`id`. Add `--json` for the full response envelope.
-[Output and exit codes](#output-and-exit-codes) describes each output mode.
 
 </Step>
 <Step title="Sign in">
@@ -43,163 +27,106 @@ In a terminal, the result is a table with each company's name, `slug`, and
 aventure auth login
 ```
 
-The command uses the OAuth device authorization grant. It prints a one-time code
-and a sign-in URL, opens a browser when one is available, and waits until you
-approve the request in the browser. The same command works on a laptop, over
-SSH, and inside a container. `--no-browser` prints the URL without opening it.
-
-The CLI stores the credential in your operating-system keyring. When no keyring
-is available, it writes `~/.config/aventure/credentials.json` with file mode
-`0600`. Access tokens renew automatically from the stored refresh token.
-
-To use a personal API key instead, run `aventure auth login --key`, which
-creates and stores a key through the same browser approval. For CI and other
-non-interactive environments, set an existing key in the `AUTH_TOKEN`
-environment variable.
-
-Commands you run while signed in draw on your plan's monthly allowances.
-[Plans and usage](/authentication#plans-and-usage) explains what counts, and
-`aventure billing subscription get` prints your current usage.
+The command prints a one-time code and a sign-in URL, opens a browser when one
+is available, and waits while you approve. It works on a laptop, over SSH, and
+inside a container. For CI, set `AUTH_TOKEN` to an
+[API key](/authentication#create-an-api-key) instead.
 
 </Step>
-<Step title="Verify">
+<Step title="Find a company">
 
 ```bash
-aventure auth doctor
+aventure lookup Stripe
 ```
 
-`doctor` runs every environment check in one call and reports
-`{ ok, check: [...] }`. The checks cover the CLI version, the installed schema
-package, the API host, the local credential, and whether the command catalog
-matches the operations the API serves. It exits `0` when no check failed; a
-skipped check does not fail the run. Each failing check names the command that
-fixes it.
-
-`aventure auth status` reports where the credential came from, when it expires,
-and which API build answered. It never prints the secret itself.
+The answer includes the company's `id`, which the commands below take.
 
 </Step>
 </Steps>
 
-## The command shape
+## Find a company
 
-`entities`, `people`, and `news` are the three record types. Commands follow the
-pattern `aventure <record type> <action>`:
+| You have | Command |
+|---|---|
+| A name | `aventure lookup Stripe` |
+| A name that several companies share | `aventure lookup Mercury --context "banking for startups" --location "San Francisco"` |
+| A website | `aventure lookup --name Stripe --url https://stripe.com` |
+| A description | `aventure search --query "seed-stage climate software companies in Austin"` |
 
-```bash
-aventure entities list --stage Seed --headquarters-city Austin --size 3
-aventure entities lookup-exact get --name Ramp
-aventure entities get --entity-id 07895463-8867-4566-9dc8-a30794076bb6
-aventure entities fundraise-rounds list --entity-id 07895463-8867-4566-9dc8-a30794076bb6
-```
+## Find a person
 
-| Command | What it does | Credential |
-|------|--------------|------------|
-| `entities list` | List companies, products, and services, with filters | None |
-| `entities lookup-exact get` | Read one full record by exact name, slug, URL, or domain | None |
-| `entities get` | Read one full record by its `id` | None |
-| `entities fundraise-rounds list` | List one company's funding rounds | None |
-| `entities search` | Filter companies with a JSON body or flags | Signed in |
-| `entities lookup` | Decide which company a name refers to, or confirm it is new | Signed in |
+| You have | Command |
+|---|---|
+| A name | `aventure people lookup "Patrick Collison" --context "Stripe co-founder"` |
+| A LinkedIn profile | `aventure people lookup "Patrick Collison" --url https://www.linkedin.com/in/patrickcollison` |
+| A description | `aventure search --query "fintech founders who previously worked at PayPal"` |
 
-`people` has the same `get`, `lookup-exact get`, `lookup`, and `search`
-commands, and `news` has `get`, `lookup`, and `list`. Run `aventure <record type> --help` for the full list.
+[Identify a company or person](/lookup) explains each lookup answer.
 
-### Start from a name
-
-A slug includes the headquarters location, so you cannot guess it:
-`--entity-slug ramp` returns `404`. Resolve the name first. The answer carries
-the `core.slug` and the `core.id` UUID that other commands take:
+## Go deeper on a record
 
 ```bash
-aventure entities lookup-exact get --name Ramp
+aventure entities get --entity-id <id>
+aventure entities fundraise-rounds list --entity-id <id>
+aventure entities people get --entity-id <id>
+aventure people get --person-id <id>
 ```
 
-`--url-domain stripe.com` resolves by website instead. When a name or domain
-matches more than one record, the answer is [`409`](/errors). If the error
-lists candidates, choose one and read it with `aventure entities get --entity-id`.
-Otherwise, list the matches and pick the intended record:
+Filter the company list with flags such as `--stage`, `--headquarters-city`,
+and `--industry`:
 
 ```bash
-aventure entities list --entity-name Mercury
+aventure entities list --type-record Company --stage Seed --headquarters-city Austin --size 5
 ```
 
-Records attached to a company, such as funding rounds, investors, and people,
-sit under the company's UUID, so those commands take `--entity-id`, not a slug.
+Run `aventure entities --help` or `aventure people --help` for every command.
 
-To read many records in one request, sign in and pass several `--entity-id`,
-`--slug`, or `--url` values to `aventure entities lookup-batch`.
+## Plans and usage
 
-### Search across record types
+Profile views, searches, and web searches count toward your plan's monthly
+allowance. When one runs out, the command stops with a message that names the
+limit and how to upgrade.
 
-`aventure search --query "fintech companies in Austin"` searches companies,
-people, and news together from a plain-English phrase. `aventure lookup --name`
-finds a company or person from a name, with optional `--url`, `--location`, and
-`--context` evidence; [Identify a company or person](/lookup) explains its
-answers.
+```bash
+aventure billing subscription get                        # your plan and usage
+aventure billing plans list                              # plans with monthly and annual prices
+aventure billing plan-changes create --plan <plan>       # upgrade a paid plan with the card on file
+aventure billing checkout-sessions create --plan <plan>  # subscribe from the free plan
+```
 
-<Note>
-`aventure search` and `aventure lookup` require you to be signed in.
-Plain-English search also requires a plan that includes it; without one, the
-command fails with [`402`](/errors). The [pricing page](https://aventure.vc/pricing)
-lists which plans include search.
-</Note>
+[When you reach a limit](/authentication#when-you-reach-a-limit) covers each path.
 
 ## Output and exit codes
 
-Each command accepts an output mode:
-
 - `--text` is the default in a terminal: a table for a list and labeled fields for one record.
-- `--data` prints the response data as JSON on success, and an envelope on failure or when the output is too large. It is the default when output is piped.
-- `--json` prints the full envelope, capped at 50 KB.
-- `--data-full` prints uncapped JSON for programs that bound their own input.
+- `--data` prints the response as JSON. It is the default when output is piped.
+- `--json` prints the full result envelope, capped at 50 KB.
+- `--data-full` prints uncapped JSON.
 - `--all-fields` adds the detail fields that `--text` hides.
 
-Use `--json` in scripts that need a stable shape. Check `ok` before reading
-`data.response`, which holds the API response body.
+Exit code `0` means the call succeeded and `1` means it failed, so a script can
+branch on the exit code without parsing output. With `--json`, check `ok` before
+reading `data.response`.
 
-When the envelope reports truncation, request a smaller page or the specific
-funding, people, or news command instead of treating omitted fields as missing
-data.
-
-Exit code `0` means `ok` is `true`, and `1` means the call failed, so a script can
-branch on the exit code without parsing output.
-
-## Find the command for an operation
-
-`aventure help` accepts an [API reference](/api-reference) `operationId`, a
-command path, or a method and path. It prints what the operation needs without
-calling the API:
+## Find the right command
 
 ```bash
+aventure command-catalog search funding rounds --format compact
 aventure help getEntity
 ```
 
-```text
-cli: aventure entities get
-GET /v1/entities/{entityId}
-operationId: getEntity
-resource: entities
-intent: read
-scope: read
-mutates: false
-destructive: false
-mcpTool: aventure_read
-body: none
-required path flags: --entity-id
-required query flags: none
-```
+`aventure help` accepts an [API reference](/api-reference) `operationId` or a
+command path, and prints the flags the command needs.
 
-`mcpTool` names the [MCP](/mcp) tool that runs the same operation. `scope`
-classifies the operation as a read or a write; it does not say whether an
-anonymous call is allowed. The operation's `security` declaration in the API
-reference decides that. `aventure <command> --help` lists the command's flags,
-grouped by whether they go in the path, the query string, or the request body.
+## Check your setup
+
+- `aventure auth doctor` checks the CLI version, API connection, and sign-in,
+  and names the fix for each problem.
+- `aventure auth status` shows which credential is in use.
+- `aventure auth logout` signs you out.
 
 ## Next steps
 
 - [Answer a real question](/first-answer) chains these commands into one result.
-- [Authentication](/authentication) covers credentials, plans, and usage.
 - [MCP quickstart](/mcp) puts the same data inside an AI client.
-- [Pagination and filtering](/pagination-and-filtering) covers the filters behind `--size`, `--page`, and the rest.
-- The CLI is published as [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-cli).
+- The CLI is published as [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli), with [source on GitHub](https://github.com/aventurevc/aventure-cli).

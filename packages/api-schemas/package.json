@@ -2,7 +2,7 @@
   "name": "@aventurevc/api-schemas",
   "version": "0.8.7",
   "private": false,
-  "description": "Zod v4 schemas for the public aVenture API.",
+  "description": "Zod v4 schemas and TypeScript types for the aVenture API.",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",

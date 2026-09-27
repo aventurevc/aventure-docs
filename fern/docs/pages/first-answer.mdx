@@ -9,8 +9,9 @@ answer instead of a single call. Each step shows the same operation on all three
 surfaces.
 
 The question is: **which seed-stage companies in Austin are in the dataset, and
-what has one of them raised?** The API and CLI calls below need no credential
-or account. For MCP, first connect and sign in with the
+what has one of them raised?** Every surface needs an aVenture account: for the
+API, set `AUTH_TOKEN` to an [API key](/authentication#create-an-api-key); for the
+CLI, run `aventure auth login`; for MCP, connect and sign in with the
 [MCP quickstart](/mcp).
 
 <Steps>
@@ -24,7 +25,8 @@ Filters are query parameters on the company list, and they combine.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
 ```
 
 </Tab>
@@ -72,7 +74,8 @@ is the UUID that funding-round operations take.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/lookup-exact?slug=closing-theory-austin-tx-us"
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/lookup-exact?slug=closing-theory-austin-tx-us"
 ```
 
 </Tab>
@@ -112,7 +115,8 @@ commands.
 <Tab title="API">
 
 ```bash
-curl "https://api.aventure.vc/v1/entities/03418f84-8e9f-4f68-b82c-1fd35a15e083/fundraise-rounds?size=3"
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/03418f84-8e9f-4f68-b82c-1fd35a15e083/fundraise-rounds?size=3"
 ```
 
 </Tab>
@@ -178,8 +182,8 @@ When you have a phrase instead of a set of filters, replace step 1 with search:
 and a plan that includes plain-English search. The three calls above need
 neither.
 
-Calls you make while signed in draw on your plan's monthly allowances; opening a
-full record counts one profile view.
+Calls draw on your plan's monthly allowances; opening a full record counts one
+profile view.
 [Plans and usage](/authentication#plans-and-usage) explains what counts.
 
 To find the CLI command and MCP tool for any [API reference](/api-reference)
@@ -189,6 +193,6 @@ flags, and the matching MCP tool without calling the API.
 ## Next steps
 
 - [Pagination and filtering](/pagination-and-filtering) covers the filters behind step 1 and how to page through a large result set.
-- [Authentication](/authentication) covers what a credential and a plan add beyond these public reads.
-- [Errors](/errors) covers the problem detail body and reading `traceId` from a failure.
+- [Authentication](/authentication) covers sign-in, plans, and usage limits.
+- [Errors](/errors) covers error bodies and reading `traceId` from a failure.
 - [API reference](/api-reference) lists every operation, parameter, and schema.

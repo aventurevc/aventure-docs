@@ -4,15 +4,12 @@ subtitle: Give an AI client access to aVenture data
 slug: mcp
 ---
 
-This page is for people connecting an AI client, such as Claude Code, to
-aVenture data. The aVenture MCP server exposes the [API](/api-reference) as
-tools the client can call. The hosted server needs no install: point an
-OAuth-capable client at it and sign in. Self-host the server only when your
-client cannot complete an OAuth flow.
+Connect Claude, ChatGPT, Claude Code, or any MCP client to aVenture, then ask
+about companies, founders, investors, and funding in plain English. The MCP
+server requires an aVenture account; free and paid plans both work.
+[Create an account](https://aventure.vc/sign-up) before you connect.
 
-Tool calls run as your account, so they draw on your plan's monthly allowances
-the same way API calls do. [Plans and usage](/authentication#plans-and-usage)
-explains what counts and where to check it.
+The hosted server needs no install: point your client at it and sign in.
 
 ## Connect to the hosted server
 
@@ -23,13 +20,9 @@ Configure your client with:
 | URL | `https://mcp.aventure.vc/mcp` |
 | Transport | Streamable HTTP |
 | Client ID | `KL7mINzGk0le0QiD` |
-| Client secret | none — this is a public client |
 
-The client discovers the authorization server from the MCP endpoint and signs
-in with the OAuth authorization code flow and PKCE. Dynamic client registration
-is disabled, so you must configure the client ID above. A client that accepts
-only a bare URL fails with `Incompatible auth server: does not support dynamic
-client registration`.
+Enter the client ID above in your client's OAuth settings. A client that
+accepts only a URL fails with `does not support dynamic client registration`.
 
 In your terminal, add the server to Claude Code:
 
@@ -62,11 +55,8 @@ A loopback redirect may use any available port, such as
 client using a different callback path needs its own registered OAuth
 application; [contact support](/support) to arrange one.
 
-Opening the URL in a browser does not test connectivity, because the endpoint
-answers MCP and OAuth discovery requests, not an ordinary `GET`. To test the
-sign-in flow without a client, run the MCP Inspector in an interactive
-terminal, sign in to aVenture, and approve access. The Inspector exchanges the
-authorization code and lists the tools:
+To test sign-in without a client, run the MCP Inspector in a terminal, sign in
+to aVenture, and approve access. The Inspector lists the tools:
 
 ```bash
 npx @modelcontextprotocol/inspector@2.6.0 --cli \
@@ -78,34 +68,34 @@ npx @modelcontextprotocol/inspector@2.6.0 --cli \
 
 </Accordion>
 
-## Verify the connection
+## Ask your first question
 
-Once the client is connected, call `aventure_status`. It returns the API status,
-the host it reached, and the MCP auth scope your credential carries, so one call
-proves both the connection and the credential. Then call `aventure_help` to find
-the right tool and inputs for a task.
+Once connected, ask things like:
 
-The tool list reflects the permissions granted to the signed-in user. The API
-checks permission again when an operation runs, so a visible tool does not
-guarantee that every operation it can run is allowed for you.
+- "Look up Stripe on aVenture and summarize its funding history."
+- "Which company owns ramp.com, and who founded it?"
+- "Find seed-stage climate software companies in Austin."
+- "Who is Patrick Collison, and which companies is he connected to?"
+- "Find fintech founders who previously worked at PayPal."
+
+The assistant picks the tools itself:
 
 | Tool | What it does |
 |------|--------------|
-| `aventure_status` | Return API status, host, and active MCP auth scope |
-| `aventure_help` | Find the command for a task, with the inputs it needs |
-| `aventure_search` | Find companies, people, news, or publications from a query |
-| `aventure_lookup` | Turn a name, URL, slug, ticker, or other identifier into the record that owns it |
-| `aventure_read` | Read one record, the records attached to it, or a filtered list |
-| `aventure_write` | Create or change records; needs write permission |
-| `aventure_delete` | Remove a record or a link between records; needs delete permission |
+| `aventure_lookup` | Finds a company or person by name, website, or LinkedIn URL |
+| `aventure_search` | Finds companies, people, and news from a description |
+| `aventure_read` | Reads a full profile and its funding rounds, people, and news |
+| `aventure_help` | Finds the right operation for a task |
+| `aventure_status` | Confirms the connection and your sign-in |
 
-Ask your connected assistant a question such as:
+## Plans and usage
 
-> What does Ramp do, who founded it, and what funding rounds does aVenture report? Cite sources and distinguish missing amounts from zero.
-
-The assistant resolves the company, uses its returned `id` to read related
-records, and reports missing information explicitly. The
-[worked example](/first-answer) shows the individual calls.
+Profile views, searches, and web searches count toward your plan's monthly
+allowance. When one runs out, the tool answer names the limit and how to
+upgrade. Ask your assistant to list aVenture plans with their monthly and annual
+prices, or to upgrade you; it uses the same plan list and checkout as the
+website. [When you reach a limit](/authentication#when-you-reach-a-limit) has
+the details.
 
 ## Name the operation before you call it
 
@@ -142,9 +132,7 @@ rejected with `OpenAPI operationId not found`. Take `operationId` from the
 [API reference](/api-reference) or from an `aventure_help` catalog row, which
 carries it for every operation it lists.
 
-`lookupEntity` requires a signed-in caller, and the MCP connection's sign-in
-supplies that credential. Plain-English search also requires a plan that includes it, and a
-working connection does not prove your plan includes it. Without it, the call
+Plain-English search requires a plan that includes it; without one, the call
 fails with [`402`](/errors).
 
 <Note>
@@ -177,14 +165,13 @@ The server requires Node.js 24.18 or later in the 24.x series.
 </Note>
 
 ```bash
-npm install --global @aventurevc/mcp-server --@aventurevc:registry=https://registry.npmjs.org/
+npm install --global @aventurevc/mcp-server
 aventure-mcp-server
 ```
 
 It listens at `http://localhost:3333/mcp`. Leave it running while your client is
-connected. The server starts with no credential of its own, so every request
-must carry a [personal API key](/authentication#get-a-personal-api-key) as a
-bearer token:
+connected, and send an [API key](/authentication#create-an-api-key) as a bearer
+token on every request:
 
 ```json
 {
@@ -213,7 +200,7 @@ This package speaks Streamable HTTP, not stdio. Configure a URL, not a command.
 ## Next steps
 
 - [Answer a real question](/first-answer) chains these tools into one result.
-- [Authentication](/authentication) covers credentials, plans, and usage.
+- [Authentication](/authentication) covers sign-in, plans, and usage.
 - [CLI quickstart](/cli) runs the same operations from your terminal.
 - [API reference](/api-reference) lists the operations behind every tool.
 - The server is published as [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).

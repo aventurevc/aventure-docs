@@ -1,124 +1,110 @@
 ---
 title: API quickstart
-subtitle: Your first requests against the aVenture API with curl
+subtitle: Find companies and people with the aVenture API
 slug: quickstart
 ---
 
-This page is for developers calling the aVenture API over HTTPS. The first three
-requests are anonymous and need no account. The last two need a
-[personal API key](/authentication#get-a-personal-api-key).
+This page walks you from an API key to real answers: find a company by its
+website, by its name, or by describing it, then do the same for a person.
 
 If you work in a terminal or an AI client instead, the [CLI quickstart](/cli)
 and [MCP quickstart](/mcp) cover the same data through those tools.
 
-## 1. List companies
+## 1. Create an API key
 
-`GET /v1/entities` returns a page of list records. Each record carries its
-identity in `core`, supplemental data such as addresses, tags, and funding in
-`enrichment`, its funding rounds in `fundraiseRound`, and a research summary in
-`research`. `typeRecord=Company` keeps companies and
-excludes products, services, funds, and other record types.
+The API requires an aVenture account. Free and paid plans both work.
 
-```bash
-curl "https://api.aventure.vc/v1/entities?typeRecord=Company&size=5"
-```
+1. [Create an account](https://aventure.vc/sign-up), or sign in.
+2. Open [API key settings](https://aventure.vc/settings/api-keys) and choose
+   **Add new key**.
+3. Load the key from your secret manager into `AUTH_TOKEN`, so it never lands
+   in your shell history.
 
-The response is a page object. The records are in `content`, and the other
-fields describe your position in the result set:
-
-```json
-{
-  "content": [ ... ],
-  "number": 0,
-  "size": 5,
-  "totalElements": 12345,
-  "totalPages": 2469,
-  "first": true,
-  "last": false
-}
-```
-
-`number` is zero-based, so the first page is `0`. Each record's identity is in
-`content[].core`, including its `slug` and its `id`.
-
-## 2. Narrow the list with filters
-
-Filters are query parameters. Repeating a parameter means "any of these", and
-different parameters must all match:
-
-```bash
-curl "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&headquartersCountry=US&size=5"
-```
-
-The endpoint accepts more than sixty filters for industry, location,
-accelerator cohort, funding activity, and operating status.
-[Pagination and filtering](/pagination-and-filtering) explains how they combine.
-
-## 3. Find one company by name
-
-A slug includes the headquarters location, such as `ramp-new-york-city-ny-us`,
-so resolve a name instead of guessing its slug. `GET /v1/entities/lookup-exact` is
-anonymous and returns the full record, including `core.slug` and the `core.id`
-UUID that funding, investor, and people routes take:
-
-```bash
-curl "https://api.aventure.vc/v1/entities/lookup-exact?name=Ramp"
-```
-
-`urlDomain=stripe.com` resolves by website instead. When a name or domain
-matches more than one record, the API answers [`409`](/errors). If the problem
-detail includes `details.candidate`, choose one candidate and read it by its
-`id` with `GET /v1/entities/{entityId}`. Otherwise, list the matches with
-`GET /v1/entities?entityName=Mercury` and pick the intended record.
-When you only have a name and clues such as a location or a source article,
-[identify the company](/lookup) instead.
-
-## 4. Authenticate
-
-Create a personal API key at [your API key settings](https://aventure.vc/settings/api-keys)
-and load it from your secret manager as `AUTH_TOKEN`, so the key never lands in
-your shell history. `GET /v1/auth/me/permissions` confirms the API accepts the
-key and lists what it can reach:
+Every request sends the key as a bearer token:
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-A `401` means the credential was missing or unrecognized. A `403` means it was
-valid but lacks permission for that operation. Both arrive as a
-[problem detail](/errors) whose `detail` field names the reason.
+## 2. Find a company by its website
 
-Calls made with your key draw on your plan's monthly allowances.
-[Plans and usage](/authentication#plans-and-usage) explains what counts and
-where to check it.
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/lookup-exact?urlDomain=stripe.com"
+```
 
-## 5. Search in plain English
+The response is the full company profile: identity in `core`, including the
+`core.id` that other requests take, plus research, funding, people, and news.
 
-When you have a phrase instead of a set of filters, `POST /v1/search` plans the
-query and searches companies, people, and news together:
+## 3. Find a company by name
+
+`POST /v1/lookup` decides which company or person a name refers to. Add a
+website, a location, or a few words of context to tell namesakes apart:
 
 ```bash
 curl -X POST \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"query": "fintech companies in Austin"}' \
+  -d '{"name": "Mercury", "context": "banking for startups"}' \
+  "https://api.aventure.vc/v1/lookup"
+```
+
+The answer says whether the name matched a record and, when it did, returns the
+record's `id` and `slug`. [Identify a company or person](/lookup) explains each
+answer.
+
+## 4. Find companies by describing them
+
+When you don't know the name, describe what you're looking for.
+`POST /v1/search` searches companies, people, and news together:
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "seed-stage climate software companies in Austin"}' \
   "https://api.aventure.vc/v1/search?size=10"
 ```
 
-<Note>
-Plain-English search requires a plan that includes it. Without one, the API
-answers `402` with `code` `subscription_required`. The
-[pricing page](https://aventure.vc/pricing) lists which plans include search.
-</Note>
+## 5. Find a person
 
-`page` and `size` apply to each record type in the response. Search does not
-accept `sort`, because each record type is ordered by relevance.
+By name, with context:
+
+```bash
+curl -X POST \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Patrick Collison", "context": "Stripe co-founder"}' \
+  "https://api.aventure.vc/v1/people/lookup"
+```
+
+By LinkedIn profile, pass the profile in `url` instead:
+`{"name": "Patrick Collison", "url": ["https://www.linkedin.com/in/patrickcollison"]}`.
+To find people by description, use the same `POST /v1/search` as step 4, such as
+`{"query": "fintech founders who previously worked at PayPal"}`.
+
+## 6. Read a company's funding rounds
+
+Take `core.id` from step 2 and list its rounds:
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/{entityId}/fundraise-rounds?size=5"
+```
+
+## Plans and usage
+
+Profile views, searches, and web searches count toward your plan's monthly
+allowance. When one runs out, the API answers `429` with `code`
+`billing_allowance_exhausted` and a message that names the limit and how to
+upgrade. `GET /v1/billing/plans` lists plans with monthly and annual prices, and
+[subscription settings](https://aventure.vc/settings/subscription) shows your
+usage. [Plans and usage](/authentication#plans-and-usage) has the details.
 
 ## Next steps
 
 - [Answer a real question](/first-answer) chains these calls into one result.
-- [Authentication](/authentication) covers credentials, plans, and usage.
-- [Pagination and filtering](/pagination-and-filtering) covers paging, sorting, and combining filters.
-- [Errors](/errors) covers the problem detail body, rate limits, and allowance limits.
+- [Pagination and filtering](/pagination-and-filtering) covers paging and filters.
+- [Errors](/errors) covers error bodies and usage limits.
 - [API reference](/api-reference) lists every endpoint, parameter, and schema.

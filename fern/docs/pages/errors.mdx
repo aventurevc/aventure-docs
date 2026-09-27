@@ -34,7 +34,7 @@ The remaining fields are aVenture extensions, present only when they apply:
 | Status | Meaning | What to do |
 |---|---|---|
 | `400` | Malformed request or invalid parameter | Read `field` and `hint`, fix the request, and resend |
-| `401` | Missing, malformed, or unrecognized bearer token | Send a valid [personal API key or OAuth access token](/authentication) |
+| `401` | Missing or unrecognized credential | [Sign in or send an API key](/authentication); [create an account](https://aventure.vc/sign-up) if you don't have one |
 | `402` | Your plan does not include the operation, or your subscription is canceled, past due, or paused | Read `code`, then fix the subscription as described in [subscription refusals](#subscription-refusals) |
 | `403` | Valid bearer token that lacks permission for this operation | Check the permission the operation requires |
 | `404` | No record matches | Resolve the record by name or URL before reading it |
@@ -42,7 +42,7 @@ The remaining fields are aVenture extensions, present only when they apply:
 | `409` | Conflict with an existing record, or a lookup that matched more than one record | Choose from `details.candidate` when present; otherwise list records by name |
 | `415` | Unsupported request content type | Send `Content-Type: application/json` |
 | `422` | Well-formed but semantically rejected | Read `detail` and `resolution` |
-| `429` | A request-rate limit or a monthly allowance refused the call | Read `limitType`, then follow [rate limits](#rate-limits) or [allowance limits](#allowance-limits) |
+| `429` | You reached your plan's usage limit, or sent requests too fast | Read `code`, then follow [usage limits](#usage-limits) or [rate limits](#rate-limits) |
 | `500`, `503` | Server error or unavailable dependency | Retry with backoff; `503` is usually transient |
 
 Retry `500`, `503`, and a `429` from a request-rate limit. Do not retry `400`,
@@ -61,8 +61,7 @@ have. `code` names the cause:
 | `subscription_past_due` | A payment failed or is unfinished | Update the payment method from [your subscription settings](https://aventure.vc/settings/subscription) |
 | `subscription_paused` | The subscription is paused | Resume it from [your subscription settings](https://aventure.vc/settings/subscription) |
 
-In the public API, plain-English search (`POST /v1/search` and the natural-search
-routes), link search, and enrichment requests declare this response.
+Plain-English search, link search, and research requests can answer `402`.
 [Plans and usage](/authentication#plans-and-usage) explains how plans gate features.
 
 ## Rate limits
@@ -93,23 +92,40 @@ an absolute timestamp.
 request-rate limits. `NATURAL_SEARCH`, `WEB_SEARCH`, and `INFERENCE_PROVIDER`
 limit one feature, so other endpoints can still succeed.
 
-## Allowance limits
+## Usage limits
 
-A `429` whose `limitType` is `BILLING_ALLOWANCE` or `BILLING_ADDITIONAL_USAGE`
-is not a short throttle. It means the account has used up a monthly allowance:
+When you have used a monthly allowance, such as company profile views, person
+profile views, searches, or web searches, the API answers `429` with `code`
+`billing_allowance_exhausted`:
 
-- **`BILLING_ALLOWANCE`**, with `code` `billing_allowance_exhausted`: the plan's
-  monthly allowance named in `allowanceType` is used up. `resetAt` is the start
-  of the next calendar month (UTC), so `retryAfterSeconds` can be weeks.
-- **`BILLING_ADDITIONAL_USAGE`**, with `code`
-  `billing_additional_usage_cap_reached`: the account had additional usage
-  turned on and reached its spending cap or used its prepaid credit.
+```json
+{
+  "title": "Usage limit reached",
+  "status": 429,
+  "code": "billing_allowance_exhausted",
+  "detail": "Usage limit reached: your Essential plan includes 25 company profile views per month, and you have used them all.",
+  "hint": "Upgrade now at https://aventure.vc/settings/subscription (compare plans at https://aventure.vc/pricing). In the aVenture CLI, run `aventure billing plans list` to see monthly and annual prices; in an MCP client, ask your assistant to list aVenture plans and upgrade. Otherwise the allowance refills at 2026-10-01T00:00Z.",
+  "allowanceType": "ENTITY_VIEW",
+  "limitType": "BILLING_ALLOWANCE",
+  "limit": 25,
+  "used": 25,
+  "remaining": 0,
+  "resetAt": "2026-10-01T00:00:00Z",
+  "resolution": { "action": "useEndpoint", "endpoint": "/v1/billing/checkout-sessions" }
+}
+```
 
-Stop sending that kind of request instead of retrying in a loop. Check usage in
-[your subscription settings](https://aventure.vc/settings/subscription), then
-raise the allowance with a different plan or additional usage, or wait for
-`resetAt`. [Plans and usage](/authentication#plans-and-usage) explains what
-counts against an allowance.
+Stop sending that kind of request instead of retrying. Upgrade from
+[subscription settings](https://aventure.vc/settings/subscription), from the CLI,
+or from your MCP client as described in
+[When you reach a limit](/authentication#when-you-reach-a-limit), or wait for
+`resetAt`. `resolution.endpoint` names the call that starts the upgrade:
+checkout for the free plan, a plan change for a paid one.
+
+On plans with additional usage turned on, a `429` with `code`
+`billing_additional_usage_cap_reached` means you reached the spending cap you
+set or used your prepaid credit. Raise the cap in
+[subscription settings](https://aventure.vc/settings/subscription) to continue.
 
 ## Redirects on changed slugs
 
