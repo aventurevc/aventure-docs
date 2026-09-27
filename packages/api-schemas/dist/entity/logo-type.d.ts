@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Distinguishes square icon vs standard/horizontal entity logo
+ * Entity logo slot: SQUARE is the square icon read back as `core.image.logoSquare`; STANDARD is the horizontal wordmark read back as `core.image.logo`.
  *
  * @openapiSchema EntityLogoType
  * @endpoint GET /v1/entities/{entityId}/media/{mediaType}
