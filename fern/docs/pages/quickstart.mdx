@@ -86,16 +86,17 @@ To find people by description, use the same `POST /v1/search` as step 4, such as
 
 ## 6. Read a company's funding rounds
 
-Take `core.id` from step 2 and list its rounds:
+Set `ENTITY_ID` to `core.id` from step 2 and list its rounds:
 
 ```bash
+ENTITY_ID=<core.id from step 2>
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities/{entityId}/fundraise-rounds?size=5"
+  "https://api.aventure.vc/v1/entities/$ENTITY_ID/fundraise-rounds?size=5"
 ```
 
 ## Plans and usage
 
-Profile views, searches, and web searches count toward your plan's monthly
+Profile views, web searches, and research requests count toward your plan's monthly
 allowance. When one runs out, the API answers `429` with `code`
 `billing_allowance_exhausted` and a message that names the limit and how to
 upgrade. `GET /v1/billing/plans` lists plans with monthly and annual prices, and

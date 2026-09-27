@@ -17,8 +17,8 @@ terminal commands:
 ```text
 Set up the aVenture CLI for me. Install it with
 `npm install --global @aventurevc/aventure-cli` (it needs Node.js 24.18.0 or
-later), then run `aventure auth login` and show me the sign-in link and code so I
-can approve it. When I'm signed in, run `aventure lookup Stripe` to confirm it
+later), then run `aventure auth login` so I can approve the sign-in in my browser (if no
+browser opens, show me the sign-in link and code it prints). When I'm signed in, run `aventure lookup Stripe` to confirm it
 works. Use `aventure --help` to find other commands.
 Docs: https://docs.aventure.vc/cli
 ```
@@ -49,9 +49,9 @@ The CLI requires Node.js 24.18.0 or later.
 aventure auth login
 ```
 
-The command prints a one-time code and a sign-in URL, opens a browser when one
-is available, and waits while you approve. It works on a laptop, over SSH, and
-inside a container. For CI, set `AUTH_TOKEN` to an
+The command opens your browser to sign in and waits while you approve. Without
+a browser, such as over SSH or in a container, it prints a sign-in URL and a
+one-time code to approve on any device; `--no-browser` forces that mode. For CI, set `AUTH_TOKEN` to an
 [API key](/authentication#create-an-api-key) instead.
 
 </Step>
@@ -105,7 +105,7 @@ Run `aventure entities --help` or `aventure people --help` for every command.
 
 ## Plans and usage
 
-Profile views, searches, and web searches count toward your plan's monthly
+Profile views, web searches, and research requests count toward your plan's monthly
 allowance. When one runs out, the command stops with a message that names the
 limit and how to upgrade.
 
