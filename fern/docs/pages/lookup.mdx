@@ -25,8 +25,9 @@ one record matches, none does, or a person has to decide.
 
 All three take the same request body and return the same response shape.
 
-Lookup needs a paid plan (AI Plus or AI Pro); on the free plan it answers `402`
-with `code` `subscription_required`. On every plan, `GET /v1/entities/lookup-exact`
+A name that is exactly a record's id, handle, registry id, or slug settles on every
+plan. Any other name needs a paid plan (AI Plus or AI Pro); on the free plan it
+answers `402` with `code` `subscription_required`. On every plan, `GET /v1/entities/lookup-exact`
 (CLI: `aventure entities lookup-exact get`) returns the record for an exact website,
 domain, or slug.
 
