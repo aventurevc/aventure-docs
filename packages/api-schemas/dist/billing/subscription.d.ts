@@ -186,7 +186,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDefinition>;
 /**
- * Current Essential, AI Plus, AI Pro, or Unlimited (RBAC operator) subscription and entitlement state.
+ * Current plan (Essential, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
  *
  * @openapiSchema BillingSubscription
  * @endpoint GET /v1/billing/subscription

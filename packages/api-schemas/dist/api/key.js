@@ -7,7 +7,7 @@ const ApiKeySchemaDefinition = z.object({
     description: z.string().nullish(),
     /** Provider expiry timestamp */
     expiresAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Clerk API-key identifier */
+    /** API key identifier */
     id: z.string().regex(/^ak_[0-9A-Fa-f]{32}$/),
     /** Most recent provider-recorded use timestamp */
     lastUsedAt: z.iso.datetime({ offset: true }).nullish(),
@@ -15,17 +15,17 @@ const ApiKeySchemaDefinition = z.object({
     name: z.string(),
     /** Provider revocation explanation */
     revocationReason: z.string().nullish(),
-    /** Clerk scopes assigned to this key */
+    /** Scopes assigned to this key */
     scopes: z.array(z.string()),
     /** Provider-derived current lifecycle state */
     status: z.enum(["ACTIVE", "REVOKED", "EXPIRED"]),
-    /** Owning Clerk user subject */
+    /** Account that owns the key */
     subject: z.string(),
     /** Provider metadata update timestamp */
     updatedAt: z.iso.datetime({ offset: true }),
 });
 /**
- * Clerk API-key metadata; never contains the key secret
+ * API key metadata; never contains the key secret
  *
  * @openapiSchema ApiKey
  * @endpoint GET /v1/auth/api-key

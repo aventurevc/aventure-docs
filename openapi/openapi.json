@@ -5,9 +5,9 @@
       "email": "team@aventure.vc",
       "name": "aVenture"
     },
-    "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs.",
+    "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.7"
+    "version": "0.8.8"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -33,10 +33,6 @@
       "name": "People"
     },
     {
-      "description": "Hosted billing operations and the public plan catalog",
-      "name": "Billing"
-    },
-    {
       "description": "Enrichment agent runs, their session transcripts, and eligible models",
       "name": "Harness"
     },
@@ -51,6 +47,10 @@
     {
       "description": "Classification tags on a company, and suggested tags",
       "name": "Entity Classifications"
+    },
+    {
+      "description": "Plans, prices, subscription, usage, and upgrades",
+      "name": "Billing"
     },
     {
       "description": "Platform help, versioned agent instructions, and agent runtime discovery",
@@ -286,7 +286,7 @@
     "/v1/agents/help": {
       "post": {
         "deprecated": true,
-        "description": "Deprecated: use help ask (POST /v1/help) with the same body. Help is free; legacy client and admin keys remain accepted during migration.",
+        "description": "Deprecated: use help ask (POST /v1/help) with the same body.",
         "operationId": "answerAgentHelpQuestion",
         "requestBody": {
           "content": {
@@ -2139,7 +2139,7 @@
     },
     "/v1/auth/providers": {
       "get": {
-        "description": "Sign-in provider availability and CLI OAuth configuration. Public — callers read it before any session exists. A non-null Clerk publishable key offers browser sign-in; a non-null OAuth client offers the PKCE CLI sign-in lane.",
+        "description": "Sign-in options for the CLI and browser, readable before signing in. A non-null publishable key offers browser sign-in; a non-null OAuth client offers CLI sign-in.",
         "operationId": "getAuthProviderCatalog",
         "responses": {
           "200": {
@@ -2249,7 +2249,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get the public authentication provider catalog",
+        "summary": "Get the sign-in options",
         "tags": [
           "Auth"
         ],
@@ -2786,7 +2786,7 @@
     },
     "/v1/billing/plans": {
       "get": {
-        "description": "Return every self-serve tier with its monthly allowance caps and every Checkout plan with its recurring price. Public; needs no credentials.",
+        "description": "Return every self-serve tier with its monthly allowance caps and every Checkout plan with its monthly and annual recurring prices.",
         "operationId": "listPlans",
         "responses": {
           "200": {
@@ -2907,7 +2907,7 @@
     },
     "/v1/billing/portal-sessions": {
       "post": {
-        "description": "Open the authenticated user's Stripe Billing Portal to manage the continuing subscription.",
+        "description": "Open the authenticated user's hosted billing portal to manage the continuing subscription.",
         "operationId": "createBillingPortalSession",
         "responses": {
           "201": {
@@ -5452,7 +5452,7 @@
     },
     "/v1/entities/lookup-batch": {
       "post": {
-        "description": "Returns a page envelope of entity detail records by id, slug, and/or current joined URL. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. For public reads totalElements counts the entities visible to the caller, so requested identifiers that do not resolve or fail the public visibility filter are excluded. For privileged reads totalElements counts the requested identifiers that resolved to an entity id, which can exceed the number of records returned when an id no longer exists. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Returns a page envelope of entity detail records by id, slug, and/or current joined URL. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. For public reads totalElements counts the entities visible to the caller, so requested identifiers that do not resolve or fail the public visibility filter are excluded. For privileged reads totalElements counts the requested identifiers that resolved to an entity id, which can exceed the number of records returned when an id no longer exists. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "lookupEntityBatch",
         "parameters": [
           {
@@ -5667,7 +5667,7 @@
     },
     "/v1/entities/lookup-exact": {
       "get": {
-        "description": "Exact read: returns the full detail of the one entity a slug, URL, or domain proves, and 404 or 409 instead of guessing. To identify a company by name and clues, use the POST lookup (CLI entities lookup). Detail qualifiers and visibility rules apply. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Exact read: returns the full detail of the one entity a slug, URL, or domain proves, and 404 or 409 instead of guessing. To identify a company by name and clues, use the POST lookup (CLI entities lookup). Detail qualifiers and visibility rules apply. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getEntityLookup",
         "parameters": [
           {
@@ -5977,7 +5977,7 @@
     },
     "/v1/entities/lookup-matches": {
       "post": {
-        "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments). A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Resolves each queried id, slug, and current joined URL to exactly one outcome row that echoes the raw input: MATCHED with full detail, AMBIGUOUS with candidate ids when a URL is currently owned by more than one entity, or MISSING. Unlike the batch detail read, no input is silently dropped and every row maps back to its source identifier. URL matching is host+path exact: scheme and a leading www are ignored, but distinct paths stay distinct (stripe.com does not match stripe.com/payments). A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "lookupEntityMatches",
         "parameters": [
           {
@@ -7660,7 +7660,7 @@
     },
     "/v1/entities/{entityId}": {
       "get": {
-        "description": "Returns entity detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Returns entity detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getEntity",
         "parameters": [
           {
@@ -7841,7 +7841,7 @@
     },
     "/v1/entities/{entityId}/acquisitions": {
       "get": {
-        "description": "VISIBILITY-GATED READ: a row is returned only when BOTH the acquired and acquirer entities are publicly visible. An acquisition relationship that already exists (and is visible in the entity relationships resource) but returns 404 here means one counterpart entity is still hidden -- publish that entity (statusSitemapShow=true, statusHidePage=false) -- it is an unmet visibility prerequisite, not data-layer inconsistency or projection lag. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter only selects which side the path entity occupies in the WHERE clause: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired. List responses are ordered by most recent acquisition event first.",
+        "description": "Returns a row only when both sides of the acquisition are published. A 404 for an acquisition that the entity relationships resource lists means one side is not published yet. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired. List responses are ordered by most recent acquisition event first.",
         "operationId": "listEntityAcquisitions",
         "parameters": [
           {
@@ -8030,7 +8030,7 @@
     },
     "/v1/entities/{entityId}/acquisitions/{relationshipId}": {
       "get": {
-        "description": "VISIBILITY-GATED READ: a row is returned only when BOTH the acquired and acquirer entities are publicly visible. An acquisition relationship that already exists (and is visible in the entity relationships resource) but returns 404 here means one counterpart entity is still hidden -- publish that entity (statusSitemapShow=true, statusHidePage=false) -- it is an unmet visibility prerequisite, not data-layer inconsistency or projection lag. A gated miss on an existing row returns 404 with title 'Acquisition Exists but a Counterpart Entity Is Not Public'. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter only selects which side the path entity occupies in the WHERE clause: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired.",
+        "description": "Returns a row only when both sides of the acquisition are published. A 404 for an acquisition that the entity relationships resource lists means one side is not published yet. A gated miss on an existing row returns 404 with title 'Acquisition Exists but a Counterpart Entity Is Not Public'. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired.",
         "operationId": "getEntityAcquisition",
         "parameters": [
           {
@@ -12732,7 +12732,7 @@
             }
           },
           {
-            "description": "When true, returns direct curated competitors with each competitor's provider comparison signals (sells-to, pricing, ownership, funding, website) nested under its productService row. Competition is not transitively closed: A-B plus B-C surfaces B from A, never C. Only supported for type=competingProductService; the result is capped, so cursor and includeNonRenderable are not accepted alongside transitive=true.",
+            "description": "When true, returns direct curated competitors with each competitor's provider comparison signals (sells-to, pricing, ownership, funding, website) nested under its productService row. Competition is not transitively closed: A-B plus B-C surfaces B from A, never C. With type=productService on a company, returns each of its Product/Service rows nesting those direct competitor rows, so one call covers every product line. Only supported for type=competingProductService or type=productService; the result is capped, so cursor and includeNonRenderable are not accepted alongside transitive=true.",
             "in": "query",
             "name": "transitive",
             "required": false,
@@ -16351,7 +16351,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Free for Clerk callers; legacy client and admin keys remain accepted during migration.",
+        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Free for every signed-in account.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -17049,7 +17049,7 @@
     },
     "/v1/lookup": {
       "post": {
-        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, or when exactly one kind matches and the other finds nothing; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW ask the user which candidate it is, then use its owner the same way; when you already know the kind, the company-only or person-only lookup answers without the other kind's namesakes. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
+        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW ask the user which candidate it is, then use its owner the same way; when you already know the kind, the company-only or person-only lookup answers without the other kind's namesakes. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -19984,7 +19984,7 @@
     },
     "/v1/people/lookup-batch": {
       "post": {
-        "description": "Enrich multiple people by id or slug with optional url, association, and address. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Enrich multiple people by id or slug with optional url, association, and address. When page and size are omitted, the full deduplicated batch is returned in request order. Sort is not supported for this fixed-order batch response. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "lookupPersonBatch",
         "parameters": [
           {
@@ -20199,7 +20199,7 @@
     },
     "/v1/people/lookup-exact": {
       "get": {
-        "description": "Exact read: returns the full detail of the one person a slug, URL, or candidate signals prove, and 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI people lookup). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Exact read: returns the full detail of the one person a slug, URL, or candidate signals prove, and 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI people lookup). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getPersonLookup",
         "parameters": [
           {
@@ -21132,7 +21132,7 @@
     },
     "/v1/people/{personId}": {
       "get": {
-        "description": "Returns person detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After. Reads made without a signed-in user are never charged.",
+        "description": "Returns person detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getPerson",
         "parameters": [
           {
@@ -26802,7 +26802,7 @@
     },
     "/v1/status": {
       "get": {
-        "description": "Returns the API's uptime SLA and the identity of the served operation set. Callable without credentials, so it confirms the API is reachable.",
+        "description": "Returns the API's uptime SLA and the identity of the served operation set; use it to confirm the API is reachable.",
         "operationId": "getSystemStatus",
         "responses": {
           "200": {
@@ -27350,7 +27350,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search attributed to a Clerk user, including an owner-acting machine run, uses one web search from that user's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429. Bare machine and legacy client/admin credentials remain admitted without a user allowance during migration. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain.",
         "operationId": "searchWeb",
         "requestBody": {
           "content": {
@@ -28078,7 +28078,7 @@
       },
       "ApiKey": {
         "type": "object",
-        "description": "Clerk API-key metadata; never contains the key secret",
+        "description": "API key metadata; never contains the key secret",
         "properties": {
           "createdAt": {
             "type": "string",
@@ -28102,7 +28102,7 @@
           },
           "id": {
             "type": "string",
-            "description": "Clerk API-key identifier",
+            "description": "API key identifier",
             "pattern": "^ak_[0-9A-Fa-f]{32}$"
           },
           "lastUsedAt": {
@@ -28126,7 +28126,7 @@
           },
           "scopes": {
             "type": "array",
-            "description": "Clerk scopes assigned to this key",
+            "description": "Scopes assigned to this key",
             "items": {
               "type": "string"
             }
@@ -28142,7 +28142,7 @@
           },
           "subject": {
             "type": "string",
-            "description": "Owning Clerk user subject"
+            "description": "Account that owns the key"
           },
           "updatedAt": {
             "type": "string",
@@ -28471,7 +28471,7 @@
               "string",
               "null"
             ],
-            "description": "Clerk publishable key for browser sign-in; absent when the environment has no Clerk instance",
+            "description": "Publishable key for browser sign-in; absent when browser sign-in is unavailable",
             "example": "pk_test_cmVmaW5lZC13aWxkY2F0LTMuY2xlcmsuYWNjb3VudHMuZGV2JA"
           },
           "oauthClient": {
@@ -28659,7 +28659,7 @@
       },
       "BillingSubscription": {
         "type": "object",
-        "description": "Current Essential, AI Plus, AI Pro, or Unlimited (RBAC operator) subscription and entitlement state.",
+        "description": "Current plan (Essential, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.",
         "properties": {
           "additionalUsage": {
             "$ref": "#/components/schemas/BillingAdditionalUsage"
@@ -40588,14 +40588,14 @@
     },
     "securitySchemes": {
       "bearerAuth": {
-        "bearerFormat": "JWT or opaque Clerk credential",
-        "description": "User bearer token: an aVenture API key, an OAuth access token, or a signed-in session token",
+        "bearerFormat": "API key or OAuth access token",
+        "description": "Your aVenture API key (https://aventure.vc/settings/api-keys) or OAuth access token",
         "scheme": "bearer",
         "type": "http"
       },
       "clerkApiKeyAuth": {
-        "bearerFormat": "Opaque Clerk User API Key",
-        "description": "Clerk User API Key authenticating this request",
+        "bearerFormat": "API key",
+        "description": "Your aVenture API key (https://aventure.vc/settings/api-keys)",
         "scheme": "bearer",
         "type": "http"
       }

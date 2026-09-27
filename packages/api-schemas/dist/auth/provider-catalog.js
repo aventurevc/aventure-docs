@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { AuthClientSchema } from "./client.js";
 const AuthProviderCatalogSchemaDefinition = z.object({
-    /** Clerk publishable key for browser sign-in; absent when the environment has no Clerk instance */
+    /** Publishable key for browser sign-in; absent when browser sign-in is unavailable */
     clerkPublishableKey: z.string().nullish(),
     /** OAuth PKCE client configuration for the CLI; absent until its client configuration is complete */
     oauthClient: AuthClientSchema.nullish(),

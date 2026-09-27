@@ -18,7 +18,7 @@ declare const ApiKeySchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type ApiKeyDefinition = z.infer<typeof ApiKeySchemaDefinition>;
 /**
- * Clerk API-key metadata; never contains the key secret
+ * API key metadata; never contains the key secret
  *
  * @openapiSchema ApiKey
  * @endpoint GET /v1/auth/api-key
