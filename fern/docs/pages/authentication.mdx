@@ -19,7 +19,7 @@ How you sign in depends on where you work:
 ## Create an API key
 
 1. Sign in to aVenture.
-2. Open [API key settings](https://aventure.vc/settings/api-keys).
+2. Open [API Keys settings](https://aventure.vc/settings/api-keys).
 3. Choose **Add new key**.
 
 Store the key in your secret manager and load it into the `AUTH_TOKEN`
@@ -42,7 +42,7 @@ aventure auth login
 The command opens your browser to sign in and waits while you approve. Without
 a browser, such as over SSH or in a container, it prints a sign-in URL and a
 one-time code to approve on any device; `--no-browser` forces that mode.
-[Developer access settings](https://aventure.vc/settings/developer) lists past
+[Developer Access settings](https://aventure.vc/settings/developer) lists past
 CLI sign-ins and revokes them. In CI, set `AUTH_TOKEN` to an API key instead.
 
 ## Connect an MCP client

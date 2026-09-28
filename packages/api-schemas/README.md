@@ -5,7 +5,7 @@ funding rounds, investors, and news.
 
 Calling the API requires an aVenture account. Free and paid plans both work;
 [create an account](https://aventure.vc/sign-up), then create an API key in
-[API key settings](https://aventure.vc/settings/api-keys).
+[API Keys settings](https://aventure.vc/settings/api-keys).
 
 ```bash
 npm install @aventurevc/api-schemas
