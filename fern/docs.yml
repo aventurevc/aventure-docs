@@ -184,6 +184,9 @@ logo:
 favicon: docs/assets/favicon.png
 css:
   - styles.css
+js:
+  - path: native-back-button.js
+    strategy: beforeInteractive
 typography:
   headingsFont:
     name: Crimson Pro

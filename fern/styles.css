@@ -191,3 +191,83 @@ html.light .fern-callout[data-intent="warning"] {
     pointer-events: auto;
   }
 }
+
+/* Search and Ask AI form one capsule, like the desktop app's command bar:
+   Search opens the search sheet (which also offers Ask AI), and the attached
+   segment opens the Ask AI panel directly. */
+.fern-header-content :has(> #fern-ask-ai-button) {
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background-color: var(--grayscale-a2);
+}
+
+.fern-header-content :has(> #fern-ask-ai-button) > #fern-search-button {
+  border-radius: 999px 0 0 999px;
+  box-shadow: none;
+  padding-inline: 0.875rem 0.5rem;
+}
+
+.fern-header-content #fern-ask-ai-button {
+  border: 0;
+  border-left: 1px solid var(--border);
+  border-radius: 0 999px 999px 0;
+  box-shadow: none;
+  background: transparent;
+  padding-inline: 0.75rem 0.875rem;
+}
+
+.fern-header-content #fern-ask-ai-button:hover {
+  background-color: var(--grayscale-a3);
+}
+
+.fern-header-content :has(> #fern-ask-ai-button) > :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+/* Below the md breakpoint the capsule shrinks to two icon buttons beside the
+   menu, so the logo keeps its room. Labels stay in the accessibility tree. */
+@media (max-width: 767px) {
+  .fern-header-content :is(:has(> #fern-ask-ai-button), :has(> div > #fern-ask-ai-button)) {
+    flex: none;
+    width: fit-content;
+  }
+
+  .fern-header-mobile-menu-button {
+    flex: none;
+  }
+
+  .fern-header-content :has(> #fern-ask-ai-button) > * {
+    flex: none;
+    width: 2.75rem;
+    height: 2.5rem;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .fern-header-content :has(> #fern-ask-ai-button) > #fern-search-button {
+    font-size: 0;
+  }
+
+  .fern-header-content :has(> #fern-ask-ai-button) .fern-kbd {
+    display: none;
+  }
+
+  .fern-header-content #fern-ask-ai-button .fern-button-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* Pushed iOS web views keep a 44px native back button 8px inside the safe
+   area (native-back-button.js). Leave 12px more before the logo and before the
+   search sheet's own close arrow, matching aventure.vc. */
+html[data-native-back-button="true"] .fern-header-content,
+html[data-native-back-button="true"] [data-cmdk-fern-header] {
+  padding-left: calc(env(safe-area-inset-left) + 4rem);
+}
