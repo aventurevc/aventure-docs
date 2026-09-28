@@ -526,6 +526,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
     MediaSlot: { modulePath: "media/slot", schemaName: "MediaSlotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
+    MentionLookup: { modulePath: "mention/lookup", schemaName: "MentionLookupSchema" },
     NaturalSearch: { modulePath: "natural/search", schemaName: "NaturalSearchSchema" },
     NaturalSearchResult: {
         modulePath: "natural/search-result",
@@ -747,6 +748,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
+    RssExtractedMention: {
+        modulePath: "rss/extracted-mention",
+        schemaName: "RssExtractedMentionSchema",
+    },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",

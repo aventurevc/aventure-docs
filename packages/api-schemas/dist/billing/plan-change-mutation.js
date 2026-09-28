@@ -4,6 +4,8 @@ import { BillingPlanTypeSchema } from "./plan-type.js";
 const BillingPlanChangeMutationSchemaDefinition = z.object({
     /** AI Plus or AI Pro plan to move to; the current plan cancels a scheduled change */
     plan: BillingPlanTypeSchema,
+    /** Unix epoch-second timestamp from an upgrade preview that pins its prorated amount on confirmation; omit it when no upgrade preview applies */
+    prorationDate: z.number().int().nullish(),
 });
 /**
  * Caller-selected plan for changing a continuing AI Plus or AI Pro subscription.

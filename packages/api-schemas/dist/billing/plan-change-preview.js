@@ -1,7 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { BillingPaymentMethodSchema } from "./payment-method.js";
-import { BillingPlanTypeSchema } from "./plan-type.js";
 import { BillingRecurringPriceSchema } from "./recurring-price.js";
 const BillingPlanChangePreviewSchemaDefinition = z.object({
     /** Amount charged on confirmation in the currency's minor unit, after credit for unused time; 0 when the change waits for the period end */
@@ -12,8 +11,8 @@ const BillingPlanChangePreviewSchemaDefinition = z.object({
     effectiveAt: z.iso.datetime({ offset: true }),
     /** Card Stripe charges; absent when no card is on file */
     paymentMethod: BillingPaymentMethodSchema.nullish(),
-    /** Plan the subscription would move to */
-    plan: BillingPlanTypeSchema,
+    /** Unix epoch-second timestamp to send on upgrade confirmation so Stripe charges this previewed proration; absent when the change does not prorate now */
+    prorationDate: z.number().int().nullish(),
     /** Recurring charge after the change */
     recurringPrice: BillingRecurringPriceSchema,
 });

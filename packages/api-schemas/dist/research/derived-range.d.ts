@@ -12,10 +12,12 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/research-details
  * @endpoint GET /v1/entities/{entityId}/research-details/{detailId}
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities

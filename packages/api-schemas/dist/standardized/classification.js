@@ -41,10 +41,12 @@ const StandardizedClassificationSchemaDefinition = z.intersection(Classification
  * @endpoint GET /v1/entities/{entityId}/classifications/suggestions
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities

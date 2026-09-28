@@ -7,13 +7,7 @@ declare const BillingPlanChangePreviewSchemaDefinition: z.ZodObject<{
         brand: z.ZodString;
         last4: z.ZodString;
     }, z.core.$strip>>>;
-    plan: z.ZodEnum<{
-        PLUS_MONTHLY: "PLUS_MONTHLY";
-        PLUS_YEARLY: "PLUS_YEARLY";
-        PRO_MONTHLY: "PRO_MONTHLY";
-        PRO_YEARLY: "PRO_YEARLY";
-        PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-    }>;
+    prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     recurringPrice: z.ZodObject<{
         cadence: z.ZodString;
         currency: z.ZodString;

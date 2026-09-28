@@ -1,8 +1,5 @@
 import { z } from "zod/v4";
-declare const LookupJobSchemaDefinition: z.ZodObject<{
-    createdAt: z.ZodISODateTime;
-    failureReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    jobId: z.ZodUUID;
+declare const MentionLookupSchemaDefinition: z.ZodObject<{
     mention: z.ZodArray<z.ZodType<{
         entity: {
             core: {
@@ -1190,7 +1187,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown>>>;
-    source: z.ZodObject<{
+    source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         mention: z.ZodOptional<z.ZodArray<z.ZodType<{
             name: string;
             searchQuery?: string | undefined;
@@ -1202,27 +1199,18 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         }, unknown>>>>;
         sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>;
-    state: z.ZodEnum<{
-        CANCELED: "CANCELED";
-        COMPLETED: "COMPLETED";
-        FAILED: "FAILED";
-        PENDING: "PENDING";
-        RUNNING: "RUNNING";
-        UNKNOWN: "UNKNOWN";
-    }>;
-    updatedAt: z.ZodISODateTime;
+    }, z.core.$strip>>>;
 }, z.core.$strip>;
-type LookupJobDefinition = z.infer<typeof LookupJobSchemaDefinition>;
+type MentionLookupDefinition = z.infer<typeof MentionLookupSchemaDefinition>;
 /**
- * An async lookup job's state and, once COMPLETED, every company and person the article names, each identified against stored records.
+ * Every company, organization, investor, and person a page or screenshot names, each identified against stored records.
  *
- * @openapiSchema LookupJob
- * @endpoint GET /v1/lookup-jobs/{jobId}
- * @contractShape lookup.job
+ * @openapiSchema MentionLookup
+ * @endpoint POST /v1/lookup-mentions
+ * @contractShape mention.lookup
  * @contractRole canonical
  */
-export declare const LookupJobSchema: z.ZodType<LookupJobDefinition>;
-export type LookupJob = z.infer<typeof LookupJobSchema>;
+export declare const MentionLookupSchema: z.ZodType<MentionLookupDefinition>;
+export type MentionLookup = z.infer<typeof MentionLookupSchema>;
 export {};
-//# sourceMappingURL=job.d.ts.map
+//# sourceMappingURL=lookup.d.ts.map

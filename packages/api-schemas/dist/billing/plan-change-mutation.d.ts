@@ -7,6 +7,7 @@ declare const BillingPlanChangeMutationSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     }>;
+    prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutationSchemaDefinition>;
 /**

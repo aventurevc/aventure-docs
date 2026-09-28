@@ -13,7 +13,6 @@ import { z } from "zod/v4";
  * @usedBySchema BillingCheckoutMutationSchema
  * @usedBySchema BillingCheckoutSchema
  * @usedBySchema BillingPlanChangeMutationSchema
- * @usedBySchema BillingPlanChangePreviewSchema
  * @usedBySchema BillingPlanChangeSchema
  * @usedBySchema BillingSubscriptionSchema
  * @contractShape billing.plan-type
