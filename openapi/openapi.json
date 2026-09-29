@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.19"
+    "version": "0.8.20"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -11483,7 +11483,7 @@
     },
     "/v1/entities/{entityId}/media/{mediaType}": {
       "get": {
-        "description": "Returns the selected square or standard entity logo; an empty slot returns 404, so this read is post-write proof, not a presence check. Read presence from `core.image.logoSquare` and `core.image.isMonogram` on `entities get`, or the `entity.logo` slot on `entities coverage get`.",
+        "description": "Returns the selected square or standard entity logo; an empty slot returns 404, so this read is post-write proof. The assembled entity image can display its provider's logo for a Product or Service; this slot and `entity.logo` coverage grade the entity's own asset.",
         "operationId": "getEntityMedia",
         "parameters": [
           {
@@ -13384,6 +13384,16 @@
               "type": "integer",
               "format": "int32",
               "default": 25
+            }
+          },
+          {
+            "description": "Includes hidden research snippets when the caller has private-visibility authority. Omit to use the caller's default visibility.",
+            "example": true,
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -15330,6 +15340,15 @@
             "schema": {
               "type": "boolean",
               "default": false
+            }
+          },
+          {
+            "description": "Includes private provenance fields (source) when the caller has private-visibility authority. Omit to use the caller's default visibility.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           },
           {
@@ -24541,6 +24560,15 @@
             }
           },
           {
+            "description": "Includes private provenance fields (source) when the caller has private-visibility authority. Omit to use the caller's default visibility.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
@@ -28931,14 +28959,13 @@
           },
           "scopeFilter": {
             "$ref": "#/components/schemas/EntityFilter",
-            "description": "Entity filter scope applied to the option search"
+            "description": "Entity filter scope applied to the option search. Omit to search every eligible entity."
           }
         },
         "required": [
           "filterKey",
           "limit",
-          "query",
-          "scopeFilter"
+          "query"
         ]
       },
       "EntityFilterSearchResult": {
@@ -28988,7 +29015,7 @@
           },
           "name": {
             "type": "string",
-            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe.",
+            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person.",
             "example": "Stripe",
             "maxLength": 200,
             "minLength": 0

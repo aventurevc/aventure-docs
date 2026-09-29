@@ -5,7 +5,7 @@ const IdentificationSubjectSchemaDefinition = z.object({
     context: z.string().max(2000).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */
     location: z.string().max(2000).nullish(),
-    /** Name exactly as the source writes it, such as Acme AI or Jane Doe. */
+    /** Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person. */
     name: z.string().max(200),
     /** aVenture news id of the article that mentions the subject; an unknown id is a 400. */
     sourceNewsId: z.int().nullish(),

@@ -3,7 +3,7 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
     filterKey: z.ZodString;
     limit: z.ZodInt;
     query: z.ZodString;
-    scopeFilter: z.ZodObject<{
+    scopeFilter: z.ZodOptional<z.ZodObject<{
         acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
         acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;
         acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -215,7 +215,7 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, unknown>>>>;
-    }, z.core.$strict>;
+    }, z.core.$strict>>;
 }, z.core.$strict>;
 type EntityFilterSearchDefinition = z.infer<typeof EntityFilterSearchSchemaDefinition>;
 /**

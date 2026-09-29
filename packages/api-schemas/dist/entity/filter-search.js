@@ -8,8 +8,8 @@ const EntityFilterSearchSchemaDefinition = z.strictObject({
     limit: z.int(),
     /** Query */
     query: z.string().min(1),
-    /** Entity filter scope applied to the option search */
-    scopeFilter: EntityFilterSchema,
+    /** Entity filter scope applied to the option search. Omit to search every eligible entity. */
+    scopeFilter: EntityFilterSchema.optional(),
 });
 /**
  * Record representing a filter search request
