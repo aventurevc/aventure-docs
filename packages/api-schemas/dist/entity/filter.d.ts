@@ -159,10 +159,10 @@ export declare const EntityFilterSchema: z.ZodObject<{
     typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     urlDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    urlMatchMode: z.ZodOptional<z.ZodEnum<{
+    urlMatchMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         domain: "domain";
         hostPath: "hostPath";
-    }>>;
+    }>>>;
     urlType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         alternativeto: "alternativeto";
         angellist: "angellist";

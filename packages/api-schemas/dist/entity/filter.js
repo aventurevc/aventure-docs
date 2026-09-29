@@ -105,8 +105,8 @@ export const EntityFilterSchema = z.strictObject({
     url: z.string().nullish(),
     /** Current root domain to match when urlMatchMode=domain. */
     urlDomain: z.string().nullish(),
-    /** URL matching mode: hostPath uses host and path; domain uses the root domain. */
-    urlMatchMode: UrlMatchModeSchema.optional(),
+    /** URL matching mode: hostPath uses host and path; domain uses the root domain. Omitted, it is domain when urlDomain is set, else hostPath. */
+    urlMatchMode: UrlMatchModeSchema.nullish(),
     /** Restrict URL matching to one URL type. */
     urlType: EntityUrlTypeSchema.nullish(),
     /** Inclusive founding-year ranges, in calendar years. */

@@ -99,7 +99,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 typeTechnologyUsed?: string[] | undefined;
                 url?: string | null | undefined;
                 urlDomain?: string | null | undefined;
-                urlMatchMode?: "domain" | "hostPath" | undefined;
+                urlMatchMode?: "domain" | "hostPath" | null | undefined;
                 urlType?: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "huggingface" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube" | null | undefined;
                 yearFoundedRange?: {
                     max?: number | null | undefined;
@@ -690,7 +690,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 typeTechnologyUsed?: string[] | undefined;
                 url?: string | null | undefined;
                 urlDomain?: string | null | undefined;
-                urlMatchMode?: "domain" | "hostPath" | undefined;
+                urlMatchMode?: "domain" | "hostPath" | null | undefined;
                 urlType?: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "huggingface" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube" | null | undefined;
                 yearFoundedRange?: {
                     max?: number | null | undefined;
