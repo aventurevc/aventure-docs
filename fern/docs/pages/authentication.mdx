@@ -11,7 +11,7 @@ How you sign in depends on where you work:
 
 | Where you work | How you sign in |
 |---|---|
-| MCP client (Claude, ChatGPT, and other AI apps) | Sign in through the browser when your client connects |
+| MCP client (Claude, ChatGPT, and other AI apps) | Sign in through the browser when your client connects; a client that asks for an OAuth client ID uses `KL7mINzGk0le0QiD` |
 | CLI | Run `aventure auth login`, or set `AUTH_TOKEN` to an API key |
 | Researchly | Choose **Connect aVenture** under [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) |
 | API | Send an API key as a bearer token |
@@ -59,6 +59,14 @@ manager, and never ship one in browser code or commit one to a repository.
 
 ## When authentication fails
 
-A missing or unrecognized credential returns `401`, and the message says how to
-sign in. A valid credential that lacks permission for an operation returns
-`403`. Both use the standard [error body](/errors).
+A missing, expired, or unrecognized credential returns `401`, and its `detail`
+says how to sign in:
+
+| Where you work | Fix a `401` |
+|---|---|
+| MCP client | Reconnect the server so your client signs you in again; in Claude Code, run `/mcp` and select `aventure` |
+| CLI | Run `aventure auth login`; `aventure auth doctor` names any other failed setup check |
+| API | Send a current API key from [API Keys settings](https://aventure.vc/settings/api-keys) |
+
+A valid credential that lacks permission for an operation returns `403`; signing
+in again does not change it. Both use the standard [error body](/errors).

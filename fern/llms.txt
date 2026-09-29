@@ -21,7 +21,7 @@
 
 ## MCP
 
-- [aVenture data MCP](https://mcp.aventure.vc/mcp): Connect with an MCP client over Streamable HTTP. The endpoint uses OAuth protected-resource discovery; an ordinary GET request is not supported.
+- [aVenture data MCP](https://mcp.aventure.vc/mcp): Connect with an MCP client over Streamable HTTP and sign in through the browser with OAuth. A client that asks for an OAuth client ID, or fails with `does not support dynamic client registration`, uses client ID `KL7mINzGk0le0QiD`. Claude Code: `claude mcp add --scope user --transport http --client-id KL7mINzGk0le0QiD --callback-port 6276 aventure https://mcp.aventure.vc/mcp`, then `/mcp` to sign in. A `401` later means the sign-in expired: reconnect the server in the client. An ordinary GET request is not supported.
 - [Documentation-search MCP](https://docs.aventure.vc/_mcp/server): Optionally search this documentation through Fern's MCP server. It is separate from the aVenture data MCP.
 
 ## Packages and source
