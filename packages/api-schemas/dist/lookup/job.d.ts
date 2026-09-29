@@ -1190,19 +1190,23 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown>>>;
-    source: z.ZodObject<{
-        mention: z.ZodOptional<z.ZodArray<z.ZodType<{
+    source: z.ZodType<{
+        mention?: {
             name: string;
             searchQuery?: string | undefined;
             type: "COMPANY" | "PERSON";
-        }, unknown, z.core.$ZodTypeInternals<{
+        }[] | undefined;
+        sourceNewsId?: number | null | undefined;
+        sourceUrl?: string | null | undefined;
+    }, unknown, z.core.$ZodTypeInternals<{
+        mention?: {
             name: string;
             searchQuery?: string | undefined;
             type: "COMPANY" | "PERSON";
-        }, unknown>>>>;
-        sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>;
+        }[] | undefined;
+        sourceNewsId?: number | null | undefined;
+        sourceUrl?: string | null | undefined;
+    }, unknown>>;
     state: z.ZodEnum<{
         CANCELED: "CANCELED";
         COMPLETED: "COMPLETED";

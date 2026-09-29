@@ -14,23 +14,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     AddressState: { modulePath: "address/state", schemaName: "AddressStateSchema" },
     AgentHelp: { modulePath: "agent/help", schemaName: "AgentHelpSchema" },
     AgentHelpQuestion: { modulePath: "agent/help-question", schemaName: "AgentHelpQuestionSchema" },
-    AgentInstruction: { modulePath: "agent/instruction", schemaName: "AgentInstructionSchema" },
-    AgentInstructionDetail: {
-        modulePath: "agent/instruction-detail",
-        schemaName: "AgentInstructionDetailSchema",
-    },
-    AgentInstructionKind: {
-        modulePath: "agent/instruction-kind",
-        schemaName: "AgentInstructionKindSchema",
-    },
-    AgentInstructionManifest: {
-        modulePath: "agent/instruction-manifest",
-        schemaName: "AgentInstructionManifestSchema",
-    },
-    AgentInstructionPointer: {
-        modulePath: "agent/instruction-pointer",
-        schemaName: "AgentInstructionPointerSchema",
-    },
     ApiKey: { modulePath: "api/key", schemaName: "ApiKeySchema" },
     AuthClient: { modulePath: "auth/client", schemaName: "AuthClientSchema" },
     AuthOperation: { modulePath: "auth/operation", schemaName: "AuthOperationSchema" },
@@ -523,6 +506,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     LookupJob: { modulePath: "lookup/job", schemaName: "LookupJobSchema" },
     LookupJobMention: { modulePath: "lookup/job-mention", schemaName: "LookupJobMentionSchema" },
     LookupJobMutation: { modulePath: "lookup/job-mutation", schemaName: "LookupJobMutationSchema" },
+    LookupMention: { modulePath: "lookup/mention", schemaName: "LookupMentionSchema" },
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
     MediaSlot: { modulePath: "media/slot", schemaName: "MediaSlotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
@@ -748,10 +732,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
-    RssExtractedMention: {
-        modulePath: "rss/extracted-mention",
-        schemaName: "RssExtractedMentionSchema",
-    },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",

@@ -1187,19 +1187,6 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown>>>;
-    source: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        mention: z.ZodOptional<z.ZodArray<z.ZodType<{
-            name: string;
-            searchQuery?: string | undefined;
-            type: "COMPANY" | "PERSON";
-        }, unknown, z.core.$ZodTypeInternals<{
-            name: string;
-            searchQuery?: string | undefined;
-            type: "COMPANY" | "PERSON";
-        }, unknown>>>>;
-        sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>>>;
 }, z.core.$strip>;
 type MentionLookupDefinition = z.infer<typeof MentionLookupSchemaDefinition>;
 /**

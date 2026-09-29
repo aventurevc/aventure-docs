@@ -13,7 +13,7 @@ const SearchSchemaDefinition = z.object({
     resultLimit: z.int().nullish(),
     /** Search text sent to the upstream web search provider */
     search: z.string(),
-    /** Optional caller identity for source-document attribution and abuse triage. Any non-blank string up to 64 characters is accepted and persisted with the resolved request context. */
+    /** Optional caller identity, up to 64 characters, persisted for source-document attribution and abuse triage. Agents send `<agentModel>-<tool>` (see aventure-provenance). */
     source: z.string().max(64).nullish(),
 });
 /**

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "aventure-cookbook",
+      "type": "skill-md",
+      "description": "Use for multi-step aVenture research recipes: company briefs, funding histories, round investors, investor portfolios, founder backgrounds, competitor sets, news monitoring, and resolving a list of names.",
+      "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
+      "digest": "sha256:d666575b7814375f9feae4dfb6024324386cf7df4bb3371e78ecd12fba7fcb27"
+    },
+    {
+      "name": "aventure",
+      "type": "skill-md",
+      "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
+      "url": "/.well-known/agent-skills/aventure/SKILL.md",
+      "digest": "sha256:702c6aa80464c2e44350243a138809e5d408634e93a647c67191d4636f407ab3"
+    }
+  ]
+}

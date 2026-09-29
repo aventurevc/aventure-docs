@@ -1,23 +1,23 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-const RssExtractedMentionSchemaDefinition = z.object({
+const LookupMentionSchemaDefinition = z.object({
     /** Name as the source writes it. */
     name: z.string(),
-    /** Query to search this name by; defaults to name. */
+    /** Ignored: the lookup searches by name. Still accepted so callers that send it keep working; omit it. */
     searchQuery: z.string().optional(),
     /** Whether the source names a company or a person. */
     type: z.enum(["COMPANY", "PERSON"]),
 });
 /**
- * One company or person a caller read from a source it did not send.
+ * One company or person a caller read from a page or screenshot it did not send.
  *
- * @openapiSchema RssExtractedMention
+ * @openapiSchema LookupMention
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/lookup-jobs
  * @endpoint POST /v1/lookup-mentions
  * @usedBySchema LookupJobMutationSchema
- * @contractShape rss.extracted-mention
+ * @contractShape lookup.mention
  * @contractRole canonical
  */
-export const RssExtractedMentionSchema = RssExtractedMentionSchemaDefinition;
-//# sourceMappingURL=extracted-mention.js.map
+export const LookupMentionSchema = LookupMentionSchemaDefinition;
+//# sourceMappingURL=mention.js.map

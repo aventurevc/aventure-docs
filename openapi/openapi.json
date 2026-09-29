@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.14"
+    "version": "0.8.15"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -466,524 +466,6 @@
         "x-aventure-tool": {
           "auth": "read"
         },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/agents/instructions/manifest": {
-      "get": {
-        "deprecated": true,
-        "description": "Deprecated: use help instructions manifest get (GET /v1/help/instructions/manifest).",
-        "operationId": "getAgentInstructionManifestAtRetiredAddress",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AgentInstructionManifest"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Deprecated: get the agent instruction manifest",
-        "tags": [
-          "Agents"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/agents/instructions/{kind}/{name}": {
-      "get": {
-        "deprecated": true,
-        "description": "Deprecated: use help instructions get (GET /v1/help/instructions/{kind}/{name}).",
-        "operationId": "getAgentInstructionAtRetiredAddress",
-        "parameters": [
-          {
-            "description": "Document kind: prompt, skill, or agent",
-            "in": "path",
-            "name": "kind",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/AgentInstructionKind"
-            }
-          },
-          {
-            "description": "Manifest name of the document",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AgentInstructionDetail"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Deprecated: get one agent instruction document",
-        "tags": [
-          "Agents"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/agents/instructions/{kind}/{name}/versions/{version}": {
-      "get": {
-        "deprecated": true,
-        "description": "Deprecated: use help instructions versions get (GET /v1/help/instructions/{kind}/{name}/versions/{version}).",
-        "operationId": "getAgentInstructionVersionAtRetiredAddress",
-        "parameters": [
-          {
-            "description": "Document kind: prompt, skill, or agent",
-            "in": "path",
-            "name": "kind",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/AgentInstructionKind"
-            }
-          },
-          {
-            "description": "Manifest name of the document",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Immutable content version",
-            "in": "path",
-            "name": "version",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AgentInstructionDetail"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Deprecated: get one agent instruction document version",
-        "tags": [
-          "Agents"
-        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -6063,7 +5545,7 @@
                 }
               }
             },
-            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — search POST /v1/entities/search with textSearch first (searchEntities). An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
+            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with POST /v1/entities/lookup (CLI entities lookup). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
           "406": {
             "content": {
@@ -12001,7 +11483,7 @@
     },
     "/v1/entities/{entityId}/media/{mediaType}": {
       "get": {
-        "description": "Returns the selected square or standard entity logo. Empty slots return 404.",
+        "description": "Returns the selected square or standard entity logo; an empty slot returns 404, so this read is post-write proof, not a presence check. Read presence from `core.image.logoSquare` and `core.image.isMonogram` on `entities get`, or the `entity.logo` slot on `entities coverage get`.",
         "operationId": "getEntityMedia",
         "parameters": [
           {
@@ -16535,7 +16017,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations, skills, and completion gates, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Free for every signed-in account.",
+        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Free for every signed-in account.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -16711,521 +16193,6 @@
         "x-aventure-tool": {
           "auth": "read"
         },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/help/instructions/manifest": {
-      "get": {
-        "description": "Returns the latest-pointer manifest of versioned prompt and skill documents. Any signed-in user may call this.",
-        "operationId": "getAgentInstructionManifest",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AgentInstructionManifest"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get the agent instruction manifest",
-        "tags": [
-          "Agents"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/help/instructions/{kind}/{name}": {
-      "get": {
-        "description": "Returns the current version and markdown content for one prompt, skill, or agent. Any signed-in user may call this.",
-        "operationId": "getAgentInstruction",
-        "parameters": [
-          {
-            "description": "Document kind: prompt, skill, or agent",
-            "in": "path",
-            "name": "kind",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/AgentInstructionKind"
-            }
-          },
-          {
-            "description": "Manifest name of the document",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AgentInstructionDetail"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get one agent instruction document",
-        "tags": [
-          "Agents"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/help/instructions/{kind}/{name}/versions/{version}": {
-      "get": {
-        "description": "Returns an immutable prompt, skill, or agent document by name and version. Any signed-in user may call this.",
-        "operationId": "getAgentInstructionVersion",
-        "parameters": [
-          {
-            "description": "Document kind: prompt, skill, or agent",
-            "in": "path",
-            "name": "kind",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/AgentInstructionKind"
-            }
-          },
-          {
-            "description": "Manifest name of the document",
-            "in": "path",
-            "name": "name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Immutable content version",
-            "in": "path",
-            "name": "version",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AgentInstructionDetail"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Get one agent instruction document version",
-        "tags": [
-          "Agents"
-        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -17831,7 +16798,7 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Never creates records. Needs a signed-in user or the admin key and spends the same natural-search quota as POST /v1/lookup-jobs; reading a page or screenshot also needs a plan, sending mention does not. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"mentionType\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Never creates records. Needs a signed-in user or the admin key and spends the same natural-search quota as POST /v1/lookup-jobs; reading a page or screenshot also needs a plan, sending mention does not. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
         "parameters": [
           {
@@ -18171,7 +17138,7 @@
     },
     "/v1/news": {
       "get": {
-        "description": "Browse news articles in the canonical news domain, with optional filtering.",
+        "description": "Browse news articles in the canonical news domain, with optional filtering. A company's news is this list filtered by owner.entityId (CLI --owner-entity-id); a person's by owner.personId (CLI --owner-person-id).",
         "operationId": "listNews",
         "parameters": [
           {
@@ -18441,7 +17408,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List news articles",
+        "summary": "List news articles, including a company's or person's news",
         "tags": [
           "News"
         ],
@@ -19056,7 +18023,7 @@
     },
     "/v1/news/{newsId}/media/{mediaType}": {
       "get": {
-        "description": "Returns the article's attached thumbnail. Empty slots return 404.",
+        "description": "Returns the article's attached thumbnail; an empty slot returns 404, so this read is post-write proof, not a presence check. Read presence from `core.newsImageThumbnail` on `news get`.",
         "operationId": "getNewsMedia",
         "parameters": [
           {
@@ -24213,7 +23180,7 @@
     },
     "/v1/people/{personId}/media/{mediaType}": {
       "get": {
-        "description": "Returns the person's attached photo. Empty slots return 404.",
+        "description": "Returns the person's attached photo; an empty slot returns 404, so this read is post-write proof, not a presence check. Read presence from `core.image.picture` and `core.image.isMonogram` on `people get`.",
         "operationId": "getPersonMedia",
         "parameters": [
           {
@@ -27750,7 +26717,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document.",
         "operationId": "searchWeb",
         "requestBody": {
           "content": {
@@ -28415,65 +27382,6 @@
           "answer",
           "citation",
           "confidence"
-        ]
-      },
-      "AgentInstructionManifest": {
-        "type": "object",
-        "description": "Latest-pointer manifest at agents/manifest.json; written last by the sync pipeline.",
-        "properties": {
-          "agent": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AgentInstructionPointer"
-            },
-            "description": "Sub-agent name to current version pointer"
-          },
-          "prompt": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AgentInstructionPointer"
-            },
-            "description": "Prompt name to current version pointer"
-          },
-          "skill": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/AgentInstructionPointer"
-            },
-            "description": "Skill name to current version pointer"
-          }
-        },
-        "required": [
-          "agent",
-          "prompt",
-          "skill"
-        ]
-      },
-      "AgentInstructionKind": {
-        "type": "string",
-        "description": "Kinds of agent instruction documents stored under the agents/ prefix.",
-        "enum": [
-          "PROMPT",
-          "SKILL",
-          "AGENT"
-        ]
-      },
-      "AgentInstructionDetail": {
-        "type": "object",
-        "description": "A resolved agent instruction document: its identity plus the markdown content.",
-        "properties": {
-          "content": {
-            "type": "string",
-            "description": "Markdown document content"
-          },
-          "core": {
-            "$ref": "#/components/schemas/AgentInstruction",
-            "description": "Addressable identity of the document"
-          }
-        },
-        "required": [
-          "content",
-          "core"
         ]
       },
       "ApiKey": {
@@ -34066,7 +32974,7 @@
             "type": "array",
             "description": "POST /v1/lookup-mentions only: the companies and people a caller already read from a page or screenshot it keeps on its device, identified without either being sent. Send it alone, without sourceUrl, sourceNewsId, or a file. Any signed-in user may send it, with or without a plan.",
             "items": {
-              "$ref": "#/components/schemas/RssExtractedMention"
+              "$ref": "#/components/schemas/LookupMention"
             }
           },
           "sourceNewsId": {
@@ -34175,17 +33083,6 @@
             "items": {
               "$ref": "#/components/schemas/LookupJobMention"
             }
-          },
-          "source": {
-            "description": "The page read; absent when only a screenshot was sent.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/LookupJobMutation"
-              },
-              {
-                "type": "null"
-              }
-            ]
           }
         },
         "required": [
@@ -35162,7 +34059,7 @@
               "string",
               "null"
             ],
-            "description": "Optional caller identity for source-document attribution and abuse triage. Any non-blank string up to 64 characters is accepted and persisted with the resolved request context.",
+            "description": "Optional caller identity, up to 64 characters, persisted for source-document attribution and abuse triage. Agents send `<agentModel>-<tool>` (see aventure-provenance).",
             "maxLength": 64
           }
         },
@@ -37520,9 +36417,9 @@
           "UNKNOWN"
         ]
       },
-      "RssExtractedMention": {
+      "LookupMention": {
         "type": "object",
-        "description": "One company or person a caller read from a source it did not send.",
+        "description": "One company or person a caller read from a page or screenshot it did not send.",
         "properties": {
           "name": {
             "type": "string",
@@ -37530,7 +36427,8 @@
           },
           "searchQuery": {
             "type": "string",
-            "description": "Query to search this name by; defaults to name."
+            "deprecated": true,
+            "description": "Ignored: the lookup searches by name. Still accepted so callers that send it keep working; omit it."
           },
           "type": {
             "type": "string",
@@ -40462,47 +39360,6 @@
           "LINUX",
           "WINDOWS",
           "OTHER"
-        ]
-      },
-      "AgentInstruction": {
-        "type": "object",
-        "description": "Addressable identity of a versioned agent instruction document.",
-        "properties": {
-          "kind": {
-            "$ref": "#/components/schemas/AgentInstructionKind",
-            "description": "Document kind"
-          },
-          "name": {
-            "type": "string",
-            "description": "Manifest name of the instruction document"
-          },
-          "version": {
-            "type": "string",
-            "description": "Immutable content version (first 12 hex chars of the content sha256)"
-          }
-        },
-        "required": [
-          "kind",
-          "name",
-          "version"
-        ]
-      },
-      "AgentInstructionPointer": {
-        "type": "object",
-        "description": "One manifest entry: immutable version id and the full object key it resolves to.",
-        "properties": {
-          "key": {
-            "type": "string",
-            "description": "Object key under the agents/ prefix"
-          },
-          "version": {
-            "type": "string",
-            "description": "Immutable content version (sha256-12)"
-          }
-        },
-        "required": [
-          "key",
-          "version"
         ]
       },
       "HelpCitation": {
