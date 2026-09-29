@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.20"
+    "version": "0.8.21"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -25,16 +25,16 @@
       "name": "Identifiers"
     },
     {
-      "description": "A person's profile photo",
-      "name": "Person Media"
-    },
-    {
       "description": "Founders and investors, and what they back",
       "name": "People"
     },
     {
       "description": "Enrichment agent runs, their session transcripts, and eligible models",
       "name": "Harness"
+    },
+    {
+      "description": "A news article's thumbnail image",
+      "name": "News Thumbnail"
     },
     {
       "description": "Service status, build version, and platform totals",
@@ -65,10 +65,6 @@
       "name": "Classification Tags"
     },
     {
-      "description": "A company's logo and other media slots",
-      "name": "Entity Media"
-    },
-    {
       "description": "Websites, social profiles, and other URLs for companies and people",
       "name": "URL Links"
     },
@@ -91,6 +87,10 @@
     {
       "description": "Company research: typed details and snippets, headcount, SEC facts, and completion coverage",
       "name": "Entity Research"
+    },
+    {
+      "description": "A person's profile photo",
+      "name": "Person Photo"
     },
     {
       "description": "People linked to companies, and the role each one holds",
@@ -137,8 +137,8 @@
       "name": "Entities"
     },
     {
-      "description": "A news article's thumbnail image",
-      "name": "News Media"
+      "description": "A company's square and standard logo slots",
+      "name": "Entity Logo"
     },
     {
       "description": "Accepted record types, such as Company and Investment Firm",
@@ -4910,7 +4910,7 @@
     },
     "/v1/entities/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.entityId is the company; read it with GET /v1/entities/{entityId} (CLI: entities get) or queue research on it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich). NO_MATCH: no record you can see is this company; a caller with write access creates it, using officialUrl as its website when present. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether it is new, then use the chosen candidate's owner.entityId; never create on NEEDS_REVIEW. Resending with the company's website or LinkedIn company URL settles it without a model call when a stored record holds that URL. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use GET /v1/entities/lookup-exact. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"],\"location\":\"Austin, TX\"}.",
+        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.entityId is the company; read it with GET /v1/entities/{entityId} (CLI: entities get) or queue research on it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich). NO_MATCH: no record you can see is this company; a caller with write access creates it, using officialUrl as its website when present. NEEDS_REVIEW: compare candidates' current URLs and identity fields with source evidence about the requested company. Treat a candidate URL as the subject's website only when independent source evidence binds it to the subject; resend once with evidenced URL, location, context, and sourceUrl or sourceNewsId. Ask the user which candidate it is or whether it is new only if the refined lookup remains NEEDS_REVIEW; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use GET /v1/entities/lookup-exact. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"],\"location\":\"Austin, TX\"}.",
         "operationId": "lookupEntity",
         "parameters": [
           {
@@ -11481,10 +11481,10 @@
         }
       }
     },
-    "/v1/entities/{entityId}/media/{mediaType}": {
+    "/v1/entities/{entityId}/logo": {
       "get": {
-        "description": "Returns the selected square or standard entity logo; an empty slot returns 404, so this read is post-write proof. The assembled entity image can display its provider's logo for a Product or Service; this slot and `entity.logo` coverage grade the entity's own asset.",
-        "operationId": "getEntityMedia",
+        "description": "Returns the selected square or standard logo with its stored provenance; an empty slot returns 404. A Product or Service's assembled `core.image` can show its provider's logo; this slot and `entity.logo` coverage grade the entity's own asset.",
+        "operationId": "getEntityLogo",
         "parameters": [
           {
             "description": "Canonical entity UUID",
@@ -11495,15 +11495,6 @@
               "type": "string",
               "format": "uuid",
               "description": "Canonical entity UUID"
-            }
-          },
-          {
-            "description": "Media slot; entities serve logo.",
-            "in": "path",
-            "name": "mediaType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/MediaSlot"
             }
           },
           {
@@ -11635,9 +11626,9 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get a company media slot",
+        "summary": "Get a company logo",
         "tags": [
-          "Entity Media"
+          "Entity Logo"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -16219,7 +16210,7 @@
     },
     "/v1/lookup": {
       "post": {
-        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW ask the user which candidate it is, then use its owner the same way; when you already know the kind, the company-only or person-only lookup answers without the other kind's namesakes. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
+        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -18040,160 +18031,6 @@
         }
       }
     },
-    "/v1/news/{newsId}/media/{mediaType}": {
-      "get": {
-        "description": "Returns the article's attached thumbnail; an empty slot returns 404, so this read is post-write proof, not a presence check. Read presence from `core.newsImageThumbnail` on `news get`.",
-        "operationId": "getNewsMedia",
-        "parameters": [
-          {
-            "description": "Exact positive news article id",
-            "in": "path",
-            "name": "newsId",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "description": "Type-safe identifier for news articles"
-            }
-          },
-          {
-            "description": "Media slot; news articles serve thumbnail.",
-            "in": "path",
-            "name": "mediaType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/MediaSlot"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/MediaUpload"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "404": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Found",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "summary": "Get news thumbnail",
-        "tags": [
-          "News Media"
-        ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/news/{newsId}/related-entities": {
       "get": {
         "description": "Returns entities semantically related to a news article.",
@@ -18359,6 +18196,151 @@
         "summary": "List the entities a news article is about",
         "tags": [
           "Semantic Similarity"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/news/{newsId}/thumbnail": {
+      "get": {
+        "description": "Returns the article's attached thumbnail with its stored provenance; an empty slot returns 404, so read presence from `core.newsImageThumbnail` on `news get`.",
+        "operationId": "getNewsThumbnail",
+        "parameters": [
+          {
+            "description": "Exact positive news article id",
+            "in": "path",
+            "name": "newsId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "Type-safe identifier for news articles"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaUpload"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "summary": "Get news thumbnail",
+        "tags": [
+          "News Thumbnail"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -19162,7 +19144,7 @@
     },
     "/v1/people/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} (CLI: people get) or queue research on them with POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). NO_MATCH: no record you can see is this person; a caller with write access creates them. NEEDS_REVIEW: show candidate (most probable first) to the user and ask which one it is or whether the person is new, then use the chosen candidate's owner.personId; never create on NEEDS_REVIEW. Resending with their LinkedIn profile URL settles it without a model call when a stored record holds that URL. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
+        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} (CLI: people get) or queue research on them with POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). NO_MATCH: no record you can see is this person; a caller with write access creates them. NEEDS_REVIEW: compare candidates' current profile URLs, employer, and title with source evidence about the requested person. Treat a candidate profile URL as the subject's only when independent source evidence binds it to that person; resend once with evidenced URL and employer and title as context. Ask the user which candidate it is or whether the person is new only if the refined lookup remains NEEDS_REVIEW; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
         "operationId": "lookupPerson",
         "parameters": [
           {
@@ -23197,10 +23179,10 @@
         }
       }
     },
-    "/v1/people/{personId}/media/{mediaType}": {
+    "/v1/people/{personId}/photo": {
       "get": {
-        "description": "Returns the person's attached photo; an empty slot returns 404, so this read is post-write proof, not a presence check. Read presence from `core.image.picture` and `core.image.isMonogram` on `people get`.",
-        "operationId": "getPersonMedia",
+        "description": "Returns the person's attached photo with its stored provenance; an empty slot returns 404, so read presence from `core.image.picture` and `core.image.isMonogram` on `people get`.",
+        "operationId": "getPersonPhoto",
         "parameters": [
           {
             "description": "Canonical person UUID",
@@ -23211,15 +23193,6 @@
               "type": "string",
               "format": "uuid",
               "description": "Canonical person UUID"
-            }
-          },
-          {
-            "description": "Media slot; people serve photo.",
-            "in": "path",
-            "name": "mediaType",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/MediaSlot"
             }
           }
         ],
@@ -23344,7 +23317,7 @@
         },
         "summary": "Get person photo",
         "tags": [
-          "Person Media"
+          "Person Photo"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -26747,6 +26720,40 @@
       "post": {
         "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document.",
         "operationId": "searchWeb",
+        "parameters": [
+          {
+            "description": "Agent chassis token for agent-authored writes. Codex and harness runtime hooks supply it; other CLI runtimes use their evidenced pair through aventure-provenance.",
+            "example": "codex-cli",
+            "in": "query",
+            "name": "agentChassis",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent chassis token for agent-authored writes. Codex and harness runtime hooks supply it; other CLI runtimes use their evidenced pair through aventure-provenance.",
+              "example": "codex-cli"
+            }
+          },
+          {
+            "description": "Agent model id for agent-authored writes. Codex and harness runtime hooks supply the current model; other CLI runtimes use their evidenced pair through aventure-provenance.",
+            "in": "query",
+            "name": "agentModel",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Agent model id for agent-authored writes. Codex and harness runtime hooks supply the current model; other CLI runtimes use their evidenced pair through aventure-provenance."
+            }
+          },
+          {
+            "description": "Actor type; inferred as agent when agentChassis and agentModel are supplied, or as employee from an authenticated user JWT session. CLI agents never pass this flag; the runtime supplies the agent pair.",
+            "example": "agent",
+            "in": "query",
+            "name": "actorType",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -31686,15 +31693,6 @@
           }
         }
       },
-      "MediaSlot": {
-        "type": "string",
-        "description": "Media slot on an owner record, addressed by the {mediaType} path segment.",
-        "enum": [
-          "logo",
-          "photo",
-          "thumbnail"
-        ]
-      },
       "EntityLogoType": {
         "type": "string",
         "description": "Entity logo slot: SQUARE is the square icon read back as `core.image.logoSquare`; STANDARD is the horizontal wordmark read back as `core.image.logo`.",
@@ -31707,6 +31705,17 @@
         "type": "object",
         "description": "Managed media asset reference with resolved CDN URL and target metadata",
         "properties": {
+          "accuracy": {
+            "description": "Entity logo writes only: the brand-match verdict the write's gate computed on these bytes; absent on reads, photos, thumbnails, and brand-match overrides.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/LogoAccuracy"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "cdnUrl": {
             "type": "string",
             "description": "Resolved API CDN URL"
@@ -34034,6 +34043,14 @@
           "hostDomain"
         ]
       },
+      "DatasourceProvenanceActorType": {
+        "type": "string",
+        "description": "Actor boundary for a provenance write event",
+        "enum": [
+          "agent",
+          "employee"
+        ]
+      },
       "Search": {
         "type": "object",
         "description": "Live web search request with cache controls",
@@ -34086,7 +34103,7 @@
               "string",
               "null"
             ],
-            "description": "Optional caller identity, up to 64 characters, persisted for source-document attribution and abuse triage. Agents send `<agentModel>-<tool>` (see aventure-provenance).",
+            "description": "Optional caller identity, up to 64 characters, persisted for source-document attribution and abuse triage. Agent requests derive `<agentModel>-<agentChassis>` from the validated provenance actor instead of this field.",
             "maxLength": 64
           }
         },
@@ -37054,6 +37071,80 @@
           "roundCount"
         ]
       },
+      "LogoAccuracy": {
+        "type": "object",
+        "description": "Read-only assessment of whether a stored logo/photo depicts the target's own brand, decided from visible features of the stored mark versus the target's own reference marks",
+        "properties": {
+          "approval": {
+            "description": "Confirmed media-slot provenance that made this a match without a model/reference comparison; null for deterministic hash, vision, and insufficient outcomes",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DatasourceSourceMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "candidateObserved": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Literal visible description of the candidate mark, when assessed by vision"
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/Confidence",
+            "description": "Confidence in the outcome"
+          },
+          "method": {
+            "type": "string",
+            "description": "How the outcome was reached",
+            "enum": [
+              "PERCEPTUAL_HASH",
+              "VISION",
+              "OPERATOR_REVIEW",
+              "REFERENCE_UNAVAILABLE"
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "description": "Whether the candidate mark matches the target's own brand",
+            "enum": [
+              "MATCH",
+              "MISMATCH",
+              "INSUFFICIENT"
+            ]
+          },
+          "reference": {
+            "type": "array",
+            "description": "Reference marks fetched from the target's own surfaces, each with its perceptual-hash distance to the candidate. The deciding deterministic distance is the smallest entry",
+            "items": {
+              "$ref": "#/components/schemas/LogoAccuracyReference"
+            }
+          },
+          "referenceObserved": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Literal visible description of the reference mark, when assessed by vision"
+          },
+          "sharedFeature": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The specific visible feature shared by candidate and reference that supports a match (shared name text, symbol, or distinctive palette); null when not a match"
+          }
+        },
+        "required": [
+          "confidence",
+          "method",
+          "outcome",
+          "reference"
+        ]
+      },
       "MediaObjectType": {
         "type": "string",
         "description": "Target domain for media operations (logos, pictures, thumbnails)",
@@ -37115,6 +37206,25 @@
             ]
           }
         }
+      },
+      "LogoAccuracyReference": {
+        "type": "object",
+        "description": "A reference mark from the target's own surface and its distance to the candidate",
+        "properties": {
+          "hammingDistance": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Perceptual-hash distance between the candidate and this reference"
+          },
+          "url": {
+            "type": "string",
+            "description": "Direct URL of the reference mark fetched from the target's surface"
+          }
+        },
+        "required": [
+          "hammingDistance",
+          "url"
+        ]
       },
       "EntityInvestorParticipation": {
         "type": "object",

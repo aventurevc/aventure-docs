@@ -4,9 +4,10 @@ import { z } from "zod/v4";
  * Grouped source/provenance metadata for private v1 response fields
  *
  * @openapiSchema DatasourceSourceMetadata
- * @endpoint GET /v1/entities/{entityId}/media/{mediaType}
- * @endpoint GET /v1/news/{newsId}/media/{mediaType}
- * @endpoint GET /v1/people/{personId}/media/{mediaType}
+ * @endpoint GET /v1/entities/{entityId}/logo
+ * @endpoint GET /v1/news/{newsId}/thumbnail
+ * @endpoint GET /v1/people/{personId}/photo
+ * @usedBySchema LogoAccuracySchema
  * @usedBySchema MediaUploadSchema
  * @contractShape datasource.source-metadata
  * @contractRole canonical

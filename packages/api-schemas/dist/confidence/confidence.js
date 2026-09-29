@@ -5,6 +5,9 @@ import { z } from "zod/v4";
  *
  * @openapiSchema Confidence
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}/logo
+ * @endpoint GET /v1/news/{newsId}/thumbnail
+ * @endpoint GET /v1/people/{personId}/photo
  * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/help
@@ -14,6 +17,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema AgentHelpSchema
+ * @usedBySchema LogoAccuracySchema
  * @usedBySchema PersonSearchInterpretationSchema
  * @usedBySchema SearchInterpretationSchema
  * @contractShape confidence.confidence

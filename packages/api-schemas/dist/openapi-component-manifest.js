@@ -181,6 +181,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "redirect/current-slug-owner",
         schemaName: "CurrentSlugOwnerSchema",
     },
+    DatasourceProvenanceActorType: {
+        modulePath: "datasource/provenance-actor-type",
+        schemaName: "DatasourceProvenanceActorTypeSchema",
+    },
     DatasourceSourceMetadata: {
         modulePath: "datasource/source-metadata",
         schemaName: "DatasourceSourceMetadataSchema",
@@ -503,12 +507,16 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     JobState: { modulePath: "job/state", schemaName: "JobStateSchema" },
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
     LinkSearch: { modulePath: "link/search", schemaName: "LinkSearchSchema" },
+    LogoAccuracy: { modulePath: "logo/accuracy", schemaName: "LogoAccuracySchema" },
+    LogoAccuracyReference: {
+        modulePath: "logo/accuracy-reference",
+        schemaName: "LogoAccuracyReferenceSchema",
+    },
     LookupJob: { modulePath: "lookup/job", schemaName: "LookupJobSchema" },
     LookupJobMention: { modulePath: "lookup/job-mention", schemaName: "LookupJobMentionSchema" },
     LookupJobMutation: { modulePath: "lookup/job-mutation", schemaName: "LookupJobMutationSchema" },
     LookupMention: { modulePath: "lookup/mention", schemaName: "LookupMentionSchema" },
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
-    MediaSlot: { modulePath: "media/slot", schemaName: "MediaSlotSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
     MentionLookup: { modulePath: "mention/lookup", schemaName: "MentionLookupSchema" },
     NaturalSearch: { modulePath: "natural/search", schemaName: "NaturalSearchSchema" },
