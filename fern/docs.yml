@@ -170,12 +170,14 @@ theme:
   footer-nav: minimal
 # Keep only page copy and export; Ask AI lives in the header, and the
 # Claude Code and Cursor buttons install the docs-search MCP, which readers
-# confuse with the aVenture data MCP.
+# confuse with the aVenture data MCP. Install skills opens the command for
+# the agent skills served from /.well-known/agent-skills/.
 page-actions:
   options:
     ask-ai: false
     claude-code: false
     cursor: false
+    skills: {}
 logo:
   dark: docs/assets/logo-dark.svg
   light: docs/assets/logo-light.svg
