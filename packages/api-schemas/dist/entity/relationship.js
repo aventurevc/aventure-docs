@@ -10,7 +10,7 @@ const EntityRelationshipSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Relationship-specific detail. acceleratorParticipant rows use `batch=<label>`, or `program=<name>; batch=<label>` only for a distinct sub-program. program= never repeats the accelerator name or the batch, and batch= never contains the accelerator name — the row already points to the accelerator entity. */
     detail: z.string().nullish(),
-    /** Joined entity on the other side of this relationship — read-only display projection. Writes identify both sides only via the flat sourceEntityId and targetEntityId UUIDs, never a nested entity object. */
+    /** Joined entity on the other side of this relationship — read-only display projection. Writes name one endpoint in the URL path and the other in targetEntityId; the relationship type determines stored orientation. */
     entity: EntitySchema,
     /** Integer entity_relationship.id row id, not an entity UUID */
     id: z.int().nullish(),
