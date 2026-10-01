@@ -19,7 +19,7 @@ const EntityRelationshipSchemaDefinition = z.object({
     isCurrent: z.boolean().nullish(),
     /** Primary/renderable curation flag for this relationship row. isCurrent=false or isPrimary=false hides the row from default relationship reads. */
     isPrimary: z.boolean().nullish(),
-    /** Published page behind this relationship, read from its provenance; absent for internal sources. */
+    /** Published page behind this relationship, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     /** Nested relationships for the joined entity */
     get relationship() {

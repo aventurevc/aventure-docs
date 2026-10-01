@@ -18,7 +18,9 @@ declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     entityId: z.ZodUUID;
     id: z.ZodInt;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        recordedAt: z.ZodISODateTime;
         sourceDetail: z.ZodString;
     }, z.core.$strip>>>;
     textValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;

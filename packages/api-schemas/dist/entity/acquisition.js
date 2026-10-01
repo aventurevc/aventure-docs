@@ -23,7 +23,7 @@ const EntityAcquisitionSchemaDefinition = z.object({
     fundraiseTransactionId: z.uuid().nullish(),
     /** Type-safe identifier for fundraise investor joins */
     investorJoinId: z.uuid().nullish(),
-    /** Published page behind this acquisition, read from its provenance; absent for internal sources. */
+    /** Published page behind this acquisition, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     relationshipId: z.int(),
     /** Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed (including Closed (Acquihire)). */

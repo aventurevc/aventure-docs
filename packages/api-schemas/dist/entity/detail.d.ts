@@ -1527,7 +1527,9 @@ export declare const EntityDetailSchema: z.ZodObject<{
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         relationship: /*elided*/ any[];
@@ -1583,7 +1585,9 @@ export declare const EntityDetailSchema: z.ZodObject<{
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         relationship: any[];
@@ -1645,7 +1649,9 @@ export declare const EntityDetailSchema: z.ZodObject<{
             entityId: string;
             id: number;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             textValue?: string | null | undefined;
@@ -1664,7 +1670,9 @@ export declare const EntityDetailSchema: z.ZodObject<{
             entityId: string;
             id: number;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             text: string;
@@ -1724,7 +1732,9 @@ export declare const EntityDetailSchema: z.ZodObject<{
             entityId: string;
             id: number;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             textValue?: string | null | undefined;
@@ -1743,7 +1753,9 @@ export declare const EntityDetailSchema: z.ZodObject<{
             entityId: string;
             id: number;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             text: string;

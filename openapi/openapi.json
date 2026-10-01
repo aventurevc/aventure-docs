@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.28"
+    "version": "0.8.29"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -29825,7 +29825,7 @@
             "description": "Primary/renderable curation flag for this relationship row. isCurrent=false or isPrimary=false hides the row from default relationship reads."
           },
           "publicSource": {
-            "description": "Published page behind this relationship, read from its provenance; absent for internal sources.",
+            "description": "Published page behind this relationship, read from the provenance event that wrote it; absent for internal sources.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityResearchPublicSource"
@@ -30724,7 +30724,7 @@
             "description": "Type-safe identifier for fundraise investor joins"
           },
           "publicSource": {
-            "description": "Published page behind this acquisition, read from its provenance; absent for internal sources.",
+            "description": "Published page behind this acquisition, read from the provenance event that wrote it; absent for internal sources.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityResearchPublicSource"
@@ -32532,7 +32532,7 @@
             "format": "int32"
           },
           "publicSource": {
-            "description": "Published page behind this value, read from its provenance; absent for internal sources.",
+            "description": "Published page behind this value, read from the provenance event that wrote it; absent for internal sources.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityResearchPublicSource"
@@ -32646,7 +32646,7 @@
             "format": "int32"
           },
           "publicSource": {
-            "description": "Published page behind this value, read from its provenance; absent for internal sources.",
+            "description": "Published page behind this value, read from the provenance event that wrote it; absent for internal sources.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityResearchPublicSource"
@@ -37190,15 +37190,28 @@
       },
       "EntityResearchPublicSource": {
         "type": "object",
-        "description": "Published page behind a research value, read from its provenance. Absent when the value came from an internal source.",
+        "description": "Published page behind a research value, read from the provenance event that wrote the value. Absent when the value came from an internal source.",
         "properties": {
-          "changedAt": {
+          "lastFetchedAt": {
             "type": [
               "string",
               "null"
             ],
             "format": "date-time",
-            "description": "When the value was last written from this source."
+            "description": "When aVenture last fetched this page; absent when no stored capture of it exists."
+          },
+          "publishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When the page was published, from aVenture's news record for the same URL; absent when the page is not a known news article."
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When aVenture recorded the value from this page."
           },
           "sourceDetail": {
             "type": "string",
@@ -37207,6 +37220,7 @@
           }
         },
         "required": [
+          "recordedAt",
           "sourceDetail"
         ]
       },

@@ -569,7 +569,9 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             entityId: string;
                             id: number;
                             publicSource?: {
-                                changedAt?: string | null | undefined;
+                                lastFetchedAt?: string | null | undefined;
+                                publishedAt?: string | null | undefined;
+                                recordedAt: string;
                                 sourceDetail: string;
                             } | null | undefined;
                             textValue?: string | null | undefined;
@@ -1324,7 +1326,9 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             entityId: string;
                             id: number;
                             publicSource?: {
-                                changedAt?: string | null | undefined;
+                                lastFetchedAt?: string | null | undefined;
+                                publishedAt?: string | null | undefined;
+                                recordedAt: string;
                                 sourceDetail: string;
                             } | null | undefined;
                             textValue?: string | null | undefined;

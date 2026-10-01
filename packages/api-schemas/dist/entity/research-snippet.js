@@ -26,7 +26,7 @@ export const EntityResearchSnippetSchema = z.object({
     /** Canonical entity UUID */
     entityId: z.uuid(),
     id: z.int(),
-    /** Published page behind this value, read from its provenance; absent for internal sources. */
+    /** Published page behind this value, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     text: z.string(),
     textType: z.string(),

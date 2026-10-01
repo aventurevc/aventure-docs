@@ -126,7 +126,9 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
     fundraiseTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     investorJoinId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        recordedAt: z.ZodISODateTime;
         sourceDetail: z.ZodString;
     }, z.core.$strip>>>;
     relationshipId: z.ZodInt;

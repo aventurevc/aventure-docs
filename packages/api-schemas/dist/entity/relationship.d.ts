@@ -102,7 +102,9 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        recordedAt: z.ZodISODateTime;
         sourceDetail: z.ZodString;
     }, z.core.$strip>>>;
     relationship: z.ZodArray<z.ZodObject</*elided*/ any, z.core.$strip>>;

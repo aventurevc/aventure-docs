@@ -91,7 +91,9 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         entityId: string;
         id: number;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         textValue?: string | null | undefined;
@@ -111,7 +113,9 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         entityId: string;
         id: number;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         textValue?: string | null | undefined;
@@ -130,7 +134,9 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         entityId: z.ZodUUID;
         id: z.ZodInt;
         publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            recordedAt: z.ZodISODateTime;
             sourceDetail: z.ZodString;
         }, z.core.$strip>>>;
         text: z.ZodString;

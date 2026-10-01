@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Published page behind a research value, read from its provenance. Absent when the value came from an internal source.
+ * Published page behind a research value, read from the provenance event that wrote the value. Absent when the value came from an internal source.
  *
  * @openapiSchema EntityResearchPublicSource
  * @endpoint GET /v1/entities
@@ -36,8 +36,12 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export const EntityResearchPublicSourceSchema = z.object({
-    /** When the value was last written from this source. */
-    changedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** When aVenture last fetched this page; absent when no stored capture of it exists. */
+    lastFetchedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** When the page was published, from aVenture's news record for the same URL; absent when the page is not a known news article. */
+    publishedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** When aVenture recorded the value from this page. */
+    recordedAt: z.iso.datetime({ offset: true }),
     /** URL of the published page supporting the value. */
     sourceDetail: z.string(),
 });

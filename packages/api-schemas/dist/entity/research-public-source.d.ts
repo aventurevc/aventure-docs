@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Published page behind a research value, read from its provenance. Absent when the value came from an internal source.
+ * Published page behind a research value, read from the provenance event that wrote the value. Absent when the value came from an internal source.
  *
  * @openapiSchema EntityResearchPublicSource
  * @endpoint GET /v1/entities
@@ -35,7 +35,9 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EntityResearchPublicSourceSchema: z.ZodObject<{
-    changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    recordedAt: z.ZodISODateTime;
     sourceDetail: z.ZodString;
 }, z.core.$strip>;
 export type EntityResearchPublicSource = z.infer<typeof EntityResearchPublicSourceSchema>;

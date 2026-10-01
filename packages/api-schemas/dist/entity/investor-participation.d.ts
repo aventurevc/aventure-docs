@@ -1512,7 +1512,9 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             relationship: /*elided*/ any[];
@@ -1568,7 +1570,9 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             relationship: any[];
@@ -1630,7 +1634,9 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -1649,7 +1655,9 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 text: string;
@@ -1709,7 +1717,9 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -1728,7 +1738,9 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 text: string;

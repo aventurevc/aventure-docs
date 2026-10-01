@@ -425,7 +425,9 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         fundraiseTransactionId?: string | null | undefined;
         investorJoinId?: string | null | undefined;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         relationshipId: number;
@@ -513,7 +515,9 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         fundraiseTransactionId?: string | null | undefined;
         investorJoinId?: string | null | undefined;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         relationshipId: number;
@@ -2070,7 +2074,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             relationship: /*elided*/ any[];
@@ -2126,7 +2132,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             publicSource?: {
-                changedAt?: string | null | undefined;
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
             relationship: any[];
@@ -2188,7 +2196,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -2207,7 +2217,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 text: string;
@@ -2267,7 +2279,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -2286,7 +2300,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 text: string;
@@ -3424,7 +3440,9 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 relationship: /*elided*/ any[];
@@ -3486,7 +3504,9 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     entityId: string;
                     id: number;
                     publicSource?: {
-                        changedAt?: string | null | undefined;
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
                     textValue?: string | null | undefined;
@@ -3505,7 +3525,9 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     entityId: string;
                     id: number;
                     publicSource?: {
-                        changedAt?: string | null | undefined;
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
                     text: string;
@@ -4342,7 +4364,9 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 relationship: any[];
@@ -4404,7 +4428,9 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     entityId: string;
                     id: number;
                     publicSource?: {
-                        changedAt?: string | null | undefined;
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
                     textValue?: string | null | undefined;
@@ -4423,7 +4449,9 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     entityId: string;
                     id: number;
                     publicSource?: {
-                        changedAt?: string | null | undefined;
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
                     text: string;
@@ -4957,7 +4985,9 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -5429,7 +5459,9 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -5787,7 +5819,9 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         relationship: /*elided*/ any[];
@@ -5843,7 +5877,9 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         relationship: any[];
@@ -5901,7 +5937,9 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         entityId: string;
         id: number;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         textValue?: string | null | undefined;
@@ -5921,7 +5959,9 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         entityId: string;
         id: number;
         publicSource?: {
-            changedAt?: string | null | undefined;
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
         textValue?: string | null | undefined;
@@ -5977,7 +6017,9 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
         entityId: z.ZodUUID;
         id: z.ZodInt;
         publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            recordedAt: z.ZodISODateTime;
             sourceDetail: z.ZodString;
         }, z.core.$strip>>>;
         text: z.ZodString;
@@ -6472,7 +6514,9 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     entityId: string;
                     id: number;
                     publicSource?: {
-                        changedAt?: string | null | undefined;
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
                     textValue?: string | null | undefined;
@@ -6958,7 +7002,9 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     entityId: string;
                     id: number;
                     publicSource?: {
-                        changedAt?: string | null | undefined;
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
                     textValue?: string | null | undefined;
@@ -10231,7 +10277,9 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
@@ -10703,7 +10751,9 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 entityId: string;
                 id: number;
                 publicSource?: {
-                    changedAt?: string | null | undefined;
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
                 textValue?: string | null | undefined;
