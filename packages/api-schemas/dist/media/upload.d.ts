@@ -11,15 +11,6 @@ import { z } from "zod/v4";
  */
 export declare const MediaUploadSchema: z.ZodObject<{
     accuracy: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        approval: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-            sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>>>;
         candidateObserved: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         confidence: z.ZodEnum<{
             HIGH: "HIGH";
@@ -56,15 +47,6 @@ export declare const MediaUploadSchema: z.ZodObject<{
         PERSON: "PERSON";
     }>;
     path: z.ZodString;
-    provenance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        detail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        kind: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        pendingApproval: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>>>;
     targetId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 export type MediaUpload = z.infer<typeof MediaUploadSchema>;

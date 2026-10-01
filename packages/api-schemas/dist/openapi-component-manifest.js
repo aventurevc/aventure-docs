@@ -185,10 +185,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "datasource/provenance-actor-type",
         schemaName: "DatasourceProvenanceActorTypeSchema",
     },
-    DatasourceSourceMetadata: {
-        modulePath: "datasource/source-metadata",
-        schemaName: "DatasourceSourceMetadataSchema",
-    },
     DecimalRange: { modulePath: "decimal/range", schemaName: "DecimalRangeSchema" },
     DomainConflictDetails: {
         modulePath: "domain/conflict-details",
@@ -378,6 +374,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityResearchFactValue: {
         modulePath: "entity/research-fact-value",
         schemaName: "EntityResearchFactValueSchema",
+    },
+    EntityResearchPublicSource: {
+        modulePath: "entity/research-public-source",
+        schemaName: "EntityResearchPublicSourceSchema",
     },
     EntityResearchSnippet: {
         modulePath: "entity/research-snippet",

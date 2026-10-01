@@ -37,7 +37,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        typeRecord: z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";
             Fund: "Fund";
@@ -47,7 +47,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             Organization: "Organization";
             Product: "Product";
             Service: "Service";
-        }>>>;
+        }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
     latestStatus: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -95,7 +95,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        typeRecord: z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";
             Fund: "Fund";
@@ -105,7 +105,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             Organization: "Organization";
             Product: "Product";
             Service: "Service";
-        }>>>;
+        }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
     publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;

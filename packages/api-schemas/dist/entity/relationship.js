@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EntityComparisonSignalsSchema } from "./comparison-signals.js";
 import { EntitySchema } from "./entity.js";
+import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 const EntityRelationshipSchemaDefinition = z.object({
     /** Effective date for this relationship when known */
     asOf: z.iso.date().nullish(),
@@ -18,14 +19,14 @@ const EntityRelationshipSchemaDefinition = z.object({
     isCurrent: z.boolean().nullish(),
     /** Primary/renderable curation flag for this relationship row. isCurrent=false or isPrimary=false hides the row from default relationship reads. */
     isPrimary: z.boolean().nullish(),
+    /** Published page behind this relationship, read from its provenance; absent for internal sources. */
+    publicSource: EntityResearchPublicSourceSchema.nullish(),
     /** Nested relationships for the joined entity */
     get relationship() {
         return z.array(EntityRelationshipSchemaDefinition);
     },
     /** Canonical relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Similarity endpoint rows use stored relationship types when a curation row exists and calculated when the row comes from semantic/vector similarity. */
     relationshipType: z.string(),
-    /** Source URL or compact source label copied to the relationship row */
-    source: z.string().nullish(),
     /** Canonical source entity UUID stored on the relationship row. Compare with the requested entity id and `/v1/entities/relationships/types` sourceRole/targetRole to orient directional relationships such as parent. */
     sourceEntityId: z.uuid().nullish(),
     /** Canonical target entity UUID stored on the relationship row. Compare with the requested entity id and `/v1/entities/relationships/types` sourceRole/targetRole to orient directional relationships such as parent. */

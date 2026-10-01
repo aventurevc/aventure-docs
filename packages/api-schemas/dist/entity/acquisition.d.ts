@@ -37,7 +37,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        typeRecord: z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";
             Fund: "Fund";
@@ -47,7 +47,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             Organization: "Organization";
             Product: "Product";
             Service: "Service";
-        }>>>;
+        }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
     acquirerEntity: z.ZodObject<{
@@ -87,7 +87,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        typeRecord: z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";
             Fund: "Fund";
@@ -97,7 +97,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             Organization: "Organization";
             Product: "Product";
             Service: "Service";
-        }>>>;
+        }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
     amount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -125,8 +125,11 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
     }, unknown>>;
     fundraiseTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     investorJoinId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        sourceDetail: z.ZodString;
+    }, z.core.$strip>>>;
     relationshipId: z.ZodInt;
-    source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     status: z.ZodEnum<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";

@@ -13,7 +13,6 @@ const EntityTextSchemaDefinition = z.object({
     language: z.string().nullish(),
     /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
     owner: EntityPersonOwnerSchema,
-    source: z.string().nullish(),
     text: z.string(),
     textName: z.string().nullish(),
     /** Value object for text type classification */

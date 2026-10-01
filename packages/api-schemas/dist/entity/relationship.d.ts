@@ -85,7 +85,7 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
             productServiceSlug: z.ZodArray<z.ZodString>;
         }, z.core.$strip>>>;
         slug: z.ZodString;
-        typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        typeRecord: z.ZodEnum<{
             "Business Line": "Business Line";
             Company: "Company";
             Fund: "Fund";
@@ -95,15 +95,18 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
             Organization: "Organization";
             Product: "Product";
             Service: "Service";
-        }>>>;
+        }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
     id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        sourceDetail: z.ZodString;
+    }, z.core.$strip>>>;
     relationship: z.ZodArray<z.ZodObject</*elided*/ any, z.core.$strip>>;
     relationshipType: z.ZodString;
-    source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceEntityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     targetEntityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

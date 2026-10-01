@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.
  *
  * @openapiSchema Identification
+ * @endpoint GET /v1/lookup
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup

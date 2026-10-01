@@ -6,6 +6,7 @@ import { SearchDuplicateCandidateScoreSchema } from "../search/duplicate-candida
  * One existing record considered as the subject.
  *
  * @openapiSchema IdentificationCandidate
+ * @endpoint GET /v1/lookup
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup

@@ -88,7 +88,7 @@ export const EntitySchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255),
     /** Entity type classification */
-    typeRecord: EntityTypeSchema.nullish(),
+    typeRecord: EntityTypeSchema,
     /** Last modification timestamp */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });

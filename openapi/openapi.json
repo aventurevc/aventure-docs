@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.24"
+    "version": "0.8.28"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -4921,6 +4921,15 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Set false to identify without scheduling background enrichment or repair. Defaults to true.",
+            "in": "query",
+            "name": "scheduleEnrichment",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "requestBody": {
@@ -5055,7 +5064,7 @@
                 }
               }
             },
-            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
+            "description": "The caller's name-identification or natural-search quota is spent; retry after the Retry-After seconds.",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -16209,6 +16218,257 @@
       }
     },
     "/v1/lookup": {
+      "get": {
+        "description": "Runs the existing company and person identification ladders and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. This read never schedules background enrichment or repair. Name-identification quota and live deadlines apply.",
+        "operationId": "getIdentification",
+        "parameters": [
+          {
+            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person.",
+            "example": "Stripe",
+            "in": "query",
+            "name": "name",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person.",
+              "example": "Stripe",
+              "maxLength": 200,
+              "minLength": 0
+            }
+          },
+          {
+            "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+            "example": [
+              "https://stripe.com"
+            ],
+            "in": "query",
+            "name": "url",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+              "example": [
+                "https://stripe.com"
+              ],
+              "items": {
+                "type": "string",
+                "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+                "example": [
+                  "https://stripe.com"
+                ]
+              },
+              "maxItems": 10,
+              "minItems": 0
+            }
+          },
+          {
+            "description": "City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own.",
+            "example": "San Francisco, CA",
+            "in": "query",
+            "name": "location",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own.",
+              "example": "San Francisco, CA",
+              "maxLength": 2000,
+              "minLength": 0
+            }
+          },
+          {
+            "description": "Specific facts in plain words: product, industry, employer and title, or founder names. Generic words like startup add nothing.",
+            "example": "Online payments company",
+            "in": "query",
+            "name": "context",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Specific facts in plain words: product, industry, employer and title, or founder names. Generic words like startup add nothing.",
+              "example": "Online payments company",
+              "maxLength": 2000,
+              "minLength": 0
+            }
+          },
+          {
+            "description": "aVenture news id of the article that mentions the subject; an unknown id is a 400.",
+            "example": 123456,
+            "in": "query",
+            "name": "sourceNewsId",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "description": "aVenture news id of the article that mentions the subject; an unknown id is a 400.",
+              "example": 123456
+            }
+          },
+          {
+            "description": "URL of the article that mentions the subject; read from aVenture news when stored there, otherwise fetched.",
+            "example": "https://techcrunch.com/2024/01/01/example",
+            "in": "query",
+            "name": "sourceUrl",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "URL of the article that mentions the subject; read from aVenture news when stored there, otherwise fetched.",
+              "example": "https://techcrunch.com/2024/01/01/example",
+              "maxLength": 2000,
+              "minLength": 0
+            }
+          },
+          {
+            "description": "Also considers hidden and unpublished records; needs private-visibility authority. Without it, NO_MATCH covers only records you can see.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Identification"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Read a company or person identity without scheduling enrichment",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
       "post": {
         "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
@@ -16223,9 +16483,18 @@
             }
           },
           {
-            "description": "Treat name only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. An exact match never spends the natural-search quota, with or without this flag.",
+            "description": "Treat name only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. An exact match never spends the name-identification quota, with or without this flag.",
             "in": "query",
             "name": "legacy",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Set false to identify without scheduling background enrichment or repair. Defaults to true.",
+            "in": "query",
+            "name": "scheduleEnrichment",
             "required": false,
             "schema": {
               "type": "boolean"
@@ -16364,7 +16633,7 @@
                 }
               }
             },
-            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
+            "description": "The caller's name-identification or natural-search quota is spent; retry after the Retry-After seconds.",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -16427,7 +16696,7 @@
     },
     "/v1/lookup-jobs": {
       "post": {
-        "description": "Reads one article (sourceUrl or sourceNewsId), extracts the companies and people it names, and identifies each one as POST /v1/lookup would with the article as its source. Poll the returned status URL with GET /v1/lookup-jobs/{jobId}. Spends one natural-search quota slot for each name the job may identify, up to its per-article limit, when it is accepted. For a name no stored record is, the job creates a hidden shell record at no charge only when a second live page on another site names it too; enrich that shell by its id. The same article sent again soon returns the earlier job without spending quota again. Example body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"}.",
+        "description": "Reads one article (sourceUrl or sourceNewsId), extracts the companies and people it names, and identifies each one as POST /v1/lookup would with the article as its source. Poll the returned status URL with GET /v1/lookup-jobs/{jobId}. Spends one natural-search quota slot for the article read and one name-identification quota slot for each name the job may identify, up to its per-article limit, when it is accepted. For a name no stored record is, the job creates a hidden shell record at no charge only when a second live page on another site names it too; enrich that shell by its id. The same article sent again soon returns the earlier job without spending quota again. Example body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"}.",
         "operationId": "createLookupJob",
         "parameters": [
           {
@@ -16575,7 +16844,7 @@
                 }
               }
             },
-            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
+            "description": "The caller's name-identification or natural-search quota is spent; retry after the Retry-After seconds.",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -16808,7 +17077,7 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Never creates records. Needs a signed-in user or the admin key and spends the same natural-search quota as POST /v1/lookup-jobs; reading a page or screenshot also needs a plan, sending mention does not. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Never creates records. Needs a signed-in user or the admin key. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
         "parameters": [
           {
@@ -16899,6 +17168,16 @@
             },
             "description": "Unauthorized",
             "x-aventure-standard-response": true
+          },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The signed-in caller's subscription does not include reading a page or screenshot; sending mention needs no plan."
           },
           "403": {
             "content": {
@@ -19155,6 +19434,15 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Set false to identify without scheduling background enrichment or repair. Defaults to true.",
+            "in": "query",
+            "name": "scheduleEnrichment",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "requestBody": {
@@ -19289,7 +19577,7 @@
                 }
               }
             },
-            "description": "The caller's natural-search quota is spent; retry after the Retry-After seconds.",
+            "description": "The caller's name-identification or natural-search quota is spent; retry after the Retry-After seconds.",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -29536,6 +29824,17 @@
             ],
             "description": "Primary/renderable curation flag for this relationship row. isCurrent=false or isPrimary=false hides the row from default relationship reads."
           },
+          "publicSource": {
+            "description": "Published page behind this relationship, read from its provenance; absent for internal sources.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityResearchPublicSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "relationship": {
             "type": "array",
             "description": "Nested relationships for the joined entity",
@@ -29546,13 +29845,6 @@
           "relationshipType": {
             "type": "string",
             "description": "Canonical relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Similarity endpoint rows use stored relationship types when a curation row exists and calculated when the row comes from semantic/vector similarity."
-          },
-          "source": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Source URL or compact source label copied to the relationship row"
           },
           "sourceEntityId": {
             "type": [
@@ -30431,15 +30723,20 @@
             "format": "uuid",
             "description": "Type-safe identifier for fundraise investor joins"
           },
+          "publicSource": {
+            "description": "Published page behind this acquisition, read from its provenance; absent for internal sources.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityResearchPublicSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "relationshipId": {
             "type": "integer",
             "format": "int32"
-          },
-          "source": {
-            "type": [
-              "string",
-              "null"
-            ]
           },
           "status": {
             "$ref": "#/components/schemas/EntityAcquisitionStage",
@@ -31750,17 +32047,6 @@
             "type": "string",
             "description": "Attached managed storage path; never an external image URL"
           },
-          "provenance": {
-            "description": "Latest write source for this media asset slot from res_provenance_event. `changedAt` is the last-modified timestamp of the current attached file.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/DatasourceSourceMetadata"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "targetId": {
             "type": [
               "string",
@@ -32245,6 +32531,17 @@
             "type": "integer",
             "format": "int32"
           },
+          "publicSource": {
+            "description": "Published page behind this value, read from its provenance; absent for internal sources.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityResearchPublicSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "textValue": {
             "type": [
               "string",
@@ -32347,6 +32644,17 @@
           "id": {
             "type": "integer",
             "format": "int32"
+          },
+          "publicSource": {
+            "description": "Published page behind this value, read from its provenance; absent for internal sources.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityResearchPublicSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "text": {
             "type": "string"
@@ -32589,12 +32897,6 @@
           "owner": {
             "$ref": "#/components/schemas/EntityPersonOwner",
             "description": "Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field."
-          },
-          "source": {
-            "type": [
-              "string",
-              "null"
-            ]
           },
           "text": {
             "type": "string"
@@ -35283,15 +35585,8 @@
             "pattern": "^[a-z0-9_-]+$"
           },
           "typeRecord": {
-            "description": "Entity type classification",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityType"
-              },
-              {
-                "type": "null"
-              }
-            ]
+            "$ref": "#/components/schemas/EntityType",
+            "description": "Entity type classification"
           },
           "updatedAt": {
             "type": [
@@ -35307,7 +35602,8 @@
           "image",
           "nameAlias",
           "nameBrand",
-          "slug"
+          "slug",
+          "typeRecord"
         ]
       },
       "EntityNameAliasEntityAliasType": {
@@ -36892,6 +37188,28 @@
           "similarity"
         ]
       },
+      "EntityResearchPublicSource": {
+        "type": "object",
+        "description": "Published page behind a research value, read from its provenance. Absent when the value came from an internal source.",
+        "properties": {
+          "changedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When the value was last written from this source."
+          },
+          "sourceDetail": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the published page supporting the value."
+          }
+        },
+        "required": [
+          "sourceDetail"
+        ]
+      },
       "ResearchDerivedRange": {
         "type": "object",
         "description": "Read-only derived range projection for targetDateAbsolute detail rows",
@@ -37089,17 +37407,6 @@
         "type": "object",
         "description": "Read-only assessment of whether a stored logo/photo depicts the target's own brand, decided from visible features of the stored mark versus the target's own reference marks",
         "properties": {
-          "approval": {
-            "description": "Confirmed media-slot provenance that made this a match without a model/reference comparison; null for deterministic hash, vision, and insufficient outcomes",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/DatasourceSourceMetadata"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
           "candidateObserved": {
             "type": [
               "string",
@@ -37169,57 +37476,6 @@
           "BLOG"
         ],
         "example": "ENTITY"
-      },
-      "DatasourceSourceMetadata": {
-        "type": "object",
-        "description": "Grouped source/provenance metadata for private v1 response fields",
-        "properties": {
-          "changedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "dataSourceUpdatedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "detail": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "kind": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "pendingApproval": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32"
-          },
-          "sourceId": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "status": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        }
       },
       "LogoAccuracyReference": {
         "type": "object",

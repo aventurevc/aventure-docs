@@ -57,7 +57,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
@@ -159,7 +159,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
@@ -242,7 +242,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
@@ -344,7 +344,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
@@ -414,7 +414,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         } | null | undefined;
         transactionId?: string | null | undefined;
@@ -461,7 +461,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         } | null | undefined;
         transactionId?: string | null | undefined;

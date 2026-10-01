@@ -1,7 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
-import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 import { LogoAccuracyReferenceSchema } from "./accuracy-reference.js";
 /**
  * Read-only assessment of whether a stored logo/photo depicts the target's own brand, decided from visible features of the stored mark versus the target's own reference marks
@@ -15,8 +14,6 @@ import { LogoAccuracyReferenceSchema } from "./accuracy-reference.js";
  * @contractRole canonical
  */
 export const LogoAccuracySchema = z.object({
-    /** Confirmed media-slot provenance that made this a match without a model/reference comparison; null for deterministic hash, vision, and insufficient outcomes */
-    approval: DatasourceSourceMetadataSchema.nullish(),
     /** Literal visible description of the candidate mark, when assessed by vision */
     candidateObserved: z.string().nullish(),
     /** Confidence in the outcome */

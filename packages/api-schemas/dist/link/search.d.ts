@@ -149,7 +149,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                         updatedAt?: string | null | undefined;
                     };
                     enrichment: {
@@ -469,7 +469,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     productServiceSlug: string[];
                                 } | null | undefined;
                                 slug: string;
-                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
@@ -547,7 +547,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     productServiceSlug: string[];
                                 } | null | undefined;
                                 slug: string;
-                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                                 updatedAt?: string | null | undefined;
                             };
                             acceleratorName: string;
@@ -568,6 +568,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             discreteValue?: number | null | undefined;
                             entityId: string;
                             id: number;
+                            publicSource?: {
+                                changedAt?: string | null | undefined;
+                                sourceDetail: string;
+                            } | null | undefined;
                             textValue?: string | null | undefined;
                             typeResearchDetail: string;
                             updatedAt?: string | null | undefined;
@@ -900,7 +904,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                         updatedAt?: string | null | undefined;
                     };
                     enrichment: {
@@ -1220,7 +1224,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     productServiceSlug: string[];
                                 } | null | undefined;
                                 slug: string;
-                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
@@ -1298,7 +1302,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     productServiceSlug: string[];
                                 } | null | undefined;
                                 slug: string;
-                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                                 updatedAt?: string | null | undefined;
                             };
                             acceleratorName: string;
@@ -1319,6 +1323,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             discreteValue?: number | null | undefined;
                             entityId: string;
                             id: number;
+                            publicSource?: {
+                                changedAt?: string | null | undefined;
+                                sourceDetail: string;
+                            } | null | undefined;
                             textValue?: string | null | undefined;
                             typeResearchDetail: string;
                             updatedAt?: string | null | undefined;

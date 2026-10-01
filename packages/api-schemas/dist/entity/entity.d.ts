@@ -86,7 +86,7 @@ export declare const EntitySchema: z.ZodObject<{
         productServiceSlug: z.ZodArray<z.ZodString>;
     }, z.core.$strip>>>;
     slug: z.ZodString;
-    typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    typeRecord: z.ZodEnum<{
         "Business Line": "Business Line";
         Company: "Company";
         Fund: "Fund";
@@ -96,7 +96,7 @@ export declare const EntitySchema: z.ZodObject<{
         Organization: "Organization";
         Product: "Product";
         Service: "Service";
-    }>>>;
+    }>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 export type Entity = z.infer<typeof EntitySchema>;

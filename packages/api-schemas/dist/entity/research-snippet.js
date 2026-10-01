@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { ContentComplianceSchema } from "../content/compliance.js";
+import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 /**
  * Persisted research snippet row for one entity.
  *
@@ -25,6 +26,8 @@ export const EntityResearchSnippetSchema = z.object({
     /** Canonical entity UUID */
     entityId: z.uuid(),
     id: z.int(),
+    /** Published page behind this value, read from its provenance; absent for internal sources. */
+    publicSource: EntityResearchPublicSourceSchema.nullish(),
     text: z.string(),
     textType: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

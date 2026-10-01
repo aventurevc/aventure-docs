@@ -1,6 +1,5 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { DatasourceSourceMetadataSchema } from "../datasource/source-metadata.js";
 import { LogoAccuracySchema } from "../logo/accuracy.js";
 import { MediaObjectTypeSchema } from "./object-type.js";
 /**
@@ -24,8 +23,6 @@ export const MediaUploadSchema = z.object({
     mediaType: MediaObjectTypeSchema,
     /** Attached managed storage path; never an external image URL */
     path: z.string(),
-    /** Latest write source for this media asset slot from res_provenance_event. `changedAt` is the last-modified timestamp of the current attached file. */
-    provenance: DatasourceSourceMetadataSchema.nullish(),
     /** Attached entity/person/news target id, when known */
     targetId: z.string().nullish(),
 });

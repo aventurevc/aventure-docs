@@ -26,6 +26,10 @@ export declare const EntityResearchSnippetSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     entityId: z.ZodUUID;
     id: z.ZodInt;
+    publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        sourceDetail: z.ZodString;
+    }, z.core.$strip>>>;
     text: z.ZodString;
     textType: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityAcquisitionEvidenceSchema } from "./acquisition-evidence.js";
 import { EntityAcquisitionStageSchema } from "./acquisition-stage.js";
 import { EntitySchema } from "./entity.js";
+import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseDataConfidenceSchema } from "../fundraise/data-confidence.js";
 import { FundraiseTransactionStatusSchema } from "../fundraise/transaction-status.js";
 const EntityAcquisitionSchemaDefinition = z.object({
@@ -22,8 +23,9 @@ const EntityAcquisitionSchemaDefinition = z.object({
     fundraiseTransactionId: z.uuid().nullish(),
     /** Type-safe identifier for fundraise investor joins */
     investorJoinId: z.uuid().nullish(),
+    /** Published page behind this acquisition, read from its provenance; absent for internal sources. */
+    publicSource: EntityResearchPublicSourceSchema.nullish(),
     relationshipId: z.int(),
-    source: z.string().nullish(),
     /** Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed (including Closed (Acquihire)). */
     status: EntityAcquisitionStageSchema,
     transactionStatus: FundraiseTransactionStatusSchema.nullish(),

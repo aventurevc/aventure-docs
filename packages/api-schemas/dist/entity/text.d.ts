@@ -15,7 +15,6 @@ declare const EntityTextSchemaDefinition: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     }, z.core.$strip>;
-    source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     text: z.ZodString;
     textName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     textType: z.ZodString;

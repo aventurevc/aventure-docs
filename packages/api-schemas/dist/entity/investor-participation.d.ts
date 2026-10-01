@@ -38,7 +38,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 productServiceSlug: z.ZodArray<z.ZodString>;
             }, z.core.$strip>>>;
             slug: z.ZodString;
-            typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            typeRecord: z.ZodEnum<{
                 "Business Line": "Business Line";
                 Company: "Company";
                 Fund: "Fund";
@@ -48,7 +48,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 Organization: "Organization";
                 Product: "Product";
                 Service: "Service";
-            }>>>;
+            }>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         enrichment: z.ZodType<{
@@ -646,7 +646,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
@@ -730,7 +730,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
@@ -1091,7 +1091,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                         updatedAt?: string | null | undefined;
                     };
                 };
@@ -1419,7 +1419,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             productServiceSlug: string[];
                         } | null | undefined;
                         slug: string;
-                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                         updatedAt?: string | null | undefined;
                     };
                 };
@@ -1505,15 +1505,18 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
             id?: number | null | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
+            publicSource?: {
+                changedAt?: string | null | undefined;
+                sourceDetail: string;
+            } | null | undefined;
             relationship: /*elided*/ any[];
             relationshipType: string;
-            source?: string | null | undefined;
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
@@ -1558,15 +1561,18 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     productServiceSlug: string[];
                 } | null | undefined;
                 slug: string;
-                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
             id?: number | null | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
+            publicSource?: {
+                changedAt?: string | null | undefined;
+                sourceDetail: string;
+            } | null | undefined;
             relationship: any[];
             relationshipType: string;
-            source?: string | null | undefined;
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
@@ -1602,7 +1608,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
                 acceleratorName: string;
@@ -1623,6 +1629,10 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
+                publicSource?: {
+                    changedAt?: string | null | undefined;
+                    sourceDetail: string;
+                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -1638,6 +1648,10 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                publicSource?: {
+                    changedAt?: string | null | undefined;
+                    sourceDetail: string;
+                } | null | undefined;
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
@@ -1673,7 +1687,7 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         productServiceSlug: string[];
                     } | null | undefined;
                     slug: string;
-                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
                 acceleratorName: string;
@@ -1694,6 +1708,10 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
+                publicSource?: {
+                    changedAt?: string | null | undefined;
+                    sourceDetail: string;
+                } | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -1709,6 +1727,10 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                publicSource?: {
+                    changedAt?: string | null | undefined;
+                    sourceDetail: string;
+                } | null | undefined;
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;

@@ -30,7 +30,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
         acceleratorName: string;
@@ -69,7 +69,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
                 productServiceSlug: string[];
             } | null | undefined;
             slug: string;
-            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
         acceleratorName: string;
@@ -90,6 +90,10 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
+        publicSource?: {
+            changedAt?: string | null | undefined;
+            sourceDetail: string;
+        } | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -106,6 +110,10 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
+        publicSource?: {
+            changedAt?: string | null | undefined;
+            sourceDetail: string;
+        } | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -121,6 +129,10 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>>;
         entityId: z.ZodUUID;
         id: z.ZodInt;
+        publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            sourceDetail: z.ZodString;
+        }, z.core.$strip>>>;
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
