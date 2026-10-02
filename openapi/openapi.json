@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.30"
+    "version": "0.8.31"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16470,7 +16470,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
+        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. This JSON answer never creates records; with Accept: text/event-stream a signed-in caller gets the identification as an event, then, for NO_MATCH with officialUrl whose page names the subject, the hidden shell filed for it with its background enrichment run. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -16696,7 +16696,7 @@
     },
     "/v1/lookup-jobs": {
       "post": {
-        "description": "Reads one article (sourceUrl or sourceNewsId), extracts the companies and people it names, and identifies each one as POST /v1/lookup would with the article as its source. Poll the returned status URL with GET /v1/lookup-jobs/{jobId}. Spends one natural-search quota slot for the article read and one name-identification quota slot for each name the job may identify, up to its per-article limit, when it is accepted. For a name no stored record is, the job creates a hidden shell record at no charge only when a second live page on another site names it too; enrich that shell by its id. The same article sent again soon returns the earlier job without spending quota again. Example body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"}.",
+        "description": "Reads one article (sourceUrl or sourceNewsId), extracts the companies and people it names, and identifies each one as POST /v1/lookup would with the article as its source. Poll the returned status URL with GET /v1/lookup-jobs/{jobId}. Spends one natural-search quota slot for the article read and one name-identification quota slot for each name the job may identify, up to its per-article limit, when it is accepted. For a name no stored record is, the job creates a hidden shell record at no charge only when a second live page on another site names it too, imports its website logo, and files a background enrichment run that merges it into a public copy or graduates it (shell, enrichmentRunId). The same article sent again soon returns the earlier job without spending quota again. Example body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"}.",
         "operationId": "createLookupJob",
         "parameters": [
           {
@@ -16905,7 +16905,7 @@
     },
     "/v1/lookup-jobs/{jobId}": {
       "get": {
-        "description": "Returns the job state and, once COMPLETED, one mention per company or person the article names: its identification (MATCHED gives the stored record, NEEDS_REVIEW the candidates) and, for NO_MATCH, the hidden shell record created for it or shellDetail saying why none was. A name whose lookup failed carries failureReason instead; send it alone to POST /v1/lookup. Only the caller that started the job can read it.",
+        "description": "Returns the job state and, once COMPLETED, one mention per company or person the article names: its identification (MATCHED gives the stored record, NEEDS_REVIEW the candidates) and, for NO_MATCH, the hidden shell record filed for it with its enrichmentRunId, or shellDetail saying why none was. A name whose lookup failed carries failureReason instead; send it alone to POST /v1/lookup. Only the caller that started the job can read it.",
         "operationId": "getLookupJob",
         "parameters": [
           {
@@ -17077,7 +17077,7 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Never creates records. Needs a signed-in user or the admin key. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. This JSON answer never creates records; the event-stream variant files a hidden shell for each NO_MATCH name whose own site names it, starts its background enrichment, and returns it as shell. Needs a signed-in user or the admin key. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
         "parameters": [
           {
@@ -36529,8 +36529,16 @@
       },
       "LookupJobMention": {
         "type": "object",
-        "description": "One company or person a source names, which stored record it is, and, from a lookup job, the hidden shell record filed for it when it is new.",
+        "description": "One company or person a source names, which stored record it is, and, from a lookup job or a streaming lookup, the hidden shell record filed for it when it is new.",
         "properties": {
+          "enrichmentRunId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "The background harness run filed to graduate or merge shell; absent when none was filed, such as when the shell is already public."
+          },
           "entity": {
             "type": "array",
             "description": "POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by decision-model probability and duplicate-check score.",
@@ -36576,7 +36584,7 @@
             }
           },
           "shell": {
-            "description": "The hidden record a lookup job created for a NO_MATCH name after the article and one independent live page both showed it exists; enrich it by its entityId or personId. Absent when no record was created.",
+            "description": "The hidden record filed for a NO_MATCH name whose own site web search found and whose live page names it, or the stored hidden record that already holds that site. A background enrichment run graduates or merges it (enrichmentRunId). Absent when no record was filed.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityPersonOwner"
@@ -36591,7 +36599,7 @@
               "string",
               "null"
             ],
-            "description": "One sentence on why no shell was created for a NO_MATCH name, or why a created shell lacks its URL; absent otherwise."
+            "description": "One sentence on why no shell was filed for a NO_MATCH name; absent otherwise."
           }
         },
         "required": [

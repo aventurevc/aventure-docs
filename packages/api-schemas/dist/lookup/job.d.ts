@@ -4,6 +4,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
     failureReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     jobId: z.ZodUUID;
     mention: z.ZodArray<z.ZodType<{
+        enrichmentRunId?: string | null | undefined;
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -603,6 +604,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
+        enrichmentRunId?: string | null | undefined;
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;

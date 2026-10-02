@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const MentionLookupSchemaDefinition: z.ZodObject<{
     mention: z.ZodArray<z.ZodType<{
+        enrichmentRunId?: string | null | undefined;
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -600,6 +601,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
+        enrichmentRunId?: string | null | undefined;
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;

@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
+    enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     entity: z.ZodArray<z.ZodType<{
         core: {
             defaultCurrency?: string | null | undefined;
@@ -1168,7 +1169,7 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type LookupJobMentionDefinition = z.infer<typeof LookupJobMentionSchemaDefinition>;
 /**
- * One company or person a source names, which stored record it is, and, from a lookup job, the hidden shell record filed for it when it is new.
+ * One company or person a source names, which stored record it is, and, from a lookup job or a streaming lookup, the hidden shell record filed for it when it is new.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

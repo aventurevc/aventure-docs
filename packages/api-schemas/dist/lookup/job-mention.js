@@ -5,6 +5,8 @@ import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationSchema } from "../identification/identification.js";
 import { PersonSchema } from "../person/person.js";
 const LookupJobMentionSchemaDefinition = z.object({
+    /** The background harness run filed to graduate or merge shell; absent when none was filed, such as when the shell is already public. */
+    enrichmentRunId: z.uuid().nullish(),
     /** POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by decision-model probability and duplicate-check score. */
     entity: z.array(EntityListSchema),
     /** One sentence on why this name could not be identified; absent otherwise. */
@@ -17,13 +19,13 @@ const LookupJobMentionSchemaDefinition = z.object({
     name: z.string(),
     /** POST /v1/lookup-mentions only: the candidate people as search results show them, ranked like entity. */
     person: z.array(PersonSchema),
-    /** The hidden record a lookup job created for a NO_MATCH name after the article and one independent live page both showed it exists; enrich it by its entityId or personId. Absent when no record was created. */
+    /** The hidden record filed for a NO_MATCH name whose own site web search found and whose live page names it, or the stored hidden record that already holds that site. A background enrichment run graduates or merges it (enrichmentRunId). Absent when no record was filed. */
     shell: EntityPersonOwnerSchema.nullish(),
-    /** One sentence on why no shell was created for a NO_MATCH name, or why a created shell lacks its URL; absent otherwise. */
+    /** One sentence on why no shell was filed for a NO_MATCH name; absent otherwise. */
     shellDetail: z.string().nullish(),
 });
 /**
- * One company or person a source names, which stored record it is, and, from a lookup job, the hidden shell record filed for it when it is new.
+ * One company or person a source names, which stored record it is, and, from a lookup job or a streaming lookup, the hidden shell record filed for it when it is new.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}
