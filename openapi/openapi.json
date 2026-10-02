@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.33"
+    "version": "0.8.34"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -4910,7 +4910,7 @@
     },
     "/v1/entities/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.entityId is the company; read it with GET /v1/entities/{entityId} (CLI: entities get) or queue research on it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich). NO_MATCH: no record you can see is this company; a caller with write access creates it, using officialUrl as its website when present. NEEDS_REVIEW: compare candidates' current URLs and identity fields with source evidence about the requested company. Treat a candidate URL as the subject's website only when independent source evidence binds it to the subject; resend once with evidenced URL, location, context, and sourceUrl or sourceNewsId. Ask the user which candidate it is or whether it is new only if the refined lookup remains NEEDS_REVIEW; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL or registry-id proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send the website and LinkedIn company URL whenever you have them, location and context to tell namesakes apart, and the article as sourceUrl or sourceNewsId. A parent, subsidiary, or namesake is a different company. For the full detail of an exact slug, URL, or domain use GET /v1/entities/lookup-exact. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"],\"location\":\"Austin, TX\"}.",
+        "description": "Identifies a company, product, or service within the caller's visibility and requested scope. Send typeRecord=Company for a company, or typeRecord=Product or Service for an offering, plus providerId when its provider is known. Provider words in context are evidence, not type or provider constraints. MATCHED: match.owner.entityId identifies the record and match.record.typeRecord names its type; read GET /v1/entities/{entityId} (CLI: entities get). A provider company and its offering are different records even when they share a brand or website. NO_MATCH: no visible record satisfies the requested identity and type/provider scope; this says nothing about other scopes or hidden records. NEEDS_REVIEW: compare candidate identity fields with first-party evidence, refine once with an evidenced URL and the same type/provider scope, and never create while ambiguity remains. stage names the deciding rung: DETERMINISTIC, JUDGMENT, or WEB_EVIDENCE. Put subject-owned pages in url and articles in sourceUrl or sourceNewsId. Lookup schedules no enrichment unless scheduleEnrichment=true. For full detail by exact slug or URL use GET /v1/entities/lookup-exact. Company example: {\"name\":\"Acme AI\",\"typeRecord\":\"Company\",\"url\":[\"https://acme.ai\"]}. Offering example: {\"name\":\"Acme Assistant\",\"typeRecord\":\"Product\",\"url\":[\"https://acme.ai/assistant\"]}; add the evidenced provider UUID as providerId when known.",
         "operationId": "lookupEntity",
         "parameters": [
           {
@@ -4923,7 +4923,7 @@
             }
           },
           {
-            "description": "Set false to identify without scheduling background enrichment or repair. Defaults to true.",
+            "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -5113,7 +5113,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find which company a name refers to, or confirm it is new",
+        "summary": "Identify a company, product, or service by name and scope",
         "tags": [
           "Search"
         ],
@@ -16219,7 +16219,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Runs the existing company and person identification ladders and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. This read never schedules background enrichment or repair. Name-identification quota and live deadlines apply.",
+        "description": "Runs the entity and person identification ladders with the requested type and provider and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. This read never schedules background enrichment or repair. Name-identification quota and live deadlines apply.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -16314,6 +16314,26 @@
               "example": "https://techcrunch.com/2024/01/01/example",
               "maxLength": 2000,
               "minLength": 0
+            }
+          },
+          {
+            "description": "Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families.",
+            "in": "query",
+            "name": "typeRecord",
+            "required": false,
+            "schema": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
+          {
+            "description": "Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup.",
+            "in": "query",
+            "name": "providerId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "description": "Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup."
             }
           },
           {
@@ -16461,7 +16481,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Read a company or person identity without scheduling enrichment",
+        "summary": "Read a company, product, service, or person identity without enrichment",
         "tags": [
           "Search"
         ],
@@ -16470,7 +16490,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company or a person in one call. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the company and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. This JSON answer never creates records; with Accept: text/event-stream a signed-in caller gets the identification as an event, then, for NO_MATCH with officialUrl whose page names the subject, the hidden shell filed for it with its background enrichment run. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
+        "description": "Identifies a company, product, service, or person in one call. Send typeRecord for an entity-only lookup and providerId when identifying a Product or Service from a known provider; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. This JSON answer never creates records and schedules enrichment only with scheduleEnrichment=true; with Accept: text/event-stream a signed-in caller gets the identification as an event, then, for NO_MATCH with officialUrl whose page names the subject, the hidden shell filed for it with its background enrichment run. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -16492,7 +16512,7 @@
             }
           },
           {
-            "description": "Set false to identify without scheduling background enrichment or repair. Defaults to true.",
+            "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -16682,7 +16702,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find a company or person by name, URL, or id",
+        "summary": "Identify a company, product, service, or person by name, URL, or id",
         "tags": [
           "Search"
         ],
@@ -19446,7 +19466,7 @@
             }
           },
           {
-            "description": "Set false to identify without scheduling background enrichment or repair. Defaults to true.",
+            "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -29303,7 +29323,7 @@
       },
       "IdentificationSubject": {
         "type": "object",
-        "description": "The company or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.",
+        "description": "The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.",
         "properties": {
           "context": {
             "type": [
@@ -29332,6 +29352,14 @@
             "maxLength": 200,
             "minLength": 0
           },
+          "providerId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup."
+          },
           "sourceNewsId": {
             "type": [
               "integer",
@@ -29350,6 +29378,17 @@
             "example": "https://techcrunch.com/2024/01/01/example",
             "maxLength": 2000,
             "minLength": 0
+          },
+          "typeRecord": {
+            "description": "Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "url": {
             "type": "array",
@@ -29370,7 +29409,7 @@
       },
       "Identification": {
         "type": "object",
-        "description": "Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.",
+        "description": "Which existing entity or person satisfies the requested identity, type, and provider scope, how that was settled, and the candidates considered, most probable first.",
         "properties": {
           "candidate": {
             "type": "array",
@@ -29435,7 +29474,7 @@
           },
           "status": {
             "type": "string",
-            "description": "What the caller does next: act on match, create, or ask the user.",
+            "description": "Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence.",
             "enum": [
               "MATCHED",
               "NO_MATCH",
@@ -38613,7 +38652,7 @@
               "null"
             ],
             "format": "int32",
-            "description": "Percentage, 0 to 100, of the company's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for companies not yet computed.",
+            "description": "Percentage, 0 to 100, of the entity's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for entities not yet computed.",
             "maximum": 100,
             "minimum": 0
           },
@@ -38639,7 +38678,7 @@
           },
           "owner": {
             "$ref": "#/components/schemas/EntityPersonOwner",
-            "description": "Whether the record is a company (entityId) or a person (personId); read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}."
+            "description": "Entity identity (entityId) or person identity (personId). record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}."
           },
           "probability": {
             "type": [

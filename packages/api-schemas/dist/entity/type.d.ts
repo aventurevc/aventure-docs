@@ -9,6 +9,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema EntitySchema
  * @usedBySchema EntityTypeGroupMembershipSchema
+ * @usedBySchema IdentificationSubjectSchema
  * @usedBySchema NewsResolvedEntityLinkSchema
  * @usedBySchema PersonListArrayFilterSchema
  * @usedBySchema SearchDuplicateCandidateScoreSchema

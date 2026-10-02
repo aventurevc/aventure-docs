@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { IdentificationCandidateSchema } from "./candidate.js";
 /**
- * Which existing company or person record a subject is, how that was settled, and the candidates considered, most probable first.
+ * Which existing entity or person satisfies the requested identity, type, and provider scope, how that was settled, and the candidates considered, most probable first.
  *
  * @openapiSchema Identification
  * @endpoint GET /v1/lookup
@@ -32,7 +32,7 @@ export const IdentificationSchema = z.object({
     officialUrl: z.string().nullish(),
     /** The ladder step that settled the answer. */
     stage: z.enum(["DETERMINISTIC", "JUDGMENT", "WEB_EVIDENCE"]),
-    /** What the caller does next: act on match, create, or ask the user. */
+    /** Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
 });
 //# sourceMappingURL=identification.js.map

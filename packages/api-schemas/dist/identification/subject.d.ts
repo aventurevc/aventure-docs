@@ -3,13 +3,25 @@ declare const IdentificationSubjectSchemaDefinition: z.ZodObject<{
     context: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     name: z.ZodString;
+    providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        "Business Line": "Business Line";
+        Company: "Company";
+        Fund: "Fund";
+        Government: "Government";
+        "Investment Firm": "Investment Firm";
+        Nonprofit: "Nonprofit";
+        Organization: "Organization";
+        Product: "Product";
+        Service: "Service";
+    }>>>;
     url: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;
 type IdentificationSubjectDefinition = z.infer<typeof IdentificationSubjectSchemaDefinition>;
 /**
- * The company or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.
+ * The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.
  *
  * @openapiSchema IdentificationSubject
  * @endpoint POST /v1/entities/lookup
