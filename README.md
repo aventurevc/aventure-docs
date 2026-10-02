@@ -1,4 +1,4 @@
-# aVenture developer documentation
+# aVenture Developer Documentation
 
 Source for [docs.aventure.vc](https://docs.aventure.vc): guides for researching
 private companies, founders, investors, funding rounds, and news through the

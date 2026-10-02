@@ -1,31 +1,31 @@
-# aVenture documentation
+# aVenture Documentation
 
 > aVenture provides research on private companies, founders, investors, funding rounds, and news through a REST API, CLI, and MCP server. Every surface requires an aVenture account (free or paid): https://aventure.vc/sign-up
 
-## Get started
+## Get Started
 
-- [MCP quickstart](https://docs.aventure.vc/mcp): Connect Claude, ChatGPT, or any AI app to the hosted aVenture MCP server with a copy-paste prompt; recommended for desktop, web, and cloud AI apps. In Researchly (https://researchly.chat), choose Connect aVenture under Profile, then MCP servers.
-- [CLI quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli` (Node.js 24.18.0 or later) with a copy-paste prompt, sign in, and find a company or person by name, website, or description; recommended for terminals and coding agents.
-- [API quickstart](https://docs.aventure.vc/quickstart): Create an API key, find a company or person by name, website, or description, and read its funding rounds.
-- [Answer a real question](https://docs.aventure.vc/first-answer): Filter companies, open one record, and read its funding rounds in API, CLI, and MCP form.
-- [Identify a company or person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues into the matching record.
-- [Identify names in an article](https://docs.aventure.vc/lookup-articles): Experimental. Extract every company and person a news article names and identify each one.
-- [Update records with research](https://docs.aventure.vc/research-updates): Experimental. Judge record freshness and queue single or batch research updates.
-- [Call MCP tools directly](https://docs.aventure.vc/mcp-tools): Name the operation, place each input, and read tool answers from your own code or prompts.
+- [MCP Quickstart](https://docs.aventure.vc/mcp): Connect Claude, ChatGPT, or any AI app to the hosted aVenture MCP server with a copy-paste prompt; recommended for desktop, web, and cloud AI apps. In Researchly (https://researchly.chat), choose Connect aVenture under Profile, then MCP servers.
+- [CLI Quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli` (Node.js 24.18.0 or later) with a copy-paste prompt, sign in, and find a company or person by name, website, or description; recommended for terminals and coding agents.
+- [API Quickstart](https://docs.aventure.vc/quickstart): Create an API key, find a company or person by name, website, or description, and read its funding rounds.
+- [Answer a Real Question](https://docs.aventure.vc/first-answer): Filter companies, open one record, and read its funding rounds in API, CLI, and MCP form.
+- [Identify a Company or Person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues into the matching record.
+- [Identify Names in an Article](https://docs.aventure.vc/lookup-articles): Experimental. Extract every company and person a news article names and identify each one.
+- [Update Records With Research](https://docs.aventure.vc/research-updates): Experimental. Judge record freshness and queue single or batch research updates.
+- [Call MCP Tools Directly](https://docs.aventure.vc/mcp-tools): Name the operation, place each input, and read tool answers from your own code or prompts.
 - [Authentication](https://docs.aventure.vc/authentication): Create an API key and sign in from the CLI or an MCP client.
-- [Plans and usage](https://docs.aventure.vc/plans-and-usage): What counts against your plan's allowances and how to upgrade.
-- [Pagination and filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
+- [Plans and Usage](https://docs.aventure.vc/plans-and-usage): What counts against your plan's allowances and how to upgrade.
+- [Pagination and Filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
 - [Errors](https://docs.aventure.vc/errors): Interpret error responses, rate limits, and plan usage limits.
-- [API reference](https://docs.aventure.vc/api-reference): Every endpoint, parameter, and schema.
-- [API operation index](https://docs.aventure.vc/api-reference/llms.txt): Index of API operation pages.
+- [API Reference](https://docs.aventure.vc/api-reference): Every endpoint, parameter, and schema.
+- [API Operation Index](https://docs.aventure.vc/api-reference/llms.txt): Index of API operation pages.
 
 ## MCP
 
-- [aVenture data MCP](https://mcp.aventure.vc/mcp): Connect with an MCP client over Streamable HTTP and sign in through the browser with OAuth. A client that asks for an OAuth client ID, or fails with `does not support dynamic client registration`, uses client ID `KL7mINzGk0le0QiD`. Claude Code: `claude mcp add --scope user --transport http --client-id KL7mINzGk0le0QiD --callback-port 6276 aventure https://mcp.aventure.vc/mcp`, then `/mcp` to sign in. A `401` later means the sign-in expired: reconnect the server in the client. An ordinary GET request is not supported.
-- [Documentation-search MCP](https://docs.aventure.vc/_mcp/server): Optionally search this documentation through Fern's MCP server. It is separate from the aVenture data MCP.
+- [aVenture Data MCP](https://mcp.aventure.vc/mcp): Connect with an MCP client over Streamable HTTP and sign in through the browser with OAuth. A client that asks for an OAuth client ID, or fails with `does not support dynamic client registration`, uses client ID `KL7mINzGk0le0QiD`. Claude Code: `claude mcp add --scope user --transport http --client-id KL7mINzGk0le0QiD --callback-port 6276 aventure https://mcp.aventure.vc/mcp`, then `/mcp` to sign in. A `401` later means the sign-in expired: reconnect the server in the client. An ordinary GET request is not supported.
+- [Documentation-Search MCP](https://docs.aventure.vc/_mcp/server): Optionally search this documentation through Fern's MCP server. It is separate from the aVenture data MCP.
 
-## Packages and source
+## Packages and Source
 
-- [aVenture CLI source](https://github.com/aventurevc/aventure-cli) and [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli) on npm.
-- [aVenture MCP source](https://github.com/aventurevc/aventure-mcp) and [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, for running the server locally (rarely needed; most clients use the hosted server).
+- [aVenture CLI Source](https://github.com/aventurevc/aventure-cli) and [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli) on npm.
+- [aVenture MCP Source](https://github.com/aventurevc/aventure-mcp) and [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, for running the server locally (rarely needed; most clients use the hosted server).
 - [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas) provides TypeScript schemas and types.

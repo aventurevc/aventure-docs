@@ -8,7 +8,7 @@ Every failed API, CLI, or MCP call returns one body: an RFC 9457 problem
 detail, served as `application/problem+json`. Parse that one shape to handle
 every failure.
 
-## The problem detail body
+## The Problem Detail Body
 
 `type`, `title`, `status`, `detail`, and `instance` are the RFC standard fields.
 The remaining fields are aVenture extensions, present only when they apply:
@@ -28,7 +28,7 @@ The remaining fields are aVenture extensions, present only when they apply:
 - **`traceId`** and **`spanId`** identify the request. Quote them when you
   [contact support](/support).
 
-## Status codes
+## Status Codes
 
 | Status | Meaning | What to do |
 |---|---|---|
@@ -48,7 +48,7 @@ Retry `500`, `503`, and a `429` from a request-rate limit. Do not retry `400`,
 `401`, `402`, `403`, `404`, `406`, `409`, `415`, or `422`, because the same
 request fails the same way.
 
-## Subscription refusals
+## Subscription Refusals
 
 A `402` means the operation needs a subscription state your account does not
 have. `code` names the cause:
@@ -63,7 +63,7 @@ have. `code` names the cause:
 Plain-English search, link search, and research requests can answer `402`.
 [Plans and usage](/plans-and-usage) explains how plans gate features.
 
-## Rate limits
+## Rate Limits
 
 A request-rate limit answers `429` and carries its state in the problem detail
 and in the `Retry-After` header:
@@ -91,7 +91,7 @@ an absolute timestamp.
 request-rate limits. `NATURAL_SEARCH`, `WEB_SEARCH`, and `INFERENCE_PROVIDER`
 limit one feature, so other endpoints can still succeed.
 
-## Usage limits
+## Usage Limits
 
 When you have used a monthly allowance, such as company profile views, person
 profile views, or web searches, the API answers `429` with `code`
@@ -126,7 +126,7 @@ On plans with additional usage turned on, a `429` with `code`
 set or used your prepaid credit. Raise the cap in
 [subscription settings](https://aventure.vc/settings/subscription) to continue.
 
-## Redirects on changed slugs
+## Redirects on Changed Slugs
 
 `GET /v1/entities/lookup-exact`, `GET /v1/people/lookup-exact`, and `GET /v1/news/lookup`
 can answer `301` instead of `404` when a record's slug has changed. Follow the

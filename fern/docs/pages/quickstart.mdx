@@ -1,5 +1,5 @@
 ---
-title: API quickstart
+title: API Quickstart
 subtitle: Find companies and people with the aVenture API
 slug: quickstart
 ---
@@ -7,7 +7,7 @@ slug: quickstart
 Go from an API key to real answers: a company by website, by name, or by
 description, then a person, then funding rounds.
 
-## 1. Create an API key
+## 1. Create an API Key
 
 The API requires an aVenture account. Free and paid plans both work.
 
@@ -24,7 +24,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/auth/me/permissions"
 ```
 
-## 2. Find a company by its website
+## 2. Find a Company by Its Website
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
@@ -34,7 +34,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 The response is the full company profile: identity in `core`, including the
 `core.id` that other requests take, plus research, funding, people, and news.
 
-## 3. Find a company by name
+## 3. Find a Company by Name
 
 Steps 3 to 5 need a paid plan (AI Plus or AI Pro); on the free plan they answer
 `402` with `code` `subscription_required`. Step 2's website lookup and step 6 work
@@ -55,7 +55,7 @@ The answer says whether the name matched a record and, when it did, returns the
 record's `id` and `slug`. [Identify a company or person](/lookup) explains each
 answer.
 
-## 4. Find companies by describing them
+## 4. Find Companies by Describing Them
 
 When you don't know the name, describe what you're looking for.
 `POST /v1/search` searches companies, people, and news together:
@@ -68,7 +68,7 @@ curl -X POST \
   "https://api.aventure.vc/v1/search?size=10"
 ```
 
-## 5. Find a person
+## 5. Find a Person
 
 By name, with context:
 
@@ -85,7 +85,7 @@ By LinkedIn profile, pass the profile in `url` instead:
 To find people by description, use the same `POST /v1/search` as step 4, such as
 `{"query": "fintech founders who previously worked at PayPal"}`.
 
-## 6. Read a company's funding rounds
+## 6. Read a Company's Funding Rounds
 
 Set `ENTITY_ID` to `core.id` from step 2 and list its rounds:
 
@@ -95,13 +95,13 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/entities/$ENTITY_ID/fundraise-rounds?size=5"
 ```
 
-## Plans and usage
+## Plans and Usage
 
 Calls draw on your plan's monthly allowances. When one runs out, the API answers
 `429` with `code` `billing_allowance_exhausted`.
 [Plans and usage](/plans-and-usage) explains what counts and how to upgrade.
 
-## Next steps
+## Next Steps
 
 - [Answer a real question](/first-answer) chains these calls into one result.
 - [Pagination and filtering](/pagination-and-filtering) covers paging and filters.

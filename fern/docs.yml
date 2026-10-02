@@ -17,38 +17,38 @@ tabs:
 navigation:
   - tab: home
     layout:
-      - section: Get started
+      - section: Get Started
         contents:
           - page: Welcome
             path: docs/pages/welcome.mdx
-          - page: AI apps (MCP)
+          - page: AI Apps (MCP)
             path: docs/pages/mcp-quickstart.mdx
           - page: Terminal (CLI)
             path: docs/pages/cli-quickstart.mdx
-          - page: Your code (API)
+          - page: Your Code (API)
             path: docs/pages/quickstart.mdx
       - section: Guides
         contents:
-          - page: Answer a real question
+          - page: Answer a Real Question
             path: docs/pages/first-answer.mdx
-          - section: Identify records
+          - section: Identify Records
             collapsed: true
             contents:
-              - page: Identify a company or person
+              - page: Identify a Company or Person
                 path: docs/pages/lookup.mdx
-              - page: Identify names in an article
+              - page: Identify Names in an Article
                 path: docs/pages/lookup-articles.mdx
-              - page: Update records with research
+              - page: Update Records With Research
                 path: docs/pages/research-updates.mdx
-          - page: Call MCP tools directly
+          - page: Call MCP Tools Directly
             path: docs/pages/mcp-tools.mdx
       - section: Reference
         contents:
           - page: Authentication
             path: docs/pages/authentication.mdx
-          - page: Plans and usage
+          - page: Plans and Usage
             path: docs/pages/plans-and-usage.mdx
-          - page: Pagination and filtering
+          - page: Pagination and Filtering
             path: docs/pages/pagination-and-filtering.mdx
           - page: Errors
             path: docs/pages/errors.mdx
@@ -61,7 +61,7 @@ navigation:
     layout:
       - section: Overview
         contents:
-          - page: API reference
+          - page: API Reference
             path: docs/pages/api-reference-overview.mdx
       - api: aVenture API
         flattened: false
@@ -101,7 +101,7 @@ navigation:
               - personMetadata
               - personAddresses
               - personMedia
-          - section: News and content
+          - section: News and Content
             skip-slug: true
             contents:
               - news
@@ -111,7 +111,7 @@ navigation:
               - texts
               - urlLinks
               - repositories
-          - section: Search and identify
+          - section: Search and Identify
             skip-slug: true
             contents:
               - search
@@ -119,7 +119,7 @@ navigation:
               - semanticSimilarity:
                   - endpoint: GET /v1/entities/{entityId}/trending-news
                     slug: list-entity-trending-news
-                    title: Get trending news for an entity by UUID
+                    title: Get Trending News for an Entity by UUID
               - identifiers
               - recordSlugs
               - classificationTags
@@ -128,12 +128,12 @@ navigation:
                 contents:
                   - endpoint: GET /v1/resolve/{token}
                     slug: resolve-identifier
-          - section: Account and billing
+          - section: Account and Billing
             skip-slug: true
             contents:
               - auth
               - billing
-          - section: Agents and system
+          - section: Agents and System
             skip-slug: true
             contents:
               - agents

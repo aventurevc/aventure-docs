@@ -1,5 +1,5 @@
 ---
-title: Identify a company or person
+title: Identify a Company or Person
 subtitle: Turn a name and a few clues into the record it refers to
 slug: lookup
 availability: beta
@@ -15,7 +15,7 @@ Lookup answers one question: **which aVenture record is this name?** You send a
 name as your source writes it plus any clues you have. The answer says whether
 one record matches, none does, or a person has to decide.
 
-## Pick an entry point
+## Pick an Entry Point
 
 | Operation | Use it when | CLI | MCP `operationId` |
 |-----------|-------------|-----|-------------------|
@@ -42,7 +42,7 @@ If you already hold an exact slug, URL, or domain and want the full record, use
 `GET /v1/entities/lookup-exact` or `GET /v1/people/lookup-exact` instead. Those
 reads return `404` or `409` rather than guessing.
 
-## Send every clue you have
+## Send Every Clue You Have
 
 Only `name` is required. Each other field narrows the answer.
 
@@ -59,7 +59,7 @@ Put articles in `sourceUrl`, not in `url`: `url` is only for pages the subject
 owns. A parent company, subsidiary, or namesake is a different company. The same
 person name at a different employer is a different person.
 
-## Act on the answer
+## Act on the Answer
 
 Every response has a `status`, a one-sentence `detail`, and a `candidate` list
 ordered most probable first.
@@ -73,7 +73,7 @@ ordered most probable first.
 `duplicate` lists other stored records that appear to be the same subject
 stored again. `NO_MATCH` covers only the records your credential can see.
 
-## How the answer was settled
+## How the Answer Was Settled
 
 `stage` names the step that settled the answer:
 
@@ -155,7 +155,7 @@ To accept only an exact id, handle, registry id, or slug on `POST /v1/lookup`,
 add `legacy=true` (`--legacy true` in the CLI). The lookup then skips judgment
 and web search and returns `404` when nothing matches exactly.
 
-## Access and limits
+## Access and Limits
 
 Lookup and article lookup require a signed-in caller: an API key or a CLI or
 MCP sign-in (see [Authentication](/authentication)). A signed-in caller whose
@@ -169,7 +169,7 @@ spend quota. When the quota is exhausted the call returns [`429`](/errors)
 with a `Retry-After` header. [Plans and usage](/plans-and-usage)
 explains what counts against an allowance.
 
-## Next steps
+## Next Steps
 
 - [Identify names in an article](/lookup-articles) runs this lookup on every company and person an article names.
 - [Update records with research](/research-updates) refreshes the records you identified.

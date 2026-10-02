@@ -16,7 +16,7 @@ How you sign in depends on where you work:
 | Researchly | Choose **Connect aVenture** under [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) |
 | API | Send an API key as a bearer token |
 
-## Create an API key
+## Create an API Key
 
 1. Sign in to aVenture.
 2. Open [API Keys settings](https://aventure.vc/settings/api-keys).
@@ -33,7 +33,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 
 A `200` confirms the key works and lists what it can reach.
 
-## Sign in from the CLI
+## Sign In From the CLI
 
 ```bash
 aventure auth login
@@ -45,19 +45,19 @@ one-time code to approve on any device; `--no-browser` forces that mode.
 [Developer Access settings](https://aventure.vc/settings/developer) lists past
 CLI sign-ins and revokes them. In CI, set `AUTH_TOKEN` to an API key instead.
 
-## Connect an MCP client
+## Connect an MCP Client
 
 The [MCP quickstart](/mcp#get-started-in-one-step) has a prompt that connects
 your AI app, plus the URL and OAuth client ID to enter by hand. Your client signs
 you in through the browser when it connects.
 
-## Keep credentials safe
+## Keep Credentials Safe
 
 Anyone holding an API key or token has the access it grants, and their calls
 use your allowances. Keep credentials server-side, load them from a secret
 manager, and never ship one in browser code or commit one to a repository.
 
-## When authentication fails
+## When Authentication Fails
 
 A missing, expired, or unrecognized credential returns `401`, and its `detail`
 says how to sign in:

@@ -1,5 +1,5 @@
 ---
-title: CLI quickstart
+title: CLI Quickstart
 subtitle: Research companies and people from your terminal
 slug: cli
 ---
@@ -10,7 +10,7 @@ and reads their funding, founders, investors, and news. You need an
 Working in Claude, ChatGPT, or another AI app instead? Use the
 [MCP server](/mcp).
 
-## Get started in one step
+## Get Started in One Step
 
 Paste this into Claude Code, Codex, ChatGPT, or any assistant that can run
 terminal commands:
@@ -26,7 +26,7 @@ Use `aventure --help` to find other commands.
 Docs: https://docs.aventure.vc/cli
 ```
 
-## Set up by hand
+## Set Up by Hand
 
 <Steps>
 <Step title="Install">
@@ -38,7 +38,7 @@ npm install --global @aventurevc/aventure-cli
 The CLI requires Node.js 24.18.0 or later.
 
 </Step>
-<Step title="Sign in">
+<Step title="Sign In">
 
 ```bash
 aventure auth login
@@ -50,7 +50,7 @@ one-time code to approve on any device; `--no-browser` forces that mode. For CI,
 [API key](/authentication#create-an-api-key) instead.
 
 </Step>
-<Step title="Find a company">
+<Step title="Find a Company">
 
 ```bash
 aventure entities lookup-exact get --url https://stripe.com
@@ -62,7 +62,7 @@ This works on every plan.
 </Step>
 </Steps>
 
-## Find a company
+## Find a Company
 
 <Note>
 `lookup` and `search` need a paid plan (AI Plus or AI Pro). On the free plan,
@@ -77,7 +77,7 @@ or a keyword with `aventure entities search --text-search Stripe`.
 | A website | `aventure lookup --name Stripe --url https://stripe.com` |
 | A description | `aventure search --query "seed-stage climate software companies in Austin"` |
 
-## Find a person
+## Find a Person
 
 | You have | Command |
 |---|---|
@@ -87,7 +87,7 @@ or a keyword with `aventure entities search --text-search Stripe`.
 
 [Identify a company or person](/lookup) explains each lookup answer.
 
-## Go deeper on a record
+## Go Deeper on a Record
 
 ```bash
 aventure entities get --entity-id <id>
@@ -105,7 +105,7 @@ aventure entities list --type-record Company --stage Seed --headquarters-city Au
 
 Run `aventure entities --help` or `aventure people --help` for every command.
 
-## Plans and usage
+## Plans and Usage
 
 Calls draw on your plan's monthly allowances. When one runs out, the command
 stops with a message that names the limit and how to upgrade.
@@ -117,7 +117,7 @@ aventure billing plans list         # plans with monthly and annual prices
 
 [Plans and usage](/plans-and-usage#when-you-reach-a-limit) covers upgrading.
 
-## Output and exit codes
+## Output and Exit Codes
 
 - `--text` is the default in a terminal: a table for a list and labeled fields for one record.
 - `--data` prints the response as JSON. It is the default when output is piped.
@@ -129,7 +129,7 @@ Exit code `0` means the call succeeded and `1` means it failed, so a script can
 branch on the exit code without parsing output. With `--json`, check `ok` before
 reading `data.response`.
 
-## Find the right command
+## Find the Right Command
 
 ```bash
 aventure command-catalog search funding rounds --format compact
@@ -139,14 +139,14 @@ aventure help getEntity
 `aventure help` accepts an [API reference](/api-reference) `operationId` or a
 command path, and prints the flags the command needs.
 
-## Check your setup
+## Check Your Setup
 
 - `aventure auth doctor` checks the CLI version, API connection, and sign-in,
   and names the fix for each problem.
 - `aventure auth status` shows which credential is in use.
 - `aventure auth logout` signs you out.
 
-## Next steps
+## Next Steps
 
 - [Answer a real question](/first-answer) chains these commands into one result.
 - [MCP quickstart](/mcp) puts the same data inside an AI client.

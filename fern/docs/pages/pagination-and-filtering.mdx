@@ -1,5 +1,5 @@
 ---
-title: Pagination and filtering
+title: Pagination and Filtering
 subtitle: Page through results and narrow them down
 slug: pagination-and-filtering
 ---
@@ -32,7 +32,7 @@ names. Sorting by a filter name such as `entityName` returns [`422`](/errors),
 and its `detail` lists every sortable property. `POST /v1/search` does not accept
 `sort`, because each record type in its response is ordered by relevance.
 
-## Reading the page object
+## Reading the Page Object
 
 Records are in `content`. The other fields tell you where you are:
 
@@ -95,7 +95,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/entities/filters?typeRecord=Company"
 ```
 
-## Keyword, exact-name, and plain-English search
+## Keyword, Exact-Name, and Plain-English Search
 
 Three inputs look similar and do different things:
 
@@ -106,7 +106,7 @@ Three inputs look similar and do different things:
   and searches companies, people, and news together. It requires a credential
   and a plan that includes search.
 
-## When the query outgrows a URL
+## When the Query Outgrows a URL
 
 A long filter set can exceed practical query-string limits.
 `POST /v1/entities/search` takes the same company filters as a JSON body and is
@@ -114,7 +114,7 @@ still a read. It requires a [credential](/authentication). `page`, `size`, and
 `sort` stay in the query string, and its default `size` is `25`. Its body also
 accepts `semanticQuery`, which matches on meaning instead of wording.
 
-## Counting without fetching
+## Counting Without Fetching
 
 On `POST /v1/entities/search`, `countOnly=true` returns the number of matches in
 `totalElements` and returns no records. `content` is empty even when records
