@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.34"
+    "version": "0.8.35"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -101,10 +101,6 @@
       "name": "Publications"
     },
     {
-      "description": "Async article and bulk name identification",
-      "name": "Lookup jobs"
-    },
-    {
       "description": "Acquisitions a company made or was part of. The path entity is acquired; acquirerEntityId is the buyer.",
       "name": "Entity Acquisitions"
     },
@@ -135,6 +131,10 @@
     {
       "description": "Companies and funds: people, funding, and news",
       "name": "Entities"
+    },
+    {
+      "description": "Async article and bulk name identification",
+      "name": "Lookup Jobs"
     },
     {
       "description": "A company's square and standard logo slots",
@@ -278,7 +278,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get build metadata",
+        "summary": "Get Build Metadata",
         "tags": [
           "System"
         ],
@@ -459,7 +459,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deprecated: answer a natural-language platform help question",
+        "summary": "Deprecated: Answer a Natural-Language Platform Help Question",
         "tags": [
           "Agents"
         ],
@@ -621,7 +621,7 @@
             "clerkApiKeyAuth": []
           }
         ],
-        "summary": "Revoke current API key",
+        "summary": "Revoke Current API Key",
         "tags": [
           "Auth"
         ],
@@ -635,7 +635,7 @@
             }
           ],
           "role": "revoke",
-          "summary": "Sign out: revoke the API key and forget stored OAuth"
+          "summary": "Sign Out: Revoke the API Key and Forget Stored OAuth"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -779,7 +779,7 @@
             "clerkApiKeyAuth": []
           }
         ],
-        "summary": "Get current API key",
+        "summary": "Get Current API Key",
         "tags": [
           "Auth"
         ],
@@ -932,7 +932,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Start CLI authorization",
+        "summary": "Start CLI Authorization",
         "tags": [
           "Auth"
         ],
@@ -954,7 +954,7 @@
             }
           ],
           "role": "start",
-          "summary": "Sign in with a browser-approved aVenture API key"
+          "summary": "Sign In With a Browser-Approved aVenture API Key"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -1116,7 +1116,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Acknowledge CLI credential delivery",
+        "summary": "Acknowledge CLI Credential Delivery",
         "tags": [
           "Auth"
         ],
@@ -1284,7 +1284,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Poll CLI authorization",
+        "summary": "Poll CLI Authorization",
         "tags": [
           "Auth"
         ],
@@ -1436,7 +1436,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Current user permissions",
+        "summary": "Current User Permissions",
         "tags": [
           "Auth"
         ],
@@ -1614,7 +1614,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Authorize API operations",
+        "summary": "Authorize API Operations",
         "tags": [
           "Auth"
         ],
@@ -1735,7 +1735,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get the sign-in options",
+        "summary": "Get the Sign-In Options",
         "tags": [
           "Auth"
         ],
@@ -1755,7 +1755,7 @@
             }
           ],
           "role": "oauth",
-          "summary": "Sign in through your browser"
+          "summary": "Sign In Through Your Browser"
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -1901,7 +1901,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Read the current AI credit allowance",
+        "summary": "Read the Current AI Credit Allowance",
         "tags": [
           "Billing"
         ],
@@ -2081,7 +2081,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Create or recover a Checkout Session",
+        "summary": "Create or Recover a Checkout Session",
         "tags": [
           "Billing"
         ],
@@ -2261,7 +2261,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Preview a subscription plan change",
+        "summary": "Preview a Subscription Plan Change",
         "tags": [
           "Billing"
         ],
@@ -2441,7 +2441,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Change the subscription plan",
+        "summary": "Change the Subscription Plan",
         "tags": [
           "Billing"
         ],
@@ -2562,7 +2562,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List subscription tiers and plans",
+        "summary": "List Subscription Tiers and Plans",
         "tags": [
           "Billing"
         ],
@@ -2721,7 +2721,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Create a hosted Billing Portal Session",
+        "summary": "Create a Hosted Billing Portal Session",
         "tags": [
           "Billing"
         ],
@@ -2869,7 +2869,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Read the current billing subscription",
+        "summary": "Read the Current Billing Subscription",
         "tags": [
           "Billing"
         ],
@@ -3062,7 +3062,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Enrich many companies and people",
+        "summary": "Enrich Many Companies and People",
         "tags": [
           "Harness"
         ],
@@ -3995,7 +3995,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List companies, products, and services",
+        "summary": "List Companies, Products, and Services",
         "tags": [
           "Entities"
         ],
@@ -4164,7 +4164,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get the company classification taxonomy",
+        "summary": "Get the Company Classification Taxonomy",
         "tags": [
           "Classification Tags"
         ],
@@ -4358,7 +4358,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List classification tags",
+        "summary": "List Classification Tags",
         "tags": [
           "Classification Tags"
         ],
@@ -4533,7 +4533,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the company filter options",
+        "summary": "List the Company Filter Options",
         "tags": [
           "Entity Filters"
         ],
@@ -4713,7 +4713,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Refine the company filter options",
+        "summary": "Refine the Company Filter Options",
         "tags": [
           "Entity Filters"
         ],
@@ -4896,7 +4896,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Look up filter values inside the current search",
+        "summary": "Look Up Filter Values Inside the Current Search",
         "tags": [
           "Entity Filters"
         ],
@@ -5113,7 +5113,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Identify a company, product, or service by name and scope",
+        "summary": "Identify a Company, Product, or Service by Name and Scope",
         "tags": [
           "Search"
         ],
@@ -5328,7 +5328,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Look up companies in bulk by id, slug, or URL",
+        "summary": "Look Up Companies in Bulk by ID, Slug, or URL",
         "tags": [
           "Entities"
         ],
@@ -5641,7 +5641,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Read full entity detail by exact slug, URL, or domain",
+        "summary": "Read Full Entity Detail by Exact Slug, URL, or Domain",
         "tags": [
           "Entities"
         ],
@@ -5834,7 +5834,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Look up which company each identifier matches",
+        "summary": "Look Up Which Company Each Identifier Matches",
         "tags": [
           "Entities"
         ],
@@ -6072,7 +6072,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deprecated: find companies in natural language",
+        "summary": "Deprecated: Find Companies in Natural Language",
         "tags": [
           "Natural Search"
         ],
@@ -6199,7 +6199,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List entity relationship types",
+        "summary": "List Entity Relationship Types",
         "tags": [
           "Entity Relationships"
         ],
@@ -6343,7 +6343,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one relationship by id",
+        "summary": "Get One Relationship by ID",
         "tags": [
           "Entity Relationships"
         ],
@@ -6494,7 +6494,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List the accepted research detail types",
+        "summary": "List the Accepted Research Detail Types",
         "tags": [
           "Entity Research"
         ],
@@ -6618,7 +6618,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted research snippet types",
+        "summary": "List the Accepted Research Snippet Types",
         "tags": [
           "Entity Research"
         ],
@@ -6891,7 +6891,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search companies, products, and services",
+        "summary": "Search Companies, Products, and Services",
         "tags": [
           "Entities"
         ],
@@ -7064,7 +7064,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get SEC EDGAR facts for a public company",
+        "summary": "Get SEC EDGAR Facts for a Public Company",
         "tags": [
           "Entity Research"
         ],
@@ -7200,7 +7200,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted company text types",
+        "summary": "List the Accepted Company Text Types",
         "tags": [
           "Texts"
         ],
@@ -7324,7 +7324,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted typeRecord values",
+        "summary": "List the Accepted typeRecord Values",
         "tags": [
           "Entity Maintenance"
         ],
@@ -7505,7 +7505,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one company, product, or service by id",
+        "summary": "Get One Company, Product, or Service by ID",
         "tags": [
           "Entities"
         ],
@@ -7694,7 +7694,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's acquisitions",
+        "summary": "List a Company's Acquisitions",
         "tags": [
           "Entity Acquisitions"
         ],
@@ -7859,7 +7859,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one company acquisition",
+        "summary": "Get One Company Acquisition",
         "tags": [
           "Entity Acquisitions"
         ],
@@ -8017,7 +8017,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's locations",
+        "summary": "List a Company's Locations",
         "tags": [
           "Entity Addresses"
         ],
@@ -8199,7 +8199,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one company address",
+        "summary": "Get One Company Address",
         "tags": [
           "Entity Addresses"
         ],
@@ -8391,7 +8391,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's blog posts",
+        "summary": "List a Company's Blog Posts",
         "tags": [
           "Research Blog Posts"
         ],
@@ -8573,7 +8573,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one company blog post",
+        "summary": "Get One Company Blog Post",
         "tags": [
           "Research Blog Posts"
         ],
@@ -8764,7 +8764,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a company's classifications",
+        "summary": "List a Company's Classifications",
         "tags": [
           "Entity Classifications"
         ],
@@ -8958,7 +8958,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Suggest classifications for a company",
+        "summary": "Suggest Classifications for a Company",
         "tags": [
           "Entity Classifications"
         ],
@@ -9213,7 +9213,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a company's publications",
+        "summary": "List a Company's Publications",
         "tags": [
           "Publications"
         ],
@@ -9388,7 +9388,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Count a company's publications",
+        "summary": "Count a Company's Publications",
         "tags": [
           "Publications"
         ],
@@ -9626,7 +9626,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search a company's publications",
+        "summary": "Search a Company's Publications",
         "tags": [
           "Publications"
         ],
@@ -9796,7 +9796,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's headcount over time",
+        "summary": "List a Company's Headcount Over Time",
         "tags": [
           "Entity Research"
         ],
@@ -9839,15 +9839,6 @@
             }
           },
           {
-            "description": "Plain-language instruction for this run, such as which facts or sources to check first.",
-            "in": "query",
-            "name": "userPrompt",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "description": "Task preset keys that scope or emphasize this run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400.",
             "in": "query",
             "name": "taskPresetKey",
@@ -9860,6 +9851,15 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrichmentPrompt"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "content": {
@@ -9958,6 +9958,17 @@
             "description": "Conflict",
             "x-aventure-standard-response": true
           },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
           "422": {
             "content": {
               "application/problem+json": {
@@ -10027,7 +10038,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Enrich one company, product, or service",
+        "summary": "Enrich One Company, Product, or Service",
         "tags": [
           "Harness"
         ],
@@ -10278,7 +10289,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the investors in a funding round",
+        "summary": "List the Investors in a Funding Round",
         "tags": [
           "Entity Fundraise"
         ],
@@ -10433,7 +10444,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one investor on a funding round",
+        "summary": "Get One Investor on a Funding Round",
         "tags": [
           "Entity Fundraise"
         ],
@@ -10691,7 +10702,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's funding rounds",
+        "summary": "List a Company's Funding Rounds",
         "tags": [
           "Entity Fundraise"
         ],
@@ -10847,7 +10858,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one funding round",
+        "summary": "Get One Funding Round",
         "tags": [
           "Entity Fundraise"
         ],
@@ -11123,7 +11134,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the investments a company made",
+        "summary": "List the Investments a Company Made",
         "tags": [
           "Entity Fundraise"
         ],
@@ -11268,7 +11279,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get investor activity",
+        "summary": "Get Investor Activity",
         "tags": [
           "Entity Fundraise"
         ],
@@ -11481,7 +11492,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's investors",
+        "summary": "List a Company's Investors",
         "tags": [
           "Entity Fundraise"
         ],
@@ -11635,7 +11646,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get a company logo",
+        "summary": "Get a Company Logo",
         "tags": [
           "Entity Logo"
         ],
@@ -11895,7 +11906,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the people at a company",
+        "summary": "List the People at a Company",
         "tags": [
           "Entity Person Associations"
         ],
@@ -12131,7 +12142,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one person's role at a company",
+        "summary": "Get One Person's Role at a Company",
         "tags": [
           "Entity Person Associations"
         ],
@@ -12344,7 +12355,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List person investors",
+        "summary": "List Person Investors",
         "tags": [
           "Entity Fundraise"
         ],
@@ -12556,7 +12567,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's relationships",
+        "summary": "List a Company's Relationships",
         "tags": [
           "Entity Relationships"
         ],
@@ -12762,7 +12773,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a company's GitHub repositories",
+        "summary": "List a Company's GitHub Repositories",
         "tags": [
           "Repositories"
         ],
@@ -12945,7 +12956,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get the research gathered about a company",
+        "summary": "Get the Research Gathered About a Company",
         "tags": [
           "Entity Research"
         ],
@@ -13152,7 +13163,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List research details",
+        "summary": "List Research Details",
         "tags": [
           "Entity Research"
         ],
@@ -13336,7 +13347,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get research detail",
+        "summary": "Get Research Detail",
         "tags": [
           "Entity Research"
         ],
@@ -13543,7 +13554,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List research snippets",
+        "summary": "List Research Snippets",
         "tags": [
           "Entity Research"
         ],
@@ -13727,7 +13738,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get research snippet",
+        "summary": "Get Research Snippet",
         "tags": [
           "Entity Research"
         ],
@@ -13955,7 +13966,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get similar companies by id",
+        "summary": "Get Similar Companies by ID",
         "tags": [
           "Entity Similar"
         ],
@@ -14183,7 +14194,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get similar company summaries by id",
+        "summary": "Get Similar Company Summaries by ID",
         "tags": [
           "Entity Similar"
         ],
@@ -14355,7 +14366,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get a company's slug",
+        "summary": "Get a Company's Slug",
         "tags": [
           "Record Slugs"
         ],
@@ -14554,7 +14565,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's text",
+        "summary": "List a Company's Text",
         "tags": [
           "Texts"
         ],
@@ -14746,7 +14757,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one piece of company text",
+        "summary": "Get One Piece of Company Text",
         "tags": [
           "Texts"
         ],
@@ -14916,7 +14927,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List trending news about a company",
+        "summary": "List Trending News About a Company",
         "tags": [
           "Semantic Similarity"
         ],
@@ -15123,7 +15134,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a company's identifiers",
+        "summary": "List a Company's Identifiers",
         "tags": [
           "Identifiers"
         ],
@@ -15307,7 +15318,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one company identifier",
+        "summary": "Get One Company Identifier",
         "tags": [
           "Identifiers"
         ],
@@ -15505,7 +15516,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's URLs",
+        "summary": "List a Company's URLs",
         "tags": [
           "URL Links"
         ],
@@ -15687,7 +15698,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one company URL",
+        "summary": "Get One Company URL",
         "tags": [
           "URL Links"
         ],
@@ -15854,7 +15865,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a company's valuation over time",
+        "summary": "List a Company's Valuation Over Time",
         "tags": [
           "Entity Fundraise"
         ],
@@ -16025,7 +16036,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one run",
+        "summary": "Get One Run",
         "tags": [
           "Harness"
         ],
@@ -16205,7 +16216,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Answer a natural-language platform help question",
+        "summary": "Answer a Natural-Language Platform Help Question",
         "tags": [
           "Agents"
         ],
@@ -16317,7 +16328,7 @@
             }
           },
           {
-            "description": "Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families.",
+            "description": "Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families. Invalid for a person lookup.",
             "in": "query",
             "name": "typeRecord",
             "required": false,
@@ -16481,7 +16492,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Read a company, product, service, or person identity without enrichment",
+        "summary": "Read a Company, Product, Service, or Person Identity Without Enrichment",
         "tags": [
           "Search"
         ],
@@ -16702,7 +16713,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Identify a company, product, service, or person by name, URL, or id",
+        "summary": "Identify a Company, Product, Service, or Person by Name, URL, or ID",
         "tags": [
           "Search"
         ],
@@ -16923,10 +16934,10 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Start an article lookup or a bounded lookup-only bulk job",
+        "summary": "Start an Article Lookup or a Bounded Lookup-Only Bulk Job",
         "tags": [
           "Search",
-          "Lookup jobs"
+          "Lookup Jobs"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -17095,10 +17106,10 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get a lookup job's state and the records its article names",
+        "summary": "Get a Lookup Job's State and the Records Its Article Names",
         "tags": [
           "Search",
-          "Lookup jobs"
+          "Lookup Jobs"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -17322,7 +17333,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Identify every company and person a page or screenshot names",
+        "summary": "Identify Every Company and Person a Page or Screenshot Names",
         "tags": [
           "Search"
         ],
@@ -17443,7 +17454,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get platform totals for companies, funding, and people",
+        "summary": "Get Platform Totals for Companies, Funding, and People",
         "tags": [
           "System"
         ],
@@ -17727,7 +17738,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List news articles, including a company's or person's news",
+        "summary": "List News Articles, Including a Company's or Person's News",
         "tags": [
           "News"
         ],
@@ -17907,7 +17918,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Submit news feedback",
+        "summary": "Submit News Feedback",
         "tags": [
           "News"
         ],
@@ -18154,7 +18165,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Look up one news article",
+        "summary": "Look Up One News Article",
         "tags": [
           "News"
         ],
@@ -18331,7 +18342,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one news article",
+        "summary": "Get One News Article",
         "tags": [
           "News"
         ],
@@ -18502,7 +18513,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the entities a news article is about",
+        "summary": "List the Entities a News Article Is About",
         "tags": [
           "Semantic Similarity"
         ],
@@ -18647,7 +18658,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get news thumbnail",
+        "summary": "Get News Thumbnail",
         "tags": [
           "News Thumbnail"
         ],
@@ -19157,7 +19168,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List people",
+        "summary": "List People",
         "tags": [
           "People"
         ],
@@ -19278,7 +19289,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List person filter options",
+        "summary": "List Person Filter Options",
         "tags": [
           "Person Metadata"
         ],
@@ -19442,7 +19453,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Search people filter options",
+        "summary": "Search People Filter Options",
         "tags": [
           "Person Metadata"
         ],
@@ -19656,7 +19667,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find which person a name refers to, or confirm they are new",
+        "summary": "Find Which Person a Name Refers to, or Confirm They Are New",
         "tags": [
           "Search"
         ],
@@ -19871,7 +19882,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Look up people in bulk by id or slug",
+        "summary": "Look Up People in Bulk by ID or Slug",
         "tags": [
           "People"
         ],
@@ -20174,7 +20185,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Read one person's full detail by exact slug or URL",
+        "summary": "Read One Person's Full Detail by Exact Slug or URL",
         "tags": [
           "People"
         ],
@@ -20409,7 +20420,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deprecated: find people in natural language",
+        "summary": "Deprecated: Find People in Natural Language",
         "tags": [
           "Natural Search"
         ],
@@ -20680,7 +20691,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search people",
+        "summary": "Search People",
         "tags": [
           "People"
         ],
@@ -20807,7 +20818,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted person text types",
+        "summary": "List the Accepted Person Text Types",
         "tags": [
           "Texts"
         ],
@@ -21017,7 +21028,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one person by id",
+        "summary": "Get One Person by ID",
         "tags": [
           "People"
         ],
@@ -21165,7 +21176,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a person's addresses",
+        "summary": "List a Person's Addresses",
         "tags": [
           "Person Addresses"
         ],
@@ -21320,7 +21331,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one person's address",
+        "summary": "Get One Person's Address",
         "tags": [
           "Person Addresses"
         ],
@@ -21512,7 +21523,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a person's blog posts",
+        "summary": "List a Person's Blog Posts",
         "tags": [
           "Research Blog Posts"
         ],
@@ -21694,7 +21705,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one person blog post",
+        "summary": "Get One Person Blog Post",
         "tags": [
           "Research Blog Posts"
         ],
@@ -21949,7 +21960,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a person's publications",
+        "summary": "List a Person's Publications",
         "tags": [
           "Publications"
         ],
@@ -22124,7 +22135,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Count a person's publications",
+        "summary": "Count a Person's Publications",
         "tags": [
           "Publications"
         ],
@@ -22362,7 +22373,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search a person's publications",
+        "summary": "Search a Person's Publications",
         "tags": [
           "Publications"
         ],
@@ -22408,15 +22419,6 @@
             }
           },
           {
-            "description": "Plain-language instruction for this run, such as which facts or sources to check first.",
-            "in": "query",
-            "name": "userPrompt",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "description": "Task preset keys that scope or emphasize this run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400.",
             "in": "query",
             "name": "taskPresetKey",
@@ -22429,6 +22431,15 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnrichmentPrompt"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "content": {
@@ -22527,6 +22538,17 @@
             "description": "Conflict",
             "x-aventure-standard-response": true
           },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
           "422": {
             "content": {
               "application/problem+json": {
@@ -22596,7 +22618,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Enrich one person",
+        "summary": "Enrich One Person",
         "tags": [
           "Harness"
         ],
@@ -22827,7 +22849,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a person's roles at companies",
+        "summary": "List a Person's Roles at Companies",
         "tags": [
           "Entity Person Associations"
         ],
@@ -23010,7 +23032,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get one of a person's roles at a company",
+        "summary": "Get One of a Person's Roles at a Company",
         "tags": [
           "Entity Person Associations"
         ],
@@ -23155,7 +23177,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get person graph",
+        "summary": "Get Person Graph",
         "tags": [
           "People"
         ],
@@ -23343,7 +23365,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List a person's investments",
+        "summary": "List a Person's Investments",
         "tags": [
           "Person Investments"
         ],
@@ -23488,7 +23510,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get person investor activity",
+        "summary": "Get Person Investor Activity",
         "tags": [
           "Person Investments"
         ],
@@ -23633,7 +23655,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get person photo",
+        "summary": "Get Person Photo",
         "tags": [
           "Person Photo"
         ],
@@ -23839,7 +23861,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a person's GitHub repositories",
+        "summary": "List a Person's GitHub Repositories",
         "tags": [
           "Repositories"
         ],
@@ -24053,7 +24075,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List people similar to one person",
+        "summary": "List People Similar to One Person",
         "tags": [
           "Semantic Similarity"
         ],
@@ -24242,7 +24264,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List text about a person",
+        "summary": "List Text About a Person",
         "tags": [
           "Texts"
         ],
@@ -24424,7 +24446,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one piece of text about a person",
+        "summary": "Get One Piece of Text About a Person",
         "tags": [
           "Texts"
         ],
@@ -24631,7 +24653,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "List a person's identifiers",
+        "summary": "List a Person's Identifiers",
         "tags": [
           "Identifiers"
         ],
@@ -24815,7 +24837,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one person identifier",
+        "summary": "Get One Person Identifier",
         "tags": [
           "Identifiers"
         ],
@@ -25013,7 +25035,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List person URLs",
+        "summary": "List Person URLs",
         "tags": [
           "URL Links"
         ],
@@ -25195,7 +25217,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Get one person URL",
+        "summary": "Get One Person URL",
         "tags": [
           "URL Links"
         ],
@@ -25366,7 +25388,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deprecated: find the record behind an id, slug, or URL",
+        "summary": "Deprecated: Find the Record Behind an ID, Slug, or URL",
         "tags": [
           "Search"
         ],
@@ -25580,7 +25602,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search companies, people, and news together",
+        "summary": "Search Companies, People, and News Together",
         "tags": [
           "Search"
         ],
@@ -25788,7 +25810,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deprecated: search companies, people, and news together",
+        "summary": "Deprecated: Search Companies, People, and News Together",
         "tags": [
           "Search"
         ],
@@ -25983,7 +26005,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search from a page URL",
+        "summary": "Search From a Page URL",
         "tags": [
           "Search"
         ],
@@ -26227,7 +26249,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find companies, startups, and investors in natural language",
+        "summary": "Find Companies, Startups, and Investors in Natural Language",
         "tags": [
           "Natural Search"
         ],
@@ -26474,7 +26496,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find people with natural language",
+        "summary": "Find People With Natural Language",
         "tags": [
           "Natural Search"
         ],
@@ -26598,7 +26620,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Get system uptime",
+        "summary": "Get System Uptime",
         "tags": [
           "System"
         ],
@@ -26774,7 +26796,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Look up an identifier owner",
+        "summary": "Look Up an Identifier Owner",
         "tags": [
           "Identifiers"
         ],
@@ -26898,7 +26920,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List the accepted unique identifier types",
+        "summary": "List the Accepted Unique Identifier Types",
         "tags": [
           "Identifiers"
         ],
@@ -27022,7 +27044,7 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "List URL types",
+        "summary": "List URL Types",
         "tags": [
           "URL Links"
         ],
@@ -27239,7 +27261,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Search the live web",
+        "summary": "Search the Live Web",
         "tags": [
           "Search"
         ],
@@ -28568,7 +28590,9 @@
               "string",
               "null"
             ],
-            "description": "Plain-language instruction for every run, such as which facts or sources to check first"
+            "description": "Plain-language instruction for every run, such as which facts or sources to check first",
+            "maxLength": 2000,
+            "minLength": 0
           }
         }
       },
@@ -29380,7 +29404,7 @@
             "minLength": 0
           },
           "typeRecord": {
-            "description": "Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families.",
+            "description": "Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families. Invalid for a person lookup.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityType"
@@ -31452,6 +31476,21 @@
           "COMPREHENSIVE",
           "INDIVIDUAL"
         ]
+      },
+      "EnrichmentPrompt": {
+        "type": "object",
+        "description": "Optional steering for one company or person enrichment run",
+        "properties": {
+          "userPrompt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Plain-language instruction for this run, such as which facts or sources to check first",
+            "maxLength": 2000,
+            "minLength": 0
+          }
+        }
       },
       "HarnessRun": {
         "type": "object",
@@ -34332,8 +34371,40 @@
       },
       "SystemStatus": {
         "type": "object",
-        "description": "Uptime SLA, served-operation identity, and minimum supported iOS build",
+        "description": "Uptime SLA, served-operation identity, and Apple app update policy",
         "properties": {
+          "latestIosBuild": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Latest available App Store iOS build number within that version",
+            "example": 0
+          },
+          "latestIosVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Latest available App Store iOS marketing version; empty disables the optional update prompt"
+          },
+          "latestMacosBuild": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Latest available App Store macOS build number within that version",
+            "example": 0
+          },
+          "latestMacosVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Latest available App Store macOS marketing version; empty disables the optional update prompt"
+          },
           "minimumIosBuild": {
             "type": [
               "integer",
@@ -34349,6 +34420,22 @@
               "null"
             ],
             "description": "Minimum supported App Store iOS marketing version; empty disables update enforcement"
+          },
+          "minimumMacosBuild": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Minimum supported App Store macOS build number within that version",
+            "example": 0
+          },
+          "minimumMacosVersion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Minimum supported App Store macOS marketing version; empty disables update enforcement"
           },
           "operationFingerprint": {
             "type": "string",

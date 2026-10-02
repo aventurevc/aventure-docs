@@ -1,7 +1,13 @@
 import { z } from "zod/v4";
 declare const SystemStatusSchemaDefinition: z.ZodObject<{
+    latestIosBuild: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    latestIosVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    latestMacosBuild: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    latestMacosVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     minimumIosBuild: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     minimumIosVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    minimumMacosBuild: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    minimumMacosVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     operationFingerprint: z.ZodString;
     uptime: z.ZodType<{
         availability?: number | null | undefined;
@@ -17,7 +23,7 @@ declare const SystemStatusSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type SystemStatusDefinition = z.infer<typeof SystemStatusSchemaDefinition>;
 /**
- * Uptime SLA, served-operation identity, and minimum supported iOS build
+ * Uptime SLA, served-operation identity, and Apple app update policy
  *
  * @openapiSchema SystemStatus
  * @endpoint GET /v1/status

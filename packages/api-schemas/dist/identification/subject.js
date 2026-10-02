@@ -14,7 +14,7 @@ const IdentificationSubjectSchemaDefinition = z.object({
     sourceNewsId: z.int().nullish(),
     /** URL of the article that mentions the subject; read from aVenture news when stored there, otherwise fetched. */
     sourceUrl: z.string().max(2000).nullish(),
-    /** Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families. */
+    /** Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families. Invalid for a person lookup. */
     typeRecord: EntityTypeSchema.nullish(),
     /** URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl. */
     url: z.array(z.string()).max(10).optional(),

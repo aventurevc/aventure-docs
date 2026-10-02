@@ -13,7 +13,7 @@ const EnrichmentBatchSchemaDefinition = z.object({
     /** Task preset keys that scope or emphasize every run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400 */
     taskPresetKey: z.array(z.string()).nullish(),
     /** Plain-language instruction for every run, such as which facts or sources to check first */
-    userPrompt: z.string().nullish(),
+    userPrompt: z.string().max(2000).nullish(),
 });
 /**
  * Existing records to enrich in one call, with the run options every run shares
