@@ -33,8 +33,11 @@ import { PersonImageSchema } from "../person/image.js";
 export const EntityPersonAssociationSchema = z.object({
     /** Integer person-entity association join row id, not a person or entity UUID */
     associationId: z.int(),
-    /** Association period end timestamp */
-    endDate: z.iso.datetime({ offset: true }).nullish(),
+    /** Association period end, preserving source precision */
+    endDate: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$/)
+        .nullish(),
     /** Entity addresses carried on the association projection */
     entityAddress: z.array(AddressSchema),
     /** Associated entity id */
@@ -68,8 +71,11 @@ export const EntityPersonAssociationSchema = z.object({
     /** Person URL links carried on the association projection */
     personUrlLink: z.array(EntityUrlLinkSchema),
     score: z.int().nullish(),
-    /** Association period start timestamp */
-    startDate: z.iso.datetime({ offset: true }).nullish(),
+    /** Association period start, preserving source precision */
+    startDate: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$/)
+        .nullish(),
     /** Read-side corporate title function for the association row */
     titleFunction: z.string().nullish(),
     /** Corporate title id for the association row */

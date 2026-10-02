@@ -3,7 +3,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
     articleCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     association: z.ZodArray<z.ZodObject<{
         associationId: z.ZodInt;
-        endDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        endDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             addressLine1: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -206,7 +206,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             urlType: "alternativeto" | "angellist" | "appstore" | "awsmarketplace" | "bloomberg" | "capterra" | "changelog" | "chromewebstore" | "crates" | "crunchbase" | "discord" | "dockerhub" | "documentation" | "facebook" | "forum" | "g2" | "gartnerpeerinsights" | "getapp" | "github" | "glassdoor" | "googleplay" | "homebrew" | "hubspotmarketplace" | "huggingface" | "instagram" | "linkedin" | "maven" | "morningstar" | "nasdaq" | "npm" | "nyse" | "pitchbook" | "producthunt" | "pypi" | "roadmap" | "salesforceappexchange" | "slackappdirectory" | "sourceforge" | "statuspage" | "subreddit" | "support" | "theorg" | "tiktok" | "trustpilot" | "trustradius" | "twitter" | "vscodemarketplace" | "website" | "wellfound" | "wikipedia" | "ycombinator" | "youtube";
         }, unknown>>>;
         score: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        startDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        startDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleFunction: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         titleLevel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
