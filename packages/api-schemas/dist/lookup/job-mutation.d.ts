@@ -14,7 +14,7 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type LookupJobMutationDefinition = z.infer<typeof LookupJobMutationSchemaDefinition>;
 /**
- * The article whose companies and people a lookup job identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup-mentions also takes mention instead.
+ * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead.
  *
  * @openapiSchema LookupJobMutation
  * @endpoint GET /v1/lookup-jobs/{jobId}

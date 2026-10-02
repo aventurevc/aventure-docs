@@ -1169,7 +1169,7 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type LookupJobMentionDefinition = z.infer<typeof LookupJobMentionSchemaDefinition>;
 /**
- * One company or person a source names, which stored record it is, and, from a lookup job or a streaming lookup, the hidden shell record filed for it when it is new.
+ * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the hidden shell record filed when it is new. Bulk lookup only identifies names and files no shells.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

@@ -10,9 +10,17 @@ const LookupJobSchemaDefinition = z.object({
     failureReason: z.string().nullish(),
     /** Lookup job id. */
     jobId: z.uuid(),
-    /** Each distinct company and person the article names; empty until COMPLETED. */
+    /** True when a bulk lookup returned its name bound; more names may remain. False does not prove that extraction found every name on a page. */
+    limitReached: z.boolean(),
+    /** Bulk lookup name bound; absent for legacy article jobs. */
+    maxNames: z.int().nullish(),
+    /** Each identified company and person; bulk results are available while running. */
     mention: z.array(LookupJobMentionSchema),
-    /** The article the job reads. */
+    /** Distinct names found for a bulk lookup; absent on standard jobs. */
+    namesFound: z.int().nullish(),
+    /** Names processed so far, including per-name failures. */
+    namesProcessed: z.int(),
+    /** The article the job reads or names supplied for a bulk lookup. */
     source: LookupJobMutationSchema,
     /** Current job state. */
     state: JobStateSchema,
@@ -20,7 +28,7 @@ const LookupJobSchemaDefinition = z.object({
     updatedAt: z.iso.datetime({ offset: true }),
 });
 /**
- * An async lookup job's state and, once COMPLETED, every company and person the article names, each identified against stored records.
+ * An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names.
  *
  * @openapiSchema LookupJob
  * @endpoint GET /v1/lookup-jobs/{jobId}

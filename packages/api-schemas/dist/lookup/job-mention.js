@@ -19,13 +19,13 @@ const LookupJobMentionSchemaDefinition = z.object({
     name: z.string(),
     /** POST /v1/lookup-mentions only: the candidate people as search results show them, ranked like entity. */
     person: z.array(PersonSchema),
-    /** The hidden record filed for a NO_MATCH name whose own site web search found and whose live page names it, or the stored hidden record that already holds that site. A background enrichment run graduates or merges it (enrichmentRunId). Absent when no record was filed. */
+    /** The hidden record filed for a NO_MATCH name when web search finds its own site and the live page names it, or the stored hidden record already holding that site. An article job also requires its article as an independent source. A background enrichment run graduates or merges it (enrichmentRunId). Absent for bulk lookups. */
     shell: EntityPersonOwnerSchema.nullish(),
     /** One sentence on why no shell was filed for a NO_MATCH name; absent otherwise. */
     shellDetail: z.string().nullish(),
 });
 /**
- * One company or person a source names, which stored record it is, and, from a lookup job or a streaming lookup, the hidden shell record filed for it when it is new.
+ * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the hidden shell record filed when it is new. Bulk lookup only identifies names and files no shells.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { LookupMentionSchema } from "./mention.js";
 const LookupJobMutationSchemaDefinition = z.object({
-    /** POST /v1/lookup-mentions only: the companies and people a caller already read from a page or screenshot it keeps on its device, identified without either being sent. Send it alone, without sourceUrl, sourceNewsId, or a file. Any signed-in user may send it, with or without a plan. */
+    /** Companies and people the caller already read, identified without sending the page or screenshot. Send them alone, without an article or file. On lookup jobs, maxNames is required and no shell records or enrichment are scheduled. */
     mention: z.array(LookupMentionSchema).optional(),
     /** aVenture news id of the article; an id that names no stored article is an error. */
     sourceNewsId: z.int().nullish(),
@@ -10,7 +10,7 @@ const LookupJobMutationSchemaDefinition = z.object({
     sourceUrl: z.string().max(2000).nullish(),
 });
 /**
- * The article whose companies and people a lookup job identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup-mentions also takes mention instead.
+ * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead.
  *
  * @openapiSchema LookupJobMutation
  * @endpoint GET /v1/lookup-jobs/{jobId}

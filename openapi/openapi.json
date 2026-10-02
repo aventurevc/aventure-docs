@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.32"
+    "version": "0.8.33"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -101,12 +101,12 @@
       "name": "Publications"
     },
     {
-      "description": "Acquisitions a company made or was part of. The path entity is acquired; acquirerEntityId is the buyer.",
-      "name": "Entity Acquisitions"
+      "description": "Async article and bulk name identification",
+      "name": "Lookup jobs"
     },
     {
-      "description": "Identify every company and person an article names",
-      "name": "Lookup jobs"
+      "description": "Acquisitions a company made or was part of. The path entity is acquired; acquirerEntityId is the buyer.",
+      "name": "Entity Acquisitions"
     },
     {
       "description": "Similar companies and lean similar-company summaries by id",
@@ -16696,9 +16696,19 @@
     },
     "/v1/lookup-jobs": {
       "post": {
-        "description": "Reads one article (sourceUrl or sourceNewsId), extracts the companies and people it names, and identifies each one as POST /v1/lookup would with the article as its source. Poll the returned status URL with GET /v1/lookup-jobs/{jobId}. Spends one natural-search quota slot for the article read and one name-identification quota slot for each name the job may identify, up to its per-article limit, when it is accepted. For a name no stored record is, the job creates a hidden shell record at no charge only when a second live page on another site names it too, imports its website logo, and files a background enrichment run that merges it into a public copy or graduates it (shell, enrichmentRunId). The same article sent again soon returns the earlier job without spending quota again. Example body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"}.",
+        "description": "Without maxNames, reads one article (sourceUrl or sourceNewsId), identifies up to the article limit, and files a hidden shell with its logo and enrichmentRunId for a new name only with a second live source. With maxNames, identifies up to that bound from an article or mention names alone, without creating shells or scheduling enrichment. An article read spends one natural-search slot; accepting a new job spends name-identification slots for its limit. Poll GET /v1/lookup-jobs/{jobId}; the same request sent again soon reuses its paid job.",
         "operationId": "createLookupJob",
         "parameters": [
+          {
+            "description": "Opt in to lookup-only bulk; cap is 1 through app.jobs.lookup-job.bulk-mention-limit. Accepts an article or mention names alone; no shells or enrichment are scheduled.",
+            "in": "query",
+            "name": "maxNames",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
           {
             "description": "Also considers hidden and unpublished records; needs private-visibility authority. Without it, NO_MATCH covers only records you can see.",
             "in": "query",
@@ -16893,7 +16903,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Start identifying every company and person an article names",
+        "summary": "Start an article lookup or a bounded lookup-only bulk job",
         "tags": [
           "Search",
           "Lookup jobs"
@@ -16905,7 +16915,7 @@
     },
     "/v1/lookup-jobs/{jobId}": {
       "get": {
-        "description": "Returns the job state and, once COMPLETED, one mention per company or person the article names: its identification (MATCHED gives the stored record, NEEDS_REVIEW the candidates) and, for NO_MATCH, the hidden shell record filed for it with its enrichmentRunId, or shellDetail saying why none was. A name whose lookup failed carries failureReason instead; send it alone to POST /v1/lookup. Only the caller that started the job can read it.",
+        "description": "Returns the job state and, once COMPLETED, each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include a hidden shell, enrichmentRunId, or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. Only the requesting caller can read the job.",
         "operationId": "getLookupJob",
         "parameters": [
           {
@@ -33320,11 +33330,11 @@
       },
       "LookupJobMutation": {
         "type": "object",
-        "description": "The article whose companies and people a lookup job identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup-mentions also takes mention instead.",
+        "description": "The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead.",
         "properties": {
           "mention": {
             "type": "array",
-            "description": "POST /v1/lookup-mentions only: the companies and people a caller already read from a page or screenshot it keeps on its device, identified without either being sent. Send it alone, without sourceUrl, sourceNewsId, or a file. Any signed-in user may send it, with or without a plan.",
+            "description": "Companies and people the caller already read, identified without sending the page or screenshot. Send them alone, without an article or file. On lookup jobs, maxNames is required and no shell records or enrichment are scheduled.",
             "items": {
               "$ref": "#/components/schemas/LookupMention"
             }
@@ -33375,7 +33385,7 @@
       },
       "LookupJob": {
         "type": "object",
-        "description": "An async lookup job's state and, once COMPLETED, every company and person the article names, each identified against stored records.",
+        "description": "An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names.",
         "properties": {
           "createdAt": {
             "type": "string",
@@ -33394,16 +33404,41 @@
             "format": "uuid",
             "description": "Lookup job id."
           },
+          "limitReached": {
+            "type": "boolean",
+            "description": "True when a bulk lookup returned its name bound; more names may remain. False does not prove that extraction found every name on a page."
+          },
+          "maxNames": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Bulk lookup name bound; absent for legacy article jobs."
+          },
           "mention": {
             "type": "array",
-            "description": "Each distinct company and person the article names; empty until COMPLETED.",
+            "description": "Each identified company and person; bulk results are available while running.",
             "items": {
               "$ref": "#/components/schemas/LookupJobMention"
             }
           },
+          "namesFound": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Distinct names found for a bulk lookup; absent on standard jobs."
+          },
+          "namesProcessed": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Names processed so far, including per-name failures."
+          },
           "source": {
             "$ref": "#/components/schemas/LookupJobMutation",
-            "description": "The article the job reads."
+            "description": "The article the job reads or names supplied for a bulk lookup."
           },
           "state": {
             "$ref": "#/components/schemas/JobState",
@@ -33419,7 +33454,9 @@
         "required": [
           "createdAt",
           "jobId",
+          "limitReached",
           "mention",
+          "namesProcessed",
           "source",
           "state",
           "updatedAt"
@@ -36529,7 +36566,7 @@
       },
       "LookupJobMention": {
         "type": "object",
-        "description": "One company or person a source names, which stored record it is, and, from a lookup job or a streaming lookup, the hidden shell record filed for it when it is new.",
+        "description": "One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the hidden shell record filed when it is new. Bulk lookup only identifies names and files no shells.",
         "properties": {
           "enrichmentRunId": {
             "type": [
@@ -36584,7 +36621,7 @@
             }
           },
           "shell": {
-            "description": "The hidden record filed for a NO_MATCH name whose own site web search found and whose live page names it, or the stored hidden record that already holds that site. A background enrichment run graduates or merges it (enrichmentRunId). Absent when no record was filed.",
+            "description": "The hidden record filed for a NO_MATCH name when web search finds its own site and the live page names it, or the stored hidden record already holding that site. An article job also requires its article as an independent source. A background enrichment run graduates or merges it (enrichmentRunId). Absent for bulk lookups.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityPersonOwner"

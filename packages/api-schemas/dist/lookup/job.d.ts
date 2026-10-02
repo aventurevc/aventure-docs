@@ -3,6 +3,8 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodISODateTime;
     failureReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     jobId: z.ZodUUID;
+    limitReached: z.ZodBoolean;
+    maxNames: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     mention: z.ZodArray<z.ZodType<{
         enrichmentRunId?: string | null | undefined;
         entity: {
@@ -1204,6 +1206,8 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown>>>;
+    namesFound: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    namesProcessed: z.ZodInt;
     source: z.ZodType<{
         mention?: {
             name: string;
@@ -1233,7 +1237,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
 }, z.core.$strip>;
 type LookupJobDefinition = z.infer<typeof LookupJobSchemaDefinition>;
 /**
- * An async lookup job's state and, once COMPLETED, every company and person the article names, each identified against stored records.
+ * An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names.
  *
  * @openapiSchema LookupJob
  * @endpoint GET /v1/lookup-jobs/{jobId}
