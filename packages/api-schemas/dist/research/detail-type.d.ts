@@ -32,6 +32,7 @@ declare const ResearchDetailTypeSchemaDefinition: z.ZodObject<{
         percentage: "percentage";
         text: "text";
     }>;
+    writeHint: z.ZodString;
 }, z.core.$strip>;
 type ResearchDetailTypeDefinition = z.infer<typeof ResearchDetailTypeSchemaDefinition>;
 /**

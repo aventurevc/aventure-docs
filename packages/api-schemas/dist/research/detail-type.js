@@ -18,6 +18,8 @@ const ResearchDetailTypeSchemaDefinition = z.object({
     valueShape: ResearchValueShapeTypeSchema,
     /** Read projection category; choose write fields from valueShape. */
     valueType: EntityResearchValueTypeSchema,
+    /** How to encode a write for this valueShape: which of valueResearchDetail, discreteValue, textValue, and asOfDate to send, with an example. */
+    writeHint: z.string(),
 });
 /**
  * @openapiSchema ResearchDetailType
