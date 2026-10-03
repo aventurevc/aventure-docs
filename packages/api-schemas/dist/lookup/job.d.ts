@@ -557,7 +557,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
-        mentionType: "COMPANY" | "PERSON";
+        mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
         person: {
             createdAt?: string | null | undefined;
@@ -1157,7 +1157,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
-        mentionType: "COMPANY" | "PERSON";
+        mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
         person: {
             createdAt?: string | null | undefined;
@@ -1211,16 +1211,18 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
     source: z.ZodType<{
         mention?: {
             name: string;
+            providerName?: string | null | undefined;
             searchQuery?: string | undefined;
-            type: "COMPANY" | "PERSON";
+            type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         }[] | undefined;
         sourceNewsId?: number | null | undefined;
         sourceUrl?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         mention?: {
             name: string;
+            providerName?: string | null | undefined;
             searchQuery?: string | undefined;
-            type: "COMPANY" | "PERSON";
+            type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         }[] | undefined;
         sourceNewsId?: number | null | undefined;
         sourceUrl?: string | null | undefined;

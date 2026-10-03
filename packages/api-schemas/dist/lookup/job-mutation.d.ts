@@ -2,12 +2,14 @@ import { z } from "zod/v4";
 declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
     mention: z.ZodOptional<z.ZodArray<z.ZodType<{
         name: string;
+        providerName?: string | null | undefined;
         searchQuery?: string | undefined;
-        type: "COMPANY" | "PERSON";
+        type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
     }, unknown, z.core.$ZodTypeInternals<{
         name: string;
+        providerName?: string | null | undefined;
         searchQuery?: string | undefined;
-        type: "COMPANY" | "PERSON";
+        type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
     }, unknown>>>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;

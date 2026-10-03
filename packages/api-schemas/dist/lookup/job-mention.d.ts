@@ -1078,6 +1078,7 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
     mentionType: z.ZodEnum<{
         COMPANY: "COMPANY";
         PERSON: "PERSON";
+        PRODUCT_SERVICE: "PRODUCT_SERVICE";
     }>;
     name: z.ZodString;
     person: z.ZodArray<z.ZodType<{

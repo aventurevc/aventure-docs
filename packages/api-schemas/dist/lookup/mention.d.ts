@@ -1,15 +1,17 @@
 import { z } from "zod/v4";
 declare const LookupMentionSchemaDefinition: z.ZodObject<{
     name: z.ZodString;
+    providerName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     searchQuery: z.ZodOptional<z.ZodString>;
     type: z.ZodEnum<{
         COMPANY: "COMPANY";
         PERSON: "PERSON";
+        PRODUCT_SERVICE: "PRODUCT_SERVICE";
     }>;
 }, z.core.$strip>;
 type LookupMentionDefinition = z.infer<typeof LookupMentionSchemaDefinition>;
 /**
- * One company or person a caller read from a page or screenshot it did not send.
+ * One company, Product or Service, or person a caller read from a page or screenshot it did not send.
  *
  * @openapiSchema LookupMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

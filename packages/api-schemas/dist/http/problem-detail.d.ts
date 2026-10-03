@@ -8,7 +8,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         WEB_SEARCH: "WEB_SEARCH";
     }>>>;
     circuitBreaker: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    code: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    code: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         GEOCODE_PROVIDER_ERROR: "GEOCODE_PROVIDER_ERROR";
         INFERENCE_PROFILES_MISSING: "INFERENCE_PROFILES_MISSING";
         INFERENCE_PROFILE_API_KEY_MISSING: "INFERENCE_PROFILE_API_KEY_MISSING";
@@ -52,6 +52,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         rbac_lookup_unavailable: "rbac_lookup_unavailable";
         search_provider_error: "search_provider_error";
         search_provider_not_configured: "search_provider_not_configured";
+        search_still_running: "search_still_running";
         sec_edgar_fetch_failed: "sec_edgar_fetch_failed";
         sentry_api_error: "sentry_api_error";
         source_document_body_unavailable: "source_document_body_unavailable";
@@ -64,7 +65,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         suspected_shell_strip: "suspected_shell_strip";
         url_surface_misclassification: "url_surface_misclassification";
         web_crawl_fetch_failed: "web_crawl_fetch_failed";
-    }>>>;
+    }>, z.ZodString]>>>;
     conflictingRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         deletedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodString;

@@ -552,7 +552,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
-        mentionType: "COMPANY" | "PERSON";
+        mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
         person: {
             createdAt?: string | null | undefined;
@@ -1152,7 +1152,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
-        mentionType: "COMPANY" | "PERSON";
+        mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
         person: {
             createdAt?: string | null | undefined;

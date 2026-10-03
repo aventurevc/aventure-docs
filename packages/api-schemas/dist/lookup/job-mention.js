@@ -13,8 +13,8 @@ const LookupJobMentionSchemaDefinition = z.object({
     failureReason: z.string().nullish(),
     /** The lookup of this name with the source as its context: MATCHED names the stored record, NEEDS_REVIEW lists the candidates, NO_MATCH means none is stored. Absent when failureReason is set. */
     identification: IdentificationSchema.nullish(),
-    /** Whether the source names a company or a person. */
-    mentionType: z.enum(["COMPANY", "PERSON"]),
+    /** Whether the source names a company, a Product or Service, or a person. */
+    mentionType: z.enum(["COMPANY", "PERSON", "PRODUCT_SERVICE"]),
     /** Name as the source writes it. */
     name: z.string(),
     /** POST /v1/lookup-mentions only: the candidate people as search results show them, ranked like entity. */

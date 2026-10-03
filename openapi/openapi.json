@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.37"
+    "version": "0.8.39"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -27336,61 +27336,7 @@
               "null"
             ],
             "description": "Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes indicate infra/admin-only conditions where the correct agent action is to surface the error and stop, not retry.",
-            "enum": [
-              "not_authorized",
-              "rateLimited",
-              "rate_limited",
-              "subscription_required",
-              "subscription_canceled",
-              "subscription_past_due",
-              "subscription_paused",
-              "billing_allowance_exhausted",
-              "billing_additional_usage_cap_reached",
-              "origin_detail_capacity",
-              "origin_detail_shutdown",
-              "suspectedShellStrip",
-              "suspected_shell_strip",
-              "url_surface_misclassification",
-              "JOBRUNR_DISABLED",
-              "jobrunr_disabled",
-              "JOBRUNR_STORAGE_UNAVAILABLE",
-              "jobrunr_storage_unavailable",
-              "rbac_lookup_unavailable",
-              "GEOCODE_PROVIDER_ERROR",
-              "geocode_provider_error",
-              "image_blocklist_match",
-              "image_monochrome",
-              "image_too_small",
-              "image_wrong_aspect",
-              "image_monogram",
-              "image_unreadable",
-              "image_processing_error",
-              "image_brand_mismatch",
-              "web_crawl_fetch_failed",
-              "primary_website_missing",
-              "news_rss_feed_fetch_failed",
-              "news_rss_article_fetch_failed",
-              "r2_fetch_failed",
-              "r2_delete_failed",
-              "r2_upload_failed",
-              "source_document_body_unavailable",
-              "source_document_capture_limit_exceeded",
-              "news_similarity_embedding_unavailable",
-              "search_provider_not_configured",
-              "search_provider_error",
-              "sec_edgar_fetch_failed",
-              "github_fetch_failed",
-              "INFERENCE_PROVIDER_ERROR",
-              "inference_provider_error",
-              "INFERENCE_PROVIDER_RESPONSE_EMPTY",
-              "inference_provider_response_empty",
-              "INFERENCE_PROVIDER_INVALID_JSON",
-              "inference_provider_invalid_json",
-              "INFERENCE_PROFILES_MISSING",
-              "inference_profiles_missing",
-              "INFERENCE_PROFILE_API_KEY_MISSING",
-              "inference_profile_api_key_missing"
-            ],
+            "maxLength": 128,
             "x-enum-descriptions": [
               "Caller is authenticated but lacks the required role for this operation. Agent action: surface the requiredRole field on the ProblemDetail and stop; do not retry without role escalation.",
               "Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance.",
@@ -27433,6 +27379,7 @@
               "News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking.",
               "The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed.",
               "Search provider call failed. Agent action: surface; provider outages affect search endpoints only.",
+              "aVenture stopped waiting for a web search the provider is still running; the search keeps running and its finished result is stored. Agent action: retry the same request, after retryAfterSeconds when present (also in the Retry-After header); this is not a provider failure.",
               "SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or rate limiting affect the public-company preview endpoint only.",
               "GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only.",
               "LLM inference provider call failed. Agent action: retry once with backoff; persistent failure indicates provider outage or invalid profile config.",
@@ -27445,6 +27392,62 @@
               "Inference profile catalog is missing or empty. Agent action: stop; admin/ops must configure inference profiles before this endpoint will succeed.",
               "Inference profile is configured but its API key is missing from secret storage. Agent action: stop; admin/ops must populate the API key in secret storage.",
               "Inference profile is configured but its API key is missing from secret storage. Agent action: stop; admin/ops must populate the API key in secret storage."
+            ],
+            "x-extensible-enum": [
+              "not_authorized",
+              "rateLimited",
+              "rate_limited",
+              "subscription_required",
+              "subscription_canceled",
+              "subscription_past_due",
+              "subscription_paused",
+              "billing_allowance_exhausted",
+              "billing_additional_usage_cap_reached",
+              "origin_detail_capacity",
+              "origin_detail_shutdown",
+              "suspectedShellStrip",
+              "suspected_shell_strip",
+              "url_surface_misclassification",
+              "JOBRUNR_DISABLED",
+              "jobrunr_disabled",
+              "JOBRUNR_STORAGE_UNAVAILABLE",
+              "jobrunr_storage_unavailable",
+              "rbac_lookup_unavailable",
+              "GEOCODE_PROVIDER_ERROR",
+              "geocode_provider_error",
+              "image_blocklist_match",
+              "image_monochrome",
+              "image_too_small",
+              "image_wrong_aspect",
+              "image_monogram",
+              "image_unreadable",
+              "image_processing_error",
+              "image_brand_mismatch",
+              "web_crawl_fetch_failed",
+              "primary_website_missing",
+              "news_rss_feed_fetch_failed",
+              "news_rss_article_fetch_failed",
+              "r2_fetch_failed",
+              "r2_delete_failed",
+              "r2_upload_failed",
+              "source_document_body_unavailable",
+              "source_document_capture_limit_exceeded",
+              "news_similarity_embedding_unavailable",
+              "search_provider_not_configured",
+              "search_provider_error",
+              "search_still_running",
+              "sec_edgar_fetch_failed",
+              "github_fetch_failed",
+              "INFERENCE_PROVIDER_ERROR",
+              "inference_provider_error",
+              "INFERENCE_PROVIDER_RESPONSE_EMPTY",
+              "inference_provider_response_empty",
+              "INFERENCE_PROVIDER_INVALID_JSON",
+              "inference_provider_invalid_json",
+              "INFERENCE_PROFILES_MISSING",
+              "inference_profiles_missing",
+              "INFERENCE_PROFILE_API_KEY_MISSING",
+              "inference_profile_api_key_missing"
             ]
           },
           "conflictingRecord": {
@@ -36754,10 +36757,11 @@
           },
           "mentionType": {
             "type": "string",
-            "description": "Whether the source names a company or a person.",
+            "description": "Whether the source names a company, a Product or Service, or a person.",
             "enum": [
               "COMPANY",
-              "PERSON"
+              "PERSON",
+              "PRODUCT_SERVICE"
             ]
           },
           "name": {
@@ -36969,11 +36973,18 @@
       },
       "LookupMention": {
         "type": "object",
-        "description": "One company or person a caller read from a page or screenshot it did not send.",
+        "description": "One company, Product or Service, or person a caller read from a page or screenshot it did not send.",
         "properties": {
           "name": {
             "type": "string",
             "description": "Name as the source writes it."
+          },
+          "providerName": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "PRODUCT_SERVICE only: the organization that offers it, as the source writes it. When the offering resolves among offerings and its provider settles on an organization record, the match is limited to that record's offerings."
           },
           "searchQuery": {
             "type": "string",
@@ -36982,10 +36993,11 @@
           },
           "type": {
             "type": "string",
-            "description": "Whether the source names a company or a person.",
+            "description": "Whether the source names a company, a Product or Service (PRODUCT_SERVICE), or a person. A Product or Service resolves like a company first, then among Product and Service records when that finds no match, and never files a shell.",
             "enum": [
               "COMPANY",
-              "PERSON"
+              "PERSON",
+              "PRODUCT_SERVICE"
             ]
           }
         },
