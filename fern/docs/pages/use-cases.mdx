@@ -26,26 +26,28 @@ Capital, and Patrick Collison. Swap in your own ids.
 
 ## Get a Company Brand Kit From Its Website
 
-Send any website or profile URL the company owns and read its brand name,
-legal name, logo, links, and tags from the full record. The lookup ignores the
-scheme, a leading `www.`, and host case; a different path is a different URL.
+`GET /v1/entities/brand` takes any website or profile URL the company owns and
+returns its brand and legal names, logo, current links, and current tags. The
+lookup ignores the scheme, a leading `www.`, and host case; a different path is
+a different URL.
 
 <Tabs>
 <Tab title="API">
 
 ```bash
 curl -s -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities/lookup-exact?url=stripe.com" |
+  "https://api.aventure.vc/v1/entities/brand?url=stripe.com" |
   jq '{id: .core.id, nameBrand: .core.nameBrand, nameLegal: .core.nameLegal,
-       tag: [.enrichment.classification.tag[] | {name, isPrimary}],
-       link: [.enrichment.urlLink[] | {url, urlType}]}'
+       logoSquare: .core.image.logoSquare,
+       tag: [.classification.tag[] | {name, isPrimary}],
+       link: [.urlLink[] | {url, urlType}]}'
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities lookup-exact get --url stripe.com --data-full
+aventure entities brand get --url stripe.com --data
 ```
 
 </Tab>
@@ -54,7 +56,7 @@ aventure entities lookup-exact get --url stripe.com --data-full
 Call `aventure_read`:
 
 ```json
-{ "operationId": "getEntityLookup", "query": { "url": "stripe.com" } }
+{ "operationId": "getEntityBrand", "query": { "url": "stripe.com" } }
 ```
 
 </Tab>
@@ -65,15 +67,22 @@ Call `aventure_read`:
   "id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a",
   "nameBrand": "Stripe",
   "nameLegal": "Stripe, Inc.",
+  "logoSquare": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
   "tag": [
-    { "name": "Fintech", "isPrimary": false },
     { "name": "Platform", "isPrimary": false },
     { "name": "SaaS", "isPrimary": true }
   ],
   "link": [
+    { "url": "https://stripe.com/", "urlType": "website" },
+    { "url": "https://www.bloomberg.com/profile/company/1453219D:US", "urlType": "bloomberg" },
+    { "url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase" },
+    { "url": "https://facebook.com/stripehq", "urlType": "facebook" },
     { "url": "https://github.com/stripe", "urlType": "github" },
     { "url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin" },
-    { "url": "https://x.com/stripe", "urlType": "twitter" }
+    { "url": "https://x.com/stripe", "urlType": "twitter" },
+    { "url": "https://wellfound.com/company/stripe", "urlType": "wellfound" },
+    { "url": "https://en.wikipedia.org/wiki/Stripe,_Inc.", "urlType": "wikipedia" },
+    { "url": "https://ycombinator.com/companies/stripe", "urlType": "ycombinator" }
   ]
 }
 ```
@@ -81,9 +90,10 @@ Call `aventure_read`:
 | Field | Holds |
 |-------|-------|
 | `core.nameBrand`, `core.nameLegal` | The name the company goes by and its registered name |
-| `enrichment.classification.tag` | Tags; `isPrimary` marks the main one. `industry` and `mainProduct` sit beside it |
-| `enrichment.urlLink` | Website and profile links, each with `url` and `urlType` |
-| `core.image.logoSquare` | The square logo's storage path, not a full URL |
+| `core.image.logoSquare` | The square logo's storage path, not a full URL; `isMonogram` is `true` for a letter mark |
+| `classification.tag` | Tags; `isPrimary` marks the main one. `industry` and `mainProduct` sit beside it |
+| `urlLink` | Current website and profile links, websites first, each with `url` and `urlType` |
+| `publicUrl` | The company's page on aventure.vc |
 
 For a logo you can put in an `<img>` tag, read the logo slot with the `core.id`
 from the first call. Its `cdnUrl` is a full image URL:
@@ -122,9 +132,12 @@ Call `aventure_read`:
 }
 ```
 
-The full record counts one company profile view; reading it again that month
-is free. A domain that two records share answers `409`; add `typeRecord`, such
-as `typeRecord=Investment Firm`, to pick one.
+Each brand read counts one brand view per company per calendar month (UTC), on
+an allowance separate from company profile views; reading the same company
+again that month is free. A URL that two companies share answers `409` with the
+candidate ids; send one of them as `entityId`. The
+[company brand lookup](/company-brand-lookup) covers slug and id lookups,
+errors, and each plan's brand view allowance.
 
 ## Match a List of Websites to Companies
 
