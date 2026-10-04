@@ -4,10 +4,9 @@ import { z } from "zod/v4";
  *
  * @openapiSchema PersonFilter
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/people/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchSchema
  * @usedBySchema PersonSearchInterpretationSchema

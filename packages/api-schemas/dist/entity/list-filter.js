@@ -106,10 +106,9 @@ const EntityListFilterSchemaDefinition = z.strictObject({
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/entities/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema SearchInterpretationSchema
  * @contractShape entity.list-filter

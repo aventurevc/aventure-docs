@@ -621,9 +621,8 @@ const PageResultEntityListSchemaDefinition = z.object({
 /**
  * @openapiSchema PageResultEntityList
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/entities/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape pagination.page-result-entity-list
@@ -640,8 +639,8 @@ const PageResultNewsSchemaDefinition = z.object({
 /**
  * @openapiSchema PageResultNews
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @usedBySchema FederatedSearchSchema
  * @contractShape pagination.page-result-news
  * @contractRole canonical
@@ -657,9 +656,8 @@ const PageResultPersonSchemaDefinition = z.object({
 /**
  * @openapiSchema PageResultPerson
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/people/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema PersonNaturalSearchResultSchema
  * @contractShape pagination.page-result-person

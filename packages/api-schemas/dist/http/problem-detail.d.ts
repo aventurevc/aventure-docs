@@ -44,6 +44,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         inference_provider_response_empty: "inference_provider_response_empty";
         jobrunr_disabled: "jobrunr_disabled";
         jobrunr_storage_unavailable: "jobrunr_storage_unavailable";
+        lookup_still_running: "lookup_still_running";
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";
         news_similarity_embedding_unavailable: "news_similarity_embedding_unavailable";

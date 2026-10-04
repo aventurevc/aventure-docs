@@ -1524,6 +1524,7 @@ type LinkSearchDefinition = z.infer<typeof LinkSearchSchemaDefinition>;
  *
  * @openapiSchema LinkSearch
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @contractShape link.search
  * @contractRole canonical
  */

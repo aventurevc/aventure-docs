@@ -13,9 +13,8 @@ const PersonNaturalSearchResultSchemaDefinition = z.object({
  *
  * @openapiSchema PersonNaturalSearchResult
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/people/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema FederatedSearchSchema
  * @contractShape person.natural-search-result

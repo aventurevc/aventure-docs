@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.48"
+    "version": "0.8.49"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -5065,7 +5065,8 @@
     },
     "/v1/entities/lookup": {
       "post": {
-        "description": "Identifies a company, product, or service within the caller's visibility and requested scope. Send typeRecord=Company for a company, or typeRecord=Product or Service for an offering, plus providerId when its provider is known. Provider words in context are evidence, not type or provider constraints. MATCHED: match.owner.entityId identifies the record and match.record.typeRecord names its type; read GET /v1/entities/{entityId} (CLI: entities get). A provider company and its offering are different records even when they share a brand or website. NO_MATCH: no visible record satisfies the requested identity and type/provider scope; this says nothing about other scopes or hidden records. NEEDS_REVIEW: compare candidate identity fields with first-party evidence, refine once with an evidenced URL and the same type/provider scope, and never create while ambiguity remains. stage names the deciding rung: DETERMINISTIC, JUDGMENT, or WEB_EVIDENCE. Put subject-owned pages in url and articles in sourceUrl or sourceNewsId. Lookup schedules no enrichment unless scheduleEnrichment=true. For full detail by exact slug or URL use GET /v1/entities/lookup-exact. Company example: {\"name\":\"Acme AI\",\"typeRecord\":\"Company\",\"url\":[\"https://acme.ai\"]}. Offering example: {\"name\":\"Acme Assistant\",\"typeRecord\":\"Product\",\"url\":[\"https://acme.ai/assistant\"]}; add the evidenced provider UUID as providerId when known.",
+        "deprecated": true,
+        "description": "Deprecated: send the same body to lookup-from-file (POST /v1/lookup) with kind ENTITY. Identifies a company, product, or service within the caller's visibility and requested scope. Send typeRecord=Company for a company, or typeRecord=Product or Service for an offering, plus providerId when its provider is known. Provider words in context are evidence, not type or provider constraints. MATCHED: match.owner.entityId identifies the record and match.record.typeRecord names its type; read GET /v1/entities/{entityId} (CLI: entities get). A provider company and its offering are different records even when they share a brand or website. NO_MATCH: no visible record satisfies the requested identity and type/provider scope; this says nothing about other scopes or hidden records. NEEDS_REVIEW: compare candidate identity fields with first-party evidence, refine once with an evidenced URL and the same type/provider scope, and never create while ambiguity remains. stage names the deciding rung: DETERMINISTIC, JUDGMENT, or WEB_EVIDENCE. Put subject-owned pages in url and articles in sourceUrl or sourceNewsId. Lookup schedules no enrichment unless scheduleEnrichment=true. For full detail by exact slug or URL use GET /v1/entities/lookup-exact. Company example: {\"name\":\"Acme AI\",\"typeRecord\":\"Company\",\"url\":[\"https://acme.ai\"]}. Offering example: {\"name\":\"Acme Assistant\",\"typeRecord\":\"Product\",\"url\":[\"https://acme.ai/assistant\"]}; add the evidenced provider UUID as providerId when known. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request inside the reuse window returns the same job.",
         "operationId": "lookupEntity",
         "parameters": [
           {
@@ -5113,6 +5114,42 @@
             },
             "description": "The identification as canonical JSON or compact text/plain.",
             "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "Sent only with Prefer: respond-async (and Preference-Applied: respond-async): the lookup job was filed; poll the Location status URL after Retry-After.",
+            "headers": {
+              "Location": {
+                "description": "Status URL of the accepted lookup job",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
+              "Retry-After": {
+                "description": "Seconds to wait before polling the status URL",
+                "schema": {
+                  "type": "integer"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -5268,7 +5305,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Identify a Company, Product, or Service by Name and Scope",
+        "summary": "Deprecated: Identify a Company, Product, or Service by Name and Scope",
         "tags": [
           "Search"
         ],
@@ -5992,244 +6029,6 @@
         "summary": "Look Up Which Company Each Identifier Matches",
         "tags": [
           "Entities"
-        ],
-        "x-aventure-tool": {
-          "auth": "read"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/entities/natural-search": {
-      "post": {
-        "deprecated": true,
-        "description": "Deprecated: use search natural entities (POST /v1/search/natural/entities) with the same body and parameters.",
-        "operationId": "searchEntitiesByNaturalLanguage",
-        "parameters": [
-          {
-            "description": "When false, generated monogram logos are stripped from entity rows.",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Includes hidden or off-sitemap entities when the caller has private-visibility authority. Omit to use the caller's default visibility.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 40,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EntityNaturalSearch"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/NaturalSearchResult"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict",
-            "x-aventure-standard-response": true
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Deprecated: Find Companies in Natural Language",
-        "tags": [
-          "Natural Search"
         ],
         "x-aventure-tool": {
           "auth": "read"
@@ -16395,7 +16194,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Runs the entity and person identification ladders with the requested type and provider and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. This read never schedules background enrichment or repair. Name-identification quota and live deadlines apply.",
+        "description": "Runs the entity and person identification ladders with the requested type and provider and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. This read never schedules background enrichment or repair. Name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request inside the reuse window returns the same job.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -16545,8 +16344,44 @@
                 }
               }
             },
-            "description": "OK",
+            "description": "The identification.",
             "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "Sent only with Prefer: respond-async (and Preference-Applied: respond-async): the lookup job was filed; poll the Location status URL after Retry-After.",
+            "headers": {
+              "Location": {
+                "description": "Status URL of the accepted lookup job",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
+              "Retry-After": {
+                "description": "Seconds to wait before polling the status URL",
+                "schema": {
+                  "type": "integer"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -17134,7 +16969,7 @@
     },
     "/v1/lookup-jobs/{jobId}": {
       "get": {
-        "description": "Returns the job state and, once COMPLETED, each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include a hidden shell, enrichmentRunId, or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. Only the requesting caller can read the job.",
+        "description": "Returns the job state: 202 with Retry-After while PENDING or RUNNING, 200 once terminal. Once COMPLETED, it returns each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include a hidden shell, enrichmentRunId, or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries source.subject and, once COMPLETED, identification: the answer that route returns. Only the requesting caller can read the job.",
         "operationId": "getLookupJob",
         "parameters": [
           {
@@ -17157,8 +16992,43 @@
                 }
               }
             },
-            "description": "OK",
+            "description": "The job is terminal: COMPLETED, FAILED, or CANCELED.",
             "headers": {
+              "ETag": {
+                "description": "Revision of this job snapshot; send it as If-None-Match for 304",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LookupJob"
+                }
+              }
+            },
+            "description": "The job is PENDING or RUNNING; poll the same URL again after Retry-After.",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before polling again",
+                "schema": {
+                  "type": "integer"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -20003,7 +19873,8 @@
     },
     "/v1/people/lookup": {
       "post": {
-        "description": "Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} (CLI: people get) or queue research on them with POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). NO_MATCH: no record you can see is this person; a caller with write access creates them. NEEDS_REVIEW: compare candidates' current profile URLs, employer, and title with source evidence about the requested person. Treat a candidate profile URL as the subject's only when independent source evidence binds it to that person; resend once with evidenced URL and employer and title as context. Ask the user which candidate it is or whether the person is new only if the refined lookup remains NEEDS_REVIEW; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
+        "deprecated": true,
+        "description": "Deprecated: send the same body to lookup-from-file (POST /v1/lookup) with kind PERSON. Returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} (CLI: people get) or queue research on them with POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). NO_MATCH: no record you can see is this person; a caller with write access creates them. NEEDS_REVIEW: compare candidates' current profile URLs, employer, and title with source evidence about the requested person. Treat a candidate profile URL as the subject's only when independent source evidence binds it to that person; resend once with evidenced URL and employer and title as context. Ask the user which candidate it is or whether the person is new only if the refined lookup remains NEEDS_REVIEW; never create on NEEDS_REVIEW. stage names the step that settled it: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). Send their LinkedIn or personal URL whenever you have it, and employer and title as context; the same name at a different employer is a different person. For the full detail of an exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
         "operationId": "lookupPerson",
         "parameters": [
           {
@@ -20206,7 +20077,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Find Which Person a Name Refers to, or Confirm They Are New",
+        "summary": "Deprecated: Find Which Person a Name Refers to, or Confirm They Are New",
         "tags": [
           "Search"
         ],
@@ -20728,244 +20599,6 @@
         "tags": [
           "People"
         ],
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
-    "/v1/people/natural-search": {
-      "post": {
-        "deprecated": true,
-        "description": "Deprecated: use search natural people (POST /v1/search/natural/people) with the same body and parameters.",
-        "operationId": "searchPeopleByNaturalLanguage",
-        "parameters": [
-          {
-            "description": "When false, generated monogram pictures are stripped from person rows.",
-            "in": "query",
-            "name": "permitMonogram",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Includes hidden or off-sitemap people when the caller has private-visibility authority. Omit to use the caller's default visibility.",
-            "in": "query",
-            "name": "includePrivate",
-            "required": false,
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 0,
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 40,
-              "minimum": 1
-            }
-          },
-          {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PersonNaturalSearch"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PersonNaturalSearchResult"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict",
-            "x-aventure-standard-response": true
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Deprecated: Find People in Natural Language",
-        "tags": [
-          "Natural Search"
-        ],
-        "x-aventure-tool": {
-          "auth": "read"
-        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -26163,217 +25796,9 @@
         }
       }
     },
-    "/v1/search/all": {
-      "post": {
-        "deprecated": true,
-        "description": "Deprecated: use search (POST /v1/search) with the same body.",
-        "operationId": "searchAll",
-        "parameters": [
-          {
-            "description": "Zero-based page index (0..N)",
-            "in": "query",
-            "name": "page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0
-            }
-          },
-          {
-            "description": "The size of the page to be returned",
-            "in": "query",
-            "name": "size",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 1
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NaturalSearch"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/FederatedSearch"
-                }
-              }
-            },
-            "description": "OK",
-            "headers": {
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            }
-          },
-          "400": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Bad Request",
-            "x-aventure-standard-response": true
-          },
-          "401": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unauthorized",
-            "x-aventure-standard-response": true
-          },
-          "403": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Forbidden",
-            "x-aventure-standard-response": true
-          },
-          "406": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Not Acceptable",
-            "x-aventure-standard-response": true
-          },
-          "409": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Conflict",
-            "x-aventure-standard-response": true
-          },
-          "415": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unsupported Media Type",
-            "x-aventure-standard-response": true
-          },
-          "422": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
-          },
-          "429": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Too Many Requests",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              },
-              "X-RateLimit-Limit": {
-                "$ref": "#/components/headers/X-RateLimit-Limit"
-              },
-              "X-RateLimit-Remaining": {
-                "$ref": "#/components/headers/X-RateLimit-Remaining"
-              },
-              "X-RateLimit-Reset": {
-                "$ref": "#/components/headers/X-RateLimit-Reset"
-              }
-            },
-            "x-aventure-standard-response": true
-          },
-          "500": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Internal Server Error",
-            "x-aventure-standard-response": true
-          },
-          "503": {
-            "content": {
-              "application/problem+json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            },
-            "description": "Service Unavailable",
-            "headers": {
-              "Retry-After": {
-                "$ref": "#/components/headers/Retry-After"
-              }
-            },
-            "x-aventure-standard-response": true
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary": "Deprecated: Search Companies, People, and News Together",
-        "tags": [
-          "Search"
-        ],
-        "x-aventure-tool": {
-          "auth": "read"
-        },
-        "x-aventure-visibility": {
-          "scope": "public"
-        }
-      }
-    },
     "/v1/search/link": {
       "get": {
-        "description": "Fetches the page at the supplied URL, identifies the single company, product, or person the page is primarily about, and returns the federated entity, person, and news results for that name together with the synthesized query itself. A page whose content cannot be read returns 404; a fetch or inference failure returns a problem (503 only when a retry can succeed), never an empty result. For direct URL-to-record identity resolution use the entities lookup operation with the url instead.",
+        "description": "Fetches the page at the supplied URL, identifies the single company, product, or person the page is primarily about, and returns the federated entity, person, and news results for that name together with the synthesized query itself. A page whose content cannot be read returns 404; a fetch or inference failure returns a problem (503 only when a retry can succeed), never an empty result. For direct URL-to-record identity resolution use the entities lookup operation with the url instead. Send `Prefer: respond-async` to skip the live wait: the search is committed as a link search job and the read answers 202 with a Location status URL and Retry-After; poll it. A failed job commit answers 503.",
         "operationId": "searchLink",
         "parameters": [
           {
@@ -26419,6 +25844,27 @@
               }
             },
             "description": "Records reachable from the submitted link.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "Only with `Prefer: respond-async`; poll Location after Retry-After.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -26555,6 +26001,208 @@
           }
         ],
         "summary": "Search From a Page URL",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/search/link/jobs/{jobId}": {
+      "get": {
+        "description": "Returns the result of a link search accepted with `Prefer: respond-async`. Answers 202 with Location and Retry-After while the job is pending or running, 200 with the search once it completes, and 503 when the job failed; resubmit the search to retry. An unknown or expired job id returns 404.",
+        "operationId": "getLinkSearchJob",
+        "parameters": [
+          {
+            "description": "Link search job UUID",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LinkSearch"
+                }
+              }
+            },
+            "description": "Records reachable from the submitted link.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "Job still running; poll Location after Retry-After.",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "402": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The authenticated caller's subscription does not include this search."
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get a Link Search Job",
         "tags": [
           "Search"
         ],
@@ -28123,6 +27771,7 @@
               "The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed.",
               "Search provider call failed. Agent action: surface; provider outages affect search endpoints only.",
               "aVenture stopped waiting for a web search the provider is still running; the search keeps running and its finished result is stored. Agent action: retry the same request, after retryAfterSeconds when present (also in the Retry-After header); this is not a provider failure.",
+              "A lookup sent with Prefer: respond-async was accepted as a lookup job instead of answered in the request. Agent action: poll the Location status URL after Retry-After.",
               "SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or rate limiting affect the public-company preview endpoint only.",
               "GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only.",
               "LLM inference provider call failed. Agent action: retry once with backoff; persistent failure indicates provider outage or invalid profile config.",
@@ -28186,6 +27835,7 @@
               "search_provider_not_configured",
               "search_provider_error",
               "search_still_running",
+              "lookup_still_running",
               "sec_edgar_fetch_failed",
               "github_fetch_failed",
               "INFERENCE_PROVIDER_ERROR",
@@ -30350,6 +30000,29 @@
           "status"
         ]
       },
+      "JobEnqueue": {
+        "type": "object",
+        "description": "Accepted asynchronous app job enqueue response.",
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "mode": {
+            "type": "string"
+          },
+          "statusUrl": {
+            "type": "string",
+            "description": "Endpoint to poll for asynchronous job state and result.",
+            "example": "/v1/jobs/runs/550e8400-e29b-41d4-a716-446655440000"
+          }
+        },
+        "required": [
+          "jobId",
+          "mode",
+          "statusUrl"
+        ]
+      },
       "EntityDetailBatch": {
         "type": "object",
         "additionalProperties": false,
@@ -30560,41 +30233,6 @@
           "input",
           "inputType",
           "status"
-        ]
-      },
-      "EntityNaturalSearch": {
-        "type": "object",
-        "description": "Plain-English entity search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
-        "properties": {
-          "filter": {
-            "$ref": "#/components/schemas/EntityFilter",
-            "description": "Explicit entity constraints. Caller-supplied fields override planner values; the planner fills only fields left at their canonical defaults."
-          },
-          "search": {
-            "$ref": "#/components/schemas/NaturalSearch",
-            "description": "Canonical plain-English search request and strategy."
-          }
-        },
-        "required": [
-          "search"
-        ]
-      },
-      "NaturalSearchResult": {
-        "type": "object",
-        "description": "Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.",
-        "properties": {
-          "interpretation": {
-            "$ref": "#/components/schemas/SearchInterpretation",
-            "description": "Structured interpretation used to run the entity list query."
-          },
-          "result": {
-            "$ref": "#/components/schemas/PageResultEntityList",
-            "description": "Entity list page returned by the canonical entity list engine."
-          }
-        },
-        "required": [
-          "interpretation",
-          "result"
         ]
       },
       "EntityRelationshipTypeOption": {
@@ -34249,7 +33887,7 @@
       },
       "LookupJobMutation": {
         "type": "object",
-        "description": "The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead.",
+        "description": "The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.",
         "properties": {
           "mention": {
             "type": "array",
@@ -34276,35 +33914,23 @@
             "example": "https://techcrunch.com/2024/01/01/example",
             "maxLength": 2000,
             "minLength": 0
+          },
+          "subject": {
+            "description": "Read-only: the subject of a GET /v1/lookup or POST /v1/entities/lookup request sent with Prefer: respond-async, which this job identifies exactly as that route would. Requests to create a job or read mentions must omit it.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentificationSubject"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         }
       },
-      "JobEnqueue": {
-        "type": "object",
-        "description": "Accepted asynchronous app job enqueue response.",
-        "properties": {
-          "jobId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "mode": {
-            "type": "string"
-          },
-          "statusUrl": {
-            "type": "string",
-            "description": "Endpoint to poll for asynchronous job state and result.",
-            "example": "/v1/jobs/runs/550e8400-e29b-41d4-a716-446655440000"
-          }
-        },
-        "required": [
-          "jobId",
-          "mode",
-          "statusUrl"
-        ]
-      },
       "LookupJob": {
         "type": "object",
-        "description": "An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names.",
+        "description": "An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names, or the identification of its subject.",
         "properties": {
           "createdAt": {
             "type": "string",
@@ -34317,6 +33943,17 @@
               "null"
             ],
             "description": "Why the job failed; absent unless state is FAILED."
+          },
+          "identification": {
+            "description": "Subject jobs only: once COMPLETED, the identification GET /v1/lookup or POST /v1/entities/lookup returns for source.subject; absent otherwise.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Identification"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "jobId": {
             "type": "string",
@@ -34924,41 +34561,6 @@
           "nameAlias"
         ]
       },
-      "PersonNaturalSearch": {
-        "type": "object",
-        "description": "Plain-English people search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
-        "properties": {
-          "filter": {
-            "$ref": "#/components/schemas/PersonFilter",
-            "description": "Explicit people constraints. Caller-supplied fields override planner values; the planner fills only fields left at their canonical defaults."
-          },
-          "search": {
-            "$ref": "#/components/schemas/NaturalSearch",
-            "description": "Canonical plain-English search request and strategy."
-          }
-        },
-        "required": [
-          "search"
-        ]
-      },
-      "PersonNaturalSearchResult": {
-        "type": "object",
-        "description": "Natural-language people search result: planner interpretation plus the canonical person page produced by the person list engine.",
-        "properties": {
-          "interpretation": {
-            "$ref": "#/components/schemas/PersonSearchInterpretation",
-            "description": "Structured interpretation used to run the people query."
-          },
-          "result": {
-            "$ref": "#/components/schemas/PageResultPerson",
-            "description": "Person page returned by the canonical person list engine."
-          }
-        },
-        "required": [
-          "interpretation",
-          "result"
-        ]
-      },
       "PersonFilter": {
         "type": "object",
         "description": "Canonical person criteria contract for GET/POST/batch endpoints",
@@ -35293,6 +34895,76 @@
           "query",
           "related",
           "url"
+        ]
+      },
+      "EntityNaturalSearch": {
+        "type": "object",
+        "description": "Plain-English entity search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
+        "properties": {
+          "filter": {
+            "$ref": "#/components/schemas/EntityFilter",
+            "description": "Explicit entity constraints. Caller-supplied fields override planner values; the planner fills only fields left at their canonical defaults."
+          },
+          "search": {
+            "$ref": "#/components/schemas/NaturalSearch",
+            "description": "Canonical plain-English search request and strategy."
+          }
+        },
+        "required": [
+          "search"
+        ]
+      },
+      "NaturalSearchResult": {
+        "type": "object",
+        "description": "Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.",
+        "properties": {
+          "interpretation": {
+            "$ref": "#/components/schemas/SearchInterpretation",
+            "description": "Structured interpretation used to run the entity list query."
+          },
+          "result": {
+            "$ref": "#/components/schemas/PageResultEntityList",
+            "description": "Entity list page returned by the canonical entity list engine."
+          }
+        },
+        "required": [
+          "interpretation",
+          "result"
+        ]
+      },
+      "PersonNaturalSearch": {
+        "type": "object",
+        "description": "Plain-English people search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
+        "properties": {
+          "filter": {
+            "$ref": "#/components/schemas/PersonFilter",
+            "description": "Explicit people constraints. Caller-supplied fields override planner values; the planner fills only fields left at their canonical defaults."
+          },
+          "search": {
+            "$ref": "#/components/schemas/NaturalSearch",
+            "description": "Canonical plain-English search request and strategy."
+          }
+        },
+        "required": [
+          "search"
+        ]
+      },
+      "PersonNaturalSearchResult": {
+        "type": "object",
+        "description": "Natural-language people search result: planner interpretation plus the canonical person page produced by the person list engine.",
+        "properties": {
+          "interpretation": {
+            "$ref": "#/components/schemas/PersonSearchInterpretation",
+            "description": "Structured interpretation used to run the people query."
+          },
+          "result": {
+            "$ref": "#/components/schemas/PageResultPerson",
+            "description": "Person page returned by the canonical person list engine."
+          }
+        },
+        "required": [
+          "interpretation",
+          "result"
         ]
       },
       "SystemStatus": {
@@ -35835,13 +35507,58 @@
           }
         }
       },
-      "PageResultNews": {
+      "PersonSearchInterpretation": {
+        "type": "object",
+        "description": "Structured interpretation of a natural-language people search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate exactly.",
+        "properties": {
+          "confidence": {
+            "$ref": "#/components/schemas/Confidence",
+            "description": "Planner confidence in the structured interpretation."
+          },
+          "execution": {
+            "$ref": "#/components/schemas/SearchModeExecution",
+            "description": "Requested and executed search strategy."
+          },
+          "fallbackUsed": {
+            "type": "boolean",
+            "description": "True when the semantic fallback replaced an unconstrained planner result with a semantic search over the original query."
+          },
+          "filter": {
+            "$ref": "#/components/schemas/PersonFilter",
+            "description": "Canonical person filter generated from the natural-language query."
+          },
+          "interpretation": {
+            "type": "string",
+            "description": "Human-readable summary of how the query was interpreted."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SearchOrderingPersonSortField",
+            "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
+          },
+          "unsupported": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Constraint the planner could not translate into the canonical PersonFilter contract; null when every material constraint was supported."
+          }
+        },
+        "required": [
+          "confidence",
+          "execution",
+          "fallbackUsed",
+          "filter",
+          "interpretation",
+          "sort"
+        ]
+      },
+      "PageResultPerson": {
         "type": "object",
         "properties": {
           "content": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/News"
+              "$ref": "#/components/schemas/Person"
             }
           },
           "number": {
@@ -35868,147 +35585,6 @@
           "totalElements",
           "totalPages"
         ]
-      },
-      "FederatedSearchProvenance": {
-        "type": "object",
-        "description": "Requested and executed search strategy for every federated scope.",
-        "properties": {
-          "entity": {
-            "$ref": "#/components/schemas/SearchModeExecution",
-            "description": "Entity search strategy execution."
-          },
-          "news": {
-            "$ref": "#/components/schemas/SearchModeExecution",
-            "description": "News search strategy execution."
-          },
-          "person": {
-            "$ref": "#/components/schemas/SearchModeExecution",
-            "description": "Person search strategy execution."
-          }
-        },
-        "required": [
-          "entity",
-          "news",
-          "person"
-        ]
-      },
-      "SearchModeExecution": {
-        "type": "object",
-        "description": "Search strategy requested by the caller and executed by the canonical engine.",
-        "properties": {
-          "modeRequested": {
-            "$ref": "#/components/schemas/SearchMode",
-            "description": "Search mode requested by the caller."
-          },
-          "modeUsed": {
-            "$ref": "#/components/schemas/SearchMode",
-            "description": "Search mode executed by the canonical engine."
-          }
-        },
-        "required": [
-          "modeRequested",
-          "modeUsed"
-        ]
-      },
-      "SearchMode": {
-        "type": "string",
-        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`.",
-        "enum": [
-          "auto",
-          "exact",
-          "keyword",
-          "semantic",
-          "natural"
-        ]
-      },
-      "EntityPersonOwner": {
-        "type": "object",
-        "description": "Exactly one of entityId or personId is set; ids only, no name fields. Resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}.",
-        "properties": {
-          "entityId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid",
-            "description": "Owning entity id; set only when personId is absent."
-          },
-          "personId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid",
-            "description": "Owning person id; set only when entityId is absent."
-          }
-        }
-      },
-      "PersonSimilarityResult": {
-        "type": "object",
-        "description": "Similar person list row with the provenance that explains why it appears. Rows carry the canonical Person projection; load full detail through the person detail endpoints.",
-        "properties": {
-          "currentRole": {
-            "description": "Current titled association for the similar-person card; null when no current titled role is available.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityPersonAssociation"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "person": {
-            "$ref": "#/components/schemas/Person"
-          },
-          "similarity": {
-            "$ref": "#/components/schemas/PersonSimilarityContext"
-          }
-        },
-        "required": [
-          "person",
-          "similarity"
-        ]
-      },
-      "PageableObject": {
-        "type": "object",
-        "properties": {
-          "offset": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "pageSize": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "paged": {
-            "type": "boolean"
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SortObject"
-          },
-          "unpaged": {
-            "type": "boolean"
-          }
-        }
-      },
-      "SortObject": {
-        "type": "object",
-        "properties": {
-          "empty": {
-            "type": "boolean"
-          },
-          "sorted": {
-            "type": "boolean"
-          },
-          "unsorted": {
-            "type": "boolean"
-          }
-        }
       },
       "Person": {
         "type": "object",
@@ -36131,64 +35707,6 @@
           "nameFull",
           "slug",
           "text"
-        ]
-      },
-      "PersonSimilarityContext": {
-        "type": "object",
-        "description": "Per-row provenance for a similar-person result.",
-        "properties": {
-          "compositeScore": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Composite section-fusion similarity score."
-          },
-          "cosineScore": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Cosine similarity score where higher is closer."
-          },
-          "matchedSectionWeight": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Total normalized source-section weight matched."
-          },
-          "origin": {
-            "$ref": "#/components/schemas/PersonSimilarityOrigin"
-          },
-          "rank": {
-            "type": "integer",
-            "format": "int32",
-            "description": "1-based position in the merged result page"
-          },
-          "sharedSectionCount": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Number of source/target sections compared."
-          }
-        },
-        "required": [
-          "origin",
-          "rank"
-        ]
-      },
-      "PersonSimilarityOrigin": {
-        "type": "string",
-        "description": "Provenance origin for a similar-person result row.",
-        "enum": [
-          "precomputed",
-          "live"
         ]
       },
       "PersonImage": {
@@ -36359,6 +35877,939 @@
           "maidenName",
           "formerName",
           "stageName"
+        ]
+      },
+      "Confidence": {
+        "type": "string",
+        "description": "Three-level confidence band for a classifier, model, or probe verdict. The carrying property states what is assessed and what each band licenses.",
+        "enum": [
+          "HIGH",
+          "MEDIUM",
+          "LOW"
+        ]
+      },
+      "SearchModeExecution": {
+        "type": "object",
+        "description": "Search strategy requested by the caller and executed by the canonical engine.",
+        "properties": {
+          "modeRequested": {
+            "$ref": "#/components/schemas/SearchMode",
+            "description": "Search mode requested by the caller."
+          },
+          "modeUsed": {
+            "$ref": "#/components/schemas/SearchMode",
+            "description": "Search mode executed by the canonical engine."
+          }
+        },
+        "required": [
+          "modeRequested",
+          "modeUsed"
+        ]
+      },
+      "SearchOrderingPersonSortField": {
+        "type": "object",
+        "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
+        "properties": {
+          "order": {
+            "type": "array",
+            "description": "Sortable-column terms applied after the relevance rank, highest precedence first. Empty when the relevance rank alone ordered the page. Listing priorities that every list page applies ahead of these terms, such as operating-status and logo priority, are not reported.",
+            "items": {
+              "$ref": "#/components/schemas/SortOrderPersonSortField"
+            }
+          },
+          "relevance": {
+            "description": "Relevance rank applied before any column term; absent when no relevance rank ran.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchRelevance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "order"
+        ]
+      },
+      "SortOrderPersonSortField": {
+        "type": "object",
+        "description": "Single sort term: which enumerated sort field to use and whether direction is descending.",
+        "properties": {
+          "descending": {
+            "type": "boolean",
+            "description": "true for descending (DESC), false for ascending (ASC)"
+          },
+          "field": {
+            "type": "string",
+            "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys).",
+            "enum": [
+              "ID",
+              "FIRST_NAME",
+              "LAST_NAME",
+              "FULL_NAME",
+              "SLUG",
+              "CREATED_AT",
+              "UPDATED_AT",
+              "STATUS",
+              "GENDER",
+              "AMOUNT_INVESTED",
+              "TOTAL_INVESTMENTS"
+            ]
+          }
+        },
+        "required": [
+          "descending",
+          "field"
+        ]
+      },
+      "SearchRelevance": {
+        "type": "string",
+        "description": "Relevance rank that ordered a search page before any sortable column.",
+        "enum": [
+          "keyword",
+          "semantic"
+        ]
+      },
+      "SearchMode": {
+        "type": "string",
+        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts only `auto`.",
+        "enum": [
+          "auto",
+          "exact",
+          "keyword",
+          "semantic",
+          "natural"
+        ]
+      },
+      "SearchInterpretation": {
+        "type": "object",
+        "description": "Structured interpretation of a natural-language entity search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate.",
+        "properties": {
+          "confidence": {
+            "$ref": "#/components/schemas/Confidence",
+            "description": "Planner confidence in the structured interpretation."
+          },
+          "execution": {
+            "$ref": "#/components/schemas/SearchModeExecution",
+            "description": "Requested and executed search strategy."
+          },
+          "fallbackUsed": {
+            "type": "boolean",
+            "description": "True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query."
+          },
+          "filter": {
+            "$ref": "#/components/schemas/EntityListFilter",
+            "description": "Canonical entity filter generated from the natural-language query."
+          },
+          "interpretation": {
+            "type": "string",
+            "description": "Human-readable summary of how the query was interpreted."
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SearchOrderingEntityFilterSortable",
+            "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
+          },
+          "unsupported": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported."
+          }
+        },
+        "required": [
+          "confidence",
+          "execution",
+          "fallbackUsed",
+          "filter",
+          "interpretation",
+          "sort"
+        ]
+      },
+      "PageResultEntityList": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EntityList"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "content",
+          "number",
+          "size",
+          "totalElements",
+          "totalPages"
+        ]
+      },
+      "EntityList": {
+        "type": "object",
+        "description": "\n        Narrow entity row for list and batch-list reads. Keeps core identity, enrichment,\n        governed research detail, accelerator participation, and fundraise rounds while omitting\n        detail-only relationship, newsArticle, person, sitemap, and research snippet sections.\n        Classification enrichment is current-only on list rows; use the entity classifications\n        subresource with includeInactive=true to audit historical joins.\n        ",
+        "properties": {
+          "core": {
+            "$ref": "#/components/schemas/Entity",
+            "description": "Flat entity core — identity, naming, status, image, and source metadata"
+          },
+          "enrichment": {
+            "$ref": "#/components/schemas/EntityEnrichment",
+            "description": "Supplemental entity data — addresses, classification tags, funding, text content, and URL links"
+          },
+          "fundraiseRound": {
+            "type": "array",
+            "description": "Fundraise rounds associated with this entity",
+            "items": {
+              "$ref": "#/components/schemas/EntityFundraiseTransaction"
+            }
+          },
+          "research": {
+            "$ref": "#/components/schemas/EntityListResearch",
+            "description": "List-safe research disclosure without text snippets"
+          },
+          "semanticMatch": {
+            "description": "Semantic embedding match evidence populated only for semantic list reads.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContentEmbeddingMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "core",
+          "enrichment",
+          "fundraiseRound",
+          "research"
+        ]
+      },
+      "Entity": {
+        "type": "object",
+        "description": "Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Returned directly by GET /v1/sitemap/entities and the alphabetical (?letter=X) list. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.",
+        "properties": {
+          "defaultCurrency": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Default currency code (ISO 4217)"
+          },
+          "foundedYear": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Year the entity was founded"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Unique entity identifier"
+          },
+          "image": {
+            "$ref": "#/components/schemas/EntityImage",
+            "description": "Logo and monogram image metadata"
+          },
+          "lastModifiedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Provenance-grounded last-modified watermark (schema.org dateModified). Advances only when a real, consumer-meaningful data point changes via a recorded provenance event — never on timestamp-only writes, migrations, or index refreshes. Pairs with createdAt (dateCreated) and grounds the sitemap lastmod."
+          },
+          "nameAlias": {
+            "type": "array",
+            "description": "All names this entity has been known by — current alternates, DBAs, former names, and rebrand-source identities. Naming history (e.g. `Metaphor Systems` for the current `Exa` entity) lives here; never as a separate relationship type or `formerName` field.",
+            "items": {
+              "$ref": "#/components/schemas/EntityNameAliasEntityAliasType"
+            }
+          },
+          "nameBrand": {
+            "type": "string",
+            "description": "Resolved display brand name"
+          },
+          "nameLegal": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Registered legal name"
+          },
+          "operatingStatus": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Closed (Acquihire) when the entity was acquired for its team and shut down, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed."
+          },
+          "publicId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Stable, immutable public handle (e.g. `eV1StGXR8Z5a`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill.",
+            "example": "eV1StGXR8Z5a",
+            "pattern": "^e[0-9A-Za-z]{11}$"
+          },
+          "publicUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Absolute public profile URL on the aVenture front-end, e.g. `https://aventure.vc/non-profits/{slug}`, derived from the typeRecord's canonical route family. Null when the route needs relationship context or the record has no direct public SSR route (Business Line, Organization, Product, Service, or a non-public slug). EntityDetail.publicUrl resolves Business Line parent context. Product/Service pages are provider-nested: compose the provider entity's publicUrl + `/products-services/` + this record's slug, or consume the sitemap-urls slot paths, which already emit the composed child routes."
+          },
+          "sitemap": {
+            "description": "Sub-route eligibility, populated by the sitemap projection. Null on non-sitemap reads to keep thin payloads compact.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntitySitemap"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "slug": {
+            "type": "string",
+            "description": "URL-safe identifier",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "typeRecord": {
+            "$ref": "#/components/schemas/EntityType",
+            "description": "Entity type classification"
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Last modification timestamp"
+          }
+        },
+        "required": [
+          "id",
+          "image",
+          "nameAlias",
+          "nameBrand",
+          "slug",
+          "typeRecord"
+        ]
+      },
+      "EntityEnrichment": {
+        "type": "object",
+        "description": "Supplemental entity data — addresses, classification tags, funding, text content, and URL links",
+        "properties": {
+          "address": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            }
+          },
+          "classification": {
+            "$ref": "#/components/schemas/EntityClassification",
+            "description": "Entity classification join projection for this read surface. Single-detail and full-detail batch reads include full history; list, default batch, and similar-entity reads may filter to current joins. Use GET /v1/entities/{entityId}/classifications?includeInactive=true for authoritative join history."
+          },
+          "fundingDetail": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityFundingDetail"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "text": {
+            "$ref": "#/components/schemas/EntityTextBundle"
+          },
+          "urlLink": {
+            "type": "array",
+            "description": "URL link filter values",
+            "items": {
+              "$ref": "#/components/schemas/EntityUrlLink"
+            }
+          }
+        },
+        "required": [
+          "address",
+          "classification",
+          "text",
+          "urlLink"
+        ]
+      },
+      "EntityListResearch": {
+        "type": "object",
+        "description": "Nested research projection owned by EntityList rows, excluding snippet text.",
+        "properties": {
+          "acceleratorParticipation": {
+            "type": "array",
+            "description": "Joined accelerator participation derived from governed accelerator research rows",
+            "items": {
+              "$ref": "#/components/schemas/EntityAcceleratorParticipation"
+            }
+          },
+          "detail": {
+            "type": "array",
+            "description": "Flat governed research detail rows filtered by visibility",
+            "items": {
+              "$ref": "#/components/schemas/EntityResearchDetail"
+            }
+          }
+        },
+        "required": [
+          "acceleratorParticipation",
+          "detail"
+        ]
+      },
+      "EntityAcceleratorParticipation": {
+        "type": "object",
+        "description": "Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.",
+        "properties": {
+          "accelerator": {
+            "$ref": "#/components/schemas/Entity",
+            "description": "Canonical thin accelerator entity from the acceleratorParticipant relationship"
+          },
+          "acceleratorName": {
+            "type": "string",
+            "description": "Full accelerator participation name, including program detail"
+          },
+          "asOfDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Participation effective timestamp"
+          },
+          "batch": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Accelerator batch or cohort"
+          },
+          "id": {
+            "type": "string",
+            "description": "Stable participation identifier anchored to the contributing acceleratorParticipant relationship"
+          },
+          "program": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Accelerator program name, when the source distinguishes one"
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Accelerator participation status"
+          }
+        },
+        "required": [
+          "accelerator",
+          "acceleratorName",
+          "asOfDate",
+          "id"
+        ]
+      },
+      "EntityFundingDetail": {
+        "type": "object",
+        "description": "Aggregate view of an entity's fundraising activity",
+        "properties": {
+          "currency": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "ISO 4217 currency of totalRaised, latestValuation, and mostRecentAmount: the one currency every round uses, else the entity's own currency when rounds carry none. Null when rounds use more than one currency or no fundraise rollup exists, so these amounts have no single currency."
+          },
+          "fundingRoundCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "investorCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "latestValuation": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "mostRecentAmount": {
+            "type": [
+              "number",
+              "null"
+            ]
+          },
+          "mostRecentDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "stage": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FundingStage"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "totalRaised": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "fundingRoundCount",
+          "investorCount",
+          "totalRaised"
+        ]
+      },
+      "FundingStage": {
+        "type": "string",
+        "description": "Canonical inferred equity, entity-type, or Company operating-status stage emitted by the entity fundraise rollup. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.",
+        "enum": [
+          "Angel",
+          "Pre-Seed",
+          "Seed",
+          "Series A",
+          "Series B",
+          "Series C",
+          "Series D",
+          "Series E",
+          "Series F",
+          "Series G",
+          "Series H",
+          "Series I",
+          "Series J",
+          "Series K",
+          "Series L",
+          "Series M",
+          "Series N",
+          "Series O",
+          "Series P",
+          "Series Q",
+          "Series R",
+          "Series S",
+          "Series T",
+          "Series U",
+          "Series V",
+          "Series W",
+          "Series X",
+          "Series Y",
+          "Series Z",
+          "Investment Firm",
+          "Fund",
+          "Nonprofit",
+          "Government",
+          "Public",
+          "Acquired",
+          "Acquired Subsidiary"
+        ]
+      },
+      "EntityImage": {
+        "type": "object",
+        "description": "Grouped entity image fields for square, standard, and monogram logo state",
+        "properties": {
+          "isMonogram": {
+            "type": "boolean",
+            "description": "Whether entity image monogram"
+          },
+          "logo": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "logoSquare": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "isMonogram"
+        ]
+      },
+      "EntityNameAliasEntityAliasType": {
+        "type": "object",
+        "description": "Alternate name used for search and display",
+        "properties": {
+          "displayable": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Show this alias in public name displays.",
+            "example": true
+          },
+          "name": {
+            "type": "string",
+            "description": "Alternate name text",
+            "example": "Bun"
+          },
+          "type": {
+            "description": "Alias type classification",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityAliasType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "EntitySitemap": {
+        "type": "object",
+        "description": "Sub-route eligibility GATE for sitemap.xml emission, not a write receipt. Each boolean is true only when the underlying rows EXIST AND every entity that sub-route renders (this entity and any counterpart, e.g. the acquired/acquirer company behind `hasAcquisitions`) currently passes publication visibility (not hidden, on sitemap). A `false` flag when you know the data exists means an unmet visibility prerequisite -- publish the hidden entity -- confirmed against the owning command-side read; it is an active gate result, not refresh lag, and a flag being `false` says nothing succeeded-and-is-fine. Served from a materialized projection (`mv_entity_sitemap_url_slots`) refreshed asynchronously, so a `true` flag can trail a gate that was just satisfied, but a successful write alone does not flip any flag.",
+        "properties": {
+          "hasAcquisitions": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether `/companies/<slug>/acquisitions` should be emitted. True only when an acquisition relationship exists AND both the acquired and acquirer entities are publicly visible. A confirmed acquisition relationship row with this flag `false` (or with `entities acquisitions list` returning zero rows) means a counterpart entity is still hidden -- publish it -- it is a visibility gate, not list lag."
+          },
+          "hasAnalysis": {
+            "type": "boolean",
+            "description": "Whether the profile Analysis sub-route should be emitted."
+          },
+          "hasEmployees": {
+            "type": "boolean",
+            "description": "Whether the profile Employees sub-route should be emitted."
+          },
+          "hasFundraising": {
+            "type": "boolean",
+            "description": "Whether the profile Fundraising sub-route should be emitted."
+          },
+          "hasNews": {
+            "type": "boolean",
+            "description": "Whether the profile News sub-route should be emitted."
+          },
+          "productServiceSlug": {
+            "type": "array",
+            "description": "Slugs of related Product/Service entities that should each get their own `/companies/<slug>/products-services/<productSlug>` URL, capped at `MAX_PRODUCT_SERVICE_SLUGS` server-side. Derived from current `productService` relationships in either stored direction; the entity relationships resource is the authoritative, read-your-writes view of those joins.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "hasAnalysis",
+          "hasEmployees",
+          "hasFundraising",
+          "hasNews",
+          "productServiceSlug"
+        ]
+      },
+      "EntityAliasType": {
+        "type": "string",
+        "description": "Alias types for entity NameAlias",
+        "enum": [
+          "alternativeDba",
+          "relatedLegal"
+        ]
+      },
+      "SearchOrderingEntityFilterSortable": {
+        "type": "object",
+        "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
+        "properties": {
+          "order": {
+            "type": "array",
+            "description": "Sortable-column terms applied after the relevance rank, highest precedence first. Empty when the relevance rank alone ordered the page. Listing priorities that every list page applies ahead of these terms, such as operating-status and logo priority, are not reported.",
+            "items": {
+              "$ref": "#/components/schemas/SortOrderEntityFilterSortable"
+            }
+          },
+          "relevance": {
+            "description": "Relevance rank applied before any column term; absent when no relevance rank ran.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchRelevance"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "order"
+        ]
+      },
+      "SortOrderEntityFilterSortable": {
+        "type": "object",
+        "description": "Single sort term: which enumerated sort field to use and whether direction is descending.",
+        "properties": {
+          "descending": {
+            "type": "boolean",
+            "description": "true for descending (DESC), false for ascending (ASC)"
+          },
+          "field": {
+            "type": "string",
+            "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys).",
+            "enum": [
+              "ID",
+              "NAME_BRAND",
+              "YEAR_FOUNDED",
+              "STATUS_OPERATING",
+              "UPDATED_AT",
+              "CREATED_AT",
+              "TOTAL_RAISED",
+              "AMOUNT_INVESTED",
+              "RECENT_INVESTMENT_AT",
+              "STAGE",
+              "MOST_RECENT_AMOUNT",
+              "LATEST_VALUATION",
+              "MOST_RECENT_DATE",
+              "ACCELERATOR_BRAND",
+              "ACCELERATOR_COHORT",
+              "HEADQUARTERS_COUNTRY",
+              "EMPLOYEE_COUNT"
+            ]
+          }
+        },
+        "required": [
+          "descending",
+          "field"
+        ]
+      },
+      "PageResultNews": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/News"
+            }
+          },
+          "number": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "content",
+          "number",
+          "size",
+          "totalElements",
+          "totalPages"
+        ]
+      },
+      "FederatedSearchProvenance": {
+        "type": "object",
+        "description": "Requested and executed search strategy for every federated scope.",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/SearchModeExecution",
+            "description": "Entity search strategy execution."
+          },
+          "news": {
+            "$ref": "#/components/schemas/SearchModeExecution",
+            "description": "News search strategy execution."
+          },
+          "person": {
+            "$ref": "#/components/schemas/SearchModeExecution",
+            "description": "Person search strategy execution."
+          }
+        },
+        "required": [
+          "entity",
+          "news",
+          "person"
+        ]
+      },
+      "EntityPersonOwner": {
+        "type": "object",
+        "description": "Exactly one of entityId or personId is set; ids only, no name fields. Resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}.",
+        "properties": {
+          "entityId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Owning entity id; set only when personId is absent."
+          },
+          "personId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Owning person id; set only when entityId is absent."
+          }
+        }
+      },
+      "PersonSimilarityResult": {
+        "type": "object",
+        "description": "Similar person list row with the provenance that explains why it appears. Rows carry the canonical Person projection; load full detail through the person detail endpoints.",
+        "properties": {
+          "currentRole": {
+            "description": "Current titled association for the similar-person card; null when no current titled role is available.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityPersonAssociation"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "person": {
+            "$ref": "#/components/schemas/Person"
+          },
+          "similarity": {
+            "$ref": "#/components/schemas/PersonSimilarityContext"
+          }
+        },
+        "required": [
+          "person",
+          "similarity"
+        ]
+      },
+      "PageableObject": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "pageNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "paged": {
+            "type": "boolean"
+          },
+          "sort": {
+            "$ref": "#/components/schemas/SortObject"
+          },
+          "unpaged": {
+            "type": "boolean"
+          }
+        }
+      },
+      "SortObject": {
+        "type": "object",
+        "properties": {
+          "empty": {
+            "type": "boolean"
+          },
+          "sorted": {
+            "type": "boolean"
+          },
+          "unsorted": {
+            "type": "boolean"
+          }
+        }
+      },
+      "PersonSimilarityContext": {
+        "type": "object",
+        "description": "Per-row provenance for a similar-person result.",
+        "properties": {
+          "compositeScore": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Composite section-fusion similarity score."
+          },
+          "cosineScore": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Cosine similarity score where higher is closer."
+          },
+          "matchedSectionWeight": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Total normalized source-section weight matched."
+          },
+          "origin": {
+            "$ref": "#/components/schemas/PersonSimilarityOrigin"
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "1-based position in the merged result page"
+          },
+          "sharedSectionCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Number of source/target sections compared."
+          }
+        },
+        "required": [
+          "origin",
+          "rank"
+        ]
+      },
+      "PersonSimilarityOrigin": {
+        "type": "string",
+        "description": "Provenance origin for a similar-person result row.",
+        "enum": [
+          "precomputed",
+          "live"
         ]
       },
       "PersonInvestment": {
@@ -36592,230 +37043,6 @@
           "round"
         ]
       },
-      "EntityImage": {
-        "type": "object",
-        "description": "Grouped entity image fields for square, standard, and monogram logo state",
-        "properties": {
-          "isMonogram": {
-            "type": "boolean",
-            "description": "Whether entity image monogram"
-          },
-          "logo": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "logoSquare": {
-            "type": [
-              "string",
-              "null"
-            ]
-          }
-        },
-        "required": [
-          "isMonogram"
-        ]
-      },
-      "Entity": {
-        "type": "object",
-        "description": "Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Returned directly by GET /v1/sitemap/entities and the alphabetical (?letter=X) list. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.",
-        "properties": {
-          "defaultCurrency": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Default currency code (ISO 4217)"
-          },
-          "foundedYear": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Year the entity was founded"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Unique entity identifier"
-          },
-          "image": {
-            "$ref": "#/components/schemas/EntityImage",
-            "description": "Logo and monogram image metadata"
-          },
-          "lastModifiedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time",
-            "description": "Provenance-grounded last-modified watermark (schema.org dateModified). Advances only when a real, consumer-meaningful data point changes via a recorded provenance event — never on timestamp-only writes, migrations, or index refreshes. Pairs with createdAt (dateCreated) and grounds the sitemap lastmod."
-          },
-          "nameAlias": {
-            "type": "array",
-            "description": "All names this entity has been known by — current alternates, DBAs, former names, and rebrand-source identities. Naming history (e.g. `Metaphor Systems` for the current `Exa` entity) lives here; never as a separate relationship type or `formerName` field.",
-            "items": {
-              "$ref": "#/components/schemas/EntityNameAliasEntityAliasType"
-            }
-          },
-          "nameBrand": {
-            "type": "string",
-            "description": "Resolved display brand name"
-          },
-          "nameLegal": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Registered legal name"
-          },
-          "operatingStatus": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Closed (Acquihire) when the entity was acquired for its team and shut down, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed."
-          },
-          "publicId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Stable, immutable public handle (e.g. `eV1StGXR8Z5a`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill.",
-            "example": "eV1StGXR8Z5a",
-            "pattern": "^e[0-9A-Za-z]{11}$"
-          },
-          "publicUrl": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Absolute public profile URL on the aVenture front-end, e.g. `https://aventure.vc/non-profits/{slug}`, derived from the typeRecord's canonical route family. Null when the route needs relationship context or the record has no direct public SSR route (Business Line, Organization, Product, Service, or a non-public slug). EntityDetail.publicUrl resolves Business Line parent context. Product/Service pages are provider-nested: compose the provider entity's publicUrl + `/products-services/` + this record's slug, or consume the sitemap-urls slot paths, which already emit the composed child routes."
-          },
-          "sitemap": {
-            "description": "Sub-route eligibility, populated by the sitemap projection. Null on non-sitemap reads to keep thin payloads compact.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntitySitemap"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "slug": {
-            "type": "string",
-            "description": "URL-safe identifier",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "typeRecord": {
-            "$ref": "#/components/schemas/EntityType",
-            "description": "Entity type classification"
-          },
-          "updatedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time",
-            "description": "Last modification timestamp"
-          }
-        },
-        "required": [
-          "id",
-          "image",
-          "nameAlias",
-          "nameBrand",
-          "slug",
-          "typeRecord"
-        ]
-      },
-      "EntityNameAliasEntityAliasType": {
-        "type": "object",
-        "description": "Alternate name used for search and display",
-        "properties": {
-          "displayable": {
-            "type": [
-              "boolean",
-              "null"
-            ],
-            "description": "Show this alias in public name displays.",
-            "example": true
-          },
-          "name": {
-            "type": "string",
-            "description": "Alternate name text",
-            "example": "Bun"
-          },
-          "type": {
-            "description": "Alias type classification",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityAliasType"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "name"
-        ]
-      },
-      "EntitySitemap": {
-        "type": "object",
-        "description": "Sub-route eligibility GATE for sitemap.xml emission, not a write receipt. Each boolean is true only when the underlying rows EXIST AND every entity that sub-route renders (this entity and any counterpart, e.g. the acquired/acquirer company behind `hasAcquisitions`) currently passes publication visibility (not hidden, on sitemap). A `false` flag when you know the data exists means an unmet visibility prerequisite -- publish the hidden entity -- confirmed against the owning command-side read; it is an active gate result, not refresh lag, and a flag being `false` says nothing succeeded-and-is-fine. Served from a materialized projection (`mv_entity_sitemap_url_slots`) refreshed asynchronously, so a `true` flag can trail a gate that was just satisfied, but a successful write alone does not flip any flag.",
-        "properties": {
-          "hasAcquisitions": {
-            "type": "boolean",
-            "default": false,
-            "description": "Whether `/companies/<slug>/acquisitions` should be emitted. True only when an acquisition relationship exists AND both the acquired and acquirer entities are publicly visible. A confirmed acquisition relationship row with this flag `false` (or with `entities acquisitions list` returning zero rows) means a counterpart entity is still hidden -- publish it -- it is a visibility gate, not list lag."
-          },
-          "hasAnalysis": {
-            "type": "boolean",
-            "description": "Whether the profile Analysis sub-route should be emitted."
-          },
-          "hasEmployees": {
-            "type": "boolean",
-            "description": "Whether the profile Employees sub-route should be emitted."
-          },
-          "hasFundraising": {
-            "type": "boolean",
-            "description": "Whether the profile Fundraising sub-route should be emitted."
-          },
-          "hasNews": {
-            "type": "boolean",
-            "description": "Whether the profile News sub-route should be emitted."
-          },
-          "productServiceSlug": {
-            "type": "array",
-            "description": "Slugs of related Product/Service entities that should each get their own `/companies/<slug>/products-services/<productSlug>` URL, capped at `MAX_PRODUCT_SERVICE_SLUGS` server-side. Derived from current `productService` relationships in either stored direction; the entity relationships resource is the authoritative, read-your-writes view of those joins.",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "required": [
-          "hasAnalysis",
-          "hasEmployees",
-          "hasFundraising",
-          "hasNews",
-          "productServiceSlug"
-        ]
-      },
-      "EntityAliasType": {
-        "type": "string",
-        "description": "Alias types for entity NameAlias",
-        "enum": [
-          "alternativeDba",
-          "relatedLegal"
-        ]
-      },
       "PersonGraphCareerContext": {
         "type": "object",
         "description": "Entity facts, recent news, colleagues, and similar entities for one associated entity",
@@ -37029,106 +37256,6 @@
           "keyPerson"
         ]
       },
-      "EntityFundingDetail": {
-        "type": "object",
-        "description": "Aggregate view of an entity's fundraising activity",
-        "properties": {
-          "currency": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "ISO 4217 currency of totalRaised, latestValuation, and mostRecentAmount: the one currency every round uses, else the entity's own currency when rounds carry none. Null when rounds use more than one currency or no fundraise rollup exists, so these amounts have no single currency."
-          },
-          "fundingRoundCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "investorCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "latestValuation": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "mostRecentAmount": {
-            "type": [
-              "number",
-              "null"
-            ]
-          },
-          "mostRecentDate": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date"
-          },
-          "stage": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/FundingStage"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "totalRaised": {
-            "type": "number"
-          }
-        },
-        "required": [
-          "fundingRoundCount",
-          "investorCount",
-          "totalRaised"
-        ]
-      },
-      "FundingStage": {
-        "type": "string",
-        "description": "Canonical inferred equity, entity-type, or Company operating-status stage emitted by the entity fundraise rollup. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.",
-        "enum": [
-          "Angel",
-          "Pre-Seed",
-          "Seed",
-          "Series A",
-          "Series B",
-          "Series C",
-          "Series D",
-          "Series E",
-          "Series F",
-          "Series G",
-          "Series H",
-          "Series I",
-          "Series J",
-          "Series K",
-          "Series L",
-          "Series M",
-          "Series N",
-          "Series O",
-          "Series P",
-          "Series Q",
-          "Series R",
-          "Series S",
-          "Series T",
-          "Series U",
-          "Series V",
-          "Series W",
-          "Series X",
-          "Series Y",
-          "Series Z",
-          "Investment Firm",
-          "Fund",
-          "Nonprofit",
-          "Government",
-          "Public",
-          "Acquired",
-          "Acquired Subsidiary"
-        ]
-      },
       "EntityResearchFactValue": {
         "type": "object",
         "description": "Canonical typed fact value nested under entity research fields",
@@ -37340,160 +37467,6 @@
             }
           }
         }
-      },
-      "PersonSearchInterpretation": {
-        "type": "object",
-        "description": "Structured interpretation of a natural-language people search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate exactly.",
-        "properties": {
-          "confidence": {
-            "$ref": "#/components/schemas/Confidence",
-            "description": "Planner confidence in the structured interpretation."
-          },
-          "execution": {
-            "$ref": "#/components/schemas/SearchModeExecution",
-            "description": "Requested and executed search strategy."
-          },
-          "fallbackUsed": {
-            "type": "boolean",
-            "description": "True when the semantic fallback replaced an unconstrained planner result with a semantic search over the original query."
-          },
-          "filter": {
-            "$ref": "#/components/schemas/PersonFilter",
-            "description": "Canonical person filter generated from the natural-language query."
-          },
-          "interpretation": {
-            "type": "string",
-            "description": "Human-readable summary of how the query was interpreted."
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SearchOrderingPersonSortField",
-            "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
-          },
-          "unsupported": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Constraint the planner could not translate into the canonical PersonFilter contract; null when every material constraint was supported."
-          }
-        },
-        "required": [
-          "confidence",
-          "execution",
-          "fallbackUsed",
-          "filter",
-          "interpretation",
-          "sort"
-        ]
-      },
-      "PageResultPerson": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Person"
-            }
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "content",
-          "number",
-          "size",
-          "totalElements",
-          "totalPages"
-        ]
-      },
-      "Confidence": {
-        "type": "string",
-        "description": "Three-level confidence band for a classifier, model, or probe verdict. The carrying property states what is assessed and what each band licenses.",
-        "enum": [
-          "HIGH",
-          "MEDIUM",
-          "LOW"
-        ]
-      },
-      "SearchOrderingPersonSortField": {
-        "type": "object",
-        "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
-        "properties": {
-          "order": {
-            "type": "array",
-            "description": "Sortable-column terms applied after the relevance rank, highest precedence first. Empty when the relevance rank alone ordered the page. Listing priorities that every list page applies ahead of these terms, such as operating-status and logo priority, are not reported.",
-            "items": {
-              "$ref": "#/components/schemas/SortOrderPersonSortField"
-            }
-          },
-          "relevance": {
-            "description": "Relevance rank applied before any column term; absent when no relevance rank ran.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/SearchRelevance"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "order"
-        ]
-      },
-      "SortOrderPersonSortField": {
-        "type": "object",
-        "description": "Single sort term: which enumerated sort field to use and whether direction is descending.",
-        "properties": {
-          "descending": {
-            "type": "boolean",
-            "description": "true for descending (DESC), false for ascending (ASC)"
-          },
-          "field": {
-            "type": "string",
-            "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys).",
-            "enum": [
-              "ID",
-              "FIRST_NAME",
-              "LAST_NAME",
-              "FULL_NAME",
-              "SLUG",
-              "CREATED_AT",
-              "UPDATED_AT",
-              "STATUS",
-              "GENDER",
-              "AMOUNT_INVESTED",
-              "TOTAL_INVESTMENTS"
-            ]
-          }
-        },
-        "required": [
-          "descending",
-          "field"
-        ]
-      },
-      "SearchRelevance": {
-        "type": "string",
-        "description": "Relevance rank that ordered a search page before any sortable column.",
-        "enum": [
-          "keyword",
-          "semantic"
-        ]
       },
       "PersonEnrichment": {
         "type": "object",
@@ -37794,164 +37767,6 @@
           "mentionType",
           "name",
           "person"
-        ]
-      },
-      "EntityList": {
-        "type": "object",
-        "description": "\n        Narrow entity row for list and batch-list reads. Keeps core identity, enrichment,\n        governed research detail, accelerator participation, and fundraise rounds while omitting\n        detail-only relationship, newsArticle, person, sitemap, and research snippet sections.\n        Classification enrichment is current-only on list rows; use the entity classifications\n        subresource with includeInactive=true to audit historical joins.\n        ",
-        "properties": {
-          "core": {
-            "$ref": "#/components/schemas/Entity",
-            "description": "Flat entity core — identity, naming, status, image, and source metadata"
-          },
-          "enrichment": {
-            "$ref": "#/components/schemas/EntityEnrichment",
-            "description": "Supplemental entity data — addresses, classification tags, funding, text content, and URL links"
-          },
-          "fundraiseRound": {
-            "type": "array",
-            "description": "Fundraise rounds associated with this entity",
-            "items": {
-              "$ref": "#/components/schemas/EntityFundraiseTransaction"
-            }
-          },
-          "research": {
-            "$ref": "#/components/schemas/EntityListResearch",
-            "description": "List-safe research disclosure without text snippets"
-          },
-          "semanticMatch": {
-            "description": "Semantic embedding match evidence populated only for semantic list reads.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/ContentEmbeddingMatch"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "core",
-          "enrichment",
-          "fundraiseRound",
-          "research"
-        ]
-      },
-      "EntityEnrichment": {
-        "type": "object",
-        "description": "Supplemental entity data — addresses, classification tags, funding, text content, and URL links",
-        "properties": {
-          "address": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Address"
-            }
-          },
-          "classification": {
-            "$ref": "#/components/schemas/EntityClassification",
-            "description": "Entity classification join projection for this read surface. Single-detail and full-detail batch reads include full history; list, default batch, and similar-entity reads may filter to current joins. Use GET /v1/entities/{entityId}/classifications?includeInactive=true for authoritative join history."
-          },
-          "fundingDetail": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityFundingDetail"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "text": {
-            "$ref": "#/components/schemas/EntityTextBundle"
-          },
-          "urlLink": {
-            "type": "array",
-            "description": "URL link filter values",
-            "items": {
-              "$ref": "#/components/schemas/EntityUrlLink"
-            }
-          }
-        },
-        "required": [
-          "address",
-          "classification",
-          "text",
-          "urlLink"
-        ]
-      },
-      "EntityListResearch": {
-        "type": "object",
-        "description": "Nested research projection owned by EntityList rows, excluding snippet text.",
-        "properties": {
-          "acceleratorParticipation": {
-            "type": "array",
-            "description": "Joined accelerator participation derived from governed accelerator research rows",
-            "items": {
-              "$ref": "#/components/schemas/EntityAcceleratorParticipation"
-            }
-          },
-          "detail": {
-            "type": "array",
-            "description": "Flat governed research detail rows filtered by visibility",
-            "items": {
-              "$ref": "#/components/schemas/EntityResearchDetail"
-            }
-          }
-        },
-        "required": [
-          "acceleratorParticipation",
-          "detail"
-        ]
-      },
-      "EntityAcceleratorParticipation": {
-        "type": "object",
-        "description": "Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.",
-        "properties": {
-          "accelerator": {
-            "$ref": "#/components/schemas/Entity",
-            "description": "Canonical thin accelerator entity from the acceleratorParticipant relationship"
-          },
-          "acceleratorName": {
-            "type": "string",
-            "description": "Full accelerator participation name, including program detail"
-          },
-          "asOfDate": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Participation effective timestamp"
-          },
-          "batch": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Accelerator batch or cohort"
-          },
-          "id": {
-            "type": "string",
-            "description": "Stable participation identifier anchored to the contributing acceleratorParticipant relationship"
-          },
-          "program": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Accelerator program name, when the source distinguishes one"
-          },
-          "status": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Accelerator participation status"
-          }
-        },
-        "required": [
-          "accelerator",
-          "acceleratorName",
-          "asOfDate",
-          "id"
         ]
       },
       "JobState": {
@@ -39616,149 +39431,6 @@
           "symmetric",
           "typeOriented",
           "directional"
-        ]
-      },
-      "SearchInterpretation": {
-        "type": "object",
-        "description": "Structured interpretation of a natural-language entity search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate.",
-        "properties": {
-          "confidence": {
-            "$ref": "#/components/schemas/Confidence",
-            "description": "Planner confidence in the structured interpretation."
-          },
-          "execution": {
-            "$ref": "#/components/schemas/SearchModeExecution",
-            "description": "Requested and executed search strategy."
-          },
-          "fallbackUsed": {
-            "type": "boolean",
-            "description": "True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query."
-          },
-          "filter": {
-            "$ref": "#/components/schemas/EntityListFilter",
-            "description": "Canonical entity filter generated from the natural-language query."
-          },
-          "interpretation": {
-            "type": "string",
-            "description": "Human-readable summary of how the query was interpreted."
-          },
-          "sort": {
-            "$ref": "#/components/schemas/SearchOrderingEntityFilterSortable",
-            "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
-          },
-          "unsupported": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported."
-          }
-        },
-        "required": [
-          "confidence",
-          "execution",
-          "fallbackUsed",
-          "filter",
-          "interpretation",
-          "sort"
-        ]
-      },
-      "PageResultEntityList": {
-        "type": "object",
-        "properties": {
-          "content": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EntityList"
-            }
-          },
-          "number": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "size": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalElements": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "required": [
-          "content",
-          "number",
-          "size",
-          "totalElements",
-          "totalPages"
-        ]
-      },
-      "SearchOrderingEntityFilterSortable": {
-        "type": "object",
-        "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
-        "properties": {
-          "order": {
-            "type": "array",
-            "description": "Sortable-column terms applied after the relevance rank, highest precedence first. Empty when the relevance rank alone ordered the page. Listing priorities that every list page applies ahead of these terms, such as operating-status and logo priority, are not reported.",
-            "items": {
-              "$ref": "#/components/schemas/SortOrderEntityFilterSortable"
-            }
-          },
-          "relevance": {
-            "description": "Relevance rank applied before any column term; absent when no relevance rank ran.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/SearchRelevance"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          }
-        },
-        "required": [
-          "order"
-        ]
-      },
-      "SortOrderEntityFilterSortable": {
-        "type": "object",
-        "description": "Single sort term: which enumerated sort field to use and whether direction is descending.",
-        "properties": {
-          "descending": {
-            "type": "boolean",
-            "description": "true for descending (DESC), false for ascending (ASC)"
-          },
-          "field": {
-            "type": "string",
-            "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys).",
-            "enum": [
-              "ID",
-              "NAME_BRAND",
-              "YEAR_FOUNDED",
-              "STATUS_OPERATING",
-              "UPDATED_AT",
-              "CREATED_AT",
-              "TOTAL_RAISED",
-              "AMOUNT_INVESTED",
-              "RECENT_INVESTMENT_AT",
-              "STAGE",
-              "MOST_RECENT_AMOUNT",
-              "LATEST_VALUATION",
-              "MOST_RECENT_DATE",
-              "ACCELERATOR_BRAND",
-              "ACCELERATOR_COHORT",
-              "HEADQUARTERS_COUNTRY",
-              "EMPLOYEE_COUNT"
-            ]
-          }
-        },
-        "required": [
-          "descending",
-          "field"
         ]
       },
       "IdentificationCandidate": {

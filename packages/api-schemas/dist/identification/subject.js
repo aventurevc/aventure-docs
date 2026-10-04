@@ -1,7 +1,21 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityTypeSchema } from "../entity/type.js";
-const IdentificationSubjectSchemaDefinition = z.object({
+/**
+ * The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.
+ *
+ * @openapiSchema IdentificationSubject
+ * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
+ * @endpoint POST /v1/lookup-jobs
+ * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/people/lookup
+ * @usedBySchema LookupJobMutationSchema
+ * @contractShape identification.subject
+ * @contractRole canonical
+ */
+export const IdentificationSubjectSchema = z.object({
     /** Specific facts in plain words: product, industry, employer and title, or founder names. Generic words like startup add nothing. */
     context: z.string().max(2000).nullish(),
     /** Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY. */
@@ -21,15 +35,4 @@ const IdentificationSubjectSchemaDefinition = z.object({
     /** URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl. */
     url: z.array(z.string()).max(10).optional(),
 });
-/**
- * The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.
- *
- * @openapiSchema IdentificationSubject
- * @endpoint POST /v1/entities/lookup
- * @endpoint POST /v1/lookup
- * @endpoint POST /v1/people/lookup
- * @contractShape identification.subject
- * @contractRole canonical
- */
-export const IdentificationSubjectSchema = IdentificationSubjectSchemaDefinition;
 //# sourceMappingURL=subject.js.map

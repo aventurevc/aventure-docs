@@ -134,11 +134,10 @@ type EntityListResearchDefinition = z.infer<typeof EntityListResearchSchemaDefin
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/lookup-jobs/{jobId}
- * @endpoint POST /v1/entities/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityListSchema
  * @contractShape entity.list-research

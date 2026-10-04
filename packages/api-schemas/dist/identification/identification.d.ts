@@ -10,6 +10,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema LookupJobMentionSchema
+ * @usedBySchema LookupJobSchema
  * @contractShape identification.identification
  * @contractRole canonical
  */

@@ -8,12 +8,10 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/logo
  * @endpoint GET /v1/news/{newsId}/thumbnail
  * @endpoint GET /v1/people/{personId}/photo
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/agents/help
- * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/help
- * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema AgentHelpSchema
