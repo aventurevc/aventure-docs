@@ -222,6 +222,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityAcquisitionStageSchema",
     },
     EntityAliasType: { modulePath: "entity/alias-type", schemaName: "EntityAliasTypeSchema" },
+    EntityBrand: { modulePath: "entity/brand", schemaName: "EntityBrandSchema" },
     EntityClassification: {
         modulePath: "entity/classification",
         schemaName: "EntityClassificationSchema",

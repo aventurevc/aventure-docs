@@ -397,6 +397,7 @@ type EntityClassificationDefinition = z.infer<typeof EntityClassificationSchemaD
  *
  * @openapiSchema EntityClassification
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -412,6 +413,7 @@ type EntityClassificationDefinition = z.infer<typeof EntityClassificationSchemaD
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
+ * @usedBySchema EntityBrandSchema
  * @usedBySchema EntityEnrichmentSchema
  * @contractShape entity.classification
  * @contractRole canonical
