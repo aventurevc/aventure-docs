@@ -73,15 +73,11 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         amountRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodUUID;
-        image: z.ZodType<{
-            isMonogram: boolean;
-            logo?: string | null | undefined;
-            logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            isMonogram: boolean;
-            logo?: string | null | undefined;
-            logoSquare?: string | null | undefined;
-        }, unknown>>;
+        image: z.ZodObject<{
+            isMonogram: z.ZodBoolean;
+            logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>;
         investorCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         nameBrand: z.ZodString;
         round: z.ZodOptional<z.ZodNullable<z.ZodString>>;

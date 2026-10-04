@@ -25,7 +25,7 @@ const BlogPostSchemaDefinition = z.object({
     /** Timestamp when summary was last generated */
     summaryGeneratedAt: z.iso.datetime({ offset: true }).nullish(),
     title: z.string().nullish(),
-    /** Nullable Library topic key the Jev article classifier assigned: funding, product, partnership, acquisition, leadership, legal, research, financials, careers, blog, or press. Rows classified before that classifier may still carry a web-crawl section key. */
+    /** Nullable Library topic key the article classifier assigned: funding, product, partnership, acquisition, leadership, legal, research, financials, careers, blog, or press. Rows classified before that classifier may still carry a web-crawl section key. */
     topic: z.string().nullish(),
     type: BlogPostTypeSchema,
     updatedAt: z.iso.datetime({ offset: true }),

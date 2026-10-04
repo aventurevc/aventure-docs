@@ -3,13 +3,10 @@ declare const PersonSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     gender: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodUUID;
-    image: z.ZodType<{
-        isMonogram: boolean;
-        picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        isMonogram: boolean;
-        picture?: string | null | undefined;
-    }, unknown>>;
+    image: z.ZodObject<{
+        isMonogram: z.ZodBoolean;
+        picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>;
     lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     nameAlias: z.ZodArray<z.ZodType<{
         displayable?: boolean | null | undefined;

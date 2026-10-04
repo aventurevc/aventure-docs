@@ -537,6 +537,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "NewsFeedbackAcknowledgementSchema",
     },
     NewsMatchStatus: { modulePath: "news/match-status", schemaName: "NewsMatchStatusSchema" },
+    NewsPublishedEvent: {
+        modulePath: "news/published-event",
+        schemaName: "NewsPublishedEventSchema",
+    },
     NewsResolvedEntityLink: {
         modulePath: "news/resolved-entity-link",
         schemaName: "NewsResolvedEntityLinkSchema",
@@ -548,6 +552,35 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     NewsSourceUrlConflict: {
         modulePath: "news/source-url-conflict",
         schemaName: "NewsSourceUrlConflictSchema",
+    },
+    NewsSubscription: { modulePath: "news/subscription", schemaName: "NewsSubscriptionSchema" },
+    NewsSubscriptionArguments: {
+        modulePath: "news/subscription-arguments",
+        schemaName: "NewsSubscriptionArgumentsSchema",
+    },
+    NewsSubscriptionDelivery: {
+        modulePath: "news/subscription-delivery",
+        schemaName: "NewsSubscriptionDeliverySchema",
+    },
+    NewsSubscriptionDeliveryMode: {
+        modulePath: "news/subscription-delivery-mode",
+        schemaName: "NewsSubscriptionDeliveryModeSchema",
+    },
+    NewsSubscriptionEndpoint: {
+        modulePath: "news/subscription-endpoint",
+        schemaName: "NewsSubscriptionEndpointSchema",
+    },
+    NewsSubscriptionEvent: {
+        modulePath: "news/subscription-event",
+        schemaName: "NewsSubscriptionEventSchema",
+    },
+    NewsSubscriptionGrant: {
+        modulePath: "news/subscription-grant",
+        schemaName: "NewsSubscriptionGrantSchema",
+    },
+    NewsSubscriptionKey: {
+        modulePath: "news/subscription-key",
+        schemaName: "NewsSubscriptionKeySchema",
     },
     PageableObject: { modulePath: "pageable/object", schemaName: "PageableObjectSchema" },
     PageBlogPost: { modulePath: "pagination/schemas", schemaName: "PageBlogPostSchema" },

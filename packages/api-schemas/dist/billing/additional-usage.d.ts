@@ -11,11 +11,11 @@ declare const BillingAdditionalUsageSchemaDefinition: z.ZodObject<{
     meter: z.ZodArray<z.ZodType<{
         amountCents: number;
         quantity: number;
-        type: "AI_CREDIT" | "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+        type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
     }, unknown, z.core.$ZodTypeInternals<{
         amountCents: number;
         quantity: number;
-        type: "AI_CREDIT" | "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+        type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
     }, unknown>>>;
     resetAt: z.ZodISODateTime;
     spendCapCents: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

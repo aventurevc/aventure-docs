@@ -11,6 +11,17 @@ declare const ResearchAllowanceUsageSchemaDefinition: z.ZodObject<{
         resetAt: string;
         used: number;
     }, unknown>>;
+    entityBrand: z.ZodType<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, unknown>>;
     entityView: z.ZodType<{
         limit?: number | null | undefined;
         remaining?: number | null | undefined;

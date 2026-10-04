@@ -52,15 +52,11 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>;
         entityId: z.ZodUUID;
-        entityLogo: z.ZodType<{
-            isMonogram: boolean;
-            logo?: string | null | undefined;
-            logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            isMonogram: boolean;
-            logo?: string | null | undefined;
-            logoSquare?: string | null | undefined;
-        }, unknown>>;
+        entityLogo: z.ZodObject<{
+            isMonogram: z.ZodBoolean;
+            logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>;
         entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entitySlug: z.ZodString;
@@ -160,13 +156,10 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>;
         personId: z.ZodUUID;
-        personImage: z.ZodType<{
-            isMonogram: boolean;
-            picture?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
-            isMonogram: boolean;
-            picture?: string | null | undefined;
-        }, unknown>>;
+        personImage: z.ZodObject<{
+            isMonogram: z.ZodBoolean;
+            picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>;
         personName: z.ZodString;
         personSlug: z.ZodString;
         personUrlLink: z.ZodArray<z.ZodType<{

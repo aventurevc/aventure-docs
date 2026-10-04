@@ -15,6 +15,7 @@ export const BillingAdditionalUsageTypeSchema = z.enum([
     "COMPANY",
     "PERSON",
     "ENTITY_VIEW",
+    "ENTITY_BRAND",
     "PERSON_VIEW",
     "WEB_SEARCH",
     "AI_CREDIT",

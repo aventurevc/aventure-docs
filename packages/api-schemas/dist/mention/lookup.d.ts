@@ -501,6 +501,28 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             }[];
+            created?: {
+                dataCompletionCoverage?: number | null | undefined;
+                duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
+                duplicateProbability?: number | null | undefined;
+                owner: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                };
+                probability?: number | null | undefined;
+                record: {
+                    externalId?: string | null | undefined;
+                    id: string;
+                    name?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicPath?: string | null | undefined;
+                    reason: string[];
+                    score: number;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                };
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             detail: string;
             duplicate: {
                 dataCompletionCoverage?: number | null | undefined;
@@ -524,6 +546,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             }[];
+            enrichmentRunId?: string | null | undefined;
             match?: {
                 dataCompletionCoverage?: number | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
@@ -1101,6 +1124,28 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             }[];
+            created?: {
+                dataCompletionCoverage?: number | null | undefined;
+                duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
+                duplicateProbability?: number | null | undefined;
+                owner: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                };
+                probability?: number | null | undefined;
+                record: {
+                    externalId?: string | null | undefined;
+                    id: string;
+                    name?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicPath?: string | null | undefined;
+                    reason: string[];
+                    score: number;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                };
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             detail: string;
             duplicate: {
                 dataCompletionCoverage?: number | null | undefined;
@@ -1124,6 +1169,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             }[];
+            enrichmentRunId?: string | null | undefined;
             match?: {
                 dataCompletionCoverage?: number | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;

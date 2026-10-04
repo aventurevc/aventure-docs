@@ -4,6 +4,8 @@ import { EntityTypeSchema } from "../entity/type.js";
 const IdentificationSubjectSchemaDefinition = z.object({
     /** Specific facts in plain words: product, industry, employer and title, or founder names. Generic words like startup add nothing. */
     context: z.string().max(2000).nullish(),
+    /** Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY. */
+    kind: z.enum(["ENTITY", "PERSON"]).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */
     location: z.string().max(2000).nullish(),
     /** Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person. */

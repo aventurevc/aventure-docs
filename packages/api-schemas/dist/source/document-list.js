@@ -22,6 +22,7 @@ const SourceDocumentListSchemaDefinition = z.object({
  * Metadata-only ledger row for source-document lists
  *
  * @openapiSchema SourceDocumentList
+ * @endpoint GET /v1/web/searches/jobs/{jobId}
  * @endpoint POST /v1/web/search
  * @usedBySchema WebSearchSchema
  * @contractShape source.document-list

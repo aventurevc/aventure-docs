@@ -1,6 +1,10 @@
 import { z } from "zod/v4";
 declare const IdentificationSubjectSchemaDefinition: z.ZodObject<{
     context: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    kind: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        ENTITY: "ENTITY";
+        PERSON: "PERSON";
+    }>>>;
     location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     name: z.ZodString;
     providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

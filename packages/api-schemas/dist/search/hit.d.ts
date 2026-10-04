@@ -10,6 +10,7 @@ type SearchHitDefinition = z.infer<typeof SearchHitSchemaDefinition>;
  * One normalized web-search hit with its title, URL, snippet, and relevance score
  *
  * @openapiSchema SearchHit
+ * @endpoint GET /v1/web/searches/jobs/{jobId}
  * @endpoint POST /v1/web/search
  * @usedBySchema WebSearchSchema
  * @contractShape search.hit

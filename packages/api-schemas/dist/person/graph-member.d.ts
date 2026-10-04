@@ -2,13 +2,10 @@ import { z } from "zod/v4";
 declare const PersonGraphMemberSchemaDefinition: z.ZodObject<{
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     personId: z.ZodUUID;
-    personImage: z.ZodType<{
-        isMonogram: boolean;
-        picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        isMonogram: boolean;
-        picture?: string | null | undefined;
-    }, unknown>>;
+    personImage: z.ZodObject<{
+        isMonogram: z.ZodBoolean;
+        picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>;
     personName: z.ZodString;
     personSlug: z.ZodString;
     titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;

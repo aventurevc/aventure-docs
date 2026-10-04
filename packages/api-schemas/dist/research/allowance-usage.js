@@ -4,6 +4,8 @@ import { ResearchAllowanceSchema } from "./allowance.js";
 const ResearchAllowanceUsageSchemaDefinition = z.object({
     /** Research runs on company targets, new or existing */
     company: ResearchAllowanceSchema,
+    /** Thin company brand reads (names, logos, links, tags) */
+    entityBrand: ResearchAllowanceSchema,
     entityView: ResearchAllowanceSchema,
     /** Deprecated: replaced by company, which it mirrors. */
     newCompany: ResearchAllowanceSchema,
