@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.46"
+    "version": "0.8.47"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16358,6 +16358,20 @@
             }
           },
           {
+            "description": "Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Which kind of record a lookup identifies: ENTITY (a company, product, or service) or PERSON. Only that kind's ladder runs; omit it to compare both kinds.",
+              "enum": [
+                "ENTITY",
+                "PERSON"
+              ]
+            }
+          },
+          {
             "description": "Also considers hidden and unpublished records; needs private-visibility authority. Without it, NO_MATCH covers only records you can see.",
             "in": "query",
             "name": "includePrivate",
@@ -16511,7 +16525,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company, product, service, or person in one call. Send typeRecord for an entity-only lookup and providerId when identifying a Product or Service from a known provider; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. This JSON answer never creates records and schedules enrichment only with scheduleEnrichment=true; with Accept: text/event-stream a signed-in caller gets the identification as an event, then, for NO_MATCH with officialUrl whose page names the subject, the hidden shell filed for it with its background enrichment run. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
+        "description": "Identifies a company, product, service, or person in one call. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record and returned as created, with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -16536,6 +16550,15 @@
             "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
             "in": "query",
             "name": "scheduleEnrichment",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Set true to file a hidden record for a NO_MATCH subject whose own site web search finds and whose live page names it, then return that record as created with its enrichment run. Needs a signed-in user or the admin key and a plan. Without it, NO_MATCH never creates anything.",
+            "in": "query",
+            "name": "fileOnMiss",
             "required": false,
             "schema": {
               "type": "boolean"
@@ -25770,7 +25793,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Searches enriched details across our company and people dataset from a plain-English query. Runs the canonical entity, person, and news search engines sequentially and returns their typed result pages with per-scope strategy provenance. Supports only auto and keyword modes; unsupported modes are rejected before any scope runs. Page and size apply to every scope; cross-domain sort is not supported.",
+        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint; provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines. Page and size apply to every scope; cross-domain sort is not supported.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -29954,6 +29977,17 @@
             "maxLength": 2000,
             "minLength": 0
           },
+          "kind": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
+            "enum": [
+              "ENTITY",
+              "PERSON"
+            ]
+          },
           "location": {
             "type": [
               "string",
@@ -30037,6 +30071,17 @@
               "$ref": "#/components/schemas/IdentificationCandidate"
             }
           },
+          "created": {
+            "description": "With fileOnMiss=true, the hidden record this NO_MATCH filed (or already held its own site): it is now stored, so do not create it. Absent otherwise.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/IdentificationCandidate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "detail": {
             "type": "string",
             "description": "One sentence naming what settled the answer or what the user must decide."
@@ -30047,6 +30092,14 @@
             "items": {
               "$ref": "#/components/schemas/IdentificationCandidate"
             }
+          },
+          "enrichmentRunId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "The background run filed to research created; absent without created, and when the record is already public."
           },
           "match": {
             "description": "The matched record when status is MATCHED.",
@@ -31743,7 +31796,7 @@
               "string",
               "null"
             ],
-            "description": "Nullable Library topic key the Jev article classifier assigned: funding, product, partnership, acquisition, leadership, legal, research, financials, careers, blog, or press. Rows classified before that classifier may still carry a web-crawl section key.",
+            "description": "Nullable Library topic key the article classifier assigned: funding, product, partnership, acquisition, leadership, legal, research, financials, careers, blog, or press. Rows classified before that classifier may still carry a web-crawl section key.",
             "example": "product"
           },
           "type": {
