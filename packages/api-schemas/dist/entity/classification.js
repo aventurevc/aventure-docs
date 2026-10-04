@@ -29,6 +29,7 @@ const EntityClassificationSchemaDefinition = z.object({
  *
  * @openapiSchema EntityClassification
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -44,6 +45,7 @@ const EntityClassificationSchemaDefinition = z.object({
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
+ * @usedBySchema EntityBrandSchema
  * @usedBySchema EntityEnrichmentSchema
  * @contractShape entity.classification
  * @contractRole canonical

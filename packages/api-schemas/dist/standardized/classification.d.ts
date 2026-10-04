@@ -31,6 +31,7 @@ type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassific
  *
  * @openapiSchema StandardizedClassification
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/classifications/catalog
  * @endpoint GET /v1/entities/classifications/tags
  * @endpoint GET /v1/entities/lookup-exact

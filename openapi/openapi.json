@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.47"
+    "version": "0.8.48"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3996,6 +3996,161 @@
           }
         },
         "summary": "List Companies, Products, and Services",
+        "tags": [
+          "Entities"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/brand": {
+      "get": {
+        "description": "Thin, cached read of one company by exactly one of url, slug, or entityId: brand and legal names, logos, the primary website and social profile URLs, and current classification tags. url accepts any current URL joined to the company (website, LinkedIn, X/Twitter, Crunchbase, GitHub, and other profiles) or its aVenture page; scheme, a leading www, and case are ignored, while distinct paths stay distinct. 404 when nothing owns the identifier; 409 with candidate ids when a URL is owned by more than one company. A signed-in user's read charges one brand view per distinct company per UTC month against the monthly brand view allowance, then as additional usage when the subscriber enabled it; a repeat read of the same company in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "operationId": "getEntityBrand",
+        "parameters": [
+          {
+            "description": "Any current URL joined to the company, e.g. stripe.com.",
+            "in": "query",
+            "name": "url",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Exact aVenture entity slug, e.g. stripe.",
+            "in": "query",
+            "name": "slug",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Canonical lowercase URL slug for the resource",
+              "example": "aventure-vc",
+              "maxLength": 255,
+              "pattern": "^[a-z0-9_-]+$"
+            }
+          },
+          {
+            "description": "Exact entity UUID.",
+            "in": "query",
+            "name": "entityId",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityBrand"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "summary": "Get a Company's Names, Logos, Links, and Tags",
         "tags": [
           "Entities"
         ],
@@ -29437,6 +29592,39 @@
             "format": "int32"
           }
         }
+      },
+      "EntityBrand": {
+        "type": "object",
+        "description": "Thin company brand read: names and logos under core, current website and social URLs, and current classification tags.",
+        "properties": {
+          "classification": {
+            "$ref": "#/components/schemas/EntityClassification",
+            "description": "Current classification tags, industries, and standardized classifications."
+          },
+          "core": {
+            "$ref": "#/components/schemas/Entity",
+            "description": "Core identity: id, slug, nameBrand, nameLegal, nameAlias, type, status, and image (logo, logoSquare, isMonogram)."
+          },
+          "publicUrl": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Absolute canonical aVenture page URL, when the entity has one."
+          },
+          "urlLink": {
+            "type": "array",
+            "description": "Current URL links: websites first, the primary one leading, then social and other profiles.",
+            "items": {
+              "$ref": "#/components/schemas/EntityUrlLink"
+            }
+          }
+        },
+        "required": [
+          "classification",
+          "core",
+          "urlLink"
+        ]
       },
       "ClassificationCatalog": {
         "type": "object",

@@ -28,6 +28,7 @@ const EntityUrlLinkSchemaDefinition = z.object({
  *
  * @openapiSchema EntityUrlLink
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
@@ -56,6 +57,7 @@ const EntityUrlLinkSchemaDefinition = z.object({
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
+ * @usedBySchema EntityBrandSchema
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema EntitySimilaritySummarySchema

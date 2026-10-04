@@ -9,6 +9,7 @@ import { EntityTypeSchema } from "./type.js";
  *
  * @openapiSchema Entity
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
@@ -42,6 +43,7 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityAcceleratorParticipationSchema
  * @usedBySchema EntityAcquisitionSchema
+ * @usedBySchema EntityBrandSchema
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @usedBySchema EntityListSchema
