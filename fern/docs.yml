@@ -8,12 +8,20 @@ layout:
   searchbar-placement: header
   page-width: full
   tabs-placement: header
+# Docs sign-in fills a reader's API key into the API Explorer. Every item names
+# viewers: everyone, because an item without viewers is visible only after sign-in.
+roles:
+  - everyone
 tabs:
   home:
     display-name: Docs
+    viewers:
+      - everyone
   API Reference:
     display-name: API Reference
     slug: api-reference
+    viewers:
+      - everyone
 navigation:
   - tab: home
     layout:
@@ -150,6 +158,8 @@ navbar-links:
   - type: filled
     text: Get an API key
     url: https://aventure.vc/settings/api-keys
+    viewers:
+      - everyone
 # Brand tokens from aventure.vc (front-end src/styles/themeColors.ts, surfaceTheme.css).
 colors:
   accent-primary:
