@@ -11,14 +11,12 @@ type DecimalRangeDefinition = z.infer<typeof DecimalRangeSchemaDefinition>;
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
- * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema EntityFundraiseFilterCriteriaSchema

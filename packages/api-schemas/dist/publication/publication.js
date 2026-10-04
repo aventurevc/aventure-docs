@@ -23,7 +23,7 @@ const PublicationSchemaDefinition = z.object({
     summary: z.string().nullish(),
     /** Human title or best available display label. webPage rows restate the page URL when the crawl captured no label; renderers may humanize that fallback. */
     title: z.string(),
-    /** Single canonical topic key (web-crawl section or news-event topic) or source category (repository language); null when the source has no classified topic. */
+    /** Single canonical topic key (web-crawl section or news-event topic) or source category (repository language, or GitHub for a profile or a repository without one); null while the source awaits classification. */
     topic: z.string().nullish(),
     /** Publication row update instant when known. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

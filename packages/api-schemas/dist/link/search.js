@@ -14,6 +14,7 @@ const LinkSearchSchemaDefinition = z.object({
  *
  * @openapiSchema LinkSearch
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @contractShape link.search
  * @contractRole canonical
  */

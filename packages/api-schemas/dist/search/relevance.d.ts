@@ -4,10 +4,8 @@ import { z } from "zod/v4";
  *
  * @openapiSchema SearchRelevance
  * @endpoint GET /v1/search/link
- * @endpoint POST /v1/entities/natural-search
- * @endpoint POST /v1/people/natural-search
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema SearchOrderingEntityFilterSortableSchema

@@ -1,0 +1,496 @@
+---
+title: Use Cases and Examples
+subtitle: Copy-paste recipes for the jobs people build on aVenture data, in API, CLI, and MCP form
+slug: use-cases
+keywords: use cases, examples, recipes, playbook, brand, logo, tags, company enrichment, domain lookup, target list, funding history, investor portfolio, competitors, news monitoring
+---
+
+Each recipe below answers one job with real calls and real responses, abridged.
+Every call is deterministic: the same input returns the same record, and
+nothing is guessed from a name. Finish a [quickstart](/welcome) first so you
+are signed in.
+
+| You want | Recipe |
+|----------|--------|
+| A company's name, logo, links, and tags from its website | [Brand kit from a website](#get-a-company-brand-kit-from-its-website) |
+| Which company each website in a list belongs to | [Match a list of websites](#match-a-list-of-websites-to-companies) |
+| Every company that fits a market definition | [Target list](#build-a-target-list-with-filters) |
+| What a company raised and who invested | [Funding history](#read-a-funding-history-and-the-investors-in-a-round) |
+| What a firm has backed lately | [Investor portfolio](#list-the-recent-portfolio-of-an-investor) |
+| A founder's companies and roles | [Founder background](#trace-every-company-a-founder-has-worked-at) |
+| A company's competitors | [Competitors](#find-the-competitors-of-a-company) |
+| New coverage of a company | [News monitoring](#monitor-news-about-a-company) |
+
+The examples use Stripe (`4eabfc26-3ed9-4ad3-a935-9be07ae3329a`), Sequoia
+Capital, and Patrick Collison. Swap in your own ids.
+
+## Get a Company Brand Kit From Its Website
+
+Send any website or profile URL the company owns and read its brand name,
+legal name, logo, links, and tags from the full record. The lookup ignores the
+scheme, a leading `www.`, and host case; a different path is a different URL.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -s -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/lookup-exact?url=stripe.com" |
+  jq '{id: .core.id, nameBrand: .core.nameBrand, nameLegal: .core.nameLegal,
+       tag: [.enrichment.classification.tag[] | {name, isPrimary}],
+       link: [.enrichment.urlLink[] | {url, urlType}]}'
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities lookup-exact get --url stripe.com --data-full
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read`:
+
+```json
+{ "operationId": "getEntityLookup", "query": { "url": "stripe.com" } }
+```
+
+</Tab>
+</Tabs>
+
+```json
+{
+  "id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a",
+  "nameBrand": "Stripe",
+  "nameLegal": "Stripe, Inc.",
+  "tag": [
+    { "name": "Fintech", "isPrimary": false },
+    { "name": "Platform", "isPrimary": false },
+    { "name": "SaaS", "isPrimary": true }
+  ],
+  "link": [
+    { "url": "https://github.com/stripe", "urlType": "github" },
+    { "url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin" },
+    { "url": "https://x.com/stripe", "urlType": "twitter" }
+  ]
+}
+```
+
+| Field | Holds |
+|-------|-------|
+| `core.nameBrand`, `core.nameLegal` | The name the company goes by and its registered name |
+| `enrichment.classification.tag` | Tags; `isPrimary` marks the main one. `industry` and `mainProduct` sit beside it |
+| `enrichment.urlLink` | Website and profile links, each with `url` and `urlType` |
+| `core.image.logoSquare` | The square logo's storage path, not a full URL |
+
+For a logo you can put in an `<img>` tag, read the logo slot with the `core.id`
+from the first call. Its `cdnUrl` is a full image URL:
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/logo"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities logo get --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read`:
+
+```json
+{ "operationId": "getEntityLogo", "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" } }
+```
+
+</Tab>
+</Tabs>
+
+```json
+{
+  "path": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
+  "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png"
+}
+```
+
+The full record counts one company profile view; reading it again that month
+is free. A domain that two records share answers `409`; add `typeRecord`, such
+as `typeRecord=Investment Firm`, to pick one.
+
+## Match a List of Websites to Companies
+
+`POST /v1/entities/lookup-matches` answers one row per input, in input order,
+so you can join the answer back to a spreadsheet or CRM export. Each row's
+`status` is `MATCHED`, `AMBIGUOUS`, or `MISSING`.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" -H "Content-Type: application/json" \
+  -d '{"url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"]}' \
+  "https://api.aventure.vc/v1/entities/lookup-matches"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities lookup-matches --url stripe.com notion.so zzqx-unknown-domain-4417.com --data
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_lookup`:
+
+```json
+{ "operationId": "lookupEntityMatches", "body": { "url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"] } }
+```
+
+</Tab>
+</Tabs>
+
+```json
+[
+  { "input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": { "core": { "nameBrand": "Stripe" } } },
+  { "input": "notion.so", "inputType": "URL", "status": "MATCHED", "detail": { "core": { "nameBrand": "Notion", "slug": "notion" } } },
+  { "input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": [] }
+]
+```
+
+An `AMBIGUOUS` row lists the records that share the URL in
+`candidateEntityId`; read each by id to choose. The body also takes `entityId`
+and `slug` arrays. Each matched record counts one profile view.
+`POST /v1/entities/lookup-batch` takes the same body but returns only the
+records it found, as a page, and drops the rest. To identify a bare name with no
+URL, use [Identify a company or person](/lookup).
+
+## Build a Target List With Filters
+
+Filters on the company list combine, and `totalElements` sizes the whole
+market. This one finds seed-stage fintech companies headquartered in New York.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities?stage=Seed&tag=Fintech&headquartersState=New%20York&size=3"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities list --stage Seed --tag Fintech --headquarters-state "New York" --size 3
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read`:
+
+```json
+{ "operationId": "listEntities", "query": { "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3 } }
+```
+
+</Tab>
+</Tabs>
+
+The answer counts 111 companies, led by Alloy (`alloy-brooklyn-ny-us`), Floret,
+and Parthean. Each row's name and slug sit at `content[].core.nameBrand` and
+`content[].core.slug`.
+
+Filter values are case-sensitive display names: the tag is `Fintech`, and the
+state is `New York`, not `NY`. `GET /v1/entities/filters` (CLI:
+`aventure entities filters list`) lists every accepted value.
+[Pagination and filtering](/pagination-and-filtering) covers paging through the
+full list.
+
+## Read a Funding History and the Investors in a Round
+
+List the rounds newest first, then name a round's label to list its investors.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-rounds?size=5&sort=dateAnnounced,desc"
+
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-investor-joins?round=Series%20I&size=5"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities fundraise-rounds list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --size 5 --sort dateAnnounced,desc
+aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --round "Series I" --size 5
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read` once per operation:
+
+```json
+{
+  "operationId": "listEntityFundraiseRounds",
+  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
+  "query": { "size": 5, "sort": "dateAnnounced,desc" }
+}
+```
+
+```json
+{
+  "operationId": "listEntityFundraiseInvestorJoins",
+  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
+  "query": { "round": "Series I", "size": 5 }
+}
+```
+
+</Tab>
+</Tabs>
+
+Stripe has 19 rounds. Its Series I:
+
+```json
+{
+  "id": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98",
+  "round": "Series I",
+  "amountRaised": 6500000000,
+  "currency": "USD",
+  "dateAnnounced": "2023-03-15T00:00:00.000Z",
+  "investorCount": 10
+}
+```
+
+Each investor row names the investor by id only, in `investor.entityId` or
+`investor.personId`. Send several firm ids to the company list at once
+(`aventure entities list --entity-id <id> <id>`) to read their names; for this
+round they include General Catalyst, Thrive Capital, and Goldman Sachs Asset
+Management. `entityId` is always the company that raised, never the investor.
+Amounts stay in each round's own `currency`, and a missing amount does not mean
+zero.
+
+## List the Recent Portfolio of an Investor
+
+Resolve the firm from its website, then list what it backed. A firm's website
+can also belong to its fund records, so name the record type.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/lookup-exact?url=sequoiacap.com&typeRecord=Investment%20Firm"
+
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/9187060c-8107-4f4c-9719-f185d2c8ee7d/investments?latestPerEntity=true&dateFrom=2025-01-01&size=3"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities lookup-exact get --url sequoiacap.com --type-record "Investment Firm"
+aventure entities investments list --entity-id 9187060c-8107-4f4c-9719-f185d2c8ee7d --latest-per-entity true --date-from 2025-01-01 --size 3
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read` with `getEntityLookup`, then:
+
+```json
+{
+  "operationId": "listEntityInvestments",
+  "pathParams": { "entityId": "9187060c-8107-4f4c-9719-f185d2c8ee7d" },
+  "query": { "latestPerEntity": true, "dateFrom": "2025-01-01", "size": 3 }
+}
+```
+
+</Tab>
+</Tabs>
+
+Sequoia Capital has 44 portfolio companies with a round since January 2025.
+The newest, abridged:
+
+```json
+{
+  "round": "Series B",
+  "amountRaised": 50000000,
+  "currency": "USD",
+  "dateAnnounced": "2026-09-30T00:00:00.000Z",
+  "entity": { "core": { "nameBrand": "Flow Engineering", "slug": "flow-engineering-san-francisco-ca-us" } },
+  "investorAttribution": { "leadInvestor": false, "attributionType": "direct" }
+}
+```
+
+`latestPerEntity=true` keeps one row per company. `dateFrom` and `dateTo` take
+`YYYY-MM-DD`. For an angel investor, `GET /v1/people/{personId}/investments`
+(CLI: `aventure people investments list`) lists the person's investments. It has
+no date or one-row-per-company filter, so sort it with `sort=date,desc`. The
+reverse question, who backed one company, is
+`GET /v1/entities/{entityId}/investors`.
+
+## Trace Every Company a Founder Has Worked At
+
+Resolve the person from a profile URL or slug, then list every role, current
+and past.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/people/lookup-exact?url=linkedin.com/in/patrickcollison"
+
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/people/44a15937-50df-4970-a32e-130e2c3ca150/entities?size=5"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure people lookup-exact get --url linkedin.com/in/patrickcollison
+aventure people entities list --person-id 44a15937-50df-4970-a32e-130e2c3ca150 --size 5
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read` with `getPersonLookup`, then:
+
+```json
+{ "operationId": "listPersonEntityAssociations", "pathParams": { "personId": "44a15937-50df-4970-a32e-130e2c3ca150" }, "query": { "size": 5 } }
+```
+
+</Tab>
+</Tabs>
+
+```json
+[
+  { "entityName": "Stripe", "entitySlug": "stripe-south-san-francisco-ca-us", "titleName": "Co-Founder & CEO", "isCurrent": true },
+  { "entityName": "Auctomatic", "entitySlug": "auctomatic-san-francisco-ca-us", "titleName": "Cofounder", "isCurrent": false,
+    "startDate": "2007-01-01T00:00Z", "endDate": "2008-01-01T00:00Z" }
+]
+```
+
+The person lookup counts one person profile view; the role list does not.
+`GET /v1/entities/{entityId}/people` answers the reverse question: who works at
+one company.
+
+## Find the Competitors of a Company
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/similar?relationshipType=competitor&size=5"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure entities similar list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --relationship-type competitor --size 5
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read`:
+
+```json
+{
+  "operationId": "listEntitySimilarEntities",
+  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" }, "query": { "relationshipType": "competitor", "size": 5 }
+}
+```
+
+</Tab>
+</Tabs>
+
+Each row pairs a company with why it is listed:
+
+```json
+{
+  "entity": { "core": { "nameBrand": "Block", "slug": "block-san-francisco-ca-us" } },
+  "similarity": {
+    "origin": "curated",
+    "curatedRelationshipType": "competitor",
+    "curatedSource": "Stripe competes with Block across payments and financial infrastructure."
+  }
+}
+```
+
+Stripe's stored competitors include Block, Wise, and Visa. Without
+`relationshipType`, the list ranks every similar company. This read is free on
+every plan. To find companies that match a description instead of a known
+company, use `POST /v1/search/natural/entities` (CLI:
+`aventure search natural entities --query "..."`).
+
+## Monitor News About a Company
+
+Ask for articles linked to a company since your last check.
+
+<Tabs>
+<Tab title="API">
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/news?owner.entityId=4eabfc26-3ed9-4ad3-a935-9be07ae3329a&publishedAfter=2026-09-01&size=3"
+```
+
+</Tab>
+<Tab title="CLI">
+
+```bash
+aventure news list --owner-entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --published-after 2026-09-01 --size 3
+```
+
+</Tab>
+<Tab title="MCP">
+
+Call `aventure_read`:
+
+```json
+{ "operationId": "listNews", "query": { "owner.entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "publishedAfter": "2026-09-01", "size": 3 } }
+```
+
+</Tab>
+</Tabs>
+
+Each article carries `title`, `publication`, `publishedAt`, `excerpt`, and
+`newsUrlOriginal`, newest first. `publishedAfter` includes the date you send,
+so store the date of each check and send it next time. The query key is the
+dotted `owner.entityId`; `owner.personId` does the same for a person. An
+article can mention the company in passing, so read its `excerpt` before you
+alert on it. To start from an article instead, [identify names in an
+article](/lookup-articles) finds every company and person it names.
+
+## Costs at a Glance
+
+| Call | Counts against |
+|------|----------------|
+| Full record by URL, slug, or id, and each matched or batch record | One company or person profile view per distinct record each month; a repeat read that month is free |
+| Company list, logo, rounds, investors, portfolio, roles, and news | No profile view |
+| Competitors and similar companies | Free on every plan |
+
+[Plans and usage](/plans-and-usage) covers every allowance, and the
+[API reference](/api-reference) lists every parameter and response field.

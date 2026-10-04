@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { IdentificationSchema } from "../identification/identification.js";
 import { JobStateSchema } from "../job/state.js";
 import { LookupJobMentionSchema } from "./job-mention.js";
 import { LookupJobMutationSchema } from "./job-mutation.js";
@@ -8,6 +9,8 @@ const LookupJobSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }),
     /** Why the job failed; absent unless state is FAILED. */
     failureReason: z.string().nullish(),
+    /** Subject jobs only: once COMPLETED, the identification GET /v1/lookup or POST /v1/entities/lookup returns for source.subject; absent otherwise. */
+    identification: IdentificationSchema.nullish(),
     /** Lookup job id. */
     jobId: z.uuid(),
     /** True when a bulk lookup returned its name bound; more names may remain. False does not prove that extraction found every name on a page. */
@@ -28,7 +31,7 @@ const LookupJobSchemaDefinition = z.object({
     updatedAt: z.iso.datetime({ offset: true }),
 });
 /**
- * An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names.
+ * An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names, or the identification of its subject.
  *
  * @openapiSchema LookupJob
  * @endpoint GET /v1/lookup-jobs/{jobId}

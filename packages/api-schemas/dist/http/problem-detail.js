@@ -117,6 +117,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "search_provider_error",
             /** aVenture stopped waiting for a web search the provider is still running; the search keeps running and its finished result is stored. Agent action: retry the same request, after retryAfterSeconds when present (also in the Retry-After header); this is not a provider failure. */
             "search_still_running",
+            /** A lookup sent with Prefer: respond-async was accepted as a lookup job instead of answered in the request. Agent action: poll the Location status URL after Retry-After. */
+            "lookup_still_running",
             /** SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or rate limiting affect the public-company preview endpoint only. */
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only. */

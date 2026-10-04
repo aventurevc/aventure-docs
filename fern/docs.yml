@@ -27,6 +27,10 @@ navigation:
             path: docs/pages/cli-quickstart.mdx
           - page: Your Code (API)
             path: docs/pages/quickstart.mdx
+      - section: Use Cases & Examples
+        contents:
+          - page: Use Cases and Examples
+            path: docs/pages/use-cases.mdx
       - section: Guides
         contents:
           - page: Answer a Real Question

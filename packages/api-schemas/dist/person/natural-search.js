@@ -12,7 +12,6 @@ const PersonNaturalSearchSchemaDefinition = z.object({
  * Plain-English people search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.
  *
  * @openapiSchema PersonNaturalSearch
- * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/search/natural/people
  * @contractShape person.natural-search
  * @contractRole canonical

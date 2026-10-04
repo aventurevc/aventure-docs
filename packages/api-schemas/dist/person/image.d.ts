@@ -18,15 +18,14 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/similar
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/people/lookup-batch
- * @endpoint POST /v1/people/natural-search
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
- * @endpoint POST /v1/search/all
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema PersonGraphMemberSchema

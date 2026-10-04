@@ -14,7 +14,6 @@ import { UrlMatchModeSchema } from "../url/match-mode.js";
  * @openapiSchema EntityFilter
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
- * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema

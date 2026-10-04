@@ -12,7 +12,6 @@ const EntityNaturalSearchSchemaDefinition = z.object({
  * Plain-English entity search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.
  *
  * @openapiSchema EntityNaturalSearch
- * @endpoint POST /v1/entities/natural-search
  * @endpoint POST /v1/search/natural/entities
  * @contractShape entity.natural-search
  * @contractRole canonical
