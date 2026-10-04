@@ -40,6 +40,8 @@ navigation:
                 path: docs/pages/lookup-articles.mdx
               - page: Update Records With Research
                 path: docs/pages/research-updates.mdx
+          - page: Company Brand Lookup
+            path: docs/pages/company-brand-lookup.mdx
           - page: Call MCP Tools Directly
             path: docs/pages/mcp-tools.mdx
       - section: Reference

@@ -40,7 +40,10 @@ name, the answer is `NEEDS_REVIEW`.
 
 If you already hold an exact slug, URL, or domain and want the full record, use
 `GET /v1/entities/lookup-exact` or `GET /v1/people/lookup-exact` instead. Those
-reads return `404` or `409` rather than guessing.
+reads return `404` or `409` rather than guessing. When you need only a company's
+names, logos, links, and categories, the thinner
+[company brand lookup](/company-brand-lookup) returns them from any URL the
+company owns.
 
 ## Send Every Clue You Have
 

@@ -1,0 +1,199 @@
+---
+title: Company Brand Lookup
+subtitle: Get a company's names, logos, website and social URLs, and categories from one URL
+slug: company-brand-lookup
+keywords: brand, logo, company name, social links, categories, tags, enrichment, domain lookup
+---
+
+`GET /v1/entities/brand` takes one identifier for a company and returns its
+brand kit: brand and legal names, logos, current website and social profile
+URLs, and current categories. Send any URL the company owns:
+
+```bash
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/brand?url=stripe.com"
+```
+
+Every call needs an API key or a CLI or MCP sign-in, described in
+[Authentication](/authentication).
+
+## Look Up by URL
+
+`url` accepts any current URL joined to the company: its website, LinkedIn,
+X (Twitter), Crunchbase, GitHub, or another profile, or its aVenture page.
+The lookup ignores the scheme (`http` or `https`), a leading `www.`, and the
+case of the host. These all return Stripe:
+
+| `url` value | Why it matches |
+|-------------|----------------|
+| `stripe.com` | The company's website |
+| `https://www.stripe.com` | Scheme and `www.` are ignored |
+| `HTTP://STRIPE.COM` | Scheme and host case are ignored |
+| `https://www.linkedin.com/company/stripe` | Its LinkedIn company page; LinkedIn country hosts such as `uk.linkedin.com` count as `linkedin.com` |
+| `https://twitter.com/stripe` | Its X profile; `twitter.com` counts as `x.com` |
+
+A different path is a different URL: `stripe.com/payments` does not match
+`stripe.com`. The same input always returns the same company.
+
+URL-encode a URL that carries a path or its own query string:
+
+<CodeBlocks>
+```bash title="curl"
+curl -G -H "Authorization: Bearer $AUTH_TOKEN" \
+  --data-urlencode "url=https://www.linkedin.com/company/stripe" \
+  "https://api.aventure.vc/v1/entities/brand"
+```
+
+```bash title="CLI"
+aventure entities brand get --url https://www.linkedin.com/company/stripe
+```
+
+```json title="MCP (aventure_read)"
+{ "operationId": "getEntityBrand", "query": { "url": "https://www.linkedin.com/company/stripe" } }
+```
+
+```javascript title="JavaScript"
+const params = new URLSearchParams({ url: "https://www.linkedin.com/company/stripe" });
+const response = await fetch(`https://api.aventure.vc/v1/entities/brand?${params}`, {
+  headers: { Authorization: `Bearer ${process.env.AUTH_TOKEN}` },
+});
+if (!response.ok) throw new Error(`${response.status}: ${await response.text()}`);
+const brand = await response.json();
+console.log(brand.core.nameBrand, brand.core.image?.logoSquare);
+```
+
+```python title="Python"
+import os
+import requests
+
+response = requests.get(
+    "https://api.aventure.vc/v1/entities/brand",
+    params={"url": "https://www.linkedin.com/company/stripe"},
+    headers={"Authorization": f"Bearer {os.environ['AUTH_TOKEN']}"},
+    timeout=30,
+)
+response.raise_for_status()
+brand = response.json()
+print(brand["core"]["nameBrand"], brand["core"]["image"].get("logoSquare"))
+```
+</CodeBlocks>
+
+## Look Up by Slug or ID
+
+When you already hold the company's aVenture slug or UUID, send it instead of a
+URL. Send exactly one of `url`, `slug`, or `entityId`.
+
+<CodeBlocks>
+```bash title="curl (slug)"
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/brand?slug=stripe-south-san-francisco-ca-us"
+```
+
+```bash title="curl (entityId)"
+curl -H "Authorization: Bearer $AUTH_TOKEN" \
+  "https://api.aventure.vc/v1/entities/brand?entityId=4eabfc26-3ed9-4ad3-a935-9be07ae3329a"
+```
+
+```json title="MCP (aventure_read)"
+{ "operationId": "getEntityBrand", "query": { "slug": "stripe-south-san-francisco-ca-us" } }
+```
+</CodeBlocks>
+
+## Read the Response
+
+The response is an `EntityBrand`. This abridged example is Stripe's record:
+
+```json
+{
+  "core": {
+    "id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a",
+    "slug": "stripe-south-san-francisco-ca-us",
+    "nameBrand": "Stripe",
+    "nameLegal": "Stripe, Inc.",
+    "nameAlias": [],
+    "typeRecord": "Company",
+    "operatingStatus": "Operating",
+    "image": {
+      "logoSquare": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
+      "isMonogram": false
+    }
+  },
+  "urlLink": [
+    { "url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase" },
+    { "url": "https://github.com/stripe", "urlType": "github" },
+    { "url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin" },
+    { "url": "https://x.com/stripe", "urlType": "twitter" },
+    { "url": "https://stripe.com/", "urlType": "website" }
+  ],
+  "classification": {
+    "tag": [
+      { "id": 1192, "name": "Platform", "slug": "platform", "isPrimary": false },
+      { "id": 934, "name": "SaaS", "slug": "saas", "isPrimary": true }
+    ],
+    "industry": [
+      { "id": 245, "name": "Financial Technology Companies", "slug": "financial-technology-companies", "isPrimary": true },
+      { "id": 356, "name": "Payment Service Providers", "slug": "payment-service-providers", "isPrimary": false }
+    ],
+    "mainProduct": [
+      { "id": 1385, "name": "Financial", "slug": "financial", "isPrimary": false },
+      { "id": 62, "name": "Payments", "slug": "payments", "isPrimary": true }
+    ]
+  },
+  "publicUrl": "https://aventure.vc/companies/stripe-south-san-francisco-ca-us"
+}
+```
+
+| Field | What it holds |
+|-------|---------------|
+| `core.id`, `core.slug` | The company's UUID and slug, for later reads |
+| `core.nameBrand` | The name the company goes by, such as `Stripe` |
+| `core.nameLegal` | The registered legal name, such as `Stripe, Inc.` |
+| `core.nameAlias` | Other names the company is known by |
+| `core.typeRecord` | The kind of record, such as `Company` |
+| `core.image.logo`, `core.image.logoSquare` | Logo image paths; `logoSquare` is the square version |
+| `core.image.isMonogram` | `true` when the logo is a monogram (letter mark) |
+| `urlLink` | Current website and profile links, each with `url` and `urlType`; when the record marks a primary website, it comes first with `isPrimary` set |
+| `classification` | Current categories, grouped as `tag`, `industry`, `typeCustomer`, `typeRevenue`, `mainProduct`, `typeOwnership`, `typeTechnologyUsed`, `typeModel`, `geoLocationExposure`, and `standardizedClassification` (industry codes such as NAICS and SIC) |
+| `publicUrl` | The company's page on aventure.vc, when it has one |
+
+Fields without a value are left out of the response, so check for a field
+before reading it. Only current links and categories are returned; past ones
+are dropped.
+
+## Errors
+
+Errors use the problem detail body described in [Errors](/errors).
+
+| Status | When | What to do |
+|--------|------|------------|
+| `400` | You sent none of `url`, `slug`, and `entityId`, or more than one | Send exactly one |
+| `404` | No company owns that URL, slug, or ID | Check the spelling, or [identify the company by name](/lookup) |
+| `409` | More than one company owns that URL | Pick one of the candidate ids in `details.candidate` and look it up by `entityId` |
+| `429` | You used this month's brand views | Wait the `Retry-After` seconds, upgrade, or turn on additional usage; [usage limits](/errors#usage-limits) covers each case |
+
+## Pricing and Usage
+
+Each distinct company you look up counts as one brand view per calendar month
+(UTC). Looking up the same company again that month is free, whichever
+identifier you use.
+
+| Plan | Brand views included each month |
+|------|-------------------------------|
+| Essential | 250 |
+| AI Plus | 5,000 |
+| AI Pro | 50,000 |
+
+On AI Plus and AI Pro with additional usage turned on, each brand view past the
+included amount costs $0.001. Without additional usage, a lookup past the
+included amount answers `429` until the allowance resets. The `allowance.entityBrand`
+field of `GET /v1/billing/subscription` shows how many brand views you have
+used this month. [Plans and usage](/plans-and-usage) covers every allowance
+and how to upgrade.
+
+## Pick the Right Read
+
+| You need | Use |
+|----------|-----|
+| Names, logos, links, and categories for a company you can identify by URL, slug, or ID | `GET /v1/entities/brand` |
+| The full record: research, funding, people, and news | `GET /v1/entities/lookup-exact`, which counts as a company profile view |
+| The record a bare name refers to, with location or context clues | `POST /v1/entities/lookup`, described in [Identify a company or person](/lookup) |
