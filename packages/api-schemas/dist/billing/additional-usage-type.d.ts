@@ -13,6 +13,7 @@ import { z } from "zod/v4";
 export declare const BillingAdditionalUsageTypeSchema: z.ZodEnum<{
     AI_CREDIT: "AI_CREDIT";
     COMPANY: "COMPANY";
+    ENTITY_BRAND: "ENTITY_BRAND";
     ENTITY_VIEW: "ENTITY_VIEW";
     PERSON: "PERSON";
     PERSON_VIEW: "PERSON_VIEW";

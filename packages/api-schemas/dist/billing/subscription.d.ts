@@ -9,7 +9,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         meter: {
             amountCents: number;
             quantity: number;
-            type: "AI_CREDIT" | "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         }[];
         resetAt: string;
         spendCapCents?: number | null | undefined;
@@ -24,7 +24,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         meter: {
             amountCents: number;
             quantity: number;
-            type: "AI_CREDIT" | "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         }[];
         resetAt: string;
         spendCapCents?: number | null | undefined;
@@ -33,6 +33,12 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
     }, unknown>>;
     allowance: z.ZodType<{
         company: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        entityBrand: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
@@ -88,6 +94,12 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         };
     }, unknown, z.core.$ZodTypeInternals<{
         company: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        entityBrand: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;

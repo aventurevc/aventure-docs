@@ -3,6 +3,7 @@ declare const BillingCatalogAdditionalUsageSchemaDefinition: z.ZodObject<{
     type: z.ZodEnum<{
         AI_CREDIT: "AI_CREDIT";
         COMPANY: "COMPANY";
+        ENTITY_BRAND: "ENTITY_BRAND";
         ENTITY_VIEW: "ENTITY_VIEW";
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";

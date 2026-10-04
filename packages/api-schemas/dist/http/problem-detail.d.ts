@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     allowanceType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         COMPANY: "COMPANY";
+        ENTITY_BRAND: "ENTITY_BRAND";
         ENTITY_VIEW: "ENTITY_VIEW";
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";

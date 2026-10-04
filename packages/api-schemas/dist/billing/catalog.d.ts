@@ -1,10 +1,10 @@
 import { z } from "zod/v4";
 declare const BillingCatalogSchemaDefinition: z.ZodObject<{
     additionalUsage: z.ZodArray<z.ZodType<{
-        type: "AI_CREDIT" | "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+        type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         unitAmount: number;
     }, unknown, z.core.$ZodTypeInternals<{
-        type: "AI_CREDIT" | "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+        type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         unitAmount: number;
     }, unknown>>>;
     creditPack: z.ZodArray<z.ZodType<{
@@ -36,7 +36,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
-            type: "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         }[];
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
@@ -44,7 +44,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
-            type: "COMPANY" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         }[];
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
