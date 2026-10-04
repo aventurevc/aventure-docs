@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.50"
+    "version": "0.8.52"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -4072,8 +4072,39 @@
                 }
               }
             },
-            "description": "Bad Request",
+            "description": "Not exactly one of url, slug, or entityId; a malformed slug or entityId; or a url that cannot be normalized."
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
             "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "No visible company owns the identifier, including a url owned by a person."
           },
           "406": {
             "content": {
@@ -4085,6 +4116,16 @@
             },
             "description": "Not Acceptable",
             "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "The url has more than one current owner; details.candidateEntityId and details.candidatePersonId list them. Retry with an entity candidate as entityId."
           },
           "422": {
             "content": {
@@ -4150,6 +4191,11 @@
             "x-aventure-standard-response": true
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Get a Company's Names, Logos, Links, and Tags",
         "tags": [
           "Entities"
@@ -16194,25 +16240,25 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Runs the entity and person identification ladders with the requested type and provider and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. This read never schedules background enrichment or repair. Name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Runs the entity and person identification ladders with the requested type and provider and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. Send name, url, or both; neither answers 422. This read never schedules background enrichment or repair. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
-            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person.",
+            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Send name, url, or both; a name that is an absolute http(s) URL is read as url.",
             "example": "Stripe",
             "in": "query",
             "name": "name",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string",
-              "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person.",
+              "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Send name, url, or both; a name that is an absolute http(s) URL is read as url.",
               "example": "Stripe",
               "maxLength": 200,
               "minLength": 0
             }
           },
           {
-            "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+            "description": "URLs the subject owns: its website, its LinkedIn company or person profile, an aVenture page, or a registry page. At most 10. Required when name is omitted. Put articles in sourceUrl.",
             "example": [
               "https://stripe.com"
             ],
@@ -16221,13 +16267,13 @@
             "required": false,
             "schema": {
               "type": "array",
-              "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+              "description": "URLs the subject owns: its website, its LinkedIn company or person profile, an aVenture page, or a registry page. At most 10. Required when name is omitted. Put articles in sourceUrl.",
               "example": [
                 "https://stripe.com"
               ],
               "items": {
                 "type": "string",
-                "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+                "description": "URLs the subject owns: its website, its LinkedIn company or person profile, an aVenture page, or a registry page. At most 10. Required when name is omitted. Put articles in sourceUrl.",
                 "example": [
                   "https://stripe.com"
                 ]
@@ -16515,7 +16561,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company, product, service, or person in one call. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record and returned as created, with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Identifies a company, product, service, or person in one call. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record and returned as created, with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -17058,6 +17104,21 @@
             },
             "description": "The job is PENDING or RUNNING; poll the same URL again after Retry-After.",
             "headers": {
+              "Cache-Control": {
+                "description": "Always no-store: the state changes under the same URL",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
+              "Location": {
+                "description": "This status URL; poll it again",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
               "Retry-After": {
                 "description": "Seconds to wait before polling again",
                 "schema": {
@@ -17630,16 +17691,6 @@
             }
           },
           {
-            "description": "Author initial filter.",
-            "in": "query",
-            "name": "authorInitial",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Author initial filter."
-            }
-          },
-          {
             "description": "Earliest publication date, inclusive.",
             "in": "query",
             "name": "publishedAfter",
@@ -17659,38 +17710,6 @@
               "type": "string",
               "format": "date",
               "description": "Latest publication date, inclusive."
-            }
-          },
-          {
-            "description": "Cursor token returned by the previous thin page.",
-            "in": "query",
-            "name": "cursor",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "description": "Cursor token returned by the previous thin page."
-            }
-          },
-          {
-            "deprecated": true,
-            "description": "Deprecated: use the author-initial filter.",
-            "in": "query",
-            "name": "letter",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "description": "Response mode: thin returns cursor-paginated index rows; omit for the standard list.",
-            "in": "query",
-            "name": "mode",
-            "required": false,
-            "schema": {
-              "type": "string",
-              "enum": [
-                "thin"
-              ]
             }
           },
           {
@@ -26047,7 +26066,7 @@
     },
     "/v1/search/link/jobs/{jobId}": {
       "get": {
-        "description": "Returns the result of a link search accepted with `Prefer: respond-async`. Answers 202 with Location and Retry-After while the job is pending or running, 200 with the search once it completes, the synchronous read's 404 or 422 when the page or URL was refused, and 503 when the job failed transiently; resubmit the search to retry. An unknown job id, or one whose result passed its retention, returns 404.",
+        "description": "Returns the result of a link search accepted with `Prefer: respond-async`. Answers 202 with Location and Retry-After while the job is pending or running, 200 with the search once it completes, the synchronous read's 404 or 422 when the page or URL was refused, and 503 when the job failed transiently; resubmit the search to retry. Runs and their stored results do not expire; an unknown job id returns 404.",
         "operationId": "getLinkSearchJob",
         "parameters": [
           {
@@ -26093,6 +26112,28 @@
             },
             "description": "Job still running; poll Location after Retry-After.",
             "headers": {
+              "Cache-Control": {
+                "description": "Always no-store: the state changes under the same URL",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
+              "Location": {
+                "description": "This status URL; poll it again",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
+              "Retry-After": {
+                "description": "Seconds to wait before polling again",
+                "schema": {
+                  "type": "integer"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -29839,7 +29880,7 @@
       },
       "IdentificationSubject": {
         "type": "object",
-        "description": "The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.",
+        "description": "The company, Product, Service, or person to identify. Send the name, a URL it owns, or both, plus every location and source you have; a website or profile URL usually settles the answer without any model call.",
         "properties": {
           "context": {
             "type": [
@@ -29873,8 +29914,11 @@
             "minLength": 0
           },
           "name": {
-            "type": "string",
-            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Name exactly as the source writes it, such as Acme AI or Jane Doe. Send name, url, or both; a name that is an absolute http(s) URL is read as url.",
             "example": "Stripe",
             "maxLength": 200,
             "minLength": 0
@@ -29919,7 +29963,7 @@
           },
           "url": {
             "type": "array",
-            "description": "URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl.",
+            "description": "URLs the subject owns: its website, its LinkedIn company or person profile, an aVenture page, or a registry page. At most 10. Required when name is omitted. Put articles in sourceUrl.",
             "example": [
               "https://stripe.com"
             ],
@@ -29929,10 +29973,7 @@
             "maxItems": 10,
             "minItems": 0
           }
-        },
-        "required": [
-          "name"
-        ]
+        }
       },
       "Identification": {
         "type": "object",
@@ -30062,7 +30103,7 @@
       "EntityDetailBatch": {
         "type": "object",
         "additionalProperties": false,
-        "description": "Batch request for entity detail retrieval by id, slug, or current joined URL",
+        "description": "Batch request for entity detail retrieval by id, slug, or current joined URL. Each identifier array accepts at most 200 values, and at most 200 identifiers may be submitted across entityId, slug, and url.",
         "properties": {
           "entityId": {
             "type": "array",
@@ -30070,7 +30111,9 @@
             "items": {
               "type": "string",
               "format": "uuid"
-            }
+            },
+            "maxItems": 200,
+            "minItems": 0
           },
           "permitMonogram": {
             "type": [
@@ -30085,16 +30128,21 @@
             "description": "Entity slug values",
             "items": {
               "type": "string"
-            }
+            },
+            "maxItems": 200,
+            "minItems": 0
           },
           "url": {
             "type": "array",
             "description": "Current joined entity URL values",
             "items": {
               "type": "string"
-            }
+            },
+            "maxItems": 200,
+            "minItems": 0
           }
-        }
+        },
+        "x-aventure-max-total-array-items": 200
       },
       "PageEntityDetail": {
         "type": "object",

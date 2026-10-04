@@ -20,7 +20,7 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
             PERSON: "PERSON";
         }>>>;
         location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        name: z.ZodString;
+        name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
