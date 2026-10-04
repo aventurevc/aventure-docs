@@ -118,8 +118,7 @@ Call `aventure_read`:
 ```json
 {
   "path": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
-  "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
-  "provenance": { "kind": "firstPartyWebsite", "detail": "https://stripe.com" }
+  "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png"
 }
 ```
 
@@ -342,7 +341,8 @@ The newest, abridged:
 
 `latestPerEntity=true` keeps one row per company. `dateFrom` and `dateTo` take
 `YYYY-MM-DD`. For an angel investor, `GET /v1/people/{personId}/investments`
-(CLI: `aventure people investments list`) answers the same question. The
+(CLI: `aventure people investments list`) lists the person's investments. It has
+no date or one-row-per-company filter, so sort it with `sort=date,desc`. The
 reverse question, who backed one company, is
 `GET /v1/entities/{entityId}/investors`.
 
