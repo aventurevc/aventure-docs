@@ -94,6 +94,11 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/entities/brand?entityId=4eabfc26-3ed9-4ad3-a935-9be07ae3329a"
 ```
 
+```bash title="CLI"
+aventure entities brand get --record-slug stripe-south-san-francisco-ca-us
+aventure entities brand get --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a
+```
+
 ```json title="MCP (aventure_read)"
 { "operationId": "getEntityBrand", "query": { "slug": "stripe-south-san-francisco-ca-us" } }
 ```
@@ -119,11 +124,11 @@ The response is an `EntityBrand`. This abridged example is Stripe's record:
     }
   },
   "urlLink": [
+    { "url": "https://stripe.com/", "urlType": "website" },
     { "url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase" },
     { "url": "https://github.com/stripe", "urlType": "github" },
     { "url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin" },
-    { "url": "https://x.com/stripe", "urlType": "twitter" },
-    { "url": "https://stripe.com/", "urlType": "website" }
+    { "url": "https://x.com/stripe", "urlType": "twitter" }
   ],
   "classification": {
     "tag": [
@@ -152,7 +157,7 @@ The response is an `EntityBrand`. This abridged example is Stripe's record:
 | `core.typeRecord` | The kind of record, such as `Company` |
 | `core.image.logo`, `core.image.logoSquare` | Logo image paths; `logoSquare` is the square version |
 | `core.image.isMonogram` | `true` when the logo is a monogram (letter mark) |
-| `urlLink` | Current website and profile links, each with `url` and `urlType`; when the record marks a primary website, it comes first with `isPrimary` set |
+| `urlLink` | Current website and profile links, each with `url` and `urlType`; websites come first, led by the one marked `isPrimary` |
 | `classification` | Current categories, grouped as `tag`, `industry`, `typeCustomer`, `typeRevenue`, `mainProduct`, `typeOwnership`, `typeTechnologyUsed`, `typeModel`, `geoLocationExposure`, and `standardizedClassification` (industry codes such as NAICS and SIC) |
 | `publicUrl` | The company's page on aventure.vc, when it has one |
 
@@ -168,7 +173,7 @@ Errors use the problem detail body described in [Errors](/errors).
 |--------|------|------------|
 | `400` | You sent none of `url`, `slug`, and `entityId`, or more than one | Send exactly one |
 | `404` | No company owns that URL, slug, or ID | Check the spelling, or [identify the company by name](/lookup) |
-| `409` | More than one company owns that URL | Pick one of the candidate ids in `details.candidate` and look it up by `entityId` |
+| `409` | More than one company owns that URL | Pick one of the ids in `details.candidateEntityId` and look it up by `entityId` |
 | `429` | You used this month's brand views | Wait the `Retry-After` seconds, upgrade, or turn on additional usage; [usage limits](/errors#usage-limits) covers each case |
 
 ## Pricing and Usage
