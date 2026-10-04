@@ -85,6 +85,20 @@ const ProblemDetailSchemaDefinition = z.object({
             "news_rss_feed_fetch_failed",
             /** RSS news-ingest article page fetch failed after retries or with the breaker open. Agent action: inspect the source article URL and upstream status; the ingest job may skip that article. */
             "news_rss_article_fetch_failed",
+            /** News subscription webhook verification could not connect to delivery.url. Agent action: confirm the endpoint is publicly reachable over https, then subscribe again. */
+            "callback_connection_refused",
+            /** News subscription webhook verification timed out. Agent action: make the endpoint answer the challenge within the delivery read timeout, then subscribe again. */
+            "callback_timeout",
+            /** News subscription webhook verification failed the TLS handshake. Agent action: serve a publicly trusted certificate for the delivery.url host, then subscribe again. */
+            "callback_tls_error",
+            /** News subscription webhook verification got a 4xx answer. Agent action: make the endpoint accept the signed verification POST, then subscribe again. */
+            "callback_http_4xx",
+            /** News subscription webhook verification got a 5xx answer. Agent action: fix or wait for the endpoint, then subscribe again. */
+            "callback_http_5xx",
+            /** News subscription webhook verification got a 2xx answer whose body was not {"challenge":"<nonce>"} with the sent nonce. Agent action: echo the challenge exactly, then subscribe again. */
+            "callback_challenge_failed",
+            /** Caller already holds the maximum number of news subscriptions. Agent action: unsubscribe one before subscribing again. */
+            "news_subscription_limit",
             /** Cloudflare R2 object fetch failed during a read operation. Agent action: retry once with backoff; persistent failure indicates R2 outage or asset deletion. */
             "r2_fetch_failed",
             /** Cloudflare R2 object delete failed during a cleanup operation. Agent action: surface; retrying may produce duplicate-delete errors. */

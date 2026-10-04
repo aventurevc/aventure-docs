@@ -43,6 +43,7 @@ const NewsSchemaDefinition = z.object({
  * @endpoint POST /v1/search/all
  * @usedBySchema EntityDetailSchema
  * @usedBySchema NewsDetailSchema
+ * @usedBySchema NewsPublishedEventSchema
  * @usedBySchema PageNewsSchema
  * @usedBySchema PageResultNewsSchema
  * @usedBySchema PersonGraphCareerContextSchema

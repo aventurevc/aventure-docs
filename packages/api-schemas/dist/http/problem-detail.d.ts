@@ -19,6 +19,12 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         JOBRUNR_STORAGE_UNAVAILABLE: "JOBRUNR_STORAGE_UNAVAILABLE";
         billing_additional_usage_cap_reached: "billing_additional_usage_cap_reached";
         billing_allowance_exhausted: "billing_allowance_exhausted";
+        callback_challenge_failed: "callback_challenge_failed";
+        callback_connection_refused: "callback_connection_refused";
+        callback_http_4xx: "callback_http_4xx";
+        callback_http_5xx: "callback_http_5xx";
+        callback_timeout: "callback_timeout";
+        callback_tls_error: "callback_tls_error";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
         geocode_provider_error: "geocode_provider_error";
         github_fetch_failed: "github_fetch_failed";
@@ -40,6 +46,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";
         news_similarity_embedding_unavailable: "news_similarity_embedding_unavailable";
+        news_subscription_limit: "news_subscription_limit";
         not_authorized: "not_authorized";
         origin_detail_capacity: "origin_detail_capacity";
         origin_detail_shutdown: "origin_detail_shutdown";

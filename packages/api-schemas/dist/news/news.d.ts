@@ -35,6 +35,7 @@ type NewsDefinition = z.infer<typeof NewsSchemaDefinition>;
  * @endpoint POST /v1/search/all
  * @usedBySchema EntityDetailSchema
  * @usedBySchema NewsDetailSchema
+ * @usedBySchema NewsPublishedEventSchema
  * @usedBySchema PageNewsSchema
  * @usedBySchema PageResultNewsSchema
  * @usedBySchema PersonGraphCareerContextSchema

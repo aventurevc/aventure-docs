@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.42"
+    "version": "0.8.44"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -18184,6 +18184,357 @@
         }
       }
     },
+    "/v1/news/subscriptions": {
+      "delete": {
+        "description": "Removes the caller's webhook subscription with this event, entity, and url.",
+        "operationId": "unsubscribeNewsSubscription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewsSubscriptionKey"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Unsubscribe From Entity News",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
+      "put": {
+        "description": "Creates or refreshes a webhook subscription to news newly linked to one entity. A new endpoint must echo a signed verification challenge before the subscription exists.",
+        "operationId": "subscribeNewsSubscription",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewsSubscription"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsSubscriptionGrant"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Subscribe to Entity News",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/news/{newsId}": {
       "get": {
         "description": "Returns news detail by exact positive ID. Use lookup for a slug, external ID, URL, or title candidates.",
@@ -27078,7 +27429,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
         "operationId": "searchWeb",
         "parameters": [
           {
@@ -27289,6 +27640,212 @@
           "scope": "public"
         }
       }
+    },
+    "/v1/web/searches/jobs/{jobId}": {
+      "get": {
+        "description": "Reads the web-search job a `Prefer: respond-async` search accepted. Answers 200 with the finished search (charged like a search), 202 with Retry-After while SerpAPI is still running it, 503 search_provider_error when the job ended without a result (run the search again), and 404 for an unknown job. Never starts or resubmits a provider search.",
+        "operationId": "getWebSearchJob",
+        "parameters": [
+          {
+            "description": "Web-search job UUID from the 202 response",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WebSearch"
+                }
+              }
+            },
+            "description": "Finished web search; never cached by intermediaries",
+            "headers": {
+              "Cache-Control": {
+                "description": "Always no-store: a metered per-caller read",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "SerpAPI is still running the search; poll again after Retry-After",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds to wait before polling again",
+                "schema": {
+                  "type": "integer"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get an Async Web Search Job",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
     }
   },
   "components": {
@@ -27371,6 +27928,13 @@
               "A crawl-run request named an entity or person that has no current primary website URL. Agent action: add or activate the owner's website URL, then resubmit; retrying the unchanged request cannot succeed.",
               "RSS news-ingest feed fetch failed after retries or with the breaker open. Agent action: inspect the configured feed URL and upstream status; do not retry the enqueue immediately.",
               "RSS news-ingest article page fetch failed after retries or with the breaker open. Agent action: inspect the source article URL and upstream status; the ingest job may skip that article.",
+              "News subscription webhook verification could not connect to delivery.url. Agent action: confirm the endpoint is publicly reachable over https, then subscribe again.",
+              "News subscription webhook verification timed out. Agent action: make the endpoint answer the challenge within the delivery read timeout, then subscribe again.",
+              "News subscription webhook verification failed the TLS handshake. Agent action: serve a publicly trusted certificate for the delivery.url host, then subscribe again.",
+              "News subscription webhook verification got a 4xx answer. Agent action: make the endpoint accept the signed verification POST, then subscribe again.",
+              "News subscription webhook verification got a 5xx answer. Agent action: fix or wait for the endpoint, then subscribe again.",
+              "News subscription webhook verification got a 2xx answer whose body was not {\"challenge\":\"<nonce>\"} with the sent nonce. Agent action: echo the challenge exactly, then subscribe again.",
+              "Caller already holds the maximum number of news subscriptions. Agent action: unsubscribe one before subscribing again.",
               "Cloudflare R2 object fetch failed during a read operation. Agent action: retry once with backoff; persistent failure indicates R2 outage or asset deletion.",
               "Cloudflare R2 object delete failed during a cleanup operation. Agent action: surface; retrying may produce duplicate-delete errors.",
               "Cloudflare R2 object upload failed during a write operation. Agent action: retry once with the same payload; persistent failure indicates R2 outage.",
@@ -27427,6 +27991,13 @@
               "primary_website_missing",
               "news_rss_feed_fetch_failed",
               "news_rss_article_fetch_failed",
+              "callback_connection_refused",
+              "callback_timeout",
+              "callback_tls_error",
+              "callback_http_4xx",
+              "callback_http_5xx",
+              "callback_challenge_failed",
+              "news_subscription_limit",
               "r2_fetch_failed",
               "r2_delete_failed",
               "r2_upload_failed",
@@ -33774,6 +34345,91 @@
           "personMentionResolved"
         ]
       },
+      "NewsSubscriptionKey": {
+        "type": "object",
+        "description": "Identifies one subscription to remove by its event name, arguments, and url.",
+        "properties": {
+          "arguments": {
+            "$ref": "#/components/schemas/NewsSubscriptionArguments"
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/NewsSubscriptionEndpoint"
+          },
+          "name": {
+            "$ref": "#/components/schemas/NewsSubscriptionEvent"
+          }
+        },
+        "required": [
+          "arguments",
+          "delivery",
+          "name"
+        ]
+      },
+      "NewsSubscription": {
+        "type": "object",
+        "description": "Subscribe or refresh one webhook subscription to news newly linked to an entity. The same caller, delivery url, event name, and arguments always address the same subscription, so repeating the call refreshes it.",
+        "properties": {
+          "arguments": {
+            "$ref": "#/components/schemas/NewsSubscriptionArguments"
+          },
+          "cursor": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Opaque watermark from an earlier grant or event to resume after; null starts a new subscription from now and keeps an existing subscription's position."
+          },
+          "delivery": {
+            "$ref": "#/components/schemas/NewsSubscriptionDelivery"
+          },
+          "name": {
+            "$ref": "#/components/schemas/NewsSubscriptionEvent"
+          },
+          "ttlMs": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Requested subscription lifetime in milliseconds; the server caps it.",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "arguments",
+          "delivery",
+          "name"
+        ]
+      },
+      "NewsSubscriptionGrant": {
+        "type": "object",
+        "description": "Granted news subscription.",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque watermark the subscription delivers after."
+          },
+          "id": {
+            "type": "string",
+            "description": "Stable subscription id; sent as X-MCP-Subscription-Id."
+          },
+          "refreshBefore": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The subscription expires unless refreshed before this instant."
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "Whether events between the requested cursor and now were lost."
+          }
+        },
+        "required": [
+          "cursor",
+          "id",
+          "refreshBefore",
+          "truncated"
+        ]
+      },
       "PageEntity": {
         "type": "object",
         "properties": {
@@ -34644,6 +35300,138 @@
           "search"
         ]
       },
+      "NewsPublishedEvent": {
+        "type": "object",
+        "description": "Webhook POST body for one news article newly linked to the subscribed entity.",
+        "properties": {
+          "cursor": {
+            "type": "string",
+            "description": "Opaque watermark to resume after this event."
+          },
+          "data": {
+            "$ref": "#/components/schemas/News"
+          },
+          "eventId": {
+            "type": "string",
+            "description": "Deterministic event id, equal to the webhook-id header."
+          },
+          "name": {
+            "$ref": "#/components/schemas/NewsSubscriptionEvent"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the article was linked to the entity."
+          }
+        },
+        "required": [
+          "cursor",
+          "data",
+          "eventId",
+          "name",
+          "timestamp"
+        ]
+      },
+      "News": {
+        "type": "object",
+        "description": "Canonical news owner for list and core semantics",
+        "properties": {
+          "author": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "category": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "excerpt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Article summary from the source publication feed; null means the feed supplied no description (expected absence, not an error) — full text is NewsDetail.content"
+          },
+          "externalNewsArticle": {
+            "type": [
+              "boolean",
+              "null"
+            ]
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Type-safe identifier for news articles"
+          },
+          "newsImageThumbnail": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "newsUrlOriginal": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publication": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "slug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical lowercase URL slug for the resource",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "title": {
+            "type": "string",
+            "description": "Article headline; the headline field is title"
+          },
+          "updatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "id",
+          "title"
+        ]
+      },
+      "NewsSubscriptionEvent": {
+        "type": "string",
+        "description": "Subscribable event name",
+        "enum": [
+          "entity.news.published"
+        ]
+      },
       "SourceDocumentList": {
         "type": "object",
         "description": "Metadata-only ledger row for source-document lists",
@@ -34889,99 +35677,6 @@
           "keyword",
           "semantic",
           "natural"
-        ]
-      },
-      "News": {
-        "type": "object",
-        "description": "Canonical news owner for list and core semantics",
-        "properties": {
-          "author": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "category": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "createdAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "excerpt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Article summary from the source publication feed; null means the feed supplied no description (expected absence, not an error) — full text is NewsDetail.content"
-          },
-          "externalNewsArticle": {
-            "type": [
-              "boolean",
-              "null"
-            ]
-          },
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Type-safe identifier for news articles"
-          },
-          "newsImageThumbnail": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "newsUrlOriginal": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "publication": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "publishedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          },
-          "slug": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Canonical lowercase URL slug for the resource",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "title": {
-            "type": "string",
-            "description": "Article headline; the headline field is title"
-          },
-          "updatedAt": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "id",
-          "title"
         ]
       },
       "EntityPersonOwner": {
@@ -36580,6 +37275,64 @@
         "required": [
           "address",
           "urlLink"
+        ]
+      },
+      "NewsSubscriptionArguments": {
+        "type": "object",
+        "description": "Arguments of the entity.news.published event.",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Entity whose newly linked public news is delivered."
+          }
+        },
+        "required": [
+          "entityId"
+        ]
+      },
+      "NewsSubscriptionDelivery": {
+        "type": "object",
+        "description": "Webhook delivery target and secret.",
+        "properties": {
+          "mode": {
+            "$ref": "#/components/schemas/NewsSubscriptionDeliveryMode"
+          },
+          "secret": {
+            "type": "string",
+            "format": "password",
+            "description": "Standard Webhooks signing secret: whsec_ followed by base64 of 24 to 64 bytes. It is never returned. The CLI reads it only from --from-file, never a flag.",
+            "writeOnly": true
+          },
+          "url": {
+            "type": "string",
+            "description": "Public https endpoint that receives signed event POSTs.",
+            "maxLength": 2048
+          }
+        },
+        "required": [
+          "mode",
+          "secret",
+          "url"
+        ]
+      },
+      "NewsSubscriptionDeliveryMode": {
+        "type": "string",
+        "description": "Event delivery mode",
+        "enum": [
+          "webhook"
+        ]
+      },
+      "NewsSubscriptionEndpoint": {
+        "type": "object",
+        "description": "Webhook delivery target.",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
         ]
       },
       "NewsResolvedEntityLink": {
@@ -40680,6 +41433,25 @@
         "description": "Your aVenture API key (https://aventure.vc/settings/api-keys)",
         "scheme": "bearer",
         "type": "http"
+      }
+    }
+  },
+  "webhooks": {
+    "entity.news.published": {
+      "post": {
+        "description": "One public news article newly linked to the subscribed entity, POSTed with Standard Webhooks webhook-id, webhook-timestamp, and webhook-signature headers plus X-MCP-Subscription-Id. Any 2xx acknowledges it.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewsPublishedEvent"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {},
+        "summary": "News Published to an Entity"
       }
     }
   }

@@ -10,6 +10,7 @@ const JobEnqueueSchemaDefinition = z.object({
  * Accepted asynchronous app job enqueue response.
  *
  * @openapiSchema JobEnqueue
+ * @endpoint GET /v1/web/searches/jobs/{jobId}
  * @endpoint POST /v1/lookup-jobs
  * @contractShape job.enqueue
  * @contractRole canonical

@@ -15,6 +15,7 @@ const WebSearchSchemaDefinition = z.object({
  * Live web search result with its backing source-document row and normalized items
  *
  * @openapiSchema WebSearch
+ * @endpoint GET /v1/web/searches/jobs/{jobId}
  * @endpoint POST /v1/web/search
  * @contractShape web.search
  * @contractRole canonical
