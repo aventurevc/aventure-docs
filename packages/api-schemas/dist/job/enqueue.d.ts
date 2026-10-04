@@ -14,6 +14,7 @@ type JobEnqueueDefinition = z.infer<typeof JobEnqueueSchemaDefinition>;
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/web/searches/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
+ * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup-jobs
  * @contractShape job.enqueue
  * @contractRole canonical
