@@ -11,12 +11,14 @@
 - [Use Cases and Examples](https://docs.aventure.vc/use-cases): Copy-paste API, CLI, and MCP recipes: a company's brand kit (name, logo, tags) from its website, matching a list of websites to companies, target lists, funding histories, round investors, investor portfolios, founder backgrounds, competitors, and news monitoring.
 - [Identify a Company or Person](https://docs.aventure.vc/lookup): Experimental. Turn a name plus URL, location, and context clues into the matching record.
 - [Identify Names in an Article](https://docs.aventure.vc/lookup-articles): Experimental. Extract every company and person a news article names and identify each one.
+- [Identify a List of Names](https://docs.aventure.vc/lookup-jobs): Experimental. Identify up to 2,000 company and person names, from a list or one page, in a lookup-only background job.
 - [Update Records With Research](https://docs.aventure.vc/research-updates): Experimental. Judge record freshness and queue single or batch research updates.
 - [Company Brand Lookup](https://docs.aventure.vc/company-brand-lookup): Get a company's names, logos, website and social URLs, and categories from any URL it owns, its slug, or its id.
 - [Call MCP Tools Directly](https://docs.aventure.vc/mcp-tools): Name the operation, place each input, and read tool answers from your own code or prompts.
 - [Authentication](https://docs.aventure.vc/authentication): Create an API key and sign in from the CLI or an MCP client.
 - [Plans and Usage](https://docs.aventure.vc/plans-and-usage): What counts against your plan's allowances and how to upgrade.
 - [Pagination and Filtering](https://docs.aventure.vc/pagination-and-filtering): Page through results and combine filters.
+- [Asynchronous Requests](https://docs.aventure.vc/async-requests): Send `Prefer: respond-async` on a lookup, web search, or link search to get a 202 and a job to poll instead of waiting.
 - [Errors](https://docs.aventure.vc/errors): Interpret error responses, rate limits, and plan usage limits.
 - [API Reference](https://docs.aventure.vc/api-reference): Every endpoint, parameter, and schema.
 - [API Operation Index](https://docs.aventure.vc/api-reference/llms.txt): Index of API operation pages.

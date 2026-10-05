@@ -1,0 +1,126 @@
+---
+title: Asynchronous Requests
+subtitle: Send Prefer respond-async to get a job to poll instead of waiting on a slow request
+slug: async-requests
+keywords: Prefer, respond-async, RFC 7240, 202 Accepted, Retry-After, polling, async job
+---
+
+A few requests can take longer than a client wants to hold a connection open:
+a name lookup that needs web evidence, a live web search, or a search that reads
+a page first. Send the header `Prefer: respond-async`
+([RFC 7240](https://www.rfc-editor.org/rfc/rfc7240)) on one of them and, instead
+of waiting, the API files a background job and answers `202 Accepted` with the
+address to poll. The job does the same work the request would have done.
+
+Requests without the header behave exactly as before.
+
+## Supported Requests
+
+| Request | With `Prefer: respond-async` | Poll | `Retry-After` |
+|---------|------------------------------|------|---------------|
+| [`GET /v1/lookup`, `POST /v1/lookup`, `POST /v1/entities/lookup`](/lookup) | Always answers `202` with a lookup job | `GET /v1/lookup-jobs/{jobId}` | 10 seconds |
+| `POST /v1/web/search` | Answers `200` when the search finishes inside the live wait; `202` only when it is still running | `GET /v1/web/searches/jobs/{jobId}` | 30 seconds |
+| `GET /v1/search/link` | Always answers `202` with a link search job, except a repeat of a search that finished in the last 10 minutes, which answers `200` | `GET /v1/search/link/jobs/{jobId}` | 5 seconds |
+
+The header has no effect anywhere else. `POST /v1/people/lookup` ignores it, and
+`POST /v1/lookup` ignores it when `fileOnMiss=true`. A name on
+`POST /v1/lookup` that is exactly a record's id, handle, or slug still answers
+`200` at once.
+
+## The 202 Answer
+
+```http
+HTTP/1.1 202 Accepted
+Location: /v1/lookup-jobs/0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10
+Retry-After: 10
+Preference-Applied: respond-async
+Cache-Control: no-store
+Content-Type: application/json
+
+{
+  "jobId": "0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10",
+  "mode": "async",
+  "statusUrl": "/v1/lookup-jobs/0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10"
+}
+```
+
+`Preference-Applied: respond-async` confirms the API honored the header. The job
+is stored before the `202` is sent; if it cannot be stored, the request answers
+`503` and no job exists.
+
+## Poll the Job
+
+Read the `Location` URL after `Retry-After` seconds, and keep reading at that
+interval:
+
+- **`202`**: the job is still running. Wait the new `Retry-After` and read again.
+- **`200`**: the job finished. The body is the result.
+- **`404`**: the job id is unknown.
+- **`503`**: a web search or link search job ended without a result. Send the
+  original request again.
+
+What `200` returns depends on the job:
+
+- **Lookup job**: a `LookupJob` whose `state` is `COMPLETED`, `FAILED`, or
+  `CANCELED`. Once `COMPLETED`, `identification` holds exactly the answer the
+  original lookup route returns, read as in [Act on the answer](/lookup#act-on-the-answer).
+  `source.subject` echoes the request.
+- **Web search job**: the finished `WebSearch`, the same body the search returns.
+- **Link search job**: the `LinkSearch` result. A refused page or URL answers
+  the same `404` or `422` the direct request would.
+
+Sending the same lookup again while its job is still `PENDING` or `RUNNING`
+returns that job. Once it settles, the same request starts a new job, because a
+stored `NO_MATCH` goes stale when the record is created.
+
+## Example
+
+Look up a company without holding the connection open:
+
+```bash title="curl"
+curl -i -X POST "https://api.aventure.vc/v1/lookup" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Prefer: respond-async" \
+  -d '{"name":"Mercury","url":["https://mercury.com"],"kind":"ENTITY"}'
+```
+
+Then read the job from the `Location` header:
+
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/lookup-jobs/$JOB_ID" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure lookup-jobs get --job-id "$JOB_ID"
+```
+
+```json title="MCP (aventure_read)"
+{ "operationId": "getLookupJob", "pathParams": { "jobId": "<jobId>" } }
+```
+</CodeBlocks>
+
+The CLI and MCP server send synchronous requests and wait for the answer, so
+they do not send `Prefer: respond-async`. They can read any job id with
+`aventure lookup-jobs get`, `aventure web searches jobs get`, and
+`aventure search link jobs get`, or the MCP operations `getLookupJob`,
+`getWebSearchJob`, and `getLinkSearchJob` through `aventure_read`.
+
+## Access and Usage
+
+An asynchronous request costs the same as the synchronous one:
+
+- **Lookups** need a signed-in caller (an API key or a CLI or MCP sign-in) on a
+  plan with natural search. Accepting the job spends one call of the
+  natural-search quota, as a single [lookup](/lookup#access-and-limits) does. A
+  client-secret caller that sends the header receives `401`.
+- **Web searches** count one web search against your
+  [plan's allowance](/plans-and-usage) when the job read returns the finished
+  search. A search that ends without a result charges nothing.
+- **Link searches** need a plan that includes them ([`402`](/errors)
+  otherwise). A caller can hold one active link search job at a time; another
+  answers [`429`](/errors).
+
+To identify many names in one job, use a [bulk lookup job](/lookup-jobs).

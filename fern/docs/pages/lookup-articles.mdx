@@ -8,6 +8,8 @@ availability: beta
 An article lookup reads one article, extracts every company and person it
 names, and identifies each name as [`POST /v1/lookup`](/lookup) would, with the article
 as the source. It shares the lookup's [plan requirement](/lookup#access-and-limits).
+To identify more names than an article job's limit, or a list of names you
+already hold, start a [bulk lookup job](/lookup-jobs) instead.
 
 1. Start the job with `POST /v1/lookup-jobs` and a body holding `sourceUrl`,
    `sourceNewsId`, or both. The call returns `202` with a `jobId`. Sending the
