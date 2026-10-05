@@ -19,11 +19,16 @@ one record matches, none does, or a person has to decide.
 
 | Operation | Use it when | CLI | MCP `operationId` |
 |-----------|-------------|-----|-------------------|
-| `POST /v1/lookup` | You do not know whether the name is a company or a person | `aventure lookup` | `lookupRecord` |
-| `POST /v1/entities/lookup` | The subject is a company | `aventure entities lookup` | `lookupEntity` |
-| `POST /v1/people/lookup` | The subject is a person | `aventure people lookup` | `lookupPerson` |
+| `GET /v1/lookup` | Query clues identify a company, product, service, or person without scheduling enrichment | `aventure lookup` | `getIdentification` |
+| `POST /v1/lookup` | One body-based universal lookup, or a known kind | `aventure lookup-from-file` | `lookupRecord` |
+| `GET /v1/entities/lookup-exact` or `/v1/people/lookup-exact` | An exact slug, website, domain, or profile URL should return full detail | `aventure entities lookup-exact get` or `aventure people lookup-exact get` | `getEntityLookup` or `getPersonLookup` |
 
-All three take the same request body and return the same response shape.
+The older `POST /v1/entities/lookup` and `POST /v1/people/lookup` routes remain
+deprecated compatibility aliases. Use `lookup-from-file` with `kind=ENTITY` or
+`kind=PERSON` for new integrations.
+
+The two `/v1/lookup` operations return the same identification shape. The GET
+operation takes query parameters; the POST operation takes the body shown below.
 
 A name that is exactly a record's id, handle, registry id, or slug settles on every
 plan. Any other name needs a paid plan (AI Plus or AI Pro); on the free plan it
@@ -71,7 +76,7 @@ ordered most probable first.
 |----------|---------|-----------------|
 | `MATCHED` | One record is the subject | Read it by `match.record.id`: `GET /v1/entities/{entityId}` for a company or `GET /v1/people/{personId}` for a person |
 | `NO_MATCH` | No record you can see is the subject | Treat the subject as new. For a company, use `officialUrl` as its website when it is present and is the company's own domain |
-| `NEEDS_REVIEW` | The clues fit more than one record, or cannot rule one in | Show `candidate` to the user and ask which record it is, or whether the subject is new. Never create a record on `NEEDS_REVIEW` |
+| `NEEDS_REVIEW` | The clues fit more than one record, or cannot rule one in | Research every plausible candidate, refine once with independently evidenced clues, and ask only if the separating fact remains user-held. Never create a record on `NEEDS_REVIEW` |
 
 `duplicate` lists other stored records that appear to be the same subject
 stored again. `NO_MATCH` covers only the records your credential can see.
@@ -98,20 +103,20 @@ A company with its website and location:
 
 <CodeBlocks>
 ```bash title="curl"
-curl -X POST "https://api.aventure.vc/v1/entities/lookup" \
+curl -X POST "https://api.aventure.vc/v1/lookup" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"name":"Mercury","url":["https://mercury.com"],"location":"San Francisco"}'
+  -d '{"name":"Mercury","kind":"ENTITY","url":["https://mercury.com"],"location":"San Francisco"}'
 ```
 
 ```bash title="CLI"
-aventure entities lookup --name Mercury --url https://mercury.com --location "San Francisco"
+aventure lookup-from-file --kind ENTITY --name Mercury --url https://mercury.com --location "San Francisco"
 ```
 
 ```json title="MCP (aventure_lookup)"
 {
-  "operationId": "lookupEntity",
-  "body": { "name": "Mercury", "url": ["https://mercury.com"], "location": "San Francisco" }
+  "operationId": "lookupRecord",
+  "body": { "name": "Mercury", "kind": "ENTITY", "url": ["https://mercury.com"], "location": "San Francisco" }
 }
 ```
 </CodeBlocks>
@@ -120,18 +125,18 @@ A person, with their employer as context:
 
 <CodeBlocks>
 ```bash title="curl"
-curl -X POST "https://api.aventure.vc/v1/people/lookup" \
+curl -X POST "https://api.aventure.vc/v1/lookup" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"name":"Patrick Collison","context":"Stripe co-founder"}'
+  -d '{"name":"Patrick Collison","kind":"PERSON","context":"Stripe co-founder"}'
 ```
 
 ```bash title="CLI"
-aventure people lookup --name "Patrick Collison" --context "Stripe co-founder"
+aventure lookup-from-file --kind PERSON --name "Patrick Collison" --context "Stripe co-founder"
 ```
 
 ```json title="MCP (aventure_lookup)"
-{ "operationId": "lookupPerson", "body": { "name": "Patrick Collison", "context": "Stripe co-founder" } }
+{ "operationId": "lookupRecord", "body": { "name": "Patrick Collison", "kind": "PERSON", "context": "Stripe co-founder" } }
 ```
 </CodeBlocks>
 
@@ -146,7 +151,7 @@ curl -X POST "https://api.aventure.vc/v1/lookup" \
 ```
 
 ```bash title="CLI"
-aventure lookup --name Mercury --url https://mercury.com
+aventure lookup-from-file --name Mercury --url https://mercury.com
 ```
 
 ```json title="MCP (aventure_lookup)"

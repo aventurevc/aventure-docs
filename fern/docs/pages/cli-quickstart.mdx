@@ -134,10 +134,13 @@ reading `data.response`.
 ```bash
 aventure command-catalog search funding rounds --format compact
 aventure help getEntity
+aventure help "GET /v1/entities/lookup-exact"
 ```
 
-`aventure help` accepts an [API reference](/api-reference) `operationId` or a
-command path, and prints the flags the command needs.
+`aventure help` accepts an [API reference](/api-reference) `operationId`, a
+command path, or a `METHOD /path` selector, and prints the flags the command
+needs. For a body-based universal lookup, the generated command is
+`aventure lookup-from-file`; `aventure lookup` is the query-based read.
 
 ## Check Your Setup
 

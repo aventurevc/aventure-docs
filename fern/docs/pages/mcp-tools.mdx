@@ -24,12 +24,12 @@ answer, `mcpTool` names the tool to call, and `apiRoute` gives the method and
 path. `pathInput`, `queryInput`, and `bodyInput` list the operation's argument
 names, and `missingInputs` lists the arguments the call still needs.
 
-For example, finding the company a name refers to is `lookupEntity`
-(`POST /v1/entities/lookup`), which runs through `aventure_lookup` and takes the
-name in its JSON body:
+For example, finding the company a name refers to is `lookupRecord`
+(`POST /v1/lookup`), which runs through `aventure_lookup` and takes the name and
+known kind in its JSON body:
 
 ```json
-{ "operationId": "lookupEntity", "body": { "name": "Stripe" } }
+{ "operationId": "lookupRecord", "body": { "name": "Stripe", "kind": "ENTITY" } }
 ```
 
 The answer reports whether the name matched a record and, when it did, the

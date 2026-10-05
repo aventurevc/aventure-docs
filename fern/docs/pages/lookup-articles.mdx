@@ -9,6 +9,19 @@ An article lookup reads one article, extracts every company and person it
 names, and identifies each name as [`POST /v1/lookup`](/lookup) would, with the article
 as the source. It shares the lookup's [plan requirement](/lookup#access-and-limits).
 
+## Choose an Article Path
+
+| Need | CLI | Result |
+|---|---|---|
+| One synchronous JSON response from an article, screenshot, or supplied mention names | `aventure lookup-mentions --source-url "<article-url>"` (or `--file "<image>"`, `--mention-name ...`) | Identifications only; it creates no records or research runs |
+| Standard asynchronous article processing | `aventure lookup-jobs create --source-url "<article-url>"` | May create hidden `shell` records and queue research for them |
+| Bounded lookup-only bulk work | `aventure lookup-jobs create --max-names 8 --source-url "<article-url>"` or repeated `--mention-name` | Identifications only; no shells or enrichment are scheduled |
+
+Use the synchronous path when the caller needs the answer in one response. Use
+the standard job when article names may need hidden placeholders. Use
+`--max-names` when the caller owns continuation and wants a bounded lookup-only
+batch.
+
 1. Start the job with `POST /v1/lookup-jobs` and a body holding `sourceUrl`,
    `sourceNewsId`, or both. The call returns `202` with a `jobId`. Sending the
    same article again soon returns the earlier job.
