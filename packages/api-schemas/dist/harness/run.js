@@ -14,6 +14,7 @@ import { HarnessRunTypeSchema } from "./run-type.js";
  * @endpoint GET /v1/harness/runs/{runId}
  * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments
+ * @endpoint POST /v1/harness/runs
  * @endpoint POST /v1/people/{personId}/enrichments
  * @usedBySchema EnrichmentSchema
  * @usedBySchema HarnessRunDetailSchema
