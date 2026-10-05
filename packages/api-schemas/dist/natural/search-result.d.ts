@@ -13,6 +13,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             acceleratorName?: string[] | undefined;
             acceleratorStatus?: string[] | undefined;
             affinity?: string[] | undefined;
+            closedLast?: boolean | undefined;
             employeeCountRange?: {
                 max?: number | null | undefined;
                 min?: number | null | undefined;
@@ -127,6 +128,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             acceleratorName?: string[] | undefined;
             acceleratorStatus?: string[] | undefined;
             affinity?: string[] | undefined;
+            closedLast?: boolean | undefined;
             employeeCountRange?: {
                 max?: number | null | undefined;
                 min?: number | null | undefined;

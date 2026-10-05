@@ -19,6 +19,8 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     acceleratorStatus: z.array(z.string()).optional(),
     /** Affinity provider organization names accepted by the companies list filter. Affinity rows are member -> provider; use provider names here, not member names. */
     affinity: z.array(z.string()).optional(),
+    /** Rank closed entities (Closed, Closed (Acquihire), Inactive) after every other textSearch or semanticQuery match, ahead of relevance and sort; omitted means true. false ranks them by relevance alone. Filter them out with operatingStatus or suppressNonOperating. */
+    closedLast: z.boolean().optional(),
     /** Inclusive reported employee-count ranges, in employees. */
     employeeCountRange: z.array(IntRangeSchema).optional(),
     /** Restrict results to specific entity IDs. */

@@ -31,7 +31,7 @@ export const PersonLookupExactParamSchema = z.object({
     permitMonogram: z.boolean().optional(),
     /** Group A — exact person slug (URL-friendly identifier). Mutually exclusive with id, url, and every candidate signal in group C. */
     slug: z.string().optional(),
-    /** Group B — current person URL to resolve via strict host+path or domain-only match. Mutually exclusive with id and slug; may be combined with group-C candidate signals for URL-first fallback. */
+    /** Group B — aventure.vc person profile URL (such as https://aventure.vc/people/<slug>) or the person's current profile URL, resolved via strict host+path or domain-only match. Mutually exclusive with id and slug; may be combined with group-C candidate signals for URL-first fallback. */
     url: z.string().optional(),
     /** Group C — candidate lookup signal: person URL domain (host only, no path). Combine with other group-C signals for disambiguation. Mutually exclusive with id and slug; may be combined with url for fallback. */
     urlDomain: z.string().optional(),

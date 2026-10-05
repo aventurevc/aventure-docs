@@ -5,6 +5,7 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
     acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
     affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    closedLast: z.ZodOptional<z.ZodBoolean>;
     employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;

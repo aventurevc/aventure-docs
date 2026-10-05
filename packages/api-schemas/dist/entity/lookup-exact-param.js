@@ -39,7 +39,7 @@ export const EntityLookupExactParamSchema = z.object({
         .optional(),
     /** Concrete entity type qualifier; group-only Organization is invalid. List the accepted concrete tokens and their aliases with GET /v1/entities/types (CLI: entities types list). */
     typeRecord: z.string().optional(),
-    /** Entity URL matched by host and path unless urlMatchMode=domain. */
+    /** aventure.vc profile URL (such as https://aventure.vc/companies/<slug>), or the entity's own website or domain URL, matched by host and path unless urlMatchMode=domain. */
     url: z.string().optional(),
     /** Website domain candidate without protocol or path. */
     urlDomain: z.string().optional(),
