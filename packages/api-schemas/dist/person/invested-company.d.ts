@@ -46,6 +46,10 @@ declare const PersonInvestedCompanySchemaDefinition: z.ZodObject<{
         }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
+    headquartersCity: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    headquartersCountry: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    headquartersRegion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    industry: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type PersonInvestedCompanyDefinition = z.infer<typeof PersonInvestedCompanySchemaDefinition>;
 /**

@@ -567,6 +567,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "news/subscription-delivery-mode",
         schemaName: "NewsSubscriptionDeliveryModeSchema",
     },
+    NewsSubscriptionDeliveryStatus: {
+        modulePath: "news/subscription-delivery-status",
+        schemaName: "NewsSubscriptionDeliveryStatusSchema",
+    },
+    NewsSubscriptionDetail: {
+        modulePath: "news/subscription-detail",
+        schemaName: "NewsSubscriptionDetailSchema",
+    },
     NewsSubscriptionEndpoint: {
         modulePath: "news/subscription-endpoint",
         schemaName: "NewsSubscriptionEndpointSchema",
@@ -582,6 +590,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     NewsSubscriptionKey: {
         modulePath: "news/subscription-key",
         schemaName: "NewsSubscriptionKeySchema",
+    },
+    NewsSubscriptionTestEvent: {
+        modulePath: "news/subscription-test-event",
+        schemaName: "NewsSubscriptionTestEventSchema",
     },
     PageableObject: { modulePath: "pageable/object", schemaName: "PageableObjectSchema" },
     PageBlogPost: { modulePath: "pagination/schemas", schemaName: "PageBlogPostSchema" },

@@ -34,6 +34,10 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        headquartersCity?: string | null | undefined;
+        headquartersCountry?: string | null | undefined;
+        headquartersRegion?: string | null | undefined;
+        industry?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             defaultCurrency?: string | null | undefined;
@@ -67,6 +71,10 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        headquartersCity?: string | null | undefined;
+        headquartersCountry?: string | null | undefined;
+        headquartersRegion?: string | null | undefined;
+        industry?: string | null | undefined;
     }, unknown>>;
     date: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     fundraiseTransaction: z.ZodOptional<z.ZodNullable<z.ZodObject<{

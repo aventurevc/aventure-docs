@@ -1105,6 +1105,10 @@ export declare const EntityDetailSchema: z.ZodObject<{
                     typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
+                headquartersCity?: string | null | undefined;
+                headquartersCountry?: string | null | undefined;
+                headquartersRegion?: string | null | undefined;
+                industry?: string | null | undefined;
             };
             date?: string | null | undefined;
             fundraiseTransaction?: {
@@ -1433,6 +1437,10 @@ export declare const EntityDetailSchema: z.ZodObject<{
                     typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 };
+                headquartersCity?: string | null | undefined;
+                headquartersCountry?: string | null | undefined;
+                headquartersRegion?: string | null | undefined;
+                industry?: string | null | undefined;
             };
             date?: string | null | undefined;
             fundraiseTransaction?: {

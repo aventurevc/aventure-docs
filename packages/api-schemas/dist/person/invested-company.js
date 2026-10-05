@@ -3,6 +3,14 @@ import { z } from "zod/v4";
 import { EntitySchema } from "../entity/entity.js";
 const PersonInvestedCompanySchemaDefinition = z.object({
     entity: EntitySchema,
+    /** Headquarters city of the investee at read time, when known */
+    headquartersCity: z.string().nullish(),
+    /** Headquarters country of the investee, when known */
+    headquartersCountry: z.string().nullish(),
+    /** Headquarters region (state or province) of the investee, when known */
+    headquartersRegion: z.string().nullish(),
+    /** Primary industry classification of the investee, when known */
+    industry: z.string().nullish(),
 });
 /**
  * Company metadata associated with a person investment

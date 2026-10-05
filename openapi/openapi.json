@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.52"
+    "version": "0.8.53"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -4006,7 +4006,7 @@
     },
     "/v1/entities/brand": {
       "get": {
-        "description": "Thin, cached read of one company by exactly one of url, slug, or entityId: brand and legal names, logos, the primary website and social profile URLs, and current classification tags. url accepts any current URL joined to the company (website, LinkedIn, X/Twitter, Crunchbase, GitHub, and other profiles) or its aVenture page; scheme, a leading www, and case are ignored, while distinct paths stay distinct. 404 when nothing owns the identifier; 409 with candidate ids when a URL is owned by more than one company. A signed-in user's read charges one brand view per distinct company per UTC month against the monthly brand view allowance, then as additional usage when the subscriber enabled it; a repeat read of the same company in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "description": "Thin, cached read of one company by exactly one of url, slug, or entityId: brand and legal names, logos, the primary website and social profile URLs, and current classification tags. url accepts any current URL joined to the company (website, LinkedIn, X/Twitter, Crunchbase, GitHub, and other profiles) or its aVenture page; scheme, a leading www, and case are ignored, while distinct paths stay distinct. 404 when nothing owns the identifier; 409 with candidate ids when a URL is owned by more than one company. A signed-in user's read charges one brand view per distinct company per UTC month against the monthly brand view allowance, then as additional usage when the subscriber enabled it; a repeat read of the same company in the month is free, as is a read of a company whose full profile view is already charged that month, a later full profile view of the company that month reverses its brand view charge, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getEntityBrand",
         "parameters": [
           {
@@ -5580,7 +5580,7 @@
     },
     "/v1/entities/lookup-exact": {
       "get": {
-        "description": "Exact read: returns the full detail of the one entity a slug, URL, or domain proves, and 404 or 409 instead of guessing. To identify a company by name and clues, use the POST lookup (CLI entities lookup). Detail qualifiers and visibility rules apply. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "description": "Exact read: returns the full detail of the one entity a slug, URL, or domain proves, and 404 or 409 instead of guessing. To identify a company by name and clues, use the POST lookup (CLI lookup). Detail qualifiers and visibility rules apply. UUIDs use the item route; id query parameters are rejected. Changed slugs redirect canonically. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getEntityLookup",
         "parameters": [
           {
@@ -5784,6 +5784,28 @@
             },
             "description": "Conflicting or unusable identity input: name, nameBrand, and nameLegal must identify the same entity, and exactly one identifier form may be supplied."
           },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -5792,7 +5814,7 @@
                 }
               }
             },
-            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with POST /v1/entities/lookup (CLI entities lookup). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
+            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with POST /v1/lookup (CLI lookup --kind ENTITY). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (retry with includePrivate=true), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
           "406": {
             "content": {
@@ -5879,7 +5901,12 @@
             "x-aventure-standard-response": true
           }
         },
-        "summary": "Read Full Entity Detail by Exact Slug, URL, or Domain",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Read Full Entity Detail by Exact Slug, Website, URL, or Domain",
         "tags": [
           "Entities"
         ],
@@ -7419,6 +7446,28 @@
             "description": "Bad Request",
             "x-aventure-standard-response": true
           },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -7505,6 +7554,11 @@
             "x-aventure-standard-response": true
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Get One Company, Product, or Service by ID",
         "tags": [
           "Entities"
@@ -16561,7 +16615,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company, product, service, or person in one call. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record and returned as created, with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Identifies a company, product, service, or person in one call. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location, with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -16627,6 +16681,33 @@
             },
             "description": "The identification as canonical JSON or compact text/plain.",
             "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Identification"
+                }
+              }
+            },
+            "description": "With fileOnMiss=true, a NO_MATCH filed as a hidden record: the body carries it as created, and Location is that record's URL.",
+            "headers": {
+              "Location": {
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -18459,6 +18540,155 @@
           "scope": "public"
         }
       },
+      "get": {
+        "description": "The caller's news webhook subscriptions with each one's delivery state. The signing secret is never returned; each item's subscription is the unsubscribe body.",
+        "operationId": "listNewsSubscriptions",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NewsSubscriptionDetail"
+                  }
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List Entity News Subscriptions",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
       "put": {
         "description": "Creates or refreshes a webhook subscription to news newly linked to one entity. A new endpoint must echo a signed verification challenge before the subscription exists.",
         "operationId": "subscribeNewsSubscription",
@@ -18630,6 +18860,187 @@
           }
         ],
         "summary": "Subscribe to Entity News",
+        "tags": [
+          "News"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/news/subscriptions/{subscriptionId}/test-events": {
+      "post": {
+        "description": "POSTs one signed sample entity.news.published event to the caller's subscription url and returns the receiver's HTTP status. The cursor and retry state do not change. An unanswered POST answers 422 with its callback_* code.",
+        "operationId": "sendNewsSubscriptionTestEvent",
+        "parameters": [
+          {
+            "description": "Subscription id from subscribe or list.",
+            "in": "path",
+            "name": "subscriptionId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NewsSubscriptionTestEvent"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Send a Test News Event",
         "tags": [
           "News"
         ],
@@ -20361,7 +20772,7 @@
     },
     "/v1/people/lookup-exact": {
       "get": {
-        "description": "Exact read: returns the full detail of the one person a slug, URL, or candidate signals prove, and 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI people lookup). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "description": "Exact read: returns the full detail of the one person a slug, URL, or candidate signals prove, and 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI lookup-from-file --kind PERSON). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getPersonLookup",
         "parameters": [
           {
@@ -20555,6 +20966,28 @@
             "description": "Bad Request",
             "x-aventure-standard-response": true
           },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -20650,6 +21083,11 @@
             "x-aventure-standard-response": true
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Read One Person's Full Detail by Exact Slug or URL",
         "tags": [
           "People"
@@ -21169,6 +21607,28 @@
             "description": "Bad Request",
             "x-aventure-standard-response": true
           },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
           "404": {
             "content": {
               "application/problem+json": {
@@ -21255,6 +21715,11 @@
             "x-aventure-standard-response": true
           }
         },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Get One Person by ID",
         "tags": [
           "People"
@@ -26290,7 +26755,7 @@
     },
     "/v1/search/natural/entities": {
       "post": {
-        "description": "Translate a plain-English company, startup, investor, investment firm, or investment manager search into the canonical EntityFilter contract, execute the existing entity list engine, and return both the interpretation and ranked entity list page. Unsupported constraints are named in the interpretation instead of being silently ignored. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset. Example: search.query 'AI infrastructure companies founded since 2020' with size=3. The query accepts plain English; size limits the page, page starts at 0, and filter.yearFoundedRange [{\"min\":2020}] imposes a hard founding-year constraint. Set includePrivate=false for publicly visible results.",
+        "description": "Translate a plain-English company, startup, investor, investment firm, or investment manager search into the canonical EntityFilter contract, execute the existing entity list engine, and return both the interpretation and ranked entity list page. Unsupported constraints are named in the interpretation instead of being silently ignored. A description or company discovery question belongs here; explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset. Example: search.query 'AI infrastructure companies founded since 2020' with size=3. The query accepts plain English; size limits the page, page starts at 0, and filter.yearFoundedRange [{\"min\":2020}] imposes a hard founding-year constraint. Set includePrivate=false for publicly visible results.",
         "operationId": "searchNaturalEntities",
         "parameters": [
           {
@@ -26537,7 +27002,7 @@
     },
     "/v1/search/natural/people": {
       "post": {
-        "description": "Translate a plain-English people search into the canonical PersonFilter contract, execute the existing people list engine, and return both the interpretation and ranked people page. Broad role and profile requests use person semantic search. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset.",
+        "description": "Translate a plain-English people search into the canonical PersonFilter contract, execute the existing people list engine, and return both the interpretation and ranked people page. Broad role, employer, work-history, and profile requests use person semantic search. Explicit filter fields are hard constraints: they override planner values, while the planner fills fields left unset.",
         "operationId": "searchNaturalPeople",
         "parameters": [
           {
@@ -34329,6 +34794,75 @@
           "name"
         ]
       },
+      "NewsSubscriptionDetail": {
+        "type": "object",
+        "description": "One of the caller's news subscriptions and its delivery state.",
+        "properties": {
+          "consecutiveFailureCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Failed deliveries since the last acknowledged one or refresh."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Opaque watermark the next delivery resumes after."
+          },
+          "id": {
+            "type": "string",
+            "description": "Stable subscription id; sent as X-MCP-Subscription-Id."
+          },
+          "lastError": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Short cause of the latest failed delivery; null after a success."
+          },
+          "nextAttemptAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Earliest time the next delivery attempt runs."
+          },
+          "refreshBefore": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The subscription expires unless refreshed before this instant."
+          },
+          "status": {
+            "$ref": "#/components/schemas/NewsSubscriptionDeliveryStatus"
+          },
+          "subscription": {
+            "$ref": "#/components/schemas/NewsSubscriptionKey",
+            "description": "Event, arguments, and url; the unsubscribe request body."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Latest subscribe, refresh, acknowledged, or failed delivery."
+          },
+          "verifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the endpoint last answered the verification challenge."
+          }
+        },
+        "required": [
+          "consecutiveFailureCount",
+          "createdAt",
+          "cursor",
+          "id",
+          "nextAttemptAt",
+          "refreshBefore",
+          "status",
+          "subscription",
+          "updatedAt",
+          "verifiedAt"
+        ]
+      },
       "NewsSubscription": {
         "type": "object",
         "description": "Subscribe or refresh one webhook subscription to news newly linked to an entity. The same caller, delivery url, event name, and arguments always address the same subscription, so repeating the call refreshes it.",
@@ -34392,6 +34926,30 @@
           "id",
           "refreshBefore",
           "truncated"
+        ]
+      },
+      "NewsSubscriptionTestEvent": {
+        "type": "object",
+        "description": "The receiver's answer to one signed sample entity.news.published event.",
+        "properties": {
+          "acknowledged": {
+            "type": "boolean",
+            "description": "Whether the receiver answered 2xx."
+          },
+          "eventId": {
+            "type": "string",
+            "description": "The sample's event id, equal to its webhook-id header."
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "HTTP status the receiver answered."
+          }
+        },
+        "required": [
+          "acknowledged",
+          "eventId",
+          "status"
         ]
       },
       "PageEntity": {
@@ -36970,6 +37528,34 @@
         "properties": {
           "entity": {
             "$ref": "#/components/schemas/Entity"
+          },
+          "headquartersCity": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Headquarters city of the investee at read time, when known"
+          },
+          "headquartersCountry": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Headquarters country of the investee, when known"
+          },
+          "headquartersRegion": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Headquarters region (state or province) of the investee, when known"
+          },
+          "industry": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Primary industry classification of the investee, when known"
           }
         },
         "required": [
@@ -37621,6 +38207,16 @@
         "description": "Event delivery mode",
         "enum": [
           "webhook"
+        ]
+      },
+      "NewsSubscriptionDeliveryStatus": {
+        "type": "string",
+        "description": "active delivers; retrying backs off after a failure; paused stopped after the maximum consecutive failures until the subscription is refreshed; expired passed refreshBefore and is about to be removed.",
+        "enum": [
+          "active",
+          "retrying",
+          "paused",
+          "expired"
         ]
       },
       "NewsSubscriptionEndpoint": {
@@ -41432,13 +42028,15 @@
         "bearerFormat": "API key or OAuth access token",
         "description": "Your aVenture API key (https://aventure.vc/settings/api-keys) or OAuth access token",
         "scheme": "bearer",
-        "type": "http"
+        "type": "http",
+        "x-fern-playground-description": "Paste an API key from [API Keys settings](https://aventure.vc/settings/api-keys). Requests run as you and count toward your plan's allowance."
       },
       "clerkApiKeyAuth": {
         "bearerFormat": "API key",
         "description": "Your aVenture API key (https://aventure.vc/settings/api-keys)",
         "scheme": "bearer",
-        "type": "http"
+        "type": "http",
+        "x-fern-playground-description": "Paste an API key from [API Keys settings](https://aventure.vc/settings/api-keys). This operation accepts only an API key, not an OAuth access token."
       }
     }
   },
