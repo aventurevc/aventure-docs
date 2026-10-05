@@ -40,64 +40,11 @@ declare const EntityUrlLinkSchemaDefinition: z.ZodObject<{
     statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     url: z.ZodString;
-    urlType: z.ZodEnum<{
-        alternativeto: "alternativeto";
-        angellist: "angellist";
-        appstore: "appstore";
-        awsmarketplace: "awsmarketplace";
-        bloomberg: "bloomberg";
-        capterra: "capterra";
-        changelog: "changelog";
-        chromewebstore: "chromewebstore";
-        crates: "crates";
-        crunchbase: "crunchbase";
-        discord: "discord";
-        dockerhub: "dockerhub";
-        documentation: "documentation";
-        facebook: "facebook";
-        forum: "forum";
-        g2: "g2";
-        gartnerpeerinsights: "gartnerpeerinsights";
-        getapp: "getapp";
-        github: "github";
-        glassdoor: "glassdoor";
-        googleplay: "googleplay";
-        homebrew: "homebrew";
-        hubspotmarketplace: "hubspotmarketplace";
-        huggingface: "huggingface";
-        instagram: "instagram";
-        linkedin: "linkedin";
-        maven: "maven";
-        morningstar: "morningstar";
-        nasdaq: "nasdaq";
-        npm: "npm";
-        nyse: "nyse";
-        pitchbook: "pitchbook";
-        producthunt: "producthunt";
-        pypi: "pypi";
-        roadmap: "roadmap";
-        salesforceappexchange: "salesforceappexchange";
-        slackappdirectory: "slackappdirectory";
-        sourceforge: "sourceforge";
-        statuspage: "statuspage";
-        subreddit: "subreddit";
-        support: "support";
-        theorg: "theorg";
-        tiktok: "tiktok";
-        trustpilot: "trustpilot";
-        trustradius: "trustradius";
-        twitter: "twitter";
-        vscodemarketplace: "vscodemarketplace";
-        website: "website";
-        wellfound: "wellfound";
-        wikipedia: "wikipedia";
-        ycombinator: "ycombinator";
-        youtube: "youtube";
-    }>;
+    urlType: z.ZodString;
 }, z.core.$strip>;
 type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
 /**
- * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and MUST be one of the closed `EntityUrlType` values. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; do not propose new enum values.
+ * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.
  *
  * @openapiSchema EntityUrlLink
  * @endpoint GET /v1/entities

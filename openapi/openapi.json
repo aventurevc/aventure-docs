@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.53"
+    "version": "0.8.54"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16615,7 +16615,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company, product, service, or person in one call. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location, with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Identifies a company, product, service, or person in one call. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders of POST /v1/entities/lookup and POST /v1/people/lookup both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, use an evidenced subject URL or known kind for one entity-only or person-only lookup; ask the user only if ambiguity remains. A candidate URL becomes a subject URL only with independent binding evidence. Takes the same body as those two operations. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId its background run; without created, detail says why nothing was filed. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -16700,7 +16700,7 @@
                 }
               }
             },
-            "description": "With fileOnMiss=true, a NO_MATCH filed as a hidden record: the body carries it as created, and Location is that record's URL.",
+            "description": "With fileOnMiss=true, a NO_MATCH filed as a hidden record and answered as JSON: the body carries it as created, and Location is that record's URL; a text/plain answer stays 200.",
             "headers": {
               "Location": {
                 "schema": {
@@ -29655,61 +29655,7 @@
       },
       "EntityUrlType": {
         "type": "string",
-        "description": "Canonical URL platform type such as website, linkedin, twitter, or github. Lifecycle facts belong on link flags such as isCurrent and isPrimary.",
-        "enum": [
-          "website",
-          "linkedin",
-          "twitter",
-          "github",
-          "facebook",
-          "instagram",
-          "tiktok",
-          "youtube",
-          "subreddit",
-          "forum",
-          "documentation",
-          "support",
-          "statuspage",
-          "changelog",
-          "roadmap",
-          "discord",
-          "crunchbase",
-          "wellfound",
-          "angellist",
-          "glassdoor",
-          "theorg",
-          "ycombinator",
-          "wikipedia",
-          "pitchbook",
-          "morningstar",
-          "bloomberg",
-          "nyse",
-          "nasdaq",
-          "g2",
-          "producthunt",
-          "trustpilot",
-          "alternativeto",
-          "gartnerpeerinsights",
-          "getapp",
-          "sourceforge",
-          "appstore",
-          "googleplay",
-          "capterra",
-          "trustradius",
-          "hubspotmarketplace",
-          "slackappdirectory",
-          "awsmarketplace",
-          "salesforceappexchange",
-          "chromewebstore",
-          "vscodemarketplace",
-          "npm",
-          "pypi",
-          "maven",
-          "dockerhub",
-          "homebrew",
-          "crates",
-          "huggingface"
-        ]
+        "description": "Canonical URL platform type such as website, linkedin, twitter, or github. Lifecycle facts belong on link flags such as isCurrent and isPrimary."
       },
       "UrlMatchMode": {
         "type": "string",
@@ -34231,7 +34177,7 @@
       },
       "EntityUrlLink": {
         "type": "object",
-        "description": "Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and MUST be one of the closed `EntityUrlType` values. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; do not propose new enum values.",
+        "description": "Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.",
         "properties": {
           "crawlCdnProvider": {
             "oneOf": [
