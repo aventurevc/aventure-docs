@@ -167,6 +167,7 @@ export declare const IdentificationSchema: z.ZodObject<{
     stage: z.ZodEnum<{
         DETERMINISTIC: "DETERMINISTIC";
         JUDGMENT: "JUDGMENT";
+        LLM_JUDGMENT: "LLM_JUDGMENT";
         WEB_EVIDENCE: "WEB_EVIDENCE";
     }>;
     status: z.ZodEnum<{

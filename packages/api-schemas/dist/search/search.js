@@ -1,6 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 const SearchSchemaDefinition = z.object({
+    /** Allow intentional money-like text without a currency marker; prefer --from-file. */
+    allowSuspectedShellStrip: z.boolean().nullish(),
     /** Skip cache lookup and refresh from the search provider */
     bypassCache: z.boolean().default(false).optional(),
     /** Stable lookup text for cache keying when generated search text varies between runs */

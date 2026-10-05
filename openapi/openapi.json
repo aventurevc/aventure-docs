@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.54"
+    "version": "0.8.55"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -30467,7 +30467,8 @@
             "enum": [
               "DETERMINISTIC",
               "JUDGMENT",
-              "WEB_EVIDENCE"
+              "WEB_EVIDENCE",
+              "LLM_JUDGMENT"
             ]
           },
           "status": {
@@ -35721,6 +35722,13 @@
         "type": "object",
         "description": "Live web search request with cache controls",
         "properties": {
+          "allowSuspectedShellStrip": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Allow intentional money-like text without a currency marker; prefer --from-file."
+          },
           "bypassCache": {
             "type": "boolean",
             "default": false,

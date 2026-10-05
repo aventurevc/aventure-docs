@@ -36,7 +36,7 @@ export const IdentificationSchema = z.object({
     /** The subject's own website or profile page found in web search. Use it as the website when creating the record only if it is the subject's own domain, not a LinkedIn, Crunchbase, or other profile page. */
     officialUrl: z.string().nullish(),
     /** The ladder step that settled the answer. */
-    stage: z.enum(["DETERMINISTIC", "JUDGMENT", "WEB_EVIDENCE"]),
+    stage: z.enum(["DETERMINISTIC", "JUDGMENT", "WEB_EVIDENCE", "LLM_JUDGMENT"]),
     /** Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
 });

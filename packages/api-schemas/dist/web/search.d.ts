@@ -43,6 +43,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         url: string;
     }, unknown>>>;
     search: z.ZodType<{
+        allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
         language?: string | null | undefined;
@@ -51,6 +52,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         search: string;
         source?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
+        allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
         language?: string | null | undefined;
