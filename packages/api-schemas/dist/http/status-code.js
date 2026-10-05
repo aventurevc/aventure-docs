@@ -12,6 +12,7 @@
  */
 export const HTTP_OK = 200;
 export const HTTP_CREATED = 201;
+export const HTTP_ACCEPTED = 202;
 export const HTTP_NO_CONTENT = 204;
 export const HTTP_MOVED_PERMANENTLY = 301;
 export const HTTP_FOUND = 302;

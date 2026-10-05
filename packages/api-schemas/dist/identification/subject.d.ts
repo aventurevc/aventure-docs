@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.
+ * The company, Product, Service, or person to identify. Send the name, a URL it owns, or both, plus every location and source you have; a website or profile URL usually settles the answer without any model call.
  *
  * @openapiSchema IdentificationSubject
  * @endpoint GET /v1/lookup-jobs/{jobId}
@@ -20,7 +20,7 @@ export declare const IdentificationSubjectSchema: z.ZodObject<{
         PERSON: "PERSON";
     }>>>;
     location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    name: z.ZodString;
+    name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;

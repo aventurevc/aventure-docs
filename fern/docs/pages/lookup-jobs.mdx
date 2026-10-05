@@ -1,0 +1,163 @@
+---
+title: Identify a List of Names
+subtitle: Run up to 2,000 company and person lookups as one background job
+slug: lookup-jobs
+availability: beta
+keywords: bulk lookup, batch identification, lookup job, maxNames, entity resolution
+---
+
+A bulk lookup job identifies many names in one request. You send a list of
+names, or one long page whose names you want identified, and a bound on how
+many names to process. The job runs in the background and returns each name's
+[lookup answer](/lookup#act-on-the-answer) as it settles.
+
+Bulk jobs only identify. They never create placeholder records and never
+schedule research, so a `NO_MATCH` stays a `NO_MATCH`. Use an
+[article lookup](/lookup-articles) when you want placeholders filed for new
+names.
+
+## Start a Job
+
+Send `POST /v1/lookup-jobs` with the `maxNames` query parameter. `maxNames` is
+what makes the job a bulk job, and it must be between 1 and 2,000. The body
+holds one of two sources, never both:
+
+| Source | Body | What the job does |
+|--------|------|-------------------|
+| Names you already have | `mention`: a list of `{ "name", "type" }` rows | Identifies each name. `type` is `COMPANY`, `PERSON`, or `PRODUCT_SERVICE`; a `PRODUCT_SERVICE` row may add `providerName` |
+| A page | `sourceUrl`, `sourceNewsId`, or both | Reads the page, extracts the names it mentions, and identifies up to `maxNames` of them |
+
+The job removes duplicate rows (same `type` and name, ignoring case) before it
+starts. A `mention` list longer than `maxNames` answers `400`.
+
+The call returns `202` with a `JobEnqueue` body (`jobId`, `statusUrl`) and a
+`Location` header pointing at the job. Sending the same request again within
+24 hours returns the earlier job instead of starting and charging a second one.
+
+## Read the Job
+
+Poll `GET /v1/lookup-jobs/{jobId}`. While `state` is `PENDING` or `RUNNING`
+the read answers `202` with a `Retry-After` header (10 seconds); wait that long
+before reading again. Once the job is terminal it answers `200`. Send the
+`ETag` from an earlier read as `If-None-Match` to get `304` when nothing has
+changed.
+
+| `state` | Meaning |
+|---------|---------|
+| `PENDING` | Accepted and waiting for a worker |
+| `RUNNING` | Extracting or identifying names; `mention` already holds the names settled so far |
+| `COMPLETED` | Every name in the bound has an answer |
+| `FAILED` | The job stopped; `failureReason` says why |
+| `CANCELED` | The job was stopped before it finished |
+
+A bulk job's body also carries its progress:
+
+| Field | Meaning |
+|-------|---------|
+| `maxNames` | The bound you sent |
+| `namesFound` | Distinct names the job found to identify |
+| `namesProcessed` | Names processed so far, including names that failed |
+| `limitReached` | `true` when the job returned `maxNames` names and more may remain on the page. `false` does not prove extraction found every name |
+| `mention` | One row per name, read as in [Identify names in an article](/lookup-articles) |
+
+Each `mention` row carries the `name`, its `mentionType`, and either an
+`identification` (`MATCHED`, `NO_MATCH`, or `NEEDS_REVIEW`) or a one-sentence
+`failureReason`. One name's failure never fails the job; send that name alone to
+[`POST /v1/lookup`](/lookup). Only the caller that started the job can read it.
+
+## Examples
+
+Identify a list of names you already have. Save the body as `names.json`:
+
+```json title="names.json"
+{
+  "mention": [
+    { "name": "Mercury", "type": "COMPANY" },
+    { "name": "Patrick Collison", "type": "PERSON" },
+    { "name": "Stripe Atlas", "type": "PRODUCT_SERVICE", "providerName": "Stripe" }
+  ]
+}
+```
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/lookup-jobs?maxNames=3" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @names.json
+```
+
+```bash title="CLI"
+aventure lookup-jobs create --max-names 3 --from-file names.json
+```
+
+```json title="MCP (aventure_write)"
+{
+  "operationId": "createLookupJob",
+  "query": { "maxNames": 3 },
+  "body": { "mention": [{ "name": "Mercury", "type": "COMPANY" }, { "name": "Patrick Collison", "type": "PERSON" }] }
+}
+```
+</CodeBlocks>
+
+Identify up to 500 names from one page:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/lookup-jobs?maxNames=500" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"sourceUrl":"'"$PAGE_URL"'"}'
+```
+
+```bash title="CLI"
+aventure lookup-jobs create --max-names 500 --source-url "$PAGE_URL"
+```
+
+```json title="MCP (aventure_write)"
+{ "operationId": "createLookupJob", "query": { "maxNames": 500 }, "body": { "sourceUrl": "https://example.com/portfolio" } }
+```
+</CodeBlocks>
+
+Read the job with the returned `jobId`:
+
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/lookup-jobs/$JOB_ID" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure lookup-jobs get --job-id "$JOB_ID"
+```
+
+```json title="MCP (aventure_read)"
+{ "operationId": "getLookupJob", "pathParams": { "jobId": "<jobId>" } }
+```
+</CodeBlocks>
+
+## Access and Usage
+
+Bulk jobs share the lookup's [plan requirement](/lookup#access-and-limits): a
+signed-in caller on a plan without natural search receives [`402`](/errors)
+with `code` `subscription_required`.
+
+Accepting a bulk job prepays `maxNames` names from a separate hourly bulk
+allowance of 2,000 names, so a bulk job does not spend the per-minute quota
+that single lookups use. Reading a page also spends one natural-search call;
+a `mention` list spends none. When the bulk allowance cannot cover `maxNames`,
+the call answers [`429`](/errors) with a `Retry-After` header. A repeat of the
+same request that returns the earlier job spends nothing.
+[Plans and usage](/plans-and-usage) explains what counts against an allowance.
+
+## Answers in Seconds Instead
+
+For a handful of names, `POST /v1/lookup-mentions` (CLI `aventure lookup-mentions`,
+MCP `lookupMentions`) answers in the request, from a page, a screenshot, or a
+`mention` list. Send `Accept: text/event-stream` to receive each name as a
+`mention` event the moment it settles, fastest first, followed by one `complete`
+event with the whole answer. The streaming variant also files a hidden
+placeholder record for each `NO_MATCH` name whose own website names it.
+
+A single lookup that may outlast the request can run as a job too: send it with
+[`Prefer: respond-async`](/async-requests).

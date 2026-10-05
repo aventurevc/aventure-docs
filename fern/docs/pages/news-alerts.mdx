@@ -1,0 +1,259 @@
+---
+title: News Alerts
+subtitle: Get each new article about a company posted to your webhook
+slug: news-alerts
+keywords: news alerts, webhook, subscription, entity.news.published, standard webhooks, MCP events
+---
+
+A news alert subscribes your HTTPS endpoint to one company. Each time a public
+news article is newly linked to that company, directly or through its primary
+product, aVenture posts one signed `entity.news.published` event to your
+endpoint. News alerts work on every signed-in account.
+
+Every call below uses `Authorization: Bearer <token>` with an
+[API key or OAuth token](/authentication) against `https://api.aventure.vc`.
+
+| Operation | Use it for | CLI |
+|-----------|------------|-----|
+| `PUT /v1/news/subscriptions` | Subscribe, or refresh an existing subscription | `aventure news subscriptions subscribe` |
+| `GET /v1/news/subscriptions` | List your subscriptions and their delivery health | `aventure news subscriptions list` |
+| `POST /v1/news/subscriptions/{subscriptionId}/test-events` | Send one signed sample event to your endpoint | `aventure news subscriptions test-events send --subscription-id <subscriptionId>` |
+| `DELETE /v1/news/subscriptions` | Unsubscribe | `aventure news subscriptions unsubscribe` |
+
+## Subscribe
+
+Create a signing secret: `whsec_` followed by the base64 encoding of 24 to 64
+random bytes.
+
+```bash
+echo "whsec_$(openssl rand -base64 32)"
+```
+
+Put the subscription in a file. The CLI reads the secret only from a file,
+never from a flag.
+
+```json title="subscribe.json"
+{
+  "name": "entity.news.published",
+  "arguments": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
+  "delivery": {
+    "mode": "webhook",
+    "url": "https://example.com/aventure/news",
+    "secret": "whsec_..."
+  },
+  "cursor": null
+}
+```
+
+<CodeBlocks>
+```bash title="curl"
+curl -X PUT "https://api.aventure.vc/v1/news/subscriptions" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @subscribe.json
+```
+
+```bash title="CLI"
+aventure news subscriptions subscribe --from-file subscribe.json
+```
+</CodeBlocks>
+
+```json title="Response"
+{ "id": "sub_...", "refreshBefore": "...", "cursor": "...", "truncated": false }
+```
+
+A new endpoint must first pass [verification](#answer-verification). An
+endpoint you verified in the last 24 hours skips it.
+
+The same account, `url`, event name, and `entityId` always name the same
+subscription, so repeating the call refreshes it. A subscription expires at
+`refreshBefore`, 7 days out, unless you refresh it; send `ttlMs` for a shorter
+lifetime. Set `cursor` to the `cursor` of a response or event to resume
+delivery after it.
+
+Refreshing with a new `secret` rotates it. The old secret keeps co-signing for
+5 minutes, so each request carries two signatures until then.
+
+Limits: 100 subscriptions per account, and an `https` URL on a public host of
+at most 2048 characters. Redirects are not followed.
+
+## Check and Test a Subscription
+
+`GET /v1/news/subscriptions` returns an array of your subscriptions. The secret
+is never returned.
+
+```json
+[
+  {
+    "id": "sub_...",
+    "subscription": {
+      "name": "entity.news.published",
+      "arguments": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
+      "delivery": { "url": "https://example.com/aventure/news" }
+    },
+    "refreshBefore": "...",
+    "cursor": "...",
+    "createdAt": "...",
+    "verifiedAt": "...",
+    "status": "active",
+    "consecutiveFailureCount": 0,
+    "lastError": null,
+    "nextAttemptAt": "...",
+    "updatedAt": "..."
+  }
+]
+```
+
+| `status` | Meaning |
+|----------|---------|
+| `active` | Delivering normally |
+| `retrying` | The last delivery failed; `nextAttemptAt` is the next try and `lastError` says why |
+| `paused` | 12 consecutive deliveries failed. Delivery stops until you refresh with `PUT` |
+| `expired` | `refreshBefore` passed without a refresh |
+
+`subscription` is exactly the body that unsubscribes it.
+
+To check your endpoint end to end, send a test event:
+
+<CodeBlocks>
+```bash title="curl"
+curl -X POST "https://api.aventure.vc/v1/news/subscriptions/$SUBSCRIPTION_ID/test-events" \
+  -H "Authorization: Bearer $AUTH_TOKEN"
+```
+
+```bash title="CLI"
+aventure news subscriptions test-events send --subscription-id "$SUBSCRIPTION_ID"
+```
+</CodeBlocks>
+
+It posts one signed sample `entity.news.published` event, built from the
+company's earliest linked article or the newest catalog article when the company
+has none, and does not move the cursor. The answer reports what your endpoint
+returned: `{"eventId": "evt_test_...", "status": 200, "acknowledged": true}`.
+`acknowledged` is `true` for any `2xx`. When your endpoint gives no HTTP
+answer, the call returns `422` with code `callback_connection_refused`,
+`callback_timeout`, or `callback_tls_error`. An id that is not yours returns
+`404`.
+
+## Unsubscribe
+
+```json title="unsubscribe.json"
+{
+  "name": "entity.news.published",
+  "arguments": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
+  "delivery": { "url": "https://example.com/aventure/news" }
+}
+```
+
+<CodeBlocks>
+```bash title="curl"
+curl -X DELETE "https://api.aventure.vc/v1/news/subscriptions" \
+  -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d @unsubscribe.json
+```
+
+```bash title="CLI"
+aventure news subscriptions unsubscribe --from-file unsubscribe.json
+```
+</CodeBlocks>
+
+It returns `204`, including when the subscription is already gone.
+
+## Build the Receiver
+
+Every request is a signed JSON `POST` with
+[Standard Webhooks](https://www.standardwebhooks.com) headers
+`webhook-id`, `webhook-timestamp`, and `webhook-signature` (space-separated
+`v1,<signature>` entries), plus `X-MCP-Subscription-Id`. Verify the raw body
+bytes with a Standard Webhooks library before you parse the JSON: the
+`standardwebhooks` package on npm for Node.js, or on PyPI for Python.
+
+```js title="receiver.mjs"
+import { createServer } from "node:http";
+import { Webhook } from "standardwebhooks";
+
+const webhook = new Webhook(process.env.AVENTURE_WEBHOOK_SECRET); // whsec_...
+const seenEventIds = new Set();
+
+createServer(async (req, res) => {
+  const chunks = [];
+  for await (const chunk of req) chunks.push(chunk);
+  let message;
+  try {
+    message = webhook.verify(Buffer.concat(chunks), req.headers);
+  } catch {
+    res.writeHead(401).end();
+    return;
+  }
+  if (message.type === "verification") {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify({ challenge: message.challenge }));
+    return;
+  }
+  if (message.name === "entity.news.published" && !seenEventIds.has(message.eventId)) {
+    seenEventIds.add(message.eventId);
+    console.log(message.data.title, message.cursor);
+  }
+  res.writeHead(204).end();
+}).listen(8080);
+```
+
+### Answer Verification
+
+A new endpoint first receives `{"type": "verification", "challenge": "<nonce>"}`.
+Answer `2xx` with exactly `{"challenge": "<nonce>"}`. An endpoint that echoes the
+whole body fails verification.
+
+### Read Events
+
+```json
+{
+  "eventId": "...",
+  "name": "entity.news.published",
+  "timestamp": "...",
+  "data": { "title": "...", "newsUrlOriginal": "..." },
+  "cursor": "..."
+}
+```
+
+`data` is the public news article, the same object `GET /v1/news` returns.
+`eventId` equals the `webhook-id` header and stays the same across retries, so
+drop any event whose `eventId` you have already handled. Store the latest
+`cursor` to resume from it after a gap in your own processing.
+
+Two other message types can arrive:
+
+| Message | Meaning |
+|---------|---------|
+| `{"type": "gap", "cursor": "..."}` | Events before this cursor were skipped. An event larger than 256 KB is replaced by a gap |
+| `{"type": "terminated", "error": {"code": -32012, "message": "Forbidden", "data": {"reason": "Access revoked"}}}` | The subscription ended because the account's access ended |
+
+### Acknowledge and Retry
+
+| Your answer | Result |
+|-------------|--------|
+| Any `2xx` | Acknowledged |
+| `410` or `413` | That event is refused for good; the cursor moves past it |
+| Anything else, or no answer | Retried with exponential backoff and jitter, starting at 1 minute and doubling up to 6 hours |
+
+After 12 consecutive failures delivery pauses until you refresh the
+subscription with `PUT`. Answer within 10 seconds; the connection must open
+within 5. Events go out about once a minute, after an article has been linked
+for about 2 minutes.
+
+## Subscribe From an MCP Client
+
+The [aVenture MCP server](/mcp) supports MCP Events with webhook delivery:
+`events/list`, `events/subscribe`, and `events/unsubscribe`. The
+`events/subscribe` and `events/unsubscribe` params are the same JSON as the
+`PUT` and `DELETE` bodies above, and delivery follows the same receiver
+contract.
+
+| JSON-RPC error | Meaning |
+|----------------|---------|
+| `-32015` | Your endpoint failed verification or delivery; `data.reason` says why |
+| `-32013` | Subscription limit reached |
+| `-32602` | Invalid params |
+| `-32012` | Forbidden |
+| `-32011` | Not found |

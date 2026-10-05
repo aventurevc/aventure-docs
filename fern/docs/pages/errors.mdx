@@ -42,7 +42,7 @@ The remaining fields are aVenture extensions, present only when they apply:
 | `415` | Unsupported request content type | Send `Content-Type: application/json` |
 | `422` | Well-formed but semantically rejected | Read `detail` and `resolution` |
 | `429` | You reached your plan's usage limit, or sent requests too fast | Read `code`, then follow [usage limits](#usage-limits) or [rate limits](#rate-limits) |
-| `500`, `503` | Server error or unavailable dependency | Retry with backoff; `503` is usually transient |
+| `500`, `503` | Server error or unavailable dependency | Retry with backoff; `503` is usually transient. A `503` with `code` `search_still_running` means the search is still running; retry after `Retry-After`, or send [`Prefer: respond-async`](/async-requests) to get a job to poll |
 
 Retry `500`, `503`, and a `429` from a request-rate limit. Do not retry `400`,
 `401`, `402`, `403`, `404`, `406`, `409`, `415`, or `422`, because the same

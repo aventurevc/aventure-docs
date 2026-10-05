@@ -12,7 +12,9 @@ const NewsSubscriptionKeySchemaDefinition = z.object({
  * Identifies one subscription to remove by its event name, arguments, and url.
  *
  * @openapiSchema NewsSubscriptionKey
+ * @endpoint GET /v1/news/subscriptions
  * @endpoint DELETE /v1/news/subscriptions
+ * @usedBySchema NewsSubscriptionDetailSchema
  * @contractShape news.subscription-key
  * @contractRole canonical
  */

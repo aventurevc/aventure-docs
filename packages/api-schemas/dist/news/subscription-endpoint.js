@@ -7,6 +7,7 @@ const NewsSubscriptionEndpointSchemaDefinition = z.object({
  * Webhook delivery target.
  *
  * @openapiSchema NewsSubscriptionEndpoint
+ * @endpoint GET /v1/news/subscriptions
  * @endpoint DELETE /v1/news/subscriptions
  * @usedBySchema NewsSubscriptionKeySchema
  * @contractShape news.subscription-endpoint

@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Subscribable event name
  *
  * @openapiSchema NewsSubscriptionEvent
+ * @endpoint GET /v1/news/subscriptions
  * @endpoint PUT /v1/news/subscriptions
  * @endpoint DELETE /v1/news/subscriptions
  * @usedBySchema NewsPublishedEventSchema

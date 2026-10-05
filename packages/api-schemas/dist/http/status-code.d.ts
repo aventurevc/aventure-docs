@@ -11,6 +11,7 @@
  */
 export declare const HTTP_OK: 200;
 export declare const HTTP_CREATED: 201;
+export declare const HTTP_ACCEPTED: 202;
 export declare const HTTP_NO_CONTENT: 204;
 export declare const HTTP_MOVED_PERMANENTLY: 301;
 export declare const HTTP_FOUND: 302;

@@ -13,14 +13,8 @@ export declare const NewsParamSchema: z.ZodObject<{
     page: z.ZodOptional<z.ZodInt>;
     size: z.ZodOptional<z.ZodInt>;
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
-    authorInitial: z.ZodOptional<z.ZodString>;
     category: z.ZodOptional<z.ZodString>;
-    cursor: z.ZodOptional<z.ZodString>;
     excludeId: z.ZodOptional<z.ZodInt>;
-    letter: z.ZodOptional<z.ZodString>;
-    mode: z.ZodOptional<z.ZodEnum<{
-        thin: "thin";
-    }>>;
     "owner.entityId": z.ZodOptional<z.ZodUUID>;
     "owner.personId": z.ZodOptional<z.ZodUUID>;
     publishedAfter: z.ZodOptional<z.ZodISODate>;

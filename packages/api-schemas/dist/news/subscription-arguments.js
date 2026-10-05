@@ -8,6 +8,7 @@ const NewsSubscriptionArgumentsSchemaDefinition = z.object({
  * Arguments of the entity.news.published event.
  *
  * @openapiSchema NewsSubscriptionArguments
+ * @endpoint GET /v1/news/subscriptions
  * @endpoint PUT /v1/news/subscriptions
  * @endpoint DELETE /v1/news/subscriptions
  * @usedBySchema NewsSubscriptionKeySchema

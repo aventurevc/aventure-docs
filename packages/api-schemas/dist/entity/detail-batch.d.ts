@@ -7,7 +7,7 @@ declare const EntityDetailBatchSchemaDefinition: z.ZodObject<{
 }, z.core.$strict>;
 type EntityDetailBatchDefinition = z.infer<typeof EntityDetailBatchSchemaDefinition>;
 /**
- * Batch request for entity detail retrieval by id, slug, or current joined URL
+ * Batch request for entity detail retrieval by id, slug, or current joined URL. Each identifier array accepts at most 200 values, and at most 200 identifiers may be submitted across entityId, slug, and url.
  *
  * @openapiSchema EntityDetailBatch
  * @endpoint POST /v1/entities/lookup-batch

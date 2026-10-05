@@ -8,6 +8,8 @@ availability: beta
 An article lookup reads one article, extracts every company and person it
 names, and identifies each name as [`POST /v1/lookup`](/lookup) would, with the article
 as the source. It shares the lookup's [plan requirement](/lookup#access-and-limits).
+To identify more names than an article job's limit, or a list of names you
+already hold, start a [bulk lookup job](/lookup-jobs) instead.
 
 ## Choose an Article Path
 
@@ -41,8 +43,9 @@ batch.
    - `failureReason` replaces `identification` when a name could not be
      identified. Send that name alone to `POST /v1/lookup`.
 
-When the job is accepted it spends one natural-search quota call for each name
-it may identify, up to its per-article limit. A repeat of the same article that
+When the job is accepted it spends one natural-search call to read the article
+and one name-identification call for each name it may identify, up to its
+per-article limit. A repeat of the same article that
 returns the earlier job spends nothing. The job answers `402` and `429` under
 the same rules as a single lookup.
 

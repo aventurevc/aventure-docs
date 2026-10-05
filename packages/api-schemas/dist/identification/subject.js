@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { EntityTypeSchema } from "../entity/type.js";
 /**
- * The company, Product, Service, or person to identify. Send the name plus every URL, location, and source you have; a website or profile URL usually settles the answer without any model call.
+ * The company, Product, Service, or person to identify. Send the name, a URL it owns, or both, plus every location and source you have; a website or profile URL usually settles the answer without any model call.
  *
  * @openapiSchema IdentificationSubject
  * @endpoint GET /v1/lookup-jobs/{jobId}
@@ -22,8 +22,8 @@ export const IdentificationSubjectSchema = z.object({
     kind: z.enum(["ENTITY", "PERSON"]).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */
     location: z.string().max(2000).nullish(),
-    /** Name exactly as the source writes it, such as Acme AI or Jane Doe. Required even when url is sent; to read a record from only a URL (an aVenture page, website, or domain) use the exact read instead: entities lookup-exact get --url, or people lookup-exact get --url for a person. */
-    name: z.string().max(200),
+    /** Name exactly as the source writes it, such as Acme AI or Jane Doe. Send name, url, or both; a name that is an absolute http(s) URL is read as url. */
+    name: z.string().max(200).nullish(),
     /** Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup. */
     providerId: z.uuid().nullish(),
     /** aVenture news id of the article that mentions the subject; an unknown id is a 400. */
@@ -32,7 +32,7 @@ export const IdentificationSubjectSchema = z.object({
     sourceUrl: z.string().max(2000).nullish(),
     /** Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families. Invalid for a person lookup. */
     typeRecord: EntityTypeSchema.nullish(),
-    /** URLs the subject owns: its website, its LinkedIn company or person profile, or a registry page. At most 10. Put articles in sourceUrl. */
+    /** URLs the subject owns: its website, its LinkedIn company or person profile, an aVenture page, or a registry page. At most 10. Required when name is omitted. Put articles in sourceUrl. */
     url: z.array(z.string()).max(10).optional(),
 });
 //# sourceMappingURL=subject.js.map
