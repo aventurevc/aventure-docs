@@ -17,7 +17,7 @@ Every call below uses `Authorization: Bearer <token>` with an
 |-----------|------------|-----|
 | `PUT /v1/news/subscriptions` | Subscribe, or refresh an existing subscription | `aventure news subscriptions subscribe` |
 | `GET /v1/news/subscriptions` | List your subscriptions and their delivery health | `aventure news subscriptions list` |
-| `POST /v1/news/subscriptions/{subscriptionId}/test-events` | Send one signed sample event to your endpoint | `aventure news subscriptions test-events <subscriptionId>` |
+| `POST /v1/news/subscriptions/{subscriptionId}/test-events` | Send one signed sample event to your endpoint | `aventure news subscriptions test-events send --subscription-id <subscriptionId>` |
 | `DELETE /v1/news/subscriptions` | Unsubscribe | `aventure news subscriptions unsubscribe` |
 
 ## Subscribe
@@ -122,7 +122,7 @@ curl -X POST "https://api.aventure.vc/v1/news/subscriptions/$SUBSCRIPTION_ID/tes
 ```
 
 ```bash title="CLI"
-aventure news subscriptions test-events "$SUBSCRIPTION_ID"
+aventure news subscriptions test-events send --subscription-id "$SUBSCRIPTION_ID"
 ```
 </CodeBlocks>
 
