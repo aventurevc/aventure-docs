@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.57"
+    "version": "0.8.58"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -5247,7 +5247,7 @@
                 }
               }
             },
-            "description": "The signed-in caller's plan does not include natural search."
+            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -16422,7 +16422,7 @@
             }
           },
           {
-            "description": "Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
+            "description": "Kind of record to identify when you know it; the lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
             "in": "query",
             "name": "kind",
             "required": false,
@@ -16795,7 +16795,7 @@
                 }
               }
             },
-            "description": "The signed-in caller's plan does not include natural search."
+            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -17016,7 +17016,7 @@
                 }
               }
             },
-            "description": "The signed-in caller's plan does not include natural search."
+            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -20439,7 +20439,7 @@
                 }
               }
             },
-            "description": "The signed-in caller's plan does not include natural search."
+            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -30322,7 +30322,7 @@
               "string",
               "null"
             ],
-            "description": "Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
+            "description": "Kind of record to identify when you know it; the lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
             "enum": [
               "ENTITY",
               "PERSON"

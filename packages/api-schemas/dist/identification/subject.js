@@ -18,7 +18,7 @@ import { EntityTypeSchema } from "../entity/type.js";
 export const IdentificationSubjectSchema = z.object({
     /** Specific facts in plain words: product, industry, employer and title, or founder names. Generic words like startup add nothing. */
     context: z.string().max(2000).nullish(),
-    /** Kind of record to identify when you know it; the kind-agnostic POST /v1/lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY. */
+    /** Kind of record to identify when you know it; the lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY. */
     kind: z.enum(["ENTITY", "PERSON"]).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */
     location: z.string().max(2000).nullish(),
