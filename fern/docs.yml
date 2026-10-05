@@ -56,6 +56,8 @@ navigation:
                 path: docs/pages/research-updates.mdx
           - page: Company Brand Lookup
             path: docs/pages/company-brand-lookup.mdx
+          - page: News Alerts
+            path: docs/pages/news-alerts.mdx
           - page: Call MCP Tools Directly
             path: docs/pages/mcp-tools.mdx
       - section: Reference

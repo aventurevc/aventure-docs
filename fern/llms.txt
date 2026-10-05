@@ -14,6 +14,7 @@
 - [Identify a List of Names](https://docs.aventure.vc/lookup-jobs): Experimental. Identify up to 2,000 company and person names, from a list or one page, in a lookup-only background job.
 - [Update Records With Research](https://docs.aventure.vc/research-updates): Experimental. Judge record freshness and queue single or batch research updates.
 - [Company Brand Lookup](https://docs.aventure.vc/company-brand-lookup): Get a company's names, logos, website and social URLs, and categories from any URL it owns, its slug, or its id.
+- [News Alerts](https://docs.aventure.vc/news-alerts): Subscribe a webhook to a company and receive each new article as a signed `entity.news.published` event; list, test, and unsubscribe from the API, CLI, or MCP Events.
 - [Call MCP Tools Directly](https://docs.aventure.vc/mcp-tools): Name the operation, place each input, and read tool answers from your own code or prompts.
 - [Authentication](https://docs.aventure.vc/authentication): Create an API key and sign in from the CLI or an MCP client.
 - [Plans and Usage](https://docs.aventure.vc/plans-and-usage): What counts against your plan's allowances and how to upgrade.
