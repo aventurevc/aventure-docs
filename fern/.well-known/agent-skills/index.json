@@ -6,14 +6,14 @@
       "type": "skill-md",
       "description": "Use for multi-step aVenture research recipes: company briefs, funding histories, round investors, investor portfolios, founder backgrounds, competitor sets, news monitoring, and resolving a list of names.",
       "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
-      "digest": "sha256:e9e62b3fea75dcedc90e3265d5f9087d01b840bfebc1a79931213dc083f86fa1"
+      "digest": "sha256:fa46a3f00a5ff60e5e0bdacf1ca03152e8706be2698ab258d7e7681b69d64891"
     },
     {
       "name": "aventure",
       "type": "skill-md",
       "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
       "url": "/.well-known/agent-skills/aventure/SKILL.md",
-      "digest": "sha256:d828cf063acb020e4f49ae6e8c07ffe0cdaabe5131f02399d939b84d7ff0864c"
+      "digest": "sha256:d3e20fc3252c0b5701606d8f1daba2836301a86820e66aaef47a8a65d73deda0"
     }
   ]
 }

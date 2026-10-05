@@ -6,11 +6,13 @@ import { PersonInvestedCompanySchema } from "./invested-company.js";
 const PersonInvestmentSchemaDefinition = z.object({
     amount: z.number().nullish(),
     company: PersonInvestedCompanySchema,
+    /** Announced date of the fundraise round. Use this field for when the investment happened; null when the round date is unknown. */
     date: z.iso.datetime({ offset: true }).nullish(),
     fundraiseTransaction: EntityFundraiseSchema.nullish(),
     /** Canonical fundraise transaction UUID */
     fundraiseTransactionId: z.uuid(),
     id: z.string(),
+    /** When aVenture recorded this person's participation in the round. It is not the investment date: imported portfolios share their import date. Use date for when the round happened. */
     investmentDate: z.iso.datetime({ offset: true }),
     /** Investor-specific attribution for this person's participation in the fundraise round. amountInvested is a plain decimal number in the fundraise transaction currency and is not added to amount. */
     investorAttribution: FundraiseInvestmentAttributionSchema.nullish(),
