@@ -127,7 +127,7 @@ aventure news subscriptions test-events send --subscription-id "$SUBSCRIPTION_ID
 </CodeBlocks>
 
 It posts one signed sample `entity.news.published` event, built from the
-company's latest linked article or the newest catalog article when the company
+company's earliest linked article or the newest catalog article when the company
 has none, and does not move the cursor. The answer reports what your endpoint
 returned: `{"eventId": "evt_test_...", "status": 200, "acknowledged": true}`.
 `acknowledged` is `true` for any `2xx`. When your endpoint gives no HTTP
