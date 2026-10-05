@@ -1,5 +1,10 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const PersonImageSchemaDefinition = z.object({
+    /** Whether person image monogram */
+    isMonogram: z.boolean(),
+    picture: z.string().nullish(),
+});
 /**
  * Read projection: person image fields for detail/list responses
  *
@@ -34,9 +39,5 @@ import { z } from "zod/v4";
  * @contractShape person.image
  * @contractRole canonical
  */
-export const PersonImageSchema = z.object({
-    /** Whether person image monogram */
-    isMonogram: z.boolean(),
-    picture: z.string().nullish(),
-});
+export const PersonImageSchema = PersonImageSchemaDefinition;
 //# sourceMappingURL=image.js.map

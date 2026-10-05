@@ -789,15 +789,26 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
+    SearchAnswer: { modulePath: "search/answer", schemaName: "SearchAnswerSchema" },
+    SearchAnswerCitation: {
+        modulePath: "search/answer-citation",
+        schemaName: "SearchAnswerCitationSchema",
+    },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",
     },
+    SearchEvidenceSource: {
+        modulePath: "search/evidence-source",
+        schemaName: "SearchEvidenceSourceSchema",
+    },
     SearchHit: { modulePath: "search/hit", schemaName: "SearchHitSchema" },
+    SearchIntent: { modulePath: "search/intent", schemaName: "SearchIntentSchema" },
     SearchInterpretation: {
         modulePath: "search/interpretation",
         schemaName: "SearchInterpretationSchema",
     },
+    SearchLayer: { modulePath: "search/layer", schemaName: "SearchLayerSchema" },
     SearchMode: { modulePath: "search/mode", schemaName: "SearchModeSchema" },
     SearchModeExecution: {
         modulePath: "search/mode-execution",
@@ -811,6 +822,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/ordering-person-sort-field",
         schemaName: "SearchOrderingPersonSortFieldSchema",
     },
+    SearchPassage: { modulePath: "search/passage", schemaName: "SearchPassageSchema" },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },

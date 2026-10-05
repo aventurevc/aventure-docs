@@ -3,10 +3,13 @@ declare const PersonSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     gender: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodUUID;
-    image: z.ZodObject<{
-        isMonogram: z.ZodBoolean;
-        picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    }, z.core.$strip>;
+    image: z.ZodType<{
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }, unknown, z.core.$ZodTypeInternals<{
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }, unknown>>;
     lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     nameAlias: z.ZodArray<z.ZodType<{
         displayable?: boolean | null | undefined;
@@ -42,7 +45,9 @@ declare const PersonSchemaDefinition: z.ZodObject<{
             newsArticle: "newsArticle";
             person: "person";
             product: "product";
+            researchSnippet: "researchSnippet";
             service: "service";
+            sourceDocument: "sourceDocument";
             text: "text";
         }>, z.ZodString]>;
     }, z.core.$strip>>>;

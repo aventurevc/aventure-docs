@@ -2,17 +2,7 @@
 import { z } from "zod/v4";
 import { LogoAccuracySchema } from "../logo/accuracy.js";
 import { MediaObjectTypeSchema } from "./object-type.js";
-/**
- * Managed media asset reference with resolved CDN URL and target metadata
- *
- * @openapiSchema MediaUpload
- * @endpoint GET /v1/entities/{entityId}/logo
- * @endpoint GET /v1/news/{newsId}/thumbnail
- * @endpoint GET /v1/people/{personId}/photo
- * @contractShape media.upload
- * @contractRole canonical
- */
-export const MediaUploadSchema = z.object({
+const MediaUploadSchemaDefinition = z.object({
     /** Entity logo writes only: the brand-match verdict the write's gate computed on these bytes; absent on reads, photos, thumbnails, and brand-match overrides. */
     accuracy: LogoAccuracySchema.nullish(),
     /** Resolved API CDN URL */
@@ -26,4 +16,15 @@ export const MediaUploadSchema = z.object({
     /** Attached entity/person/news target id, when known */
     targetId: z.string().nullish(),
 });
+/**
+ * Managed media asset reference with resolved CDN URL and target metadata
+ *
+ * @openapiSchema MediaUpload
+ * @endpoint GET /v1/entities/{entityId}/logo
+ * @endpoint GET /v1/news/{newsId}/thumbnail
+ * @endpoint GET /v1/people/{personId}/photo
+ * @contractShape media.upload
+ * @contractRole canonical
+ */
+export const MediaUploadSchema = MediaUploadSchemaDefinition;
 //# sourceMappingURL=upload.js.map

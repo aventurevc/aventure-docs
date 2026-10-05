@@ -1,4 +1,9 @@
 import { z } from "zod/v4";
+declare const PersonImageSchemaDefinition: z.ZodObject<{
+    isMonogram: z.ZodBoolean;
+    picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+}, z.core.$strip>;
+type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
 /**
  * Read projection: person image fields for detail/list responses
  *
@@ -33,9 +38,7 @@ import { z } from "zod/v4";
  * @contractShape person.image
  * @contractRole canonical
  */
-export declare const PersonImageSchema: z.ZodObject<{
-    isMonogram: z.ZodBoolean;
-    picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-}, z.core.$strip>;
+export declare const PersonImageSchema: z.ZodType<PersonImageDefinition>;
 export type PersonImage = z.infer<typeof PersonImageSchema>;
+export {};
 //# sourceMappingURL=image.d.ts.map

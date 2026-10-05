@@ -17,6 +17,7 @@ import { z } from "zod/v4";
  * @usedBySchema AgentHelpSchema
  * @usedBySchema LogoAccuracySchema
  * @usedBySchema PersonSearchInterpretationSchema
+ * @usedBySchema SearchAnswerSchema
  * @usedBySchema SearchInterpretationSchema
  * @contractShape confidence.confidence
  * @contractRole canonical

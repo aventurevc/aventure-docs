@@ -210,6 +210,12 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
             min?: number | null | undefined;
         }[] | undefined;
     }, unknown>>;
+    intent: z.ZodEnum<{
+        comparison: "comparison";
+        discovery: "discovery";
+        peer: "peer";
+        profile: "profile";
+    }>;
     interpretation: z.ZodString;
     sort: z.ZodType<{
         order: {
@@ -224,6 +230,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         }[];
         relevance?: "keyword" | "semantic" | null | undefined;
     }, unknown>>;
+    subjectEntityName: z.ZodArray<z.ZodString>;
     unsupported: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SearchInterpretationDefinition = z.infer<typeof SearchInterpretationSchemaDefinition>;

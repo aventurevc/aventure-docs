@@ -32,6 +32,7 @@ const EntityListSchemaDefinition = z.object({
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntitySimilarityResultSchema
  * @usedBySchema LookupJobMentionSchema
+ * @usedBySchema NaturalSearchResultSchema
  * @usedBySchema PageEntityListSchema
  * @usedBySchema PageResultEntityListSchema
  * @contractShape entity.list

@@ -38,7 +38,9 @@ export declare const ContentSourceTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     newsArticle: "newsArticle";
     person: "person";
     product: "product";
+    researchSnippet: "researchSnippet";
     service: "service";
+    sourceDocument: "sourceDocument";
     text: "text";
 }>, z.ZodString]>;
 export type ContentSourceType = z.infer<typeof ContentSourceTypeSchema>;

@@ -3,16 +3,7 @@ import { z } from "zod/v4";
 import { NewsSchema } from "./news.js";
 import { NewsResolvedEntityLinkSchema } from "./resolved-entity-link.js";
 import { NewsResolvedPersonLinkSchema } from "./resolved-person-link.js";
-/**
- * Canonical news detail owner
- *
- * @openapiSchema NewsDetail
- * @endpoint GET /v1/news/lookup
- * @endpoint GET /v1/news/{newsId}
- * @contractShape news.detail
- * @contractRole canonical
- */
-export const NewsDetailSchema = z.object({
+const NewsDetailSchemaDefinition = z.object({
     content: z.string().nullish(),
     core: NewsSchema,
     /** Resolved entity mentions — read-only display projections. News mutations attach entities only via flat entityJoinId values, never these nested objects. */
@@ -22,4 +13,14 @@ export const NewsDetailSchema = z.object({
     /** Resolved person mentions — read-only display projections. News mutations attach people only via flat personId/personSlug values, never these nested objects. */
     personMentionResolved: z.array(NewsResolvedPersonLinkSchema),
 });
+/**
+ * Canonical news detail owner
+ *
+ * @openapiSchema NewsDetail
+ * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/news/{newsId}
+ * @contractShape news.detail
+ * @contractRole canonical
+ */
+export const NewsDetailSchema = NewsDetailSchemaDefinition;
 //# sourceMappingURL=detail.js.map

@@ -1,5 +1,11 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const EntityImageSchemaDefinition = z.object({
+    /** Whether entity image monogram */
+    isMonogram: z.boolean(),
+    logo: z.string().nullish(),
+    logoSquare: z.string().nullish(),
+});
 /**
  * Grouped entity image fields for square, standard, and monogram logo state
  *
@@ -47,10 +53,5 @@ import { z } from "zod/v4";
  * @contractShape entity.image
  * @contractRole canonical
  */
-export const EntityImageSchema = z.object({
-    /** Whether entity image monogram */
-    isMonogram: z.boolean(),
-    logo: z.string().nullish(),
-    logoSquare: z.string().nullish(),
-});
+export const EntityImageSchema = EntityImageSchemaDefinition;
 //# sourceMappingURL=image.js.map

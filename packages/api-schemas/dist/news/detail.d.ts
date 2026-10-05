@@ -1,14 +1,5 @@
 import { z } from "zod/v4";
-/**
- * Canonical news detail owner
- *
- * @openapiSchema NewsDetail
- * @endpoint GET /v1/news/lookup
- * @endpoint GET /v1/news/{newsId}
- * @contractShape news.detail
- * @contractRole canonical
- */
-export declare const NewsDetailSchema: z.ZodObject<{
+declare const NewsDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     core: z.ZodType<{
         author?: string | null | undefined;
@@ -80,5 +71,17 @@ export declare const NewsDetailSchema: z.ZodObject<{
         updatedAt: string;
     }, unknown>>>;
 }, z.core.$strip>;
+type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
+/**
+ * Canonical news detail owner
+ *
+ * @openapiSchema NewsDetail
+ * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/news/{newsId}
+ * @contractShape news.detail
+ * @contractRole canonical
+ */
+export declare const NewsDetailSchema: z.ZodType<NewsDetailDefinition>;
 export type NewsDetail = z.infer<typeof NewsDetailSchema>;
+export {};
 //# sourceMappingURL=detail.d.ts.map

@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.62"
+    "version": "0.8.63"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -26977,6 +26977,19 @@
             }
           },
           {
+            "description": "Optional answer layers to add beside the entity records; repeat to add more. `passage` ranks public research snippets and linked news that answer the question; `synthesis` adds a cited written answer and implies `passage`.",
+            "in": "query",
+            "name": "layer",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SearchLayer"
+              },
+              "uniqueItems": true
+            }
+          },
+          {
             "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
@@ -35752,6 +35765,14 @@
           "url"
         ]
       },
+      "SearchLayer": {
+        "type": "string",
+        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`.",
+        "enum": [
+          "passage",
+          "synthesis"
+        ]
+      },
       "EntityNaturalSearch": {
         "type": "object",
         "description": "Plain-English entity search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.",
@@ -35773,18 +35794,53 @@
         "type": "object",
         "description": "Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.",
         "properties": {
+          "answer": {
+            "description": "Written answer grounded in the subject, peer, and result records and the passages; null unless the request asks for the `synthesis` layer.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchAnswer"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "interpretation": {
             "$ref": "#/components/schemas/SearchInterpretation",
             "description": "Structured interpretation used to run the entity list query."
           },
+          "passage": {
+            "type": "array",
+            "description": "Passages that best answer the question, ranked by score; empty unless the request asks for the `passage` layer.",
+            "items": {
+              "$ref": "#/components/schemas/SearchPassage"
+            }
+          },
+          "peer": {
+            "type": "array",
+            "description": "Curated competitors of the single subject entity for `peer` questions; semantic look-alikes are the result page. Empty otherwise.",
+            "items": {
+              "$ref": "#/components/schemas/EntitySimilarityResult"
+            }
+          },
           "result": {
             "$ref": "#/components/schemas/PageResultEntityList",
             "description": "Entity list page returned by the canonical entity list engine."
+          },
+          "subject": {
+            "type": "array",
+            "description": "Entities the question is about, one per resolved subject name, in query order; empty when the question names none or none resolves.",
+            "items": {
+              "$ref": "#/components/schemas/EntityList"
+            }
           }
         },
         "required": [
           "interpretation",
-          "result"
+          "passage",
+          "peer",
+          "result",
+          "subject"
         ]
       },
       "PersonNaturalSearch": {
@@ -36728,7 +36784,9 @@
           "classificationCode",
           "product",
           "service",
-          "agentHelpDoc"
+          "agentHelpDoc",
+          "researchSnippet",
+          "sourceDocument"
         ]
       },
       "PersonAliasType": {
@@ -36836,13 +36894,39 @@
       },
       "SearchMode": {
         "type": "string",
-        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts `auto` and `keyword`, where `keyword` ranks the full text of articles, posts, and fetched pages.",
+        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword` (the full text of articles, posts, and fetched pages), and `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies).",
         "enum": [
           "auto",
           "exact",
           "keyword",
           "semantic",
           "natural"
+        ]
+      },
+      "SearchAnswer": {
+        "type": "object",
+        "description": "Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no citation means the evidence does not answer the question.",
+        "properties": {
+          "citation": {
+            "type": "array",
+            "description": "Evidence each claim rests on, in first-use order.",
+            "items": {
+              "$ref": "#/components/schemas/SearchAnswerCitation"
+            }
+          },
+          "confidence": {
+            "$ref": "#/components/schemas/Confidence",
+            "description": "How fully the cited evidence answers the question."
+          },
+          "text": {
+            "type": "string",
+            "description": "Answer text in plain prose."
+          }
+        },
+        "required": [
+          "citation",
+          "confidence",
+          "text"
         ]
       },
       "SearchInterpretation": {
@@ -36865,6 +36949,10 @@
             "$ref": "#/components/schemas/EntityListFilter",
             "description": "Canonical entity filter generated from the natural-language query."
           },
+          "intent": {
+            "$ref": "#/components/schemas/SearchIntent",
+            "description": "Question shape the planner read from the query."
+          },
           "interpretation": {
             "type": "string",
             "description": "Human-readable summary of how the query was interpreted."
@@ -36872,6 +36960,13 @@
           "sort": {
             "$ref": "#/components/schemas/SearchOrderingEntityFilterSortable",
             "description": "Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms."
+          },
+          "subjectEntityName": {
+            "type": "array",
+            "description": "Brand or legal names of the entities the question is about, as written in the query; empty for discovery questions.",
+            "items": {
+              "type": "string"
+            }
           },
           "unsupported": {
             "type": [
@@ -36886,8 +36981,81 @@
           "execution",
           "fallbackUsed",
           "filter",
+          "intent",
           "interpretation",
-          "sort"
+          "sort",
+          "subjectEntityName"
+        ]
+      },
+      "SearchPassage": {
+        "type": "object",
+        "description": "Text passage ranked by semantic closeness to a natural-language question, read from its owning record.",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Entity the passage is about."
+          },
+          "label": {
+            "type": "string",
+            "description": "Snippet type key for research snippets, or the article title for news articles."
+          },
+          "publishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Article publication time for news passages; null for snippets."
+          },
+          "score": {
+            "type": "number",
+            "format": "double",
+            "description": "Cosine similarity between the question and the passage; higher is closer. Compare scores only within one response."
+          },
+          "source": {
+            "$ref": "#/components/schemas/SearchEvidenceSource",
+            "description": "Record type that owns the passage text."
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Identifier of the owning snippet or news article."
+          },
+          "text": {
+            "type": "string",
+            "description": "Passage text: the snippet, or the article summary or excerpt."
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Original article URL for news passages; null for snippets."
+          }
+        },
+        "required": [
+          "entityId",
+          "label",
+          "score",
+          "source",
+          "sourceId",
+          "text"
+        ]
+      },
+      "EntitySimilarityResult": {
+        "type": "object",
+        "description": "Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/EntityList"
+          },
+          "similarity": {
+            "$ref": "#/components/schemas/EntitySimilarityContext"
+          }
+        },
+        "required": [
+          "entity",
+          "similarity"
         ]
       },
       "PageResultEntityList": {
@@ -37406,6 +37574,116 @@
           "relatedLegal"
         ]
       },
+      "EntitySimilarityContext": {
+        "type": "object",
+        "description": "Per-row provenance for a similar-entity result",
+        "properties": {
+          "compositeScore": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Composite (section-fusion) score. Populated only when origin=precomputed."
+          },
+          "cosineScore": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Cosine similarity when origin=precomputed"
+          },
+          "curatedAsOf": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "Curated as-of date when origin=curated"
+          },
+          "curatedRelationshipType": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Curated relationship type when origin=curated"
+          },
+          "curatedSource": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Curated source URL/note when origin=curated"
+          },
+          "derivedFromEntityId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Curated peer id that produced this row when origin=derived"
+          },
+          "matchedSectionWeight": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Total normalized source-section weight matched when origin=precomputed"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/EntitySimilarityOrigin"
+          },
+          "rank": {
+            "type": "integer",
+            "format": "int32",
+            "description": "1-based position in the merged result page"
+          },
+          "sharedSectionCount": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Number of source/target sections compared when origin=precomputed"
+          }
+        },
+        "required": [
+          "origin",
+          "rank"
+        ]
+      },
+      "EntitySimilarityOrigin": {
+        "type": "string",
+        "description": "Provenance origin for a similar-entity result row.",
+        "enum": [
+          "curated",
+          "semantic",
+          "precomputed",
+          "derived",
+          "computed"
+        ]
+      },
+      "SearchEvidenceSource": {
+        "type": "string",
+        "description": "Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity.",
+        "enum": [
+          "entityRecord",
+          "researchSnippet",
+          "newsArticle"
+        ]
+      },
+      "SearchIntent": {
+        "type": "string",
+        "description": "Question shape the planner read from a natural-language search. `discovery` lists entities matching a description; `profile` asks what a named entity does, offers, or how it stands; `peer` asks for a named entity's competitors or look-alikes; `comparison` asks how two or more named entities compare.",
+        "enum": [
+          "discovery",
+          "profile",
+          "peer",
+          "comparison"
+        ]
+      },
       "SearchOrderingEntityFilterSortable": {
         "type": "object",
         "description": "Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.",
@@ -37468,6 +37746,30 @@
         "required": [
           "descending",
           "field"
+        ]
+      },
+      "SearchAnswerCitation": {
+        "type": "object",
+        "description": "One piece of evidence an answer cites, by its owning record.",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Entity the evidence is about."
+          },
+          "source": {
+            "$ref": "#/components/schemas/SearchEvidenceSource",
+            "description": "Record that owns the cited evidence."
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Entity id for `entityRecord`, else the snippet or news article id from `passage`."
+          }
+        },
+        "required": [
+          "entityId",
+          "source",
+          "sourceId"
         ]
       },
       "PageResultNews": {
@@ -38999,113 +39301,6 @@
           "core",
           "similarity",
           "urlLink"
-        ]
-      },
-      "EntitySimilarityContext": {
-        "type": "object",
-        "description": "Per-row provenance for a similar-entity result",
-        "properties": {
-          "compositeScore": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Composite (section-fusion) score. Populated only when origin=precomputed."
-          },
-          "cosineScore": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Cosine similarity when origin=precomputed"
-          },
-          "curatedAsOf": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "date",
-            "description": "Curated as-of date when origin=curated"
-          },
-          "curatedRelationshipType": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Curated relationship type when origin=curated"
-          },
-          "curatedSource": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Curated source URL/note when origin=curated"
-          },
-          "derivedFromEntityId": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "format": "uuid",
-            "description": "Curated peer id that produced this row when origin=derived"
-          },
-          "matchedSectionWeight": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "format": "double",
-            "description": "Total normalized source-section weight matched when origin=precomputed"
-          },
-          "origin": {
-            "$ref": "#/components/schemas/EntitySimilarityOrigin"
-          },
-          "rank": {
-            "type": "integer",
-            "format": "int32",
-            "description": "1-based position in the merged result page"
-          },
-          "sharedSectionCount": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int32",
-            "description": "Number of source/target sections compared when origin=precomputed"
-          }
-        },
-        "required": [
-          "origin",
-          "rank"
-        ]
-      },
-      "EntitySimilarityOrigin": {
-        "type": "string",
-        "description": "Provenance origin for a similar-entity result row.",
-        "enum": [
-          "curated",
-          "semantic",
-          "precomputed",
-          "derived",
-          "computed"
-        ]
-      },
-      "EntitySimilarityResult": {
-        "type": "object",
-        "description": "Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.",
-        "properties": {
-          "entity": {
-            "$ref": "#/components/schemas/EntityList"
-          },
-          "similarity": {
-            "$ref": "#/components/schemas/EntitySimilarityContext"
-          }
-        },
-        "required": [
-          "entity",
-          "similarity"
         ]
       },
       "EntityResearchPublicSource": {

@@ -49,7 +49,9 @@ export declare const ContentEmbeddingMatchSchema: z.ZodObject<{
         newsArticle: "newsArticle";
         person: "person";
         product: "product";
+        researchSnippet: "researchSnippet";
         service: "service";
+        sourceDocument: "sourceDocument";
         text: "text";
     }>, z.ZodString]>;
 }, z.core.$strip>;

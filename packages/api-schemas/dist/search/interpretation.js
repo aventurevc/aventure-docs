@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
 import { EntityListFilterSchema } from "../entity/list-filter.js";
+import { SearchIntentSchema } from "./intent.js";
 import { SearchModeExecutionSchema } from "./mode-execution.js";
 import { SearchOrderingEntityFilterSortableSchema } from "./ordering-entity-filter-sortable.js";
 const SearchInterpretationSchemaDefinition = z.object({
@@ -13,10 +14,14 @@ const SearchInterpretationSchemaDefinition = z.object({
     fallbackUsed: z.boolean(),
     /** Canonical entity filter generated from the natural-language query. */
     filter: EntityListFilterSchema,
+    /** Question shape the planner read from the query. */
+    intent: SearchIntentSchema,
     /** Human-readable summary of how the query was interpreted. */
     interpretation: z.string(),
     /** Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms. */
     sort: SearchOrderingEntityFilterSortableSchema,
+    /** Brand or legal names of the entities the question is about, as written in the query; empty for discovery questions. */
+    subjectEntityName: z.array(z.string()),
     /** Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported. */
     unsupported: z.string().nullish(),
 });

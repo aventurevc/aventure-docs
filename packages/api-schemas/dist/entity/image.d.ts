@@ -1,4 +1,10 @@
 import { z } from "zod/v4";
+declare const EntityImageSchemaDefinition: z.ZodObject<{
+    isMonogram: z.ZodBoolean;
+    logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+}, z.core.$strip>;
+type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
 /**
  * Grouped entity image fields for square, standard, and monogram logo state
  *
@@ -46,10 +52,7 @@ import { z } from "zod/v4";
  * @contractShape entity.image
  * @contractRole canonical
  */
-export declare const EntityImageSchema: z.ZodObject<{
-    isMonogram: z.ZodBoolean;
-    logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-}, z.core.$strip>;
+export declare const EntityImageSchema: z.ZodType<EntityImageDefinition>;
 export type EntityImage = z.infer<typeof EntityImageSchema>;
+export {};
 //# sourceMappingURL=image.d.ts.map

@@ -4,11 +4,15 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;
-        image: z.ZodObject<{
-            isMonogram: z.ZodBoolean;
-            logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>;
+        image: z.ZodType<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, unknown, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, unknown>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
@@ -50,11 +54,15 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         id: z.ZodUUID;
-        image: z.ZodObject<{
-            isMonogram: z.ZodBoolean;
-            logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-            logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        }, z.core.$strip>;
+        image: z.ZodType<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, unknown, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, unknown>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;

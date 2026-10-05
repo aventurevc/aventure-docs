@@ -42,6 +42,8 @@ export const ContentSourceTypeSchema = z.union([
         "product",
         "service",
         "agentHelpDoc",
+        "researchSnippet",
+        "sourceDocument",
     ]),
     z.string(),
 ]);

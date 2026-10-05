@@ -1,15 +1,5 @@
 import { z } from "zod/v4";
-/**
- * Managed media asset reference with resolved CDN URL and target metadata
- *
- * @openapiSchema MediaUpload
- * @endpoint GET /v1/entities/{entityId}/logo
- * @endpoint GET /v1/news/{newsId}/thumbnail
- * @endpoint GET /v1/people/{personId}/photo
- * @contractShape media.upload
- * @contractRole canonical
- */
-export declare const MediaUploadSchema: z.ZodObject<{
+declare const MediaUploadSchemaDefinition: z.ZodObject<{
     accuracy: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         candidateObserved: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         confidence: z.ZodEnum<{
@@ -49,5 +39,18 @@ export declare const MediaUploadSchema: z.ZodObject<{
     path: z.ZodString;
     targetId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+type MediaUploadDefinition = z.infer<typeof MediaUploadSchemaDefinition>;
+/**
+ * Managed media asset reference with resolved CDN URL and target metadata
+ *
+ * @openapiSchema MediaUpload
+ * @endpoint GET /v1/entities/{entityId}/logo
+ * @endpoint GET /v1/news/{newsId}/thumbnail
+ * @endpoint GET /v1/people/{personId}/photo
+ * @contractShape media.upload
+ * @contractRole canonical
+ */
+export declare const MediaUploadSchema: z.ZodType<MediaUploadDefinition>;
 export type MediaUpload = z.infer<typeof MediaUploadSchema>;
+export {};
 //# sourceMappingURL=upload.d.ts.map
