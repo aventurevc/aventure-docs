@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.59"
+    "version": "0.8.60"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -33208,7 +33208,7 @@
               "string",
               "null"
             ],
-            "description": "Association period end, preserving source precision",
+            "description": "Association period end, preserving source precision; any value means the association ended and isCurrent is false. Absent only while not terminated",
             "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$"
           },
           "entityAddress": {
@@ -33268,7 +33268,8 @@
             "type": [
               "boolean",
               "null"
-            ]
+            ],
+            "description": "True only while the association has no endDate; any endDate means it ended"
           },
           "personAddress": {
             "type": "array",

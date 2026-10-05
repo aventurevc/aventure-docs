@@ -33,7 +33,7 @@ import { PersonImageSchema } from "../person/image.js";
 export const EntityPersonAssociationSchema = z.object({
     /** Integer person-entity association join row id, not a person or entity UUID */
     associationId: z.int(),
-    /** Association period end, preserving source precision */
+    /** Association period end, preserving source precision; any value means the association ended and isCurrent is false. Absent only while not terminated */
     endDate: z
         .string()
         .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$/)
@@ -55,6 +55,7 @@ export const EntityPersonAssociationSchema = z.object({
     entityType: EntityTypeSchema.nullish(),
     /** Entity URL links carried on the association projection */
     entityUrlLink: z.array(EntityUrlLinkSchema),
+    /** True only while the association has no endDate; any endDate means it ended */
     isCurrent: z.boolean().nullish(),
     /** Person addresses carried on the association projection */
     personAddress: z.array(AddressSchema),
