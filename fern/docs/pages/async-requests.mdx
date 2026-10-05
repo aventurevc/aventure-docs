@@ -114,7 +114,7 @@ An asynchronous request costs the same as the synchronous one:
 
 - **Lookups** need a signed-in caller (an API key or a CLI or MCP sign-in) on a
   plan with natural search. Accepting the job spends one call of the
-  natural-search quota, as a single [lookup](/lookup#access-and-limits) does. A
+  name-identification quota, as a single [lookup](/lookup#access-and-limits) does. A
   client-secret caller that sends the header receives `401`.
 - **Web searches** count one web search against your
   [plan's allowance](/plans-and-usage) when the job read returns the finished

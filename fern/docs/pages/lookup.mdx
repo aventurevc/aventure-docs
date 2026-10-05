@@ -165,7 +165,8 @@ MCP sign-in (see [Authentication](/authentication)). A signed-in caller whose
 plan does not include natural search receives [`402`](/errors) with `code`
 `subscription_required`.
 
-Each company or person lookup spends one call of your natural-search quota. On
+Each company or person lookup spends one call of your per-minute
+name-identification quota. On
 `POST /v1/lookup`, a name that exactly matches an id, handle, registry id, or
 slug settles for free; only names that go on to the company and person lookups
 spend quota. When the quota is exhausted the call returns [`429`](/errors)
