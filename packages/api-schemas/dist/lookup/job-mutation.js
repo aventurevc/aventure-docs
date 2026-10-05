@@ -9,7 +9,7 @@ const LookupJobMutationSchemaDefinition = z.object({
     sourceNewsId: z.int().nullish(),
     /** URL of the article; read from aVenture news when stored there, otherwise fetched. */
     sourceUrl: z.string().max(2000).nullish(),
-    /** Read-only: the subject of a GET /v1/lookup or POST /v1/entities/lookup request sent with Prefer: respond-async, which this job identifies exactly as that route would. Requests to create a job or read mentions must omit it. */
+    /** Read-only: the subject of a GET or POST /v1/lookup or POST /v1/entities/lookup request sent with Prefer: respond-async, or rolled over from a signed-in live lookup, which this job identifies exactly as that route would. Requests to create a job or read mentions must omit it. */
     subject: IdentificationSubjectSchema.nullish(),
 });
 /**

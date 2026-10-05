@@ -27,6 +27,8 @@ export const IdentificationSchema = z.object({
     duplicate: z.array(IdentificationCandidateSchema),
     /** The background run filed to research created; absent without created, and when the record is already public. */
     enrichmentRunId: z.uuid().nullish(),
+    /** true when a language model, asked twice, settled a match the decision model left in review; no enrichment or repair is scheduled for it, so confirm the record before writing to it. Absent otherwise. */
+    languageModelSettled: z.boolean().nullish(),
     /** The matched record when status is MATCHED. */
     match: IdentificationCandidateSchema.nullish(),
     /** Decision-model confidence, 0 to 1, in its pick: the candidate it named as the subject, or, when it picked none, that no candidate is. Present whenever a judgment ran, including a none pick; absent when no judgment ran. The kind-agnostic lookup reports the side whose answer it returns. */
@@ -36,7 +38,7 @@ export const IdentificationSchema = z.object({
     /** The subject's own website or profile page found in web search. Use it as the website when creating the record only if it is the subject's own domain, not a LinkedIn, Crunchbase, or other profile page. */
     officialUrl: z.string().nullish(),
     /** The ladder step that settled the answer. */
-    stage: z.enum(["DETERMINISTIC", "JUDGMENT", "WEB_EVIDENCE", "LLM_JUDGMENT"]),
+    stage: z.enum(["DETERMINISTIC", "JUDGMENT", "WEB_EVIDENCE"]),
     /** Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
 });

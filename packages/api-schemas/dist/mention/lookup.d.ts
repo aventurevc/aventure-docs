@@ -547,6 +547,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
+            languageModelSettled?: boolean | null | undefined;
             match?: {
                 dataCompletionCoverage?: number | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
@@ -572,7 +573,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             matchConfidence?: number | null | undefined;
             matchEvidenceProbability?: number | null | undefined;
             officialUrl?: string | null | undefined;
-            stage: "DETERMINISTIC" | "JUDGMENT" | "LLM_JUDGMENT" | "WEB_EVIDENCE";
+            stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
@@ -1170,6 +1171,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
+            languageModelSettled?: boolean | null | undefined;
             match?: {
                 dataCompletionCoverage?: number | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
@@ -1195,7 +1197,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             matchConfidence?: number | null | undefined;
             matchEvidenceProbability?: number | null | undefined;
             officialUrl?: string | null | undefined;
-            stage: "DETERMINISTIC" | "JUDGMENT" | "LLM_JUDGMENT" | "WEB_EVIDENCE";
+            stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";

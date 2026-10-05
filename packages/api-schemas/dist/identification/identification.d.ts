@@ -125,6 +125,7 @@ export declare const IdentificationSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>;
     enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
@@ -167,7 +168,6 @@ export declare const IdentificationSchema: z.ZodObject<{
     stage: z.ZodEnum<{
         DETERMINISTIC: "DETERMINISTIC";
         JUDGMENT: "JUDGMENT";
-        LLM_JUDGMENT: "LLM_JUDGMENT";
         WEB_EVIDENCE: "WEB_EVIDENCE";
     }>;
     status: z.ZodEnum<{

@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.55"
+    "version": "0.8.56"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -5179,7 +5179,7 @@
                 }
               }
             },
-            "description": "Sent only with Prefer: respond-async (and Preference-Applied: respond-async): the lookup job was filed; poll the Location status URL after Retry-After.",
+            "description": "Sent with Prefer: respond-async (and Preference-Applied: respond-async), or without it to a signed-in caller that did not send fileOnMiss=true once its paid live attempt, past the free exact match, ran out of budget or left a provider still running: the lookup job was filed and finishes that lookup; poll the Location status URL after Retry-After.",
             "headers": {
               "Location": {
                 "description": "Status URL of the accepted lookup job",
@@ -16465,7 +16465,7 @@
                 }
               }
             },
-            "description": "Sent only with Prefer: respond-async (and Preference-Applied: respond-async): the lookup job was filed; poll the Location status URL after Retry-After.",
+            "description": "Sent with Prefer: respond-async (and Preference-Applied: respond-async), or without it to a signed-in caller that did not send fileOnMiss=true once its paid live attempt, past the free exact match, ran out of budget or left a provider still running: the lookup job was filed and finishes that lookup; poll the Location status URL after Retry-After.",
             "headers": {
               "Location": {
                 "description": "Status URL of the accepted lookup job",
@@ -16727,7 +16727,7 @@
                 }
               }
             },
-            "description": "Sent only with Prefer: respond-async (and Preference-Applied: respond-async): the lookup job was filed; poll the Location status URL after Retry-After.",
+            "description": "Sent with Prefer: respond-async (and Preference-Applied: respond-async), or without it to a signed-in caller that did not send fileOnMiss=true once its paid live attempt, past the free exact match, ran out of budget or left a provider still running: the lookup job was filed and finishes that lookup; poll the Location status URL after Retry-After.",
             "headers": {
               "Location": {
                 "description": "Status URL of the accepted lookup job",
@@ -17132,7 +17132,7 @@
     },
     "/v1/lookup-jobs/{jobId}": {
       "get": {
-        "description": "Returns the job state: 202 with Retry-After while PENDING or RUNNING, 200 once terminal. Once COMPLETED, it returns each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include a hidden shell, enrichmentRunId, or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries source.subject and, once COMPLETED, identification: the answer that route returns. Only the requesting caller can read the job.",
+        "description": "Returns the job state: 202 with Retry-After while PENDING or RUNNING, 200 once terminal. Once COMPLETED, it returns each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include a hidden shell, enrichmentRunId, or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. A single-subject job, filed by Prefer: respond-async on GET or POST /v1/lookup or POST /v1/entities/lookup, or by a signed-in live lookup on those routes that rolled over to a job, carries source.subject and, once COMPLETED, identification: the answer that route returns. Only the requesting caller can read the job.",
         "operationId": "getLookupJob",
         "parameters": [
           {
@@ -30427,6 +30427,13 @@
             "format": "uuid",
             "description": "The background run filed to research created; absent without created, and when the record is already public."
           },
+          "languageModelSettled": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "true when a language model, asked twice, settled a match the decision model left in review; no enrichment or repair is scheduled for it, so confirm the record before writing to it. Absent otherwise."
+          },
           "match": {
             "description": "The matched record when status is MATCHED.",
             "oneOf": [
@@ -30467,8 +30474,7 @@
             "enum": [
               "DETERMINISTIC",
               "JUDGMENT",
-              "WEB_EVIDENCE",
-              "LLM_JUDGMENT"
+              "WEB_EVIDENCE"
             ]
           },
           "status": {
@@ -34412,7 +34418,7 @@
             "minLength": 0
           },
           "subject": {
-            "description": "Read-only: the subject of a GET /v1/lookup or POST /v1/entities/lookup request sent with Prefer: respond-async, which this job identifies exactly as that route would. Requests to create a job or read mentions must omit it.",
+            "description": "Read-only: the subject of a GET or POST /v1/lookup or POST /v1/entities/lookup request sent with Prefer: respond-async, or rolled over from a signed-in live lookup, which this job identifies exactly as that route would. Requests to create a job or read mentions must omit it.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/IdentificationSubject"
