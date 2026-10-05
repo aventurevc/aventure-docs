@@ -911,7 +911,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         sourceId: z.ZodString;
         sourceJson: z.ZodString;
         sourceText: z.ZodString;
-        sourceType: z.ZodEnum<{
+        sourceType: z.ZodUnion<readonly [z.ZodEnum<{
             agentHelpDoc: "agentHelpDoc";
             blogPost: "blogPost";
             classificationCode: "classificationCode";
@@ -922,7 +922,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             product: "product";
             service: "service";
             text: "text";
-        }>;
+        }>, z.ZodString]>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;

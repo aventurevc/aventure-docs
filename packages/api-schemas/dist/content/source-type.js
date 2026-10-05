@@ -30,16 +30,19 @@ import { z } from "zod/v4";
  * @contractShape content.source-type
  * @contractRole canonical
  */
-export const ContentSourceTypeSchema = z.enum([
-    "entity",
-    "person",
-    "newsArticle",
-    "blogPost",
-    "text",
-    "classificationTag",
-    "classificationCode",
-    "product",
-    "service",
-    "agentHelpDoc",
+export const ContentSourceTypeSchema = z.union([
+    z.enum([
+        "entity",
+        "person",
+        "newsArticle",
+        "blogPost",
+        "text",
+        "classificationTag",
+        "classificationCode",
+        "product",
+        "service",
+        "agentHelpDoc",
+    ]),
+    z.string(),
 ]);
 //# sourceMappingURL=source-type.js.map

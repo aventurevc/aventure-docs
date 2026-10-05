@@ -1540,7 +1540,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                     sourceJson: string;
                     sourceText: string;
-                    sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                    sourceType: string;
                 } | null | undefined;
                 slug: string;
                 suffix?: string | null | undefined;
@@ -1872,7 +1872,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                     sourceJson: string;
                     sourceText: string;
-                    sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                    sourceType: string;
                 } | null | undefined;
                 slug: string;
                 suffix?: string | null | undefined;
@@ -3242,7 +3242,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         sourceId: string;
                         sourceJson: string;
                         sourceText: string;
-                        sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                        sourceType: string;
                     } | null | undefined;
                     slug: string;
                     suffix?: string | null | undefined;
@@ -4170,7 +4170,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         sourceId: string;
                         sourceJson: string;
                         sourceText: string;
-                        sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                        sourceType: string;
                     } | null | undefined;
                     slug: string;
                     suffix?: string | null | undefined;
@@ -5015,7 +5015,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         core: {
@@ -5489,7 +5489,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
     }, unknown>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
@@ -6537,7 +6537,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceId: string;
                 sourceJson: string;
                 sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                sourceType: string;
             } | null | undefined;
         };
         similarity: {
@@ -7025,7 +7025,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceId: string;
                 sourceJson: string;
                 sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                sourceType: string;
             } | null | undefined;
         };
         similarity: {
@@ -7632,7 +7632,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
         slug: string;
         suffix?: string | null | undefined;
@@ -7672,7 +7672,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
         slug: string;
         suffix?: string | null | undefined;
@@ -7901,7 +7901,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sourceId: string;
                 sourceJson: string;
                 sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                sourceType: string;
             } | null | undefined;
             slug: string;
             suffix?: string | null | undefined;
@@ -8233,7 +8233,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sourceId: string;
                 sourceJson: string;
                 sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                sourceType: string;
             } | null | undefined;
             slug: string;
             suffix?: string | null | undefined;
@@ -8801,7 +8801,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                     sourceJson: string;
                     sourceText: string;
-                    sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                    sourceType: string;
                 } | null | undefined;
                 slug: string;
                 suffix?: string | null | undefined;
@@ -9152,7 +9152,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                     sourceJson: string;
                     sourceText: string;
-                    sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                    sourceType: string;
                 } | null | undefined;
                 slug: string;
                 suffix?: string | null | undefined;
@@ -9526,7 +9526,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceId: string;
                 sourceJson: string;
                 sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                sourceType: string;
             } | null | undefined;
             slug: string;
             suffix?: string | null | undefined;
@@ -9724,7 +9724,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 sourceId: string;
                 sourceJson: string;
                 sourceText: string;
-                sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+                sourceType: string;
             } | null | undefined;
             slug: string;
             suffix?: string | null | undefined;
@@ -10324,7 +10324,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         core: {
@@ -10798,7 +10798,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
     }, unknown>>>;
     number: z.ZodInt;
@@ -10897,7 +10897,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
         slug: string;
         suffix?: string | null | undefined;
@@ -10937,7 +10937,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
         slug: string;
         suffix?: string | null | undefined;

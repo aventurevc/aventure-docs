@@ -234,7 +234,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
         slug: string;
         suffix?: string | null | undefined;
@@ -274,7 +274,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceJson: string;
             sourceText: string;
-            sourceType: "agentHelpDoc" | "blogPost" | "classificationCode" | "classificationTag" | "entity" | "newsArticle" | "person" | "product" | "service" | "text";
+            sourceType: string;
         } | null | undefined;
         slug: string;
         suffix?: string | null | undefined;

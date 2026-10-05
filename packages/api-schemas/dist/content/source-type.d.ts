@@ -29,7 +29,7 @@ import { z } from "zod/v4";
  * @contractShape content.source-type
  * @contractRole canonical
  */
-export declare const ContentSourceTypeSchema: z.ZodEnum<{
+export declare const ContentSourceTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     agentHelpDoc: "agentHelpDoc";
     blogPost: "blogPost";
     classificationCode: "classificationCode";
@@ -40,6 +40,6 @@ export declare const ContentSourceTypeSchema: z.ZodEnum<{
     product: "product";
     service: "service";
     text: "text";
-}>;
+}>, z.ZodString]>;
 export type ContentSourceType = z.infer<typeof ContentSourceTypeSchema>;
 //# sourceMappingURL=source-type.d.ts.map
