@@ -163,11 +163,13 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
     }, z.core.$strict>>;
     mode: z.ZodOptional<z.ZodDefault<z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    newsSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    personSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     query: z.ZodString;
 }, z.core.$strip>;
 type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
 /**
- * Plain-English search across companies, people, and news, plus optional hard constraints for the entity scope.
+ * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.
  *
  * @openapiSchema FederatedNaturalSearch
  * @endpoint POST /v1/search

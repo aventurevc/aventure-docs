@@ -9,11 +9,15 @@ const FederatedNaturalSearchSchemaDefinition = z.object({
     mode: SearchModeSchema.default("auto").optional(),
     /** Optional chat model for planning; null uses the configured natural-search default. A caller without admin authority may only choose an allowlisted model; admin callers are unrestricted. */
     model: z.string().nullish(),
+    /** News scope page size; omitted uses the size query parameter, under the same page-size cap. */
+    newsSize: z.int().nullish(),
+    /** Person scope page size; omitted uses the size query parameter, under the same page-size cap. */
+    personSize: z.int().nullish(),
     /** Plain-English search request. */
     query: z.string().min(1),
 });
 /**
- * Plain-English search across companies, people, and news, plus optional hard constraints for the entity scope.
+ * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.
  *
  * @openapiSchema FederatedNaturalSearch
  * @endpoint POST /v1/search
