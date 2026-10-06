@@ -6,7 +6,7 @@ const AgentHelpQuestionSchemaDefinition = z.object({
     model: z.string().nullish(),
     /** The question to answer, in natural language. */
     question: z.string().max(2000),
-    /** True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and draws on its own per-caller limit instead of the answer quota. */
+    /** True selects a catalog task or recommends an operation instead of composing an answer. Outcomes are TASK_PLAN, OPERATION_ADVICE, CLARIFY, or ABSTAIN. Resolve uses retrieval and a model decision, ignores model, and draws on its own per-caller limit instead of the answer quota. */
     resolve: z.boolean().optional(),
     /** Optional scope restricting which operations the answer may recommend; null means all. */
     scope: HelpScopeSchema.nullish(),

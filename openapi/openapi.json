@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.68"
+    "version": "0.8.69"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16311,7 +16311,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: operation advice, a clarification between candidate operations, or an abstention, with no generated answer and its own per-caller limit. Free for every signed-in account.",
+        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: a catalog task selection, operation advice, clarification between candidates, or an abstention, with no generated answer and its own per-caller limit. Free for every signed-in account.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -28898,7 +28898,7 @@
           },
           "resolve": {
             "type": "boolean",
-            "description": "True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and draws on its own per-caller limit instead of the answer quota."
+            "description": "True selects a catalog task or recommends an operation instead of composing an answer. Outcomes are TASK_PLAN, OPERATION_ADVICE, CLARIFY, or ABSTAIN. Resolve uses retrieval and a model decision, ignores model, and draws on its own per-caller limit instead of the answer quota."
           },
           "scope": {
             "description": "Optional scope restricting which operations the answer may recommend; null means all.",
@@ -28936,7 +28936,7 @@
             "description": "Confidence the answer is fully supported by the cited corpus. LOW signals an abstention."
           },
           "resolution": {
-            "description": "The resolved operation when the question asked to resolve; absent for a generated answer.",
+            "description": "The task or operation resolution when the question asked to resolve; absent for a generated answer.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/HelpResolution"
@@ -32621,7 +32621,7 @@
           "mode": {
             "$ref": "#/components/schemas/SearchMode",
             "default": "auto",
-            "description": "Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword`, and `semantic` (`semantic` only for one entity's or person's content)."
+            "description": "Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword`, `semantic`, and `hybrid` (`semantic` and `hybrid` only for one entity's or person's content)."
           },
           "model": {
             "type": [
@@ -36928,13 +36928,14 @@
       },
       "SearchMode": {
         "type": "string",
-        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), and `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies).",
+        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner; `hybrid` fuses keyword and semantic rankings by reciprocal rank. Entity and person natural-search support every mode but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies), and `hybrid` (that owner's keyword and semantic rankings fused).",
         "x-extensible-enum": [
           "auto",
           "exact",
           "keyword",
           "semantic",
-          "natural"
+          "natural",
+          "hybrid"
         ]
       },
       "SearchAnswer": {
@@ -41856,7 +41857,7 @@
       },
       "HelpResolution": {
         "type": "object",
-        "description": "Resolution of a request to one operation: advice naming it, a clarification between candidates, or an abstention.",
+        "description": "Resolution of a request to a catalog task or an operation, clarification between candidates, or an abstention.",
         "properties": {
           "candidate": {
             "type": "array",
@@ -41890,7 +41891,7 @@
               "string",
               "null"
             ],
-            "description": "The chosen catalog task; present only for TASK_PLAN. getHarnessTaskPlan reads its plan.",
+            "description": "The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY; getHarnessTaskPlan reads its plan.",
             "example": "slug-update"
           }
         },

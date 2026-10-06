@@ -1,11 +1,11 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 const SearchModeSchemaDefinition = z.union([
-    z.enum(["auto", "exact", "keyword", "semantic", "natural"]),
+    z.enum(["auto", "exact", "keyword", "semantic", "natural", "hybrid"]),
     z.string(),
 ]);
 /**
- * Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), and `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies).
+ * Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner; `hybrid` fuses keyword and semantic rankings by reciprocal rank. Entity and person natural-search support every mode but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies), and `hybrid` (that owner's keyword and semantic rankings fused).
  *
  * @openapiSchema SearchMode
  * @endpoint GET /v1/search/link

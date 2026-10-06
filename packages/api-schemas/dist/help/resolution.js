@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { HelpCitationSchema } from "./citation.js";
 import { HelpResolutionOutcomeSchema } from "./resolution-outcome.js";
 /**
- * Resolution of a request to one operation: advice naming it, a clarification between candidates, or an abstention.
+ * Resolution of a request to a catalog task or an operation, clarification between candidates, or an abstention.
  *
  * @openapiSchema HelpResolution
  * @endpoint POST /v1/agents/help
@@ -21,7 +21,7 @@ export const HelpResolutionSchema = z.object({
     outcome: HelpResolutionOutcomeSchema,
     /** Probability the decision model gave the chosen option (an operation, or none). */
     probability: z.number().nullish(),
-    /** The chosen catalog task; present only for TASK_PLAN. getHarnessTaskPlan reads its plan. */
+    /** The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY; getHarnessTaskPlan reads its plan. */
     taskKey: z.string().nullish(),
 });
 //# sourceMappingURL=resolution.js.map

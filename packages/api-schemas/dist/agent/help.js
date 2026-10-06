@@ -10,7 +10,7 @@ const AgentHelpSchemaDefinition = z.object({
     citation: z.array(HelpCitationSchema),
     /** Confidence the answer is fully supported by the cited corpus. LOW signals an abstention. */
     confidence: ConfidenceSchema,
-    /** The resolved operation when the question asked to resolve; absent for a generated answer. */
+    /** The task or operation resolution when the question asked to resolve; absent for a generated answer. */
     resolution: HelpResolutionSchema.nullish(),
 });
 /**

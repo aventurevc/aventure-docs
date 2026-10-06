@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Resolution of a request to one operation: advice naming it, a clarification between candidates, or an abstention.
+ * Resolution of a request to a catalog task or an operation, clarification between candidates, or an abstention.
  *
  * @openapiSchema HelpResolution
  * @endpoint POST /v1/agents/help
