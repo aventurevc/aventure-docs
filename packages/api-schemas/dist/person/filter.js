@@ -45,7 +45,7 @@ export const PersonFilterSchema = z.object({
     role: z.string().nullish(),
     /** Search keyword or phrase. Single characters valid; stop words rejected. */
     search: z.string().nullish(),
-    /** Semantic person search phrase. */
+    /** Semantic person search phrase. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching person. */
     semanticQuery: z.string().nullish(),
     /** Person workflow status. */
     status: z.string().nullish(),

@@ -46,22 +46,26 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
-        entityId?: string | null | undefined;
         language?: string | null | undefined;
-        personId?: string | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
+        retrievedFor?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
         search: string;
         source?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
-        entityId?: string | null | undefined;
         language?: string | null | undefined;
-        personId?: string | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
+        retrievedFor?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
         search: string;
         source?: string | null | undefined;
     }, unknown>>;

@@ -61,7 +61,7 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     portfolioHeadquartersState: z.array(z.string()).optional(),
     /** Named server-owned list quality gate. */
     qualityGate: EntityListQualityGateSchema.optional(),
-    /** Semantic entity search phrase. Executable on POST /v1/entities/search; saved views persist it for replay. */
+    /** Semantic entity search phrase. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity. */
     semanticQuery: z.string().nullish(),
     /** Restrict results to entity slugs. */
     slug: z
