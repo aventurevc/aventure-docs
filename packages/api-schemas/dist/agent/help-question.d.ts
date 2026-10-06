@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 declare const AgentHelpQuestionSchemaDefinition: z.ZodObject<{
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     question: z.ZodString;
+    resolve: z.ZodOptional<z.ZodBoolean>;
     scope: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         ALL: "ALL";
         READ: "READ";

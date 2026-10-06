@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.64"
+    "version": "0.8.65"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16311,7 +16311,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. Free for every signed-in account.",
+        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: operation advice, a clarification between candidate operations, or an abstention, with no generated answer. Free for every signed-in account.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -26977,7 +26977,7 @@
             }
           },
           {
-            "description": "Optional answer layers to add beside the entity records; repeat to add more. `passage` ranks public research snippets and linked news that answer the question; `synthesis` adds a cited written answer and implies `passage`.",
+            "description": "Optional answer layers to add beside the entity records; repeat to add more. `passage` ranks public research snippets and linked news that answer the question; `synthesis` adds a cited written answer and implies `passage`; `judgment` ranks a competitor, market, or provider question's answer by judged probability; `web` adds stored web evidence and implies `judgment`.",
             "in": "query",
             "name": "layer",
             "required": false,
@@ -28895,6 +28895,10 @@
             "example": "how do I attach a product URL?",
             "minLength": 1
           },
+          "resolve": {
+            "type": "boolean",
+            "description": "True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and spends no help quota."
+          },
           "scope": {
             "description": "Optional scope restricting which operations the answer may recommend; null means all.",
             "oneOf": [
@@ -28929,6 +28933,17 @@
           "confidence": {
             "$ref": "#/components/schemas/Confidence",
             "description": "Confidence the answer is fully supported by the cited corpus. LOW signals an abstention."
+          },
+          "resolution": {
+            "description": "The resolved operation when the question asked to resolve; absent for a generated answer.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HelpResolution"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -35767,10 +35782,12 @@
       },
       "SearchLayer": {
         "type": "string",
-        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`.",
+        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`. `judgment` ranks the answer to a competitor, market, or provider question (\"who competes with X\", \"top X companies\", \"who provides X\") by the judged probability that each entity answers it; `web` adds stored web search evidence before judging and implies `judgment`. Other questions ignore `judgment` and `web`.",
         "enum": [
           "passage",
-          "synthesis"
+          "synthesis",
+          "judgment",
+          "web"
         ]
       },
       "EntityNaturalSearch": {
@@ -35809,6 +35826,13 @@
             "$ref": "#/components/schemas/SearchInterpretation",
             "description": "Structured interpretation used to run the entity list query."
           },
+          "judgment": {
+            "type": "array",
+            "description": "Judged answer to a competitor, market, or provider question, most probable first; empty unless the request asks for the `judgment` or `web` layer and the question has one of those shapes.",
+            "items": {
+              "$ref": "#/components/schemas/SearchJudgment"
+            }
+          },
           "passage": {
             "type": "array",
             "description": "Passages that best answer the question, ranked by score; empty unless the request asks for the `passage` layer.",
@@ -35821,6 +35845,13 @@
             "description": "Curated competitors of the single subject entity for `peer` questions; semantic look-alikes are the result page. Empty otherwise.",
             "items": {
               "$ref": "#/components/schemas/EntitySimilarityResult"
+            }
+          },
+          "pendingWebQuery": {
+            "type": "array",
+            "description": "Web searches for this question not yet stored; their evidence joins a later request. Empty without the `web` layer.",
+            "items": {
+              "type": "string"
             }
           },
           "result": {
@@ -35837,8 +35868,10 @@
         },
         "required": [
           "interpretation",
+          "judgment",
           "passage",
           "peer",
+          "pendingWebQuery",
           "result",
           "subject"
         ]
@@ -36985,6 +37018,33 @@
           "interpretation",
           "sort",
           "subjectEntityName"
+        ]
+      },
+      "SearchJudgment": {
+        "type": "object",
+        "description": "An entity that answers a competitor, market, or provider question, with the judged probability that it does.",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/EntityList",
+            "description": "The answering entity."
+          },
+          "probability": {
+            "type": "number",
+            "format": "double",
+            "description": "Judged probability, 0 to 1, that the entity answers the question."
+          },
+          "webUrl": {
+            "type": "array",
+            "description": "Stored web search result pages that name the entity; empty without `web`.",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "entity",
+          "probability",
+          "webUrl"
         ]
       },
       "SearchPassage": {
@@ -41791,6 +41851,53 @@
           "excerpt",
           "sourceId",
           "sourceType"
+        ]
+      },
+      "HelpResolution": {
+        "type": "object",
+        "description": "Resolution of a request to one operation: advice naming it, a clarification between candidates, or an abstention.",
+        "properties": {
+          "candidate": {
+            "type": "array",
+            "description": "Candidate operations best first; the options to choose between when the outcome is CLARIFY.",
+            "items": {
+              "$ref": "#/components/schemas/HelpCitation"
+            }
+          },
+          "operationId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The advised operation; present only for OPERATION_ADVICE.",
+            "example": "getEntityLookup"
+          },
+          "outcome": {
+            "$ref": "#/components/schemas/HelpResolutionOutcome",
+            "description": "Which of the mutually exclusive resolve outcomes was reached."
+          },
+          "probability": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "format": "double",
+            "description": "Probability the decision model gave the chosen option (an operation, or none)."
+          }
+        },
+        "required": [
+          "candidate",
+          "outcome"
+        ]
+      },
+      "HelpResolutionOutcome": {
+        "type": "string",
+        "description": "Outcome of a resolve request.",
+        "enum": [
+          "TASK_PLAN",
+          "OPERATION_ADVICE",
+          "CLARIFY",
+          "ABSTAIN"
         ]
       },
       "HelpSourceType": {

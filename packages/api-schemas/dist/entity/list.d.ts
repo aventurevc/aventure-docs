@@ -950,6 +950,7 @@ type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
  * @usedBySchema NaturalSearchResultSchema
  * @usedBySchema PageEntityListSchema
  * @usedBySchema PageResultEntityListSchema
+ * @usedBySchema SearchJudgmentSchema
  * @contractShape entity.list
  * @contractRole canonical
  */

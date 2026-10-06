@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
 import { HelpCitationSchema } from "../help/citation.js";
+import { HelpResolutionSchema } from "../help/resolution.js";
 const AgentHelpSchemaDefinition = z.object({
     /** Answer drawn only from the cited corpus; abstains when unsupported. */
     answer: z.string(),
@@ -9,6 +10,8 @@ const AgentHelpSchemaDefinition = z.object({
     citation: z.array(HelpCitationSchema),
     /** Confidence the answer is fully supported by the cited corpus. LOW signals an abstention. */
     confidence: ConfidenceSchema,
+    /** The resolved operation when the question asked to resolve; absent for a generated answer. */
+    resolution: HelpResolutionSchema.nullish(),
 });
 /**
  * Grounded natural-language help answer with citations to specific operations, skills, or completion gates. Unsupported questions abstain (LOW confidence) rather than guess.

@@ -5,16 +5,21 @@ import { EntitySimilarityResultSchema } from "../entity/similarity-result.js";
 import { PageResultEntityListSchema } from "../pagination/schemas.js";
 import { SearchAnswerSchema } from "../search/answer.js";
 import { SearchInterpretationSchema } from "../search/interpretation.js";
+import { SearchJudgmentSchema } from "../search/judgment.js";
 import { SearchPassageSchema } from "../search/passage.js";
 const NaturalSearchResultSchemaDefinition = z.object({
     /** Written answer grounded in the subject, peer, and result records and the passages; null unless the request asks for the `synthesis` layer. */
     answer: SearchAnswerSchema.nullish(),
     /** Structured interpretation used to run the entity list query. */
     interpretation: SearchInterpretationSchema,
+    /** Judged answer to a competitor, market, or provider question, most probable first; empty unless the request asks for the `judgment` or `web` layer and the question has one of those shapes. */
+    judgment: z.array(SearchJudgmentSchema),
     /** Passages that best answer the question, ranked by score; empty unless the request asks for the `passage` layer. */
     passage: z.array(SearchPassageSchema),
     /** Curated competitors of the single subject entity for `peer` questions; semantic look-alikes are the result page. Empty otherwise. */
     peer: z.array(EntitySimilarityResultSchema),
+    /** Web searches for this question not yet stored; their evidence joins a later request. Empty without the `web` layer. */
+    pendingWebQuery: z.array(z.string()),
     /** Entity list page returned by the canonical entity list engine. */
     result: PageResultEntityListSchema,
     /** Entities the question is about, one per resolved subject name, in query order; empty when the question names none or none resolves. */

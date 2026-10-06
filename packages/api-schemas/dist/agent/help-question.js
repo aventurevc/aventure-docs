@@ -6,6 +6,8 @@ const AgentHelpQuestionSchemaDefinition = z.object({
     model: z.string().nullish(),
     /** The question to answer, in natural language. */
     question: z.string().min(1),
+    /** True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and spends no help quota. */
+    resolve: z.boolean().optional(),
     /** Optional scope restricting which operations the answer may recommend; null means all. */
     scope: HelpScopeSchema.nullish(),
 });

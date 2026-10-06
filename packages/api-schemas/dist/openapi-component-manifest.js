@@ -487,6 +487,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     HarnessRunStatus: { modulePath: "harness/run-status", schemaName: "HarnessRunStatusSchema" },
     HarnessRunType: { modulePath: "harness/run-type", schemaName: "HarnessRunTypeSchema" },
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
+    HelpResolution: { modulePath: "help/resolution", schemaName: "HelpResolutionSchema" },
+    HelpResolutionOutcome: {
+        modulePath: "help/resolution-outcome",
+        schemaName: "HelpResolutionOutcomeSchema",
+    },
     HelpScope: { modulePath: "help/scope", schemaName: "HelpScopeSchema" },
     HelpSourceType: { modulePath: "help/source-type", schemaName: "HelpSourceTypeSchema" },
     Identification: {
@@ -808,6 +813,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/interpretation",
         schemaName: "SearchInterpretationSchema",
     },
+    SearchJudgment: { modulePath: "search/judgment", schemaName: "SearchJudgmentSchema" },
     SearchLayer: { modulePath: "search/layer", schemaName: "SearchLayerSchema" },
     SearchMode: { modulePath: "search/mode", schemaName: "SearchModeSchema" },
     SearchModeExecution: {

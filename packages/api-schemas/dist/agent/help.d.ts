@@ -17,6 +17,27 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
         LOW: "LOW";
         MEDIUM: "MEDIUM";
     }>;
+    resolution: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        candidate: z.ZodArray<z.ZodType<{
+            excerpt: string;
+            sourceId: string;
+            sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "RESEARCH_DETAIL_TYPE" | "SKILL";
+            sourceVersion?: string | null | undefined;
+        }, unknown, z.core.$ZodTypeInternals<{
+            excerpt: string;
+            sourceId: string;
+            sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "RESEARCH_DETAIL_TYPE" | "SKILL";
+            sourceVersion?: string | null | undefined;
+        }, unknown>>>;
+        operationId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        outcome: z.ZodEnum<{
+            ABSTAIN: "ABSTAIN";
+            CLARIFY: "CLARIFY";
+            OPERATION_ADVICE: "OPERATION_ADVICE";
+            TASK_PLAN: "TASK_PLAN";
+        }>;
+        probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    }, z.core.$strip>>>;
 }, z.core.$strip>;
 type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;
 /**

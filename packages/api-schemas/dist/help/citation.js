@@ -18,6 +18,7 @@ const HelpCitationSchemaDefinition = z.object({
  * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema AgentHelpSchema
+ * @usedBySchema HelpResolutionSchema
  * @contractShape help.citation
  * @contractRole canonical
  */
