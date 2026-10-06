@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { FederatedSearchProvenanceSchema } from "./search-provenance.js";
 import { NaturalSearchResultSchema } from "../natural/search-result.js";
+import { NewsEntityMentionSchema } from "../news/entity-mention.js";
 import { PageResultNewsSchema } from "../pagination/schemas.js";
 import { PersonNaturalSearchResultSchema } from "../person/natural-search-result.js";
 const FederatedSearchSchemaDefinition = z.object({
@@ -9,6 +10,8 @@ const FederatedSearchSchemaDefinition = z.object({
     entity: NaturalSearchResultSchema,
     /** Canonical news page returned by the keyword list engine. */
     news: PageResultNewsSchema,
+    /** Public entities each news row on the page links to, in news page order; a row with no public entity link has no entry. */
+    newsEntityMention: z.array(NewsEntityMentionSchema),
     /** Canonical person natural-search result. */
     person: PersonNaturalSearchResultSchema,
     /** Requested and executed strategy for each search scope. */

@@ -20,7 +20,7 @@ export const SearchAnswerSchema = z.object({
     citation: z.array(SearchAnswerCitationSchema),
     /** How fully the cited evidence answers the question. */
     confidence: ConfidenceSchema,
-    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. */
+    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it. */
     paragraph: z.array(SearchAnswerParagraphSchema),
     /** Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains. */
     relatedQuery: z.array(z.string()),

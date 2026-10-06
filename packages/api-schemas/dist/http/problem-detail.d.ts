@@ -18,6 +18,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         INFERENCE_PROVIDER_RESPONSE_EMPTY: "INFERENCE_PROVIDER_RESPONSE_EMPTY";
         JOBRUNR_DISABLED: "JOBRUNR_DISABLED";
         JOBRUNR_STORAGE_UNAVAILABLE: "JOBRUNR_STORAGE_UNAVAILABLE";
+        account_exists: "account_exists";
         billing_additional_usage_cap_reached: "billing_additional_usage_cap_reached";
         billing_allowance_exhausted: "billing_allowance_exhausted";
         callback_challenge_failed: "callback_challenge_failed";

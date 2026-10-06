@@ -4188,6 +4188,33 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         totalElements: number;
         totalPages: number;
     }, unknown>>;
+    newsEntityMention: z.ZodArray<z.ZodType<{
+        entity: {
+            createdAt: string;
+            entityId: string;
+            href?: string | null | undefined;
+            internal: boolean;
+            matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+            mention?: string | null | undefined;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            updatedAt: string;
+        }[];
+        newsId: number;
+    }, unknown, z.core.$ZodTypeInternals<{
+        entity: {
+            createdAt: string;
+            entityId: string;
+            href?: string | null | undefined;
+            internal: boolean;
+            matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+            mention?: string | null | undefined;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            updatedAt: string;
+        }[];
+        newsId: number;
+    }, unknown>>>;
     person: z.ZodType<{
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";

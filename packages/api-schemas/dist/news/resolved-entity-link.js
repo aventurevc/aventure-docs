@@ -24,8 +24,12 @@ const NewsResolvedEntityLinkSchemaDefinition = z.object({
  *
  * @openapiSchema NewsResolvedEntityLink
  * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/news/{newsId}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint POST /v1/search
  * @usedBySchema NewsDetailSchema
+ * @usedBySchema NewsEntityMentionSchema
  * @contractShape news.resolved-entity-link
  * @contractRole canonical
  */

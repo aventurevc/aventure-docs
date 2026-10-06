@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { HarnessTaskPlanSchema } from "../harness/task-plan.js";
 import { HelpCitationSchema } from "./citation.js";
 import { HelpResolutionOutcomeSchema } from "./resolution-outcome.js";
 /**
@@ -21,7 +22,9 @@ export const HelpResolutionSchema = z.object({
     outcome: HelpResolutionOutcomeSchema,
     /** Probability the decision model gave its chosen option (an operation, a task, several, or none); informational, the choice alone decides the outcome. */
     probability: z.number().nullish(),
-    /** The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY; getHarnessTaskPlan reads its plan. */
+    /** The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY. */
     taskKey: z.string().nullish(),
+    /** The chosen task's plan for TASK_PLAN when the caller may read catalog task plans; absent otherwise. */
+    taskPlan: HarnessTaskPlanSchema.nullish(),
 });
 //# sourceMappingURL=resolution.js.map

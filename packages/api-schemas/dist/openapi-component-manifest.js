@@ -486,6 +486,17 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     HarnessRunStatus: { modulePath: "harness/run-status", schemaName: "HarnessRunStatusSchema" },
     HarnessRunType: { modulePath: "harness/run-type", schemaName: "HarnessRunTypeSchema" },
+    HarnessTaskInput: { modulePath: "harness/task", schemaName: "HarnessTaskSchema" },
+    HarnessTaskInputType: {
+        modulePath: "harness/task-input-type",
+        schemaName: "HarnessTaskInputTypeSchema",
+    },
+    HarnessTaskPlan: { modulePath: "harness/task-plan", schemaName: "HarnessTaskPlanSchema" },
+    HarnessTaskPlanStep: {
+        modulePath: "harness/task-plan-step",
+        schemaName: "HarnessTaskPlanStepSchema",
+    },
+    HarnessTaskStep: { modulePath: "harness/task-step", schemaName: "HarnessTaskStepSchema" },
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
     HelpResolution: { modulePath: "help/resolution", schemaName: "HelpResolutionSchema" },
     HelpResolutionOutcome: {
@@ -538,6 +549,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "NewsCandidateScoreSchema",
     },
     NewsDetail: { modulePath: "news/detail", schemaName: "NewsDetailSchema" },
+    NewsEntityMention: { modulePath: "news/entity-mention", schemaName: "NewsEntityMentionSchema" },
     NewsFeedback: { modulePath: "news/feedback", schemaName: "NewsFeedbackSchema" },
     NewsFeedbackAcknowledgement: {
         modulePath: "news/feedback-acknowledgement",

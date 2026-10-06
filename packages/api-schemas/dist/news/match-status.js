@@ -5,7 +5,10 @@ import { z } from "zod/v4";
  *
  * @openapiSchema NewsMatchStatus
  * @endpoint GET /v1/news/lookup
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/news/{newsId}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint POST /v1/search
  * @usedBySchema NewsResolvedEntityLinkSchema
  * @usedBySchema NewsResolvedPersonLinkSchema
  * @contractShape news.match-status

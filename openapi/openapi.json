@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.70"
+    "version": "0.8.71"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16311,7 +16311,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: a catalog task selection, operation advice, clarification between candidates, or an abstention, with no generated answer and its own per-caller limit. Free for every signed-in account.",
+        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: a catalog task selection, operation advice, clarification between candidates, or an abstention, with no generated answer and its own per-caller limit; a task selection carries the task's plan when the caller may read catalog task plans. Free for every signed-in account.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -26301,7 +26301,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint; provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines. Page and size apply to every scope; cross-domain sort is not supported.",
+        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint; provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines. Page and size apply to every scope; cross-domain sort is not supported. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -26324,6 +26324,19 @@
               "type": "integer",
               "format": "int32",
               "minimum": 1
+            }
+          },
+          {
+            "description": "Optional answer layers, as on POST /v1/search/natural/entities; repeat to add more. They answer the question from the entity scope's records and passages while the person and news scopes run alongside.",
+            "in": "query",
+            "name": "layer",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/SearchLayer"
+              },
+              "uniqueItems": true
             }
           }
         ],
@@ -28486,6 +28499,7 @@
               "Caller's subscription is paused, so it does not include this operation. Agent action: surface ProblemDetail.detail and stop; the account must resume the subscription through the resolution's Billing Portal endpoint.",
               "The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; resetAt is when the meter refills and is typically weeks away. Do not retry inside the period even though the status is 429.",
               "The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt.",
+              "A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email.",
               "Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle.",
               "Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation.",
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
@@ -28550,6 +28564,7 @@
               "subscription_paused",
               "billing_allowance_exhausted",
               "billing_additional_usage_cap_reached",
+              "account_exists",
               "origin_detail_capacity",
               "origin_detail_shutdown",
               "suspectedShellStrip",
@@ -35729,6 +35744,16 @@
           "owner"
         ]
       },
+      "SearchLayer": {
+        "type": "string",
+        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`. A competitor, market, or provider question (\"who competes with X\", \"top X companies\", \"who provides X\") is always ranked by the judged probability that each entity answers it, so `judgment` adds nothing beyond that; `web` adds web search evidence, and the companies those results name, before judging. Other questions ignore `judgment` and `web`.",
+        "enum": [
+          "passage",
+          "synthesis",
+          "judgment",
+          "web"
+        ]
+      },
       "FederatedSearch": {
         "type": "object",
         "description": "Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.",
@@ -35740,6 +35765,13 @@
           "news": {
             "$ref": "#/components/schemas/PageResultNews",
             "description": "Canonical news page returned by the keyword list engine."
+          },
+          "newsEntityMention": {
+            "type": "array",
+            "description": "Public entities each news row on the page links to, in news page order; a row with no public entity link has no entry.",
+            "items": {
+              "$ref": "#/components/schemas/NewsEntityMention"
+            }
           },
           "person": {
             "$ref": "#/components/schemas/PersonNaturalSearchResult",
@@ -35753,6 +35785,7 @@
         "required": [
           "entity",
           "news",
+          "newsEntityMention",
           "person",
           "provenance"
         ]
@@ -35779,16 +35812,6 @@
           "query",
           "related",
           "url"
-        ]
-      },
-      "SearchLayer": {
-        "type": "string",
-        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`. `judgment` ranks the answer to a competitor, market, or provider question (\"who competes with X\", \"top X companies\", \"who provides X\") by the judged probability that each entity answers it; `web` adds web search evidence, and the companies those results name, before judging and implies `judgment`. Other questions ignore `judgment` and `web`.",
-        "enum": [
-          "passage",
-          "synthesis",
-          "judgment",
-          "web"
         ]
       },
       "EntityNaturalSearch": {
@@ -36955,7 +36978,7 @@
           },
           "paragraph": {
             "type": "array",
-            "description": "The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains.",
+            "description": "The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it.",
             "items": {
               "$ref": "#/components/schemas/SearchAnswerParagraph"
             }
@@ -37912,6 +37935,28 @@
           "totalPages"
         ]
       },
+      "NewsEntityMention": {
+        "type": "object",
+        "description": "Public entities one news article links to, in link order.",
+        "properties": {
+          "entity": {
+            "type": "array",
+            "description": "Public entities the article links to.",
+            "items": {
+              "$ref": "#/components/schemas/NewsResolvedEntityLink"
+            }
+          },
+          "newsId": {
+            "type": "integer",
+            "format": "int32",
+            "description": "News article id."
+          }
+        },
+        "required": [
+          "entity",
+          "newsId"
+        ]
+      },
       "FederatedSearchProvenance": {
         "type": "object",
         "description": "Requested and executed search strategy for every federated scope.",
@@ -37933,6 +37978,86 @@
           "entity",
           "news",
           "person"
+        ]
+      },
+      "NewsResolvedEntityLink": {
+        "type": "object",
+        "description": "Resolved entity mention in news content - hyperlink to an entity detected in article text",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Canonical entity UUID"
+          },
+          "href": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "internal": {
+            "type": "boolean"
+          },
+          "matchStatus": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/NewsMatchStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "mention": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "slug": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Canonical lowercase URL slug for the resource",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "typeRecord": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "createdAt",
+          "entityId",
+          "internal",
+          "updatedAt"
+        ]
+      },
+      "NewsMatchStatus": {
+        "type": "string",
+        "description": "auto-match = linked by the matcher; needs-review = awaiting a reviewer; approved; rejected",
+        "enum": [
+          "auto-match",
+          "needs-review",
+          "approved",
+          "rejected"
         ]
       },
       "EntityPersonOwner": {
@@ -38860,76 +38985,6 @@
           "url"
         ]
       },
-      "NewsResolvedEntityLink": {
-        "type": "object",
-        "description": "Resolved entity mention in news content - hyperlink to an entity detected in article text",
-        "properties": {
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "entityId": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Canonical entity UUID"
-          },
-          "href": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "internal": {
-            "type": "boolean"
-          },
-          "matchStatus": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/NewsMatchStatus"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "mention": {
-            "type": [
-              "string",
-              "null"
-            ]
-          },
-          "slug": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Canonical lowercase URL slug for the resource",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
-          },
-          "typeRecord": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/EntityType"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "createdAt",
-          "entityId",
-          "internal",
-          "updatedAt"
-        ]
-      },
       "NewsResolvedPersonLink": {
         "type": "object",
         "description": "Resolved person mention in news content - hyperlink to a person detected in article text",
@@ -38984,16 +39039,6 @@
           "createdAt",
           "personId",
           "updatedAt"
-        ]
-      },
-      "NewsMatchStatus": {
-        "type": "string",
-        "description": "auto-match = linked by the matcher; needs-review = awaiting a reviewer; approved; rejected",
-        "enum": [
-          "auto-match",
-          "needs-review",
-          "approved",
-          "rejected"
         ]
       },
       "LookupJobMention": {
@@ -41935,8 +41980,19 @@
               "string",
               "null"
             ],
-            "description": "The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY; getHarnessTaskPlan reads its plan.",
+            "description": "The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY.",
             "example": "slug-update"
+          },
+          "taskPlan": {
+            "description": "The chosen task's plan for TASK_PLAN when the caller may read catalog task plans; absent otherwise.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HarnessTaskPlan"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -41952,6 +42008,125 @@
           "OPERATION_ADVICE",
           "CLARIFY",
           "ABSTAIN"
+        ]
+      },
+      "HarnessTaskPlan": {
+        "type": "object",
+        "description": "One catalog task's typed inputs and ordered steps with derived CLI commands and MCP tools, read from the stated catalog revision.",
+        "properties": {
+          "catalogRevision": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Stored catalog revision this plan was read from.",
+            "example": 7
+          },
+          "input": {
+            "type": "array",
+            "description": "Typed inputs the task needs before it runs.",
+            "items": {
+              "$ref": "#/components/schemas/HarnessTaskInput"
+            }
+          },
+          "step": {
+            "type": "array",
+            "description": "Steps in run order; an empty list means this catalog task is unplanned.",
+            "items": {
+              "$ref": "#/components/schemas/HarnessTaskPlanStep"
+            }
+          },
+          "taskKey": {
+            "type": "string",
+            "description": "Agent-task catalog key.",
+            "example": "slug-update"
+          }
+        },
+        "required": [
+          "catalogRevision",
+          "input",
+          "step",
+          "taskKey"
+        ]
+      },
+      "HarnessTaskInput": {
+        "type": "object",
+        "description": "One typed task input that must be bound before a run starts.",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "What the value is, written for the caller that supplies it."
+          },
+          "key": {
+            "type": "string",
+            "description": "Input key, unique within its task.",
+            "example": "newSlug"
+          },
+          "type": {
+            "$ref": "#/components/schemas/HarnessTaskInputType",
+            "description": "How the value is bound."
+          }
+        },
+        "required": [
+          "description",
+          "key",
+          "type"
+        ]
+      },
+      "HarnessTaskPlanStep": {
+        "type": "object",
+        "description": "One task step with the CLI command and MCP tool that run its operation.",
+        "properties": {
+          "cliCommand": {
+            "type": "string",
+            "description": "CLI command path that runs the step's operation; the caller supplies required flags."
+          },
+          "mcpTool": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "MCP tool that runs the step's operation; null for CLI-only operations. Supply arguments matching the tool's schema.",
+            "example": "aventure_write"
+          },
+          "step": {
+            "$ref": "#/components/schemas/HarnessTaskStep",
+            "description": "The stored step."
+          }
+        },
+        "required": [
+          "cliCommand",
+          "step"
+        ]
+      },
+      "HarnessTaskStep": {
+        "type": "object",
+        "description": "One ordered task step: its key, instruction, and the operation that runs it.",
+        "properties": {
+          "instruction": {
+            "type": "string",
+            "description": "What this step does, written for the agent that runs it."
+          },
+          "operationId": {
+            "type": "string",
+            "description": "OpenAPI operationId this step calls; it must be in the task's operation list."
+          },
+          "stepKey": {
+            "type": "string",
+            "description": "Step key, unique within its task.",
+            "example": "update-slug"
+          }
+        },
+        "required": [
+          "instruction",
+          "operationId",
+          "stepKey"
+        ]
+      },
+      "HarnessTaskInputType": {
+        "type": "string",
+        "description": "ENTITY binds a target entity to its canonical id through entity identification; TEXT is a literal value the request states.",
+        "enum": [
+          "ENTITY",
+          "TEXT"
         ]
       },
       "HelpSourceType": {

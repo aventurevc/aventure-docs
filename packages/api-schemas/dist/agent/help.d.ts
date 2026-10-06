@@ -38,6 +38,36 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
         }>;
         probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         taskKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        taskPlan: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            catalogRevision: z.ZodInt;
+            input: z.ZodArray<z.ZodType<{
+                description: string;
+                key: string;
+                type: "ENTITY" | "TEXT";
+            }, unknown, z.core.$ZodTypeInternals<{
+                description: string;
+                key: string;
+                type: "ENTITY" | "TEXT";
+            }, unknown>>>;
+            step: z.ZodArray<z.ZodType<{
+                cliCommand: string;
+                mcpTool?: string | null | undefined;
+                step: {
+                    instruction: string;
+                    operationId: string;
+                    stepKey: string;
+                };
+            }, unknown, z.core.$ZodTypeInternals<{
+                cliCommand: string;
+                mcpTool?: string | null | undefined;
+                step: {
+                    instruction: string;
+                    operationId: string;
+                    stepKey: string;
+                };
+            }, unknown>>>;
+            taskKey: z.ZodString;
+        }, z.core.$strip>>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;

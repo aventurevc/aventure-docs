@@ -2097,6 +2097,20 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             totalElements: number;
             totalPages: number;
         };
+        newsEntityMention: {
+            entity: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            }[];
+            newsId: number;
+        }[];
         person: {
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
@@ -4330,6 +4344,20 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             totalElements: number;
             totalPages: number;
         };
+        newsEntityMention: {
+            entity: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            }[];
+            newsId: number;
+        }[];
         person: {
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
