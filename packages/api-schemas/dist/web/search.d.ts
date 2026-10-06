@@ -46,7 +46,9 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        entityId?: string | null | undefined;
         language?: string | null | undefined;
+        personId?: string | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
         search: string;
@@ -55,7 +57,9 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        entityId?: string | null | undefined;
         language?: string | null | undefined;
+        personId?: string | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
         search: string;

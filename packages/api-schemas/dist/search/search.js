@@ -7,8 +7,12 @@ const SearchSchemaDefinition = z.object({
     bypassCache: z.boolean().default(false).optional(),
     /** Stable lookup text for cache keying when generated search text varies between runs */
     cacheKey: z.string().nullish(),
+    /** Entity this search was retrieved for: its stored result lists under that entity (`GET /v1/research/source-documents?entityId=`) on a fetch or a cache hit */
+    entityId: z.uuid().nullish(),
     /** Search language code */
     language: z.string().nullish(),
+    /** Person this search was retrieved for: its stored result lists under that person (`GET /v1/research/source-documents?personId=`) on a fetch or a cache hit */
+    personId: z.uuid().nullish(),
     /** Search region code */
     region: z.string().nullish(),
     /** Maximum number of normalized results to keep */

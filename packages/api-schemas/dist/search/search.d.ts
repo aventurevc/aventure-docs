@@ -3,7 +3,9 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     allowSuspectedShellStrip: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     bypassCache: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     cacheKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     region: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resultLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     search: z.ZodString;

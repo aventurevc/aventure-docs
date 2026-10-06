@@ -9,7 +9,7 @@ const NaturalSearchSchemaDefinition = z.object({
     model: z.string().nullish(),
     /** Plain-English search request. */
     query: z.string().min(1),
-    /** Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Null keeps the configured per-call and per-model defaults. */
+    /** Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Callers without private-data access are capped at `medium`. Null keeps the configured per-call and per-model defaults. */
     reasoningEffort: ReasoningEffortSchema.nullish(),
 });
 /**

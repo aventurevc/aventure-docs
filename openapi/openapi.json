@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.76"
+    "version": "0.8.78"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -32663,7 +32663,7 @@
             "minLength": 1
           },
           "reasoningEffort": {
-            "description": "Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Null keeps the configured per-call and per-model defaults.",
+            "description": "Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Callers without private-data access are capped at `medium`. Null keeps the configured per-call and per-model defaults.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/ReasoningEffort"
@@ -35819,7 +35819,7 @@
             "minLength": 1
           },
           "reasoningEffort": {
-            "description": "Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Null keeps the configured per-call and per-model defaults.",
+            "description": "Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Callers without private-data access are capped at `medium`. Null keeps the configured per-call and per-model defaults.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/ReasoningEffort"
@@ -36216,6 +36216,14 @@
             "description": "Stable lookup text for cache keying when generated search text varies between runs",
             "example": "OpenAI"
           },
+          "entityId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Entity this search was retrieved for: its stored result lists under that entity (`GET /v1/research/source-documents?entityId=`) on a fetch or a cache hit"
+          },
           "language": {
             "type": [
               "string",
@@ -36223,6 +36231,14 @@
             ],
             "description": "Search language code",
             "example": "en"
+          },
+          "personId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Person this search was retrieved for: its stored result lists under that person (`GET /v1/research/source-documents?personId=`) on a fetch or a cache hit"
           },
           "region": {
             "type": [
