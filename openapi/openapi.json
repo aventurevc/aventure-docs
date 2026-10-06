@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.69"
+    "version": "0.8.70"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -36928,7 +36928,7 @@
       },
       "SearchMode": {
         "type": "string",
-        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner; `hybrid` fuses keyword and semantic rankings by reciprocal rank. Entity and person natural-search support every mode but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies), and `hybrid` (that owner's keyword and semantic rankings fused).",
+        "description": "Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner; `hybrid` fuses keyword and semantic rankings by reciprocal rank. Entity and person natural-search support every mode but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies), and `hybrid` (that owner's keyword and semantic rankings fused; each ranking is cut at the largest page size, so a hybrid search returns at most twice that many items, and it orders by fused rank only, ignoring `sort`).",
         "x-extensible-enum": [
           "auto",
           "exact",
@@ -36940,11 +36940,11 @@
       },
       "SearchAnswer": {
         "type": "object",
-        "description": "Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no citation means the evidence does not answer the question.",
+        "description": "Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.",
         "properties": {
           "citation": {
             "type": "array",
-            "description": "Evidence each claim rests on, in first-use order.",
+            "description": "Evidence the paragraphs cite, in first-use order.",
             "items": {
               "$ref": "#/components/schemas/SearchAnswerCitation"
             }
@@ -36953,14 +36953,30 @@
             "$ref": "#/components/schemas/Confidence",
             "description": "How fully the cited evidence answers the question."
           },
+          "paragraph": {
+            "type": "array",
+            "description": "The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains.",
+            "items": {
+              "$ref": "#/components/schemas/SearchAnswerParagraph"
+            }
+          },
+          "relatedQuery": {
+            "type": "array",
+            "description": "Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains.",
+            "items": {
+              "type": "string"
+            }
+          },
           "text": {
             "type": "string",
-            "description": "Answer text in plain prose."
+            "description": "Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports."
           }
         },
         "required": [
           "citation",
           "confidence",
+          "paragraph",
+          "relatedQuery",
           "text"
         ]
       },
@@ -37832,6 +37848,34 @@
           "entityId",
           "source",
           "sourceId"
+        ]
+      },
+      "SearchAnswerParagraph": {
+        "type": "object",
+        "description": "One paragraph of an answer and the evidence it rests on.",
+        "properties": {
+          "citation": {
+            "type": "array",
+            "description": "Evidence this paragraph rests on, most important first.",
+            "items": {
+              "$ref": "#/components/schemas/SearchAnswerCitation"
+            }
+          },
+          "text": {
+            "type": "string",
+            "description": "Paragraph text in plain prose."
+          },
+          "topic": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Short label naming the category, market, or segment this paragraph covers, such as \"Smartphones · North America\"; absent on the lead paragraph."
+          }
+        },
+        "required": [
+          "citation",
+          "text"
         ]
       },
       "PageResultNews": {
@@ -41884,7 +41928,7 @@
               "null"
             ],
             "format": "double",
-            "description": "Probability the decision model gave the chosen option (an operation, or none)."
+            "description": "Probability the decision model gave its chosen option (an operation, a task, several, or none); informational, the choice alone decides the outcome."
           },
           "taskKey": {
             "type": [

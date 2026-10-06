@@ -17,6 +17,7 @@ type SearchAnswerCitationDefinition = z.infer<typeof SearchAnswerCitationSchemaD
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @usedBySchema SearchAnswerParagraphSchema
  * @usedBySchema SearchAnswerSchema
  * @contractShape search.answer-citation
  * @contractRole canonical

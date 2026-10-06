@@ -799,6 +799,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/answer-citation",
         schemaName: "SearchAnswerCitationSchema",
     },
+    SearchAnswerParagraph: {
+        modulePath: "search/answer-paragraph",
+        schemaName: "SearchAnswerParagraphSchema",
+    },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",

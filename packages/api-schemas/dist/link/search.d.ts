@@ -10,6 +10,16 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                 }[];
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                paragraph: {
+                    citation: {
+                        entityId: string;
+                        source: "entityRecord" | "newsArticle" | "researchSnippet";
+                        sourceId: string;
+                    }[];
+                    text: string;
+                    topic?: string | null | undefined;
+                }[];
+                relatedQuery: string[];
                 text: string;
             } | null | undefined;
             interpretation: {
@@ -2233,6 +2243,16 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                 }[];
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                paragraph: {
+                    citation: {
+                        entityId: string;
+                        source: "entityRecord" | "newsArticle" | "researchSnippet";
+                        sourceId: string;
+                    }[];
+                    text: string;
+                    topic?: string | null | undefined;
+                }[];
+                relatedQuery: string[];
                 text: string;
             } | null | undefined;
             interpretation: {

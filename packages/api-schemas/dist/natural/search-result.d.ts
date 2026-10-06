@@ -15,6 +15,24 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             LOW: "LOW";
             MEDIUM: "MEDIUM";
         }>;
+        paragraph: z.ZodArray<z.ZodType<{
+            citation: {
+                entityId: string;
+                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                sourceId: string;
+            }[];
+            text: string;
+            topic?: string | null | undefined;
+        }, unknown, z.core.$ZodTypeInternals<{
+            citation: {
+                entityId: string;
+                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                sourceId: string;
+            }[];
+            text: string;
+            topic?: string | null | undefined;
+        }, unknown>>>;
+        relatedQuery: z.ZodArray<z.ZodString>;
         text: z.ZodString;
     }, z.core.$strip>>>;
     interpretation: z.ZodType<{

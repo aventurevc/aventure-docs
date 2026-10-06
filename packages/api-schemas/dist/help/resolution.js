@@ -19,7 +19,7 @@ export const HelpResolutionSchema = z.object({
     operationId: z.string().nullish(),
     /** Which of the mutually exclusive resolve outcomes was reached. */
     outcome: HelpResolutionOutcomeSchema,
-    /** Probability the decision model gave the chosen option (an operation, or none). */
+    /** Probability the decision model gave its chosen option (an operation, a task, several, or none); informational, the choice alone decides the outcome. */
     probability: z.number().nullish(),
     /** The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY; getHarnessTaskPlan reads its plan. */
     taskKey: z.string().nullish(),

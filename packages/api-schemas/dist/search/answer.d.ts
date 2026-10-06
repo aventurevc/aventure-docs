@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no citation means the evidence does not answer the question.
+ * Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.
  *
  * @openapiSchema SearchAnswer
  * @endpoint GET /v1/search/link
@@ -26,6 +26,24 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         LOW: "LOW";
         MEDIUM: "MEDIUM";
     }>;
+    paragraph: z.ZodArray<z.ZodType<{
+        citation: {
+            entityId: string;
+            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            sourceId: string;
+        }[];
+        text: string;
+        topic?: string | null | undefined;
+    }, unknown, z.core.$ZodTypeInternals<{
+        citation: {
+            entityId: string;
+            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            sourceId: string;
+        }[];
+        text: string;
+        topic?: string | null | undefined;
+    }, unknown>>>;
+    relatedQuery: z.ZodArray<z.ZodString>;
     text: z.ZodString;
 }, z.core.$strip>;
 export type SearchAnswer = z.infer<typeof SearchAnswerSchema>;

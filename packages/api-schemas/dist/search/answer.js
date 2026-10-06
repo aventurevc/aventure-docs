@@ -2,8 +2,9 @@
 import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
 import { SearchAnswerCitationSchema } from "./answer-citation.js";
+import { SearchAnswerParagraphSchema } from "./answer-paragraph.js";
 /**
- * Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no citation means the evidence does not answer the question.
+ * Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.
  *
  * @openapiSchema SearchAnswer
  * @endpoint GET /v1/search/link
@@ -15,11 +16,15 @@ import { SearchAnswerCitationSchema } from "./answer-citation.js";
  * @contractRole canonical
  */
 export const SearchAnswerSchema = z.object({
-    /** Evidence each claim rests on, in first-use order. */
+    /** Evidence the paragraphs cite, in first-use order. */
     citation: z.array(SearchAnswerCitationSchema),
     /** How fully the cited evidence answers the question. */
     confidence: ConfidenceSchema,
-    /** Answer text in plain prose. */
+    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. */
+    paragraph: z.array(SearchAnswerParagraphSchema),
+    /** Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains. */
+    relatedQuery: z.array(z.string()),
+    /** Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports. */
     text: z.string(),
 });
 //# sourceMappingURL=answer.js.map
