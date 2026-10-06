@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.65"
+    "version": "0.8.66"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16311,7 +16311,7 @@
     },
     "/v1/help": {
       "post": {
-        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: operation advice, a clarification between candidate operations, or an abstention, with no generated answer. Free for every signed-in account.",
+        "description": "Retrieves the most relevant operations and research fields, then returns a grounded, citation-bearing answer. Unsupported questions abstain (LOW confidence) rather than invent a command. With resolve, returns one resolution instead: operation advice, a clarification between candidate operations, or an abstention, with no generated answer and its own per-caller limit. Free for every signed-in account.",
         "operationId": "askHelpQuestion",
         "requestBody": {
           "content": {
@@ -28893,11 +28893,12 @@
             "type": "string",
             "description": "The question to answer, in natural language.",
             "example": "how do I attach a product URL?",
-            "minLength": 1
+            "maxLength": 2000,
+            "minLength": 0
           },
           "resolve": {
             "type": "boolean",
-            "description": "True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and spends no help quota."
+            "description": "True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and draws on its own per-caller limit instead of the answer quota."
           },
           "scope": {
             "description": "Optional scope restricting which operations the answer may recommend; null means all.",

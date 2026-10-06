@@ -5,8 +5,8 @@ const AgentHelpQuestionSchemaDefinition = z.object({
     /** Optional chat model that answers the question; null uses the configured default. A caller without admin authority may only choose an allowlisted model; an ineligible model is rejected with 422. Admin callers are unrestricted. */
     model: z.string().nullish(),
     /** The question to answer, in natural language. */
-    question: z.string().min(1),
-    /** True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and spends no help quota. */
+    question: z.string().max(2000),
+    /** True resolves the question to one runnable operation instead of answering it: the response carries a resolution (operation advice, clarify, or abstain) and no generated answer. Resolving calls no chat model, ignores model, and draws on its own per-caller limit instead of the answer quota. */
     resolve: z.boolean().optional(),
     /** Optional scope restricting which operations the answer may recommend; null means all. */
     scope: HelpScopeSchema.nullish(),
