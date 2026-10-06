@@ -173,6 +173,10 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     }>>>;
+    provider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        APP_STORE: "APP_STORE";
+        STRIPE: "STRIPE";
+    }>>>;
     recurringPrice: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         cadence: z.ZodString;
         currency: z.ZodString;

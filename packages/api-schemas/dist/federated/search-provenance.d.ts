@@ -30,6 +30,11 @@ declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
         field?: string | null | undefined;
         scope: "entity" | "news" | "person";
     }, unknown>>>;
+    unavailable: z.ZodArray<z.ZodEnum<{
+        entity: "entity";
+        news: "news";
+        person: "person";
+    }>>;
 }, z.core.$strip>;
 type FederatedSearchProvenanceDefinition = z.infer<typeof FederatedSearchProvenanceSchemaDefinition>;
 /**

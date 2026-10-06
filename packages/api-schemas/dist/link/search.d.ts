@@ -2252,6 +2252,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 field?: string | null | undefined;
                 scope: "entity" | "news" | "person";
             }[];
+            unavailable: ("entity" | "news" | "person")[];
         };
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
@@ -4504,6 +4505,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 field?: string | null | undefined;
                 scope: "entity" | "news" | "person";
             }[];
+            unavailable: ("entity" | "news" | "person")[];
         };
     }, unknown>>;
     url: z.ZodString;

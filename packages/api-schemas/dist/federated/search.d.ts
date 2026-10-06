@@ -4478,6 +4478,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             field?: string | null | undefined;
             scope: "entity" | "news" | "person";
         }[];
+        unavailable: ("entity" | "news" | "person")[];
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             modeRequested: string;
@@ -4496,6 +4497,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             field?: string | null | undefined;
             scope: "entity" | "news" | "person";
         }[];
+        unavailable: ("entity" | "news" | "person")[];
     }, unknown>>;
 }, z.core.$strip>;
 type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>;

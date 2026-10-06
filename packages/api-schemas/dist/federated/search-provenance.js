@@ -11,6 +11,8 @@ const FederatedSearchProvenanceSchemaDefinition = z.object({
     person: SearchModeExecutionSchema,
     /** Scopes that rejected the query as unsearchable and returned an empty page while the other scopes ran; empty when every scope ran. */
     rejection: z.array(FederatedSearchRejectionSchema),
+    /** Scopes whose search was temporarily unavailable (an upstream outage, open circuit, full concurrency limit, or expired deadline) and returned an empty page while the other scopes ran; empty when every scope ran. Retrying the same query may succeed, unlike a rejection. */
+    unavailable: z.array(z.enum(["entity", "person", "news"])),
 });
 /**
  * Requested and executed search strategy for every federated scope.
