@@ -22,7 +22,7 @@ const BillingSubscriptionSchemaDefinition = z.object({
     periodStart: z.iso.datetime({ offset: true }).nullish(),
     /** Paid plan and billing cycle; absent without a paid subscription */
     plan: BillingPlanTypeSchema.nullish(),
-    /** Who bills the entitled paid subscription: STRIPE (managed on the web) or APP_STORE; absent without one */
+    /** Who bills the continuing paid subscription, including one past due or paused: STRIPE (managed on the web) or APP_STORE; absent without one */
     provider: z.enum(["STRIPE", "APP_STORE"]).nullish(),
     /** Subscribed renewal price before discounts; absent without a known paid Price */
     recurringPrice: BillingRecurringPriceSchema.nullish(),
