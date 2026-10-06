@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.75"
+    "version": "0.8.76"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -26327,7 +26327,7 @@
             }
           },
           {
-            "description": "Optional answer layers, as on POST /v1/search/natural/entities; repeat to add more. They answer the question from the entity scope's records and passages while the person and news scopes run alongside.",
+            "description": "Optional answer layers, as on POST /v1/search/natural/entities; repeat to add more. Synthesis produces one cited answer and related queries from the public entity records, passages, and linked news on this response. Other layers enrich the entity scope while people and news run alongside.",
             "in": "query",
             "name": "layer",
             "required": false,
@@ -32661,6 +32661,17 @@
             "description": "Plain-English search request.",
             "example": "Companies founded in the last year that raised venture capital",
             "minLength": 1
+          },
+          "reasoningEffort": {
+            "description": "Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Null keeps the configured per-call and per-model defaults.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ReasoningEffort"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -35806,6 +35817,17 @@
             "description": "Plain-English search request.",
             "example": "Companies founded in the last year that raised venture capital",
             "minLength": 1
+          },
+          "reasoningEffort": {
+            "description": "Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Null keeps the configured per-call and per-model defaults.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ReasoningEffort"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -35819,6 +35841,13 @@
           "entity": {
             "$ref": "#/components/schemas/NaturalSearchResult",
             "description": "Canonical entity natural-search result."
+          },
+          "entityDetail": {
+            "type": "array",
+            "description": "Public detail for Product/Service rows on the entity result page, in search rank order. Other entity types are not hydrated.",
+            "items": {
+              "$ref": "#/components/schemas/EntityDetail"
+            }
           },
           "news": {
             "$ref": "#/components/schemas/PageResultNews",
@@ -35835,6 +35864,13 @@
             "$ref": "#/components/schemas/PersonNaturalSearchResult",
             "description": "Canonical person natural-search result."
           },
+          "personDetail": {
+            "type": "array",
+            "description": "Public detail for people on the person result page, in search rank order, with at most two public entity associations per person; person address and URL enrichment is omitted.",
+            "items": {
+              "$ref": "#/components/schemas/PersonDetail"
+            }
+          },
           "provenance": {
             "$ref": "#/components/schemas/FederatedSearchProvenance",
             "description": "Requested and executed strategy for each search scope."
@@ -35842,9 +35878,11 @@
         },
         "required": [
           "entity",
+          "entityDetail",
           "news",
           "newsEntityMention",
           "person",
+          "personDetail",
           "provenance"
         ]
       },
@@ -38168,6 +38206,18 @@
           "needs-review",
           "approved",
           "rejected"
+        ]
+      },
+      "ReasoningEffort": {
+        "type": "string",
+        "description": "Reasoning effort level, lowest to highest: `minimal`, `low`, `medium`, `high`, `xhigh`, `max`. A model receives the nearest level it supports.",
+        "x-extensible-enum": [
+          "minimal",
+          "low",
+          "medium",
+          "high",
+          "xhigh",
+          "max"
         ]
       },
       "EntityPersonOwner": {
@@ -42130,6 +42180,13 @@
             "description": "Stored catalog revision this plan was read from.",
             "example": 7
           },
+          "gateId": {
+            "type": "array",
+            "description": "Canonical completion gate ids this task is responsible for; the ids resolve through the completion contract catalog.",
+            "items": {
+              "type": "string"
+            }
+          },
           "input": {
             "type": "array",
             "description": "Typed inputs the task needs before it runs.",
@@ -42152,6 +42209,7 @@
         },
         "required": [
           "catalogRevision",
+          "gateId",
           "input",
           "step",
           "taskKey"

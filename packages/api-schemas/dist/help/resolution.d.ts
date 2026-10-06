@@ -32,6 +32,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
     taskKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     taskPlan: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         catalogRevision: z.ZodInt;
+        gateId: z.ZodArray<z.ZodString>;
         input: z.ZodArray<z.ZodType<{
             description: string;
             key: string;

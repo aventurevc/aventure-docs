@@ -11,6 +11,7 @@ import { z } from "zod/v4";
  */
 export declare const HarnessTaskPlanSchema: z.ZodObject<{
     catalogRevision: z.ZodInt;
+    gateId: z.ZodArray<z.ZodString>;
     input: z.ZodArray<z.ZodType<{
         description: string;
         key: string;

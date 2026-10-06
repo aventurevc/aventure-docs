@@ -3,6 +3,14 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
     mode: z.ZodOptional<z.ZodDefault<z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     query: z.ZodString;
+    reasoningEffort: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        high: "high";
+        low: "low";
+        max: "max";
+        medium: "medium";
+        minimal: "minimal";
+        xhigh: "xhigh";
+    }>, z.ZodString]>>>;
 }, z.core.$strip>;
 type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
 /**

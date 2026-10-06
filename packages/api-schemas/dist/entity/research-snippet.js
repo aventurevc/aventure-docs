@@ -7,14 +7,17 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
  *
  * @openapiSchema EntityResearchSnippet
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research-snippets
  * @endpoint GET /v1/entities/{entityId}/research-snippets/{snippetId}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @usedBySchema EntityResearchSchema
  * @usedBySchema PageEntityResearchSnippetSchema
  * @contractShape entity.research-snippet

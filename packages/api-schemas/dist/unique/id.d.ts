@@ -27,6 +27,7 @@ type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
  *
  * @openapiSchema UniqueId
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/unique-ids/lookup
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -34,9 +35,11 @@ type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
  * @endpoint GET /v1/entities/{entityId}/unique-ids/{uniqueIdId}
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/unique-ids/{uniqueIdId}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
  * @usedBySchema EntityDetailSchema
  * @usedBySchema PageUniqueIdSchema
  * @contractShape unique.id

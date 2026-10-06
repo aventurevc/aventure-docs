@@ -13,7 +13,7 @@
       "type": "skill-md",
       "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
       "url": "/.well-known/agent-skills/aventure/SKILL.md",
-      "digest": "sha256:bdc13f4fe8f8f3752ce5d80c35b37f0b1a1f5a6a5daa02fd2865782010ea3aa4"
+      "digest": "sha256:c93a1706f10b265198eff0040b1c5676dbb0b6037387c8181b3262822063e23d"
     }
   ]
 }

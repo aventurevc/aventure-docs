@@ -124,15 +124,18 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
  * @openapiSchema PersonInvestment
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investments
+ * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
  * @usedBySchema PagePersonInvestmentSchema
  * @usedBySchema PersonDetailSchema
  * @contractShape person.investment

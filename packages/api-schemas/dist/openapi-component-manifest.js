@@ -769,6 +769,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PublicationRelationSchema",
     },
     PublicationType: { modulePath: "publication/type", schemaName: "PublicationTypeSchema" },
+    ReasoningEffort: { modulePath: "reasoning/effort", schemaName: "ReasoningEffortSchema" },
     RedirectSlugPath: {
         modulePath: "redirect/redirect-slug-path",
         schemaName: "RedirectSlugPathSchema",

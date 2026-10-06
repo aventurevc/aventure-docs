@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityFilterSchema } from "../entity/filter.js";
+import { ReasoningEffortSchema } from "../reasoning/effort.js";
 import { SearchModeSchema } from "../search/mode.js";
 const FederatedNaturalSearchSchemaDefinition = z.object({
     /** Explicit entity constraints for the entity scope only, as on POST /v1/search/natural/entities: caller-supplied fields override planner values. The person and news scopes ignore it. */
@@ -15,6 +16,8 @@ const FederatedNaturalSearchSchemaDefinition = z.object({
     personSize: z.int().nullish(),
     /** Plain-English search request. */
     query: z.string().min(1),
+    /** Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Null keeps the configured per-call and per-model defaults. */
+    reasoningEffort: ReasoningEffortSchema.nullish(),
 });
 /**
  * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.

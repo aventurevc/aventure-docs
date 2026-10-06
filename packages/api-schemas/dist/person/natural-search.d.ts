@@ -95,10 +95,12 @@ declare const PersonNaturalSearchSchemaDefinition: z.ZodObject<{
         mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
+        reasoningEffort?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
+        reasoningEffort?: string | null | undefined;
     }, unknown>>;
 }, z.core.$strip>;
 type PersonNaturalSearchDefinition = z.infer<typeof PersonNaturalSearchSchemaDefinition>;

@@ -166,6 +166,14 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
     newsSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     personSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     query: z.ZodString;
+    reasoningEffort: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        high: "high";
+        low: "low";
+        max: "max";
+        medium: "medium";
+        minimal: "minimal";
+        xhigh: "xhigh";
+    }>, z.ZodString]>>>;
 }, z.core.$strip>;
 type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
 /**
