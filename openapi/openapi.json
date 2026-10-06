@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.67"
+    "version": "0.8.68"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -26977,7 +26977,7 @@
             }
           },
           {
-            "description": "Optional answer layers to add beside the entity records; repeat to add more. `passage` ranks public research snippets and linked news that answer the question; `synthesis` adds a cited written answer and implies `passage`; `judgment` ranks a competitor, market, or provider question's answer by judged probability; `web` adds stored web evidence and implies `judgment`.",
+            "description": "Optional answer layers to add beside the entity records; repeat to add more. `passage` ranks public research snippets and linked news that answer the question; `synthesis` adds a cited written answer and implies `passage`; `judgment` ranks a competitor, market, or provider question's answer by judged probability; `web` adds web evidence and the companies it names, and implies `judgment`.",
             "in": "query",
             "name": "layer",
             "required": false,
@@ -35783,7 +35783,7 @@
       },
       "SearchLayer": {
         "type": "string",
-        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`. `judgment` ranks the answer to a competitor, market, or provider question (\"who competes with X\", \"top X companies\", \"who provides X\") by the judged probability that each entity answers it; `web` adds stored web search evidence before judging and implies `judgment`. Other questions ignore `judgment` and `web`.",
+        "description": "Optional answer layer for a natural-language entity search. `passage` adds the text passages, from public research snippets and linked news, that best answer the question about the subject entities, their peers, or the top results; `synthesis` adds a written answer grounded only in those records and passages, citing each, and implies `passage`. `judgment` ranks the answer to a competitor, market, or provider question (\"who competes with X\", \"top X companies\", \"who provides X\") by the judged probability that each entity answers it; `web` adds web search evidence, and the companies those results name, before judging and implies `judgment`. Other questions ignore `judgment` and `web`.",
         "enum": [
           "passage",
           "synthesis",
@@ -41884,6 +41884,14 @@
             ],
             "format": "double",
             "description": "Probability the decision model gave the chosen option (an operation, or none)."
+          },
+          "taskKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The chosen catalog task; present only for TASK_PLAN. getHarnessTaskPlan reads its plan.",
+            "example": "slug-update"
           }
         },
         "required": [

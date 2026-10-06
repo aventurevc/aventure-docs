@@ -29,6 +29,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
         TASK_PLAN: "TASK_PLAN";
     }>;
     probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    taskKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 export type HelpResolution = z.infer<typeof HelpResolutionSchema>;
 //# sourceMappingURL=resolution.d.ts.map

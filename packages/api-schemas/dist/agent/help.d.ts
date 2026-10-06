@@ -37,6 +37,7 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
             TASK_PLAN: "TASK_PLAN";
         }>;
         probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        taskKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;

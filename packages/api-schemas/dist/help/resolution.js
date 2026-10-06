@@ -21,5 +21,7 @@ export const HelpResolutionSchema = z.object({
     outcome: HelpResolutionOutcomeSchema,
     /** Probability the decision model gave the chosen option (an operation, or none). */
     probability: z.number().nullish(),
+    /** The chosen catalog task; present only for TASK_PLAN. getHarnessTaskPlan reads its plan. */
+    taskKey: z.string().nullish(),
 });
 //# sourceMappingURL=resolution.js.map
