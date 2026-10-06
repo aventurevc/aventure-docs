@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.71"
+    "version": "0.8.72"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -26301,7 +26301,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint; provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines. Page and size apply to every scope; cross-domain sort is not supported. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response.",
+        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint; provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -26327,6 +26327,26 @@
             }
           },
           {
+            "description": "Person scope page size; defaults to size.",
+            "in": "query",
+            "name": "personSize",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "News scope page size; defaults to size.",
+            "in": "query",
+            "name": "newsSize",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
             "description": "Optional answer layers, as on POST /v1/search/natural/entities; repeat to add more. They answer the question from the entity scope's records and passages while the person and news scopes run alongside.",
             "in": "query",
             "name": "layer",
@@ -26344,7 +26364,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NaturalSearch"
+                "$ref": "#/components/schemas/FederatedNaturalSearch"
               }
             }
           },
@@ -35754,6 +35774,37 @@
           "web"
         ]
       },
+      "FederatedNaturalSearch": {
+        "type": "object",
+        "description": "Plain-English search across companies, people, and news, plus optional hard constraints for the entity scope.",
+        "properties": {
+          "entityFilter": {
+            "$ref": "#/components/schemas/EntityFilter",
+            "description": "Explicit entity constraints for the entity scope only, as on POST /v1/search/natural/entities: caller-supplied fields override planner values. The person and news scopes ignore it."
+          },
+          "mode": {
+            "$ref": "#/components/schemas/SearchMode",
+            "default": "auto",
+            "description": "Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword`, `semantic`, and `hybrid` (`semantic` and `hybrid` only for one entity's or person's content)."
+          },
+          "model": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional chat model for planning; null uses the configured natural-search default. A caller without admin authority may only choose an allowlisted model; admin callers are unrestricted."
+          },
+          "query": {
+            "type": "string",
+            "description": "Plain-English search request.",
+            "example": "Companies founded in the last year that raised venture capital",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
       "FederatedSearch": {
         "type": "object",
         "description": "Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.",
@@ -37769,7 +37820,7 @@
       "SearchEvidenceSource": {
         "type": "string",
         "description": "Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity.",
-        "enum": [
+        "x-extensible-enum": [
           "entityRecord",
           "researchSnippet",
           "newsArticle"
@@ -37972,12 +38023,50 @@
           "person": {
             "$ref": "#/components/schemas/SearchModeExecution",
             "description": "Person search strategy execution."
+          },
+          "rejection": {
+            "type": "array",
+            "description": "Scopes that rejected the query as unsearchable and returned an empty page while the other scopes ran; empty when every scope ran.",
+            "items": {
+              "$ref": "#/components/schemas/FederatedSearchRejection"
+            }
           }
         },
         "required": [
           "entity",
           "news",
-          "person"
+          "person",
+          "rejection"
+        ]
+      },
+      "FederatedSearchRejection": {
+        "type": "object",
+        "description": "One federated scope that rejected the query instead of searching.",
+        "properties": {
+          "detail": {
+            "type": "string",
+            "description": "Why the scope rejected the query."
+          },
+          "field": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Request field the scope rejected, such as search."
+          },
+          "scope": {
+            "type": "string",
+            "description": "Scope that rejected the query.",
+            "enum": [
+              "entity",
+              "person",
+              "news"
+            ]
+          }
+        },
+        "required": [
+          "detail",
+          "scope"
         ]
       },
       "NewsResolvedEntityLink": {

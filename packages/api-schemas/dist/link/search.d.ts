@@ -6,14 +6,14 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             answer?: {
                 citation: {
                     entityId: string;
-                    source: "entityRecord" | "newsArticle" | "researchSnippet";
+                    source: string;
                     sourceId: string;
                 }[];
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 paragraph: {
                     citation: {
                         entityId: string;
-                        source: "entityRecord" | "newsArticle" | "researchSnippet";
+                        source: string;
                         sourceId: string;
                     }[];
                     text: string;
@@ -624,7 +624,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 label: string;
                 publishedAt?: string | null | undefined;
                 score: number;
-                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                source: string;
                 sourceId: string;
                 text: string;
                 url?: string | null | undefined;
@@ -2247,20 +2247,25 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 modeRequested: string;
                 modeUsed: string;
             };
+            rejection: {
+                detail: string;
+                field?: string | null | undefined;
+                scope: "entity" | "news" | "person";
+            }[];
         };
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             answer?: {
                 citation: {
                     entityId: string;
-                    source: "entityRecord" | "newsArticle" | "researchSnippet";
+                    source: string;
                     sourceId: string;
                 }[];
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 paragraph: {
                     citation: {
                         entityId: string;
-                        source: "entityRecord" | "newsArticle" | "researchSnippet";
+                        source: string;
                         sourceId: string;
                     }[];
                     text: string;
@@ -2871,7 +2876,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 label: string;
                 publishedAt?: string | null | undefined;
                 score: number;
-                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                source: string;
                 sourceId: string;
                 text: string;
                 url?: string | null | undefined;
@@ -4494,6 +4499,11 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 modeRequested: string;
                 modeUsed: string;
             };
+            rejection: {
+                detail: string;
+                field?: string | null | undefined;
+                scope: "entity" | "news" | "person";
+            }[];
         };
     }, unknown>>;
     url: z.ZodString;

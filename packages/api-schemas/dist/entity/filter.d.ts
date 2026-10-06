@@ -5,9 +5,11 @@ import { z } from "zod/v4";
  * @openapiSchema EntityFilter
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
+ * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
+ * @usedBySchema FederatedNaturalSearchSchema
  * @contractShape entity.filter
  * @contractRole canonical
  */

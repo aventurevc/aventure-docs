@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { FederatedSearchRejectionSchema } from "./search-rejection.js";
 import { SearchModeExecutionSchema } from "../search/mode-execution.js";
 const FederatedSearchProvenanceSchemaDefinition = z.object({
     /** Entity search strategy execution. */
@@ -8,6 +9,8 @@ const FederatedSearchProvenanceSchemaDefinition = z.object({
     news: SearchModeExecutionSchema,
     /** Person search strategy execution. */
     person: SearchModeExecutionSchema,
+    /** Scopes that rejected the query as unsearchable and returned an empty page while the other scopes ran; empty when every scope ran. */
+    rejection: z.array(FederatedSearchRejectionSchema),
 });
 /**
  * Requested and executed search strategy for every federated scope.

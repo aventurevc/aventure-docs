@@ -4,14 +4,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         answer?: {
             citation: {
                 entityId: string;
-                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                source: string;
                 sourceId: string;
             }[];
             confidence: "HIGH" | "LOW" | "MEDIUM";
             paragraph: {
                 citation: {
                     entityId: string;
-                    source: "entityRecord" | "newsArticle" | "researchSnippet";
+                    source: string;
                     sourceId: string;
                 }[];
                 text: string;
@@ -622,7 +622,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             label: string;
             publishedAt?: string | null | undefined;
             score: number;
-            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            source: string;
             sourceId: string;
             text: string;
             url?: string | null | undefined;
@@ -2077,14 +2077,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         answer?: {
             citation: {
                 entityId: string;
-                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                source: string;
                 sourceId: string;
             }[];
             confidence: "HIGH" | "LOW" | "MEDIUM";
             paragraph: {
                 citation: {
                     entityId: string;
-                    source: "entityRecord" | "newsArticle" | "researchSnippet";
+                    source: string;
                     sourceId: string;
                 }[];
                 text: string;
@@ -2695,7 +2695,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             label: string;
             publishedAt?: string | null | undefined;
             score: number;
-            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            source: string;
             sourceId: string;
             text: string;
             url?: string | null | undefined;
@@ -4473,6 +4473,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             modeRequested: string;
             modeUsed: string;
         };
+        rejection: {
+            detail: string;
+            field?: string | null | undefined;
+            scope: "entity" | "news" | "person";
+        }[];
     }, unknown, z.core.$ZodTypeInternals<{
         entity: {
             modeRequested: string;
@@ -4486,6 +4491,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             modeRequested: string;
             modeUsed: string;
         };
+        rejection: {
+            detail: string;
+            field?: string | null | undefined;
+            scope: "entity" | "news" | "person";
+        }[];
     }, unknown>>;
 }, z.core.$strip>;
 type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>;

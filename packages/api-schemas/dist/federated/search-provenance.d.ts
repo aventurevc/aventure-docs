@@ -21,6 +21,15 @@ declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
         modeRequested: string;
         modeUsed: string;
     }, unknown>>;
+    rejection: z.ZodArray<z.ZodType<{
+        detail: string;
+        field?: string | null | undefined;
+        scope: "entity" | "news" | "person";
+    }, unknown, z.core.$ZodTypeInternals<{
+        detail: string;
+        field?: string | null | undefined;
+        scope: "entity" | "news" | "person";
+    }, unknown>>>;
 }, z.core.$strip>;
 type FederatedSearchProvenanceDefinition = z.infer<typeof FederatedSearchProvenanceSchemaDefinition>;
 /**

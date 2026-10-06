@@ -3,11 +3,11 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
     answer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         citation: z.ZodArray<z.ZodType<{
             entityId: string;
-            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            source: string;
             sourceId: string;
         }, unknown, z.core.$ZodTypeInternals<{
             entityId: string;
-            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            source: string;
             sourceId: string;
         }, unknown>>>;
         confidence: z.ZodEnum<{
@@ -18,7 +18,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         paragraph: z.ZodArray<z.ZodType<{
             citation: {
                 entityId: string;
-                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                source: string;
                 sourceId: string;
             }[];
             text: string;
@@ -26,7 +26,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         }, unknown, z.core.$ZodTypeInternals<{
             citation: {
                 entityId: string;
-                source: "entityRecord" | "newsArticle" | "researchSnippet";
+                source: string;
                 sourceId: string;
             }[];
             text: string;
@@ -1232,7 +1232,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         label: string;
         publishedAt?: string | null | undefined;
         score: number;
-        source: "entityRecord" | "newsArticle" | "researchSnippet";
+        source: string;
         sourceId: string;
         text: string;
         url?: string | null | undefined;
@@ -1241,7 +1241,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         label: string;
         publishedAt?: string | null | undefined;
         score: number;
-        source: "entityRecord" | "newsArticle" | "researchSnippet";
+        source: string;
         sourceId: string;
         text: string;
         url?: string | null | undefined;

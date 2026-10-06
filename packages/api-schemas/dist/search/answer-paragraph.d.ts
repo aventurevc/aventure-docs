@@ -2,11 +2,11 @@ import { z } from "zod/v4";
 declare const SearchAnswerParagraphSchemaDefinition: z.ZodObject<{
     citation: z.ZodArray<z.ZodType<{
         entityId: string;
-        source: "entityRecord" | "newsArticle" | "researchSnippet";
+        source: string;
         sourceId: string;
     }, unknown, z.core.$ZodTypeInternals<{
         entityId: string;
-        source: "entityRecord" | "newsArticle" | "researchSnippet";
+        source: string;
         sourceId: string;
     }, unknown>>>;
     text: z.ZodString;

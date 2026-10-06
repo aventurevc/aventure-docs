@@ -443,10 +443,18 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/valuation-time-series-point",
         schemaName: "EntityValuationTimeSeriesPointSchema",
     },
+    FederatedNaturalSearch: {
+        modulePath: "federated/natural-search",
+        schemaName: "FederatedNaturalSearchSchema",
+    },
     FederatedSearch: { modulePath: "federated/search", schemaName: "FederatedSearchSchema" },
     FederatedSearchProvenance: {
         modulePath: "federated/search-provenance",
         schemaName: "FederatedSearchProvenanceSchema",
+    },
+    FederatedSearchRejection: {
+        modulePath: "federated/search-rejection",
+        schemaName: "FederatedSearchRejectionSchema",
     },
     FundingStage: { modulePath: "funding/stage", schemaName: "FundingStageSchema" },
     FundraiseDataConfidence: {

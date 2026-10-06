@@ -14,11 +14,11 @@ import { z } from "zod/v4";
 export declare const SearchAnswerSchema: z.ZodObject<{
     citation: z.ZodArray<z.ZodType<{
         entityId: string;
-        source: "entityRecord" | "newsArticle" | "researchSnippet";
+        source: string;
         sourceId: string;
     }, unknown, z.core.$ZodTypeInternals<{
         entityId: string;
-        source: "entityRecord" | "newsArticle" | "researchSnippet";
+        source: string;
         sourceId: string;
     }, unknown>>>;
     confidence: z.ZodEnum<{
@@ -29,7 +29,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
     paragraph: z.ZodArray<z.ZodType<{
         citation: {
             entityId: string;
-            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            source: string;
             sourceId: string;
         }[];
         text: string;
@@ -37,7 +37,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         citation: {
             entityId: string;
-            source: "entityRecord" | "newsArticle" | "researchSnippet";
+            source: string;
             sourceId: string;
         }[];
         text: string;
