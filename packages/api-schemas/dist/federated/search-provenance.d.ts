@@ -1,25 +1,25 @@
 import { z } from "zod/v4";
 declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
     entity: z.ZodType<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown>>;
     news: z.ZodType<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown>>;
     person: z.ZodType<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown>>;
 }, z.core.$strip>;
 type FederatedSearchProvenanceDefinition = z.infer<typeof FederatedSearchProvenanceSchemaDefinition>;

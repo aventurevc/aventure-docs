@@ -162,11 +162,11 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
         }, unknown>>>>;
     }, z.core.$strict>>;
     search: z.ZodType<{
-        mode?: "auto" | "exact" | "keyword" | "natural" | "semantic" | undefined;
+        mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        mode?: "auto" | "exact" | "keyword" | "natural" | "semantic" | undefined;
+        mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
     }, unknown>>;

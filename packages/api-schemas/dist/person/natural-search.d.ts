@@ -92,11 +92,11 @@ declare const PersonNaturalSearchSchemaDefinition: z.ZodObject<{
         status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>;
     search: z.ZodType<{
-        mode?: "auto" | "exact" | "keyword" | "natural" | "semantic" | undefined;
+        mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        mode?: "auto" | "exact" | "keyword" | "natural" | "semantic" | undefined;
+        mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
     }, unknown>>;

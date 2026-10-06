@@ -20,8 +20,8 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
     interpretation: z.ZodType<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
         execution: {
-            modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-            modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+            modeRequested: string;
+            modeUsed: string;
         };
         fallbackUsed: boolean;
         filter: {
@@ -137,8 +137,8 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
         execution: {
-            modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-            modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+            modeRequested: string;
+            modeUsed: string;
         };
         fallbackUsed: boolean;
         filter: {

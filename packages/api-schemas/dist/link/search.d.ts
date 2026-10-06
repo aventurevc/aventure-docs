@@ -15,8 +15,8 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 execution: {
-                    modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                    modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                    modeRequested: string;
+                    modeUsed: string;
                 };
                 fallbackUsed: boolean;
                 filter: {
@@ -2091,8 +2091,8 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 execution: {
-                    modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                    modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                    modeRequested: string;
+                    modeUsed: string;
                 };
                 fallbackUsed: boolean;
                 filter: {
@@ -2212,16 +2212,16 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
         };
         provenance: {
             entity: {
-                modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                modeRequested: string;
+                modeUsed: string;
             };
             news: {
-                modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                modeRequested: string;
+                modeUsed: string;
             };
             person: {
-                modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                modeRequested: string;
+                modeUsed: string;
             };
         };
     }, unknown, z.core.$ZodTypeInternals<{
@@ -2238,8 +2238,8 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 execution: {
-                    modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                    modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                    modeRequested: string;
+                    modeUsed: string;
                 };
                 fallbackUsed: boolean;
                 filter: {
@@ -4314,8 +4314,8 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 execution: {
-                    modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                    modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                    modeRequested: string;
+                    modeUsed: string;
                 };
                 fallbackUsed: boolean;
                 filter: {
@@ -4435,16 +4435,16 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
         };
         provenance: {
             entity: {
-                modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                modeRequested: string;
+                modeUsed: string;
             };
             news: {
-                modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                modeRequested: string;
+                modeUsed: string;
             };
             person: {
-                modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-                modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+                modeRequested: string;
+                modeUsed: string;
             };
         };
     }, unknown>>;

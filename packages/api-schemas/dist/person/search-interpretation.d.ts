@@ -6,11 +6,11 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
         MEDIUM: "MEDIUM";
     }>;
     execution: z.ZodType<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        modeRequested: "auto" | "exact" | "keyword" | "natural" | "semantic";
-        modeUsed: "auto" | "exact" | "keyword" | "natural" | "semantic";
+        modeRequested: string;
+        modeUsed: string;
     }, unknown>>;
     fallbackUsed: z.ZodBoolean;
     filter: z.ZodObject<{

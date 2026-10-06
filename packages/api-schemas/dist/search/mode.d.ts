@@ -1,4 +1,12 @@
 import { z } from "zod/v4";
+declare const SearchModeSchemaDefinition: z.ZodUnion<readonly [z.ZodEnum<{
+    auto: "auto";
+    exact: "exact";
+    keyword: "keyword";
+    natural: "natural";
+    semantic: "semantic";
+}>, z.ZodString]>;
+type SearchModeDefinition = z.infer<typeof SearchModeSchemaDefinition>;
 /**
  * Search strategy for a natural-language search request. `auto` keeps the server pipeline (exact-name shortcut first, planner otherwise); `exact` matches entity or person names exactly with no planner and no embedding; `keyword` runs full-text search; `semantic` runs vector similarity; `natural` always runs the language-model planner. Entity and person natural-search support every mode; news and federated search accept only `auto` and `keyword`; content search accepts `auto` (topic, type, relation, and year words become filters and any other words rank by full text), `keyword` (the full text of articles, posts, and fetched pages), and `semantic` (one entity's or person's library pages by vector similarity of their fetched bodies).
  *
@@ -15,12 +23,7 @@ import { z } from "zod/v4";
  * @contractShape search.mode
  * @contractRole canonical
  */
-export declare const SearchModeSchema: z.ZodEnum<{
-    auto: "auto";
-    exact: "exact";
-    keyword: "keyword";
-    natural: "natural";
-    semantic: "semantic";
-}>;
+export declare const SearchModeSchema: z.ZodType<SearchModeDefinition>;
 export type SearchMode = z.infer<typeof SearchModeSchema>;
+export {};
 //# sourceMappingURL=mode.d.ts.map

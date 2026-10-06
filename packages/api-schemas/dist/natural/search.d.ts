@@ -1,12 +1,6 @@
 import { z } from "zod/v4";
 declare const NaturalSearchSchemaDefinition: z.ZodObject<{
-    mode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
-        auto: "auto";
-        exact: "exact";
-        keyword: "keyword";
-        natural: "natural";
-        semantic: "semantic";
-    }>>>;
+    mode: z.ZodOptional<z.ZodDefault<z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     query: z.ZodString;
 }, z.core.$strip>;
