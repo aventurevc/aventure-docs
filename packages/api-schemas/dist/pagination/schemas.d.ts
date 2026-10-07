@@ -891,6 +891,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         }, unknown, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
@@ -1169,6 +1170,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         }, unknown>>;
         fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;
@@ -2969,6 +2971,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -3897,6 +3900,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -4862,6 +4866,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -5336,6 +5341,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -6391,6 +6397,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -6879,6 +6886,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -10178,6 +10186,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -10652,6 +10661,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;

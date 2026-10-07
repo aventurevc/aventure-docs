@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.87"
+    "version": "0.8.88"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -7619,6 +7619,15 @@
             }
           },
           {
+            "description": "Includes rows whose counterpart entity is hidden when the caller has private-visibility authority. Omit to use the caller's default visibility.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
@@ -7815,6 +7824,15 @@
             "schema": {
               "$ref": "#/components/schemas/EntityAcquisitionRole",
               "default": "acquired"
+            }
+          },
+          {
+            "description": "Includes a row whose counterpart entity is hidden when the caller has private-visibility authority. Omit to use the caller's default visibility.",
+            "in": "query",
+            "name": "includePrivate",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -12454,7 +12472,7 @@
     },
     "/v1/entities/{entityId}/relationships": {
       "get": {
-        "description": "Returns relationship rows touching the path entity. Defaults to renderable-only rows where isCurrent=true and isPrimary=true. Set includeNonRenderable=true to surface historic and non-primary curation rows; returned rows include id, isCurrent, and isPrimary so hidden-row cause is explicit. Use entities relationships get to retrieve one row by id without an entity path.",
+        "description": "Returns relationship rows touching the path entity. Defaults to renderable-only rows where isCurrent=true and isPrimary=true. Set includeInactive=true to surface historic and non-primary curation rows; returned rows include id, isCurrent, and isPrimary so hidden-row cause is explicit. Use entities relationships get to retrieve one row by id without an entity path.",
         "operationId": "listEntityRelationships",
         "parameters": [
           {
@@ -12480,7 +12498,7 @@
           {
             "description": "Include historic or non-primary rows. Default false returns only rows where isCurrent=true and isPrimary=true.",
             "in": "query",
-            "name": "includeNonRenderable",
+            "name": "includeInactive",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -12497,7 +12515,7 @@
             }
           },
           {
-            "description": "When true, returns direct curated competitors with each competitor's provider comparison signals (sells-to, pricing, ownership, funding, website) nested under its productService row. Competition is not transitively closed: A-B plus B-C surfaces B from A, never C. With type=productService on a company, returns each of its Product/Service rows nesting those direct competitor rows, so one call covers every product line. Only supported for type=competingProductService or type=productService; the result is capped, so cursor and includeNonRenderable are not accepted alongside transitive=true.",
+            "description": "When true, returns direct curated competitors with each competitor's provider comparison signals (sells-to, pricing, ownership, funding, website) nested under its productService row. Competition is not transitively closed: A-B plus B-C surfaces B from A, never C. With type=productService on a company, returns each of its Product/Service rows nesting those direct competitor rows, so one call covers every product line. Only supported for type=competingProductService or type=productService; the result is capped, so cursor and includeInactive are not accepted alongside transitive=true.",
             "in": "query",
             "name": "transitive",
             "required": false,
@@ -38309,13 +38327,19 @@
             "items": {
               "$ref": "#/components/schemas/EntityUrlLink"
             }
+          },
+          "urlLinkSuppressedCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Persisted URL link rows omitted from urlLink because they are not both isCurrent=true and isPrimary=true. Read the full list via GET /v1/entities/{entityId}/urls?includeInactive=true."
           }
         },
         "required": [
           "address",
           "classification",
           "text",
-          "urlLink"
+          "urlLink",
+          "urlLinkSuppressedCount"
         ]
       },
       "EntityListResearch": {

@@ -451,6 +451,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
+                    urlLinkSuppressedCount: number;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -940,6 +941,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
+                    urlLinkSuppressedCount: number;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -1430,6 +1432,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
+                    urlLinkSuppressedCount: number;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -1910,6 +1913,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -2525,6 +2529,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
+                    urlLinkSuppressedCount: number;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -3014,6 +3019,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
+                    urlLinkSuppressedCount: number;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -3504,6 +3510,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
+                    urlLinkSuppressedCount: number;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -3984,6 +3991,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -4478,6 +4486,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         }, unknown, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
@@ -4756,6 +4765,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         }, unknown>>;
         fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;

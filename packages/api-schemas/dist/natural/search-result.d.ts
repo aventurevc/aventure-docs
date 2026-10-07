@@ -584,6 +584,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -1062,6 +1063,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -1560,6 +1562,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -2048,6 +2051,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -2538,6 +2542,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -3018,6 +3023,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
+                urlLinkSuppressedCount: number;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -3498,6 +3504,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -3972,6 +3979,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
+            urlLinkSuppressedCount: number;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;

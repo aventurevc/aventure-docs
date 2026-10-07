@@ -13,6 +13,8 @@ const EntityEnrichmentSchemaDefinition = z.object({
     text: EntityTextBundleSchema,
     /** URL link filter values */
     urlLink: z.array(EntityUrlLinkSchema),
+    /** Persisted URL link rows omitted from urlLink because they are not both isCurrent=true and isPrimary=true. Read the full list via GET /v1/entities/{entityId}/urls?includeInactive=true. */
+    urlLinkSuppressedCount: z.int(),
 });
 /**
  * Supplemental entity data — addresses, classification tags, funding, text content, and URL links

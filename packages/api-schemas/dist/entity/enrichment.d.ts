@@ -542,6 +542,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         url: string;
         urlType: string;
     }, unknown>>>;
+    urlLinkSuppressedCount: z.ZodInt;
 }, z.core.$strip>;
 type EntityEnrichmentDefinition = z.infer<typeof EntityEnrichmentSchemaDefinition>;
 /**
