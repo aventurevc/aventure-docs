@@ -9,11 +9,14 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/news/{newsId}/thumbnail
  * @endpoint GET /v1/people/{personId}/photo
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema AgentHelpSchema
  * @usedBySchema LogoAccuracySchema
  * @usedBySchema PersonSearchInterpretationSchema

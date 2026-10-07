@@ -34,7 +34,10 @@ type NewsResolvedEntityLinkDefinition = z.infer<typeof NewsResolvedEntityLinkSch
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema NewsDetailSchema
  * @usedBySchema NewsEntityMentionSchema
  * @contractShape news.resolved-entity-link

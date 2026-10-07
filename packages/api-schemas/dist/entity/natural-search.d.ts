@@ -163,11 +163,13 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
         }, unknown>>>>;
     }, z.core.$strict>>;
     search: z.ZodType<{
+        cacheMode?: "bypass" | "refresh" | "use" | undefined;
         mode?: string | undefined;
         model?: string | null | undefined;
         query: string;
         reasoningEffort?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
+        cacheMode?: "bypass" | "refresh" | "use" | undefined;
         mode?: string | undefined;
         model?: string | null | undefined;
         query: string;

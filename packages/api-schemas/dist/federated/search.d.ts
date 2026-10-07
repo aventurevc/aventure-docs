@@ -6962,8 +6962,12 @@ type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>
  * @openapiSchema FederatedSearch
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema LinkSearchSchema
+ * @usedBySchema SharedSearchSchema
  * @contractShape federated.search
  * @contractRole canonical
  */

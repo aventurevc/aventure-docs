@@ -1,5 +1,10 @@
 import { z } from "zod/v4";
 declare const NaturalSearchSchemaDefinition: z.ZodObject<{
+    cacheMode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
+        bypass: "bypass";
+        refresh: "refresh";
+        use: "use";
+    }>>>;
     mode: z.ZodOptional<z.ZodDefault<z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     query: z.ZodString;

@@ -248,8 +248,11 @@ type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchRes
  * @openapiSchema PersonNaturalSearchResult
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema FederatedSearchSchema
  * @contractShape person.natural-search-result
  * @contractRole canonical

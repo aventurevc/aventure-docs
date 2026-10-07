@@ -17,6 +17,8 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
@@ -26,6 +28,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema ContentEmbeddingMatchSchema
  * @contractShape content.source-type
  * @contractRole canonical

@@ -11,8 +11,11 @@ type SearchEvidenceSourceDefinition = z.infer<typeof SearchEvidenceSourceSchemaD
  * @openapiSchema SearchEvidenceSource
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema SearchAnswerCitationSchema
  * @usedBySchema SearchPassageSchema
  * @contractShape search.evidence-source

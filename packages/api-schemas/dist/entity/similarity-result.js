@@ -13,8 +13,11 @@ const EntitySimilarityResultSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema NaturalSearchResultSchema
  * @usedBySchema PageEntitySimilarityResultSchema
  * @contractShape entity.similarity-result

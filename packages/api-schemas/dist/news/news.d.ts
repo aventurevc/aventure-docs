@@ -29,10 +29,13 @@ type NewsDefinition = z.infer<typeof NewsSchemaDefinition>;
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityDetailSchema
  * @usedBySchema NewsDetailSchema
  * @usedBySchema NewsPublishedEventSchema
