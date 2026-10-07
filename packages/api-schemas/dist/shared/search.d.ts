@@ -1614,6 +1614,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 totalElements: number;
                 totalPages: number;
             };
+            searchRequestId?: string | null | undefined;
             subject: {
                 core: {
                     defaultCurrency?: string | null | undefined;
@@ -3159,6 +3160,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 totalElements: number;
                 totalPages: number;
             };
+            searchRequestId?: string | null | undefined;
         };
         personDetail: {
             articleCount?: number | null | undefined;
@@ -5116,6 +5118,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 totalElements: number;
                 totalPages: number;
             };
+            searchRequestId?: string | null | undefined;
             subject: {
                 core: {
                     defaultCurrency?: string | null | undefined;
@@ -6661,6 +6664,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 totalElements: number;
                 totalPages: number;
             };
+            searchRequestId?: string | null | undefined;
         };
         personDetail: {
             articleCount?: number | null | undefined;

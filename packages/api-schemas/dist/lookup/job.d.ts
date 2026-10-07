@@ -4,13 +4,20 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
     failureReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     identification: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         candidate: z.ZodArray<z.ZodObject<{
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            domainAgreement: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                CONFLICT: "CONFLICT";
+                MATCH: "MATCH";
+                UNKNOWN: "UNKNOWN";
+            }>>>;
             duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                 JUDGED: "JUDGED";
                 SHARED_FACT: "SHARED_FACT";
                 STUB: "STUB";
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -38,15 +45,23 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             }, unknown>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>;
         created: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            domainAgreement: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                CONFLICT: "CONFLICT";
+                MATCH: "MATCH";
+                UNKNOWN: "UNKNOWN";
+            }>>>;
             duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                 JUDGED: "JUDGED";
                 SHARED_FACT: "SHARED_FACT";
                 STUB: "STUB";
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -74,16 +89,24 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             }, unknown>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>>;
         detail: z.ZodString;
         duplicate: z.ZodArray<z.ZodObject<{
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            domainAgreement: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                CONFLICT: "CONFLICT";
+                MATCH: "MATCH";
+                UNKNOWN: "UNKNOWN";
+            }>>>;
             duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                 JUDGED: "JUDGED";
                 SHARED_FACT: "SHARED_FACT";
                 STUB: "STUB";
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -111,17 +134,25 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             }, unknown>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>;
         enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            domainAgreement: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                CONFLICT: "CONFLICT";
+                MATCH: "MATCH";
+                UNKNOWN: "UNKNOWN";
+            }>>>;
             duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                 JUDGED: "JUDGED";
                 SHARED_FACT: "SHARED_FACT";
                 STUB: "STUB";
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -149,6 +180,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             }, unknown>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>>;
         matchConfidence: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         matchEvidenceProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -648,9 +680,12 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         failureReason?: string | null | undefined;
         identification?: {
             candidate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -668,11 +703,15 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             created?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -690,12 +729,16 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             detail: string;
             duplicate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -713,13 +756,17 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -737,6 +784,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             matchConfidence?: number | null | undefined;
             matchEvidenceProbability?: number | null | undefined;
@@ -1273,9 +1321,12 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         failureReason?: string | null | undefined;
         identification?: {
             candidate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1293,11 +1344,15 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             created?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1315,12 +1370,16 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             detail: string;
             duplicate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1338,13 +1397,17 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1362,6 +1425,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             matchConfidence?: number | null | undefined;
             matchEvidenceProbability?: number | null | undefined;

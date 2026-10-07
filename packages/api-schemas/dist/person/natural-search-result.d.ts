@@ -240,6 +240,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
         totalElements: number;
         totalPages: number;
     }, unknown>>;
+    searchRequestId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
 }, z.core.$strip>;
 type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchResultSchemaDefinition>;
 /**

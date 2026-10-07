@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.90"
+    "version": "0.8.91"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -36690,6 +36690,14 @@
             "$ref": "#/components/schemas/PageResultEntityList",
             "description": "Entity list page returned by the canonical entity list engine."
           },
+          "searchRequestId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Id of this search's stored record; send it with createSearchInteraction to record which results the user selected or opened. Null when the search was not recorded."
+          },
           "subject": {
             "type": "array",
             "description": "Entities the question is about, one per resolved subject name, in query order; empty when the question names none or none resolves.",
@@ -36736,6 +36744,14 @@
           "result": {
             "$ref": "#/components/schemas/PageResultPerson",
             "description": "Person page returned by the canonical person list engine."
+          },
+          "searchRequestId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Id of this search's stored record; send it with createSearchInteraction to record which results the user selected or opened. Null when the search was not recorded."
           }
         },
         "required": [
@@ -41684,6 +41700,14 @@
         "type": "object",
         "description": "One existing record considered as the subject.",
         "properties": {
+          "createdAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When the record was created. A hidden record created moments before the lookup is a freshly filed shell, not established coverage."
+          },
           "dataCompletionCoverage": {
             "type": [
               "integer",
@@ -41693,6 +41717,18 @@
             "description": "Percentage, 0 to 100, of the entity's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for entities not yet computed.",
             "maximum": 100,
             "minimum": 0
+          },
+          "domainAgreement": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Whether this record's stored website agrees with a url the subject supplied; see IdentificationDomainAgreement.",
+            "enum": [
+              "MATCH",
+              "CONFLICT",
+              "UNKNOWN"
+            ]
           },
           "duplicateBasis": {
             "type": [
@@ -41713,6 +41749,14 @@
             ],
             "format": "double",
             "description": "Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED."
+          },
+          "foundedYear": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "The year the entity was founded, when stored; absent for people and records without one."
           },
           "owner": {
             "$ref": "#/components/schemas/EntityPersonOwner",
@@ -41737,6 +41781,13 @@
             ],
             "format": "date-time",
             "description": "When the stored record was last updated."
+          },
+          "website": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The record's current primary website URL as stored. Compare it to the subject's own url before trusting a same-name match; domainAgreement already does."
           }
         },
         "required": [

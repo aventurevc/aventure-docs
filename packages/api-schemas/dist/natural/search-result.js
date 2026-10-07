@@ -22,6 +22,8 @@ const NaturalSearchResultSchemaDefinition = z.object({
     pendingWebQuery: z.array(z.string()),
     /** Entity list page returned by the canonical entity list engine. */
     result: PageResultEntityListSchema,
+    /** Id of this search's stored record; send it with createSearchInteraction to record which results the user selected or opened. Null when the search was not recorded. */
+    searchRequestId: z.uuid().nullish(),
     /** Entities the question is about, one per resolved subject name, in query order; empty when the question names none or none resolves. */
     subject: z.array(EntityListSchema),
 });

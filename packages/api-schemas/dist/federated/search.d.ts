@@ -1602,6 +1602,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             totalElements: number;
             totalPages: number;
         };
+        searchRequestId?: string | null | undefined;
         subject: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -3680,6 +3681,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             totalElements: number;
             totalPages: number;
         };
+        searchRequestId?: string | null | undefined;
         subject: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -6137,6 +6139,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             totalElements: number;
             totalPages: number;
         };
+        searchRequestId?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
@@ -6259,6 +6262,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             totalElements: number;
             totalPages: number;
         };
+        searchRequestId?: string | null | undefined;
     }, unknown>>;
     personDetail: z.ZodArray<z.ZodType<{
         articleCount?: number | null | undefined;

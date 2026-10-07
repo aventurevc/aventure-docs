@@ -3193,6 +3193,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         totalElements: number;
         totalPages: number;
     }, unknown>>;
+    searchRequestId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     subject: z.ZodArray<z.ZodType<{
         core: {
             defaultCurrency?: string | null | undefined;

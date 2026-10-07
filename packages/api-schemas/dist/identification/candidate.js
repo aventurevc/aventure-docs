@@ -17,12 +17,18 @@ import { SearchDuplicateCandidateScoreSchema } from "../search/duplicate-candida
  * @contractRole canonical
  */
 export const IdentificationCandidateSchema = z.object({
+    /** When the record was created. A hidden record created moments before the lookup is a freshly filed shell, not established coverage. */
+    createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Percentage, 0 to 100, of the entity's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for entities not yet computed. */
     dataCompletionCoverage: z.int().min(0).max(100).nullish(),
+    /** Whether this record's stored website agrees with a url the subject supplied; see IdentificationDomainAgreement. */
+    domainAgreement: z.enum(["MATCH", "CONFLICT", "UNKNOWN"]).nullish(),
     /** How this record was checked as the picked record stored again; absent when it was not checked. */
     duplicateBasis: z.enum(["STUB", "SHARED_FACT", "JUDGED"]).nullish(),
     /** Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED. */
     duplicateProbability: z.number().nullish(),
+    /** The year the entity was founded, when stored; absent for people and records without one. */
+    foundedYear: z.int().nullish(),
     /** Entity identity (entityId) or person identity (personId). record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}. */
     owner: EntityPersonOwnerSchema,
     /** Decision-model probability, 0 to 1, that this record is the subject; absent when the answer came from URL proof or the model did not judge this record. */
@@ -31,5 +37,7 @@ export const IdentificationCandidateSchema = z.object({
     record: SearchDuplicateCandidateScoreSchema,
     /** When the stored record was last updated. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** The record's current primary website URL as stored. Compare it to the subject's own url before trusting a same-name match; domainAgreement already does. */
+    website: z.string().nullish(),
 });
 //# sourceMappingURL=candidate.js.map

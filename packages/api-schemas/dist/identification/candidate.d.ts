@@ -14,13 +14,20 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const IdentificationCandidateSchema: z.ZodObject<{
+    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    domainAgreement: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        CONFLICT: "CONFLICT";
+        MATCH: "MATCH";
+        UNKNOWN: "UNKNOWN";
+    }>>>;
     duplicateBasis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         JUDGED: "JUDGED";
         SHARED_FACT: "SHARED_FACT";
         STUB: "STUB";
     }>>>;
     duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     owner: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -48,6 +55,7 @@ export declare const IdentificationCandidateSchema: z.ZodObject<{
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, unknown>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 export type IdentificationCandidate = z.infer<typeof IdentificationCandidateSchema>;
 //# sourceMappingURL=candidate.d.ts.map

@@ -481,9 +481,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         failureReason?: string | null | undefined;
         identification?: {
             candidate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -501,11 +504,15 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             created?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -523,12 +530,16 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             detail: string;
             duplicate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -546,13 +557,17 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -570,6 +585,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             matchConfidence?: number | null | undefined;
             matchEvidenceProbability?: number | null | undefined;
@@ -1106,9 +1122,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         failureReason?: string | null | undefined;
         identification?: {
             candidate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1126,11 +1145,15 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             created?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1148,12 +1171,16 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             detail: string;
             duplicate: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1171,13 +1198,17 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
+                createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
+                domainAgreement?: "CONFLICT" | "MATCH" | "UNKNOWN" | null | undefined;
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
+                foundedYear?: number | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1195,6 +1226,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                website?: string | null | undefined;
             } | null | undefined;
             matchConfidence?: number | null | undefined;
             matchEvidenceProbability?: number | null | undefined;
