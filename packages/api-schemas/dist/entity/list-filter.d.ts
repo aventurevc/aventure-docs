@@ -32,6 +32,8 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
             min?: number | null | undefined;
         }, unknown>>>>;
         investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        investedRound: z.ZodOptional<z.ZodArray<z.ZodString>>;
         investorActivity: z.ZodOptional<z.ZodObject<{
             averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
@@ -77,6 +79,7 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, unknown>>>>;
+        rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         round: z.ZodOptional<z.ZodArray<z.ZodString>>;
         totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;

@@ -4,7 +4,12 @@ declare const SearchPassageSchemaDefinition: z.ZodObject<{
     label: z.ZodString;
     publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     score: z.ZodNumber;
-    source: z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>;
+    source: z.ZodUnion<readonly [z.ZodEnum<{
+        entityRecord: "entityRecord";
+        fundraiseTransaction: "fundraiseTransaction";
+        newsArticle: "newsArticle";
+        researchSnippet: "researchSnippet";
+    }>, z.ZodString]>;
     sourceId: z.ZodString;
     text: z.ZodString;
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;

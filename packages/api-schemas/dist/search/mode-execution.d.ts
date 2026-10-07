@@ -1,7 +1,21 @@
 import { z } from "zod/v4";
 declare const SearchModeExecutionSchemaDefinition: z.ZodObject<{
-    modeRequested: z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>;
-    modeUsed: z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>;
+    modeRequested: z.ZodUnion<readonly [z.ZodEnum<{
+        auto: "auto";
+        exact: "exact";
+        hybrid: "hybrid";
+        keyword: "keyword";
+        natural: "natural";
+        semantic: "semantic";
+    }>, z.ZodString]>;
+    modeUsed: z.ZodUnion<readonly [z.ZodEnum<{
+        auto: "auto";
+        exact: "exact";
+        hybrid: "hybrid";
+        keyword: "keyword";
+        natural: "natural";
+        semantic: "semantic";
+    }>, z.ZodString]>;
 }, z.core.$strip>;
 type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDefinition>;
 /**

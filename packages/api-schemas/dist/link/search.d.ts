@@ -53,6 +53,8 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         investedCompanyName?: string[] | undefined;
+                        investedIndustry?: string[] | undefined;
+                        investedRound?: string[] | undefined;
                         investorActivity?: {
                             averageAmountInvestedUsdRange?: {
                                 max?: number | null | undefined;
@@ -80,6 +82,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
+                        rankByInvestmentActivity?: boolean | null | undefined;
                         round?: string[] | undefined;
                         totalRaisedRange?: {
                             max?: number | null | undefined;
@@ -141,6 +144,132 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 subjectEntityName: string[];
                 unsupported?: string | null | undefined;
             };
+            investment: {
+                evidence: {
+                    fundManagerRelationshipSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    fundraiseTransaction: {
+                        amountRaised?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        currency?: string | null | undefined;
+                        dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+                        dateAnnounced?: string | null | undefined;
+                        dateFundingComplete?: string | null | undefined;
+                        dateInvestorExit?: string | null | undefined;
+                        entity?: {
+                            core: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            fundingDetail?: {
+                                currency?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                                totalRaised: number;
+                            } | null | undefined;
+                        } | null | undefined;
+                        id: string;
+                        investorAttribution?: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        } | null | undefined;
+                        investorCount?: number | null | undefined;
+                        round?: string | null | undefined;
+                        sourceAttribution: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        }[];
+                        updatedAt?: string | null | undefined;
+                        valuationPostMoney?: number | null | undefined;
+                        valuationPreMoney?: number | null | undefined;
+                    };
+                    fundraiseTransactionSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    investorJoinSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                };
+                investor: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                };
+                semanticMatch?: {
+                    computedAt: string;
+                    cosineDistance: number;
+                    cosineScore: number;
+                    modelVersion: string;
+                    rank: number;
+                    sourceHash: string;
+                    sourceId: string;
+                    sourceJson: string;
+                    sourceText: string;
+                    sourceType: string;
+                } | null | undefined;
+            }[];
             judgment: {
                 entity: {
                     core: {
@@ -618,6 +747,38 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         sourceType: string;
                     } | null | undefined;
                 };
+                matchedOffering?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 probability: number;
                 webUrl: string[];
             }[];
@@ -3103,6 +3264,132 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
                 unsupported?: string | null | undefined;
             };
+            investment: {
+                evidence: {
+                    fundManagerRelationshipSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    fundraiseTransaction: {
+                        amountRaised?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        currency?: string | null | undefined;
+                        dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+                        dateAnnounced?: string | null | undefined;
+                        dateFundingComplete?: string | null | undefined;
+                        dateInvestorExit?: string | null | undefined;
+                        entity?: {
+                            core: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            fundingDetail?: {
+                                currency?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                                totalRaised: number;
+                            } | null | undefined;
+                        } | null | undefined;
+                        id: string;
+                        investorAttribution?: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        } | null | undefined;
+                        investorCount?: number | null | undefined;
+                        round?: string | null | undefined;
+                        sourceAttribution: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        }[];
+                        updatedAt?: string | null | undefined;
+                        valuationPostMoney?: number | null | undefined;
+                        valuationPreMoney?: number | null | undefined;
+                    };
+                    fundraiseTransactionSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    investorJoinSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                };
+                investor: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                };
+                semanticMatch?: {
+                    computedAt: string;
+                    cosineDistance: number;
+                    cosineScore: number;
+                    modelVersion: string;
+                    rank: number;
+                    sourceHash: string;
+                    sourceId: string;
+                    sourceJson: string;
+                    sourceText: string;
+                    sourceType: string;
+                } | null | undefined;
+            }[];
             result: {
                 content: {
                     createdAt?: string | null | undefined;
@@ -3557,6 +3844,8 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         investedCompanyName?: string[] | undefined;
+                        investedIndustry?: string[] | undefined;
+                        investedRound?: string[] | undefined;
                         investorActivity?: {
                             averageAmountInvestedUsdRange?: {
                                 max?: number | null | undefined;
@@ -3584,6 +3873,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
+                        rankByInvestmentActivity?: boolean | null | undefined;
                         round?: string[] | undefined;
                         totalRaisedRange?: {
                             max?: number | null | undefined;
@@ -3645,6 +3935,132 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 subjectEntityName: string[];
                 unsupported?: string | null | undefined;
             };
+            investment: {
+                evidence: {
+                    fundManagerRelationshipSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    fundraiseTransaction: {
+                        amountRaised?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        currency?: string | null | undefined;
+                        dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+                        dateAnnounced?: string | null | undefined;
+                        dateFundingComplete?: string | null | undefined;
+                        dateInvestorExit?: string | null | undefined;
+                        entity?: {
+                            core: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            fundingDetail?: {
+                                currency?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                                totalRaised: number;
+                            } | null | undefined;
+                        } | null | undefined;
+                        id: string;
+                        investorAttribution?: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        } | null | undefined;
+                        investorCount?: number | null | undefined;
+                        round?: string | null | undefined;
+                        sourceAttribution: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        }[];
+                        updatedAt?: string | null | undefined;
+                        valuationPostMoney?: number | null | undefined;
+                        valuationPreMoney?: number | null | undefined;
+                    };
+                    fundraiseTransactionSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    investorJoinSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                };
+                investor: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                };
+                semanticMatch?: {
+                    computedAt: string;
+                    cosineDistance: number;
+                    cosineScore: number;
+                    modelVersion: string;
+                    rank: number;
+                    sourceHash: string;
+                    sourceId: string;
+                    sourceJson: string;
+                    sourceText: string;
+                    sourceType: string;
+                } | null | undefined;
+            }[];
             judgment: {
                 entity: {
                     core: {
@@ -4122,6 +4538,38 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         sourceType: string;
                     } | null | undefined;
                 };
+                matchedOffering?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 probability: number;
                 webUrl: string[];
             }[];
@@ -6607,6 +7055,132 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
                 unsupported?: string | null | undefined;
             };
+            investment: {
+                evidence: {
+                    fundManagerRelationshipSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    fundraiseTransaction: {
+                        amountRaised?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        currency?: string | null | undefined;
+                        dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+                        dateAnnounced?: string | null | undefined;
+                        dateFundingComplete?: string | null | undefined;
+                        dateInvestorExit?: string | null | undefined;
+                        entity?: {
+                            core: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            fundingDetail?: {
+                                currency?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                                totalRaised: number;
+                            } | null | undefined;
+                        } | null | undefined;
+                        id: string;
+                        investorAttribution?: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        } | null | undefined;
+                        investorCount?: number | null | undefined;
+                        round?: string | null | undefined;
+                        sourceAttribution: {
+                            amountInvested?: number | null | undefined;
+                            attributionType: "direct" | "managedFund";
+                            beneficialEntityId?: string | null | undefined;
+                            fundManagerRelationshipId?: number | null | undefined;
+                            joinId: string;
+                            leadInvestor: boolean;
+                            recordedEntityId?: string | null | undefined;
+                            round?: {
+                                round: string;
+                            } | null | undefined;
+                            transactionId: string;
+                        }[];
+                        updatedAt?: string | null | undefined;
+                        valuationPostMoney?: number | null | undefined;
+                        valuationPreMoney?: number | null | undefined;
+                    };
+                    fundraiseTransactionSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                    investorJoinSource?: {
+                        changedAt?: string | null | undefined;
+                        dataSourceUpdatedAt?: string | null | undefined;
+                        pendingApproval?: number | null | undefined;
+                        sourceId?: string | null | undefined;
+                        status?: string | null | undefined;
+                    } | null | undefined;
+                };
+                investor: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                };
+                semanticMatch?: {
+                    computedAt: string;
+                    cosineDistance: number;
+                    cosineScore: number;
+                    modelVersion: string;
+                    rank: number;
+                    sourceHash: string;
+                    sourceId: string;
+                    sourceJson: string;
+                    sourceText: string;
+                    sourceType: string;
+                } | null | undefined;
+            }[];
             result: {
                 content: {
                     createdAt?: string | null | undefined;

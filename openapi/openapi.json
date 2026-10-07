@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.91"
+    "version": "0.8.92"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3748,6 +3748,44 @@
                 "type": "string",
                 "description": "Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies."
               }
+            }
+          },
+          {
+            "description": "Round labels of the deals an investor joined, such as Seed, Pre-Seed, or Series A; restricts returned entities to investors with such a deal inside the investment-activity horizon.",
+            "in": "query",
+            "name": "fundraiseActivity.investedRound",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Round labels of the deals an investor joined, such as Seed, Pre-Seed, or Series A; restricts returned entities to investors with such a deal inside the investment-activity horizon.",
+              "items": {
+                "type": "string",
+                "description": "Round labels of the deals an investor joined, such as Seed, Pre-Seed, or Series A; restricts returned entities to investors with such a deal inside the investment-activity horizon."
+              }
+            }
+          },
+          {
+            "description": "Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both.",
+            "in": "query",
+            "name": "fundraiseActivity.investedIndustry",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both.",
+              "items": {
+                "type": "string",
+                "description": "Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both."
+              }
+            }
+          },
+          {
+            "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal.",
+            "in": "query",
+            "name": "fundraiseActivity.rankByInvestmentActivity",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal."
             }
           },
           {
@@ -26362,7 +26400,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person as each scope finishes, each with its scope's page; then settled with this whole answer before synthesis (no answer yet; later events keep its rows in place); then complete with this same answer. Without synthesis, settled and complete carry the same answer. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
+        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person as each scope finishes, each with its scope's page; then settled with this whole answer before synthesis (no answer yet); then, on the stream only, revised with the whole answer again when web searches the settled entity answer listed in pendingWebQuery finish and add companies; then complete with the latest of those answers. Revised and complete keep every settled row in place and add new rows below them; this JSON response returns without waiting for those searches. Settled, revised, and complete each carry an increasing SSE id; re-send the request with a Last-Event-ID header to resume, and the stream skips the scope events and every answer at or below that id, always ending with complete under a higher id. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -36658,6 +36696,13 @@
             "$ref": "#/components/schemas/SearchInterpretation",
             "description": "Structured interpretation used to run the entity list query."
           },
+          "investment": {
+            "type": "array",
+            "description": "Recorded investment participation supporting investor discovery. Each row keeps its entity or personal investor, portfolio company, transaction attribution, and query-matched offering evidence. Empty for other question intents.",
+            "items": {
+              "$ref": "#/components/schemas/SearchInvestment"
+            }
+          },
           "judgment": {
             "type": "array",
             "description": "Judged rows of the `result` page for a competitor, market, or provider question: the same entities in the same order, each with its judged probability. Empty for other questions.",
@@ -36708,6 +36753,7 @@
         },
         "required": [
           "interpretation",
+          "investment",
           "judgment",
           "passage",
           "peer",
@@ -36741,6 +36787,13 @@
             "$ref": "#/components/schemas/PersonSearchInterpretation",
             "description": "Structured interpretation used to run the people query."
           },
+          "investment": {
+            "type": "array",
+            "description": "Personal investment participation supporting the returned people. Firm portfolio activity is never attributed to employees. Empty for other question intents.",
+            "items": {
+              "$ref": "#/components/schemas/SearchInvestment"
+            }
+          },
           "result": {
             "$ref": "#/components/schemas/PageResultPerson",
             "description": "Person page returned by the canonical person list engine."
@@ -36756,6 +36809,7 @@
         },
         "required": [
           "interpretation",
+          "investment",
           "result"
         ]
       },
@@ -37474,6 +37528,32 @@
           "sort"
         ]
       },
+      "SearchInvestment": {
+        "type": "object",
+        "description": "Canonical investor participation and matched portfolio offering evidence.",
+        "properties": {
+          "evidence": {
+            "$ref": "#/components/schemas/FundraiseInvestmentEvidence"
+          },
+          "investor": {
+            "$ref": "#/components/schemas/EntityPersonOwner"
+          },
+          "semanticMatch": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ContentEmbeddingMatch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "evidence",
+          "investor"
+        ]
+      },
       "PageResultPerson": {
         "type": "object",
         "properties": {
@@ -37804,6 +37884,91 @@
           "stageName"
         ]
       },
+      "FundraiseInvestmentEvidence": {
+        "type": "object",
+        "description": "Canonical transaction, participation attribution, and their owning source metadata.",
+        "properties": {
+          "fundManagerRelationshipSource": {
+            "description": "Source metadata of a managed-fund relationship, when used.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DatasourceSourceMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "fundraiseTransaction": {
+            "$ref": "#/components/schemas/EntityFundraiseTransaction",
+            "description": "Recorded round with investor-specific and source attribution."
+          },
+          "fundraiseTransactionSource": {
+            "description": "Source metadata of the fundraise transaction.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DatasourceSourceMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "investorJoinSource": {
+            "description": "Source metadata of the selected investment participation.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DatasourceSourceMetadata"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "fundraiseTransaction"
+        ]
+      },
+      "DatasourceSourceMetadata": {
+        "type": "object",
+        "description": "Grouped source/provenance metadata for private v1 response fields",
+        "properties": {
+          "changedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "dataSourceUpdatedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "pendingApproval": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32"
+          },
+          "sourceId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
       "Confidence": {
         "type": "string",
         "description": "Three-level confidence band for a classifier, model, or probe verdict. The carrying property states what is assessed and what each band licenses.",
@@ -38016,6 +38181,17 @@
           "entity": {
             "$ref": "#/components/schemas/EntityList",
             "description": "The answering entity."
+          },
+          "matchedOffering": {
+            "description": "Current public Product/Service that supports this answer.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Entity"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "probability": {
             "type": "number",
@@ -38724,11 +38900,12 @@
       },
       "SearchEvidenceSource": {
         "type": "string",
-        "description": "Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity.",
+        "description": "Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.",
         "x-extensible-enum": [
           "entityRecord",
           "researchSnippet",
-          "newsArticle"
+          "newsArticle",
+          "fundraiseTransaction"
         ]
       },
       "SearchIntent": {
@@ -38820,7 +38997,7 @@
           },
           "sourceId": {
             "type": "string",
-            "description": "Entity id for `entityRecord`, else the snippet or news article id from `passage`."
+            "description": "Entity id for `entityRecord`, snippet or news article id from `passage`, or the recorded round id for `fundraiseTransaction`."
           }
         },
         "required": [
@@ -41537,6 +41714,20 @@
               "type": "string"
             }
           },
+          "investedIndustry": {
+            "type": "array",
+            "description": "Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "investedRound": {
+            "type": "array",
+            "description": "Round labels of the deals an investor joined, such as Seed, Pre-Seed, or Series A; restricts returned entities to investors with such a deal inside the investment-activity horizon.",
+            "items": {
+              "type": "string"
+            }
+          },
           "investorActivity": {
             "$ref": "#/components/schemas/InvestorActivityFilter",
             "description": "Aggregate investor activity filters."
@@ -41554,6 +41745,13 @@
             "items": {
               "$ref": "#/components/schemas/IntRange"
             }
+          },
+          "rankByInvestmentActivity": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal."
           },
           "round": {
             "type": "array",

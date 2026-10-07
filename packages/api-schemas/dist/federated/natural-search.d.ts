@@ -38,6 +38,8 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }, unknown>>>>;
             investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedRound: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investorActivity: z.ZodOptional<z.ZodObject<{
                 averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
@@ -83,6 +85,7 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }, unknown>>>>;
+            rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             round: z.ZodOptional<z.ZodArray<z.ZodString>>;
             totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
@@ -167,7 +170,14 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
             min?: number | null | undefined;
         }, unknown>>>>;
     }, z.core.$strict>>;
-    mode: z.ZodOptional<z.ZodDefault<z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>>>;
+    mode: z.ZodOptional<z.ZodDefault<z.ZodUnion<readonly [z.ZodEnum<{
+        auto: "auto";
+        exact: "exact";
+        hybrid: "hybrid";
+        keyword: "keyword";
+        natural: "natural";
+        semantic: "semantic";
+    }>, z.ZodString]>>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     newsSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     personSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;

@@ -1,12 +1,6 @@
 import { z } from "zod/v4";
-declare const SearchEvidenceSourceSchemaDefinition: z.ZodUnion<readonly [z.ZodEnum<{
-    entityRecord: "entityRecord";
-    newsArticle: "newsArticle";
-    researchSnippet: "researchSnippet";
-}>, z.ZodString]>;
-type SearchEvidenceSourceDefinition = z.infer<typeof SearchEvidenceSourceSchemaDefinition>;
 /**
- * Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity.
+ * Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.
  *
  * @openapiSchema SearchEvidenceSource
  * @endpoint GET /v1/search/link
@@ -21,7 +15,11 @@ type SearchEvidenceSourceDefinition = z.infer<typeof SearchEvidenceSourceSchemaD
  * @contractShape search.evidence-source
  * @contractRole canonical
  */
-export declare const SearchEvidenceSourceSchema: z.ZodType<SearchEvidenceSourceDefinition>;
+export declare const SearchEvidenceSourceSchema: z.ZodUnion<readonly [z.ZodEnum<{
+    entityRecord: "entityRecord";
+    fundraiseTransaction: "fundraiseTransaction";
+    newsArticle: "newsArticle";
+    researchSnippet: "researchSnippet";
+}>, z.ZodString]>;
 export type SearchEvidenceSource = z.infer<typeof SearchEvidenceSourceSchema>;
-export {};
 //# sourceMappingURL=evidence-source.d.ts.map

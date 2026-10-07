@@ -23,6 +23,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFundraiseTransactionSchema
  * @usedBySchema PersonGraphCareerContextSchema

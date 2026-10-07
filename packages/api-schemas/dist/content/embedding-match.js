@@ -32,6 +32,7 @@ import { ContentSourceTypeSchema } from "./source-type.js";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityListSchema
  * @usedBySchema PersonSchema
+ * @usedBySchema SearchInvestmentSchema
  * @contractShape content.embedding-match
  * @contractRole canonical
  */

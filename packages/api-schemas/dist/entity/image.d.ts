@@ -48,6 +48,7 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFundraiseSchema
  * @usedBySchema EntityPersonAssociationSchema

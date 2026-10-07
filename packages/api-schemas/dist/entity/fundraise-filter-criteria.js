@@ -29,12 +29,18 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     amountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies. */
     investedCompanyName: z.array(z.string()).optional(),
+    /** Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both. */
+    investedIndustry: z.array(z.string()).optional(),
+    /** Round labels of the deals an investor joined, such as Seed, Pre-Seed, or Series A; restricts returned entities to investors with such a deal inside the investment-activity horizon. */
+    investedRound: z.array(z.string()).optional(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
     /** Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined. */
     investorName: z.array(z.string()).optional(),
     /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),
+    /** True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal. */
+    rankByInvestmentActivity: z.boolean().nullish(),
     /** Fundraise round labels, such as Seed or Series A. */
     round: z.array(z.string()).optional(),
     /** Total-raised ranges across all rounds in USD. Use plain JSON numbers. */

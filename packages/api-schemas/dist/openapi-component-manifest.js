@@ -189,6 +189,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "datasource/provenance-actor-type",
         schemaName: "DatasourceProvenanceActorTypeSchema",
     },
+    DatasourceSourceMetadata: {
+        modulePath: "datasource/source-metadata",
+        schemaName: "DatasourceSourceMetadataSchema",
+    },
     DecimalRange: { modulePath: "decimal/range", schemaName: "DecimalRangeSchema" },
     DomainConflictDetails: {
         modulePath: "domain/conflict-details",
@@ -476,6 +480,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     FundraiseInvestmentAttributionType: {
         modulePath: "fundraise/investment-attribution-type",
         schemaName: "FundraiseInvestmentAttributionTypeSchema",
+    },
+    FundraiseInvestmentEvidence: {
+        modulePath: "fundraise/investment-evidence",
+        schemaName: "FundraiseInvestmentEvidenceSchema",
     },
     FundraiseTransactionStatus: {
         modulePath: "fundraise/transaction-status",
@@ -843,6 +851,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/interpretation",
         schemaName: "SearchInterpretationSchema",
     },
+    SearchInvestment: { modulePath: "search/investment", schemaName: "SearchInvestmentSchema" },
     SearchJudgment: { modulePath: "search/judgment", schemaName: "SearchJudgmentSchema" },
     SearchLayer: { modulePath: "search/layer", schemaName: "SearchLayerSchema" },
     SearchMode: { modulePath: "search/mode", schemaName: "SearchModeSchema" },

@@ -1,7 +1,12 @@
 import { z } from "zod/v4";
 declare const SearchAnswerCitationSchemaDefinition: z.ZodObject<{
     entityId: z.ZodUUID;
-    source: z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>;
+    source: z.ZodUnion<readonly [z.ZodEnum<{
+        entityRecord: "entityRecord";
+        fundraiseTransaction: "fundraiseTransaction";
+        newsArticle: "newsArticle";
+        researchSnippet: "researchSnippet";
+    }>, z.ZodString]>;
     sourceId: z.ZodString;
 }, z.core.$strip>;
 type SearchAnswerCitationDefinition = z.infer<typeof SearchAnswerCitationSchemaDefinition>;

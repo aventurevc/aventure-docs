@@ -37,6 +37,8 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }[] | undefined;
             investedCompanyName?: string[] | undefined;
+            investedIndustry?: string[] | undefined;
+            investedRound?: string[] | undefined;
             investorActivity?: {
                 averageAmountInvestedUsdRange?: {
                     max?: number | null | undefined;
@@ -64,6 +66,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }[] | undefined;
+            rankByInvestmentActivity?: boolean | null | undefined;
             round?: string[] | undefined;
             totalRaisedRange?: {
                 max?: number | null | undefined;
@@ -136,6 +139,8 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }[] | undefined;
             investedCompanyName?: string[] | undefined;
+            investedIndustry?: string[] | undefined;
+            investedRound?: string[] | undefined;
             investorActivity?: {
                 averageAmountInvestedUsdRange?: {
                     max?: number | null | undefined;
@@ -163,6 +168,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }[] | undefined;
+            rankByInvestmentActivity?: boolean | null | undefined;
             round?: string[] | undefined;
             totalRaisedRange?: {
                 max?: number | null | undefined;

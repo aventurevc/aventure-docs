@@ -48,9 +48,11 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityListSchema
+ * @usedBySchema FundraiseInvestmentEvidenceSchema
  * @usedBySchema PageEntityFundraiseTransactionSchema
  * @contractShape entity.fundraise-transaction
  * @contractRole canonical

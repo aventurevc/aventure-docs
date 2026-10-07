@@ -5,6 +5,7 @@ import { EntitySimilarityResultSchema } from "../entity/similarity-result.js";
 import { PageResultEntityListSchema } from "../pagination/schemas.js";
 import { SearchAnswerSchema } from "../search/answer.js";
 import { SearchInterpretationSchema } from "../search/interpretation.js";
+import { SearchInvestmentSchema } from "../search/investment.js";
 import { SearchJudgmentSchema } from "../search/judgment.js";
 import { SearchPassageSchema } from "../search/passage.js";
 const NaturalSearchResultSchemaDefinition = z.object({
@@ -12,6 +13,8 @@ const NaturalSearchResultSchemaDefinition = z.object({
     answer: SearchAnswerSchema.nullish(),
     /** Structured interpretation used to run the entity list query. */
     interpretation: SearchInterpretationSchema,
+    /** Recorded investment participation supporting investor discovery. Each row keeps its entity or personal investor, portfolio company, transaction attribution, and query-matched offering evidence. Empty for other question intents. */
+    investment: z.array(SearchInvestmentSchema),
     /** Judged rows of the `result` page for a competitor, market, or provider question: the same entities in the same order, each with its judged probability. Empty for other questions. */
     judgment: z.array(SearchJudgmentSchema),
     /** Passages that best answer the question, ranked by score; empty unless the request asks for the `passage` layer. */

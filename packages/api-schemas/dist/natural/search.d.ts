@@ -5,7 +5,14 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
         refresh: "refresh";
         use: "use";
     }>>>;
-    mode: z.ZodOptional<z.ZodDefault<z.ZodType<string, unknown, z.core.$ZodTypeInternals<string, unknown>>>>;
+    mode: z.ZodOptional<z.ZodDefault<z.ZodUnion<readonly [z.ZodEnum<{
+        auto: "auto";
+        exact: "exact";
+        hybrid: "hybrid";
+        keyword: "keyword";
+        natural: "natural";
+        semantic: "semantic";
+    }>, z.ZodString]>>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     query: z.ZodString;
     reasoningEffort: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{

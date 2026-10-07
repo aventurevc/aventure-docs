@@ -1,9 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntitySchema } from "../entity/entity.js";
 import { EntityListSchema } from "../entity/list.js";
 const SearchJudgmentSchemaDefinition = z.object({
     /** The answering entity. */
     entity: EntityListSchema,
+    /** Current public Product/Service that supports this answer. */
+    matchedOffering: EntitySchema.nullish(),
     /** Judged probability, 0 to 1, that the entity answers the question. */
     probability: z.number(),
     /** Stored web search result pages that name the entity; empty without `web`. */
