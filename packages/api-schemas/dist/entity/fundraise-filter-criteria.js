@@ -37,7 +37,7 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     investedRound: z.array(z.string()).optional(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
-    /** Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined. */
+    /** Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined. */
     investorName: z.array(z.string()).optional(),
     /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),

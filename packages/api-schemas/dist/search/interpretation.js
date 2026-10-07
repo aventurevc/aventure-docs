@@ -10,7 +10,7 @@ const SearchInterpretationSchemaDefinition = z.object({
     confidence: ConfidenceSchema,
     /** Requested and executed search strategy. */
     execution: SearchModeExecutionSchema,
-    /** True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query. */
+    /** True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query, or when a plan that matched no entity was relaxed into one that did. */
     fallbackUsed: z.boolean(),
     /** Canonical entity filter generated from the natural-language query. */
     filter: EntityListFilterSchema,
@@ -22,7 +22,7 @@ const SearchInterpretationSchemaDefinition = z.object({
     sort: SearchOrderingEntityFilterSortableSchema,
     /** Brand or legal names of the entities the question is about, as written in the query; empty for discovery questions. */
     subjectEntityName: z.array(z.string()),
-    /** Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported. */
+    /** Constraint the planner could not translate into the canonical EntityFilter contract, and the planned constraints a zero-row search relaxed; null when every material constraint was supported and applied. */
     unsupported: z.string().nullish(),
 });
 /**

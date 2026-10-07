@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.95"
+    "version": "0.8.96"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3803,16 +3803,16 @@
             }
           },
           {
-            "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined.",
+            "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined.",
             "in": "query",
             "name": "fundraiseActivity.investorName",
             "required": false,
             "schema": {
               "type": "array",
-              "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined.",
+              "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined.",
               "items": {
                 "type": "string",
-                "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined."
+                "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined."
               }
             }
           },
@@ -6732,7 +6732,7 @@
     },
     "/v1/entities/search": {
       "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. Semantic results can emit signed cursors; reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with semanticQuery or cursor; count-only pages have no content; read totalElements.",
+        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. semanticQuery defines a bounded result set: the nearest rows at or above a relevance cutoff, capped in size and ordered by score; page numbers reach the whole set and totalElements counts it. A semantic set of 50 rows or fewer can emit a signed cursor; reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with cursor; count-only pages have no content; read totalElements.",
         "operationId": "searchEntities",
         "parameters": [
           {
@@ -38144,7 +38144,7 @@
           },
           "fallbackUsed": {
             "type": "boolean",
-            "description": "True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query."
+            "description": "True when the semantic fallback replaced an untranslatable planner result with a semantic search over the original query, or when a plan that matched no entity was relaxed into one that did."
           },
           "filter": {
             "$ref": "#/components/schemas/EntityListFilter",
@@ -38174,7 +38174,7 @@
               "string",
               "null"
             ],
-            "description": "Constraint the planner could not translate into the canonical EntityFilter contract; null when every material constraint was supported."
+            "description": "Constraint the planner could not translate into the canonical EntityFilter contract, and the planned constraints a zero-row search relaxed; null when every material constraint was supported and applied."
           }
         },
         "required": [
@@ -41760,7 +41760,7 @@
           },
           "investorName": {
             "type": "array",
-            "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined.",
+            "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined.",
             "items": {
               "type": "string"
             }
