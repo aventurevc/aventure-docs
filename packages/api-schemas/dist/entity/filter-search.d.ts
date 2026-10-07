@@ -35,6 +35,10 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }, unknown>>>>;
+            dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            }, z.core.$strip>>>;
             investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;

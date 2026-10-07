@@ -14,6 +14,7 @@ declare const SortOrderPersonSortFieldSchemaDefinition: z.ZodObject<{
         TOTAL_INVESTMENTS: "TOTAL_INVESTMENTS";
         UPDATED_AT: "UPDATED_AT";
     }>;
+    sortKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SortOrderPersonSortFieldDefinition = z.infer<typeof SortOrderPersonSortFieldSchemaDefinition>;
 /**

@@ -5,9 +5,9 @@
       "email": "team@aventure.vc",
       "name": "aVenture"
     },
-    "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
+    "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.97"
+    "version": "0.8.100"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3672,6 +3672,28 @@
             }
           },
           {
+            "description": "Inclusive earliest timestamp.",
+            "in": "query",
+            "name": "fundraiseActivity.dateAnnouncedRange.min",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Inclusive earliest timestamp."
+            }
+          },
+          {
+            "description": "Inclusive latest timestamp.",
+            "in": "query",
+            "name": "fundraiseActivity.dateAnnouncedRange.max",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Inclusive latest timestamp."
+            }
+          },
+          {
             "description": "Per-round amount-raised ranges in USD. Use plain JSON numbers.",
             "in": "query",
             "name": "fundraiseActivity.amountRaisedRange",
@@ -6732,7 +6754,7 @@
     },
     "/v1/entities/search": {
       "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. semanticQuery defines a bounded result set: the nearest rows at or above a relevance cutoff, capped in size and ordered by score; page numbers reach the whole set and totalElements counts it. A semantic set of 50 rows or fewer can emit a signed cursor; reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with cursor; count-only pages have no content; read totalElements.",
+        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. semanticQuery defines a bounded result set: the nearest rows at or above a relevance cutoff, capped in size and ordered by score; page numbers reach the whole set and totalElements counts it. Page 0 of a semantic set of 50 rows or fewer can emit a signed cursor; other pages continue by page number. To follow the cursor, reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with cursor; count-only pages have no content; read totalElements.",
         "operationId": "searchEntities",
         "parameters": [
           {
@@ -16045,7 +16067,7 @@
     },
     "/v1/harness/runs": {
       "post": {
-        "description": "Queues a run that researches the company, Product, Service, or person at url and writes its aVenture profile, owned by the caller. A url a current record owns enriches that record; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH (CLI: lookup). Send name when known. A new run spends one `company` or `person` research unit; a run already queued or running for the same subject is returned instead, uncharged. A url that matches more than one record answers 409, and a spent allowance 429. Check progress with GET /v1/harness/runs/{runId} (CLI: harness runs get); the caller is notified when the run completes. Without an admin credential a caller may set only url, name, model, mode, userPrompt, and taskPresetKey; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. An admin bearer credential files a run it owns with any field; an admin API key files one owned by the back-end's Clerk machine.",
+        "description": "Queues a run that researches the company, Product, Service, or person at url and writes its aVenture profile, owned by the caller. A url a current record owns enriches that record; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH (CLI: lookup). Send name when known. A new run spends one `company` or `person` research unit; a run already queued or running for the same subject is returned instead, uncharged. A url that matches more than one record answers 409, and a spent allowance 429. Check progress with GET /v1/harness/runs/{runId} (CLI: harness runs get); the caller is notified when the run completes. Without an admin credential a caller may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. An admin bearer credential files a run it owns with any field; an admin API key files one owned by the back-end's Clerk machine.",
         "operationId": "createHarnessRun",
         "requestBody": {
           "content": {
@@ -21499,7 +21521,7 @@
             "description": "OK",
             "headers": {
               "X-Next-Cursor": {
-                "description": "Opaque continuation token when another page is available: a semantic window with semanticQuery, otherwise a keyset over the default sort",
+                "description": "Opaque continuation token when another page is available: a semantic window from page 0 with semanticQuery, otherwise a keyset over the default sort",
                 "schema": {
                   "type": "string"
                 },
@@ -35370,6 +35392,16 @@
         "type": "object",
         "description": "Create one harness enrichment run",
         "properties": {
+          "finding": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Facts you already researched, each citing the page and exact text that support it. Send them with a taskPresetKey whose task accepts findings; the run checks each quote against its page and writes only the facts it confirms. Any other run refuses findings with 400.",
+            "items": {
+              "$ref": "#/components/schemas/ResearchFinding"
+            }
+          },
           "mode": {
             "$ref": "#/components/schemas/EnrichmentMode",
             "description": "Enrichment breadth. Omitted by older clients to request the comprehensive default."
@@ -36248,6 +36280,10 @@
           "arrayFilter": {
             "$ref": "#/components/schemas/PersonListArrayFilter",
             "description": "Array and range filters"
+          },
+          "entityFilter": {
+            "$ref": "#/components/schemas/EntityFilter",
+            "description": "Constraints on the associated entity, as on POST /v1/search/natural/entities: a person matches when an association (current unless isCurrent=false) points at an entity matching every field and visible in entity listings, such as yearFoundedRange, hasFundraising, or fundraiseActivity.totalRaisedRange. Omit for no associated-entity constraint."
           },
           "entityId": {
             "type": [
@@ -37835,8 +37871,6 @@
           "rank",
           "sourceHash",
           "sourceId",
-          "sourceJson",
-          "sourceText",
           "sourceType"
         ]
       },
@@ -38061,6 +38095,14 @@
               "AMOUNT_INVESTED",
               "TOTAL_INVESTMENTS"
             ]
+          },
+          "sortKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Request sort key for this field: pass `sort=<sortKey>,<asc|desc>` to the matching directory list endpoint to reproduce this term. Absent when the field has no request key.",
+            "readOnly": true
           }
         },
         "required": [
@@ -38124,6 +38166,10 @@
               "type": "string"
             }
           },
+          "shareable": {
+            "type": "boolean",
+            "description": "True when the answer has grounded paragraphs and the answer model did not judge the question advertising or promotion; only a shareable answer can be published as a public search page."
+          },
           "text": {
             "type": "string",
             "description": "Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports."
@@ -38141,6 +38187,7 @@
           "confidence",
           "paragraph",
           "relatedQuery",
+          "shareable",
           "text"
         ]
       },
@@ -38210,6 +38257,11 @@
             "$ref": "#/components/schemas/EntityList",
             "description": "The answering entity."
           },
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Id of the answering entity; its row is in `result`."
+          },
           "matchedOffering": {
             "description": "Current public Product/Service that supports this answer.",
             "oneOf": [
@@ -38235,7 +38287,7 @@
           }
         },
         "required": [
-          "entity",
+          "entityId",
           "probability",
           "webUrl"
         ]
@@ -38928,11 +38980,12 @@
       },
       "SearchEvidenceSource": {
         "type": "string",
-        "description": "Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.",
+        "description": "Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `personRecord` a person linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.",
         "x-extensible-enum": [
           "entityRecord",
           "researchSnippet",
           "newsArticle",
+          "personRecord",
           "fundraiseTransaction"
         ]
       },
@@ -39003,6 +39056,14 @@
               "HEADQUARTERS_COUNTRY",
               "EMPLOYEE_COUNT"
             ]
+          },
+          "sortKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Request sort key for this field: pass `sort=<sortKey>,<asc|desc>` to the matching directory list endpoint to reproduce this term. Absent when the field has no request key.",
+            "readOnly": true
           }
         },
         "required": [
@@ -39025,7 +39086,7 @@
           },
           "sourceId": {
             "type": "string",
-            "description": "Entity id for `entityRecord`, snippet or news article id from `passage`, or the recorded round id for `fundraiseTransaction`."
+            "description": "Entity id for `entityRecord`, snippet or news article id from `passage`, person id for `personRecord`, or the recorded round id for `fundraiseTransaction`."
           }
         },
         "required": [
@@ -40444,6 +40505,38 @@
           "writeThisIteration"
         ]
       },
+      "ResearchFinding": {
+        "type": "object",
+        "description": "One fact you researched, with the page and exact text that support it. The run checks the quote against the page before it writes the fact.",
+        "properties": {
+          "gateId": {
+            "type": "string",
+            "description": "Completion gate id the fact fills, from the completion contract.",
+            "example": "entity.founded"
+          },
+          "quote": {
+            "type": "string",
+            "description": "The exact text on sourceUrl that supports the fact, copied verbatim.",
+            "example": "Founded in 2019, Acme builds payroll software."
+          },
+          "sourceUrl": {
+            "type": "string",
+            "description": "Absolute http or https URL of the page that supports the fact; aVenture pages are refused.",
+            "example": "https://acme.example/about"
+          },
+          "statement": {
+            "type": "string",
+            "description": "The fact to write, in plain words.",
+            "example": "Acme was founded in 2019."
+          }
+        },
+        "required": [
+          "gateId",
+          "quote",
+          "sourceUrl",
+          "statement"
+        ]
+      },
       "EntityValuationTimeSeriesPoint": {
         "type": "object",
         "description": "A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.",
@@ -41740,6 +41833,17 @@
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
+          "dateAnnouncedRange": {
+            "description": "Inclusive announcement timestamp bounds on the same fundraise transaction as round and amountRaisedRange. Announcement dates do not establish funding completion dates.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DateRange"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "investedCompanyName": {
             "type": "array",
             "description": "Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies.",
@@ -41828,6 +41932,28 @@
               "ANY_LOGO_FIRST",
               "REAL_LOGO_FIRST"
             ]
+          }
+        }
+      },
+      "DateRange": {
+        "type": "object",
+        "description": "ISO-8601 timestamp range for temporal filters.",
+        "properties": {
+          "max": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Inclusive latest timestamp."
+          },
+          "min": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Inclusive earliest timestamp."
           }
         }
       },

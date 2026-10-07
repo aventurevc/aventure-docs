@@ -48,6 +48,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         topic?: string | null | undefined;
     }, unknown>>>;
     relatedQuery: z.ZodArray<z.ZodString>;
+    shareable: z.ZodBoolean;
     text: z.ZodString;
     title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;

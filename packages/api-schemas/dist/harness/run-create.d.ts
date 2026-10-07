@@ -1,5 +1,16 @@
 import { z } from "zod/v4";
 declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
+    finding: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        gateId: string;
+        quote: string;
+        sourceUrl: string;
+        statement: string;
+    }, unknown, z.core.$ZodTypeInternals<{
+        gateId: string;
+        quote: string;
+        sourceUrl: string;
+        statement: string;
+    }, unknown>>>>>;
     mode: z.ZodOptional<z.ZodEnum<{
         COMPREHENSIVE: "COMPREHENSIVE";
         INDIVIDUAL: "INDIVIDUAL";

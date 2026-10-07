@@ -3,13 +3,21 @@ import { z } from "zod/v4";
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
  * @openapiSchema EntityFilter
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
+ * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
  * @usedBySchema FederatedNaturalSearchSchema
+ * @usedBySchema PersonFilterSchema
  * @contractShape entity.filter
  * @contractRole canonical
  */
@@ -45,6 +53,10 @@ export declare const EntityFilterSchema: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, unknown>>>>;
+        dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        }, z.core.$strip>>>;
         investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
         investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;

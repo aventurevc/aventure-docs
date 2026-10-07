@@ -1,9 +1,8 @@
 import { z } from "zod/v4";
 /**
- * URL matching mode for URL-backed filters and duplicate checks.
+ * ISO-8601 timestamp range for temporal filters.
  *
- * @openapiSchema UrlMatchMode
- * @endpoint GET /v1/entities
+ * @openapiSchema DateRange
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -16,14 +15,13 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
- * @usedBySchema EntityFilterSchema
- * @usedBySchema EntityListFilterSchema
- * @contractShape url.match-mode
+ * @usedBySchema EntityFundraiseFilterCriteriaSchema
+ * @contractShape date.range
  * @contractRole canonical
  */
-export declare const UrlMatchModeSchema: z.ZodEnum<{
-    domain: "domain";
-    hostPath: "hostPath";
-}>;
-export type UrlMatchMode = z.infer<typeof UrlMatchModeSchema>;
-//# sourceMappingURL=match-mode.d.ts.map
+export declare const DateRangeSchema: z.ZodObject<{
+    max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+}, z.core.$strip>;
+export type DateRange = z.infer<typeof DateRangeSchema>;
+//# sourceMappingURL=range.d.ts.map

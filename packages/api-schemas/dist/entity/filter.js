@@ -12,13 +12,21 @@ import { UrlMatchModeSchema } from "../url/match-mode.js";
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
  *
  * @openapiSchema EntityFilter
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
+ * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
  * @usedBySchema FederatedNaturalSearchSchema
+ * @usedBySchema PersonFilterSchema
  * @contractShape entity.filter
  * @contractRole canonical
  */

@@ -29,6 +29,8 @@ export const SearchAnswerSchema = z.object({
     paragraph: z.array(SearchAnswerParagraphSchema),
     /** Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains. */
     relatedQuery: z.array(z.string()),
+    /** True when the answer has grounded paragraphs and the answer model did not judge the question advertising or promotion; only a shareable answer can be published as a public search page. */
+    shareable: z.boolean(),
     /** Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports. */
     text: z.string(),
     /** Page title of at most 60 characters naming the answer's subject and scope, written by the same model call; absent when the answer abstains. */

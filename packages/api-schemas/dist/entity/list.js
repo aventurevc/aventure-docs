@@ -5,18 +5,6 @@ import { EntityEnrichmentSchema } from "./enrichment.js";
 import { EntitySchema } from "./entity.js";
 import { EntityFundraiseTransactionSchema } from "./fundraise-transaction.js";
 import { EntityListResearchSchema } from "./list-research.js";
-const EntityListSchemaDefinition = z.object({
-    /** Flat entity core — identity, naming, status, image, and source metadata */
-    core: EntitySchema,
-    /** Supplemental entity data — addresses, classification tags, funding, text content, and URL links */
-    enrichment: EntityEnrichmentSchema,
-    /** Fundraise rounds associated with this entity */
-    fundraiseRound: z.array(EntityFundraiseTransactionSchema),
-    /** List-safe research disclosure without text snippets */
-    research: EntityListResearchSchema,
-    /** Semantic embedding match evidence populated only for semantic list reads. */
-    semanticMatch: ContentEmbeddingMatchSchema.nullish(),
-});
 /**
  * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins.
  *
@@ -42,5 +30,16 @@ const EntityListSchemaDefinition = z.object({
  * @contractShape entity.list
  * @contractRole canonical
  */
-export const EntityListSchema = EntityListSchemaDefinition;
+export const EntityListSchema = z.object({
+    /** Flat entity core — identity, naming, status, image, and source metadata */
+    core: EntitySchema,
+    /** Supplemental entity data — addresses, classification tags, funding, text content, and URL links */
+    enrichment: EntityEnrichmentSchema,
+    /** Fundraise rounds associated with this entity */
+    fundraiseRound: z.array(EntityFundraiseTransactionSchema),
+    /** List-safe research disclosure without text snippets */
+    research: EntityListResearchSchema,
+    /** Semantic embedding match evidence populated only for semantic list reads. */
+    semanticMatch: ContentEmbeddingMatchSchema.nullish(),
+});
 //# sourceMappingURL=list.js.map

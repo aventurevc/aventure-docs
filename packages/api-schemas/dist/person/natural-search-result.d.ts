@@ -27,6 +27,113 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 }[] | null | undefined;
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
             } | undefined;
+            entityFilter?: {
+                acceleratorBrand?: string[] | undefined;
+                acceleratorCohort?: string[] | undefined;
+                acceleratorName?: string[] | undefined;
+                acceleratorStatus?: string[] | undefined;
+                affinity?: string[] | undefined;
+                closedLast?: boolean | undefined;
+                employeeCountRange?: {
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }[] | undefined;
+                entityId?: string[] | undefined;
+                entityName?: string[] | undefined;
+                featured?: boolean | null | undefined;
+                fundraiseActivity?: {
+                    amountInvestedRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    amountRaisedRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    dateAnnouncedRange?: {
+                        max?: string | null | undefined;
+                        min?: string | null | undefined;
+                    } | null | undefined;
+                    investedCompanyName?: string[] | undefined;
+                    investedCountry?: string[] | undefined;
+                    investedIndustry?: string[] | undefined;
+                    investedRound?: string[] | undefined;
+                    investorActivity?: {
+                        averageAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        largestAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        smallestAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        totalAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        totalInvestmentRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                    investorName?: string[] | undefined;
+                    lastRoundYearRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    rankByInvestmentActivity?: boolean | null | undefined;
+                    round?: string[] | undefined;
+                    totalRaisedRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    valuationRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                } | undefined;
+                hasFundraising?: boolean | null | undefined;
+                headquartersCity?: string[] | undefined;
+                headquartersCountry?: string[] | undefined;
+                headquartersState?: string[] | undefined;
+                industry?: string[] | undefined;
+                letter?: string | null | undefined;
+                location?: string[] | undefined;
+                logoOption?: {
+                    sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
+                } | undefined;
+                mainProduct?: string[] | undefined;
+                operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
+                person?: string[] | undefined;
+                portfolioHeadquartersCity?: string[] | undefined;
+                portfolioHeadquartersCountry?: string[] | undefined;
+                portfolioHeadquartersState?: string[] | undefined;
+                qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
+                slug?: string[] | undefined;
+                stage?: string[] | undefined;
+                suppressNonOperating?: boolean | null | undefined;
+                suppressZeroTotalRaised?: boolean | null | undefined;
+                tag?: string[] | undefined;
+                textSearch?: string | null | undefined;
+                typeCustomer?: string[] | undefined;
+                typeModel?: string[] | undefined;
+                typeOwnership?: string[] | undefined;
+                typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                typeRevenue?: string[] | undefined;
+                typeTechnologyUsed?: string[] | undefined;
+                url?: string | null | undefined;
+                urlDomain?: string | null | undefined;
+                urlMatchMode?: "domain" | "hostPath" | null | undefined;
+                urlType?: string | null | undefined;
+                yearFoundedRange?: {
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }[] | undefined;
+            } | undefined;
             entityId?: string | null | undefined;
             entitySlug?: string | null | undefined;
             firstName?: string | null | undefined;
@@ -69,6 +176,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             order: {
                 descending: boolean;
                 field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+                sortKey?: string | null | undefined;
             }[];
             relevance?: "keyword" | "semantic" | null | undefined;
         };
@@ -100,6 +208,113 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 }[] | null | undefined;
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
             } | undefined;
+            entityFilter?: {
+                acceleratorBrand?: string[] | undefined;
+                acceleratorCohort?: string[] | undefined;
+                acceleratorName?: string[] | undefined;
+                acceleratorStatus?: string[] | undefined;
+                affinity?: string[] | undefined;
+                closedLast?: boolean | undefined;
+                employeeCountRange?: {
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }[] | undefined;
+                entityId?: string[] | undefined;
+                entityName?: string[] | undefined;
+                featured?: boolean | null | undefined;
+                fundraiseActivity?: {
+                    amountInvestedRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    amountRaisedRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    dateAnnouncedRange?: {
+                        max?: string | null | undefined;
+                        min?: string | null | undefined;
+                    } | null | undefined;
+                    investedCompanyName?: string[] | undefined;
+                    investedCountry?: string[] | undefined;
+                    investedIndustry?: string[] | undefined;
+                    investedRound?: string[] | undefined;
+                    investorActivity?: {
+                        averageAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        largestAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        smallestAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        totalAmountInvestedUsdRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                        totalInvestmentRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
+                    } | undefined;
+                    investorName?: string[] | undefined;
+                    lastRoundYearRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    rankByInvestmentActivity?: boolean | null | undefined;
+                    round?: string[] | undefined;
+                    totalRaisedRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                    valuationRange?: {
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }[] | undefined;
+                } | undefined;
+                hasFundraising?: boolean | null | undefined;
+                headquartersCity?: string[] | undefined;
+                headquartersCountry?: string[] | undefined;
+                headquartersState?: string[] | undefined;
+                industry?: string[] | undefined;
+                letter?: string | null | undefined;
+                location?: string[] | undefined;
+                logoOption?: {
+                    sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
+                } | undefined;
+                mainProduct?: string[] | undefined;
+                operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
+                person?: string[] | undefined;
+                portfolioHeadquartersCity?: string[] | undefined;
+                portfolioHeadquartersCountry?: string[] | undefined;
+                portfolioHeadquartersState?: string[] | undefined;
+                qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
+                slug?: string[] | undefined;
+                stage?: string[] | undefined;
+                suppressNonOperating?: boolean | null | undefined;
+                suppressZeroTotalRaised?: boolean | null | undefined;
+                tag?: string[] | undefined;
+                textSearch?: string | null | undefined;
+                typeCustomer?: string[] | undefined;
+                typeModel?: string[] | undefined;
+                typeOwnership?: string[] | undefined;
+                typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                typeRevenue?: string[] | undefined;
+                typeTechnologyUsed?: string[] | undefined;
+                url?: string | null | undefined;
+                urlDomain?: string | null | undefined;
+                urlMatchMode?: "domain" | "hostPath" | null | undefined;
+                urlType?: string | null | undefined;
+                yearFoundedRange?: {
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }[] | undefined;
+            } | undefined;
             entityId?: string | null | undefined;
             entitySlug?: string | null | undefined;
             firstName?: string | null | undefined;
@@ -142,6 +357,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             order: {
                 descending: boolean;
                 field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+                sortKey?: string | null | undefined;
             }[];
             relevance?: "keyword" | "semantic" | null | undefined;
         };
@@ -268,8 +484,8 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sourceHash: string;
             sourceId: string;
-            sourceJson: string;
-            sourceText: string;
+            sourceJson?: string | undefined;
+            sourceText?: string | undefined;
             sourceType: string;
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
@@ -393,8 +609,8 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sourceHash: string;
             sourceId: string;
-            sourceJson: string;
-            sourceText: string;
+            sourceJson?: string | undefined;
+            sourceText?: string | undefined;
             sourceType: string;
         } | null | undefined;
     }, unknown>>>;
@@ -427,8 +643,8 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 rank: number;
                 sourceHash: string;
                 sourceId: string;
-                sourceJson: string;
-                sourceText: string;
+                sourceJson?: string | undefined;
+                sourceText?: string | undefined;
                 sourceType: string;
             } | null | undefined;
             slug: string;
@@ -473,8 +689,8 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 rank: number;
                 sourceHash: string;
                 sourceId: string;
-                sourceJson: string;
-                sourceText: string;
+                sourceJson?: string | undefined;
+                sourceText?: string | undefined;
                 sourceType: string;
             } | null | undefined;
             slug: string;

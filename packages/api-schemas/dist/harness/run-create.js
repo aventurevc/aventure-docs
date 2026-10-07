@@ -1,7 +1,10 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
+import { ResearchFindingSchema } from "../research/finding.js";
 const HarnessRunCreateSchemaDefinition = z.object({
+    /** Facts you already researched, each citing the page and exact text that support it. Send them with a taskPresetKey whose task accepts findings; the run checks each quote against its page and writes only the facts it confirms. Any other run refuses findings with 400. */
+    finding: z.array(ResearchFindingSchema).nullish(),
     /** Enrichment breadth. Omitted by older clients to request the comprehensive default. */
     mode: EnrichmentModeSchema.optional(),
     /** Optional orchestrator model override; omitted uses the configured role default */

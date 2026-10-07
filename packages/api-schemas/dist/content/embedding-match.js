@@ -52,9 +52,9 @@ export const ContentEmbeddingMatchSchema = z.object({
     /** Content embedding source identifier. */
     sourceId: z.string(),
     /** Serialized JSONB source document stored for the embedding row. */
-    sourceJson: z.string(),
+    sourceJson: z.string().optional(),
     /** Source text used to compute the stored embedding. */
-    sourceText: z.string(),
+    sourceText: z.string().optional(),
     /** Stored content embedding source partition. */
     sourceType: ContentSourceTypeSchema,
 });

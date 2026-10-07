@@ -23,6 +23,8 @@ const SortOrderEntityFilterSortableSchemaDefinition = z.object({
         "HEADQUARTERS_COUNTRY",
         "EMPLOYEE_COUNT",
     ]),
+    /** Request sort key for this field: pass `sort=<sortKey>,<asc|desc>` to the matching directory list endpoint to reproduce this term. Absent when the field has no request key. */
+    sortKey: z.string().nullish(),
 });
 /**
  * Single sort term: which enumerated sort field to use and whether direction is descending.

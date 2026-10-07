@@ -5,6 +5,7 @@ declare const SearchAnswerCitationSchemaDefinition: z.ZodObject<{
         entityRecord: "entityRecord";
         fundraiseTransaction: "fundraiseTransaction";
         newsArticle: "newsArticle";
+        personRecord: "personRecord";
         researchSnippet: "researchSnippet";
     }>, z.ZodString]>;
     sourceId: z.ZodString;

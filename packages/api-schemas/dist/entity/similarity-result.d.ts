@@ -1,39 +1,57 @@
 import { z } from "zod/v4";
 declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
-    entity: z.ZodType<{
-        core: {
-            defaultCurrency?: string | null | undefined;
-            foundedYear?: number | null | undefined;
-            id: string;
-            image: {
+    entity: z.ZodObject<{
+        core: z.ZodObject<{
+            defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            id: z.ZodUUID;
+            image: z.ZodType<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            };
-            lastModifiedAt?: string | null | undefined;
-            nameAlias: {
+            }, unknown, z.core.$ZodTypeInternals<{
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }, unknown>>;
+            lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }[];
-            nameBrand: string;
-            nameLegal?: string | null | undefined;
-            operatingStatus?: string | null | undefined;
-            publicId?: string | null | undefined;
-            publicUrl?: string | null | undefined;
-            sitemap?: {
-                hasAcquisitions?: boolean | undefined;
-                hasAnalysis: boolean;
-                hasEmployees: boolean;
-                hasFundraising: boolean;
-                hasNews: boolean;
-                productServiceSlug: string[];
-            } | null | undefined;
-            slug: string;
-            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-            updatedAt?: string | null | undefined;
-        };
-        enrichment: {
+            }, unknown, z.core.$ZodTypeInternals<{
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }, unknown>>>;
+            nameBrand: z.ZodString;
+            nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            publicId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            sitemap: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+                hasAnalysis: z.ZodBoolean;
+                hasEmployees: z.ZodBoolean;
+                hasFundraising: z.ZodBoolean;
+                hasNews: z.ZodBoolean;
+                productServiceSlug: z.ZodArray<z.ZodString>;
+            }, z.core.$strip>>>;
+            slug: z.ZodString;
+            typeRecord: z.ZodEnum<{
+                "Business Line": "Business Line";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                Organization: "Organization";
+                Product: "Product";
+                Service: "Service";
+            }>;
+            updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        }, z.core.$strip>;
+        enrichment: z.ZodType<{
             address: {
                 address?: number | null | undefined;
                 addressLine1?: string | null | undefined;
@@ -312,203 +330,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        };
-        fundraiseRound: {
-            amountRaised?: number | null | undefined;
-            createdAt?: string | null | undefined;
-            currency?: string | null | undefined;
-            dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
-            dateAnnounced?: string | null | undefined;
-            dateFundingComplete?: string | null | undefined;
-            dateInvestorExit?: string | null | undefined;
-            entity?: {
-                core: {
-                    defaultCurrency?: string | null | undefined;
-                    foundedYear?: number | null | undefined;
-                    id: string;
-                    image: {
-                        isMonogram: boolean;
-                        logo?: string | null | undefined;
-                        logoSquare?: string | null | undefined;
-                    };
-                    lastModifiedAt?: string | null | undefined;
-                    nameAlias: {
-                        displayable?: boolean | null | undefined;
-                        name: string;
-                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                    }[];
-                    nameBrand: string;
-                    nameLegal?: string | null | undefined;
-                    operatingStatus?: string | null | undefined;
-                    publicId?: string | null | undefined;
-                    publicUrl?: string | null | undefined;
-                    sitemap?: {
-                        hasAcquisitions?: boolean | undefined;
-                        hasAnalysis: boolean;
-                        hasEmployees: boolean;
-                        hasFundraising: boolean;
-                        hasNews: boolean;
-                        productServiceSlug: string[];
-                    } | null | undefined;
-                    slug: string;
-                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-                    updatedAt?: string | null | undefined;
-                };
-                fundingDetail?: {
-                    currency?: string | null | undefined;
-                    fundingRoundCount: number;
-                    investorCount: number;
-                    latestValuation?: number | null | undefined;
-                    mostRecentAmount?: number | null | undefined;
-                    mostRecentDate?: string | null | undefined;
-                    stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
-                    totalRaised: number;
-                } | null | undefined;
-            } | null | undefined;
-            id: string;
-            investorAttribution?: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            } | null | undefined;
-            investorCount?: number | null | undefined;
-            round?: string | null | undefined;
-            sourceAttribution: {
-                amountInvested?: number | null | undefined;
-                attributionType: "direct" | "managedFund";
-                beneficialEntityId?: string | null | undefined;
-                fundManagerRelationshipId?: number | null | undefined;
-                joinId: string;
-                leadInvestor: boolean;
-                recordedEntityId?: string | null | undefined;
-                round?: {
-                    round: string;
-                } | null | undefined;
-                transactionId: string;
-            }[];
-            updatedAt?: string | null | undefined;
-            valuationPostMoney?: number | null | undefined;
-            valuationPreMoney?: number | null | undefined;
-        }[];
-        research: {
-            acceleratorParticipation: {
-                accelerator: {
-                    defaultCurrency?: string | null | undefined;
-                    foundedYear?: number | null | undefined;
-                    id: string;
-                    image: {
-                        isMonogram: boolean;
-                        logo?: string | null | undefined;
-                        logoSquare?: string | null | undefined;
-                    };
-                    lastModifiedAt?: string | null | undefined;
-                    nameAlias: {
-                        displayable?: boolean | null | undefined;
-                        name: string;
-                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                    }[];
-                    nameBrand: string;
-                    nameLegal?: string | null | undefined;
-                    operatingStatus?: string | null | undefined;
-                    publicId?: string | null | undefined;
-                    publicUrl?: string | null | undefined;
-                    sitemap?: {
-                        hasAcquisitions?: boolean | undefined;
-                        hasAnalysis: boolean;
-                        hasEmployees: boolean;
-                        hasFundraising: boolean;
-                        hasNews: boolean;
-                        productServiceSlug: string[];
-                    } | null | undefined;
-                    slug: string;
-                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-                    updatedAt?: string | null | undefined;
-                };
-                acceleratorName: string;
-                asOfDate: string;
-                batch?: string | null | undefined;
-                id: string;
-                program?: string | null | undefined;
-                status?: string | null | undefined;
-            }[];
-            detail: {
-                asOfDate?: string | null | undefined;
-                derivedRange?: {
-                    asOfDate: string;
-                    bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
-                    monthsFromNow: number;
-                    targetDate: string;
-                } | null | undefined;
-                discreteValue?: number | null | undefined;
-                entityId: string;
-                id: number;
-                publicSource?: {
-                    lastFetchedAt?: string | null | undefined;
-                    publishedAt?: string | null | undefined;
-                    recordedAt: string;
-                    sourceDetail: string;
-                } | null | undefined;
-                textValue?: string | null | undefined;
-                typeResearchDetail: string;
-                updatedAt?: string | null | undefined;
-                valueResearchDetail?: string | null | undefined;
-                valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-            }[];
-        };
-        semanticMatch?: {
-            computedAt: string;
-            cosineDistance: number;
-            cosineScore: number;
-            modelVersion: string;
-            rank: number;
-            sourceHash: string;
-            sourceId: string;
-            sourceJson: string;
-            sourceText: string;
-            sourceType: string;
-        } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
-        core: {
-            defaultCurrency?: string | null | undefined;
-            foundedYear?: number | null | undefined;
-            id: string;
-            image: {
-                isMonogram: boolean;
-                logo?: string | null | undefined;
-                logoSquare?: string | null | undefined;
-            };
-            lastModifiedAt?: string | null | undefined;
-            nameAlias: {
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }[];
-            nameBrand: string;
-            nameLegal?: string | null | undefined;
-            operatingStatus?: string | null | undefined;
-            publicId?: string | null | undefined;
-            publicUrl?: string | null | undefined;
-            sitemap?: {
-                hasAcquisitions?: boolean | undefined;
-                hasAnalysis: boolean;
-                hasEmployees: boolean;
-                hasFundraising: boolean;
-                hasNews: boolean;
-                productServiceSlug: string[];
-            } | null | undefined;
-            slug: string;
-            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
-            updatedAt?: string | null | undefined;
-        };
-        enrichment: {
+        }, unknown, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
                 addressLine1?: string | null | undefined;
@@ -787,8 +609,8 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        };
-        fundraiseRound: {
+        }, unknown>>;
+        fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
             currency?: string | null | undefined;
@@ -872,8 +694,92 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }[];
-        research: {
+        }, unknown, z.core.$ZodTypeInternals<{
+            amountRaised?: number | null | undefined;
+            createdAt?: string | null | undefined;
+            currency?: string | null | undefined;
+            dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+            dateAnnounced?: string | null | undefined;
+            dateFundingComplete?: string | null | undefined;
+            dateInvestorExit?: string | null | undefined;
+            entity?: {
+                core: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                fundingDetail?: {
+                    currency?: string | null | undefined;
+                    fundingRoundCount: number;
+                    investorCount: number;
+                    latestValuation?: number | null | undefined;
+                    mostRecentAmount?: number | null | undefined;
+                    mostRecentDate?: string | null | undefined;
+                    stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                    totalRaised: number;
+                } | null | undefined;
+            } | null | undefined;
+            id: string;
+            investorAttribution?: {
+                amountInvested?: number | null | undefined;
+                attributionType: "direct" | "managedFund";
+                beneficialEntityId?: string | null | undefined;
+                fundManagerRelationshipId?: number | null | undefined;
+                joinId: string;
+                leadInvestor: boolean;
+                recordedEntityId?: string | null | undefined;
+                round?: {
+                    round: string;
+                } | null | undefined;
+                transactionId: string;
+            } | null | undefined;
+            investorCount?: number | null | undefined;
+            round?: string | null | undefined;
+            sourceAttribution: {
+                amountInvested?: number | null | undefined;
+                attributionType: "direct" | "managedFund";
+                beneficialEntityId?: string | null | undefined;
+                fundManagerRelationshipId?: number | null | undefined;
+                joinId: string;
+                leadInvestor: boolean;
+                recordedEntityId?: string | null | undefined;
+                round?: {
+                    round: string;
+                } | null | undefined;
+                transactionId: string;
+            }[];
+            updatedAt?: string | null | undefined;
+            valuationPostMoney?: number | null | undefined;
+            valuationPreMoney?: number | null | undefined;
+        }, unknown>>>;
+        research: z.ZodType<{
             acceleratorParticipation: {
                 accelerator: {
                     defaultCurrency?: string | null | undefined;
@@ -937,20 +843,97 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 valueResearchDetail?: string | null | undefined;
                 valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
             }[];
-        };
-        semanticMatch?: {
-            computedAt: string;
-            cosineDistance: number;
-            cosineScore: number;
-            modelVersion: string;
-            rank: number;
-            sourceHash: string;
-            sourceId: string;
-            sourceJson: string;
-            sourceText: string;
-            sourceType: string;
-        } | null | undefined;
-    }, unknown>>;
+        }, unknown, z.core.$ZodTypeInternals<{
+            acceleratorParticipation: {
+                accelerator: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                acceleratorName: string;
+                asOfDate: string;
+                batch?: string | null | undefined;
+                id: string;
+                program?: string | null | undefined;
+                status?: string | null | undefined;
+            }[];
+            detail: {
+                asOfDate?: string | null | undefined;
+                derivedRange?: {
+                    asOfDate: string;
+                    bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
+                    monthsFromNow: number;
+                    targetDate: string;
+                } | null | undefined;
+                discreteValue?: number | null | undefined;
+                entityId: string;
+                id: number;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
+                textValue?: string | null | undefined;
+                typeResearchDetail: string;
+                updatedAt?: string | null | undefined;
+                valueResearchDetail?: string | null | undefined;
+                valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+            }[];
+        }, unknown>>;
+        semanticMatch: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            computedAt: z.ZodISODateTime;
+            cosineDistance: z.ZodNumber;
+            cosineScore: z.ZodNumber;
+            modelVersion: z.ZodString;
+            rank: z.ZodInt;
+            sourceHash: z.ZodString;
+            sourceId: z.ZodString;
+            sourceJson: z.ZodOptional<z.ZodString>;
+            sourceText: z.ZodOptional<z.ZodString>;
+            sourceType: z.ZodUnion<readonly [z.ZodEnum<{
+                agentHelpDoc: "agentHelpDoc";
+                blogPost: "blogPost";
+                classificationCode: "classificationCode";
+                classificationTag: "classificationTag";
+                entity: "entity";
+                newsArticle: "newsArticle";
+                person: "person";
+                product: "product";
+                researchSnippet: "researchSnippet";
+                service: "service";
+                sourceDocument: "sourceDocument";
+                text: "text";
+            }>, z.ZodString]>;
+        }, z.core.$strip>>>;
+    }, z.core.$strip>;
     similarity: z.ZodType<{
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;

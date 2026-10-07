@@ -3,9 +3,11 @@ declare const SearchOrderingEntityFilterSortableSchemaDefinition: z.ZodObject<{
     order: z.ZodArray<z.ZodType<{
         descending: boolean;
         field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+        sortKey?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         descending: boolean;
         field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+        sortKey?: string | null | undefined;
     }, unknown>>>;
     relevance: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         keyword: "keyword";

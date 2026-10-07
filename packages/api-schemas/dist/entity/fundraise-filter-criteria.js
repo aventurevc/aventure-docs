@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DateRangeSchema } from "../date/range.js";
 import { DecimalRangeSchema } from "../decimal/range.js";
 import { IntRangeSchema } from "../int/range.js";
 import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
@@ -14,8 +15,10 @@ import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityListFilterSchema
@@ -27,6 +30,8 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     amountInvestedRange: z.array(DecimalRangeSchema).optional(),
     /** Per-round amount-raised ranges in USD. Use plain JSON numbers. */
     amountRaisedRange: z.array(DecimalRangeSchema).optional(),
+    /** Inclusive announcement timestamp bounds on the same fundraise transaction as round and amountRaisedRange. Announcement dates do not establish funding completion dates. */
+    dateAnnouncedRange: DateRangeSchema.nullish(),
     /** Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies. */
     investedCompanyName: z.array(z.string()).optional(),
     /** Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound or investedIndustry, the same deal must match each. */

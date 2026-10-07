@@ -240,8 +240,8 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             rank: number;
             sourceHash: string;
             sourceId: string;
-            sourceJson: string;
-            sourceText: string;
+            sourceJson?: string | undefined;
+            sourceText?: string | undefined;
             sourceType: string;
         } | null | undefined;
         slug: string;
@@ -280,8 +280,8 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             rank: number;
             sourceHash: string;
             sourceId: string;
-            sourceJson: string;
-            sourceText: string;
+            sourceJson?: string | undefined;
+            sourceText?: string | undefined;
             sourceType: string;
         } | null | undefined;
         slug: string;

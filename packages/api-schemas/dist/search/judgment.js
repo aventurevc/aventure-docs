@@ -4,7 +4,9 @@ import { EntitySchema } from "../entity/entity.js";
 import { EntityListSchema } from "../entity/list.js";
 const SearchJudgmentSchemaDefinition = z.object({
     /** The answering entity. */
-    entity: EntityListSchema,
+    entity: EntityListSchema.optional(),
+    /** Id of the answering entity; its row is in `result`. */
+    entityId: z.uuid(),
     /** Current public Product/Service that supports this answer. */
     matchedOffering: EntitySchema.nullish(),
     /** Judged probability, 0 to 1, that the entity answers the question. */

@@ -6,7 +6,7 @@ const SearchAnswerCitationSchemaDefinition = z.object({
     entityId: z.uuid(),
     /** Record that owns the cited evidence. */
     source: SearchEvidenceSourceSchema,
-    /** Entity id for `entityRecord`, snippet or news article id from `passage`, or the recorded round id for `fundraiseTransaction`. */
+    /** Entity id for `entityRecord`, snippet or news article id from `passage`, person id for `personRecord`, or the recorded round id for `fundraiseTransaction`. */
     sourceId: z.string(),
 });
 /**

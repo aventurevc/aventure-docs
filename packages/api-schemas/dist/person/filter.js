@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityFilterSchema } from "../entity/filter.js";
 import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
 import { PersonListArrayFilterSchema } from "./list-array-filter.js";
 /**
@@ -22,6 +23,8 @@ import { PersonListArrayFilterSchema } from "./list-array-filter.js";
 export const PersonFilterSchema = z.object({
     /** Array and range filters */
     arrayFilter: PersonListArrayFilterSchema.optional(),
+    /** Constraints on the associated entity, as on POST /v1/search/natural/entities: a person matches when an association (current unless isCurrent=false) points at an entity matching every field and visible in entity listings, such as yearFoundedRange, hasFundraising, or fundraiseActivity.totalRaisedRange. Omit for no associated-entity constraint. */
+    entityFilter: EntityFilterSchema.optional(),
     /** Associated entity UUID. */
     entityId: z.uuid().nullish(),
     /** Associated entity slug. */

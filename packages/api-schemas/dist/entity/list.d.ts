@@ -1,5 +1,30 @@
 import { z } from "zod/v4";
-declare const EntityListSchemaDefinition: z.ZodObject<{
+/**
+ * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins.
+ *
+ * @openapiSchema EntityList
+ * @endpoint GET /v1/entities
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema EntitySimilarityResultSchema
+ * @usedBySchema LookupJobMentionSchema
+ * @usedBySchema NaturalSearchResultSchema
+ * @usedBySchema PageEntityListSchema
+ * @usedBySchema PageResultEntityListSchema
+ * @usedBySchema SearchJudgmentSchema
+ * @contractShape entity.list
+ * @contractRole canonical
+ */
+export declare const EntityListSchema: z.ZodObject<{
     core: z.ZodObject<{
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -915,8 +940,8 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         rank: z.ZodInt;
         sourceHash: z.ZodString;
         sourceId: z.ZodString;
-        sourceJson: z.ZodString;
-        sourceText: z.ZodString;
+        sourceJson: z.ZodOptional<z.ZodString>;
+        sourceText: z.ZodOptional<z.ZodString>;
         sourceType: z.ZodUnion<readonly [z.ZodEnum<{
             agentHelpDoc: "agentHelpDoc";
             blogPost: "blogPost";
@@ -933,33 +958,5 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         }>, z.ZodString]>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
-type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
-/**
- * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins.
- *
- * @openapiSchema EntityList
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/search/link
- * @endpoint GET /v1/entities/{entityId}/similar
- * @endpoint GET /v1/lookup-jobs/{jobId}
- * @endpoint GET /v1/search/link/jobs/{jobId}
- * @endpoint GET /v1/search/shared/{id}
- * @endpoint GET /v1/search/shared/slug/{slug}
- * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
- * @endpoint POST /v1/search
- * @endpoint POST /v1/search/natural/entities
- * @endpoint POST /v1/search/shared
- * @usedBySchema EntitySimilarityResultSchema
- * @usedBySchema LookupJobMentionSchema
- * @usedBySchema NaturalSearchResultSchema
- * @usedBySchema PageEntityListSchema
- * @usedBySchema PageResultEntityListSchema
- * @usedBySchema SearchJudgmentSchema
- * @contractShape entity.list
- * @contractRole canonical
- */
-export declare const EntityListSchema: z.ZodType<EntityListDefinition>;
 export type EntityList = z.infer<typeof EntityListSchema>;
-export {};
 //# sourceMappingURL=list.d.ts.map
