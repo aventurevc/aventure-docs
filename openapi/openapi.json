@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.100"
+    "version": "0.8.101"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -31716,7 +31716,11 @@
           "research",
           "sitemap",
           "uniqueId"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "company",
+          "other": "companies"
+        }
       },
       "EntityResolution": {
         "type": "object",
@@ -33830,7 +33834,11 @@
           "leadInvestor",
           "transactionId",
           "updatedAt"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "round investor",
+          "other": "round investors"
+        }
       },
       "PageEntityFundraiseTransaction": {
         "type": "object",
@@ -34005,7 +34013,11 @@
         "required": [
           "id",
           "sourceAttribution"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "funding round",
+          "other": "funding rounds"
+        }
       },
       "EntityFundraiseInvestorActivity": {
         "type": "object",
@@ -34399,7 +34411,11 @@
           "personName",
           "personSlug",
           "personUrlLink"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "role",
+          "other": "roles"
+        }
       },
       "PagePersonInvestorParticipation": {
         "type": "object",
@@ -35841,7 +35857,11 @@
           "core",
           "entityMentionResolved",
           "personMentionResolved"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "news article",
+          "other": "news articles"
+        }
       },
       "NewsSubscriptionKey": {
         "type": "object",
@@ -36271,7 +36291,11 @@
           "enrichment",
           "investment",
           "nameAlias"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "person",
+          "other": "people"
+        }
       },
       "PersonFilter": {
         "type": "object",
@@ -37310,7 +37334,11 @@
         "required": [
           "id",
           "title"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "news article",
+          "other": "news articles"
+        }
       },
       "NewsSubscriptionEvent": {
         "type": "string",
@@ -37760,7 +37788,11 @@
           "nameFull",
           "slug",
           "text"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "person",
+          "other": "people"
+        }
       },
       "PersonImage": {
         "type": "object",
@@ -38361,7 +38393,11 @@
         "required": [
           "entity",
           "similarity"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "similar company",
+          "other": "similar companies"
+        }
       },
       "PageResultEntityList": {
         "type": "object",
@@ -38438,7 +38474,11 @@
           "enrichment",
           "fundraiseRound",
           "research"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "company",
+          "other": "companies"
+        }
       },
       "Entity": {
         "type": "object",
@@ -38556,7 +38596,11 @@
           "nameBrand",
           "slug",
           "typeRecord"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "company",
+          "other": "companies"
+        }
       },
       "EntityEnrichment": {
         "type": "object",
@@ -39553,7 +39597,11 @@
           "fundraiseTransactionId",
           "id",
           "investmentDate"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "investment",
+          "other": "investments"
+        }
       },
       "PersonInvestedCompany": {
         "type": "object",
@@ -40510,13 +40558,16 @@
         "description": "One fact you researched, with the page and exact text that support it. The run checks the quote against the page before it writes the fact.",
         "properties": {
           "gateId": {
-            "type": "string",
-            "description": "Completion gate id the fact fills, from the completion contract.",
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Completion gate the fact fills, when known; omit it and the run picks the field the fact belongs to.",
             "example": "entity.founded"
           },
           "quote": {
             "type": "string",
-            "description": "The exact text on sourceUrl that supports the fact, copied verbatim.",
+            "description": "The exact text on sourceUrl that states the fact, copied verbatim; a fragment short enough to appear on any page is refused.",
             "example": "Founded in 2019, Acme builds payroll software."
           },
           "sourceUrl": {
@@ -40531,7 +40582,6 @@
           }
         },
         "required": [
-          "gateId",
           "quote",
           "sourceUrl",
           "statement"
@@ -40763,7 +40813,11 @@
           "core",
           "similarity",
           "urlLink"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "similar company",
+          "other": "similar companies"
+        }
       },
       "EntityResearchPublicSource": {
         "type": "object",
@@ -40992,7 +41046,11 @@
           "person",
           "round",
           "roundCount"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "investor",
+          "other": "investors"
+        }
       },
       "LogoAccuracy": {
         "type": "object",
@@ -41116,7 +41174,11 @@
           "investorAttribution",
           "round",
           "roundCount"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "investor",
+          "other": "investors"
+        }
       },
       "StageFrequency": {
         "type": "object",

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 declare const ResearchFindingSchemaDefinition: z.ZodObject<{
-    gateId: z.ZodString;
+    gateId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     quote: z.ZodString;
     sourceUrl: z.ZodString;
     statement: z.ZodString;

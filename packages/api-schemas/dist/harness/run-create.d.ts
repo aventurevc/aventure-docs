@@ -1,12 +1,12 @@
 import { z } from "zod/v4";
 declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
     finding: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
-        gateId: string;
+        gateId?: string | null | undefined;
         quote: string;
         sourceUrl: string;
         statement: string;
     }, unknown, z.core.$ZodTypeInternals<{
-        gateId: string;
+        gateId?: string | null | undefined;
         quote: string;
         sourceUrl: string;
         statement: string;
