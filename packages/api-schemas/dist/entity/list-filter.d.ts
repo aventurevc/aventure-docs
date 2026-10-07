@@ -69,6 +69,7 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }, unknown>>>>;
         }, z.core.$strip>>;
+        investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;

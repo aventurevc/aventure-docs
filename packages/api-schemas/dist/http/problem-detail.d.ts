@@ -34,6 +34,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         image_brand_mismatch: "image_brand_mismatch";
         image_monochrome: "image_monochrome";
         image_monogram: "image_monogram";
+        image_photographic: "image_photographic";
         image_processing_error: "image_processing_error";
         image_too_small: "image_too_small";
         image_unreadable: "image_unreadable";

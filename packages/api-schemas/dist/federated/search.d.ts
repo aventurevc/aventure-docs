@@ -73,6 +73,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                     } | undefined;
+                    investorName?: string[] | undefined;
                     lastRoundYearRange?: {
                         max?: number | null | undefined;
                         min?: number | null | undefined;
@@ -2146,6 +2147,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                     } | undefined;
+                    investorName?: string[] | undefined;
                     lastRoundYearRange?: {
                         max?: number | null | undefined;
                         min?: number | null | undefined;

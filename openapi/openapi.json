@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.83"
+    "version": "0.8.86"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3747,6 +3747,20 @@
               "items": {
                 "type": "string",
                 "description": "Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies."
+              }
+            }
+          },
+          {
+            "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined.",
+            "in": "query",
+            "name": "fundraiseActivity.investorName",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined.",
+              "items": {
+                "type": "string",
+                "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined."
               }
             }
           },
@@ -23564,6 +23578,15 @@
             }
           },
           {
+            "description": "Include entity address records (pass false to omit)",
+            "in": "query",
+            "name": "includeAddress",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "description": "Permit generated monogram logo fallback",
             "in": "query",
             "name": "permitMonogram",
@@ -23790,6 +23813,15 @@
             "description": "Include entity URL records",
             "in": "query",
             "name": "includeUrl",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Include entity address records (pass false to omit)",
+            "in": "query",
+            "name": "includeAddress",
             "required": false,
             "schema": {
               "type": "boolean"
@@ -26301,7 +26333,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person, always in that order, each with its scope's page; then settled with this whole answer before synthesis (no answer yet; later events keep its rows in place); then complete with this same answer. Without synthesis, settled and complete carry the same answer. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
+        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person as each scope finishes, each with its scope's page; then settled with this whole answer before synthesis (no answer yet; later events keep its rows in place); then complete with this same answer. Without synthesis, settled and complete carry the same answer. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -28520,6 +28552,7 @@
               "Image upload could not be decoded (corrupt file, unsupported format). Agent action: supply a valid PNG/JPEG/WebP; retrying the same bytes will not pass.",
               "Image processing pipeline (resize/encode/hash) threw an unexpected error. Agent action: retry once; persistent failure indicates an infra issue.",
               "Logo/photo upload was rejected because the server-side brand-match vision check found it does not depict the target's own brand (a generic favicon, a parent/provider/acquirer mark, an OpenGraph/banner/social card, or an unrelated image). Agent action: supply the target entity's OWN brand mark and re-run; retrying the same image, or any generic/og/banner/parent asset, will not pass.",
+              "Image upload was a photograph or scene image rather than a standalone logo/mark graphic (a homepage hero, product photo, ad, or screenshot carrying an embedded wordmark). Agent action: supply the entity's standalone mark — a favicon, app icon, wordmark, or lockup — not page imagery; retrying the same bytes will not pass.",
               "An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately.",
               "A crawl-run request named an entity or person that has no current primary website URL. Agent action: add or activate the owner's website URL, then resubmit; retrying the unchanged request cannot succeed.",
               "RSS news-ingest feed fetch failed after retries or with the breaker open. Agent action: inspect the configured feed URL and upstream status; do not retry the enqueue immediately.",
@@ -28585,6 +28618,7 @@
               "image_unreadable",
               "image_processing_error",
               "image_brand_mismatch",
+              "image_photographic",
               "web_crawl_fetch_failed",
               "primary_website_missing",
               "news_rss_feed_fetch_failed",
@@ -28897,6 +28931,13 @@
         "type": "object",
         "description": "A natural-language question about how to operate the platform, answered from the operation catalog, agent skills, and completion gates.",
         "properties": {
+          "includePrivate": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "False limits the help corpus to public operations and to catalog tasks whose every step is a public operation, the catalog a public build can run; true requires private-visibility authority; null uses the caller's own visibility."
+          },
           "model": {
             "type": [
               "string",
@@ -31960,7 +32001,7 @@
       },
       "EntityAcquisition": {
         "type": "object",
-        "description": "Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed (including Closed (Acquihire)).",
+        "description": "Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer.",
         "properties": {
           "acquiredEntity": {
             "$ref": "#/components/schemas/Entity",
@@ -32057,7 +32098,7 @@
           },
           "status": {
             "$ref": "#/components/schemas/EntityAcquisitionStage",
-            "description": "Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed (including Closed (Acquihire))."
+            "description": "Read stage of the acquired entity, not transactionStatus"
           },
           "transactionStatus": {
             "oneOf": [
@@ -39627,7 +39668,7 @@
       },
       "EntityResearchPublicSource": {
         "type": "object",
-        "description": "Published page behind a research value, read from the provenance event that wrote the value. Absent when the value came from an internal source.",
+        "description": "Published page behind a research value, read from the provenance event that wrote the value. Absent for internal sources and for privacy, terms, or other legal pages.",
         "properties": {
           "lastFetchedAt": {
             "type": [
@@ -40703,6 +40744,13 @@
           "investorActivity": {
             "$ref": "#/components/schemas/InvestorActivityFilter",
             "description": "Aggregate investor activity filters."
+          },
+          "investorName": {
+            "type": "array",
+            "description": "Investor names. Exact, case-sensitive match on the investor's brand or legal name; restricts returned entities to companies with a fundraise that investor joined.",
+            "items": {
+              "type": "string"
+            }
           },
           "lastRoundYearRange": {
             "type": "array",

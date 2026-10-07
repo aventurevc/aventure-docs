@@ -79,6 +79,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "image_processing_error",
             /** Logo/photo upload was rejected because the server-side brand-match vision check found it does not depict the target's own brand (a generic favicon, a parent/provider/acquirer mark, an OpenGraph/banner/social card, or an unrelated image). Agent action: supply the target entity's OWN brand mark and re-run; retrying the same image, or any generic/og/banner/parent asset, will not pass. */
             "image_brand_mismatch",
+            /** Image upload was a photograph or scene image rather than a standalone logo/mark graphic (a homepage hero, product photo, ad, or screenshot carrying an embedded wordmark). Agent action: supply the entity's standalone mark — a favicon, app icon, wordmark, or lockup — not page imagery; retrying the same bytes will not pass. */
+            "image_photographic",
             /** An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately. */
             "web_crawl_fetch_failed",
             /** A crawl-run request named an entity or person that has no current primary website URL. Agent action: add or activate the owner's website URL, then resubmit; retrying the unchanged request cannot succeed. */

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Published page behind a research value, read from the provenance event that wrote the value. Absent when the value came from an internal source.
+ * Published page behind a research value, read from the provenance event that wrote the value. Absent for internal sources and for privacy, terms, or other legal pages.
  *
  * @openapiSchema EntityResearchPublicSource
  * @endpoint GET /v1/entities

@@ -26,13 +26,13 @@ const EntityAcquisitionSchemaDefinition = z.object({
     /** Published page behind this acquisition, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     relationshipId: z.int(),
-    /** Read stage, not transactionStatus: Acquisition before operating-status change; Acquired Subsidiary for active completed acquisitions; Acquired for terminal/folded/closed (including Closed (Acquihire)). */
+    /** Read stage of the acquired entity, not transactionStatus */
     status: EntityAcquisitionStageSchema,
     transactionStatus: FundraiseTransactionStatusSchema.nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 /**
- * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer, and status is read stage -- Acquisition before operating-status change, Acquired Subsidiary for active completed brands, Acquired for terminal/folded/closed (including Closed (Acquihire)).
+ * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer.
  *
  * @openapiSchema EntityAcquisition
  * @endpoint GET /v1/entities/{entityId}/acquisitions
