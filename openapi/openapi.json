@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.94"
+    "version": "0.8.95"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3779,13 +3779,27 @@
             }
           },
           {
-            "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal.",
+            "description": "Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound or investedIndustry, the same deal must match each.",
+            "in": "query",
+            "name": "fundraiseActivity.investedCountry",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound or investedIndustry, the same deal must match each.",
+              "items": {
+                "type": "string",
+                "description": "Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound or investedIndustry, the same deal must match each."
+              }
+            }
+          },
+          {
+            "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound, investedIndustry, and investedCountry (every deal when all are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal.",
             "in": "query",
             "name": "fundraiseActivity.rankByInvestmentActivity",
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal."
+              "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound, investedIndustry, and investedCountry (every deal when all are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal."
             }
           },
           {
@@ -39095,6 +39109,10 @@
         "type": "object",
         "description": "Requested and executed search strategy for every federated scope.",
         "properties": {
+          "answerUnavailable": {
+            "type": "boolean",
+            "description": "True when synthesis was requested but the answer model was temporarily unavailable (an upstream outage, open circuit, full concurrency limit, or expired deadline), so the entity scope carries no answer while every scope's rows returned. Retrying the same query may succeed."
+          },
           "entity": {
             "$ref": "#/components/schemas/SearchModeExecution",
             "description": "Entity search strategy execution."
@@ -39129,6 +39147,7 @@
           }
         },
         "required": [
+          "answerUnavailable",
           "entity",
           "news",
           "person",
@@ -41714,6 +41733,13 @@
               "type": "string"
             }
           },
+          "investedCountry": {
+            "type": "array",
+            "description": "Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound or investedIndustry, the same deal must match each.",
+            "items": {
+              "type": "string"
+            }
+          },
           "investedIndustry": {
             "type": "array",
             "description": "Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both.",
@@ -41751,7 +41777,7 @@
               "boolean",
               "null"
             ],
-            "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound and investedIndustry (every deal when both are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal."
+            "description": "True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound, investedIndustry, and investedCountry (every deal when all are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal."
           },
           "round": {
             "type": "array",

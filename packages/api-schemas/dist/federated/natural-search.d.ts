@@ -38,6 +38,7 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }, unknown>>>>;
             investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investedRound: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investorActivity: z.ZodOptional<z.ZodObject<{

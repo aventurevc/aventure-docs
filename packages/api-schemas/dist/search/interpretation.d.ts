@@ -37,6 +37,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }[] | undefined;
             investedCompanyName?: string[] | undefined;
+            investedCountry?: string[] | undefined;
             investedIndustry?: string[] | undefined;
             investedRound?: string[] | undefined;
             investorActivity?: {
@@ -139,6 +140,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 min?: number | null | undefined;
             }[] | undefined;
             investedCompanyName?: string[] | undefined;
+            investedCountry?: string[] | undefined;
             investedIndustry?: string[] | undefined;
             investedRound?: string[] | undefined;
             investorActivity?: {

@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
+    answerUnavailable: z.ZodBoolean;
     entity: z.ZodType<{
         modeRequested: string;
         modeUsed: string;

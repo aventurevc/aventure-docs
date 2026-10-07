@@ -66,6 +66,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     min?: number | null | undefined;
                 }[] | undefined;
                 investedCompanyName?: string[] | undefined;
+                investedCountry?: string[] | undefined;
                 investedIndustry?: string[] | undefined;
                 investedRound?: string[] | undefined;
                 investorActivity?: {
@@ -187,6 +188,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     min?: number | null | undefined;
                 }[] | undefined;
                 investedCompanyName?: string[] | undefined;
+                investedCountry?: string[] | undefined;
                 investedIndustry?: string[] | undefined;
                 investedRound?: string[] | undefined;
                 investorActivity?: {

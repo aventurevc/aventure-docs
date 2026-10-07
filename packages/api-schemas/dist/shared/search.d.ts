@@ -63,6 +63,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         investedCompanyName?: string[] | undefined;
+                        investedCountry?: string[] | undefined;
                         investedIndustry?: string[] | undefined;
                         investedRound?: string[] | undefined;
                         investorActivity?: {
@@ -3783,6 +3784,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
         }[];
         provenance: {
+            answerUnavailable: boolean;
             entity: {
                 modeRequested: string;
                 modeUsed: string;
@@ -3854,6 +3856,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         investedCompanyName?: string[] | undefined;
+                        investedCountry?: string[] | undefined;
                         investedIndustry?: string[] | undefined;
                         investedRound?: string[] | undefined;
                         investorActivity?: {
@@ -7574,6 +7577,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
         }[];
         provenance: {
+            answerUnavailable: boolean;
             entity: {
                 modeRequested: string;
                 modeUsed: string;

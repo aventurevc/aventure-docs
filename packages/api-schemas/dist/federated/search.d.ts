@@ -51,6 +51,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }[] | undefined;
                     investedCompanyName?: string[] | undefined;
+                    investedCountry?: string[] | undefined;
                     investedIndustry?: string[] | undefined;
                     investedRound?: string[] | undefined;
                     investorActivity?: {
@@ -2291,6 +2292,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }[] | undefined;
                     investedCompanyName?: string[] | undefined;
+                    investedCountry?: string[] | undefined;
                     investedIndustry?: string[] | undefined;
                     investedRound?: string[] | undefined;
                     investorActivity?: {
@@ -7504,6 +7506,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }[];
     }, unknown>>>;
     provenance: z.ZodType<{
+        answerUnavailable: boolean;
         entity: {
             modeRequested: string;
             modeUsed: string;
@@ -7523,6 +7526,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }[];
         unavailable: ("entity" | "news" | "person")[];
     }, unknown, z.core.$ZodTypeInternals<{
+        answerUnavailable: boolean;
         entity: {
             modeRequested: string;
             modeUsed: string;
