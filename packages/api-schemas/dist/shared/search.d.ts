@@ -20,6 +20,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                 }[];
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                description?: string | null | undefined;
                 paragraph: {
                     citation: {
                         entityId: string;
@@ -31,6 +32,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 }[];
                 relatedQuery: string[];
                 text: string;
+                title?: string | null | undefined;
             } | null | undefined;
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
@@ -3813,6 +3815,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                 }[];
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                description?: string | null | undefined;
                 paragraph: {
                     citation: {
                         entityId: string;
@@ -3824,6 +3827,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 }[];
                 relatedQuery: string[];
                 text: string;
+                title?: string | null | undefined;
             } | null | undefined;
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";

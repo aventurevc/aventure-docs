@@ -15,6 +15,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             LOW: "LOW";
             MEDIUM: "MEDIUM";
         }>;
+        description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         paragraph: z.ZodArray<z.ZodType<{
             citation: {
                 entityId: string;
@@ -34,6 +35,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         }, unknown>>>;
         relatedQuery: z.ZodArray<z.ZodString>;
         text: z.ZodString;
+        title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
     interpretation: z.ZodType<{
         confidence: "HIGH" | "LOW" | "MEDIUM";

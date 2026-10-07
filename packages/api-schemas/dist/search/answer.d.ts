@@ -29,6 +29,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         LOW: "LOW";
         MEDIUM: "MEDIUM";
     }>;
+    description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     paragraph: z.ZodArray<z.ZodType<{
         citation: {
             entityId: string;
@@ -48,6 +49,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
     }, unknown>>>;
     relatedQuery: z.ZodArray<z.ZodString>;
     text: z.ZodString;
+    title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 export type SearchAnswer = z.infer<typeof SearchAnswerSchema>;
 //# sourceMappingURL=answer.d.ts.map

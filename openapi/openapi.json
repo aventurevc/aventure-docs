@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.96"
+    "version": "0.8.97"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -38103,6 +38103,13 @@
             "$ref": "#/components/schemas/Confidence",
             "description": "How fully the cited evidence answers the question."
           },
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "One- or two-sentence summary of at most 155 characters for a search-result snippet; absent when the answer abstains."
+          },
           "paragraph": {
             "type": "array",
             "description": "The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it.",
@@ -38120,6 +38127,13 @@
           "text": {
             "type": "string",
             "description": "Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports."
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Page title of at most 60 characters naming the answer's subject and scope, written by the same model call; absent when the answer abstains."
           }
         },
         "required": [
