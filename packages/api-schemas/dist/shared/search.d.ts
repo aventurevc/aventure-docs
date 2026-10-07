@@ -1,8 +1,16 @@
 import { z } from "zod/v4";
 declare const SharedSearchSchemaDefinition: z.ZodObject<{
-    createdAt: z.ZodISODateTime;
-    id: z.ZodUUID;
-    query: z.ZodString;
+    publication: z.ZodType<{
+        createdAt: string;
+        id: string;
+        query: string;
+        slug: string;
+    }, unknown, z.core.$ZodTypeInternals<{
+        createdAt: string;
+        id: string;
+        query: string;
+        slug: string;
+    }, unknown>>;
     result: z.ZodType<{
         entity: {
             answer?: {
@@ -7008,7 +7016,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             unavailable: ("entity" | "news" | "person")[];
         };
     }, unknown>>;
-    slug: z.ZodString;
 }, z.core.$strip>;
 type SharedSearchDefinition = z.infer<typeof SharedSearchSchemaDefinition>;
 /**

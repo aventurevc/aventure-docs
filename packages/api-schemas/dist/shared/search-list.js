@@ -16,7 +16,11 @@ const SharedSearchListSchemaDefinition = z.object({
  *
  * @openapiSchema SharedSearchList
  * @endpoint GET /v1/search/shared
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/search/shared
  * @usedBySchema CursorSliceSharedSearchListSchema
+ * @usedBySchema SharedSearchSchema
  * @contractShape shared.search-list
  * @contractRole canonical
  */

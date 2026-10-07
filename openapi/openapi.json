@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.88"
+    "version": "0.8.89"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -12499,6 +12499,17 @@
             "description": "Include historic or non-primary rows. Default false returns only rows where isCurrent=true and isPrimary=true.",
             "in": "query",
             "name": "includeInactive",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "deprecated": true,
+            "description": "Deprecated alias for includeInactive.",
+            "in": "query",
+            "name": "includeNonRenderable",
             "required": false,
             "schema": {
               "type": "boolean",
@@ -27576,7 +27587,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/CursorSliceSharedSearchList"
                 }
@@ -27886,7 +27897,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SharedSearch"
                 }
@@ -28030,7 +28041,7 @@
         "responses": {
           "200": {
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SharedSearch"
                 }
@@ -36779,35 +36790,16 @@
         "type": "object",
         "description": "A saved public search query and answer.",
         "properties": {
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Stable shared-search UUID"
-          },
-          "query": {
-            "type": "string"
+          "publication": {
+            "$ref": "#/components/schemas/SharedSearchList"
           },
           "result": {
             "$ref": "#/components/schemas/FederatedSearch"
-          },
-          "slug": {
-            "type": "string",
-            "description": "Canonical lowercase URL slug for the resource",
-            "example": "aventure-vc",
-            "maxLength": 255,
-            "pattern": "^[a-z0-9_-]+$"
           }
         },
         "required": [
-          "createdAt",
-          "id",
-          "query",
-          "result",
-          "slug"
+          "publication",
+          "result"
         ]
       },
       "SystemStatus": {

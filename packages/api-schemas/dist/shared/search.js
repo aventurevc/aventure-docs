@@ -1,17 +1,10 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { FederatedSearchSchema } from "../federated/search.js";
+import { SharedSearchListSchema } from "./search-list.js";
 const SharedSearchSchemaDefinition = z.object({
-    createdAt: z.iso.datetime({ offset: true }),
-    /** Stable shared-search UUID */
-    id: z.uuid(),
-    query: z.string(),
+    publication: SharedSearchListSchema,
     result: FederatedSearchSchema,
-    /** Canonical lowercase URL slug for the resource */
-    slug: z
-        .string()
-        .regex(/^[a-z0-9_-]+$/)
-        .max(255),
 });
 /**
  * A saved public search query and answer.
