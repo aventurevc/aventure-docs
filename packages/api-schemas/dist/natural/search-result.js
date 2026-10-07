@@ -12,7 +12,7 @@ const NaturalSearchResultSchemaDefinition = z.object({
     answer: SearchAnswerSchema.nullish(),
     /** Structured interpretation used to run the entity list query. */
     interpretation: SearchInterpretationSchema,
-    /** Judged answer to a competitor, market, or provider question, most probable first; empty unless the request asks for the `judgment` or `web` layer and the question has one of those shapes. */
+    /** Judged rows of the `result` page for a competitor, market, or provider question: the same entities in the same order, each with its judged probability. Empty for other questions. */
     judgment: z.array(SearchJudgmentSchema),
     /** Passages that best answer the question, ranked by score; empty unless the request asks for the `passage` layer. */
     passage: z.array(SearchPassageSchema),
