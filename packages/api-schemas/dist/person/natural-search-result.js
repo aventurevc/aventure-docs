@@ -7,7 +7,7 @@ const PersonNaturalSearchResultSchemaDefinition = z.object({
     /** Structured interpretation used to run the people query. */
     interpretation: PersonSearchInterpretationSchema,
     /** Personal investment participation supporting the returned people. Firm portfolio activity is never attributed to employees. Empty for other question intents. */
-    investment: z.array(SearchInvestmentSchema).optional(),
+    investment: z.array(SearchInvestmentSchema),
     /** Person page returned by the canonical person list engine. */
     result: PageResultPersonSchema,
     /** Id of this search's stored record; send it with createSearchInteraction to record which results the user selected or opened. Null when the search was not recorded. */

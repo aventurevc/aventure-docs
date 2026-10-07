@@ -147,7 +147,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
         };
         unsupported?: string | null | undefined;
     }, unknown>>;
-    investment: z.ZodOptional<z.ZodArray<z.ZodType<{
+    investment: z.ZodArray<z.ZodType<{
         evidence: {
             fundManagerRelationshipSource?: {
                 changedAt?: string | null | undefined;
@@ -397,7 +397,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceText: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>>;
+    }, unknown>>>;
     result: z.ZodType<{
         content: {
             createdAt?: string | null | undefined;

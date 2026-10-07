@@ -278,7 +278,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         subjectEntityName: string[];
         unsupported?: string | null | undefined;
     }, unknown>>;
-    investment: z.ZodOptional<z.ZodArray<z.ZodType<{
+    investment: z.ZodArray<z.ZodType<{
         evidence: {
             fundManagerRelationshipSource?: {
                 changedAt?: string | null | undefined;
@@ -528,7 +528,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceText: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>>;
+    }, unknown>>>;
     judgment: z.ZodArray<z.ZodType<{
         entity: {
             core: {

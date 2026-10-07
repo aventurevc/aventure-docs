@@ -144,7 +144,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 subjectEntityName: string[];
                 unsupported?: string | null | undefined;
             };
-            investment?: {
+            investment: {
                 evidence: {
                     fundManagerRelationshipSource?: {
                         changedAt?: string | null | undefined;
@@ -269,7 +269,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceText: string;
                     sourceType: string;
                 } | null | undefined;
-            }[] | undefined;
+            }[];
             judgment: {
                 entity: {
                     core: {
@@ -3264,7 +3264,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
                 unsupported?: string | null | undefined;
             };
-            investment?: {
+            investment: {
                 evidence: {
                     fundManagerRelationshipSource?: {
                         changedAt?: string | null | undefined;
@@ -3389,7 +3389,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceText: string;
                     sourceType: string;
                 } | null | undefined;
-            }[] | undefined;
+            }[];
             result: {
                 content: {
                     createdAt?: string | null | undefined;
@@ -3935,7 +3935,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 subjectEntityName: string[];
                 unsupported?: string | null | undefined;
             };
-            investment?: {
+            investment: {
                 evidence: {
                     fundManagerRelationshipSource?: {
                         changedAt?: string | null | undefined;
@@ -4060,7 +4060,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceText: string;
                     sourceType: string;
                 } | null | undefined;
-            }[] | undefined;
+            }[];
             judgment: {
                 entity: {
                     core: {
@@ -7055,7 +7055,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
                 unsupported?: string | null | undefined;
             };
-            investment?: {
+            investment: {
                 evidence: {
                     fundManagerRelationshipSource?: {
                         changedAt?: string | null | undefined;
@@ -7180,7 +7180,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceText: string;
                     sourceType: string;
                 } | null | undefined;
-            }[] | undefined;
+            }[];
             result: {
                 content: {
                     createdAt?: string | null | undefined;
