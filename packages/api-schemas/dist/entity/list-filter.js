@@ -78,7 +78,7 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     suppressLateStage: z.boolean().nullish(),
     /** Suppress entities with terminal operating status. */
     suppressNonOperating: z.boolean().nullish(),
-    /** Suppress entities whose total raised is zero. */
+    /** Suppress entities whose USD-converted total raised is zero or unknown. */
     suppressZeroTotalRaised: z.boolean().nullish(),
     /** General classification tag values. */
     tag: z.array(z.string()).optional(),

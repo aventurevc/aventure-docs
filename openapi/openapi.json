@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.106"
+    "version": "0.8.107"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3545,13 +3545,13 @@
             }
           },
           {
-            "description": "Suppress entities whose total raised is zero.",
+            "description": "Suppress entities whose USD-converted total raised is zero or unknown.",
             "in": "query",
             "name": "suppressZeroTotalRaised",
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Suppress entities whose total raised is zero."
+              "description": "Suppress entities whose USD-converted total raised is zero or unknown."
             }
           },
           {
@@ -29024,7 +29024,7 @@
     },
     "/v1/web/searches/jobs/{jobId}": {
       "get": {
-        "description": "Reads the web-search job a `Prefer: respond-async` search accepted. Answers 200 with the finished search (charged like a search), 202 with Retry-After while SerpAPI is still running it, 503 search_provider_error when the job ended without a result (run the search again), and 404 for an unknown job. Never starts or resubmits a provider search.",
+        "description": "Reads the web-search job a `Prefer: respond-async` search accepted. Answers 200 with the finished search (charged like a search), 202 with Retry-After while the search is queued or running in aVenture's search-collect pool, 503 search_provider_error when the job ended without a result (run the search again), and 404 for an unknown job. Never starts or resubmits a provider search.",
         "operationId": "getWebSearchJob",
         "parameters": [
           {
@@ -29075,7 +29075,7 @@
                 }
               }
             },
-            "description": "SerpAPI is still running the search; poll again after Retry-After",
+            "description": "The search is queued or running in aVenture's search-collect pool; poll again after Retry-After",
             "headers": {
               "Retry-After": {
                 "description": "Seconds to wait before polling again",
@@ -31208,7 +31208,7 @@
               "boolean",
               "null"
             ],
-            "description": "Suppress entities whose total raised is zero."
+            "description": "Suppress entities whose USD-converted total raised is zero or unknown."
           },
           "tag": {
             "type": "array",
@@ -32415,7 +32415,7 @@
               "boolean",
               "null"
             ],
-            "description": "Suppress entities whose total raised is zero."
+            "description": "Suppress entities whose USD-converted total raised is zero or unknown."
           },
           "tag": {
             "type": "array",
@@ -36047,6 +36047,10 @@
               "null"
             ]
           },
+          "linkerCompleted": {
+            "type": "boolean",
+            "description": "Whether the entity linker completed, including an empty result."
+          },
           "personMentionResolved": {
             "type": "array",
             "description": "Resolved person mentions — read-only display projections. News mutations attach people only via flat personId/personSlug values, never these nested objects.",
@@ -39025,12 +39029,25 @@
           },
           "totalRaised": {
             "type": "number"
+          },
+          "totalRaisedUsd": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Sum of round amounts converted to USD at each round's announcement-date ECB/World Bank rate, excluding rounds with no amount or no rate (see unconvertedRoundCount); zero when no round converts. Null when no fundraise rollup exists. Use this, not totalRaised, to compare or rank entities whose rounds use different currencies."
+          },
+          "unconvertedRoundCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Rounds with an amount but no USD rate for their announcement date, so totalRaisedUsd excludes them."
           }
         },
         "required": [
           "fundingRoundCount",
           "investorCount",
-          "totalRaised"
+          "totalRaised",
+          "unconvertedRoundCount"
         ]
       },
       "FundingStage": {
@@ -42376,7 +42393,7 @@
               "number",
               "null"
             ],
-            "description": "Total capital raised when known"
+            "description": "Total capital raised in USD, each round converted at its announcement-date rate; null when no round converts to USD or no funding is known"
           },
           "website": {
             "type": [

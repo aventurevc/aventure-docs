@@ -32,7 +32,7 @@ export const EntityComparisonSignalsSchema = z.object({
     pricingModel: z.array(z.string()),
     /** Customer types the provider sells to (current typeCustomer tags) */
     sellsTo: z.array(z.string()),
-    /** Total capital raised when known */
+    /** Total capital raised in USD, each round converted at its announcement-date rate; null when no round converts to USD or no funding is known */
     totalRaised: z.number().nullish(),
     /** Provider website URL when known */
     website: z.string().nullish(),

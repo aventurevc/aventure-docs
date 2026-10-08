@@ -10,6 +10,8 @@ const NewsDetailSchemaDefinition = z.object({
     entityMentionResolved: z.array(NewsResolvedEntityLinkSchema),
     externalId: z.string().nullish(),
     linkedContent: z.string().nullish(),
+    /** Whether the entity linker completed, including an empty result. */
+    linkerCompleted: z.boolean().optional(),
     /** Resolved person mentions — read-only display projections. News mutations attach people only via flat personId/personSlug values, never these nested objects. */
     personMentionResolved: z.array(NewsResolvedPersonLinkSchema),
 });

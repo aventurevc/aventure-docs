@@ -53,6 +53,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
     }, unknown>>>;
     externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     linkedContent: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    linkerCompleted: z.ZodOptional<z.ZodBoolean>;
     personMentionResolved: z.ZodArray<z.ZodType<{
         createdAt: string;
         href?: string | null | undefined;

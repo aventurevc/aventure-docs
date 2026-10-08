@@ -327,6 +327,8 @@ export declare const EntityDetailSchema: z.ZodObject<{
             mostRecentDate?: string | null | undefined;
             stage?: string | null | undefined;
             totalRaised: number;
+            totalRaisedUsd?: number | null | undefined;
+            unconvertedRoundCount: number;
         } | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -606,6 +608,8 @@ export declare const EntityDetailSchema: z.ZodObject<{
             mostRecentDate?: string | null | undefined;
             stage?: string | null | undefined;
             totalRaised: number;
+            totalRaisedUsd?: number | null | undefined;
+            unconvertedRoundCount: number;
         } | null | undefined;
         text: {
             expanded?: string | null | undefined;
@@ -682,6 +686,8 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
             } | null | undefined;
         } | null | undefined;
         id: string;
@@ -766,6 +772,8 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
             } | null | undefined;
         } | null | undefined;
         id: string;

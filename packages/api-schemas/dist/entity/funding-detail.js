@@ -42,5 +42,9 @@ export const EntityFundingDetailSchema = z.object({
     mostRecentDate: z.iso.date().nullish(),
     stage: FundingStageSchema.nullish(),
     totalRaised: z.number(),
+    /** Sum of round amounts converted to USD at each round's announcement-date ECB/World Bank rate, excluding rounds with no amount or no rate (see unconvertedRoundCount); zero when no round converts. Null when no fundraise rollup exists. Use this, not totalRaised, to compare or rank entities whose rounds use different currencies. */
+    totalRaisedUsd: z.number().nullish(),
+    /** Rounds with an amount but no USD rate for their announcement date, so totalRaisedUsd excludes them. */
+    unconvertedRoundCount: z.int(),
 });
 //# sourceMappingURL=funding-detail.js.map

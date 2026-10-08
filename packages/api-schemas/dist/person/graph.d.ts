@@ -69,6 +69,8 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
             } | null | undefined;
         };
         primaryAddress?: {
@@ -171,6 +173,8 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedUsd?: number | null | undefined;
+                    unconvertedRoundCount: number;
                 } | null | undefined;
             };
             keyPerson: {
@@ -254,6 +258,8 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
             } | null | undefined;
         };
         primaryAddress?: {
@@ -356,6 +362,8 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedUsd?: number | null | undefined;
+                    unconvertedRoundCount: number;
                 } | null | undefined;
             };
             keyPerson: {

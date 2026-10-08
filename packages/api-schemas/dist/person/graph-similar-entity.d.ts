@@ -98,6 +98,8 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
                 "Series Z": "Series Z";
             }>, z.ZodString]>>>;
             totalRaised: z.ZodNumber;
+            totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            unconvertedRoundCount: z.ZodInt;
         }, z.core.$strip>>>;
     }, z.core.$strip>;
     keyPerson: z.ZodArray<z.ZodType<{

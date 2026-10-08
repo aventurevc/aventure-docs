@@ -144,6 +144,8 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 "Series Z": "Series Z";
             }>, z.ZodString]>>>;
             totalRaised: z.ZodNumber;
+            totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            unconvertedRoundCount: z.ZodInt;
         }, z.core.$strip>>>;
     }, z.core.$strip>;
     primaryAddress: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -266,6 +268,8 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
             } | null | undefined;
         };
         keyPerson: {
@@ -322,6 +326,8 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
             } | null | undefined;
         };
         keyPerson: {

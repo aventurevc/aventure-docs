@@ -77,6 +77,8 @@ export declare const EntityFundingDetailSchema: z.ZodObject<{
         "Series Z": "Series Z";
     }>, z.ZodString]>>>;
     totalRaised: z.ZodNumber;
+    totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    unconvertedRoundCount: z.ZodInt;
 }, z.core.$strip>;
 export type EntityFundingDetail = z.infer<typeof EntityFundingDetailSchema>;
 //# sourceMappingURL=funding-detail.d.ts.map

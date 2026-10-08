@@ -58,6 +58,8 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedUsd?: number | null | undefined;
+                    unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
             id: string;
@@ -165,6 +167,8 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedUsd?: number | null | undefined;
+                    unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
             id: string;

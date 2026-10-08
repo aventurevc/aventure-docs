@@ -110,6 +110,8 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 "Series Z": "Series Z";
             }>, z.ZodString]>>>;
             totalRaised: z.ZodNumber;
+            totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            unconvertedRoundCount: z.ZodInt;
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
     id: z.ZodUUID;
