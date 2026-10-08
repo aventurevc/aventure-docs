@@ -1008,8 +1008,6 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 rank: number;
                 sourceHash: string;
                 sourceId: string;
-                sourceJson?: string | undefined;
-                sourceText?: string | undefined;
                 sourceType: string;
             } | null | undefined;
             slug: string;
@@ -1340,8 +1338,6 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 rank: number;
                 sourceHash: string;
                 sourceId: string;
-                sourceJson?: string | undefined;
-                sourceText?: string | undefined;
                 sourceType: string;
             } | null | undefined;
             slug: string;

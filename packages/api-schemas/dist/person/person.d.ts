@@ -34,8 +34,6 @@ declare const PersonSchemaDefinition: z.ZodObject<{
         rank: z.ZodInt;
         sourceHash: z.ZodString;
         sourceId: z.ZodString;
-        sourceJson: z.ZodOptional<z.ZodString>;
-        sourceText: z.ZodOptional<z.ZodString>;
         sourceType: z.ZodUnion<readonly [z.ZodEnum<{
             agentHelpDoc: "agentHelpDoc";
             blogPost: "blogPost";

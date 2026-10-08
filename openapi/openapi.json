@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.104"
+    "version": "0.8.105"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3575,13 +3575,13 @@
             }
           },
           {
-            "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay.",
+            "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay.",
             "in": "query",
             "name": "suppressLateStage",
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay."
+              "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay."
             }
           },
           {
@@ -31194,7 +31194,7 @@
               "boolean",
               "null"
             ],
-            "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay."
+            "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay."
           },
           "suppressNonOperating": {
             "type": [
@@ -32401,7 +32401,7 @@
               "boolean",
               "null"
             ],
-            "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay."
+            "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay."
           },
           "suppressNonOperating": {
             "type": [
@@ -38137,14 +38137,6 @@
             "type": "string",
             "description": "Content embedding source identifier."
           },
-          "sourceJson": {
-            "type": "string",
-            "description": "Serialized JSONB source document stored for the embedding row."
-          },
-          "sourceText": {
-            "type": "string",
-            "description": "Source text used to compute the stored embedding."
-          },
           "sourceType": {
             "$ref": "#/components/schemas/ContentSourceType",
             "description": "Stored content embedding source partition."
@@ -38540,10 +38532,6 @@
         "type": "object",
         "description": "An entity that answers a competitor, market, or provider question, with the judged probability that it does.",
         "properties": {
-          "entity": {
-            "$ref": "#/components/schemas/EntityList",
-            "description": "The answering entity."
-          },
           "entityId": {
             "type": "string",
             "format": "uuid",

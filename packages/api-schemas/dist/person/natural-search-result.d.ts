@@ -488,8 +488,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sourceHash: string;
             sourceId: string;
-            sourceJson?: string | undefined;
-            sourceText?: string | undefined;
             sourceType: string;
         } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
@@ -613,8 +611,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sourceHash: string;
             sourceId: string;
-            sourceJson?: string | undefined;
-            sourceText?: string | undefined;
             sourceType: string;
         } | null | undefined;
     }, unknown>>>;
@@ -647,8 +643,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 rank: number;
                 sourceHash: string;
                 sourceId: string;
-                sourceJson?: string | undefined;
-                sourceText?: string | undefined;
                 sourceType: string;
             } | null | undefined;
             slug: string;
@@ -693,8 +687,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 rank: number;
                 sourceHash: string;
                 sourceId: string;
-                sourceJson?: string | undefined;
-                sourceText?: string | undefined;
                 sourceType: string;
             } | null | undefined;
             slug: string;

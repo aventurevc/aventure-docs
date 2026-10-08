@@ -987,8 +987,6 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                     rank: number;
                     sourceHash: string;
                     sourceId: string;
-                    sourceJson?: string | undefined;
-                    sourceText?: string | undefined;
                     sourceType: string;
                 } | null | undefined;
                 slug: string;
@@ -1319,8 +1317,6 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                     rank: number;
                     sourceHash: string;
                     sourceId: string;
-                    sourceJson?: string | undefined;
-                    sourceText?: string | undefined;
                     sourceType: string;
                 } | null | undefined;
                 slug: string;
