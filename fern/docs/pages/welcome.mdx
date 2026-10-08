@@ -15,24 +15,27 @@ subtitle: Research private companies, founders, investors, and funding rounds fr
 
 ## Pick Where You Work
 
-Every option needs an aVenture account. Free and paid plans both work;
-[create an account](https://aventure.vc/sign-up) first.
+Every option needs an [aVenture account](https://aventure.vc/sign-up); the free
+plan works.
 
-<CardGroup cols={3}>
-  <Card title="AI Apps" icon="regular sparkles" href="/mcp">
-    Claude, ChatGPT, or any MCP client. Add a connector; nothing to install.
+<CardGroup cols={2}>
+  <Card title="AI Apps (MCP)" icon="regular sparkles" href="/mcp">
+    Add `https://mcp.aventure.vc/mcp` as a custom connector in Claude, ChatGPT,
+    Claude Code, or any MCP client, then sign in.
   </Card>
-  <Card title="Terminal" icon="regular terminal" href="/cli">
-    Scripts and coding agents. One `npm install`, then sign in.
+  <Card title="Terminal (CLI)" icon="regular terminal" href="/cli">
+    Install `@aventurevc/aventure-cli` from npm, then sign in with
+    `aventure auth login`.
   </Card>
-  <Card title="Your Code" icon="regular code" href="/quickstart">
-    Call the REST API with an API key.
+  <Card title="Your Code (API)" icon="regular code" href="/quickstart">
+    Send REST requests to `api.aventure.vc` with an API key as the bearer
+    token.
+  </Card>
+  <Card title="Researchly" icon="regular comments" href="https://researchly.chat/profile/mcp-servers">
+    aVenture is built in. Under Profile, then MCP servers, choose
+    **Connect aVenture**.
   </Card>
 </CardGroup>
-
-Using [Researchly](https://researchly.chat)? aVenture is built in: open
-[Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and
-choose **Connect aVenture**.
 
 ## What the Data Covers
 
@@ -43,13 +46,13 @@ choose **Connect aVenture**.
 | [Funding rounds](/api-reference/entity-fundraise/list-entity-fundraise-rounds) | Round, amount raised, valuation, and investors |
 | [News](/api-reference/news/list-news) | Articles linked to the companies and people they mention |
 
-[Search](/api-reference/search/federated) runs across all four. After your first
-result, [Answer a real question](/first-answer) chains a filter, a record, and
-its funding rounds.
+[Search](/api-reference/search/federated) queries all four record types in one
+request. [Answer a real question](/first-answer) walks one research flow end to
+end: filter companies, open one, and list its funding rounds.
 
 ## What You Can Build
 
-[Use cases and examples](/use-cases) has a copy-paste recipe for each common
-job: a company's brand kit from its website, matching a list of websites to
+[Use cases and examples](/use-cases) has a copy-paste recipe for each of these
+jobs: a company's brand kit from its website, matching a list of websites to
 companies, target lists, funding histories, investor portfolios, founder
 backgrounds, competitors, and news monitoring.
