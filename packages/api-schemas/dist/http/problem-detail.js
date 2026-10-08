@@ -117,7 +117,7 @@ const ProblemDetailSchemaDefinition = z.object({
             "news_similarity_embedding_unavailable",
             /** The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed. */
             "search_provider_not_configured",
-            /** Search provider call failed. Agent action: surface; provider outages affect search endpoints only. */
+            /** Search provider call failed. Agent action: inspect detail and source. Provider credential or credit refusals (401, 402, or 407) are terminal: restore the provider credential or credits before retrying. Other transient provider outages may be retried according to Retry-After. */
             "search_provider_error",
             /** aVenture stopped waiting for a web search the provider is still running; the search keeps running and its finished result is stored. Agent action: retry the same request, after retryAfterSeconds when present (also in the Retry-After header); this is not a provider failure. */
             "search_still_running",

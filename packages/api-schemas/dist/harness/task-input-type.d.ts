@@ -9,9 +9,9 @@ import { z } from "zod/v4";
  * @contractShape harness.task-input-type
  * @contractRole canonical
  */
-export declare const HarnessTaskInputTypeSchema: z.ZodEnum<{
+export declare const HarnessTaskInputTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     ENTITY: "ENTITY";
     TEXT: "TEXT";
-}>;
+}>, z.ZodString]>;
 export type HarnessTaskInputType = z.infer<typeof HarnessTaskInputTypeSchema>;
 //# sourceMappingURL=task-input-type.d.ts.map

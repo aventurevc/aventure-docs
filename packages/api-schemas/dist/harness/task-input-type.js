@@ -10,5 +10,5 @@ import { z } from "zod/v4";
  * @contractShape harness.task-input-type
  * @contractRole canonical
  */
-export const HarnessTaskInputTypeSchema = z.enum(["ENTITY", "TEXT"]);
+export const HarnessTaskInputTypeSchema = z.union([z.enum(["ENTITY", "TEXT"]), z.string()]);
 //# sourceMappingURL=task-input-type.js.map

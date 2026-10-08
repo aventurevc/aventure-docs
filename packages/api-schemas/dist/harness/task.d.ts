@@ -2,10 +2,10 @@ import { z } from "zod/v4";
 declare const HarnessTaskSchemaDefinition: z.ZodObject<{
     description: z.ZodString;
     key: z.ZodString;
-    type: z.ZodEnum<{
+    type: z.ZodUnion<readonly [z.ZodEnum<{
         ENTITY: "ENTITY";
         TEXT: "TEXT";
-    }>;
+    }>, z.ZodString]>;
 }, z.core.$strip>;
 type HarnessTaskDefinition = z.infer<typeof HarnessTaskSchemaDefinition>;
 /**

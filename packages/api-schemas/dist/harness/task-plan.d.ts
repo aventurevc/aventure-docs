@@ -15,11 +15,11 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
     input: z.ZodArray<z.ZodType<{
         description: string;
         key: string;
-        type: "ENTITY" | "TEXT";
+        type: string;
     }, unknown, z.core.$ZodTypeInternals<{
         description: string;
         key: string;
-        type: "ENTITY" | "TEXT";
+        type: string;
     }, unknown>>>;
     step: z.ZodArray<z.ZodType<{
         cliCommand: string;

@@ -25,7 +25,7 @@ export const ProblemResolutionSchema = z.object({
     endpoint: z.string().nullish(),
     /** Request-body field path that needs attention, when applicable. */
     fieldPath: z.string().nullish(),
-    /** Query parameter that needs attention, when applicable. */
+    /** Query or path parameter that needs attention, when applicable. */
     parameter: z.string().nullish(),
     /** Whether the same logical request can be retried after the next action. */
     retryable: z.boolean().nullish(),

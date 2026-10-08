@@ -47,7 +47,7 @@ export const EntityFilterSchema = z.strictObject({
     employeeCountRange: z.array(IntRangeSchema).optional(),
     /** Restrict results to specific entity IDs. */
     entityId: z.array(z.uuid()).optional(),
-    /** Exact normalized match against entity brand or legal names. */
+    /** Exact normalized match against entity brand, legal, or alias names. */
     entityName: z.array(z.string()).optional(),
     /** Filter by featured status. */
     featured: z.boolean().nullish(),
@@ -73,6 +73,8 @@ export const EntityFilterSchema = z.strictObject({
     mainProduct: z.array(z.string()).optional(),
     /** Operating states to include; omit to include every state. */
     operatingStatus: z.array(EntityOperatingStatusSchema).optional(),
+    /** Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now. */
+    originCountry: z.array(z.string()).optional(),
     /** Associated person, matched by name. */
     person: z.array(z.string()).optional(),
     /** Portfolio-company headquarters city values. */
@@ -94,7 +96,7 @@ export const EntityFilterSchema = z.strictObject({
         .optional(),
     /** Investment stage classification values. */
     stage: z.array(z.string()).optional(),
-    /** Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay. */
+    /** Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status. */
     suppressLateStage: z.boolean().nullish(),
     /** Suppress entities with terminal operating status. */
     suppressNonOperating: z.boolean().nullish(),

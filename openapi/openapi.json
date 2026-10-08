@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.107"
+    "version": "0.8.110"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3109,16 +3109,16 @@
             }
           },
           {
-            "description": "Exact normalized match against entity brand or legal names.",
+            "description": "Exact normalized match against entity brand, legal, or alias names.",
             "in": "query",
             "name": "entityName",
             "required": false,
             "schema": {
               "type": "array",
-              "description": "Exact normalized match against entity brand or legal names.",
+              "description": "Exact normalized match against entity brand, legal, or alias names.",
               "items": {
                 "type": "string",
-                "description": "Exact normalized match against entity brand or legal names."
+                "description": "Exact normalized match against entity brand, legal, or alias names."
               }
             }
           },
@@ -3388,6 +3388,20 @@
             }
           },
           {
+            "description": "Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now.",
+            "in": "query",
+            "name": "originCountry",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now.",
+              "items": {
+                "type": "string",
+                "description": "Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now."
+              }
+            }
+          },
+          {
             "description": "Investment stage classification values.",
             "in": "query",
             "name": "stage",
@@ -3575,13 +3589,13 @@
             }
           },
           {
-            "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay.",
+            "description": "Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status.",
             "in": "query",
             "name": "suppressLateStage",
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay."
+              "description": "Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status."
             }
           },
           {
@@ -11703,7 +11717,7 @@
     },
     "/v1/entities/{entityId}/logo": {
       "get": {
-        "description": "Returns the selected square or standard logo with its stored provenance; an empty slot returns 404. A Product or Service's assembled `core.image` can show its provider's logo; this slot and `entity.logo` coverage grade the entity's own asset.",
+        "description": "Returns the selected square or standard logo with its stored provenance; an empty slot returns 404. A Product or Service's assembled `core.image` can show its provider's logo; this slot and `entity.logo` coverage grade the entity's own asset. This is the asset fetch, not the verification proof: the accuracy check against reference marks is the logo check operation.",
         "operationId": "getEntityLogo",
         "parameters": [
           {
@@ -17917,7 +17931,7 @@
     },
     "/v1/metrics": {
       "get": {
-        "description": "Global metrics snapshot. Companies tracked, total funding, trailing 30-day funding, investors, people, countries, cities. Totals are a periodically refreshed snapshot, so they can trail recent changes.",
+        "description": "Global metrics snapshot. Companies tracked (companies and investment firms combined), total funding, trailing 30-day funding, investors, people, countries, cities. Totals are a periodically refreshed snapshot, so they can trail recent changes.",
         "operationId": "getSystemGlobalMetrics",
         "responses": {
           "200": {
@@ -18041,7 +18055,7 @@
     },
     "/v1/news": {
       "get": {
-        "description": "Browse news articles in the canonical news domain, with optional filtering. A company's news is this list filtered by owner.entityId (CLI --owner-entity-id); a person's by owner.personId (CLI --owner-person-id).",
+        "description": "Browse news articles in the canonical news domain, with optional filtering. A company's news is this list filtered by owner.entityId (CLI --owner-entity-id); a person's by owner.personId (CLI --owner-person-id). This is the article list: the entities an article is about come from the semantic-similarity read, not here.",
         "operationId": "listNews",
         "parameters": [
           {
@@ -19565,7 +19579,7 @@
     },
     "/v1/news/{newsId}/related-entities": {
       "get": {
-        "description": "Returns entities semantically related to a news article.",
+        "description": "Returns entities semantically related to a news article — the article's entity mentions, not a list of articles; the article list itself is the news list.",
         "operationId": "listNewsRelatedEntities",
         "parameters": [
           {
@@ -20391,7 +20405,7 @@
     },
     "/v1/people/filters": {
       "get": {
-        "description": "Returns available people filter facets.",
+        "description": "Returns available people filter facets — the option inventory a filter can take (titles, statuses, and the like), not people; searching or listing people by title uses the people search and list operations with their filters.",
         "operationId": "listPersonFilters",
         "responses": {
           "200": {
@@ -28683,7 +28697,7 @@
     },
     "/v1/url-types": {
       "get": {
-        "description": "Returns the canonical URL types and aliases accepted by entity and person URL rows. One catalog serves both owners.",
+        "description": "Read-only inventory: returns the canonical URL types and aliases accepted by entity and person URL rows. One catalog serves both owners; it writes nothing.",
         "operationId": "listUrlTypes",
         "responses": {
           "200": {
@@ -28810,7 +28824,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `deep` to search with Exa's slower, broader deep search instead; it answers synchronously and is stored apart from default results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. This is the read for external facts a stored record lacks — a publication or release date, press coverage, an app-store listing — that no catalog operation stores. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `deep` to search with Exa's slower, broader deep search instead; it answers synchronously and is stored apart from default results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
         "operationId": "searchWeb",
         "parameters": [
           {
@@ -29326,7 +29340,7 @@
               "A source-document capture stopped before retaining a provider response over this service's configured byte limit. Agent action: this is a designed containment boundary, not a provider outage or a service defect; do not retry the same request expecting a different outcome.",
               "News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking.",
               "The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed.",
-              "Search provider call failed. Agent action: surface; provider outages affect search endpoints only.",
+              "Search provider call failed. Agent action: inspect detail and source. Provider credential or credit refusals (401, 402, or 407) are terminal: restore the provider credential or credits before retrying. Other transient provider outages may be retried according to Retry-After.",
               "aVenture stopped waiting for a web search the provider is still running; the search keeps running and its finished result is stored. Agent action: retry the same request, after retryAfterSeconds when present (also in the Retry-After header); this is not a provider failure.",
               "A lookup sent with Prefer: respond-async was accepted as a lookup job instead of answered in the request. Agent action: poll the Location status URL after Retry-After.",
               "SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or rate limiting affect the public-company preview endpoint only.",
@@ -31049,7 +31063,7 @@
           },
           "entityName": {
             "type": "array",
-            "description": "Exact normalized match against entity brand or legal names.",
+            "description": "Exact normalized match against entity brand, legal, or alias names.",
             "items": {
               "type": "string"
             }
@@ -31132,6 +31146,13 @@
               "$ref": "#/components/schemas/EntityOperatingStatus"
             }
           },
+          "originCountry": {
+            "type": "array",
+            "description": "Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now.",
+            "items": {
+              "type": "string"
+            }
+          },
           "person": {
             "type": "array",
             "description": "Associated person, matched by name.",
@@ -31194,7 +31215,7 @@
               "boolean",
               "null"
             ],
-            "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay."
+            "description": "Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status."
           },
           "suppressNonOperating": {
             "type": [
@@ -32249,7 +32270,7 @@
           },
           "entityName": {
             "type": "array",
-            "description": "Exact normalized match against entity brand or legal names.",
+            "description": "Exact normalized match against entity brand, legal, or alias names.",
             "items": {
               "type": "string"
             }
@@ -32332,6 +32353,13 @@
               "$ref": "#/components/schemas/EntityOperatingStatus"
             }
           },
+          "originCountry": {
+            "type": "array",
+            "description": "Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now.",
+            "items": {
+              "type": "string"
+            }
+          },
           "person": {
             "type": "array",
             "description": "Associated person, matched by name.",
@@ -32401,7 +32429,7 @@
               "boolean",
               "null"
             ],
-            "description": "Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay."
+            "description": "Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status."
           },
           "suppressNonOperating": {
             "type": [
@@ -43746,7 +43774,7 @@
               "null"
             ],
             "format": "double",
-            "description": "Probability the decision model gave its chosen option (an operation, a task, several, or none); informational, the choice alone decides the outcome."
+            "description": "Probability the decision model gave its chosen option (an operation, a task, several, or none). A task or operation chosen with low probability escalates to CLARIFY, leading the candidates or naming the task."
           },
           "taskKey": {
             "type": [
@@ -43905,7 +43933,7 @@
       "HarnessTaskInputType": {
         "type": "string",
         "description": "ENTITY binds a target entity to its canonical id through entity identification; TEXT is a literal value the request states.",
-        "enum": [
+        "x-extensible-enum": [
           "ENTITY",
           "TEXT"
         ]
@@ -44076,7 +44104,7 @@
               "string",
               "null"
             ],
-            "description": "Query parameter that needs attention, when applicable."
+            "description": "Query or path parameter that needs attention, when applicable."
           },
           "retryable": {
             "type": [
