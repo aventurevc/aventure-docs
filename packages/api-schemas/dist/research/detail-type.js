@@ -22,6 +22,8 @@ const ResearchDetailTypeSchemaDefinition = z.object({
     writeHint: z.string(),
 });
 /**
+ * Research detail type published for API, CLI, and MCP help
+ *
  * @openapiSchema ResearchDetailType
  * @endpoint GET /v1/entities/research-details/types
  * @contractShape research.detail-type

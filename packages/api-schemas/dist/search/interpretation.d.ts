@@ -103,6 +103,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         semanticQuery?: string | null | undefined;
         slug?: string[] | undefined;
         stage?: string[] | undefined;
+        suppressLateStage?: boolean | null | undefined;
         suppressNonOperating?: boolean | null | undefined;
         suppressZeroTotalRaised?: boolean | null | undefined;
         tag?: string[] | undefined;
@@ -211,6 +212,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         semanticQuery?: string | null | undefined;
         slug?: string[] | undefined;
         stage?: string[] | undefined;
+        suppressLateStage?: boolean | null | undefined;
         suppressNonOperating?: boolean | null | undefined;
         suppressZeroTotalRaised?: boolean | null | undefined;
         tag?: string[] | undefined;

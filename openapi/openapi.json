@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.102"
+    "version": "0.8.103"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3572,6 +3572,16 @@
             "schema": {
               "type": "boolean",
               "description": "Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean."
+            }
+          },
+          {
+            "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay.",
+            "in": "query",
+            "name": "suppressLateStage",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay."
             }
           },
           {
@@ -29752,7 +29762,11 @@
           "answer",
           "citation",
           "confidence"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "help answer",
+          "other": "help answers"
+        }
       },
       "ApiKey": {
         "type": "object",
@@ -30167,6 +30181,7 @@
       },
       "ResearchAllowance": {
         "type": "object",
+        "description": "AI credit allowance for one billing period, the UTC month by default",
         "properties": {
           "limit": {
             "type": [
@@ -30198,7 +30213,11 @@
         "required": [
           "resetAt",
           "used"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "AI credit balance",
+          "other": "AI credit balances"
+        }
       },
       "BillingCheckoutMutation": {
         "type": "object",
@@ -30546,7 +30565,11 @@
           "entitled",
           "status",
           "tier"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "subscription",
+          "other": "subscriptions"
+        }
       },
       "EnrichmentBatch": {
         "type": "object",
@@ -30650,7 +30673,11 @@
           "Business Line",
           "Product",
           "Service"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "entity type",
+          "other": "entity types"
+        }
       },
       "IntRange": {
         "type": "object",
@@ -30803,7 +30830,11 @@
           "classification",
           "core",
           "urlLink"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "brand profile",
+          "other": "brand profiles"
+        }
       },
       "ClassificationCatalog": {
         "type": "object",
@@ -30850,7 +30881,11 @@
           "totalCategory",
           "totalStandardizedClassification",
           "totalTag"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "classification catalog",
+          "other": "classification catalogs"
+        }
       },
       "PageClassification": {
         "type": "object",
@@ -30946,7 +30981,11 @@
         "required": [
           "arrayFilterEntry",
           "rangeFilterEntry"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "filter set",
+          "other": "filter sets"
+        }
       },
       "EntityFilter": {
         "type": "object",
@@ -31150,6 +31189,13 @@
               "type": "string"
             }
           },
+          "suppressLateStage": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay."
+          },
           "suppressNonOperating": {
             "type": [
               "boolean",
@@ -31287,7 +31333,11 @@
         "required": [
           "filter",
           "meta"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "refined filter set",
+          "other": "refined filter sets"
+        }
       },
       "EntityFilterSearch": {
         "type": "object",
@@ -31339,7 +31389,11 @@
         "required": [
           "filterKey",
           "result"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "filter search",
+          "other": "filter searches"
+        }
       },
       "IdentificationSubject": {
         "type": "object",
@@ -31545,7 +31599,11 @@
           "duplicate",
           "stage",
           "status"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "identity lookup",
+          "other": "identity lookups"
+        }
       },
       "JobEnqueue": {
         "type": "object",
@@ -31791,7 +31849,11 @@
           "input",
           "inputType",
           "status"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "identifier resolution",
+          "other": "identifier resolutions"
+        }
       },
       "EntityRelationshipTypeOption": {
         "type": "object",
@@ -31864,7 +31926,11 @@
           "joinable",
           "pairRule",
           "readOnly"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "relationship type",
+          "other": "relationship types"
+        }
       },
       "EntityRelationship": {
         "type": "object",
@@ -31979,10 +32045,15 @@
           "entity",
           "relationship",
           "relationshipType"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "relationship",
+          "other": "relationships"
+        }
       },
       "ResearchDetailType": {
         "type": "object",
+        "description": "Research detail type published for API, CLI, and MCP help",
         "properties": {
           "allowedToken": {
             "type": [
@@ -32044,7 +32115,11 @@
           "valueShape",
           "valueType",
           "writeHint"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "research detail type",
+          "other": "research detail types"
+        }
       },
       "ResearchSnippetType": {
         "type": "object",
@@ -32106,7 +32181,11 @@
           "recognized",
           "targetPath",
           "typeValue"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "research snippet type",
+          "other": "research snippet types"
+        }
       },
       "EntityListFilter": {
         "type": "object",
@@ -32316,6 +32395,13 @@
             "items": {
               "type": "string"
             }
+          },
+          "suppressLateStage": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay."
           },
           "suppressNonOperating": {
             "type": [
@@ -32612,7 +32698,11 @@
           "nameLegal",
           "otherCandidate",
           "ticker"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "SEC company record",
+          "other": "SEC company records"
+        }
       },
       "TextTypeOption": {
         "type": "object",
@@ -32664,7 +32754,11 @@
         "required": [
           "canonical",
           "privateType"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "text type",
+          "other": "text types"
+        }
       },
       "EntityTypeAlias": {
         "type": "object",
@@ -32705,7 +32799,11 @@
           "description",
           "productServiceRouteSegment",
           "publicPathPrefix"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "entity type",
+          "other": "entity types"
+        }
       },
       "EntityAcquisitionRole": {
         "type": "string",
@@ -32887,7 +32985,11 @@
           "evidence",
           "relationshipId",
           "status"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "acquisition",
+          "other": "acquisitions"
+        }
       },
       "Address": {
         "type": "object",
@@ -33050,6 +33152,10 @@
             ],
             "format": "date-time"
           }
+        },
+        "x-aventure-noun": {
+          "one": "address",
+          "other": "addresses"
         }
       },
       "PageBlogPost": {
@@ -33215,7 +33321,11 @@
           "type",
           "updatedAt",
           "url"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "blog post",
+          "other": "blog posts"
+        }
       },
       "EntityClassification": {
         "type": "object",
@@ -33301,6 +33411,10 @@
               "$ref": "#/components/schemas/EntityTag"
             }
           }
+        },
+        "x-aventure-noun": {
+          "one": "classification set",
+          "other": "classification sets"
         }
       },
       "EntityClassificationSuggestion": {
@@ -33348,7 +33462,11 @@
           "rank",
           "score",
           "writable"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "classification suggestion",
+          "other": "classification suggestions"
+        }
       },
       "PublicationType": {
         "type": "string",
@@ -33442,7 +33560,11 @@
         "required": [
           "contentType",
           "count"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "content topic",
+          "other": "content topics"
+        }
       },
       "NaturalSearch": {
         "type": "object",
@@ -33752,7 +33874,11 @@
           "type",
           "updatedAt",
           "url"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "enrichment run",
+          "other": "enrichment runs"
+        }
       },
       "PageEntityFundraiseInvestorJoin": {
         "type": "object",
@@ -34116,7 +34242,11 @@
           "totalInvestment",
           "totalPortfolioExit",
           "totalWriteOff"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "investor activity summary",
+          "other": "investor activity summaries"
+        }
       },
       "PageEntityInvestorParticipation": {
         "type": "object",
@@ -34219,7 +34349,11 @@
           "cdnUrl",
           "mediaType",
           "path"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "image",
+          "other": "images"
+        }
       },
       "PageEntityPersonAssociation": {
         "type": "object",
@@ -34609,7 +34743,11 @@
           "acceleratorParticipation",
           "detail",
           "snippet"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "research record",
+          "other": "research records"
+        }
       },
       "PageEntityResearchDetail": {
         "type": "object",
@@ -34738,7 +34876,11 @@
           "id",
           "typeResearchDetail",
           "valueType"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "research detail",
+          "other": "research details"
+        }
       },
       "PageEntityResearchSnippet": {
         "type": "object",
@@ -34840,7 +34982,11 @@
           "id",
           "text",
           "textType"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "research snippet",
+          "other": "research snippets"
+        }
       },
       "PageEntitySimilarityResult": {
         "type": "object",
@@ -34966,7 +35112,11 @@
           "resourceType",
           "slug",
           "url"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "slug",
+          "other": "slugs"
+        }
       },
       "PageEntityText": {
         "type": "object",
@@ -35090,7 +35240,11 @@
           "owner",
           "text",
           "textType"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "text",
+          "other": "texts"
+        }
       },
       "PageNews": {
         "type": "object",
@@ -35230,7 +35384,11 @@
           "identifier",
           "owner",
           "updatedAt"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "unique ID",
+          "other": "unique IDs"
+        }
       },
       "PageEntityUrlLink": {
         "type": "object",
@@ -35380,7 +35538,11 @@
         "required": [
           "url",
           "urlType"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "URL",
+          "other": "URLs"
+        }
       },
       "PageEntityValuationTimeSeriesPoint": {
         "type": "object",
@@ -35541,7 +35703,11 @@
         },
         "required": [
           "run"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "enrichment run",
+          "other": "enrichment runs"
+        }
       },
       "LookupJobMutation": {
         "type": "object",
@@ -35675,7 +35841,11 @@
           "source",
           "state",
           "updatedAt"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "lookup job",
+          "other": "lookup jobs"
+        }
       },
       "MentionLookup": {
         "type": "object",
@@ -35691,7 +35861,11 @@
         },
         "required": [
           "mention"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "mention lookup",
+          "other": "mention lookups"
+        }
       },
       "SystemGlobalMetrics": {
         "type": "object",
@@ -35749,7 +35923,11 @@
           "people",
           "refreshedAt",
           "totalFunding"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "metrics snapshot",
+          "other": "metrics snapshots"
+        }
       },
       "NewsFeedback": {
         "type": "object",
@@ -35974,7 +36152,11 @@
           "subscription",
           "updatedAt",
           "verifiedAt"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "news subscription",
+          "other": "news subscriptions"
+        }
       },
       "NewsSubscription": {
         "type": "object",
@@ -36474,7 +36656,11 @@
         "required": [
           "careerContext",
           "coInvestor"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "professional graph",
+          "other": "professional graphs"
+        }
       },
       "PagePersonInvestment": {
         "type": "object",
@@ -36607,7 +36793,11 @@
         "required": [
           "matchedBy",
           "owner"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "resolved handle",
+          "other": "resolved handles"
+        }
       },
       "SearchLayer": {
         "type": "string",
@@ -36732,7 +36922,11 @@
           "person",
           "personDetail",
           "provenance"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "query",
+          "other": "queries"
+        }
       },
       "LinkSearch": {
         "type": "object",
@@ -36756,7 +36950,11 @@
           "query",
           "related",
           "url"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "link query",
+          "other": "link queries"
+        }
       },
       "EntityNaturalSearch": {
         "type": "object",
@@ -36858,7 +37056,11 @@
           "pendingWebQuery",
           "result",
           "subject"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "company query",
+          "other": "company queries"
+        }
       },
       "PersonNaturalSearch": {
         "type": "object",
@@ -36909,7 +37111,11 @@
           "interpretation",
           "investment",
           "result"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "people query",
+          "other": "people queries"
+        }
       },
       "CursorSliceSharedSearchList": {
         "type": "object",
@@ -36968,7 +37174,11 @@
         "required": [
           "publication",
           "result"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "shared search",
+          "other": "shared searches"
+        }
       },
       "SystemStatus": {
         "type": "object",
@@ -37051,7 +37261,11 @@
         "required": [
           "operationFingerprint",
           "uptime"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "system status",
+          "other": "system statuses"
+        }
       },
       "UniqueIdTypeAlias": {
         "type": "object",
@@ -37092,7 +37306,11 @@
           "canonical",
           "label",
           "ownerScope"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "unique ID type",
+          "other": "unique ID types"
+        }
       },
       "UrlTypeAlias": {
         "type": "object",
@@ -37121,7 +37339,11 @@
           "alias",
           "canonical",
           "hostDomain"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "URL type",
+          "other": "URL types"
+        }
       },
       "DatasourceProvenanceActorType": {
         "type": "string",
@@ -37238,7 +37460,11 @@
           "document",
           "result",
           "search"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "web query",
+          "other": "web queries"
+        }
       },
       "NewsPublishedEvent": {
         "type": "object",
@@ -39459,7 +39685,11 @@
         "required": [
           "person",
           "similarity"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "similar person",
+          "other": "similar people"
+        }
       },
       "PageableObject": {
         "type": "object",
@@ -39992,7 +40222,11 @@
           "asOfDate",
           "fact",
           "id"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "employee count",
+          "other": "employee counts"
+        }
       },
       "EntityFundraiseTransactionEntity": {
         "type": "object",
@@ -40697,7 +40931,11 @@
           "derivation",
           "source",
           "sourceRef"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "valuation",
+          "other": "valuations"
+        }
       },
       "ValuationType": {
         "type": "string",
@@ -41044,7 +41282,11 @@
           "stargazerCount",
           "topic",
           "url"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "repository",
+          "other": "repositories"
+        }
       },
       "PersonInvestorParticipation": {
         "type": "object",
@@ -41412,7 +41654,11 @@
           "contentId",
           "contentType",
           "title"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "content item",
+          "other": "content items"
+        }
       },
       "EntityTag": {
         "allOf": [
@@ -41511,7 +41757,11 @@
           "name",
           "type",
           "writable"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "classification",
+          "other": "classifications"
+        }
       },
       "StandardizedClassification": {
         "allOf": [
@@ -41608,7 +41858,11 @@
           "id",
           "name",
           "writable"
-        ]
+        ],
+        "x-aventure-noun": {
+          "one": "classification",
+          "other": "classifications"
+        }
       },
       "Classification": {
         "type": "object",

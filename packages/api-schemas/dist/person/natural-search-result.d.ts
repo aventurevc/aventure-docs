@@ -116,6 +116,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 rankByProminence?: boolean | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
+                suppressLateStage?: boolean | null | undefined;
                 suppressNonOperating?: boolean | null | undefined;
                 suppressZeroTotalRaised?: boolean | null | undefined;
                 tag?: string[] | undefined;
@@ -298,6 +299,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 rankByProminence?: boolean | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
+                suppressLateStage?: boolean | null | undefined;
                 suppressNonOperating?: boolean | null | undefined;
                 suppressZeroTotalRaised?: boolean | null | undefined;
                 tag?: string[] | undefined;

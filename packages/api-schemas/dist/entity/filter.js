@@ -94,6 +94,8 @@ export const EntityFilterSchema = z.strictObject({
         .optional(),
     /** Investment stage classification values. */
     stage: z.array(z.string()).optional(),
+    /** Exclude public companies and companies at Series D or later; what startup means. Companies without a recorded stage stay. */
+    suppressLateStage: z.boolean().nullish(),
     /** Suppress entities with terminal operating status. */
     suppressNonOperating: z.boolean().nullish(),
     /** Suppress entities whose total raised is zero. */

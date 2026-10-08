@@ -191,6 +191,7 @@ export declare const PersonFilterSchema: z.ZodObject<{
         rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
         stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        suppressLateStage: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         suppressZeroTotalRaised: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         tag: z.ZodOptional<z.ZodArray<z.ZodString>>;
