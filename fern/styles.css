@@ -73,6 +73,17 @@ div:has(> .fern-x-overflow > h6[role="tab"]) {
   display: none;
 }
 
+/* A footer holding only "Built with Fern" (pages with hide-feedback and
+   hide-nav-links) stacked 144px of empty margin above the link and 112px below;
+   the article's own bottom margin and the layout gap already separate it. */
+.fern-layout-footer:has(> .fern-layout-footer-toolbar + #builtwithfern) {
+  margin-block: 0;
+}
+
+.fern-layout-footer-toolbar + #builtwithfern {
+  margin-top: 0;
+}
+
 /* Welcome hero: a short brand band, tinted with the accent. */
 .welcome-hero-tint {
   position: relative;
@@ -227,7 +238,10 @@ html.light .fern-callout[data-intent="warning"] {
 }
 
 /* Below the md breakpoint the capsule shrinks to two icon buttons beside the
-   menu, so the logo keeps its room. Labels stay in the accessibility tree. */
+   menu, so the logo keeps its room. Labels stay in the accessibility tree.
+   Hide labels with font-size: 0, never a clipped 1px box: Fern's button wraps
+   any label whose scrollWidth exceeds its clientWidth in a Tooltip that has no
+   TooltipProvider, and that throw unmounts the whole header, menu included. */
 @media (max-width: 767px) {
   .fern-header-content :is(:has(> #fern-ask-ai-button), :has(> div > #fern-ask-ai-button)) {
     flex: none;
@@ -246,21 +260,12 @@ html.light .fern-callout[data-intent="warning"] {
     padding: 0;
   }
 
-  .fern-header-content :has(> #fern-ask-ai-button) > #fern-search-button {
+  .fern-header-content :has(> #fern-ask-ai-button) > :is(#fern-search-button, #fern-ask-ai-button) {
     font-size: 0;
   }
 
   .fern-header-content :has(> #fern-ask-ai-button) .fern-kbd {
     display: none;
-  }
-
-  .fern-header-content #fern-ask-ai-button .fern-button-text {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
 }
 
