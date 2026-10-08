@@ -1,11 +1,14 @@
 // Verify phone navigation on a published Fern site.
 //   node check-mobile-nav.mjs <site-base-url>
 // Runs from a directory where `playwright` is installed (see the workflows).
-// For each page, on iPhone (WebKit) and Android (Chromium) emulation: load it,
-// reload it from cache, wait for the header island to hydrate, then require
-// the menu button, a working menu, and no uncaught page error.
-// The reload matters: a hydration error in Fern's header unmounted the whole
-// header only once styles were cached, so a single cold load passed.
+// For each page, on iPhone (WebKit) and Android (Chromium) emulation: warm the
+// cache with one load, then load it again in a fresh tab, wait for the header
+// island to hydrate, and require the menu button, a working menu, and no
+// uncaught page error in that tab.
+// The cached load matters: a hydration error in Fern's header unmounted the
+// whole header only once styles were cached, so a single cold load passed. The
+// warm-up uses its own tab because a reload aborts the first document's dynamic
+// imports, which WebKit reports as "Importing a module script failed".
 import { chromium, devices, webkit } from "playwright";
 
 const base = (process.argv[2] ?? "").replace(/\/$/, "");
@@ -22,6 +25,9 @@ const TARGETS = [
 const TIMEOUT_MS = 20_000;
 
 async function checkPage(context, path) {
+  const warmup = await context.newPage();
+  await warmup.goto(base + path, { waitUntil: "load", timeout: TIMEOUT_MS });
+  await warmup.close();
   const page = await context.newPage();
   const pageErrors = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
@@ -35,7 +41,6 @@ async function checkPage(context, path) {
     if (response.status() >= 400) failedRequests.push(`${response.url()} (HTTP ${response.status()})`);
   });
   await page.goto(base + path, { waitUntil: "load", timeout: TIMEOUT_MS });
-  await page.reload({ waitUntil: "load", timeout: TIMEOUT_MS });
   // Server-rendered markup already holds the button; only hydration proves it
   // survives. Astro drops the `ssr` attribute once an island hydrates.
   await page.waitForSelector('astro-island[component-url*="HeaderContentIsland"]:not([ssr])', {
@@ -62,7 +67,7 @@ for (const { engine, device } of TARGETS) {
   const context = await browser.newContext({ ...devices[device] });
   for (const path of PAGES) {
     // One retry absorbs a network blip; the header defect this guards against
-    // reproduced on every cached reload, so it still fails both attempts.
+    // reproduced on every cached load, so it still fails both attempts.
     let lastError;
     for (let attempt = 1; attempt <= 2 && lastError !== null; attempt += 1) {
       try {
