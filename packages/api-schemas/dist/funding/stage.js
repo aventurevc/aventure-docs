@@ -64,6 +64,7 @@ export const FundingStageSchema = z.union([
         "Series X",
         "Series Y",
         "Series Z",
+        "Late Stage Private",
         "Investment Firm",
         "Fund",
         "Nonprofit",

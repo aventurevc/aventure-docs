@@ -44,6 +44,7 @@ export declare const EntityFundingDetailSchema: z.ZodObject<{
         Fund: "Fund";
         Government: "Government";
         "Investment Firm": "Investment Firm";
+        "Late Stage Private": "Late Stage Private";
         Nonprofit: "Nonprofit";
         "Pre-Seed": "Pre-Seed";
         Public: "Public";

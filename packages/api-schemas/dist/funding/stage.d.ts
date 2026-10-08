@@ -39,6 +39,7 @@ export declare const FundingStageSchema: z.ZodUnion<readonly [z.ZodEnum<{
     Fund: "Fund";
     Government: "Government";
     "Investment Firm": "Investment Firm";
+    "Late Stage Private": "Late Stage Private";
     Nonprofit: "Nonprofit";
     "Pre-Seed": "Pre-Seed";
     Public: "Public";

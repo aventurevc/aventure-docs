@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const SharedSearchSchemaDefinition: z.ZodObject<{
+    canonicalSlug: z.ZodString;
     publication: z.ZodType<{
         createdAt: string;
         id: string;
