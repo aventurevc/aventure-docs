@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.112"
+    "version": "0.8.114"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -10011,7 +10011,7 @@
     },
     "/v1/entities/{entityId}/enrichments": {
       "post": {
-        "description": "Queues a run that researches the addressed entity and updates its aVenture profile, owned by the authenticated caller. Take entityId from match.owner when POST /v1/lookup or POST /v1/entities/lookup returns MATCHED (CLI: lookup, entities lookup). When a run for this entity is already queued or running, returns that run instead of queuing and charging another; a new run spends one `company` research unit from the plan's research allowance. After the run completes, read the updated profile with GET /v1/entities/{entityId} (CLI: entities get). Check the run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
+        "description": "Queues a run that researches the addressed entity and updates its aVenture profile, owned by the authenticated caller. Take entityId from match.owner when POST /v1/lookup or POST /v1/entities/lookup returns MATCHED (CLI: lookup, entities lookup). When a run for this entity is already queued or running, returns that run instead of queuing and charging another; a new run reserves one `company` research unit from the plan's research allowance, spent only once the run saves a research write and returned when it ends without one. After the run completes, read the updated profile with GET /v1/entities/{entityId} (CLI: entities get). Check the run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
         "operationId": "enrichEntity",
         "parameters": [
           {
@@ -16101,7 +16101,7 @@
     },
     "/v1/harness/runs": {
       "post": {
-        "description": "Queues a run that researches the company, Product, Service, or person at url and writes its aVenture profile, owned by the caller. A url a current record owns enriches that record; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH (CLI: lookup). Send name when known. A new run spends one `company` or `person` research unit; a run already queued or running for the same subject is returned instead, uncharged. A url that matches more than one record answers 409, and a spent allowance 429. Check progress with GET /v1/harness/runs/{runId} (CLI: harness runs get); the caller is notified when the run completes. Without an admin credential a caller may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. An admin bearer credential files a run it owns with any field; an admin API key files one owned by the back-end's Clerk machine.",
+        "description": "Queues a run that researches the company, Product, Service, or person at url and writes its aVenture profile, owned by the caller. A url a current record owns enriches that record; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH (CLI: lookup). Send name when known. A new run reserves one `company` or `person` research unit, spent only once the run saves a research write and returned when it ends without one; a run already queued or running for the same subject is returned instead, uncharged. A url that matches more than one record answers 409, and a spent allowance 429. Check progress with GET /v1/harness/runs/{runId} (CLI: harness runs get); the caller is notified when the run completes. Without an admin credential a caller may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. An admin bearer credential files a run it owns with any field; an admin API key files one owned by the back-end's Clerk machine.",
         "operationId": "createHarnessRun",
         "requestBody": {
           "content": {
@@ -23430,7 +23430,7 @@
     },
     "/v1/people/{personId}/enrichments": {
       "post": {
-        "description": "Queues a run that researches the addressed person and updates their aVenture profile, owned by the authenticated caller. Take personId from match.owner when POST /v1/lookup or POST /v1/people/lookup returns MATCHED (CLI: lookup, people lookup). When a run for this person is already queued or running, returns that run instead of queuing and charging another; a new run spends one `person` research unit from the plan's research allowance. After the run completes, read the updated profile with GET /v1/people/{personId} (CLI: people get). Check the run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
+        "description": "Queues a run that researches the addressed person and updates their aVenture profile, owned by the authenticated caller. Take personId from match.owner when POST /v1/lookup or POST /v1/people/lookup returns MATCHED (CLI: lookup, people lookup). When a run for this person is already queued or running, returns that run instead of queuing and charging another; a new run reserves one `person` research unit from the plan's research allowance, spent only once the run saves a research write and returned when it ends without one. After the run completes, read the updated profile with GET /v1/people/{personId} (CLI: people get). Check the run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
         "operationId": "enrichPerson",
         "parameters": [
           {
@@ -37198,7 +37198,7 @@
         "properties": {
           "canonicalSlug": {
             "type": "string",
-            "description": "Slug of the earliest share of the same query, compared case-insensitively. Pages name it as their canonical URL; equals publication.slug on that earliest share.",
+            "description": "Slug of the canonical share of the same query, compared case-insensitively: the share named by the query's own slug, else the earliest share. Pages name it as their canonical URL; equals publication.slug on that share.",
             "example": "aventure-vc",
             "maxLength": 255,
             "pattern": "^[a-z0-9_-]+$"
