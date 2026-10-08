@@ -52,3 +52,8 @@ jobs:
             [ "$attempt" -lt 5 ] && { echo "attempt $attempt failed; retrying in 60s"; sleep 60; }
           done
           exit 1
+
+      - name: Verify phone navigation on the live site
+        uses: ./.github/actions/check-mobile-nav
+        with:
+          site-url: https://docs.aventure.vc

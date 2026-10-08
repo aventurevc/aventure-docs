@@ -1,0 +1,21 @@
+name: check-mobile-nav
+description: Require working phone navigation on a published docs site (scripts/check-mobile-nav.mjs).
+inputs:
+  site-url:
+    description: Base URL of the published site.
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install Playwright
+      shell: bash
+      run: |
+        npm install --prefix "$RUNNER_TEMP/mobile-nav" --no-save --no-audit --no-fund playwright@1.64.0
+        "$RUNNER_TEMP/mobile-nav/node_modules/.bin/playwright" install --with-deps webkit chromium
+        cp "$GITHUB_WORKSPACE/scripts/check-mobile-nav.mjs" "$RUNNER_TEMP/mobile-nav/"
+
+    - name: Check phone navigation
+      shell: bash
+      env:
+        SITE_URL: ${{ inputs.site-url }}
+      run: node "$RUNNER_TEMP/mobile-nav/check-mobile-nav.mjs" "$SITE_URL"

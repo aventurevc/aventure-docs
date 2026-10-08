@@ -46,6 +46,13 @@ jobs:
           PREVIEW_URL: ${{ steps.generate-docs.outputs.url }}
         run: scripts/check-docs-site.sh "$PREVIEW_URL"
 
+      # Previews disable Ask AI, so the daily check-mobile-nav run and the
+      # post-publish step still cover the production header.
+      - name: Verify phone navigation on the preview
+        uses: ./.github/actions/check-mobile-nav
+        with:
+          site-url: ${{ steps.generate-docs.outputs.url }}
+
       - name: Comment URL in PR
         if: always() && steps.generate-docs.outputs.url != ''
         env:
