@@ -50,12 +50,23 @@ for (const { engine, device } of TARGETS) {
   const browser = await engine.launch();
   const context = await browser.newContext({ ...devices[device] });
   for (const path of PAGES) {
-    try {
-      await checkPage(context, path);
+    // One retry absorbs a network blip; the header defect this guards against
+    // reproduced on every cached reload, so it still fails both attempts.
+    let lastError;
+    for (let attempt = 1; attempt <= 2 && lastError !== null; attempt += 1) {
+      try {
+        await checkPage(context, path);
+        lastError = null;
+      } catch (error) {
+        lastError = error;
+        console.log(`attempt ${attempt} ${device} ${path}: ${error.message.split("\n")[0]}`);
+      }
+    }
+    if (lastError === null) {
       console.log(`ok   ${device} ${path}`);
-    } catch (error) {
+    } else {
       failures += 1;
-      console.log(`FAIL ${device} ${path}: ${error.message.split("\n")[0]}`);
+      console.log(`FAIL ${device} ${path}`);
     }
   }
   await browser.close();
