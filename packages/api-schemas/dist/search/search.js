@@ -8,6 +8,8 @@ const SearchSchemaDefinition = z.object({
     bypassCache: z.boolean().default(false).optional(),
     /** Stable lookup text for cache keying when generated search text varies between runs */
     cacheKey: z.string().nullish(),
+    /** Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search. */
+    deep: z.boolean().default(false).optional(),
     /** Search language code */
     language: z.string().nullish(),
     /** Search region code */

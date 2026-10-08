@@ -113,6 +113,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersCountry?: string[] | undefined;
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
+                rankByProminence?: boolean | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
                 suppressNonOperating?: boolean | null | undefined;
@@ -294,6 +295,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersCountry?: string[] | undefined;
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
+                rankByProminence?: boolean | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
                 suppressNonOperating?: boolean | null | undefined;

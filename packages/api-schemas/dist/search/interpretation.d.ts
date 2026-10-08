@@ -99,6 +99,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         portfolioHeadquartersCountry?: string[] | undefined;
         portfolioHeadquartersState?: string[] | undefined;
         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
+        rankByProminence?: boolean | null | undefined;
         semanticQuery?: string | null | undefined;
         slug?: string[] | undefined;
         stage?: string[] | undefined;
@@ -206,6 +207,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         portfolioHeadquartersCountry?: string[] | undefined;
         portfolioHeadquartersState?: string[] | undefined;
         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
+        rankByProminence?: boolean | null | undefined;
         semanticQuery?: string | null | undefined;
         slug?: string[] | undefined;
         stage?: string[] | undefined;

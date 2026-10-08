@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.101"
+    "version": "0.8.102"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3562,6 +3562,16 @@
             "schema": {
               "type": "boolean",
               "description": "Suppress entities with terminal operating status."
+            }
+          },
+          {
+            "description": "Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean.",
+            "in": "query",
+            "name": "rankByProminence",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "description": "Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean."
             }
           },
           {
@@ -28790,7 +28800,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `deep` to search with Exa's slower, broader deep search instead; it answers synchronously and is stored apart from default results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
         "operationId": "searchWeb",
         "parameters": [
           {
@@ -31115,6 +31125,13 @@
             "$ref": "#/components/schemas/EntityListQualityGate",
             "description": "Named server-owned list quality gate."
           },
+          "rankByProminence": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean."
+          },
           "slug": {
             "type": "array",
             "description": "Restrict results to entity slugs.",
@@ -32267,6 +32284,13 @@
           "qualityGate": {
             "$ref": "#/components/schemas/EntityListQualityGate",
             "description": "Named server-owned list quality gate."
+          },
+          "rankByProminence": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean."
           },
           "semanticQuery": {
             "type": [
@@ -37130,6 +37154,11 @@
             ],
             "description": "Stable lookup text for cache keying when generated search text varies between runs",
             "example": "OpenAI"
+          },
+          "deep": {
+            "type": "boolean",
+            "default": false,
+            "description": "Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search."
           },
           "language": {
             "type": [

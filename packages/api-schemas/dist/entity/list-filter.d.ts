@@ -132,6 +132,7 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
         COMPANY_LISTING_READY: "COMPANY_LISTING_READY";
         NONE: "NONE";
     }>>;
+    rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
     stage: z.ZodOptional<z.ZodArray<z.ZodString>>;

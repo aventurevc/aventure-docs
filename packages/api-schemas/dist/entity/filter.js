@@ -83,6 +83,8 @@ export const EntityFilterSchema = z.strictObject({
     portfolioHeadquartersState: z.array(z.string()).optional(),
     /** Named server-owned list quality gate. */
     qualityGate: EntityListQualityGateSchema.optional(),
+    /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
+    rankByProminence: z.boolean().nullish(),
     /** Restrict results to entity slugs. */
     slug: z
         .array(z
