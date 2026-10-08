@@ -25,6 +25,15 @@ async function checkPage(context, path) {
   const page = await context.newPage();
   const pageErrors = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
+  // A page error such as "Importing a module script failed" names no URL; the failed or
+  // non-2xx request beside it does.
+  const failedRequests = [];
+  page.on("requestfailed", (request) =>
+    failedRequests.push(`${request.url()} (${request.failure()?.errorText})`),
+  );
+  page.on("response", (response) => {
+    if (response.status() >= 400) failedRequests.push(`${response.url()} (HTTP ${response.status()})`);
+  });
   await page.goto(base + path, { waitUntil: "load", timeout: TIMEOUT_MS });
   await page.reload({ waitUntil: "load", timeout: TIMEOUT_MS });
   // Server-rendered markup already holds the button; only hydration proves it
@@ -42,7 +51,9 @@ async function checkPage(context, path) {
     .first()
     .waitFor({ state: "visible", timeout: TIMEOUT_MS });
   await page.close();
-  if (pageErrors.length > 0) throw new Error(`uncaught page errors: ${pageErrors.join("; ")}`);
+  if (pageErrors.length > 0) {
+    throw new Error(`uncaught page errors: ${pageErrors.join("; ")}; failed requests: ${failedRequests.join("; ") || "none"}`);
+  }
 }
 
 let failures = 0;
