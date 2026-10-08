@@ -32,7 +32,7 @@ import { z } from "zod/v4";
  * @contractShape funding.stage
  * @contractRole canonical
  */
-export declare const FundingStageSchema: z.ZodEnum<{
+export declare const FundingStageSchema: z.ZodUnion<readonly [z.ZodEnum<{
     Acquired: "Acquired";
     "Acquired Subsidiary": "Acquired Subsidiary";
     Angel: "Angel";
@@ -69,6 +69,6 @@ export declare const FundingStageSchema: z.ZodEnum<{
     "Series X": "Series X";
     "Series Y": "Series Y";
     "Series Z": "Series Z";
-}>;
+}>, z.ZodString]>;
 export type FundingStage = z.infer<typeof FundingStageSchema>;
 //# sourceMappingURL=stage.d.ts.map

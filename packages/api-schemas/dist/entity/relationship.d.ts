@@ -2,7 +2,7 @@ import { z } from "zod/v4";
 declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
     asOf: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
     comparisonSignals: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        fundingStage: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        fundingStage: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             Acquired: "Acquired";
             "Acquired Subsidiary": "Acquired Subsidiary";
             Angel: "Angel";
@@ -39,7 +39,7 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
             "Series X": "Series X";
             "Series Y": "Series Y";
             "Series Z": "Series Z";
-        }>>>;
+        }>, z.ZodString]>>>;
         ownership: z.ZodArray<z.ZodString>;
         pricingModel: z.ZodArray<z.ZodString>;
         sellsTo: z.ZodArray<z.ZodString>;

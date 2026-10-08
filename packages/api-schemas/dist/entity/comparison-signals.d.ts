@@ -22,7 +22,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EntityComparisonSignalsSchema: z.ZodObject<{
-    fundingStage: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    fundingStage: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";
         Angel: "Angel";
@@ -59,7 +59,7 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
         "Series X": "Series X";
         "Series Y": "Series Y";
         "Series Z": "Series Z";
-    }>>>;
+    }>, z.ZodString]>>>;
     ownership: z.ZodArray<z.ZodString>;
     pricingModel: z.ZodArray<z.ZodString>;
     sellsTo: z.ZodArray<z.ZodString>;

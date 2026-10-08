@@ -89,7 +89,7 @@ export declare const EntityFundraiseTransactionEntitySchema: z.ZodObject<{
         latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         mostRecentAmount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         mostRecentDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
-        stage: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        stage: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             Acquired: "Acquired";
             "Acquired Subsidiary": "Acquired Subsidiary";
             Angel: "Angel";
@@ -126,7 +126,7 @@ export declare const EntityFundraiseTransactionEntitySchema: z.ZodObject<{
             "Series X": "Series X";
             "Series Y": "Series Y";
             "Series Z": "Series Z";
-        }>>>;
+        }>, z.ZodString]>>>;
         totalRaised: z.ZodNumber;
     }, z.core.$strip>>>;
 }, z.core.$strip>;

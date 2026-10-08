@@ -11,7 +11,7 @@ const ResearchAllowanceSchemaDefinition = z.object({
     used: z.int(),
 });
 /**
- * AI credit allowance for one billing period, the UTC month by default
+ * Usage allowance for one meter in one billing period, the UTC month by default
  *
  * @openapiSchema ResearchAllowance
  * @endpoint GET /v1/billing/ai-credits

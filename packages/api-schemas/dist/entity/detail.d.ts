@@ -325,7 +325,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             latestValuation?: number | null | undefined;
             mostRecentAmount?: number | null | undefined;
             mostRecentDate?: string | null | undefined;
-            stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+            stage?: string | null | undefined;
             totalRaised: number;
         } | null | undefined;
         text: {
@@ -604,7 +604,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             latestValuation?: number | null | undefined;
             mostRecentAmount?: number | null | undefined;
             mostRecentDate?: string | null | undefined;
-            stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+            stage?: string | null | undefined;
             totalRaised: number;
         } | null | undefined;
         text: {
@@ -680,7 +680,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 latestValuation?: number | null | undefined;
                 mostRecentAmount?: number | null | undefined;
                 mostRecentDate?: string | null | undefined;
-                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                stage?: string | null | undefined;
                 totalRaised: number;
             } | null | undefined;
         } | null | undefined;
@@ -764,7 +764,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 latestValuation?: number | null | undefined;
                 mostRecentAmount?: number | null | undefined;
                 mostRecentDate?: string | null | undefined;
-                stage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+                stage?: string | null | undefined;
                 totalRaised: number;
             } | null | undefined;
         } | null | undefined;
@@ -1499,7 +1499,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
     relationship: z.ZodArray<z.ZodType<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
-            fundingStage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+            fundingStage?: string | null | undefined;
             ownership: string[];
             pricingModel: string[];
             sellsTo: string[];
@@ -1557,7 +1557,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
     }, unknown, z.core.$ZodTypeInternals<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
-            fundingStage?: "Acquired" | "Acquired Subsidiary" | "Angel" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Pre-Seed" | "Public" | "Seed" | "Series A" | "Series B" | "Series C" | "Series D" | "Series E" | "Series F" | "Series G" | "Series H" | "Series I" | "Series J" | "Series K" | "Series L" | "Series M" | "Series N" | "Series O" | "Series P" | "Series Q" | "Series R" | "Series S" | "Series T" | "Series U" | "Series V" | "Series W" | "Series X" | "Series Y" | "Series Z" | null | undefined;
+            fundingStage?: string | null | undefined;
             ownership: string[];
             pricingModel: string[];
             sellsTo: string[];
