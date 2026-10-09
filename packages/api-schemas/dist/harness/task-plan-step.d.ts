@@ -11,6 +11,14 @@ declare const HarnessTaskPlanStepSchemaDefinition: z.ZodObject<{
         operationId: string;
         stepKey: string;
     }, unknown>>;
+    writeGuidance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        body: z.ZodString;
+        expectation: z.ZodString;
+        method: z.ZodArray<z.ZodString>;
+        override: z.ZodString;
+        reject: z.ZodArray<z.ZodString>;
+        typeCatalog: z.ZodString;
+    }, z.core.$strip>>>;
 }, z.core.$strip>;
 type HarnessTaskPlanStepDefinition = z.infer<typeof HarnessTaskPlanStepSchemaDefinition>;
 /**

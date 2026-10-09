@@ -13,12 +13,12 @@ export declare const HelpResolutionSchema: z.ZodObject<{
     candidate: z.ZodArray<z.ZodType<{
         excerpt: string;
         sourceId: string;
-        sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "RESEARCH_DETAIL_TYPE" | "SKILL";
+        sourceType: string;
         sourceVersion?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         excerpt: string;
         sourceId: string;
-        sourceType: "COMPLETION_GATE" | "OPERATION" | "PROMPT" | "RESEARCH_DETAIL_TYPE" | "SKILL";
+        sourceType: string;
         sourceVersion?: string | null | undefined;
     }, unknown>>>;
     operationId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -50,6 +50,14 @@ export declare const HelpResolutionSchema: z.ZodObject<{
                 operationId: string;
                 stepKey: string;
             };
+            writeGuidance?: {
+                body: string;
+                expectation: string;
+                method: string[];
+                override: string;
+                reject: string[];
+                typeCatalog: string;
+            } | null | undefined;
         }, unknown, z.core.$ZodTypeInternals<{
             cliCommand: string;
             mcpTool?: string | null | undefined;
@@ -58,6 +66,14 @@ export declare const HelpResolutionSchema: z.ZodObject<{
                 operationId: string;
                 stepKey: string;
             };
+            writeGuidance?: {
+                body: string;
+                expectation: string;
+                method: string[];
+                override: string;
+                reject: string[];
+                typeCatalog: string;
+            } | null | undefined;
         }, unknown>>>;
         taskKey: z.ZodString;
     }, z.core.$strip>>>;

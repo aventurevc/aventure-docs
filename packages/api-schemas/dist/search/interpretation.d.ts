@@ -244,14 +244,14 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
     sort: z.ZodType<{
         order: {
             descending: boolean;
-            field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+            field: string;
             sortKey?: string | null | undefined;
         }[];
         relevance?: "keyword" | "semantic" | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         order: {
             descending: boolean;
-            field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+            field: string;
             sortKey?: string | null | undefined;
         }[];
         relevance?: "keyword" | "semantic" | null | undefined;

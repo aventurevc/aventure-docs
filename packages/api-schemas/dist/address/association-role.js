@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Meaning of an entity or person address association. Domicile is a legal or registered seat and is not evidence of operational presence; dominant is the predominant display location; origin is the founding or historical location.
+ * Meaning of an entity or person address association. Dominant is the operating headquarters; domicile is the legal or registered seat and is not evidence of operational presence; origin is the founding or historical location.
  *
  * @openapiSchema AddressAssociationRole
  * @endpoint GET /v1/entities

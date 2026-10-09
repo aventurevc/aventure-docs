@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.117"
+    "version": "0.8.125"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3529,6 +3529,19 @@
             }
           },
           {
+            "description": "Privileged filter to entities suppressed for any listed reason.",
+            "in": "query",
+            "name": "suppressionReason",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Privileged filter to entities suppressed for any listed reason.",
+              "items": {
+                "$ref": "#/components/schemas/SuppressionReason"
+              }
+            }
+          },
+          {
             "description": "Privileged filter to entities with a real uploaded logo.",
             "in": "query",
             "name": "hasRealLogo",
@@ -3536,6 +3549,47 @@
             "schema": {
               "type": "boolean",
               "description": "Privileged filter to entities with a real uploaded logo."
+            }
+          },
+          {
+            "description": "Privileged: any listed gate ABSENT.",
+            "in": "query",
+            "name": "absentGate",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Privileged: any listed gate ABSENT.",
+              "items": {
+                "type": "string",
+                "description": "Privileged: any listed gate ABSENT."
+              }
+            }
+          },
+          {
+            "description": "Privileged: any listed gate is due.",
+            "in": "query",
+            "name": "dueGate",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Privileged: any listed gate is due.",
+              "items": {
+                "type": "string",
+                "description": "Privileged: any listed gate is due."
+              }
+            }
+          },
+          {
+            "description": "Privileged: ever from a source type.",
+            "in": "query",
+            "name": "sourceType",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Privileged: ever from a source type.",
+              "items": {
+                "$ref": "#/components/schemas/DatasourceDataSourceType"
+              }
             }
           },
           {
@@ -3559,13 +3613,13 @@
             }
           },
           {
-            "description": "Suppress entities whose USD-converted total raised is zero or unknown.",
+            "description": "Suppress entities with zero or unknown USD total raised.",
             "in": "query",
             "name": "suppressZeroTotalRaised",
             "required": false,
             "schema": {
               "type": "boolean",
-              "description": "Suppress entities whose USD-converted total raised is zero or unknown."
+              "description": "Suppress entities with zero or unknown USD total raised."
             }
           },
           {
@@ -3599,7 +3653,7 @@
             }
           },
           {
-            "description": "Named server-owned list quality gate.",
+            "description": "Server-owned list quality gate.",
             "in": "query",
             "name": "qualityGate",
             "required": false,
@@ -8979,7 +9033,7 @@
     },
     "/v1/entities/{entityId}/classifications/suggestions": {
       "get": {
-        "description": "Default classification discovery path for enrichment agents. Returns ranked embedding-derived tag and standardized-code suggestions; empty array means no embedding neighbors. Create joins with the entity classifications create endpoint. A signed-in user is admitted for public entities; callers with private-visibility authority can also resolve hidden or private entities; setting includePrivate=true requires that authority. Signed-in callers without it can access public entities, while hidden entities return 404.",
+        "description": "Default classification discovery path for enrichment agents. Returns ranked embedding-derived writable tag and standardized-code suggestions; read-only buckets (mainProduct) are never suggested, and an empty array means no writable embedding neighbors. Create joins with the entity classifications create endpoint. A signed-in user is admitted for public entities; callers with private-visibility authority can also resolve hidden or private entities; setting includePrivate=true requires that authority. Signed-in callers without it can access public entities, while hidden entities return 404.",
         "operationId": "listEntityClassificationSuggestions",
         "parameters": [
           {
@@ -16645,7 +16699,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Returns the identification record for a subject — what the platform knows about it, as MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility — by running the entity and person identification ladders with the requested type and provider. To look up or enrich one record from an external source by url, slug, or name, use lookupRecord (POST /v1/lookup). Send name, url, or both; neither answers 422. This read never schedules background enrichment or repair. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Returns the identification record for a subject — what the platform knows about it, as MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility — by running the entity and person identification ladders with the requested type and provider. To look up or enrich one record from an external source by url, slug, or name, use lookupRecord (POST /v1/lookup). Send name, url, or both; neither answers 422. This read never schedules enrichment or repair; a match it finds stored again as other records files one background merge run for them, once per survivor per UTC day. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -19926,6 +19980,19 @@
             "schema": {
               "type": "string",
               "description": "Person workflow status."
+            }
+          },
+          {
+            "description": "Privileged filter to people suppressed for any listed reason.",
+            "in": "query",
+            "name": "suppressionReason",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Privileged filter to people suppressed for any listed reason.",
+              "items": {
+                "$ref": "#/components/schemas/SuppressionReason"
+              }
             }
           },
           {
@@ -26470,7 +26537,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person as each scope finishes, each with its scope's page; then settled with this whole answer before synthesis (no answer yet); then, on the stream only, revised with the whole answer again when web searches the settled entity answer listed in pendingWebQuery finish and add companies; then complete with the latest of those answers. Revised and complete keep every settled row in place and add new rows below them; this JSON response returns without waiting for those searches. Settled, revised, and complete each carry an increasing SSE id; re-send the request with a Last-Event-ID header to resume, and the stream skips the scope events and every answer at or below that id, always ending with complete under a higher id. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
+        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person as each scope finishes, each with its scope's page; then settled with this whole answer before synthesis (no answer yet); then, on the stream only, revised with the whole answer again when web searches the settled entity answer listed in pendingWebQuery finish and add companies, and once more with the synthesis answer if it finishes while those searches still run, which every later snapshot keeps; then complete with the latest of those answers. Revised and complete keep every settled row in place and add new rows below them; this JSON response returns without waiting for those searches. Settled, revised, and complete each carry an increasing SSE id; re-send the request with a Last-Event-ID header to resume, and the stream skips the scope events and every answer at or below that id, always ending with complete under a higher id. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -26530,6 +26597,13 @@
             },
             "description": "Ranked matches across every federated record type.",
             "headers": {
+              "X-Aventure-Search-Cache-Mode": {
+                "description": "Cache policy this search ran under: use, bypass, or refresh. A caller without private-data access always runs use, whatever cacheMode it sent.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -27227,6 +27301,13 @@
             },
             "description": "Ranked entity matches for the interpreted query.",
             "headers": {
+              "X-Aventure-Search-Cache-Mode": {
+                "description": "Cache policy this search ran under: use, bypass, or refresh. A caller without private-data access always runs use, whatever cacheMode it sent.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -27474,6 +27555,13 @@
             },
             "description": "Ranked person matches for the interpreted query.",
             "headers": {
+              "X-Aventure-Search-Cache-Mode": {
+                "description": "Cache policy this search ran under: use, bypass, or refresh. A caller without private-data access always runs use, whatever cacheMode it sent.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -29305,6 +29393,7 @@
               "Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation.",
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
+              "Entity text or a research snippet was rejected by its prose judge or text contract. Agent action: rewrite every passage in ProblemDetail.proseViolation at once and resend the whole text; ProblemDetail.hint names the override only when every violation is overridable.",
               "A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal.",
               "JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error).",
               "JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error).",
@@ -29371,6 +29460,7 @@
               "origin_detail_shutdown",
               "suspectedShellStrip",
               "suspected_shell_strip",
+              "prose_rejected",
               "url_surface_misclassification",
               "JOBRUNR_DISABLED",
               "jobrunr_disabled",
@@ -29560,6 +29650,16 @@
           "properties": {
             "type": "object",
             "additionalProperties": {}
+          },
+          "proseViolation": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Every rejected passage of a PROSE_REJECTED write, once per problem it shows; absent for every other problem.",
+            "items": {
+              "$ref": "#/components/schemas/ProseViolation"
+            }
           },
           "remaining": {
             "type": [
@@ -30727,6 +30827,32 @@
           "Inactive"
         ]
       },
+      "SuppressionReason": {
+        "type": "string",
+        "description": "Why this record is suppressed: it stays hidden for good, and its stored facts (names, URLs, addresses, entity-person joins) block creating or showing the same subject again. placeholderContent: sample or boilerplate content, often AI-written template copy, presented as a real organization or person. deceptive: a profile built to mislead. privacyRequest: the person asked to be removed and not added again.",
+        "x-extensible-enum": [
+          "placeholderContent",
+          "deceptive",
+          "privacyRequest"
+        ]
+      },
+      "DatasourceDataSourceType": {
+        "type": "string",
+        "description": "Full read/storage source type for field-level provenance rows. Write query parameters use DatasourceWritableDataSourceType.",
+        "enum": [
+          "requestChangeForm",
+          "newsArticle",
+          "blogArticle",
+          "firstPartyWebsite",
+          "relatedPartyWebsite",
+          "thirdPartyWebsite",
+          "llm",
+          "aventureStaff",
+          "api",
+          "manual",
+          "import"
+        ]
+      },
       "EntityListQualityGate": {
         "type": "string",
         "description": "Named quality gates for entity list endpoints.",
@@ -31183,7 +31309,7 @@
           },
           "qualityGate": {
             "$ref": "#/components/schemas/EntityListQualityGate",
-            "description": "Named server-owned list quality gate."
+            "description": "Server-owned list quality gate."
           },
           "rankByProminence": {
             "type": [
@@ -31229,7 +31355,7 @@
               "boolean",
               "null"
             ],
-            "description": "Suppress entities whose USD-converted total raised is zero or unknown."
+            "description": "Suppress entities with zero or unknown USD total raised."
           },
           "tag": {
             "type": "array",
@@ -32192,6 +32318,10 @@
           "typeValue": {
             "type": "string",
             "description": "Canonical snippet type token used on the wire."
+          },
+          "writeHint": {
+            "type": "string",
+            "description": "The strategic question this snippet type answers and how to shape it. Snippets are point-in-time strategic analysis of the company's position against its market and named alternatives: open with the judgment and cite dated, sourced details only as evidence for it, never as a fact list."
           }
         },
         "required": [
@@ -32201,7 +32331,8 @@
           "label",
           "recognized",
           "targetPath",
-          "typeValue"
+          "typeValue",
+          "writeHint"
         ],
         "x-aventure-noun": {
           "one": "research snippet type",
@@ -32390,7 +32521,7 @@
           },
           "qualityGate": {
             "$ref": "#/components/schemas/EntityListQualityGate",
-            "description": "Named server-owned list quality gate."
+            "description": "Server-owned list quality gate."
           },
           "rankByProminence": {
             "type": [
@@ -32443,7 +32574,7 @@
               "boolean",
               "null"
             ],
-            "description": "Suppress entities whose USD-converted total raised is zero or unknown."
+            "description": "Suppress entities with zero or unknown USD total raised."
           },
           "tag": {
             "type": "array",
@@ -33100,7 +33231,7 @@
               "null"
             ],
             "format": "int32",
-            "description": "Address record identifier",
+            "description": "Id of this listed row's first association; PATCH and DELETE address one association by its association[].id, so a row holding several roles needs one call each",
             "example": 123
           },
           "isCurrent": {
@@ -33598,10 +33729,17 @@
         "type": "object",
         "description": "Plain-English search request. The server plans the query into the target domain filter plus sort, then runs that domain's canonical list engine.",
         "properties": {
+          "answerModel": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional chat model for the synthesis answer; null uses the catalog's search answer model. The same allowlist as `model` applies. The answer writes the page heading, title, and description, so this compares answer models without changing the catalog."
+          },
           "cacheMode": {
             "$ref": "#/components/schemas/SearchCacheMode",
             "default": "use",
-            "description": "Search-stage cache policy. use reuses cached search work; bypass computes fresh without retaining outputs; refresh computes fresh and replaces normal entries. Record and immutable query-vector caches retain their own policy."
+            "description": "Search-stage cache policy. use reuses cached search work; bypass computes fresh without retaining outputs; refresh computes fresh and replaces normal entries. Record and immutable query-vector caches retain their own policy. Callers without private-data access always run use."
           },
           "mode": {
             "$ref": "#/components/schemas/SearchMode",
@@ -34448,7 +34586,7 @@
           },
           "entityAddress": {
             "type": "array",
-            "description": "Entity addresses carried on the association projection",
+            "description": "Entity addresses carried on the association projection. Person detail carries at most one: the entity's current headquarters, else its most recently updated current address; GET /v1/entities/{entityId}/addresses lists them all",
             "items": {
               "$ref": "#/components/schemas/Address"
             }
@@ -36853,10 +36991,17 @@
         "type": "object",
         "description": "Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.",
         "properties": {
+          "answerModel": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional chat model for the synthesis answer; null uses the catalog's search answer model. The same allowlist as `model` applies. The answer writes the page heading, title, and description, so this compares answer models without changing the catalog."
+          },
           "cacheMode": {
             "$ref": "#/components/schemas/SearchCacheMode",
             "default": "use",
-            "description": "Search-stage cache policy. use reuses cached search work; bypass computes fresh without retaining outputs; refresh computes fresh and replaces normal entries. Record and immutable query-vector caches retain their own policy."
+            "description": "Search-stage cache policy. use reuses cached search work; bypass computes fresh without retaining outputs; refresh computes fresh and replaces normal entries. Record and immutable query-vector caches retain their own policy. Callers without private-data access always run use."
           },
           "entityFilter": {
             "$ref": "#/components/schemas/EntityFilter",
@@ -37189,6 +37334,17 @@
             "format": "uuid",
             "description": "Stable sharing UUID generated once and reused across retries."
           },
+          "layer": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Answer layers the sharing page searched with; synthesis is required and web is the only other layer allowed. Omitted means synthesis alone.",
+            "items": {
+              "$ref": "#/components/schemas/SearchLayer"
+            },
+            "uniqueItems": true
+          },
           "query": {
             "type": [
               "string",
@@ -37197,6 +37353,26 @@
             "description": "Plain-English query to run against public records and publish.",
             "maxLength": 2000,
             "minLength": 0
+          },
+          "search": {
+            "description": "The federated search body the sharing page ran, as on POST /v1/search; its query must equal query. The share then publishes the answer that page showed when it is still cached, else runs this search. answerModel is not accepted; cacheMode is always use. Omitted runs query alone.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/FederatedNaturalSearch"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Page size the sharing page searched with, under the same page-size cap; omitted uses the default page size.",
+            "minimum": 1
           }
         }
       },
@@ -38479,6 +38655,13 @@
             ],
             "description": "One- or two-sentence summary of at most 155 characters for a search-result snippet; absent when the answer abstains."
           },
+          "heading": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The question as the answer page's heading: the asker's own words in title case, with record names in their stored casing; it never adds, drops, or corrects a word. Absent when the answer abstains."
+          },
           "paragraph": {
             "type": "array",
             "description": "The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it.",
@@ -38506,7 +38689,7 @@
               "string",
               "null"
             ],
-            "description": "Page title of at most 60 characters naming the answer's subject and scope, written by the same model call; absent when the answer abstains."
+            "description": "Page title of at most 60 characters naming the answer's subject, then the angle and scope its paragraphs cover, written by the same model call; pages show it as the subheading under `heading`. Absent when the answer abstains."
           }
         },
         "required": [
@@ -38923,7 +39106,7 @@
               "null"
             ],
             "format": "int32",
-            "description": "Address id of the current headquarters: the current dominant (operating) address, else the current domicile (legal seat); absent when neither is on record. Read this instead of the deprecated isHq flag, which marks the legal seat.",
+            "description": "Address id of the current headquarters: the current dominant (operating) address; absent when none is on record, even when a domicile (legal seat) exists. Read this instead of the deprecated isHq flag, which marks the legal seat.",
             "example": 123,
             "readOnly": true
           },
@@ -39394,27 +39577,8 @@
             "description": "true for descending (DESC), false for ascending (ASC)"
           },
           "field": {
-            "type": "string",
-            "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys).",
-            "enum": [
-              "ID",
-              "NAME_BRAND",
-              "YEAR_FOUNDED",
-              "STATUS_OPERATING",
-              "UPDATED_AT",
-              "CREATED_AT",
-              "TOTAL_RAISED",
-              "AMOUNT_INVESTED",
-              "RECENT_INVESTMENT_AT",
-              "STAGE",
-              "MOST_RECENT_AMOUNT",
-              "LATEST_VALUATION",
-              "MOST_RECENT_DATE",
-              "ACCELERATOR_BRAND",
-              "ACCELERATOR_COHORT",
-              "HEADQUARTERS_COUNTRY",
-              "EMPLOYEE_COUNT"
-            ]
+            "$ref": "#/components/schemas/EntityFilterSortable",
+            "description": "Sort field for this resource (entity list uses EntityFilter.Sortable / published sort keys)."
           },
           "sortKey": {
             "type": [
@@ -39428,6 +39592,31 @@
         "required": [
           "descending",
           "field"
+        ]
+      },
+      "EntityFilterSortable": {
+        "type": "string",
+        "description": "Entity filter sortable",
+        "x-extensible-enum": [
+          "ID",
+          "NAME_BRAND",
+          "YEAR_FOUNDED",
+          "STATUS_OPERATING",
+          "UPDATED_AT",
+          "CREATED_AT",
+          "NEXT_DUE_AT",
+          "DATA_COMPLETION_COVERAGE",
+          "TOTAL_RAISED",
+          "AMOUNT_INVESTED",
+          "RECENT_INVESTMENT_AT",
+          "STAGE",
+          "MOST_RECENT_AMOUNT",
+          "LATEST_VALUATION",
+          "MOST_RECENT_DATE",
+          "ACCELERATOR_BRAND",
+          "ACCELERATOR_COHORT",
+          "HEADQUARTERS_COUNTRY",
+          "EMPLOYEE_COUNT"
         ]
       },
       "SearchAnswerCitation": {
@@ -42121,7 +42310,7 @@
       },
       "AddressAssociationRole": {
         "type": "string",
-        "description": "Meaning of an entity or person address association. Domicile is a legal or registered seat and is not evidence of operational presence; dominant is the predominant display location; origin is the founding or historical location.",
+        "description": "Meaning of an entity or person address association. Dominant is the operating headquarters; domicile is the legal or registered seat and is not evidence of operational presence; origin is the founding or historical location.",
         "enum": [
           "domicile",
           "dominant",
@@ -43917,6 +44106,17 @@
           "step": {
             "$ref": "#/components/schemas/HarnessTaskStep",
             "description": "The stored step."
+          },
+          "writeGuidance": {
+            "description": "What the server expects of the prose this step writes, derived from the operation's judged prose type when the plan is read; null when the step writes no judged prose.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/HarnessTaskWriteGuidance"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -43948,6 +44148,50 @@
           "stepKey"
         ]
       },
+      "HarnessTaskWriteGuidance": {
+        "type": "object",
+        "description": "The expectation, body, type hints, rejections, override, and method for one judged prose write.",
+        "properties": {
+          "body": {
+            "type": "string",
+            "description": "The request body keys, the key that carries the prose, and a minimal JSON example."
+          },
+          "expectation": {
+            "type": "string",
+            "description": "The one sentence the prose aims for."
+          },
+          "method": {
+            "type": "array",
+            "description": "Help sections that teach this prose, each with the command that retrieves it.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "override": {
+            "type": "string",
+            "description": "The override field, the problems it may waive, and its terms."
+          },
+          "reject": {
+            "type": "array",
+            "description": "Each problem that rejects this prose: what fails it and the fix.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "typeCatalog": {
+            "type": "string",
+            "description": "The read that serves this write's per-type hints; read it before writing."
+          }
+        },
+        "required": [
+          "body",
+          "expectation",
+          "method",
+          "override",
+          "reject",
+          "typeCatalog"
+        ]
+      },
       "HarnessTaskInputType": {
         "type": "string",
         "description": "ENTITY binds a target entity to its canonical id through entity identification; TEXT is a literal value the request states.",
@@ -43959,12 +44203,14 @@
       "HelpSourceType": {
         "type": "string",
         "description": "Corpus partition a help citation is drawn from.",
-        "enum": [
+        "x-extensible-enum": [
           "OPERATION",
           "SKILL",
           "PROMPT",
           "COMPLETION_GATE",
-          "RESEARCH_DETAIL_TYPE"
+          "RESEARCH_DETAIL_TYPE",
+          "RESEARCH_SNIPPET_TYPE",
+          "TEXT_TYPE"
         ]
       },
       "HelpScope": {
@@ -44075,6 +44321,34 @@
         },
         "required": [
           "oldUrl"
+        ]
+      },
+      "ProseViolation": {
+        "type": "object",
+        "description": "One rejected passage and one problem it shows; a passage with several problems appears once per problem.",
+        "properties": {
+          "overridable": {
+            "type": "boolean",
+            "description": "Whether proseOverrideReason can accept this problem; ProblemDetail.hint says when an override is allowed."
+          },
+          "passage": {
+            "type": "string",
+            "description": "The rejected sentence, the whole text for a text-contract violation, or the source URL for a legal-page source."
+          },
+          "problem": {
+            "$ref": "#/components/schemas/ProseProblem",
+            "description": "The problem this passage shows."
+          },
+          "reason": {
+            "type": "string",
+            "description": "Why the passage was rejected and how to fix it."
+          }
+        },
+        "required": [
+          "overridable",
+          "passage",
+          "problem",
+          "reason"
         ]
       },
       "ProblemResolution": {
@@ -44251,6 +44525,22 @@
           "INVALID_IMAGE",
           "UPSTREAM_EDGE_CHALLENGED",
           "ACCELERATOR_DETAIL_RESTATES_TARGET"
+        ]
+      },
+      "ProseProblem": {
+        "type": "string",
+        "description": "Why a sentence or paragraph of entity text or a research snippet was rejected.",
+        "x-extensible-enum": [
+          "source",
+          "record",
+          "disclaimer",
+          "voice",
+          "structured",
+          "temporal",
+          "factList",
+          "mojibake",
+          "legalSource",
+          "textContract"
         ]
       },
       "UrlDuplicateConflict": {

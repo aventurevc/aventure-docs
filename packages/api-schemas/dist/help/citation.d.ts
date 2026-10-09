@@ -2,13 +2,15 @@ import { z } from "zod/v4";
 declare const HelpCitationSchemaDefinition: z.ZodObject<{
     excerpt: z.ZodString;
     sourceId: z.ZodString;
-    sourceType: z.ZodEnum<{
+    sourceType: z.ZodUnion<readonly [z.ZodEnum<{
         COMPLETION_GATE: "COMPLETION_GATE";
         OPERATION: "OPERATION";
         PROMPT: "PROMPT";
         RESEARCH_DETAIL_TYPE: "RESEARCH_DETAIL_TYPE";
+        RESEARCH_SNIPPET_TYPE: "RESEARCH_SNIPPET_TYPE";
         SKILL: "SKILL";
-    }>;
+        TEXT_TYPE: "TEXT_TYPE";
+    }>, z.ZodString]>;
     sourceVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type HelpCitationDefinition = z.infer<typeof HelpCitationSchemaDefinition>;

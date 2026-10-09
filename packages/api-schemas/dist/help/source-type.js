@@ -10,11 +10,16 @@ import { z } from "zod/v4";
  * @contractShape help.source-type
  * @contractRole canonical
  */
-export const HelpSourceTypeSchema = z.enum([
-    "OPERATION",
-    "SKILL",
-    "PROMPT",
-    "COMPLETION_GATE",
-    "RESEARCH_DETAIL_TYPE",
+export const HelpSourceTypeSchema = z.union([
+    z.enum([
+        "OPERATION",
+        "SKILL",
+        "PROMPT",
+        "COMPLETION_GATE",
+        "RESEARCH_DETAIL_TYPE",
+        "RESEARCH_SNIPPET_TYPE",
+        "TEXT_TYPE",
+    ]),
+    z.string(),
 ]);
 //# sourceMappingURL=source-type.js.map

@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const NaturalSearchSchemaDefinition: z.ZodObject<{
+    answerModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     cacheMode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
         bypass: "bypass";
         refresh: "refresh";

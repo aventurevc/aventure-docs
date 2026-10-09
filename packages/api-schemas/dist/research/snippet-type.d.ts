@@ -16,6 +16,7 @@ declare const ResearchSnippetTypeSchemaDefinition: z.ZodObject<{
     recognized: z.ZodBoolean;
     targetPath: z.ZodString;
     typeValue: z.ZodString;
+    writeHint: z.ZodString;
 }, z.core.$strip>;
 type ResearchSnippetTypeDefinition = z.infer<typeof ResearchSnippetTypeSchemaDefinition>;
 /**

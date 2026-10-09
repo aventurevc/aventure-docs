@@ -185,6 +185,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cursor/slice-shared-search-list",
         schemaName: "CursorSliceSharedSearchListSchema",
     },
+    DatasourceDataSourceType: {
+        modulePath: "datasource/data-source-type",
+        schemaName: "DatasourceDataSourceTypeSchema",
+    },
     DatasourceProvenanceActorType: {
         modulePath: "datasource/provenance-actor-type",
         schemaName: "DatasourceProvenanceActorTypeSchema",
@@ -302,6 +306,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityFilterSearchResult: {
         modulePath: "entity/filter-search-result",
         schemaName: "EntityFilterSearchResultSchema",
+    },
+    EntityFilterSortable: {
+        modulePath: "entity/filter-sortable",
+        schemaName: "EntityFilterSortableSchema",
     },
     EntityFilterUiMeta: {
         modulePath: "entity/filter-ui-meta",
@@ -518,6 +526,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "HarnessTaskPlanStepSchema",
     },
     HarnessTaskStep: { modulePath: "harness/task-step", schemaName: "HarnessTaskStepSchema" },
+    HarnessTaskWriteGuidance: {
+        modulePath: "harness/task-write-guidance",
+        schemaName: "HarnessTaskWriteGuidanceSchema",
+    },
     HelpCitation: { modulePath: "help/citation", schemaName: "HelpCitationSchema" },
     HelpResolution: { modulePath: "help/resolution", schemaName: "HelpResolutionSchema" },
     HelpResolutionOutcome: {
@@ -775,6 +787,8 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ProblemDetail: { modulePath: "http/problem-detail", schemaName: "ProblemDetailSchema" },
     ProblemResolution: { modulePath: "problem/resolution", schemaName: "ProblemResolutionSchema" },
     ProblemType: { modulePath: "problem/type", schemaName: "ProblemTypeSchema" },
+    ProseProblem: { modulePath: "prose/problem", schemaName: "ProseProblemSchema" },
+    ProseViolation: { modulePath: "prose/violation", schemaName: "ProseViolationSchema" },
     Publication: { modulePath: "publication/publication", schemaName: "PublicationSchema" },
     PublicationFacet: { modulePath: "publication/facet", schemaName: "PublicationFacetSchema" },
     PublicationRelation: {
@@ -902,6 +916,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "strict/url-lookup-conflict",
         schemaName: "StrictUrlLookupConflictSchema",
     },
+    SuppressionReason: { modulePath: "suppression/reason", schemaName: "SuppressionReasonSchema" },
     SystemBuild: { modulePath: "system/system-build", schemaName: "SystemBuildSchema" },
     SystemBuildDetail: {
         modulePath: "system/system-build-detail",

@@ -83,7 +83,7 @@ export const EntityFilterSchema = z.strictObject({
     portfolioHeadquartersCountry: z.array(z.string()).optional(),
     /** Portfolio-company headquarters state or region values. */
     portfolioHeadquartersState: z.array(z.string()).optional(),
-    /** Named server-owned list quality gate. */
+    /** Server-owned list quality gate. */
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
@@ -100,7 +100,7 @@ export const EntityFilterSchema = z.strictObject({
     suppressLateStage: z.boolean().nullish(),
     /** Suppress entities with terminal operating status. */
     suppressNonOperating: z.boolean().nullish(),
-    /** Suppress entities whose USD-converted total raised is zero or unknown. */
+    /** Suppress entities with zero or unknown USD total raised. */
     suppressZeroTotalRaised: z.boolean().nullish(),
     /** General classification tag values. */
     tag: z.array(z.string()).optional(),
