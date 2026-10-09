@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.114"
+    "version": "0.8.117"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -16645,7 +16645,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Runs the entity and person identification ladders with the requested type and provider and returns MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility. Send name, url, or both; neither answers 422. This read never schedules background enrichment or repair. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Returns the identification record for a subject — what the platform knows about it, as MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility — by running the entity and person identification ladders with the requested type and provider. To look up or enrich one record from an external source by url, slug, or name, use lookupRecord (POST /v1/lookup). Send name, url, or both; neither answers 422. This read never schedules background enrichment or repair. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -16966,7 +16966,7 @@
         }
       },
       "post": {
-        "description": "Identifies a company, product, service, or person in one call. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, refine once with an evidenced subject URL or known kind; a NEEDS_REVIEW that remains is an abstention, so settle it from first-party evidence and never create or pick a candidate from scores. A candidate URL becomes a subject URL only with independent binding evidence. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId its background run; without created, detail says why nothing was filed. To have aVenture research a NO_MATCH subject and add it, file POST /v1/harness/runs with its url and name (CLI: harness runs create), which spends one research unit. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. Exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Looks up one record from an external source by url, slug, or name — identifying a company, product, service, or person in one call, and with scheduleEnrichment=true enriching the matched record afterward. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, refine once with an evidenced subject URL or known kind; a NEEDS_REVIEW that remains is an abstention, so settle it from first-party evidence and never create or pick a candidate from scores. A candidate URL becomes a subject URL only with independent binding evidence. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId its background run; without created, detail says why nothing was filed. To have aVenture research a NO_MATCH subject and add it, file POST /v1/harness/runs with its url and name (CLI: harness runs create), which spends one research unit. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. The legacy flag: legacy=true treats name only as an exact id, public handle, registry id, or slug — no model call, no web search, 404 when nothing matches; exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -17705,7 +17705,7 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a screenshot (multipart file part), or both, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. This JSON answer never creates records; the event-stream variant files a hidden shell for each NO_MATCH name whose own site names it, starts its background enrichment, and returns it as shell. Needs a signed-in user or the admin key. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. This JSON answer never creates records; the event-stream variant files a hidden shell for each NO_MATCH name whose own site names it, starts its background enrichment, and returns it as shell. Needs a signed-in user or the admin key. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
         "parameters": [
           {
@@ -28824,7 +28824,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. This is the read for external facts a stored record lacks — a publication or release date, press coverage, an app-store listing — that no catalog operation stores. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `deep` to search with Exa's slower, broader deep search instead; it answers synchronously and is stored apart from default results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. This is the read for external facts a stored record lacks — a publication or release date, press coverage, an app-store listing — that no catalog operation stores. For the source documents earlier fetches and searches already captured, list them with listSourceDocuments instead of searching again. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `deep` to search with Exa's slower, broader deep search instead; it answers synchronously and is stored apart from default results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
         "operationId": "searchWeb",
         "parameters": [
           {
@@ -33118,7 +33118,7 @@
               "null"
             ],
             "deprecated": true,
-            "description": "Deprecated legacy flag marking the headquarters or legal/registered address",
+            "description": "Deprecated legacy flag marking the current legal/registered seat (domicile), not the operating headquarters; read EntityEnrichment.headquartersAddressId for the headquarters",
             "example": true
           },
           "isPrimary": {
@@ -35739,7 +35739,7 @@
       },
       "LookupJobMutation": {
         "type": "object",
-        "description": "The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.",
+        "description": "The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup-mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.",
         "properties": {
           "mention": {
             "type": "array",
@@ -35747,6 +35747,14 @@
             "items": {
               "$ref": "#/components/schemas/LookupMention"
             }
+          },
+          "sourceDocumentId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Id of a recorded source document whose text is the article, such as an email recorded with POST /v1/research/source-documents; send it alone. Only POST /v1/lookup-mentions reads it, for the admin key or RBAC EDIT_CACHE."
           },
           "sourceNewsId": {
             "type": [
@@ -38908,6 +38916,16 @@
                 "type": "null"
               }
             ]
+          },
+          "headquartersAddressId": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Address id of the current headquarters: the current dominant (operating) address, else the current domicile (legal seat); absent when neither is on record. Read this instead of the deprecated isHq flag, which marks the legal seat.",
+            "example": 123,
+            "readOnly": true
           },
           "text": {
             "$ref": "#/components/schemas/EntityTextBundle"
