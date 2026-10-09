@@ -18,9 +18,16 @@ on:
       - "packages/api-schemas/**"
       - "scripts/**"
 
+# The public release train waits on each pushed commit's own run, so a push
+# run never shares a group; a newer pull request run cancels the older one.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'pull_request' && 'pr' || github.sha }}
+  cancel-in-progress: true
+
 jobs:
   run:
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
