@@ -4,7 +4,7 @@ subtitle: Ask Claude, ChatGPT, or any AI app about companies and people
 slug: mcp
 ---
 
-Connect Claude, ChatGPT, Claude Code, or any MCP client to aVenture's hosted
+Connect ChatGPT, Claude, Gemini, or any MCP client to aVenture's hosted
 server, then ask in plain English. You need an
 [aVenture account](https://aventure.vc/sign-up); free and paid plans both work.
 Working in a terminal or a coding agent with a shell? Use the [CLI](/cli). In
@@ -12,45 +12,220 @@ Working in a terminal or a coding agent with a shell? Use the [CLI](/cli). In
 [Profile, then MCP servers](https://researchly.chat/profile/mcp-servers) and
 choose **Connect aVenture**.
 
-## Get Started in One Step
+## Choose Your AI App
 
-Paste this into your AI app:
+Use the hosted URL `https://mcp.aventure.vc/mcp` with **Streamable HTTP** and
+**OAuth**. aVenture already supports OAuth discovery through Clerk. Let your
+client discover and register its OAuth client automatically (DCR). Leave
+manually entered client credentials empty for this flow.
+Sign in to your aVenture account and approve the access requested.
 
-```text
-Connect the aVenture MCP server for me.
-- URL: https://mcp.aventure.vc/mcp
-- Transport: Streamable HTTP
-- OAuth client ID: KL7mINzGk0le0QiD
-If you can add it yourself, do that. In Claude Code, run:
-  claude mcp add --scope user --transport http \
-    --client-id KL7mINzGk0le0QiD --callback-port 6276 \
-    aventure https://mcp.aventure.vc/mcp
-Otherwise, tell me exactly where to enter these settings in this app.
-When it's connected and I've signed in, call aventure_status, then read
-aVenture's profile for stripe.com to confirm it works.
-Docs: https://docs.aventure.vc/mcp
-```
+Adding a connector and authorizing it are separate steps. A setup prompt can
+perform the steps its app exposes; account consent still happens in the sign-in
+screen. The prompts below also verify the connection with a real company read.
 
-## Connect by Hand
-
-Add a custom connector (or MCP server) in your app with these settings, then
-sign in to aVenture in the browser window it opens:
-
-| Setting | Value |
-|---------|-------|
-| URL | `https://mcp.aventure.vc/mcp` |
-| Transport | Streamable HTTP |
-| OAuth client ID | `KL7mINzGk0le0QiD` |
+A full-profile lookup can return a compact response. Check `truncated` and
+`omitted` before calling its embedded funding, people, or news complete. To
+recover a section, read its paginated sub-resource using the returned record
+id; repeating the same profile lookup does not recover the omitted rows.
 
 <Tabs>
-<Tab title="Claude and ChatGPT">
+<Tab title="ChatGPT">
 
-Add the URL as a custom connector. When the connector form has an OAuth client
-ID field (usually under advanced settings), enter the client ID. Sign in when
-the app opens aVenture in your browser.
+1. Open [ChatGPT Plugins](https://chatgpt.com/plugins) **on the web**.
+2. Select **+**, then **Add custom MCP server**.
+3. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp`.
+4. Choose **OAuth** and **automatic client registration (DCR)**. Leave the
+   manually entered client ID and secret empty.
+5. Review the access notice and select **Create as a plugin**.
+6. Install the resulting plugin, then complete aVenture's sign-in when prompted.
+
+Creation alone does not install the plugin in a conversation. Custom MCP setup
+uses ChatGPT's web interface; check the installed plugin's availability in your
+mobile app before using it there.
+
+**Setup and first result prompt**
+
+```text
+Connect aVenture to this ChatGPT account using https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth with discovery). Use the built-in plugin setup if
+available. Otherwise guide me through ChatGPT Plugins > + > Add custom MCP
+server, create it as a plugin, and install it. Let me complete aVenture's
+Clerk sign-in and consent when prompted.
+
+Once its tools are available, call aventure_status and confirm which
+aVenture account is connected. Use aventure_help with resolve:true to find the exact
+website lookup for https://stripe.com, then call the returned tool with
+its required operation and inputs. Summarize the company using only the
+returned data, link its aVenture profile if returned, and state any missing
+or truncated data. Recover truncated sections with paginated reads by id.
+If setup is blocked, identify the exact step and error.
+```
+
+[ChatGPT's current setup instructions](https://developers.openai.com/api/docs/guides/custom-mcp-server)
+
+</Tab>
+<Tab title="Claude">
+
+1. Open [Customize > Connectors](https://claude.ai/customize/connectors).
+2. Select **Add > Custom > Web**.
+3. Name it **aVenture**, enter `https://mcp.aventure.vc/mcp`, and continue.
+4. Keep the detected OAuth settings. Choose **Sign in now** and
+   **Register automatically**.
+5. Add the connector and approve aVenture's Clerk sign-in.
+6. In your chat's **+ > Connectors** menu, enable aVenture.
+
+Claude's mobile connector installation is in beta; web and Desktop are the
+primary custom connector setup routes. A connected web connector is available
+on mobile under the same Claude account. Team and Enterprise administrators may
+need to enable the connector first.
+
+**Setup and first result prompt**
+
+```text
+Connect aVenture using https://mcp.aventure.vc/mcp (Streamable HTTP,
+OAuth with discovery). Use the connector setup if available; otherwise
+guide me through Customize > Connectors > Add > Custom > Web.
+Use Sign in now and automatic client registration.
+Let me finish aVenture's Clerk sign-in and consent, then enable aVenture
+for this conversation.
+
+Call aventure_status to confirm my connected account. Use aventure_help with resolve:true
+to find the exact website lookup for https://stripe.com, then call its
+recommended tool with the required operation and inputs. Summarize the
+returned company and link its aVenture profile if returned. Identify missing
+or truncated fields; recover truncated sections with paginated reads by id.
+Report the exact connection error instead of guessing.
+```
+
+[Claude's current connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
+
+</Tab>
+<Tab title="Gemini">
+
+<Note>
+aVenture in Gemini Apps is not yet a supported onboarding path. The current
+consent form policy does not list a Gemini callback origin. The setup steps
+and prompt below describe the intended flow; enable it only after the exact
+callback origin is allowed and authenticated end-to-end testing passes.
+Gemini CLI has separate settings and verification.
+</Note>
+
+**Intended setup after compatibility verification**
+
+1. Open [Gemini on the web](https://gemini.google.com).
+2. Go to **Settings > Connected Apps > Custom apps**.
+3. Select **Add a custom app**, enter `https://mcp.aventure.vc/mcp`, and select
+   **Next**.
+4. Follow the OAuth sign-in and consent screens for your aVenture account.
+5. In a chat, type **@** and select aVenture to use the connected app.
+
+Google currently requires a personal Google Account, age 18 or over, US
+availability, English, and **Keep Activity** enabled. Custom apps are connected
+on the web and then usable on web and mobile. Gemini Apps and Gemini CLI have
+separate connection settings.
+
+**Prompt for use after compatibility verification**
+
+```text
+Help me connect aVenture in Gemini Connected Apps using
+https://mcp.aventure.vc/mcp (Streamable HTTP, OAuth with discovery).
+Use the custom app setup if available; otherwise guide me through
+Settings > Connected Apps > Custom apps > Add a custom app on the web.
+Let me complete aVenture's Clerk sign-in and consent.
+
+When I select @aVenture, call aventure_status to verify my account.
+Use aventure_help with resolve:true for an exact website lookup for
+https://stripe.com, then call its recommended tool with the required
+operation and inputs. Summarize the returned company, link its aVenture
+profile if returned, and identify missing or truncated fields. Recover
+truncated sections with paginated reads by id. If authorization does not
+complete, report its exact error and the blocked step.
+```
+
+[Gemini's current custom app instructions](https://support.google.com/gemini/answer/17209137?hl=en-12)
 
 </Tab>
 <Tab title="Claude Code">
+
+Run these commands in your terminal:
+
+```bash
+claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
+claude mcp login aventure
+```
+
+Complete the browser sign-in, then open `/mcp` in Claude Code and verify that
+aVenture's tools are connected. If your Claude Code version does not provide
+`mcp login`, use `/mcp`, select `aventure`, and sign in there.
+
+**Setup and first result prompt**
+
+```text
+Set up the hosted aVenture MCP in Claude Code at user scope:
+claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
+
+If aventure is already configured with that URL, reuse it.
+Run claude mcp login aventure, or guide me to /mcp to sign in
+if this installed version requires it. Use OAuth discovery and let me
+complete Clerk authorization. Verify connected tools, call aventure_status,
+then use aventure_help with resolve:true to resolve and read the exact profile for
+https://stripe.com. Report the returned company, its aVenture profile link
+if returned, missing or truncated data, and any blocked step. Recover
+truncated sections with paginated reads by id.
+```
+
+[Claude Code's current MCP instructions](https://code.claude.com/docs/en/mcp)
+
+</Tab>
+<Tab title="Gemini CLI">
+
+Add the remote HTTP server at user scope:
+
+```bash
+gemini mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
+```
+
+Open Gemini CLI, run `/mcp auth aventure`, and complete browser authorization.
+Use `/mcp list` to confirm the connection. OAuth requires a browser and a
+reachable loopback callback on the same machine; a headless remote session
+needs its own compatible authentication route.
+
+Gemini CLI's default OAuth callback path is `/oauth/callback`. Use discovery
+and automatic registration. The fallback OAuth client below registers the
+different path `/callback`; it is not a universal Gemini CLI fallback.
+
+[Gemini CLI's current MCP instructions](https://geminicli.com/docs/tools/mcp-server/)
+
+</Tab>
+</Tabs>
+
+<Accordion title="Fallback for Clients That Need a Fixed OAuth Client">
+
+Use aVenture's existing public client only when automatic OAuth client
+registration is unavailable:
+
+| Setting | Value |
+|---------|-------|
+| Server URL | `https://mcp.aventure.vc/mcp` |
+| Transport | Streamable HTTP |
+| OAuth client ID | `KL7mINzGk0le0QiD` |
+| OAuth client secret | Leave empty |
+
+The fixed client has these registered redirect URIs:
+
+- `http://127.0.0.1/callback`
+- `http://localhost/callback`
+- `https://chatgpt.com/connector_platform_oauth_redirect`
+- `https://claude.ai/api/mcp/auth_callback`
+
+A loopback redirect may use any available port while keeping its `/callback`
+path. These restrictions belong to the fixed client, not all discovered or
+automatically registered clients. A client with a different callback needs a
+compatible registration; [contact support](/support) if its automatic
+registration fails.
+
+For a Claude Code version that needs the fixed client:
 
 ```bash
 claude mcp add --scope user --transport http \
@@ -58,43 +233,7 @@ claude mcp add --scope user --transport http \
   aventure https://mcp.aventure.vc/mcp
 ```
 
-Then run `/mcp`, select `aventure`, and complete browser sign-in. The user scope
-makes the server available in every project.
-
-</Tab>
-<Tab title="Other Clients">
-
-Enter the client ID in the client's OAuth settings, with a callback URL whose
-path is `/callback`. A client that accepts only a URL fails with
-`does not support dynamic client registration`.
-
-</Tab>
-</Tabs>
-
-<Accordion title="Registered Redirect URIs, and Testing the Flow on Its Own">
-
-These redirect URIs are registered:
-
-- `http://127.0.0.1/callback`
-- `http://localhost/callback`
-- `https://chatgpt.com/connector_platform_oauth_redirect`
-- `https://claude.ai/api/mcp/auth_callback`
-
-A loopback redirect may use any available port, such as
-`http://127.0.0.1:6276/callback`, as long as it keeps the `/callback` path. A
-client using a different callback path needs its own registered OAuth
-application; [contact support](/support) to arrange one.
-
-To test sign-in without a client, run the MCP Inspector in a terminal, sign in
-to aVenture, and approve access. The Inspector lists the tools:
-
-```bash
-npx @modelcontextprotocol/inspector@2.6.0 --cli \
-  --server-url https://mcp.aventure.vc/mcp \
-  --client-id KL7mINzGk0le0QiD \
-  --callback-url http://127.0.0.1:6276/callback \
-  --method tools/list
-```
+Then sign in through `/mcp`.
 
 </Accordion>
 
@@ -102,14 +241,17 @@ npx @modelcontextprotocol/inspector@2.6.0 --cli \
 
 | What you see | Fix |
 |---|---|
-| `does not support dynamic client registration` | Enter client ID `KL7mINzGk0le0QiD` in the client's OAuth settings |
-| `The 'redirect_uri' parameter does not match any of the OAuth 2.0 Client's pre-registered redirect urls.` | Use a callback URL whose path is `/callback`; see the registered redirect URIs above |
-| `401` on a server that worked before | Your sign-in expired. Reconnect the server in your client; in Claude Code, run `/mcp`, select `aventure`, and sign in |
-| `402` with `code` `subscription_required` | On the free plan, ask by website, or [upgrade](/plans-and-usage) |
-| `429` with `code` `billing_allowance_exhausted` | You used a monthly allowance; [upgrade](/plans-and-usage) or wait for the reset |
+| Connected app exists but tools are unavailable | Install/enable it in the current conversation and verify with `aventure_status` |
+| OAuth client registration fails | Check the client's discovery/registration choice; use the fixed client only for its supported redirect URIs |
+| Redirect URI mismatch | Check the actual callback against the OAuth client used; a different callback path needs a compatible registration |
+| Sign-in succeeds but connector remains disconnected | Check whether token exchange and tools discovery finished; provide the exact client error to [support](/support) |
+| `401` on a previously working connection | Reconnect in your client's account settings; in Claude Code, use `/mcp` and sign in again |
+| `402` with `subscription_required` | On the free plan, read by website or [upgrade](/plans-and-usage) |
+| `429` with `billing_allowance_exhausted` | [Upgrade](/plans-and-usage) or wait for the allowance reset |
 
-`aventure_status` confirms the connection and shows which account you signed in
-as.
+`aventure_status` verifies the live connection and shows the signed-in account.
+Use a website such as `https://stripe.com` for the first read so the check works
+on free as well as paid plans.
 
 ## Ask Your First Question
 
@@ -185,3 +327,4 @@ configure a URL, not a command.
 - [Use cases and examples](/use-cases) has an MCP tool call for each common job.
 - [API reference](/api-reference) lists the operations behind every tool.
 - The local server is [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, with [source on GitHub](https://github.com/aventurevc/aventure-mcp).
+
