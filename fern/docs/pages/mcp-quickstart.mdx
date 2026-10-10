@@ -24,6 +24,11 @@ Adding a connector and authorizing it are separate steps. A setup prompt can
 perform the steps its app exposes; account consent still happens in the sign-in
 screen. The prompts below also verify the connection with a real company read.
 
+A full-profile lookup can return a compact response. Check `truncated` and
+`omitted` before calling its embedded funding, people, or news complete. To
+recover a section, read its paginated sub-resource using the returned record
+id; repeating the same profile lookup does not recover the omitted rows.
+
 <Tabs>
 <Tab title="ChatGPT">
 
@@ -49,10 +54,11 @@ server, create it as a plugin, and install it. Let me complete aVenture's
 Clerk sign-in and consent when prompted.
 
 Once its tools are available, call aventure_status and confirm which
-aVenture account is connected. Use aventure_help to find the exact
+aVenture account is connected. Use aventure_help with resolve:true to find the exact
 website lookup for https://stripe.com, then call the returned tool with
 its required operation and inputs. Summarize the company using only the
-returned data, link its aVenture profile, and state any missing data.
+returned data, link its aVenture profile if returned, and state any missing
+or truncated data. Recover truncated sections with paginated reads by id.
 If setup is blocked, identify the exact step and error.
 ```
 
@@ -84,17 +90,28 @@ Use Sign in now and automatic client registration.
 Let me finish aVenture's Clerk sign-in and consent, then enable aVenture
 for this conversation.
 
-Call aventure_status to confirm my connected account. Use aventure_help
+Call aventure_status to confirm my connected account. Use aventure_help with resolve:true
 to find the exact website lookup for https://stripe.com, then call its
 recommended tool with the required operation and inputs. Summarize the
-returned company and link its aVenture profile. Identify missing fields
-or the exact connection error instead of guessing.
+returned company and link its aVenture profile if returned. Identify missing
+or truncated fields; recover truncated sections with paginated reads by id.
+Report the exact connection error instead of guessing.
 ```
 
 [Claude's current connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
 
 </Tab>
 <Tab title="Gemini">
+
+<Note>
+aVenture in Gemini Apps is not yet a supported onboarding path. The current
+consent form policy does not list a Gemini callback origin. The setup steps
+and prompt below describe the intended flow; enable it only after the exact
+callback origin is allowed and authenticated end-to-end testing passes.
+Gemini CLI has separate settings and verification.
+</Note>
+
+**Intended setup after compatibility verification**
 
 1. Open [Gemini on the web](https://gemini.google.com).
 2. Go to **Settings > Connected Apps > Custom apps**.
@@ -108,12 +125,7 @@ availability, English, and **Keep Activity** enabled. Custom apps are connected
 on the web and then usable on web and mobile. Gemini Apps and Gemini CLI have
 separate connection settings.
 
-aVenture's Gemini connection is undergoing compatibility verification. If
-OAuth registration or the callback fails, include the exact client error when
-[contacting support](/support). A successful sign-in page alone does not prove
-the connection completed.
-
-**Setup and first result prompt**
+**Prompt for use after compatibility verification**
 
 ```text
 Help me connect aVenture in Gemini Connected Apps using
@@ -123,10 +135,11 @@ Settings > Connected Apps > Custom apps > Add a custom app on the web.
 Let me complete aVenture's Clerk sign-in and consent.
 
 When I select @aVenture, call aventure_status to verify my account.
-Use aventure_help to resolve an exact website lookup for
+Use aventure_help with resolve:true for an exact website lookup for
 https://stripe.com, then call its recommended tool with the required
 operation and inputs. Summarize the returned company, link its aVenture
-profile, and identify any missing fields. If authorization does not
+profile if returned, and identify missing or truncated fields. Recover
+truncated sections with paginated reads by id. If authorization does not
 complete, report its exact error and the blocked step.
 ```
 
@@ -156,9 +169,10 @@ If aventure is already configured with that URL, reuse it.
 Run claude mcp login aventure, or guide me to /mcp to sign in
 if this installed version requires it. Use OAuth discovery and let me
 complete Clerk authorization. Verify connected tools, call aventure_status,
-then use aventure_help to resolve and read the exact profile for
-https://stripe.com. Report the returned company, its aVenture profile link,
-and any blocked step.
+then use aventure_help with resolve:true to resolve and read the exact profile for
+https://stripe.com. Report the returned company, its aVenture profile link
+if returned, missing or truncated data, and any blocked step. Recover
+truncated sections with paginated reads by id.
 ```
 
 [Claude Code's current MCP instructions](https://code.claude.com/docs/en/mcp)

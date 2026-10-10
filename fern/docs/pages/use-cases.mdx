@@ -30,6 +30,12 @@ metadata, and truncation warnings before drawing conclusions. The JSON below
 shows the API body rather than the full MCP envelope. See
 [Call MCP tools directly](/mcp-tools).
 
+Profile lookups include related data, but a compact response may omit rows
+or shorten research text. Fetch the corresponding rounds, roles, or news
+sub-resource by the returned `core.id` and page through it before claiming
+complete coverage. A successful lookup alone does not make its embedded
+lists complete.
+
 ## Get a Company Brand Kit From Its Website
 
 `GET /v1/entities/brand` takes any website or profile URL the company owns and
@@ -236,6 +242,13 @@ state is `New York`, not `NY`. `GET /v1/entities/filters` (CLI:
 [Pagination and filtering](/pagination-and-filtering) covers paging through the
 full list.
 
+For a plain-English discovery query, inspect the returned `interpretation`
+before using its count. City and state are different filters, and a semantic
+match for "fintech" is different from an exact `industry` or `tag` value.
+Use explicit filter fields for hard requirements. Natural search puts its
+paged records in `result`; a count-only typed search can return no rows while
+`totalElements` remains positive.
+
 ## Read a Funding History and the Investors in a Round
 
 List the rounds newest first, then use the chosen round's returned `id` as
@@ -367,6 +380,12 @@ no date or one-row-per-company filter, so sort it with `sort=date,desc`. The
 reverse question, who backed one company, is
 `GET /v1/entities/{entityId}/investors`.
 
+Do not report `amountRaised` as the investor's own contribution. Use
+`investorAttribution.amountInvested` when present; if it is absent, the
+individual contribution is unknown. Person investment rows use `amount` for
+the round amount and `date` for the round date; retain the returned field
+names when comparing them with other timestamps.
+
 ## Trace Every Company a Founder Has Worked At
 
 Resolve the person from a profile URL or slug, then list every role, current
@@ -418,6 +437,12 @@ The person lookup counts one person profile view; the role list does not.
 `GET /v1/entities/{entityId}/people` answers the reverse question: who works at
 one company.
 
+Use the association's `titleName`, `isCurrent`, `startDate`, and `endDate`
+for that person's role at that company. A person's general bio can describe
+a different company. Preserve date precision: a value such as `2010` is a
+year, not proof of a January 1 start. Missing end dates do not establish a
+current role; use `isCurrent`.
+
 ## Find the Competitors of a Company
 
 <Tabs>
@@ -468,6 +493,18 @@ Stripe's stored competitors include Block, Wise, and Visa. Without
 every plan. To find companies that match a description instead of a known
 company, use `POST /v1/search/natural/entities` (CLI:
 `aventure search natural entities --query "..."`).
+
+## Read a Company's Acquisitions
+
+To read companies it bought, use `listEntityAcquisitions` with the company's
+returned id and `query.role: "acquirer"`. The default `acquired` role asks
+whether that company was bought; an empty default result does not mean it
+made no acquisitions. `all` includes both sides. Keep the role fixed while
+paging and distinguish acquisitions from investment rounds.
+
+```bash
+aventure entities acquisitions list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --role acquirer --size 3
+```
 
 ## Monitor News About a Company
 

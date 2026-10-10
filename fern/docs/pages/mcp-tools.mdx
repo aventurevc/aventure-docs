@@ -33,6 +33,12 @@ Also check warnings: an operation or task step may be outside this server's
 catalog or unavailable to the current connection. Help does not execute the
 recommended operations.
 
+Ask for one operation or coherent task at a time. If a broad help answer
+cannot find instructions, try a specific catalog query such as
+`{ "q": "listEntityFundraiseRounds" }`, or consult the API reference.
+A low-confidence help answer is not evidence that those reads are
+unavailable; check the current catalog and connection permissions.
+
 For example, finding the company a name refers to is `lookupRecord`
 (`POST /v1/lookup`), which runs through `aventure_lookup` and takes the name and
 known kind in its JSON body:
@@ -80,6 +86,12 @@ status and help have their own data shapes. Prefer `structuredContent` when
 available: the text content can be a readable projection of the response.
 Empty optional envelope fields may be absent.
 
+An exact profile lookup already returns the record detail, but its embedded
+lists can be incomplete. Read `data.response.core.id` even if envelope `ids`
+is empty. A truncated profile can preserve that id while shortening rounds,
+people, news, and research text. Use it with the appropriate paginated
+sub-resource; do not repeat the same full-profile lookup for completeness.
+
 Check `ok` before using a result. Keep the error code, detail, trace id, and
 any supplied hints when reporting a failure. A missing or ambiguous match is
 not evidence that a company has no funding, people, or news. A `401` calls for
@@ -91,6 +103,27 @@ using the returned page metadata or cursor supported by that operation.
 `totalElements` counts all matches, not just the current `content`. Follow
 [pagination and filtering](/pagination-and-filtering); do not call a partial
 page a complete research result.
+
+For cursor traversal, pass the returned `data.nextCursor` as `query.cursor`
+and keep the same filters and sort. Cursor responses can still report page
+number `0` and `first: true`; use the continuation token rather than those
+flags to choose the next request. Do not decode or construct a cursor.
+
+Natural search returns `data.response.interpretation` and a page in
+`data.response.result`; the outer envelope may have no `page` field. Inspect
+the interpreted filters and the nested page. Confidence does not guarantee
+that a phrase such as "New York" selected the city rather than the state,
+or that "fintech" became an exact industry filter. Put required constraints
+in the operation's explicit `filter` input.
+
+With `countOnly`, an empty `content` and `empty: true` can accompany a positive
+`totalElements`. Use that total for the count; request rows separately.
+
+Check nested omissions too: a page can retain every outer row while
+shortening each row's investor attributions, rounds, or research detail.
+Page metadata describes the outer list, not the completeness of those
+nested sections. Use smaller pages or the relevant section read to recover
+the fields you need.
 
 Some operations finish asynchronously. If the result hands back a running
 job and a status reference, poll that status with `GET` until completion or
