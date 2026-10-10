@@ -847,6 +847,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
+    SearchAiOverview: { modulePath: "search/ai-overview", schemaName: "SearchAiOverviewSchema" },
+    SearchAiOverviewReference: {
+        modulePath: "search/ai-overview-reference",
+        schemaName: "SearchAiOverviewReferenceSchema",
+    },
     SearchAnswer: { modulePath: "search/answer", schemaName: "SearchAnswerSchema" },
     SearchAnswerCitation: {
         modulePath: "search/answer-citation",

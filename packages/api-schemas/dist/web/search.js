@@ -1,9 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SearchAiOverviewSchema } from "../search/ai-overview.js";
 import { SearchHitSchema } from "../search/hit.js";
 import { SearchSchema } from "../search/search.js";
 import { SourceDocumentListSchema } from "../source/document-list.js";
 const WebSearchSchemaDefinition = z.object({
+    /** Google's AI Overview: returned whenever Google answers inline, or fetched on request with `deferredAiOverview`; null when Google produced none or deferred it unrequested */
+    aiOverview: SearchAiOverviewSchema.nullish(),
     /** Source-document ledger row backing this result */
     document: SourceDocumentListSchema,
     /** Normalized result items in provider rank order */

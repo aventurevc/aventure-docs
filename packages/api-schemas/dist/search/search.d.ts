@@ -5,6 +5,7 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     cacheKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     catalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     deep: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+    deferredAiOverview: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     region: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resultLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;

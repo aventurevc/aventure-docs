@@ -41,14 +41,14 @@
       "type": "skill-md",
       "description": "Use only when asked for a track record of a founder, executive, or investor: a verified, dated role history, outcomes during each tenure with careful attribution, board seats and investments, public record matters, and unverified claims flagged.",
       "url": "/.well-known/agent-skills/leadership-track-record/SKILL.md",
-      "digest": "sha256:aea3ed5cca5f9f5bc153217d5dbbaaa93bc731fc4f279f3ac9ed9d7999a65ceb"
+      "digest": "sha256:53e7d8cbd07151176363b4035bc784c2b3e6725c1349f42416e20e56ca517758"
     },
     {
       "name": "market-research",
       "type": "skill-md",
       "description": "Use only when asked for a market research report on the market a company or product sells into: market boundary, size with shown arithmetic, growth, segments, buyers, pricing, regulation, and the subject's position.",
       "url": "/.well-known/agent-skills/market-research/SKILL.md",
-      "digest": "sha256:cf858e96a4349fda6b96f30eec542e4543ec609351a673d01a2b6de831320b4e"
+      "digest": "sha256:129a9476338e08500c260d45c61b901bd2fe6f9636dc55de8ad53ff12a579676"
     },
     {
       "name": "porters-five-forces",
@@ -62,7 +62,7 @@
       "type": "skill-md",
       "description": "Use only when asked for a SWOT analysis of a company, product, or investment firm: internal strengths and weaknesses, external opportunities and threats, each specific and sourced, ranked for the reader's decision, and crossed into feasible actions.",
       "url": "/.well-known/agent-skills/swot-analysis/SKILL.md",
-      "digest": "sha256:031c88edc169561dc68db097725f3af45f23d4c4dd2e73b930c0824a6e49ad9e"
+      "digest": "sha256:cc7fb579b8cba2194f9060922accd7ff5184200c321721dec9e499ef1071dfd0"
     }
   ]
 }

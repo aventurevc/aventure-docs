@@ -1,5 +1,21 @@
 import { z } from "zod/v4";
 declare const WebSearchSchemaDefinition: z.ZodObject<{
+    aiOverview: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        reference: z.ZodArray<z.ZodType<{
+            index: number;
+            snippet?: string | null | undefined;
+            source?: string | null | undefined;
+            title: string;
+            url: string;
+        }, import("../search/ai-overview-reference.ts").SearchAiOverviewReferenceSchemaInput, z.core.$ZodTypeInternals<{
+            index: number;
+            snippet?: string | null | undefined;
+            source?: string | null | undefined;
+            title: string;
+            url: string;
+        }, import("../search/ai-overview-reference.ts").SearchAiOverviewReferenceSchemaInput>>>;
+        text: z.ZodString;
+    }, z.core.$strip>>>;
     document: z.ZodType<{
         cacheHitCount: number;
         createdAt: string;
@@ -48,6 +64,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         cacheKey?: string | null | undefined;
         catalogRevision?: number | null | undefined;
         deep?: boolean | undefined;
+        deferredAiOverview?: boolean | undefined;
         language?: string | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
@@ -65,6 +82,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         cacheKey?: string | null | undefined;
         catalogRevision?: number | null | undefined;
         deep?: boolean | undefined;
+        deferredAiOverview?: boolean | undefined;
         language?: string | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;

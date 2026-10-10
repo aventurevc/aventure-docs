@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.143"
+    "version": "0.8.146"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -37874,6 +37874,11 @@
             "default": false,
             "description": "Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search."
           },
+          "deferredAiOverview": {
+            "type": "boolean",
+            "default": false,
+            "description": "Also fetch Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one."
+          },
           "language": {
             "type": [
               "string",
@@ -37953,6 +37958,17 @@
         "type": "object",
         "description": "Live web search result with its backing source-document row and normalized items",
         "properties": {
+          "aiOverview": {
+            "description": "Google's AI Overview: returned whenever Google answers inline, or fetched on request with `deferredAiOverview`; null when Google produced none or deferred it unrequested",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchAiOverview"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "document": {
             "$ref": "#/components/schemas/SourceDocumentList",
             "description": "Source-document ledger row backing this result"
@@ -38115,6 +38131,28 @@
           "entity.news.published"
         ]
       },
+      "SearchAiOverview": {
+        "type": "object",
+        "description": "Google's AI Overview for a web search: its generated answer and the pages it cites",
+        "properties": {
+          "reference": {
+            "type": "array",
+            "description": "Pages the answer cites",
+            "items": {
+              "$ref": "#/components/schemas/SearchAiOverviewReference"
+            }
+          },
+          "text": {
+            "type": "string",
+            "description": "Generated answer as Markdown in Google's block order; `[n]` cites the reference whose `index` is n",
+            "example": "Retrieval-augmented generation grounds a model's answer in fetched documents [0]."
+          }
+        },
+        "required": [
+          "reference",
+          "text"
+        ]
+      },
       "SourceDocumentList": {
         "type": "object",
         "description": "Metadata-only ledger row for source-document lists",
@@ -38225,6 +38263,43 @@
         "required": [
           "relevanceScore",
           "snippet",
+          "title",
+          "url"
+        ]
+      },
+      "SearchAiOverviewReference": {
+        "type": "object",
+        "description": "One page Google's AI Overview cites",
+        "properties": {
+          "index": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Citation number the answer text uses as `[index]`",
+            "example": 0
+          },
+          "snippet": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Publisher name Google shows for the page",
+            "example": "Wikipedia"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "index",
           "title",
           "url"
         ]
