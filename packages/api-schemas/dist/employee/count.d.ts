@@ -11,9 +11,10 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EmployeeCountSchema: z.ZodObject<{
-    asOfDate: z.ZodISODateTime;
+    asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     fact: z.ZodType<{
         asOfDate?: string | null | undefined;
+        currentEligible?: boolean | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;
         dateValue?: string | null | undefined;
         numericValue?: number | null | undefined;
@@ -24,6 +25,7 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
+        currentEligible?: boolean | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;
         dateValue?: string | null | undefined;
         numericValue?: number | null | undefined;

@@ -447,6 +447,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -926,6 +927,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";

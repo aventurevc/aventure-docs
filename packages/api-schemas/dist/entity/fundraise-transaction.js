@@ -9,8 +9,16 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     currency: z.string().nullish(),
     /** Data confidence level */
     dataConfidence: FundraiseDataConfidenceSchema.nullish(),
-    dateAnnounced: z.iso.datetime({ offset: true }).nullish(),
-    dateFundingComplete: z.iso.datetime({ offset: true }).nullish(),
+    /** Occurrence date for the round when known; null when unknown. Use the announcement date, otherwise the earliest source publication date announcing the round, preserving source precision. */
+    dateAnnounced: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
+    /** Source-stated funding completion date or instant, preserving source precision. */
+    dateFundingComplete: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
     dateInvestorExit: z.iso.datetime({ offset: true }).nullish(),
     entity: EntityFundraiseTransactionEntitySchema.nullish(),
     /** Canonical fundraise transaction UUID */

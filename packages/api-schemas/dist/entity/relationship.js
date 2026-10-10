@@ -4,8 +4,11 @@ import { EntityComparisonSignalsSchema } from "./comparison-signals.js";
 import { EntitySchema } from "./entity.js";
 import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 const EntityRelationshipSchemaDefinition = z.object({
-    /** Effective date for this relationship when known */
-    asOf: z.iso.date().nullish(),
+    /** Source-stated effective date, preserving stored precision */
+    asOf: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
     /** Competitive comparison signals for the joined entity when it is a product/service provider — sells-to, pricing model, ownership, funding, and website. Null for every other joined entity. Lets comparison surfaces render provider columns without a second per-provider fetch. */
     comparisonSignals: EntityComparisonSignalsSchema.nullish(),
     createdAt: z.iso.datetime({ offset: true }).nullish(),

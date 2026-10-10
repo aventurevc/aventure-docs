@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.146"
+    "version": "0.8.149"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -950,7 +950,7 @@
             {
               "optionKey": "browser",
               "flag": "--no-browser",
-              "description": "Print the sign-in URL without opening a browser."
+              "description": "Print the API-key approval URL and wait for approval without opening a browser."
             }
           ],
           "role": "start",
@@ -1741,12 +1741,12 @@
         ],
         "x-aventure-cli-composite": {
           "command": "auth login",
-          "description": "Sign in through your browser and save verified CLI access in the credential store.",
+          "description": "Sign in through your browser, or use --no-browser for OAuth device authorization, and save verified CLI access in the credential store.",
           "localOption": [
             {
               "optionKey": "browser",
               "flag": "--no-browser",
-              "description": "Print the sign-in URL without opening a browser."
+              "description": "Use OAuth device authorization: print a sign-in URL and code, then wait for approval. With --key, print the API-key approval URL."
             },
             {
               "optionKey": "providers",
@@ -5489,6 +5489,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Send respond-async to request a pollable entity lookup job.",
+            "in": "header",
+            "name": "Prefer",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5659,7 +5667,7 @@
                 }
               }
             },
-            "description": "The caller's per-minute name-identification or natural-search rate limit is spent (code rate_limited); retry after the Retry-After seconds.",
+            "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -5673,7 +5681,8 @@
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
               }
-            }
+            },
+            "x-aventure-standard-response": true
           },
           "500": {
             "content": {
@@ -10548,14 +10557,14 @@
             }
           },
           {
-            "description": "Exact announced timestamp used to disambiguate same-label rounds",
+            "description": "Exact source-stated announced date or instant used to disambiguate same-label rounds",
             "in": "query",
             "name": "dateAnnounced",
             "required": false,
             "schema": {
               "type": "string",
-              "format": "date-time",
-              "description": "Exact announced timestamp used to disambiguate same-label rounds"
+              "description": "Exact source-stated announced date or instant used to disambiguate same-label rounds",
+              "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
             }
           },
           {
@@ -17023,6 +17032,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Send respond-async to request a pollable lookup job; exact matches answer live.",
+            "in": "header",
+            "name": "Prefer",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -17243,6 +17260,14 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Send respond-async to request a pollable lookup job; fileOnMiss=true answers live.",
+            "in": "header",
+            "name": "Prefer",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -17440,7 +17465,7 @@
                 }
               }
             },
-            "description": "The caller's per-minute name-identification or natural-search rate limit is spent (code rate_limited); retry after the Retry-After seconds.",
+            "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -17454,7 +17479,8 @@
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
               }
-            }
+            },
+            "x-aventure-standard-response": true
           },
           "500": {
             "content": {
@@ -17661,7 +17687,7 @@
                 }
               }
             },
-            "description": "The caller's per-minute name-identification or natural-search rate limit is spent (code rate_limited); retry after the Retry-After seconds.",
+            "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -17675,7 +17701,8 @@
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
               }
-            }
+            },
+            "x-aventure-standard-response": true
           },
           "500": {
             "content": {
@@ -21097,7 +21124,7 @@
                 }
               }
             },
-            "description": "The caller's per-minute name-identification or natural-search rate limit is spent (code rate_limited); retry after the Retry-After seconds.",
+            "description": "Too Many Requests",
             "headers": {
               "Retry-After": {
                 "$ref": "#/components/headers/Retry-After"
@@ -21111,7 +21138,8 @@
               "X-RateLimit-Reset": {
                 "$ref": "#/components/headers/X-RateLimit-Reset"
               }
-            }
+            },
+            "x-aventure-standard-response": true
           },
           "500": {
             "content": {
@@ -26993,6 +27021,14 @@
               "format": "int32",
               "minimum": 1
             }
+          },
+          {
+            "description": "Send respond-async to request a pollable link search job.",
+            "in": "header",
+            "name": "Prefer",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -29130,6 +29166,14 @@
             "required": false,
             "schema": {
               "$ref": "#/components/schemas/DatasourceProvenanceActorType"
+            }
+          },
+          {
+            "description": "Send respond-async to receive a pollable job when a live web search is still running; deep=true answers live.",
+            "in": "header",
+            "name": "Prefer",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -32297,8 +32341,8 @@
               "string",
               "null"
             ],
-            "format": "date",
-            "description": "Effective date for this relationship when known"
+            "description": "Source-stated effective date, preserving stored precision",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "comparisonSignals": {
             "description": "Competitive comparison signals for the joined entity when it is a product/service provider — sells-to, pricing model, ownership, funding, and website. Null for every other joined entity. Lets comparison surfaces render provider columns without a second per-provider fetch.",
@@ -33279,21 +33323,24 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Acquisition announcement date or instant, retaining its stored precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "asOf": {
             "type": [
               "string",
               "null"
             ],
-            "format": "date"
+            "description": "Effective acquisition date or instant, retaining its stored precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "completedAt": {
             "type": [
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Acquisition completion date or instant, retaining its stored precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "createdAt": {
             "type": [
@@ -34494,14 +34541,16 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Occurrence date for the round when known; null when unknown. Use the announcement date, otherwise the earliest source publication date announcing the round, preserving source precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "dateFundingComplete": {
             "type": [
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Source-stated funding completion date or instant, preserving source precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "dateInvestorExit": {
             "type": [
@@ -34836,7 +34885,7 @@
               "null"
             ],
             "description": "Association period end, preserving source precision; any value means the association ended and isCurrent is false. Absent only while not terminated",
-            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$"
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "entityAddress": {
             "type": "array",
@@ -34944,7 +34993,7 @@
               "null"
             ],
             "description": "Association period start, preserving source precision",
-            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$"
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "titleFunction": {
             "type": [
@@ -35224,7 +35273,16 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Date the research detail applies to, preserving the source's calendar or timestamp precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
+          },
+          "currentEligible": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Eligibility as a current fact at response time; multiple rows may be eligible. Select the first eligible row in the returned authoritative order.",
+            "readOnly": true
           },
           "derivedRange": {
             "description": "Read-only range derived only for targetDateAbsolute detail rows",
@@ -37877,7 +37935,7 @@
           "deferredAiOverview": {
             "type": "boolean",
             "default": false,
-            "description": "Also fetch Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one."
+            "description": "Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). Without it, a search whose token is still live fetches the overview in the background and later reads return it. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one."
           },
           "language": {
             "type": [
@@ -37959,7 +38017,7 @@
         "description": "Live web search result with its backing source-document row and normalized items",
         "properties": {
           "aiOverview": {
-            "description": "Google's AI Overview: returned whenever Google answers inline, or fetched on request with `deferredAiOverview`; null when Google produced none or deferred it unrequested",
+            "description": "Google's AI Overview: returned whenever Google answers inline or its deferred overview is stored (fetched in the background after an earlier search, or waited for with `deferredAiOverview`); null when Google produced none or its deferred overview is not stored yet",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/SearchAiOverview"
@@ -39555,8 +39613,8 @@
           },
           "asOfDate": {
             "type": "string",
-            "format": "date-time",
-            "description": "Participation effective timestamp"
+            "description": "Source-stated participation effective date or instant",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "batch": {
             "type": [
@@ -39837,8 +39895,8 @@
               "string",
               "null"
             ],
-            "format": "date",
-            "description": "Curated as-of date when origin=curated"
+            "description": "Curated source-stated as-of date when origin=curated",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "curatedRelationshipType": {
             "type": [
@@ -40487,8 +40545,8 @@
               "string",
               "null"
             ],
-            "format": "date-time",
-            "description": "Announced date of the fundraise round. Use this field for when the investment happened; null when the round date is unknown."
+            "description": "Announced date of the fundraise round. Use this field for when the investment happened; null when the round date is unknown.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "fundraiseTransaction": {
             "oneOf": [
@@ -40597,7 +40655,8 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Announced date of the fundraise round; null when unknown. Preserves the source's calendar or timestamp precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "id": {
             "type": "string",
@@ -40888,8 +40947,12 @@
         "description": "Employee-count time-series point for an entity",
         "properties": {
           "asOfDate": {
-            "type": "string",
-            "format": "date-time"
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Date the employee count applies to, preserving the available calendar or timestamp precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "fact": {
             "$ref": "#/components/schemas/EntityResearchFactValue"
@@ -40899,7 +40962,6 @@
           }
         },
         "required": [
-          "asOfDate",
           "fact",
           "id"
         ],
@@ -40960,7 +41022,16 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Date the research fact applies to, preserving the source's calendar or timestamp precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
+          },
+          "currentEligible": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Current-fact eligibility projected from the canonical research detail row.",
+            "readOnly": true
           },
           "dataConfidence": {
             "oneOf": [
@@ -40977,7 +41048,8 @@
               "string",
               "null"
             ],
-            "format": "date-time"
+            "description": "Date-valued research fact, preserving the source's year, month, day, or timestamp precision.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "numericValue": {
             "type": [
@@ -41544,8 +41616,8 @@
           },
           "asOfDate": {
             "type": "string",
-            "format": "date-time",
-            "description": "Effective timestamp for this valuation datapoint."
+            "description": "Source-stated effective date for this valuation datapoint.",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "confidence": {
             "$ref": "#/components/schemas/EntityValuationDataConfidence",
@@ -41808,8 +41880,8 @@
         "properties": {
           "asOfDate": {
             "type": "string",
-            "format": "date-time",
-            "description": "Observation timestamp from the source detail row"
+            "description": "Observation date from the source detail row",
+            "pattern": "^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$"
           },
           "bucket": {
             "$ref": "#/components/schemas/ResearchDerivedBucket",

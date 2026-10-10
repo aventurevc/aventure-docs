@@ -51,7 +51,7 @@ declare const EntityAcceleratorParticipationSchemaDefinition: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
     acceleratorName: z.ZodString;
-    asOfDate: z.ZodISODateTime;
+    asOfDate: z.ZodString;
     batch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodString;
     program: z.ZodOptional<z.ZodNullable<z.ZodString>>;

@@ -30,8 +30,10 @@ import { ResearchDerivedBucketSchema } from "./derived-bucket.js";
  * @contractRole canonical
  */
 export const ResearchDerivedRangeSchema = z.object({
-    /** Observation timestamp from the source detail row */
-    asOfDate: z.iso.datetime({ offset: true }),
+    /** Observation date from the source detail row */
+    asOfDate: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/),
     /** Derived bucket using inclusive 0, 3, 6, 12, and 24 month boundaries */
     bucket: ResearchDerivedBucketSchema,
     /** Whole months from now() to targetDate */

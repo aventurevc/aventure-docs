@@ -81,6 +81,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
     }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput>>>;
     detail: z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
+        currentEligible?: boolean | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -103,6 +104,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, import("./research-detail.ts").EntityResearchDetailSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
+        currentEligible?: boolean | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";

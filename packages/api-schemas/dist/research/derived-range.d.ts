@@ -28,7 +28,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const ResearchDerivedRangeSchema: z.ZodObject<{
-    asOfDate: z.ZodISODateTime;
+    asOfDate: z.ZodString;
     bucket: z.ZodEnum<{
         beyondTwoYears: "beyondTwoYears";
         pastDue: "pastDue";

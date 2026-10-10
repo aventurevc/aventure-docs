@@ -7,7 +7,10 @@ const PersonInvestmentSchemaDefinition = z.object({
     amount: z.number().nullish(),
     company: PersonInvestedCompanySchema,
     /** Announced date of the fundraise round. Use this field for when the investment happened; null when the round date is unknown. */
-    date: z.iso.datetime({ offset: true }).nullish(),
+    date: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
     fundraiseTransaction: EntityFundraiseSchema.nullish(),
     /** Canonical fundraise transaction UUID */
     fundraiseTransactionId: z.uuid(),

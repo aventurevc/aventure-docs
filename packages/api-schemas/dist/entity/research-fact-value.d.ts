@@ -1,12 +1,13 @@
 import { z } from "zod/v4";
 declare const EntityResearchFactValueSchemaDefinition: z.ZodObject<{
-    asOfDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    currentEligible: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     dataConfidence: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         high: "high";
         low: "low";
         medium: "medium";
     }>>>;
-    dateValue: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    dateValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     numericValue: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     referenceValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     source: z.ZodOptional<z.ZodNullable<z.ZodString>>;

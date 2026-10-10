@@ -6,8 +6,11 @@ const EntitySimilarityContextSchemaDefinition = z.object({
     compositeScore: z.number().nullish(),
     /** Cosine similarity when origin=precomputed */
     cosineScore: z.number().nullish(),
-    /** Curated as-of date when origin=curated */
-    curatedAsOf: z.iso.date().nullish(),
+    /** Curated source-stated as-of date when origin=curated */
+    curatedAsOf: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
     /** Curated relationship type when origin=curated */
     curatedRelationshipType: z.string().nullish(),
     /** Curated source URL/note when origin=curated */

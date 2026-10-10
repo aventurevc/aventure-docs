@@ -6,8 +6,10 @@ const EntityAcceleratorParticipationSchemaDefinition = z.object({
     accelerator: EntitySchema,
     /** Full accelerator participation name, including program detail */
     acceleratorName: z.string(),
-    /** Participation effective timestamp */
-    asOfDate: z.iso.datetime({ offset: true }),
+    /** Source-stated participation effective date or instant */
+    asOfDate: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/),
     /** Accelerator batch or cohort */
     batch: z.string().nullish(),
     /** Stable participation identifier anchored to the contributing acceleratorParticipant relationship */

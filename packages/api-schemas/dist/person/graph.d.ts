@@ -13,9 +13,10 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
             titleName?: string | null | undefined;
         }[];
         employeeCount?: {
-            asOfDate: string;
+            asOfDate?: string | null | undefined;
             fact: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 dateValue?: string | null | undefined;
                 numericValue?: number | null | undefined;
@@ -202,9 +203,10 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
             titleName?: string | null | undefined;
         }[];
         employeeCount?: {
-            asOfDate: string;
+            asOfDate?: string | null | undefined;
             fact: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 dataConfidence?: "high" | "low" | "medium" | null | undefined;
                 dateValue?: string | null | undefined;
                 numericValue?: number | null | undefined;

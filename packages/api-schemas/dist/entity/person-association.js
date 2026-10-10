@@ -42,7 +42,7 @@ export const EntityPersonAssociationSchema = z.object({
     /** Association period end, preserving source precision; any value means the association ended and isCurrent is false. Absent only while not terminated */
     endDate: z
         .string()
-        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$/)
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
         .nullish(),
     /** Entity addresses carried on the association projection. Person detail carries at most one: the entity's current headquarters, else its most recently updated current address; GET /v1/entities/{entityId}/addresses lists them all */
     entityAddress: z.array(AddressSchema),
@@ -81,7 +81,7 @@ export const EntityPersonAssociationSchema = z.object({
     /** Association period start, preserving source precision */
     startDate: z
         .string()
-        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-][0-9]{2}:[0-5][0-9]))?)?)?$/)
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
         .nullish(),
     /** Read-side corporate title function for the association row */
     titleFunction: z.string().nullish(),

@@ -13,7 +13,7 @@ const SearchSchemaDefinition = z.object({
     catalogRevision: z.int().nullish(),
     /** Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search. */
     deep: z.boolean().default(false).optional(),
-    /** Also fetch Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one. */
+    /** Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). Without it, a search whose token is still live fetches the overview in the background and later reads return it. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one. */
     deferredAiOverview: z.boolean().default(false).optional(),
     /** Search language code */
     language: z.string().nullish(),
