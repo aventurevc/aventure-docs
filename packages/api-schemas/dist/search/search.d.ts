@@ -3,6 +3,7 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     allowSuspectedShellStrip: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     bypassCache: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     cacheKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    catalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     deep: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     region: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -13,6 +14,13 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     search: z.ZodString;
     source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    tenant: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        development: "development";
+        production: "production";
+        staging: "staging";
+        unassigned: "unassigned";
+    }>>>;
+    tenantPolicyRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type SearchDefinition = z.infer<typeof SearchSchemaDefinition>;
 export interface SearchSchemaInput extends z.input<typeof SearchSchemaDefinition> {

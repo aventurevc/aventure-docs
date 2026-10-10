@@ -445,6 +445,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         };
         fundraiseTransactionId?: string | null | undefined;
         investorJoinId?: string | null | undefined;
+        isCurrent?: boolean | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;
@@ -535,6 +536,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         };
         fundraiseTransactionId?: string | null | undefined;
         investorJoinId?: string | null | undefined;
+        isCurrent?: boolean | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;

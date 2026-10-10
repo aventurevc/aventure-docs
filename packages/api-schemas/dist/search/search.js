@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
+import { HarnessRunEnvironmentSchema } from "../harness/run-environment.js";
 const SearchSchemaDefinition = z.object({
     /** Allow intentional money-like text without a currency marker; prefer --from-file. */
     allowSuspectedShellStrip: z.boolean().nullish(),
@@ -8,6 +9,8 @@ const SearchSchemaDefinition = z.object({
     bypassCache: z.boolean().default(false).optional(),
     /** Stable lookup text for cache keying when generated search text varies between runs */
     cacheKey: z.string().nullish(),
+    /** Server-selected search catalog revision. */
+    catalogRevision: z.int().nullish(),
     /** Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search. */
     deep: z.boolean().default(false).optional(),
     /** Search language code */
@@ -22,6 +25,10 @@ const SearchSchemaDefinition = z.object({
     search: z.string(),
     /** Optional caller identity, up to 64 characters, persisted for source-document attribution and abuse triage. Agent requests derive `<agentModel>-<agentChassis>` from the validated provenance actor instead of this field. */
     source: z.string().max(64).nullish(),
+    /** Server-selected deployment tenant. */
+    tenant: HarnessRunEnvironmentSchema.nullish(),
+    /** Server-selected tenant execution-policy revision. */
+    tenantPolicyRevision: z.int().nullish(),
 });
 /**
  * Live web search request with cache controls

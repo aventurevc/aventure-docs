@@ -125,6 +125,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
     }, import("./acquisition-evidence.ts").EntityAcquisitionEvidenceSchemaInput>>;
     fundraiseTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     investorJoinId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

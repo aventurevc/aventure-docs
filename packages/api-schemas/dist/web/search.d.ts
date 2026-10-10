@@ -46,6 +46,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        catalogRevision?: number | null | undefined;
         deep?: boolean | undefined;
         language?: string | null | undefined;
         region?: string | null | undefined;
@@ -56,10 +57,13 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         search: string;
         source?: string | null | undefined;
+        tenant?: "development" | "production" | "staging" | "unassigned" | null | undefined;
+        tenantPolicyRevision?: number | null | undefined;
     }, import("../search/search.ts").SearchSchemaInput, z.core.$ZodTypeInternals<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        catalogRevision?: number | null | undefined;
         deep?: boolean | undefined;
         language?: string | null | undefined;
         region?: string | null | undefined;
@@ -70,6 +74,8 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         search: string;
         source?: string | null | undefined;
+        tenant?: "development" | "production" | "staging" | "unassigned" | null | undefined;
+        tenantPolicyRevision?: number | null | undefined;
     }, import("../search/search.ts").SearchSchemaInput>>;
 }, z.core.$strip>;
 type WebSearchDefinition = z.infer<typeof WebSearchSchemaDefinition>;
