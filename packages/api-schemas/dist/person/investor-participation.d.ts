@@ -346,7 +346,7 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
@@ -676,13 +676,15 @@ declare const PersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown>>;
+    }, import("./detail.ts").PersonDetailSchemaInput>>;
     round: z.ZodArray<z.ZodObject<{
         round: z.ZodString;
     }, z.core.$strip>>;
     roundCount: z.ZodInt;
 }, z.core.$strip>;
 type PersonInvestorParticipationDefinition = z.infer<typeof PersonInvestorParticipationSchemaDefinition>;
+export interface PersonInvestorParticipationSchemaInput extends z.input<typeof PersonInvestorParticipationSchemaDefinition> {
+}
 /**
  * Person investor with round participation labels and count
  *
@@ -692,7 +694,7 @@ type PersonInvestorParticipationDefinition = z.infer<typeof PersonInvestorPartic
  * @contractShape person.investor-participation
  * @contractRole canonical
  */
-export declare const PersonInvestorParticipationSchema: z.ZodType<PersonInvestorParticipationDefinition>;
+export declare const PersonInvestorParticipationSchema: z.ZodType<PersonInvestorParticipationDefinition, PersonInvestorParticipationSchemaInput>;
 export type PersonInvestorParticipation = z.infer<typeof PersonInvestorParticipationSchema>;
 export {};
 //# sourceMappingURL=investor-participation.d.ts.map

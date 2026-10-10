@@ -620,6 +620,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -1114,6 +1115,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -1599,6 +1601,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1787,7 +1790,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 sourceType: string;
             } | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../natural/search-result.ts").NaturalSearchResultSchemaInput, z.core.$ZodTypeInternals<{
         answer?: {
             citation: {
                 entityId: string;
@@ -2407,6 +2410,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -2901,6 +2905,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -3386,6 +3391,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3574,7 +3580,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 sourceType: string;
             } | null | undefined;
         }[];
-    }, unknown>>;
+    }, import("../natural/search-result.ts").NaturalSearchResultSchemaInput>>;
     entityDetail: z.ZodArray<z.ZodObject<{
         core: z.ZodObject<{
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -3584,21 +3590,21 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, import("../entity/image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -3884,6 +3890,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -3908,7 +3915,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/enrichment.ts").EntityEnrichmentSchemaInput, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
                 addressLine1?: string | null | undefined;
@@ -4166,6 +4173,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -4190,7 +4198,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        }, unknown>>;
+        }, import("../entity/enrichment.ts").EntityEnrichmentSchemaInput>>;
         fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
@@ -4277,7 +4285,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
             currency?: string | null | undefined;
@@ -4363,7 +4371,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
         newsArticle: z.ZodArray<z.ZodType<{
             author?: string | null | undefined;
             category?: string | null | undefined;
@@ -4378,7 +4386,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             title: string;
             updatedAt?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
             author?: string | null | undefined;
             category?: string | null | undefined;
             createdAt?: string | null | undefined;
@@ -4392,7 +4400,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             title: string;
             updatedAt?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../news/news.ts").NewsSchemaInput>>>;
         person: z.ZodArray<z.ZodType<{
             articleCount?: number | null | undefined;
             association: {
@@ -4723,7 +4731,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../person/detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
@@ -5053,7 +5061,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-        }, unknown>>>;
+        }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
@@ -5113,7 +5121,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
             comparisonSignals?: {
                 fundingStage?: string | null | undefined;
@@ -5171,7 +5179,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/relationship.ts").EntityRelationshipSchemaInput>>>;
         research: z.ZodType<{
             acceleratorParticipation: {
                 accelerator: {
@@ -5255,7 +5263,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 textType: string;
                 updatedAt?: string | null | undefined;
             }[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
                 accelerator: {
                     defaultCurrency?: string | null | undefined;
@@ -5338,7 +5346,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 textType: string;
                 updatedAt?: string | null | undefined;
             }[];
-        }, unknown>>;
+        }, import("../entity/research.ts").EntityResearchSchemaInput>>;
         sitemap: z.ZodObject<{
             hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
             hasAnalysis: z.ZodBoolean;
@@ -5358,7 +5366,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             };
             source?: string | null | undefined;
             updatedAt: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../unique/id.ts").UniqueIdSchemaInput, z.core.$ZodTypeInternals<{
             createdAt: string;
             id: number;
             identifier: string;
@@ -5369,7 +5377,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             };
             source?: string | null | undefined;
             updatedAt: string;
-        }, unknown>>>;
+        }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
     }, z.core.$strip>>;
     news: z.ZodType<{
         content: {
@@ -5391,7 +5399,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         size: number;
         totalElements: number;
         totalPages: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../pagination/schemas.ts").PageResultNewsSchemaInput, z.core.$ZodTypeInternals<{
         content: {
             author?: string | null | undefined;
             category?: string | null | undefined;
@@ -5411,7 +5419,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         size: number;
         totalElements: number;
         totalPages: number;
-    }, unknown>>;
+    }, import("../pagination/schemas.ts").PageResultNewsSchemaInput>>;
     newsEntityMention: z.ZodArray<z.ZodType<{
         entity: {
             createdAt: string;
@@ -5425,7 +5433,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             updatedAt: string;
         }[];
         newsId: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../news/entity-mention.ts").NewsEntityMentionSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             createdAt: string;
             entityId: string;
@@ -5438,7 +5446,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             updatedAt: string;
         }[];
         newsId: number;
-    }, unknown>>>;
+    }, import("../news/entity-mention.ts").NewsEntityMentionSchemaInput>>>;
     person: z.ZodType<{
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
@@ -5797,7 +5805,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             totalPages: number;
         };
         searchRequestId?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/natural-search-result.ts").PersonNaturalSearchResultSchemaInput, z.core.$ZodTypeInternals<{
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
             execution: {
@@ -6155,7 +6163,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             totalPages: number;
         };
         searchRequestId?: string | null | undefined;
-    }, unknown>>;
+    }, import("../person/natural-search-result.ts").PersonNaturalSearchResultSchemaInput>>;
     personDetail: z.ZodArray<z.ZodType<{
         articleCount?: number | null | undefined;
         association: {
@@ -6486,7 +6494,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
@@ -6816,7 +6824,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown>>>;
+    }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
     provenance: z.ZodType<{
         answerUnavailable: boolean;
         entity: {
@@ -6837,7 +6845,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             scope: "entity" | "news" | "person";
         }[];
         unavailable: ("entity" | "news" | "person")[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./search-provenance.ts").FederatedSearchProvenanceSchemaInput, z.core.$ZodTypeInternals<{
         answerUnavailable: boolean;
         entity: {
             modeRequested: string;
@@ -6857,9 +6865,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             scope: "entity" | "news" | "person";
         }[];
         unavailable: ("entity" | "news" | "person")[];
-    }, unknown>>;
+    }, import("./search-provenance.ts").FederatedSearchProvenanceSchemaInput>>;
 }, z.core.$strip>;
 type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>;
+export interface FederatedSearchSchemaInput extends z.input<typeof FederatedSearchSchemaDefinition> {
+}
 /**
  * Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.
  *
@@ -6875,7 +6885,7 @@ type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>
  * @contractShape federated.search
  * @contractRole canonical
  */
-export declare const FederatedSearchSchema: z.ZodType<FederatedSearchDefinition>;
+export declare const FederatedSearchSchema: z.ZodType<FederatedSearchDefinition, FederatedSearchSchemaInput>;
 export type FederatedSearch = z.infer<typeof FederatedSearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

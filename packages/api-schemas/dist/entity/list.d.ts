@@ -8,21 +8,21 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -308,6 +308,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -332,7 +333,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             urlType: string;
         }[];
         urlLinkSuppressedCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./enrichment.ts").EntityEnrichmentSchemaInput, z.core.$ZodTypeInternals<{
         address: {
             address?: number | null | undefined;
             addressLine1?: string | null | undefined;
@@ -590,6 +591,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -614,7 +616,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             urlType: string;
         }[];
         urlLinkSuppressedCount: number;
-    }, unknown>>;
+    }, import("./enrichment.ts").EntityEnrichmentSchemaInput>>;
     fundraiseRound: z.ZodArray<z.ZodType<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
@@ -701,7 +703,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
@@ -787,7 +789,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown>>>;
+    }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
     research: z.ZodType<{
         acceleratorParticipation: {
             accelerator: {
@@ -852,7 +854,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             valueResearchDetail?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./list-research.ts").EntityListResearchSchemaInput, z.core.$ZodTypeInternals<{
         acceleratorParticipation: {
             accelerator: {
                 defaultCurrency?: string | null | undefined;
@@ -916,7 +918,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             valueResearchDetail?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
         }[];
-    }, unknown>>;
+    }, import("./list-research.ts").EntityListResearchSchemaInput>>;
     semanticMatch: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         computedAt: z.ZodISODateTime;
         cosineDistance: z.ZodNumber;
@@ -942,6 +944,8 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
+export interface EntityListSchemaInput extends z.input<typeof EntityListSchemaDefinition> {
+}
 /**
  * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins.
  *
@@ -966,7 +970,7 @@ type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
  * @contractShape entity.list
  * @contractRole canonical
  */
-export declare const EntityListSchema: z.ZodType<EntityListDefinition>;
+export declare const EntityListSchema: z.ZodType<EntityListDefinition, EntityListSchemaInput>;
 export type EntityList = z.infer<typeof EntityListSchema>;
 export {};
 //# sourceMappingURL=list.d.ts.map

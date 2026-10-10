@@ -30,6 +30,8 @@ declare const EntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
     valuationPreMoney: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type EntityValuationTimeSeriesPointDefinition = z.infer<typeof EntityValuationTimeSeriesPointSchemaDefinition>;
+export interface EntityValuationTimeSeriesPointSchemaInput extends z.input<typeof EntityValuationTimeSeriesPointSchemaDefinition> {
+}
 /**
  * A single valuation datapoint. `valuationPostMoney` is the canonical charted value; filled when directly recorded or safely derivable from pre-money + amount raised (same currency only). `derivation` explains whether the value was stored or inferred. Only `researchDetail` points have a `detailId` and can be changed here; `fundraiseRound` points are changed through fundraise-round commands.
  *
@@ -39,7 +41,7 @@ type EntityValuationTimeSeriesPointDefinition = z.infer<typeof EntityValuationTi
  * @contractShape entity.valuation-time-series-point
  * @contractRole canonical
  */
-export declare const EntityValuationTimeSeriesPointSchema: z.ZodType<EntityValuationTimeSeriesPointDefinition>;
+export declare const EntityValuationTimeSeriesPointSchema: z.ZodType<EntityValuationTimeSeriesPointDefinition, EntityValuationTimeSeriesPointSchemaInput>;
 export type EntityValuationTimeSeriesPoint = z.infer<typeof EntityValuationTimeSeriesPointSchema>;
 export {};
 //# sourceMappingURL=valuation-time-series-point.d.ts.map

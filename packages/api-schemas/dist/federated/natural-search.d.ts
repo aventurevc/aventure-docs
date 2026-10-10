@@ -1,15 +1,5 @@
 import { z } from "zod/v4";
-/**
- * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.
- *
- * @openapiSchema FederatedNaturalSearch
- * @endpoint POST /v1/search
- * @endpoint POST /v1/search/shared
- * @usedBySchema SharedSearchMutationSchema
- * @contractShape federated.natural-search
- * @contractRole canonical
- */
-export declare const FederatedNaturalSearchSchema: z.ZodObject<{
+declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
     answerModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     cacheMode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
         bypass: "bypass";
@@ -26,10 +16,10 @@ export declare const FederatedNaturalSearchSchema: z.ZodObject<{
         employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
         entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
         entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -37,17 +27,17 @@ export declare const FederatedNaturalSearchSchema: z.ZodObject<{
             amountInvestedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             amountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                 max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -60,63 +50,63 @@ export declare const FederatedNaturalSearchSchema: z.ZodObject<{
                 averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../int/range.ts").IntRangeSchemaInput>>>>;
             }, z.core.$strip>>;
             investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
             rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             round: z.ZodOptional<z.ZodArray<z.ZodString>>;
             totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             valuationRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
         }, z.core.$strip>>;
         hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -184,10 +174,10 @@ export declare const FederatedNaturalSearchSchema: z.ZodObject<{
         yearFoundedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
     }, z.core.$strict>>;
     mode: z.ZodOptional<z.ZodDefault<z.ZodUnion<readonly [z.ZodEnum<{
         auto: "auto";
@@ -210,5 +200,18 @@ export declare const FederatedNaturalSearchSchema: z.ZodObject<{
         xhigh: "xhigh";
     }>, z.ZodString]>>>;
 }, z.core.$strip>;
+type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
+export interface FederatedNaturalSearchSchemaInput extends z.input<typeof FederatedNaturalSearchSchemaDefinition> {
+}
+/**
+ * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.
+ *
+ * @openapiSchema FederatedNaturalSearch
+ * @endpoint POST /v1/search
+ * @contractShape federated.natural-search
+ * @contractRole canonical
+ */
+export declare const FederatedNaturalSearchSchema: z.ZodType<FederatedNaturalSearchDefinition, FederatedNaturalSearchSchemaInput>;
 export type FederatedNaturalSearch = z.infer<typeof FederatedNaturalSearchSchema>;
+export {};
 //# sourceMappingURL=natural-search.d.ts.map

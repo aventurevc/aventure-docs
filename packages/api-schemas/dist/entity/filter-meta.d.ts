@@ -19,13 +19,13 @@ export declare const EntityFilterMetaSchema: z.ZodObject<{
                     city: string[];
                     state: string;
                 }[];
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("./filter-headquarters-country.ts").EntityFilterHeadquartersCountrySchemaInput, z.core.$ZodTypeInternals<{
                 country: string;
                 state: {
                     city: string[];
                     state: string;
                 }[];
-            }, unknown>>>;
+            }, import("./filter-headquarters-country.ts").EntityFilterHeadquartersCountrySchemaInput>>>;
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;

@@ -189,7 +189,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 titleName?: string | null | undefined;
             }[];
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./graph-career-context.ts").PersonGraphCareerContextSchemaInput, z.core.$ZodTypeInternals<{
         colleague: {
             isCurrent?: boolean | null | undefined;
             personId: string;
@@ -378,7 +378,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
                 titleName?: string | null | undefined;
             }[];
         }[];
-    }, unknown>>>;
+    }, import("./graph-career-context.ts").PersonGraphCareerContextSchemaInput>>>;
     coInvestor: z.ZodArray<z.ZodType<{
         overlapCount: number;
         person: {
@@ -426,7 +426,7 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         } | null | undefined;
         transactionId?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./graph-co-investor.ts").PersonGraphCoInvestorSchemaInput, z.core.$ZodTypeInternals<{
         overlapCount: number;
         person: {
             isCurrent?: boolean | null | undefined;
@@ -473,10 +473,12 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         } | null | undefined;
         transactionId?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./graph-co-investor.ts").PersonGraphCoInvestorSchemaInput>>>;
     computedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type PersonGraphDefinition = z.infer<typeof PersonGraphSchemaDefinition>;
+export interface PersonGraphSchemaInput extends z.input<typeof PersonGraphSchemaDefinition> {
+}
 /**
  * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors. Lists are capped and pre-ranked server-side; the response is the display order. Served from a precomputed store with member names, images, and slugs hydrated from live person records at read time; computedAt is null only when the document has not been materialized yet.
  *
@@ -485,7 +487,7 @@ type PersonGraphDefinition = z.infer<typeof PersonGraphSchemaDefinition>;
  * @contractShape person.graph
  * @contractRole canonical
  */
-export declare const PersonGraphSchema: z.ZodType<PersonGraphDefinition>;
+export declare const PersonGraphSchema: z.ZodType<PersonGraphDefinition, PersonGraphSchemaInput>;
 export type PersonGraph = z.infer<typeof PersonGraphSchema>;
 export {};
 //# sourceMappingURL=graph.d.ts.map

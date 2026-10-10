@@ -21,7 +21,7 @@ declare const PageBlogPostSchemaDefinition: z.ZodObject<{
         type: "aventureBlog" | "employerBlog" | "linkedin" | "medium" | "other" | "personalBlog" | "substack" | "xTwitter";
         updatedAt: string;
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../blog/post.ts").BlogPostSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
         createdAt: string;
         externalId?: string | null | undefined;
@@ -42,7 +42,7 @@ declare const PageBlogPostSchemaDefinition: z.ZodObject<{
         type: "aventureBlog" | "employerBlog" | "linkedin" | "medium" | "other" | "personalBlog" | "substack" | "xTwitter";
         updatedAt: string;
         url: string;
-    }, unknown>>>>;
+    }, import("../blog/post.ts").BlogPostSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -70,6 +70,8 @@ declare const PageBlogPostSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageBlogPostDefinition = z.infer<typeof PageBlogPostSchemaDefinition>;
+export interface PageBlogPostSchemaInput extends z.input<typeof PageBlogPostSchemaDefinition> {
+}
 /**
  * @openapiSchema PageBlogPost
  * @endpoint GET /v1/entities/{entityId}/blog-posts
@@ -78,48 +80,35 @@ type PageBlogPostDefinition = z.infer<typeof PageBlogPostSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageBlogPostSchema: z.ZodType<PageBlogPostDefinition>;
+export declare const PageBlogPostSchema: z.ZodType<PageBlogPostDefinition, PageBlogPostSchemaInput>;
 export type PageBlogPost = z.infer<typeof PageBlogPostSchema>;
 declare const PageClassificationSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodType<{
+    content: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodIntersection<z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown>>, z.ZodType<{
+    }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
+        bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        creatable: z.ZodBoolean;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        name: z.ZodString;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        type: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        writable: z.ZodBoolean;
+    }, z.core.$strip>>, z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -138,7 +127,20 @@ declare const PageClassificationSchemaDefinition: z.ZodObject<{
         name: string;
         updatedAt?: string | null | undefined;
         writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../classification/classification.ts").ClassificationSchemaInput & {
+        category: string;
+        code?: number | null | undefined;
+        creatable: boolean;
+        createdAt?: string | null | undefined;
+        entityClassificationId?: number | null | undefined;
+        id: number;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        level?: number | null | undefined;
+        name: string;
+        updatedAt?: string | null | undefined;
+        writable: boolean;
+    }, z.core.$ZodTypeInternals<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -157,7 +159,20 @@ declare const PageClassificationSchemaDefinition: z.ZodObject<{
         name: string;
         updatedAt?: string | null | undefined;
         writable: boolean;
-    }, unknown>>]>>>;
+    }, import("../classification/classification.ts").ClassificationSchemaInput & {
+        category: string;
+        code?: number | null | undefined;
+        creatable: boolean;
+        createdAt?: string | null | undefined;
+        entityClassificationId?: number | null | undefined;
+        id: number;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        level?: number | null | undefined;
+        name: string;
+        updatedAt?: string | null | undefined;
+        writable: boolean;
+    }>>]>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -185,6 +200,8 @@ declare const PageClassificationSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageClassificationDefinition = z.infer<typeof PageClassificationSchemaDefinition>;
+export interface PageClassificationSchemaInput extends z.input<typeof PageClassificationSchemaDefinition> {
+}
 /**
  * @openapiSchema PageClassification
  * @endpoint GET /v1/entities/classifications/tags
@@ -192,7 +209,7 @@ type PageClassificationDefinition = z.infer<typeof PageClassificationSchemaDefin
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageClassificationSchema: z.ZodType<PageClassificationDefinition>;
+export declare const PageClassificationSchema: z.ZodType<PageClassificationDefinition, PageClassificationSchemaInput>;
 export type PageClassification = z.infer<typeof PageClassificationSchema>;
 declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -207,7 +224,7 @@ declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput, z.core.$ZodTypeInternals<{
             asOfDate?: string | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
@@ -217,7 +234,7 @@ declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-        }, unknown>>;
+        }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput>>;
         id: z.ZodString;
     }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
@@ -247,6 +264,8 @@ declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEmployeeCountDefinition = z.infer<typeof PageEmployeeCountSchemaDefinition>;
+export interface PageEmployeeCountSchemaInput extends z.input<typeof PageEmployeeCountSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEmployeeCount
  * @endpoint GET /v1/entities/{entityId}/employee-counts
@@ -254,7 +273,7 @@ type PageEmployeeCountDefinition = z.infer<typeof PageEmployeeCountSchemaDefinit
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEmployeeCountSchema: z.ZodType<PageEmployeeCountDefinition>;
+export declare const PageEmployeeCountSchema: z.ZodType<PageEmployeeCountDefinition, PageEmployeeCountSchemaInput>;
 export type PageEmployeeCount = z.infer<typeof PageEmployeeCountSchema>;
 declare const PageEntitySchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -265,21 +284,21 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("../entity/image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -334,6 +353,8 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
+export interface PageEntitySchemaInput extends z.input<typeof PageEntitySchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntity
  * @endpoint GET /v1/news/{newsId}/related-entities
@@ -341,7 +362,7 @@ type PageEntityDefinition = z.infer<typeof PageEntitySchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntitySchema: z.ZodType<PageEntityDefinition>;
+export declare const PageEntitySchema: z.ZodType<PageEntityDefinition, PageEntitySchemaInput>;
 export type PageEntity = z.infer<typeof PageEntitySchema>;
 declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -434,7 +455,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         status: "Acquired" | "Acquired Subsidiary" | "Acquisition";
         transactionStatus?: "Active" | "Announced" | "Announced; subject to approvals and closing conditions" | "Closed" | "Completed" | "In Progress" | "Open" | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/acquisition.ts").EntityAcquisitionSchemaInput, z.core.$ZodTypeInternals<{
         acquiredEntity: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -524,7 +545,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         status: "Acquired" | "Acquired Subsidiary" | "Acquisition";
         transactionStatus?: "Active" | "Announced" | "Announced; subject to approvals and closing conditions" | "Closed" | "Completed" | "In Progress" | "Open" | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("../entity/acquisition.ts").EntityAcquisitionSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -552,6 +573,8 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityAcquisitionDefinition = z.infer<typeof PageEntityAcquisitionSchemaDefinition>;
+export interface PageEntityAcquisitionSchemaInput extends z.input<typeof PageEntityAcquisitionSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityAcquisition
  * @endpoint GET /v1/entities/{entityId}/acquisitions
@@ -559,7 +582,7 @@ type PageEntityAcquisitionDefinition = z.infer<typeof PageEntityAcquisitionSchem
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityAcquisitionSchema: z.ZodType<PageEntityAcquisitionDefinition>;
+export declare const PageEntityAcquisitionSchema: z.ZodType<PageEntityAcquisitionDefinition, PageEntityAcquisitionSchemaInput>;
 export type PageEntityAcquisition = z.infer<typeof PageEntityAcquisitionSchema>;
 declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -571,21 +594,21 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, import("../entity/image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -871,6 +894,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -895,7 +919,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/enrichment.ts").EntityEnrichmentSchemaInput, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
                 addressLine1?: string | null | undefined;
@@ -1153,6 +1177,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -1177,7 +1202,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        }, unknown>>;
+        }, import("../entity/enrichment.ts").EntityEnrichmentSchemaInput>>;
         fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
@@ -1264,7 +1289,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
             currency?: string | null | undefined;
@@ -1350,7 +1375,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
         newsArticle: z.ZodArray<z.ZodType<{
             author?: string | null | undefined;
             category?: string | null | undefined;
@@ -1365,7 +1390,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             title: string;
             updatedAt?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
             author?: string | null | undefined;
             category?: string | null | undefined;
             createdAt?: string | null | undefined;
@@ -1379,7 +1404,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             title: string;
             updatedAt?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../news/news.ts").NewsSchemaInput>>>;
         person: z.ZodArray<z.ZodType<{
             articleCount?: number | null | undefined;
             association: {
@@ -1710,7 +1735,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../person/detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
@@ -2040,7 +2065,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-        }, unknown>>>;
+        }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
@@ -2100,7 +2125,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
             comparisonSignals?: {
                 fundingStage?: string | null | undefined;
@@ -2158,7 +2183,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/relationship.ts").EntityRelationshipSchemaInput>>>;
         research: z.ZodType<{
             acceleratorParticipation: {
                 accelerator: {
@@ -2242,7 +2267,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 textType: string;
                 updatedAt?: string | null | undefined;
             }[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
                 accelerator: {
                     defaultCurrency?: string | null | undefined;
@@ -2325,7 +2350,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 textType: string;
                 updatedAt?: string | null | undefined;
             }[];
-        }, unknown>>;
+        }, import("../entity/research.ts").EntityResearchSchemaInput>>;
         sitemap: z.ZodObject<{
             hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
             hasAnalysis: z.ZodBoolean;
@@ -2345,7 +2370,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             };
             source?: string | null | undefined;
             updatedAt: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../unique/id.ts").UniqueIdSchemaInput, z.core.$ZodTypeInternals<{
             createdAt: string;
             id: number;
             identifier: string;
@@ -2356,7 +2381,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             };
             source?: string | null | undefined;
             updatedAt: string;
-        }, unknown>>>;
+        }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
     }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
@@ -2385,6 +2410,8 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityDetailDefinition = z.infer<typeof PageEntityDetailSchemaDefinition>;
+export interface PageEntityDetailSchemaInput extends z.input<typeof PageEntityDetailSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityDetail
  * @endpoint POST /v1/entities/lookup-batch
@@ -2393,7 +2420,7 @@ type PageEntityDetailDefinition = z.infer<typeof PageEntityDetailSchemaDefinitio
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityDetailSchema: z.ZodType<PageEntityDetailDefinition>;
+export declare const PageEntityDetailSchema: z.ZodType<PageEntityDetailDefinition, PageEntityDetailSchemaInput>;
 export type PageEntityDetail = z.infer<typeof PageEntityDetailSchema>;
 declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -2408,7 +2435,7 @@ declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
         leadInvestor: boolean;
         transactionId: string;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput, z.core.$ZodTypeInternals<{
         amountInvested?: number | null | undefined;
         createdAt: string;
         financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
@@ -2420,7 +2447,7 @@ declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
         leadInvestor: boolean;
         transactionId: string;
         updatedAt: string;
-    }, unknown>>>>;
+    }, import("../entity/fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -2448,6 +2475,8 @@ declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityFundraiseInvestorJoinDefinition = z.infer<typeof PageEntityFundraiseInvestorJoinSchemaDefinition>;
+export interface PageEntityFundraiseInvestorJoinSchemaInput extends z.input<typeof PageEntityFundraiseInvestorJoinSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityFundraiseInvestorJoin
  * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
@@ -2455,7 +2484,7 @@ type PageEntityFundraiseInvestorJoinDefinition = z.infer<typeof PageEntityFundra
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityFundraiseInvestorJoinSchema: z.ZodType<PageEntityFundraiseInvestorJoinDefinition>;
+export declare const PageEntityFundraiseInvestorJoinSchema: z.ZodType<PageEntityFundraiseInvestorJoinDefinition, PageEntityFundraiseInvestorJoinSchemaInput>;
 export type PageEntityFundraiseInvestorJoin = z.infer<typeof PageEntityFundraiseInvestorJoinSchema>;
 declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -2544,7 +2573,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
@@ -2630,7 +2659,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -2658,6 +2687,8 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityFundraiseTransactionDefinition = z.infer<typeof PageEntityFundraiseTransactionSchemaDefinition>;
+export interface PageEntityFundraiseTransactionSchemaInput extends z.input<typeof PageEntityFundraiseTransactionSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityFundraiseTransaction
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
@@ -2666,7 +2697,7 @@ type PageEntityFundraiseTransactionDefinition = z.infer<typeof PageEntityFundrai
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityFundraiseTransactionSchema: z.ZodType<PageEntityFundraiseTransactionDefinition>;
+export declare const PageEntityFundraiseTransactionSchema: z.ZodType<PageEntityFundraiseTransactionDefinition, PageEntityFundraiseTransactionSchemaInput>;
 export type PageEntityFundraiseTransaction = z.infer<typeof PageEntityFundraiseTransactionSchema>;
 declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -2961,6 +2992,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3601,7 +3633,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             round: string;
         }[];
         roundCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/investor-participation.ts").EntityInvestorParticipationSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -3893,6 +3925,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -4533,7 +4566,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             round: string;
         }[];
         roundCount: number;
-    }, unknown>>>>;
+    }, import("../entity/investor-participation.ts").EntityInvestorParticipationSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -4561,6 +4594,8 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityInvestorParticipationDefinition = z.infer<typeof PageEntityInvestorParticipationSchemaDefinition>;
+export interface PageEntityInvestorParticipationSchemaInput extends z.input<typeof PageEntityInvestorParticipationSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityInvestorParticipation
  * @endpoint GET /v1/entities/{entityId}/investors
@@ -4568,7 +4603,7 @@ type PageEntityInvestorParticipationDefinition = z.infer<typeof PageEntityInvest
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityInvestorParticipationSchema: z.ZodType<PageEntityInvestorParticipationDefinition>;
+export declare const PageEntityInvestorParticipationSchema: z.ZodType<PageEntityInvestorParticipationDefinition, PageEntityInvestorParticipationSchemaInput>;
 export type PageEntityInvestorParticipation = z.infer<typeof PageEntityInvestorParticipationSchema>;
 declare const PageEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -4862,6 +4897,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -5049,7 +5085,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -5340,6 +5376,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -5527,7 +5564,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>>;
+    }, import("../entity/list.ts").EntityListSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -5555,6 +5592,8 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityListDefinition = z.infer<typeof PageEntityListSchemaDefinition>;
+export interface PageEntityListSchemaInput extends z.input<typeof PageEntityListSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityList
  * @endpoint GET /v1/entities
@@ -5563,7 +5602,7 @@ type PageEntityListDefinition = z.infer<typeof PageEntityListSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityListSchema: z.ZodType<PageEntityListDefinition>;
+export declare const PageEntityListSchema: z.ZodType<PageEntityListDefinition, PageEntityListSchemaInput>;
 export type PageEntityList = z.infer<typeof PageEntityListSchema>;
 declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -5579,13 +5618,13 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
                 endDate?: string | null | undefined;
                 id: number;
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown>>>>;
+            }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
             city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                 id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
                 name: z.ZodString;
@@ -5622,11 +5661,11 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("../entity/image.ts").EntityImageSchemaInput>>;
         entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entitySlug: z.ZodString;
@@ -5658,7 +5697,7 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
             crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
             crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
             createdAt?: string | null | undefined;
@@ -5675,7 +5714,7 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown>>>;
+        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput>>>;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         personAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -5687,13 +5726,13 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
                 endDate?: string | null | undefined;
                 id: number;
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown>>>>;
+            }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
             city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                 id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
                 name: z.ZodString;
@@ -5729,10 +5768,10 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
         personImage: z.ZodType<{
             isMonogram: boolean;
             picture?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../person/image.ts").PersonImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             picture?: string | null | undefined;
-        }, unknown>>;
+        }, import("../person/image.ts").PersonImageSchemaInput>>;
         personName: z.ZodString;
         personSlug: z.ZodString;
         personUrlLink: z.ZodArray<z.ZodType<{
@@ -5752,7 +5791,7 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
             crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
             crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
             createdAt?: string | null | undefined;
@@ -5769,7 +5808,7 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown>>>;
+        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput>>>;
         score: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         startDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleFunction: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -5804,6 +5843,8 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityPersonAssociationDefinition = z.infer<typeof PageEntityPersonAssociationSchemaDefinition>;
+export interface PageEntityPersonAssociationSchemaInput extends z.input<typeof PageEntityPersonAssociationSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityPersonAssociation
  * @endpoint GET /v1/entities/{entityId}/people
@@ -5812,7 +5853,7 @@ type PageEntityPersonAssociationDefinition = z.infer<typeof PageEntityPersonAsso
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityPersonAssociationSchema: z.ZodType<PageEntityPersonAssociationDefinition>;
+export declare const PageEntityPersonAssociationSchema: z.ZodType<PageEntityPersonAssociationDefinition, PageEntityPersonAssociationSchemaInput>;
 export type PageEntityPersonAssociation = z.infer<typeof PageEntityPersonAssociationSchema>;
 declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -5873,7 +5914,7 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         sourceEntityId?: string | null | undefined;
         targetEntityId?: string | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
             fundingStage?: string | null | undefined;
@@ -5931,7 +5972,7 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         sourceEntityId?: string | null | undefined;
         targetEntityId?: string | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("../entity/relationship.ts").EntityRelationshipSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -5959,6 +6000,8 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityRelationshipDefinition = z.infer<typeof PageEntityRelationshipSchemaDefinition>;
+export interface PageEntityRelationshipSchemaInput extends z.input<typeof PageEntityRelationshipSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityRelationship
  * @endpoint GET /v1/entities/{entityId}/relationships
@@ -5966,7 +6009,7 @@ type PageEntityRelationshipDefinition = z.infer<typeof PageEntityRelationshipSch
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityRelationshipSchema: z.ZodType<PageEntityRelationshipDefinition>;
+export declare const PageEntityRelationshipSchema: z.ZodType<PageEntityRelationshipDefinition, PageEntityRelationshipSchemaInput>;
 export type PageEntityRelationship = z.infer<typeof PageEntityRelationshipSchema>;
 declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -5991,7 +6034,7 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/research-detail.ts").EntityResearchDetailSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
         derivedRange?: {
             asOfDate: string;
@@ -6013,7 +6056,7 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown>>>>;
+    }, import("../entity/research-detail.ts").EntityResearchDetailSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -6041,6 +6084,8 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityResearchDetailDefinition = z.infer<typeof PageEntityResearchDetailSchemaDefinition>;
+export interface PageEntityResearchDetailSchemaInput extends z.input<typeof PageEntityResearchDetailSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityResearchDetail
  * @endpoint GET /v1/entities/{entityId}/research-details
@@ -6048,7 +6093,7 @@ type PageEntityResearchDetailDefinition = z.infer<typeof PageEntityResearchDetai
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityResearchDetailSchema: z.ZodType<PageEntityResearchDetailDefinition>;
+export declare const PageEntityResearchDetailSchema: z.ZodType<PageEntityResearchDetailDefinition, PageEntityResearchDetailSchemaInput>;
 export type PageEntityResearchDetail = z.infer<typeof PageEntityResearchDetailSchema>;
 declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
@@ -6097,6 +6142,8 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityResearchSnippetDefinition = z.infer<typeof PageEntityResearchSnippetSchemaDefinition>;
+export interface PageEntityResearchSnippetSchemaInput extends z.input<typeof PageEntityResearchSnippetSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityResearchSnippet
  * @endpoint GET /v1/entities/{entityId}/research-snippets
@@ -6104,7 +6151,7 @@ type PageEntityResearchSnippetDefinition = z.infer<typeof PageEntityResearchSnip
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityResearchSnippetSchema: z.ZodType<PageEntityResearchSnippetDefinition>;
+export declare const PageEntityResearchSnippetSchema: z.ZodType<PageEntityResearchSnippetDefinition, PageEntityResearchSnippetSchemaInput>;
 export type PageEntityResearchSnippet = z.infer<typeof PageEntityResearchSnippetSchema>;
 declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -6399,6 +6446,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -6599,7 +6647,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sharedSectionCount?: number | null | undefined;
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/similarity-result.ts").EntitySimilarityResultSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -6891,6 +6939,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -7091,7 +7140,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sharedSectionCount?: number | null | undefined;
         };
-    }, unknown>>>>;
+    }, import("../entity/similarity-result.ts").EntitySimilarityResultSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7119,6 +7168,8 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntitySimilarityResultDefinition = z.infer<typeof PageEntitySimilarityResultSchemaDefinition>;
+export interface PageEntitySimilarityResultSchemaInput extends z.input<typeof PageEntitySimilarityResultSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntitySimilarityResult
  * @endpoint GET /v1/entities/{entityId}/similar
@@ -7126,7 +7177,7 @@ type PageEntitySimilarityResultDefinition = z.infer<typeof PageEntitySimilarityR
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntitySimilarityResultSchema: z.ZodType<PageEntitySimilarityResultDefinition>;
+export declare const PageEntitySimilarityResultSchema: z.ZodType<PageEntitySimilarityResultDefinition, PageEntitySimilarityResultSchemaInput>;
 export type PageEntitySimilarityResult = z.infer<typeof PageEntitySimilarityResultSchema>;
 declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7192,7 +7243,7 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             url: string;
             urlType: string;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/similarity-summary.ts").EntitySimilaritySummarySchemaInput, z.core.$ZodTypeInternals<{
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -7255,7 +7306,7 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             url: string;
             urlType: string;
         }[];
-    }, unknown>>>>;
+    }, import("../entity/similarity-summary.ts").EntitySimilaritySummarySchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7283,6 +7334,8 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntitySimilaritySummaryDefinition = z.infer<typeof PageEntitySimilaritySummarySchemaDefinition>;
+export interface PageEntitySimilaritySummarySchemaInput extends z.input<typeof PageEntitySimilaritySummarySchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntitySimilaritySummary
  * @endpoint GET /v1/entities/{entityId}/similar/summary
@@ -7290,7 +7343,7 @@ type PageEntitySimilaritySummaryDefinition = z.infer<typeof PageEntitySimilarity
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntitySimilaritySummarySchema: z.ZodType<PageEntitySimilaritySummaryDefinition>;
+export declare const PageEntitySimilaritySummarySchema: z.ZodType<PageEntitySimilaritySummaryDefinition, PageEntitySimilaritySummarySchemaInput>;
 export type PageEntitySimilaritySummary = z.infer<typeof PageEntitySimilaritySummarySchema>;
 declare const PageEntityTextSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7313,7 +7366,7 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
         textName?: string | null | undefined;
         textType: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/text.ts").EntityTextSchemaInput, z.core.$ZodTypeInternals<{
         compliance?: {
             characterCount: number;
             meetsRequirements: boolean;
@@ -7333,7 +7386,7 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
         textName?: string | null | undefined;
         textType: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("../entity/text.ts").EntityTextSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7361,6 +7414,8 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityTextDefinition = z.infer<typeof PageEntityTextSchemaDefinition>;
+export interface PageEntityTextSchemaInput extends z.input<typeof PageEntityTextSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityText
  * @endpoint GET /v1/entities/{entityId}/texts
@@ -7369,7 +7424,7 @@ type PageEntityTextDefinition = z.infer<typeof PageEntityTextSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityTextSchema: z.ZodType<PageEntityTextDefinition>;
+export declare const PageEntityTextSchema: z.ZodType<PageEntityTextDefinition, PageEntityTextSchemaInput>;
 export type PageEntityText = z.infer<typeof PageEntityTextSchema>;
 declare const PageEntityUrlLinkSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7389,7 +7444,7 @@ declare const PageEntityUrlLinkSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -7406,7 +7461,7 @@ declare const PageEntityUrlLinkSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>>;
+    }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7434,6 +7489,8 @@ declare const PageEntityUrlLinkSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityUrlLinkDefinition = z.infer<typeof PageEntityUrlLinkSchemaDefinition>;
+export interface PageEntityUrlLinkSchemaInput extends z.input<typeof PageEntityUrlLinkSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityUrlLink
  * @endpoint GET /v1/entities/{entityId}/urls
@@ -7442,7 +7499,7 @@ type PageEntityUrlLinkDefinition = z.infer<typeof PageEntityUrlLinkSchemaDefinit
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityUrlLinkSchema: z.ZodType<PageEntityUrlLinkDefinition>;
+export declare const PageEntityUrlLinkSchema: z.ZodType<PageEntityUrlLinkDefinition, PageEntityUrlLinkSchemaInput>;
 export type PageEntityUrlLink = z.infer<typeof PageEntityUrlLinkSchema>;
 declare const PageEntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7458,7 +7515,7 @@ declare const PageEntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
         sourceRef: string;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/valuation-time-series-point.ts").EntityValuationTimeSeriesPointSchemaInput, z.core.$ZodTypeInternals<{
         amountRaised?: number | null | undefined;
         asOfDate: string;
         confidence: "high" | "low" | "medium";
@@ -7471,7 +7528,7 @@ declare const PageEntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
         sourceRef: string;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../entity/valuation-time-series-point.ts").EntityValuationTimeSeriesPointSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7499,6 +7556,8 @@ declare const PageEntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageEntityValuationTimeSeriesPointDefinition = z.infer<typeof PageEntityValuationTimeSeriesPointSchemaDefinition>;
+export interface PageEntityValuationTimeSeriesPointSchemaInput extends z.input<typeof PageEntityValuationTimeSeriesPointSchemaDefinition> {
+}
 /**
  * @openapiSchema PageEntityValuationTimeSeriesPoint
  * @endpoint GET /v1/entities/{entityId}/valuations
@@ -7506,7 +7565,7 @@ type PageEntityValuationTimeSeriesPointDefinition = z.infer<typeof PageEntityVal
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageEntityValuationTimeSeriesPointSchema: z.ZodType<PageEntityValuationTimeSeriesPointDefinition>;
+export declare const PageEntityValuationTimeSeriesPointSchema: z.ZodType<PageEntityValuationTimeSeriesPointDefinition, PageEntityValuationTimeSeriesPointSchemaInput>;
 export type PageEntityValuationTimeSeriesPoint = z.infer<typeof PageEntityValuationTimeSeriesPointSchema>;
 declare const PageGithubRepoSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7528,7 +7587,7 @@ declare const PageGithubRepoSchemaDefinition: z.ZodObject<{
         topic: string[];
         updatedAt?: string | null | undefined;
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../github/repo.ts").GithubRepoSchemaInput, z.core.$ZodTypeInternals<{
         createdAt?: string | null | undefined;
         description?: string | null | undefined;
         forkCount: number;
@@ -7547,7 +7606,7 @@ declare const PageGithubRepoSchemaDefinition: z.ZodObject<{
         topic: string[];
         updatedAt?: string | null | undefined;
         url: string;
-    }, unknown>>>>;
+    }, import("../github/repo.ts").GithubRepoSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7575,6 +7634,8 @@ declare const PageGithubRepoSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageGithubRepoDefinition = z.infer<typeof PageGithubRepoSchemaDefinition>;
+export interface PageGithubRepoSchemaInput extends z.input<typeof PageGithubRepoSchemaDefinition> {
+}
 /**
  * @openapiSchema PageGithubRepo
  * @endpoint GET /v1/entities/{entityId}/repositories
@@ -7583,7 +7644,7 @@ type PageGithubRepoDefinition = z.infer<typeof PageGithubRepoSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageGithubRepoSchema: z.ZodType<PageGithubRepoDefinition>;
+export declare const PageGithubRepoSchema: z.ZodType<PageGithubRepoDefinition, PageGithubRepoSchemaInput>;
 export type PageGithubRepo = z.infer<typeof PageGithubRepoSchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7600,7 +7661,7 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -7614,7 +7675,7 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("../news/news.ts").NewsSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7642,6 +7703,8 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageNewsDefinition = z.infer<typeof PageNewsSchemaDefinition>;
+export interface PageNewsSchemaInput extends z.input<typeof PageNewsSchemaDefinition> {
+}
 /**
  * @openapiSchema PageNews
  * @endpoint GET /v1/news
@@ -7650,7 +7713,7 @@ type PageNewsDefinition = z.infer<typeof PageNewsSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageNewsSchema: z.ZodType<PageNewsDefinition>;
+export declare const PageNewsSchema: z.ZodType<PageNewsDefinition, PageNewsSchemaInput>;
 export type PageNews = z.infer<typeof PageNewsSchema>;
 declare const PagePersonSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -7691,7 +7754,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             short?: string | null | undefined;
         };
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -7729,7 +7792,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             short?: string | null | undefined;
         };
         updatedAt?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("../person/person.ts").PersonSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -7757,6 +7820,8 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PagePersonDefinition = z.infer<typeof PagePersonSchemaDefinition>;
+export interface PagePersonSchemaInput extends z.input<typeof PagePersonSchemaDefinition> {
+}
 /**
  * @openapiSchema PagePerson
  * @endpoint GET /v1/people
@@ -7765,7 +7830,7 @@ type PagePersonDefinition = z.infer<typeof PagePersonSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PagePersonSchema: z.ZodType<PagePersonDefinition>;
+export declare const PagePersonSchema: z.ZodType<PagePersonDefinition, PagePersonSchemaInput>;
 export type PagePerson = z.infer<typeof PagePersonSchema>;
 declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -8098,7 +8163,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
@@ -8428,7 +8493,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown>>>>;
+    }, import("../person/detail.ts").PersonDetailSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -8456,6 +8521,8 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PagePersonDetailDefinition = z.infer<typeof PagePersonDetailSchemaDefinition>;
+export interface PagePersonDetailSchemaInput extends z.input<typeof PagePersonDetailSchemaDefinition> {
+}
 /**
  * @openapiSchema PagePersonDetail
  * @endpoint POST /v1/people/lookup-batch
@@ -8463,7 +8530,7 @@ type PagePersonDetailDefinition = z.infer<typeof PagePersonDetailSchemaDefinitio
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PagePersonDetailSchema: z.ZodType<PagePersonDetailDefinition>;
+export declare const PagePersonDetailSchema: z.ZodType<PagePersonDetailDefinition, PagePersonDetailSchemaInput>;
 export type PagePersonDetail = z.infer<typeof PagePersonDetailSchema>;
 declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -8539,7 +8606,7 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
             transactionId: string;
         } | null | undefined;
         round?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/investment.ts").PersonInvestmentSchemaInput, z.core.$ZodTypeInternals<{
         amount?: number | null | undefined;
         company: {
             entity: {
@@ -8612,7 +8679,7 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
             transactionId: string;
         } | null | undefined;
         round?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("../person/investment.ts").PersonInvestmentSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -8640,6 +8707,8 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PagePersonInvestmentDefinition = z.infer<typeof PagePersonInvestmentSchemaDefinition>;
+export interface PagePersonInvestmentSchemaInput extends z.input<typeof PagePersonInvestmentSchemaDefinition> {
+}
 /**
  * @openapiSchema PagePersonInvestment
  * @endpoint GET /v1/people/{personId}/investments
@@ -8647,7 +8716,7 @@ type PagePersonInvestmentDefinition = z.infer<typeof PagePersonInvestmentSchemaD
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PagePersonInvestmentSchema: z.ZodType<PagePersonInvestmentDefinition>;
+export declare const PagePersonInvestmentSchema: z.ZodType<PagePersonInvestmentDefinition, PagePersonInvestmentSchemaInput>;
 export type PagePersonInvestment = z.infer<typeof PagePersonInvestmentSchema>;
 declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -8999,7 +9068,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             round: string;
         }[];
         roundCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/investor-participation.ts").PersonInvestorParticipationSchemaInput, z.core.$ZodTypeInternals<{
         investorAttribution: {
             amountInvested?: number | null | undefined;
             attributionType: "direct" | "managedFund";
@@ -9348,7 +9417,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             round: string;
         }[];
         roundCount: number;
-    }, unknown>>>>;
+    }, import("../person/investor-participation.ts").PersonInvestorParticipationSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -9376,6 +9445,8 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PagePersonInvestorParticipationDefinition = z.infer<typeof PagePersonInvestorParticipationSchemaDefinition>;
+export interface PagePersonInvestorParticipationSchemaInput extends z.input<typeof PagePersonInvestorParticipationSchemaDefinition> {
+}
 /**
  * @openapiSchema PagePersonInvestorParticipation
  * @endpoint GET /v1/entities/{entityId}/person-investors
@@ -9383,7 +9454,7 @@ type PagePersonInvestorParticipationDefinition = z.infer<typeof PagePersonInvest
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PagePersonInvestorParticipationSchema: z.ZodType<PagePersonInvestorParticipationDefinition>;
+export declare const PagePersonInvestorParticipationSchema: z.ZodType<PagePersonInvestorParticipationDefinition, PagePersonInvestorParticipationSchemaInput>;
 export type PagePersonInvestorParticipation = z.infer<typeof PagePersonInvestorParticipationSchema>;
 declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -9582,7 +9653,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sharedSectionCount?: number | null | undefined;
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/similarity-result.ts").PersonSimilarityResultSchemaInput, z.core.$ZodTypeInternals<{
         currentRole?: {
             associationId: number;
             endDate?: string | null | undefined;
@@ -9778,7 +9849,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sharedSectionCount?: number | null | undefined;
         };
-    }, unknown>>>>;
+    }, import("../person/similarity-result.ts").PersonSimilarityResultSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -9806,6 +9877,8 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PagePersonSimilarityResultDefinition = z.infer<typeof PagePersonSimilarityResultSchemaDefinition>;
+export interface PagePersonSimilarityResultSchemaInput extends z.input<typeof PagePersonSimilarityResultSchemaDefinition> {
+}
 /**
  * @openapiSchema PagePersonSimilarityResult
  * @endpoint GET /v1/people/{personId}/similar
@@ -9813,7 +9886,7 @@ type PagePersonSimilarityResultDefinition = z.infer<typeof PagePersonSimilarityR
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PagePersonSimilarityResultSchema: z.ZodType<PagePersonSimilarityResultDefinition>;
+export declare const PagePersonSimilarityResultSchema: z.ZodType<PagePersonSimilarityResultDefinition, PagePersonSimilarityResultSchemaInput>;
 export type PagePersonSimilarityResult = z.infer<typeof PagePersonSimilarityResultSchema>;
 declare const PagePublicationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -9831,7 +9904,7 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url?: string | null | undefined;
         year?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../publication/publication.ts").PublicationSchemaInput, z.core.$ZodTypeInternals<{
         canonicalUrl?: string | null | undefined;
         contentId: string;
         contentType: "blogPost" | "externalSocialPost" | "newsArticle" | "repository" | "repositoryOwner" | "researchPaper" | "webPage" | "webSite";
@@ -9846,7 +9919,7 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url?: string | null | undefined;
         year?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../publication/publication.ts").PublicationSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -9874,6 +9947,8 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PagePublicationDefinition = z.infer<typeof PagePublicationSchemaDefinition>;
+export interface PagePublicationSchemaInput extends z.input<typeof PagePublicationSchemaDefinition> {
+}
 /**
  * @openapiSchema PagePublication
  * @endpoint GET /v1/entities/{entityId}/content
@@ -9884,7 +9959,7 @@ type PagePublicationDefinition = z.infer<typeof PagePublicationSchemaDefinition>
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PagePublicationSchema: z.ZodType<PagePublicationDefinition>;
+export declare const PagePublicationSchema: z.ZodType<PagePublicationDefinition, PagePublicationSchemaInput>;
 export type PagePublication = z.infer<typeof PagePublicationSchema>;
 declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
@@ -10178,6 +10253,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -10365,7 +10441,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -10656,6 +10732,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -10843,13 +10920,15 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("../entity/list.ts").EntityListSchemaInput>>>;
     number: z.ZodInt;
     size: z.ZodInt;
     totalElements: z.ZodNumber;
     totalPages: z.ZodInt;
 }, z.core.$strip>;
 type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaDefinition>;
+export interface PageResultEntityListSchemaInput extends z.input<typeof PageResultEntityListSchemaDefinition> {
+}
 /**
  * @openapiSchema PageResultEntityList
  * @endpoint GET /v1/search/link
@@ -10863,7 +10942,7 @@ type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaD
  * @contractShape pagination.page-result-entity-list
  * @contractRole canonical
  */
-export declare const PageResultEntityListSchema: z.ZodType<PageResultEntityListDefinition>;
+export declare const PageResultEntityListSchema: z.ZodType<PageResultEntityListDefinition, PageResultEntityListSchemaInput>;
 export type PageResultEntityList = z.infer<typeof PageResultEntityListSchema>;
 declare const PageResultNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
@@ -10880,7 +10959,7 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -10894,13 +10973,15 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../news/news.ts").NewsSchemaInput>>>;
     number: z.ZodInt;
     size: z.ZodInt;
     totalElements: z.ZodNumber;
     totalPages: z.ZodInt;
 }, z.core.$strip>;
 type PageResultNewsDefinition = z.infer<typeof PageResultNewsSchemaDefinition>;
+export interface PageResultNewsSchemaInput extends z.input<typeof PageResultNewsSchemaDefinition> {
+}
 /**
  * @openapiSchema PageResultNews
  * @endpoint GET /v1/search/link
@@ -10913,7 +10994,7 @@ type PageResultNewsDefinition = z.infer<typeof PageResultNewsSchemaDefinition>;
  * @contractShape pagination.page-result-news
  * @contractRole canonical
  */
-export declare const PageResultNewsSchema: z.ZodType<PageResultNewsDefinition>;
+export declare const PageResultNewsSchema: z.ZodType<PageResultNewsDefinition, PageResultNewsSchemaInput>;
 export type PageResultNews = z.infer<typeof PageResultNewsSchema>;
 declare const PageResultPersonSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
@@ -10954,7 +11035,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             short?: string | null | undefined;
         };
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -10992,13 +11073,15 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             short?: string | null | undefined;
         };
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../person/person.ts").PersonSchemaInput>>>;
     number: z.ZodInt;
     size: z.ZodInt;
     totalElements: z.ZodNumber;
     totalPages: z.ZodInt;
 }, z.core.$strip>;
 type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinition>;
+export interface PageResultPersonSchemaInput extends z.input<typeof PageResultPersonSchemaDefinition> {
+}
 /**
  * @openapiSchema PageResultPerson
  * @endpoint GET /v1/search/link
@@ -11012,7 +11095,7 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  * @contractShape pagination.page-result-person
  * @contractRole canonical
  */
-export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinition>;
+export declare const PageResultPersonSchema: z.ZodType<PageResultPersonDefinition, PageResultPersonSchemaInput>;
 export type PageResultPerson = z.infer<typeof PageResultPersonSchema>;
 declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -11026,7 +11109,7 @@ declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
         };
         source?: string | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../unique/id.ts").UniqueIdSchemaInput, z.core.$ZodTypeInternals<{
         createdAt: string;
         id: number;
         identifier: string;
@@ -11037,7 +11120,7 @@ declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
         };
         source?: string | null | undefined;
         updatedAt: string;
-    }, unknown>>>>;
+    }, import("../unique/id.ts").UniqueIdSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -11065,6 +11148,8 @@ declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
     totalPages: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;
 type PageUniqueIdDefinition = z.infer<typeof PageUniqueIdSchemaDefinition>;
+export interface PageUniqueIdSchemaInput extends z.input<typeof PageUniqueIdSchemaDefinition> {
+}
 /**
  * @openapiSchema PageUniqueId
  * @endpoint GET /v1/entities/{entityId}/unique-ids
@@ -11073,7 +11158,7 @@ type PageUniqueIdDefinition = z.infer<typeof PageUniqueIdSchemaDefinition>;
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
  */
-export declare const PageUniqueIdSchema: z.ZodType<PageUniqueIdDefinition>;
+export declare const PageUniqueIdSchema: z.ZodType<PageUniqueIdDefinition, PageUniqueIdSchemaInput>;
 export type PageUniqueId = z.infer<typeof PageUniqueIdSchema>;
 export {};
 //# sourceMappingURL=schemas.d.ts.map

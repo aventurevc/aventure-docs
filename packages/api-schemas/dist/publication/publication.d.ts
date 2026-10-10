@@ -28,6 +28,8 @@ declare const PublicationSchemaDefinition: z.ZodObject<{
     year: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type PublicationDefinition = z.infer<typeof PublicationSchemaDefinition>;
+export interface PublicationSchemaInput extends z.input<typeof PublicationSchemaDefinition> {
+}
 /**
  * Canonical public content card across news, blog posts, social posts, repositories, websites, pages, and research papers.
  *
@@ -40,7 +42,7 @@ type PublicationDefinition = z.infer<typeof PublicationSchemaDefinition>;
  * @contractShape publication.publication
  * @contractRole canonical
  */
-export declare const PublicationSchema: z.ZodType<PublicationDefinition>;
+export declare const PublicationSchema: z.ZodType<PublicationDefinition, PublicationSchemaInput>;
 export type Publication = z.infer<typeof PublicationSchema>;
 export {};
 //# sourceMappingURL=publication.d.ts.map

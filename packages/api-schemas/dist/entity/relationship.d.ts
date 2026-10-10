@@ -57,21 +57,21 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -115,6 +115,8 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type EntityRelationshipDefinition = z.infer<typeof EntityRelationshipSchemaDefinition>;
+export interface EntityRelationshipSchemaInput extends z.input<typeof EntityRelationshipSchemaDefinition> {
+}
 /**
  * Domain record for entity relationships - oriented from the requested entity to the joined entity
  *
@@ -138,7 +140,7 @@ type EntityRelationshipDefinition = z.infer<typeof EntityRelationshipSchemaDefin
  * @contractShape entity.relationship
  * @contractRole canonical
  */
-export declare const EntityRelationshipSchema: z.ZodType<EntityRelationshipDefinition>;
+export declare const EntityRelationshipSchema: z.ZodType<EntityRelationshipDefinition, EntityRelationshipSchemaInput>;
 export type EntityRelationship = z.infer<typeof EntityRelationshipSchema>;
 export {};
 //# sourceMappingURL=relationship.d.ts.map

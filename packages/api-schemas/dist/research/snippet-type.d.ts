@@ -19,6 +19,8 @@ declare const ResearchSnippetTypeSchemaDefinition: z.ZodObject<{
     writeHint: z.ZodString;
 }, z.core.$strip>;
 type ResearchSnippetTypeDefinition = z.infer<typeof ResearchSnippetTypeSchemaDefinition>;
+export interface ResearchSnippetTypeSchemaInput extends z.input<typeof ResearchSnippetTypeSchemaDefinition> {
+}
 /**
  * Canonical research snippet type with the governance rules write callers must satisfy.
  *
@@ -27,7 +29,7 @@ type ResearchSnippetTypeDefinition = z.infer<typeof ResearchSnippetTypeSchemaDef
  * @contractShape research.snippet-type
  * @contractRole canonical
  */
-export declare const ResearchSnippetTypeSchema: z.ZodType<ResearchSnippetTypeDefinition>;
+export declare const ResearchSnippetTypeSchema: z.ZodType<ResearchSnippetTypeDefinition, ResearchSnippetTypeSchemaInput>;
 export type ResearchSnippetType = z.infer<typeof ResearchSnippetTypeSchema>;
 export {};
 //# sourceMappingURL=snippet-type.d.ts.map

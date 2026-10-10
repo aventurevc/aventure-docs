@@ -8,10 +8,10 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
     execution: z.ZodType<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./mode-execution.ts").SearchModeExecutionSchemaInput, z.core.$ZodTypeInternals<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown>>;
+    }, import("./mode-execution.ts").SearchModeExecutionSchemaInput>>;
     fallbackUsed: z.ZodBoolean;
     filter: z.ZodType<{
         acceleratorBrand?: string[] | undefined;
@@ -123,7 +123,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }[] | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/list-filter.ts").EntityListFilterSchemaInput, z.core.$ZodTypeInternals<{
         acceleratorBrand?: string[] | undefined;
         acceleratorCohort?: string[] | undefined;
         acceleratorName?: string[] | undefined;
@@ -233,7 +233,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }[] | undefined;
-    }, unknown>>;
+    }, import("../entity/list-filter.ts").EntityListFilterSchemaInput>>;
     intent: z.ZodEnum<{
         comparison: "comparison";
         discovery: "discovery";
@@ -248,18 +248,20 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
             sortKey?: string | null | undefined;
         }[];
         relevance?: "keyword" | "semantic" | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./ordering-entity-filter-sortable.ts").SearchOrderingEntityFilterSortableSchemaInput, z.core.$ZodTypeInternals<{
         order: {
             descending: boolean;
             field: string;
             sortKey?: string | null | undefined;
         }[];
         relevance?: "keyword" | "semantic" | null | undefined;
-    }, unknown>>;
+    }, import("./ordering-entity-filter-sortable.ts").SearchOrderingEntityFilterSortableSchemaInput>>;
     subjectEntityName: z.ZodArray<z.ZodString>;
     unsupported: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SearchInterpretationDefinition = z.infer<typeof SearchInterpretationSchemaDefinition>;
+export interface SearchInterpretationSchemaInput extends z.input<typeof SearchInterpretationSchemaDefinition> {
+}
 /**
  * Structured interpretation of a natural-language entity search: canonical filter, sort, confidence, and any unsupported constraint the planner could not translate.
  *
@@ -275,7 +277,7 @@ type SearchInterpretationDefinition = z.infer<typeof SearchInterpretationSchemaD
  * @contractShape search.interpretation
  * @contractRole canonical
  */
-export declare const SearchInterpretationSchema: z.ZodType<SearchInterpretationDefinition>;
+export declare const SearchInterpretationSchema: z.ZodType<SearchInterpretationDefinition, SearchInterpretationSchemaInput>;
 export type SearchInterpretation = z.infer<typeof SearchInterpretationSchema>;
 export {};
 //# sourceMappingURL=interpretation.d.ts.map

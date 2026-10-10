@@ -4,33 +4,33 @@ declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
     entity: z.ZodType<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput, z.core.$ZodTypeInternals<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown>>;
+    }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput>>;
     news: z.ZodType<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput, z.core.$ZodTypeInternals<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown>>;
+    }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput>>;
     person: z.ZodType<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput, z.core.$ZodTypeInternals<{
         modeRequested: string;
         modeUsed: string;
-    }, unknown>>;
+    }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput>>;
     rejection: z.ZodArray<z.ZodType<{
         detail: string;
         field?: string | null | undefined;
         scope: "entity" | "news" | "person";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./search-rejection.ts").FederatedSearchRejectionSchemaInput, z.core.$ZodTypeInternals<{
         detail: string;
         field?: string | null | undefined;
         scope: "entity" | "news" | "person";
-    }, unknown>>>;
+    }, import("./search-rejection.ts").FederatedSearchRejectionSchemaInput>>>;
     unavailable: z.ZodArray<z.ZodEnum<{
         entity: "entity";
         news: "news";
@@ -38,6 +38,8 @@ declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
     }>>;
 }, z.core.$strip>;
 type FederatedSearchProvenanceDefinition = z.infer<typeof FederatedSearchProvenanceSchemaDefinition>;
+export interface FederatedSearchProvenanceSchemaInput extends z.input<typeof FederatedSearchProvenanceSchemaDefinition> {
+}
 /**
  * Requested and executed search strategy for every federated scope.
  *
@@ -52,7 +54,7 @@ type FederatedSearchProvenanceDefinition = z.infer<typeof FederatedSearchProvena
  * @contractShape federated.search-provenance
  * @contractRole canonical
  */
-export declare const FederatedSearchProvenanceSchema: z.ZodType<FederatedSearchProvenanceDefinition>;
+export declare const FederatedSearchProvenanceSchema: z.ZodType<FederatedSearchProvenanceDefinition, FederatedSearchProvenanceSchemaInput>;
 export type FederatedSearchProvenance = z.infer<typeof FederatedSearchProvenanceSchema>;
 export {};
 //# sourceMappingURL=search-provenance.d.ts.map

@@ -11,6 +11,8 @@ declare const PersonSimilarityContextSchemaDefinition: z.ZodObject<{
     sharedSectionCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type PersonSimilarityContextDefinition = z.infer<typeof PersonSimilarityContextSchemaDefinition>;
+export interface PersonSimilarityContextSchemaInput extends z.input<typeof PersonSimilarityContextSchemaDefinition> {
+}
 /**
  * Per-row provenance for a similar-person result.
  *
@@ -20,7 +22,7 @@ type PersonSimilarityContextDefinition = z.infer<typeof PersonSimilarityContextS
  * @contractShape person.similarity-context
  * @contractRole canonical
  */
-export declare const PersonSimilarityContextSchema: z.ZodType<PersonSimilarityContextDefinition>;
+export declare const PersonSimilarityContextSchema: z.ZodType<PersonSimilarityContextDefinition, PersonSimilarityContextSchemaInput>;
 export type PersonSimilarityContext = z.infer<typeof PersonSimilarityContextSchema>;
 export {};
 //# sourceMappingURL=similarity-context.d.ts.map

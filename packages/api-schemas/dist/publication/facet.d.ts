@@ -14,6 +14,8 @@ declare const PublicationFacetSchemaDefinition: z.ZodObject<{
     topic: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type PublicationFacetDefinition = z.infer<typeof PublicationFacetSchemaDefinition>;
+export interface PublicationFacetSchemaInput extends z.input<typeof PublicationFacetSchemaDefinition> {
+}
 /**
  * Number of content cards sharing one topic and content type in an owner's index.
  *
@@ -23,7 +25,7 @@ type PublicationFacetDefinition = z.infer<typeof PublicationFacetSchemaDefinitio
  * @contractShape publication.facet
  * @contractRole canonical
  */
-export declare const PublicationFacetSchema: z.ZodType<PublicationFacetDefinition>;
+export declare const PublicationFacetSchema: z.ZodType<PublicationFacetDefinition, PublicationFacetSchemaInput>;
 export type PublicationFacet = z.infer<typeof PublicationFacetSchema>;
 export {};
 //# sourceMappingURL=facet.d.ts.map

@@ -12,6 +12,8 @@ declare const SystemGlobalMetricsSchemaDefinition: z.ZodObject<{
     totalFunding: z.ZodNumber;
 }, z.core.$strip>;
 type SystemGlobalMetricsDefinition = z.infer<typeof SystemGlobalMetricsSchemaDefinition>;
+export interface SystemGlobalMetricsSchemaInput extends z.input<typeof SystemGlobalMetricsSchemaDefinition> {
+}
 /**
  * Global platform metrics snapshot
  *
@@ -20,7 +22,7 @@ type SystemGlobalMetricsDefinition = z.infer<typeof SystemGlobalMetricsSchemaDef
  * @contractShape system.global-metrics
  * @contractRole canonical
  */
-export declare const SystemGlobalMetricsSchema: z.ZodType<SystemGlobalMetricsDefinition>;
+export declare const SystemGlobalMetricsSchema: z.ZodType<SystemGlobalMetricsDefinition, SystemGlobalMetricsSchemaInput>;
 export type SystemGlobalMetrics = z.infer<typeof SystemGlobalMetricsSchema>;
 export {};
 //# sourceMappingURL=global-metrics.d.ts.map

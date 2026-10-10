@@ -13,6 +13,8 @@ declare const BillingPlanChangeSchemaDefinition: z.ZodObject<{
     publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingPlanChangeDefinition = z.infer<typeof BillingPlanChangeSchemaDefinition>;
+export interface BillingPlanChangeSchemaInput extends z.input<typeof BillingPlanChangeSchemaDefinition> {
+}
 /**
  * Plan change outcome: an upgrade applies now with a prorated invoice, a downgrade waits for the current period end.
  *
@@ -21,7 +23,7 @@ type BillingPlanChangeDefinition = z.infer<typeof BillingPlanChangeSchemaDefinit
  * @contractShape billing.plan-change
  * @contractRole canonical
  */
-export declare const BillingPlanChangeSchema: z.ZodType<BillingPlanChangeDefinition>;
+export declare const BillingPlanChangeSchema: z.ZodType<BillingPlanChangeDefinition, BillingPlanChangeSchemaInput>;
 export type BillingPlanChange = z.infer<typeof BillingPlanChangeSchema>;
 export {};
 //# sourceMappingURL=plan-change.d.ts.map

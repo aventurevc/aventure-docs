@@ -35,6 +35,8 @@ declare const ResearchDetailTypeSchemaDefinition: z.ZodObject<{
     writeHint: z.ZodString;
 }, z.core.$strip>;
 type ResearchDetailTypeDefinition = z.infer<typeof ResearchDetailTypeSchemaDefinition>;
+export interface ResearchDetailTypeSchemaInput extends z.input<typeof ResearchDetailTypeSchemaDefinition> {
+}
 /**
  * Research detail type published for API, CLI, and MCP help
  *
@@ -43,7 +45,7 @@ type ResearchDetailTypeDefinition = z.infer<typeof ResearchDetailTypeSchemaDefin
  * @contractShape research.detail-type
  * @contractRole canonical
  */
-export declare const ResearchDetailTypeSchema: z.ZodType<ResearchDetailTypeDefinition>;
+export declare const ResearchDetailTypeSchema: z.ZodType<ResearchDetailTypeDefinition, ResearchDetailTypeSchemaInput>;
 export type ResearchDetailType = z.infer<typeof ResearchDetailTypeSchema>;
 export {};
 //# sourceMappingURL=detail-type.d.ts.map

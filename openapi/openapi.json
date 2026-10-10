@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.125"
+    "version": "0.8.135"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -2880,7 +2880,7 @@
     },
     "/v1/enrichments": {
       "post": {
-        "description": "Queues one enrichment run per listed entity and person, in order, each owned by the authenticated principal and billed exactly as the single-record enrich call is. A repeated id is filed once. Returns one outcome per distinct record: its run, or a refusal (NOT_FOUND, ALLOWANCE_EXHAUSTED, AMBIGUOUS, SUBSCRIPTION_REQUIRED) for a record that cannot be filed; other records still file, and runs already filed stay queued. A caller without a research subscription gets 402 before any run is filed. A transient failure fails the request; retrying it reuses runs still in progress without charging them again. A list longer than the configured batch limit is refused before any run is filed. Check each run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
+        "description": "Queues one enrichment run per listed entity and person, in order, each owned by the authenticated principal and billed exactly as the single-record enrich call is. A repeated id is filed once. Returns one outcome per distinct record: its run, or a refusal (NOT_FOUND, ALLOWANCE_EXHAUSTED, AMBIGUOUS, SUBSCRIPTION_REQUIRED) for a record that cannot be filed; other records still file, and runs already filed stay queued. Without an admin credential, a record a full-research run is already researching, or researched within the last 24 hours, files nothing while the other records still file; the request then answers 429 whose filedRunId lists the runs it filed. A caller without a research subscription gets 402 before any run is filed. A transient failure fails the request; retrying it reuses runs still in progress without charging them again. A list longer than the configured batch limit is refused before any run is filed. Check each run's progress with GET /v1/harness/runs/{runId} (CLI: harness runs get).",
         "operationId": "enrichRecords",
         "requestBody": {
           "content": {
@@ -5311,7 +5311,7 @@
             }
           },
           {
-            "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
+            "description": "For an existing match, set true to schedule background enrichment or repair; omitted and false keep it off. When fileOnMiss=true creates a new hidden record, omitted keeps the existing automatic enrichment and false files the record and logo only.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -7118,7 +7118,7 @@
     },
     "/v1/entities/sec": {
       "get": {
-        "description": "Resolves a publicly traded US company by ticker (preferred) or company-name query. Returns the SEC EDGAR identity facts: legal name, former names, ticker, exchange, SIC industry, state of incorporation, headquarters, and whether it is an operating company. SEC supplies no brand name, website, or summary text — those stay enrichment-owned and are absent here. A 404 means the query matched no SEC registrant (e.g. a private company). Read live and never persisted.",
+        "description": "Resolves a publicly traded US company by ticker (preferred) or company-name query. Returns the SEC EDGAR identity facts: legal name, former names, ticker, exchange, SIC industry, state of incorporation, headquarters, and whether it is an operating company, plus the earliest EDGAR filing date and, when EDGAR holds it, the IPO prospectus (listingProspectus). SEC supplies no brand name, website, or summary text — those stay enrichment-owned and are absent here. A name query binds only the one registrant whose title equals it ignoring case and legal suffix, or the only registrant whose title contains it; several without one exact title return 409 with their tickers in resolution.acceptedValue to retry by ticker. A 404 means the query matched no SEC registrant (e.g. a private company). Read live and never persisted.",
         "operationId": "lookupSecCompany",
         "parameters": [
           {
@@ -7756,7 +7756,7 @@
     },
     "/v1/entities/{entityId}/acquisitions": {
       "get": {
-        "description": "Returns a row only when both sides of the acquisition are published. A 404 for an acquisition that the entity relationships resource lists means one side is not published yet. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired. List responses are ordered by most recent acquisition event first.",
+        "description": "Returns a row only when both sides of the acquisition are published, unless includePrivate=true under a credential that reads private entities, which returns every row. A 404 for an acquisition that the entity relationships resource lists means one side is not published; repeat the read with includePrivate=true. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired. List responses are ordered by most recent acquisition event first.",
         "operationId": "listEntityAcquisitions",
         "parameters": [
           {
@@ -7954,7 +7954,7 @@
     },
     "/v1/entities/{entityId}/acquisitions/{relationshipId}": {
       "get": {
-        "description": "Returns a row only when both sides of the acquisition are published. A 404 for an acquisition that the entity relationships resource lists means one side is not published yet. A gated miss on an existing row returns 404 with title 'Acquisition Exists but a Counterpart Entity Is Not Public'. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired.",
+        "description": "Returns a row only when both sides of the acquisition are published, unless includePrivate=true under a credential that reads private entities, which returns every row. A 404 for an acquisition that the entity relationships resource lists means one side is not published; repeat the read with includePrivate=true. A gated miss on an existing row returns 404 with title 'Acquisition Exists but a Counterpart Entity Is Not Public'. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired.",
         "operationId": "getEntityAcquisition",
         "parameters": [
           {
@@ -16155,7 +16155,7 @@
     },
     "/v1/harness/runs": {
       "post": {
-        "description": "Queues a run that researches the company, Product, Service, or person at url and writes its aVenture profile, owned by the caller. A url a current record owns enriches that record; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH (CLI: lookup). Send name when known. A new run reserves one `company` or `person` research unit, spent only once the run saves a research write and returned when it ends without one; a run already queued or running for the same subject is returned instead, uncharged. A url that matches more than one record answers 409, and a spent allowance 429. Check progress with GET /v1/harness/runs/{runId} (CLI: harness runs get); the caller is notified when the run completes. Without an admin credential a caller may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. An admin bearer credential files a run it owns with any field; an admin API key files one owned by the back-end's Clerk machine.",
+        "description": "Queues a run that researches the company, Product, Service, or person at url and writes its aVenture profile, owned by the caller. A url a current record owns enriches that record; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH (CLI: lookup). Send name when known. A new run reserves one `company` or `person` research unit, spent only once the run saves a research write and returned when it ends without one; a run already queued or running for the same subject is returned instead, uncharged. Without an admin credential a record is researched at most once per rolling 24 hours across all callers: when a full-research run for it (any caller's, yours included) is queued or running, or one completed inside that window, nothing is filed or charged and the request answers 429 whose detail says when to return; restart and resume answer the same. A url that matches more than one record answers 409, and a spent allowance 429. Check progress with GET /v1/harness/runs/{runId} (CLI: harness runs get); the caller is notified when the run completes. Without an admin credential a caller may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. An admin bearer credential files a run it owns with any field; an admin API key files one owned by the back-end's Clerk machine.",
         "operationId": "createHarnessRun",
         "requestBody": {
           "content": {
@@ -17020,7 +17020,7 @@
         }
       },
       "post": {
-        "description": "Looks up one record from an external source by url, slug, or name — identifying a company, product, service, or person in one call, and with scheduleEnrichment=true enriching the matched record afterward. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, refine once with an evidenced subject URL or known kind; a NEEDS_REVIEW that remains is an abstention, so settle it from first-party evidence and never create or pick a candidate from scores. A candidate URL becomes a subject URL only with independent binding evidence. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId its background run; without created, detail says why nothing was filed. To have aVenture research a NO_MATCH subject and add it, file POST /v1/harness/runs with its url and name (CLI: harness runs create), which spends one research unit. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. The legacy flag: legacy=true treats name only as an exact id, public handle, registry id, or slug — no model call, no web search, 404 when nothing matches; exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Looks up one record from an external source by url, slug, or name — identifying a company, product, service, or person in one call. Set scheduleEnrichment=true to enrich a matched record; omitted and false leave matched records unchanged. When fileOnMiss=true creates a new hidden record, omitted keeps automatic enrichment and false files the record and logo only. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, refine once with an evidenced subject URL or known kind; a NEEDS_REVIEW that remains is an abstention, so settle it from first-party evidence and never create or pick a candidate from scores. A candidate URL becomes a subject URL only with independent binding evidence. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId set when enrichment is scheduled; without created, detail says why nothing was filed. To have aVenture research a NO_MATCH subject and add it, file POST /v1/harness/runs with its url and name (CLI: harness runs create), which spends one research unit. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. The legacy flag: legacy=true treats name only as an exact id, public handle, registry id, or slug — no model call, no web search, 404 when nothing matches; exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -17042,7 +17042,7 @@
             }
           },
           {
-            "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
+            "description": "For an existing match, set true to schedule background enrichment or repair; omitted and false keep it off. When fileOnMiss=true creates a new hidden record, omitted keeps the existing automatic enrichment and false files the record and logo only.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -17051,7 +17051,7 @@
             }
           },
           {
-            "description": "Set true to file a hidden record for a NO_MATCH subject whose own site web search finds and whose live page names it, then return that record as created with its enrichment run. Needs a signed-in user or the admin key and a plan. Without it, NO_MATCH never creates anything.",
+            "description": "Set true to file a hidden record for a NO_MATCH subject whose own site web search finds and whose live page names it, then return that record as created. Enrichment is automatic when scheduleEnrichment is omitted; set scheduleEnrichment=false to file the record and logo without an enrichment run. Needs a signed-in user or the admin key and a plan. Without it, NO_MATCH never creates anything.",
             "in": "query",
             "name": "fileOnMiss",
             "required": false,
@@ -20771,7 +20771,7 @@
             }
           },
           {
-            "description": "Set true to schedule background enrichment or repair explicitly. Defaults to false.",
+            "description": "For an existing match, set true to schedule background enrichment or repair; omitted and false keep it off. When fileOnMiss=true creates a new hidden record, omitted keeps the existing automatic enrichment and false files the record and logo only.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -26537,7 +26537,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query in one call. In the default auto mode the server picks the blend per scope: exact name, keyword full-text, the query planner, and semantic similarity when the planner cannot translate a constraint. Only the entity scope runs the planner: the person scope ranks the people of the entity scope's judged answers, else its subjects, else its result rows, by semantic match, and is empty when the entity scope matched no company. provenance.modeUsed and each scope's interpretation report what ran. keyword forces full-text search; other modes are rejected before any scope runs. For one scope with hard filters use POST /v1/search/natural/entities or /v1/search/natural/people, the same engines; entityFilter applies those hard entity constraints to the entity scope here. Page and size apply to every scope unless the body's personSize or newsSize sets that scope's page size; cross-domain sort is not supported. A person or news scope that rejects the query as unsearchable returns an empty page listed in provenance.rejection while the other scopes answer. Add layer=synthesis for a cited written answer with relatedQuery suggestions in the same response. Accept: text/event-stream streams events entity, news, and person as each scope finishes, each with its scope's page; then settled with this whole answer before synthesis (no answer yet); then, on the stream only, revised with the whole answer again when web searches the settled entity answer listed in pendingWebQuery finish and add companies, and once more with the synthesis answer if it finishes while those searches still run, which every later snapshot keeps; then complete with the latest of those answers. Revised and complete keep every settled row in place and add new rows below them; this JSON response returns without waiting for those searches. Settled, revised, and complete each carry an increasing SSE id; re-send the request with a Last-Event-ID header to resume, and the stream skips the scope events and every answer at or below that id, always ending with complete under a higher id. A failure after the stream starts, such as the 503 an unavailable synthesis answer returns here, arrives as a final error event with the reason.",
+        "description": "Finds companies, people, and news for a plain-English query. auto blends exact name, full-text, entity query planning, and semantic similarity. People are ranked from the entity scope's judged answers, subjects, or result rows; no entity means no people. provenance.modeUsed and scope interpretation report execution. keyword forces full-text; other modes are rejected. entityFilter constrains entities; single-scope hard-filter routes are /v1/search/natural/entities and /v1/search/natural/people. Page and size apply to every scope unless personSize or newsSize overrides it. sort is unsupported. An unsearchable person or news scope returns an empty page with provenance.rejection. layer=synthesis adds a cited answer and relatedQuery suggestions. Accept: text/event-stream opens with admitted after metering, before entity, news, and person scope events; settled contains all scopes before synthesis. revised adds pendingWebQuery results and synthesis without moving settled rows; complete contains the latest snapshot. JSON does not wait for pending web searches. admitted, settled, revised, and complete carry SSE id revision:request-uuid, starting at 0. Re-send the identical request with Last-Event-ID: for ten minutes the same caller replays durable state without new quota or records. A failed synthesis retries only its already-paid answer. Disconnects do not cancel admitted work. Unfinished snapshots replay as settled, then error; only terminal snapshots emit complete. Running searches or failures before retaining rows return error with the resume id preserved, never rerun paid search. Any failure after the stream starts arrives as error with its reason.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -29568,6 +29568,17 @@
               "null"
             ]
           },
+          "filedRunId": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Harness run ids a batch enrichment filed or reused for its other records before answering this refusal; absent for every other problem.",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
           "hammingDistance": {
             "type": [
               "integer",
@@ -32219,7 +32230,7 @@
             "type": "string"
           },
           "range": {
-            "description": "Inclusive numeric bounds for numericRatio, numericScore, and numericGrowthRate. numericGrowthRate values use percentage points: 80 means 80%, not 0.8.",
+            "description": "Inclusive numeric bounds for monetary and numericRatio, numericScore, and numericGrowthRate values. numericGrowthRate uses percentage points: 80 means 80%, not 0.8.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/ResearchValueRange"
@@ -32723,6 +32734,15 @@
             "description": "SEC filer size category.",
             "example": "Large accelerated filer"
           },
+          "filingHistoryStart": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date",
+            "description": "Date of the registrant's earliest EDGAR filing. EDGAR filing became mandatory for all registrants in May 1996, so a listing before this date predates the electronic record.",
+            "example": "2012-10-24"
+          },
           "fiscalYearEnd": {
             "type": [
               "string",
@@ -32775,6 +32795,17 @@
             "type": "boolean",
             "description": "True when SEC classifies this registrant as an operating company, false for a SPAC/trust/holding/shell vehicle."
           },
+          "listingProspectus": {
+            "description": "The registrant's IPO prospectus: its first final prospectus (Form 424B4 or 424B1), reported only when an offering registration statement (S-1, F-1, SB-2, S-11) precedes it and no annual or quarterly report does. Null when EDGAR shows no such prospectus, including every company that listed before its EDGAR history starts and every follow-on offering.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SecListingProspectus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "matchedVia": {
             "type": "string",
             "description": "How the query resolved to this registrant.",
@@ -32800,7 +32831,7 @@
           },
           "otherCandidate": {
             "type": "array",
-            "description": "Other registrants whose name also matched the query (legal names). Empty for an exact ticker resolution; non-empty signals an ambiguous name query.",
+            "description": "Other registrants whose title also contains the name query (legal names) beside the exact title match that bound. Empty for a ticker resolution.",
             "items": {
               "type": "string"
             }
@@ -34296,7 +34327,9 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written.",
+            "readOnly": true
           },
           "sourceAttribution": {
             "type": "array",
@@ -35886,6 +35919,10 @@
               "$ref": "#/components/schemas/LookupMention"
             }
           },
+          "omitRecords": {
+            "type": "boolean",
+            "description": "POST /v1/lookup-mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer."
+          },
           "sourceDocumentId": {
             "type": [
               "string",
@@ -36031,6 +36068,10 @@
             "items": {
               "$ref": "#/components/schemas/LookupJobMention"
             }
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "True when the page names more than this answer holds: more names than one live lookup reads, or a body longer than the read limit. A lookup job with maxNames reads every name."
           }
         },
         "required": [
@@ -37334,17 +37375,6 @@
             "format": "uuid",
             "description": "Stable sharing UUID generated once and reused across retries."
           },
-          "layer": {
-            "type": [
-              "array",
-              "null"
-            ],
-            "description": "Answer layers the sharing page searched with; synthesis is required and web is the only other layer allowed. Omitted means synthesis alone.",
-            "items": {
-              "$ref": "#/components/schemas/SearchLayer"
-            },
-            "uniqueItems": true
-          },
           "query": {
             "type": [
               "string",
@@ -37354,25 +37384,13 @@
             "maxLength": 2000,
             "minLength": 0
           },
-          "search": {
-            "description": "The federated search body the sharing page ran, as on POST /v1/search; its query must equal query. The share then publishes the answer that page showed when it is still cached, else runs this search. answerModel is not accepted; cacheMode is always use. Omitted runs query alone.",
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/FederatedNaturalSearch"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "size": {
+          "searchRequestId": {
             "type": [
-              "integer",
+              "string",
               "null"
             ],
-            "format": "int32",
-            "description": "Page size the sharing page searched with, under the same page-size cap; omitted uses the default page size.",
-            "minimum": 1
+            "format": "uuid",
+            "description": "entity.searchRequestId of the federated search response the sharing page showed. When that search was signed in, asked this query (ignoring case), and its shareable answer is still kept, the share publishes exactly that answer without searching again; otherwise it runs the default public search."
           }
         }
       },
@@ -39109,6 +39127,15 @@
             "description": "Address id of the current headquarters: the current dominant (operating) address; absent when none is on record, even when a domicile (legal seat) exists. Read this instead of the deprecated isHq flag, which marks the legal seat.",
             "example": 123,
             "readOnly": true
+          },
+          "headquartersRemoteAsOf": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When aVenture last verified that this entity runs no operating headquarters (a remote company); absent while a current operating headquarters is on record or no unexpired verification exists.",
+            "example": "2026-10-01T00:00:00Z"
           },
           "text": {
             "$ref": "#/components/schemas/EntityTextBundle"
@@ -42409,6 +42436,39 @@
           "minSentences"
         ]
       },
+      "SecListingProspectus": {
+        "type": "object",
+        "description": "The final IPO prospectus a registrant filed on SEC EDGAR.",
+        "properties": {
+          "accessionNumber": {
+            "type": "string",
+            "description": "SEC accession number.",
+            "example": "0001193125-20-315318"
+          },
+          "documentUrl": {
+            "type": "string",
+            "description": "SEC EDGAR Archives URL of the prospectus document.",
+            "example": "https://www.sec.gov/Archives/edgar/data/1559720/000119312520315318/d81668d424b4.htm"
+          },
+          "filingDate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date SEC received the prospectus.",
+            "example": "2020-12-11"
+          },
+          "form": {
+            "type": "string",
+            "description": "SEC form type of the prospectus.",
+            "example": "424B4"
+          }
+        },
+        "required": [
+          "accessionNumber",
+          "documentUrl",
+          "filingDate",
+          "form"
+        ]
+      },
       "EntityFundraiseFilterCriteria": {
         "type": "object",
         "description": "Fundraise and investment filters for entity search",
@@ -43331,8 +43391,8 @@
       },
       "EnrichmentRefusalType": {
         "type": "string",
-        "description": "Why a batch enrichment filed no run: NOT_FOUND for an unknown record; ALLOWANCE_EXHAUSTED when the record's company or person research allowance is spent and additional usage is off or at its spend cap or prepaid credit; AMBIGUOUS when the record's profile matches more than one current record; SUBSCRIPTION_REQUIRED when the subscription stopped covering research mid-batch, such as additional usage while past due",
-        "enum": [
+        "description": "Why a batch enrichment filed no run: NOT_FOUND for an unknown record; ALLOWANCE_EXHAUSTED when the record's company or person research allowance is spent and additional usage is off or at its spend cap or prepaid credit; AMBIGUOUS when the record's profile matches more than one current record; SUBSCRIPTION_REQUIRED when the subscription stopped covering research mid-batch, such as additional usage while past due. Readers accept members they do not yet know",
+        "x-extensible-enum": [
           "NOT_FOUND",
           "ALLOWANCE_EXHAUSTED",
           "AMBIGUOUS",
@@ -43587,6 +43647,13 @@
         "type": "object",
         "description": "One Checkout plan and its recurring price.",
         "properties": {
+          "appStoreProductId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "App Store product id that sells this plan in the iOS and Mac apps; absent when the plan sells only on the web."
+          },
           "cadence": {
             "type": "string",
             "description": "ISO 8601 billing period.",

@@ -201,7 +201,7 @@ declare const EntityBrandSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             writable: boolean;
         })[] | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./classification.ts").EntityClassificationSchemaInput, z.core.$ZodTypeInternals<{
         geoLocationExposure?: ({
             creatable: boolean;
             isCurrent?: boolean | null | undefined;
@@ -402,7 +402,7 @@ declare const EntityBrandSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             writable: boolean;
         })[] | undefined;
-    }, unknown>>;
+    }, import("./classification.ts").EntityClassificationSchemaInput>>;
     core: z.ZodObject<{
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -411,21 +411,21 @@ declare const EntityBrandSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -471,7 +471,7 @@ declare const EntityBrandSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -488,9 +488,11 @@ declare const EntityBrandSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput>>>;
 }, z.core.$strip>;
 type EntityBrandDefinition = z.infer<typeof EntityBrandSchemaDefinition>;
+export interface EntityBrandSchemaInput extends z.input<typeof EntityBrandSchemaDefinition> {
+}
 /**
  * Thin company brand read: names and logos under core, current website and social URLs, and current classification tags.
  *
@@ -499,7 +501,7 @@ type EntityBrandDefinition = z.infer<typeof EntityBrandSchemaDefinition>;
  * @contractShape entity.brand
  * @contractRole canonical
  */
-export declare const EntityBrandSchema: z.ZodType<EntityBrandDefinition>;
+export declare const EntityBrandSchema: z.ZodType<EntityBrandDefinition, EntityBrandSchemaInput>;
 export type EntityBrand = z.infer<typeof EntityBrandSchema>;
 export {};
 //# sourceMappingURL=brand.d.ts.map

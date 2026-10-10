@@ -6,12 +6,12 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
         id: string;
         query: string;
         slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./search-list.ts").SharedSearchListSchemaInput, z.core.$ZodTypeInternals<{
         createdAt: string;
         id: string;
         query: string;
         slug: string;
-    }, unknown>>;
+    }, import("./search-list.ts").SharedSearchListSchemaInput>>;
     result: z.ZodType<{
         entity: {
             answer?: {
@@ -633,6 +633,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -1127,6 +1128,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -1612,6 +1614,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -2092,6 +2095,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3461,7 +3465,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../federated/search.ts").FederatedSearchSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             answer?: {
                 citation: {
@@ -4082,6 +4086,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -4576,6 +4581,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -5061,6 +5067,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -5541,6 +5548,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -6910,9 +6918,11 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
-    }, unknown>>;
+    }, import("../federated/search.ts").FederatedSearchSchemaInput>>;
 }, z.core.$strip>;
 type SharedSearchDefinition = z.infer<typeof SharedSearchSchemaDefinition>;
+export interface SharedSearchSchemaInput extends z.input<typeof SharedSearchSchemaDefinition> {
+}
 /**
  * A saved public search query and answer.
  *
@@ -6923,7 +6933,7 @@ type SharedSearchDefinition = z.infer<typeof SharedSearchSchemaDefinition>;
  * @contractShape shared.search
  * @contractRole canonical
  */
-export declare const SharedSearchSchema: z.ZodType<SharedSearchDefinition>;
+export declare const SharedSearchSchema: z.ZodType<SharedSearchDefinition, SharedSearchSchemaInput>;
 export type SharedSearch = z.infer<typeof SharedSearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

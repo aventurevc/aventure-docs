@@ -13,6 +13,8 @@ declare const CliAuthorizationMutationSchemaDefinition: z.ZodObject<{
     encryptionPublicKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type CliAuthorizationMutationDefinition = z.infer<typeof CliAuthorizationMutationSchemaDefinition>;
+export interface CliAuthorizationMutationSchemaInput extends z.input<typeof CliAuthorizationMutationSchemaDefinition> {
+}
 /**
  * Creates a short-lived CLI authorization request bound to an ephemeral key
  *
@@ -21,7 +23,7 @@ type CliAuthorizationMutationDefinition = z.infer<typeof CliAuthorizationMutatio
  * @contractShape cli.authorization-mutation
  * @contractRole canonical
  */
-export declare const CliAuthorizationMutationSchema: z.ZodType<CliAuthorizationMutationDefinition>;
+export declare const CliAuthorizationMutationSchema: z.ZodType<CliAuthorizationMutationDefinition, CliAuthorizationMutationSchemaInput>;
 export type CliAuthorizationMutation = z.infer<typeof CliAuthorizationMutationSchema>;
 export {};
 //# sourceMappingURL=authorization-mutation.d.ts.map

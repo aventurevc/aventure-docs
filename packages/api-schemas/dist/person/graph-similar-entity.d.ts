@@ -9,21 +9,21 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, import("../entity/image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -112,7 +112,7 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./graph-member.ts").PersonGraphMemberSchemaInput, z.core.$ZodTypeInternals<{
         isCurrent?: boolean | null | undefined;
         personId: string;
         personImage: {
@@ -122,9 +122,11 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./graph-member.ts").PersonGraphMemberSchemaInput>>>;
 }, z.core.$strip>;
 type PersonGraphSimilarEntityDefinition = z.infer<typeof PersonGraphSimilarEntitySchemaDefinition>;
+export interface PersonGraphSimilarEntitySchemaInput extends z.input<typeof PersonGraphSimilarEntitySchemaDefinition> {
+}
 /**
  * Similar-entity card with its key people
  *
@@ -134,7 +136,7 @@ type PersonGraphSimilarEntityDefinition = z.infer<typeof PersonGraphSimilarEntit
  * @contractShape person.graph-similar-entity
  * @contractRole canonical
  */
-export declare const PersonGraphSimilarEntitySchema: z.ZodType<PersonGraphSimilarEntityDefinition>;
+export declare const PersonGraphSimilarEntitySchema: z.ZodType<PersonGraphSimilarEntityDefinition, PersonGraphSimilarEntitySchemaInput>;
 export type PersonGraphSimilarEntity = z.infer<typeof PersonGraphSimilarEntitySchema>;
 export {};
 //# sourceMappingURL=graph-similar-entity.d.ts.map

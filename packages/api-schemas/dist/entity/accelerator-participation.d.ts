@@ -8,21 +8,21 @@ declare const EntityAcceleratorParticipationSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -58,6 +58,8 @@ declare const EntityAcceleratorParticipationSchemaDefinition: z.ZodObject<{
     status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EntityAcceleratorParticipationDefinition = z.infer<typeof EntityAcceleratorParticipationSchemaDefinition>;
+export interface EntityAcceleratorParticipationSchemaInput extends z.input<typeof EntityAcceleratorParticipationSchemaDefinition> {
+}
 /**
  * Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.
  *
@@ -85,7 +87,7 @@ type EntityAcceleratorParticipationDefinition = z.infer<typeof EntityAccelerator
  * @contractShape entity.accelerator-participation
  * @contractRole canonical
  */
-export declare const EntityAcceleratorParticipationSchema: z.ZodType<EntityAcceleratorParticipationDefinition>;
+export declare const EntityAcceleratorParticipationSchema: z.ZodType<EntityAcceleratorParticipationDefinition, EntityAcceleratorParticipationSchemaInput>;
 export type EntityAcceleratorParticipation = z.infer<typeof EntityAcceleratorParticipationSchema>;
 export {};
 //# sourceMappingURL=accelerator-participation.d.ts.map

@@ -8,6 +8,8 @@ declare const CliAuthorizationStartSchemaDefinition: z.ZodObject<{
     verificationUrl: z.ZodString;
 }, z.core.$strip>;
 type CliAuthorizationStartDefinition = z.infer<typeof CliAuthorizationStartSchemaDefinition>;
+export interface CliAuthorizationStartSchemaInput extends z.input<typeof CliAuthorizationStartSchemaDefinition> {
+}
 /**
  * New CLI authorization handle and one-time poll credential
  *
@@ -16,7 +18,7 @@ type CliAuthorizationStartDefinition = z.infer<typeof CliAuthorizationStartSchem
  * @contractShape cli.authorization-start
  * @contractRole canonical
  */
-export declare const CliAuthorizationStartSchema: z.ZodType<CliAuthorizationStartDefinition>;
+export declare const CliAuthorizationStartSchema: z.ZodType<CliAuthorizationStartDefinition, CliAuthorizationStartSchemaInput>;
 export type CliAuthorizationStart = z.infer<typeof CliAuthorizationStartSchema>;
 export {};
 //# sourceMappingURL=authorization-start.d.ts.map

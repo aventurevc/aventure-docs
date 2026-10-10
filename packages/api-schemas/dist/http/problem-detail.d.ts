@@ -111,7 +111,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         };
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput, z.core.$ZodTypeInternals<{
         existingJoin: {
             owner: {
                 entityId?: string | null | undefined;
@@ -128,21 +128,21 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         };
         url: string;
         urlType: string;
-    }, unknown>>, z.ZodType<{
+    }, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput>>, z.ZodType<{
         candidateEntityId: string[];
         candidatePersonId: string[];
         hint: string;
         normalizedUrl?: string | null | undefined;
         url: string;
         urlType?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../strict/url-lookup-conflict.ts").StrictUrlLookupConflictSchemaInput, z.core.$ZodTypeInternals<{
         candidateEntityId: string[];
         candidatePersonId: string[];
         hint: string;
         normalizedUrl?: string | null | undefined;
         url: string;
         urlType?: string | null | undefined;
-    }, unknown>>, z.ZodType<{
+    }, import("../strict/url-lookup-conflict.ts").StrictUrlLookupConflictSchemaInput>>, z.ZodType<{
         candidate?: {
             externalId?: string | null | undefined;
             id: string;
@@ -163,7 +163,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         }[] | null | undefined;
         overridePath?: string | null | undefined;
         threshold: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../duplicate/create-review.ts").DuplicateCreateReviewSchemaInput, z.core.$ZodTypeInternals<{
         candidate?: {
             externalId?: string | null | undefined;
             id: string;
@@ -184,23 +184,23 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         }[] | null | undefined;
         overridePath?: string | null | undefined;
         threshold: number;
-    }, unknown>>, z.ZodType<{
+    }, import("../duplicate/create-review.ts").DuplicateCreateReviewSchemaInput>>, z.ZodType<{
         availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
         slug: string;
         tagId: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput, z.core.$ZodTypeInternals<{
         availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
         slug: string;
         tagId: number;
-    }, unknown>>, z.ZodType<{
+    }, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput>>, z.ZodType<{
         conflictingArticleId: number;
         conflictingArticleSlug: string;
         conflictingArticleTitle: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput, z.core.$ZodTypeInternals<{
         conflictingArticleId: number;
         conflictingArticleSlug: string;
         conflictingArticleTitle: string;
-    }, unknown>>]>>>;
+    }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput>>]>>>;
     error: z.ZodOptional<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>>;
     existingRedirect: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         newUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -217,6 +217,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     feId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     field: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    filedRunId: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodUUID>>>;
     hammingDistance: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     hint: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     instance: z.ZodOptional<z.ZodString>;
@@ -243,18 +244,18 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     moderationReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     parseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     path: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("./json-value.ts").JsonValue, unknown, z.core.$ZodTypeInternals<import("./json-value.ts").JsonValue, unknown>>>>;
+    properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("./json-value.ts").JsonValue, import("./json-value.ts").JsonValue, z.core.$ZodTypeInternals<import("./json-value.ts").JsonValue, import("./json-value.ts").JsonValue>>>>;
     proseViolation: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         overridable: boolean;
         passage: string;
         problem: string;
         reason: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../prose/violation.ts").ProseViolationSchemaInput, z.core.$ZodTypeInternals<{
         overridable: boolean;
         passage: string;
         problem: string;
         reason: string;
-    }, unknown>>>>>;
+    }, import("../prose/violation.ts").ProseViolationSchemaInput>>>>>;
     remaining: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     requiredRole: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resetAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -289,6 +290,8 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     windowSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type ProblemDetailDefinition = z.infer<typeof ProblemDetailSchemaDefinition>;
+export interface ProblemDetailSchemaInput extends z.input<typeof ProblemDetailSchemaDefinition> {
+}
 /**
  * RFC 9457 problem response with aVenture extensions.
  *
@@ -297,7 +300,7 @@ type ProblemDetailDefinition = z.infer<typeof ProblemDetailSchemaDefinition>;
  * @contractShape http.problem-detail
  * @contractRole canonical
  */
-export declare const ProblemDetailSchema: z.ZodType<ProblemDetailDefinition>;
+export declare const ProblemDetailSchema: z.ZodType<ProblemDetailDefinition, ProblemDetailSchemaInput>;
 export type ProblemDetail = z.infer<typeof ProblemDetailSchema>;
 export {};
 //# sourceMappingURL=problem-detail.d.ts.map

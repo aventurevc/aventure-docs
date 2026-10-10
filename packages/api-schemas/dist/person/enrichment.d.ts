@@ -10,13 +10,13 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -65,7 +65,7 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -82,9 +82,11 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput>>>;
 }, z.core.$strip>;
 type PersonEnrichmentDefinition = z.infer<typeof PersonEnrichmentSchemaDefinition>;
+export interface PersonEnrichmentSchemaInput extends z.input<typeof PersonEnrichmentSchemaDefinition> {
+}
 /**
  * Supplemental person data — addresses and URL links
  *
@@ -109,7 +111,7 @@ type PersonEnrichmentDefinition = z.infer<typeof PersonEnrichmentSchemaDefinitio
  * @contractShape person.enrichment
  * @contractRole canonical
  */
-export declare const PersonEnrichmentSchema: z.ZodType<PersonEnrichmentDefinition>;
+export declare const PersonEnrichmentSchema: z.ZodType<PersonEnrichmentDefinition, PersonEnrichmentSchemaInput>;
 export type PersonEnrichment = z.infer<typeof PersonEnrichmentSchema>;
 export {};
 //# sourceMappingURL=enrichment.d.ts.map

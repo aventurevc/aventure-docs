@@ -3,19 +3,20 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
     additionalUsage: z.ZodArray<z.ZodType<{
         type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         unitAmount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-additional-usage.ts").BillingCatalogAdditionalUsageSchemaInput, z.core.$ZodTypeInternals<{
         type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         unitAmount: number;
-    }, unknown>>>;
+    }, import("./catalog-additional-usage.ts").BillingCatalogAdditionalUsageSchemaInput>>>;
     creditPack: z.ZodArray<z.ZodType<{
         amountCents: number;
         pack: "USD_100" | "USD_25" | "USD_250" | "USD_50";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-credit-pack.ts").BillingCatalogCreditPackSchemaInput, z.core.$ZodTypeInternals<{
         amountCents: number;
         pack: "USD_100" | "USD_25" | "USD_250" | "USD_50";
-    }, unknown>>>;
+    }, import("./catalog-credit-pack.ts").BillingCatalogCreditPackSchemaInput>>>;
     invoiceIncrementCents: z.ZodArray<z.ZodNumber>;
     plan: z.ZodArray<z.ZodType<{
+        appStoreProductId?: string | null | undefined;
         cadence: string;
         currency: string;
         displayName: string;
@@ -23,7 +24,8 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         plan: "PLUS_MONTHLY" | "PLUS_YEARLY" | "PRO_MONTHLY" | "PRO_YEARLY" | "PRO_YEARLY_PROMOTION";
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
         unitAmount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-plan.ts").BillingCatalogPlanSchemaInput, z.core.$ZodTypeInternals<{
+        appStoreProductId?: string | null | undefined;
         cadence: string;
         currency: string;
         displayName: string;
@@ -31,7 +33,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         plan: "PLUS_MONTHLY" | "PLUS_YEARLY" | "PRO_MONTHLY" | "PRO_YEARLY" | "PRO_YEARLY_PROMOTION";
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
         unitAmount: number;
-    }, unknown>>>;
+    }, import("./catalog-plan.ts").BillingCatalogPlanSchemaInput>>>;
     tier: z.ZodArray<z.ZodType<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
@@ -40,7 +42,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         }[];
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput, z.core.$ZodTypeInternals<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
@@ -48,9 +50,11 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         }[];
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
-    }, unknown>>>;
+    }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput>>>;
 }, z.core.$strip>;
 type BillingCatalogDefinition = z.infer<typeof BillingCatalogSchemaDefinition>;
+export interface BillingCatalogSchemaInput extends z.input<typeof BillingCatalogSchemaDefinition> {
+}
 /**
  * Every self-serve subscription tier with its monthly allowance caps, every plan Checkout sells, and the prices of usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.
  *
@@ -59,7 +63,7 @@ type BillingCatalogDefinition = z.infer<typeof BillingCatalogSchemaDefinition>;
  * @contractShape billing.catalog
  * @contractRole canonical
  */
-export declare const BillingCatalogSchema: z.ZodType<BillingCatalogDefinition>;
+export declare const BillingCatalogSchema: z.ZodType<BillingCatalogDefinition, BillingCatalogSchemaInput>;
 export type BillingCatalog = z.infer<typeof BillingCatalogSchema>;
 export {};
 //# sourceMappingURL=catalog.d.ts.map

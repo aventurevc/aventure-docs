@@ -43,6 +43,8 @@ declare const EntityUrlLinkSchemaDefinition: z.ZodObject<{
     urlType: z.ZodString;
 }, z.core.$strip>;
 type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
+export interface EntityUrlLinkSchemaInput extends z.input<typeof EntityUrlLinkSchemaDefinition> {
+}
 /**
  * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.
  *
@@ -88,7 +90,7 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @contractShape entity.url-link
  * @contractRole canonical
  */
-export declare const EntityUrlLinkSchema: z.ZodType<EntityUrlLinkDefinition>;
+export declare const EntityUrlLinkSchema: z.ZodType<EntityUrlLinkDefinition, EntityUrlLinkSchemaInput>;
 export type EntityUrlLink = z.infer<typeof EntityUrlLinkSchema>;
 export {};
 //# sourceMappingURL=url-link.d.ts.map

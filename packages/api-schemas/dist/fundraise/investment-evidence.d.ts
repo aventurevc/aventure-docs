@@ -93,7 +93,7 @@ declare const FundraiseInvestmentEvidenceSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
@@ -179,7 +179,7 @@ declare const FundraiseInvestmentEvidenceSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown>>;
+    }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>;
     fundraiseTransactionSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         changedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         dataSourceUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -196,6 +196,8 @@ declare const FundraiseInvestmentEvidenceSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type FundraiseInvestmentEvidenceDefinition = z.infer<typeof FundraiseInvestmentEvidenceSchemaDefinition>;
+export interface FundraiseInvestmentEvidenceSchemaInput extends z.input<typeof FundraiseInvestmentEvidenceSchemaDefinition> {
+}
 /**
  * Canonical transaction, participation attribution, and their owning source metadata.
  *
@@ -212,7 +214,7 @@ type FundraiseInvestmentEvidenceDefinition = z.infer<typeof FundraiseInvestmentE
  * @contractShape fundraise.investment-evidence
  * @contractRole canonical
  */
-export declare const FundraiseInvestmentEvidenceSchema: z.ZodType<FundraiseInvestmentEvidenceDefinition>;
+export declare const FundraiseInvestmentEvidenceSchema: z.ZodType<FundraiseInvestmentEvidenceDefinition, FundraiseInvestmentEvidenceSchemaInput>;
 export type FundraiseInvestmentEvidence = z.infer<typeof FundraiseInvestmentEvidenceSchema>;
 export {};
 //# sourceMappingURL=investment-evidence.d.ts.map

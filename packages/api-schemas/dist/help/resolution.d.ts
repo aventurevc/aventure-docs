@@ -15,12 +15,12 @@ export declare const HelpResolutionSchema: z.ZodObject<{
         sourceId: string;
         sourceType: string;
         sourceVersion?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./citation.ts").HelpCitationSchemaInput, z.core.$ZodTypeInternals<{
         excerpt: string;
         sourceId: string;
         sourceType: string;
         sourceVersion?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./citation.ts").HelpCitationSchemaInput>>>;
     operationId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     outcome: z.ZodEnum<{
         ABSTAIN: "ABSTAIN";
@@ -37,11 +37,11 @@ export declare const HelpResolutionSchema: z.ZodObject<{
             description: string;
             key: string;
             type: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../harness/task.ts").HarnessTaskSchemaInput, z.core.$ZodTypeInternals<{
             description: string;
             key: string;
             type: string;
-        }, unknown>>>;
+        }, import("../harness/task.ts").HarnessTaskSchemaInput>>>;
         step: z.ZodArray<z.ZodType<{
             cliCommand: string;
             mcpTool?: string | null | undefined;
@@ -58,7 +58,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
                 reject: string[];
                 typeCatalog: string;
             } | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../harness/task-plan-step.ts").HarnessTaskPlanStepSchemaInput, z.core.$ZodTypeInternals<{
             cliCommand: string;
             mcpTool?: string | null | undefined;
             step: {
@@ -74,7 +74,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
                 reject: string[];
                 typeCatalog: string;
             } | null | undefined;
-        }, unknown>>>;
+        }, import("../harness/task-plan-step.ts").HarnessTaskPlanStepSchemaInput>>>;
         taskKey: z.ZodString;
     }, z.core.$strip>>>;
 }, z.core.$strip>;

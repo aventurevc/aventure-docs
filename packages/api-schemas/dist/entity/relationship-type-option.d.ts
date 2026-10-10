@@ -17,6 +17,8 @@ declare const EntityRelationshipTypeOptionSchemaDefinition: z.ZodObject<{
     targetRole: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EntityRelationshipTypeOptionDefinition = z.infer<typeof EntityRelationshipTypeOptionSchemaDefinition>;
+export interface EntityRelationshipTypeOptionSchemaInput extends z.input<typeof EntityRelationshipTypeOptionSchemaDefinition> {
+}
 /**
  * Published relationship catalog row. Directional values use sourceRole and targetRole to name sourceEntityId and targetEntityId.
  *
@@ -25,7 +27,7 @@ type EntityRelationshipTypeOptionDefinition = z.infer<typeof EntityRelationshipT
  * @contractShape entity.relationship-type-option
  * @contractRole canonical
  */
-export declare const EntityRelationshipTypeOptionSchema: z.ZodType<EntityRelationshipTypeOptionDefinition>;
+export declare const EntityRelationshipTypeOptionSchema: z.ZodType<EntityRelationshipTypeOptionDefinition, EntityRelationshipTypeOptionSchemaInput>;
 export type EntityRelationshipTypeOption = z.infer<typeof EntityRelationshipTypeOptionSchema>;
 export {};
 //# sourceMappingURL=relationship-type-option.d.ts.map

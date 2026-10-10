@@ -22,6 +22,8 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
+export interface UniqueIdSchemaInput extends z.input<typeof UniqueIdSchemaDefinition> {
+}
 /**
  * External identifier mapped to one owner (entity or person): for example a company's EIN, SEC CIK, or ticker symbol. Owner carries exactly one entityId or personId.
  *
@@ -48,7 +50,7 @@ type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
  * @contractShape unique.id
  * @contractRole canonical
  */
-export declare const UniqueIdSchema: z.ZodType<UniqueIdDefinition>;
+export declare const UniqueIdSchema: z.ZodType<UniqueIdDefinition, UniqueIdSchemaInput>;
 export type UniqueId = z.infer<typeof UniqueIdSchema>;
 export {};
 //# sourceMappingURL=id.d.ts.map

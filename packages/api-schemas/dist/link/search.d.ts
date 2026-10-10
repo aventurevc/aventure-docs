@@ -622,6 +622,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -1116,6 +1117,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -1601,6 +1603,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -2081,6 +2084,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3450,7 +3454,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../federated/search.ts").FederatedSearchSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             answer?: {
                 citation: {
@@ -4071,6 +4075,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -4565,6 +4570,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             unconvertedRoundCount: number;
                         } | null | undefined;
                         headquartersAddressId?: number | null | undefined;
+                        headquartersRemoteAsOf?: string | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -5050,6 +5056,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -5530,6 +5537,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -6899,10 +6907,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
-    }, unknown>>;
+    }, import("../federated/search.ts").FederatedSearchSchemaInput>>;
     url: z.ZodString;
 }, z.core.$strip>;
 type LinkSearchDefinition = z.infer<typeof LinkSearchSchemaDefinition>;
+export interface LinkSearchSchemaInput extends z.input<typeof LinkSearchSchemaDefinition> {
+}
 /**
  * Search results related to a shared article or page URL: the fetched URL, the search query synthesized from the page content, and the federated entity, person, and news results for that query.
  *
@@ -6912,7 +6922,7 @@ type LinkSearchDefinition = z.infer<typeof LinkSearchSchemaDefinition>;
  * @contractShape link.search
  * @contractRole canonical
  */
-export declare const LinkSearchSchema: z.ZodType<LinkSearchDefinition>;
+export declare const LinkSearchSchema: z.ZodType<LinkSearchDefinition, LinkSearchSchemaInput>;
 export type LinkSearch = z.infer<typeof LinkSearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

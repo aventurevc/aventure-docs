@@ -43,13 +43,13 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -86,11 +86,11 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
-    }, unknown>>;
+    }, import("./image.ts").EntityImageSchemaInput>>;
     entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entitySlug: z.ZodString;
@@ -122,7 +122,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -139,7 +139,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput>>>;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     personAddress: z.ZodArray<z.ZodObject<{
         address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -151,13 +151,13 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -193,10 +193,10 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
     personImage: z.ZodType<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/image.ts").PersonImageSchemaInput, z.core.$ZodTypeInternals<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown>>;
+    }, import("../person/image.ts").PersonImageSchemaInput>>;
     personName: z.ZodString;
     personSlug: z.ZodString;
     personUrlLink: z.ZodArray<z.ZodType<{
@@ -216,7 +216,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -233,7 +233,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput>>>;
     score: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     startDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     titleFunction: z.ZodOptional<z.ZodNullable<z.ZodString>>;

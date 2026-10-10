@@ -14,6 +14,8 @@ declare const ResolvedHandleSchemaDefinition: z.ZodObject<{
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type ResolvedHandleDefinition = z.infer<typeof ResolvedHandleSchemaDefinition>;
+export interface ResolvedHandleSchemaInput extends z.input<typeof ResolvedHandleSchemaDefinition> {
+}
 /**
  * Canonical subject a universal-lookup token resolved to. Exactly one of owner.entityId / owner.personId is set. Echoes the subject's canonical public handle and slug. Fetch display fields with GET /v1/entities/{entityId} or GET /v1/people/{personId}.
  *
@@ -22,7 +24,7 @@ type ResolvedHandleDefinition = z.infer<typeof ResolvedHandleSchemaDefinition>;
  * @contractShape resolved.handle
  * @contractRole canonical
  */
-export declare const ResolvedHandleSchema: z.ZodType<ResolvedHandleDefinition>;
+export declare const ResolvedHandleSchema: z.ZodType<ResolvedHandleDefinition, ResolvedHandleSchemaInput>;
 export type ResolvedHandle = z.infer<typeof ResolvedHandleSchema>;
 export {};
 //# sourceMappingURL=handle.d.ts.map

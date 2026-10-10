@@ -5,12 +5,12 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
         quote: string;
         sourceUrl: string;
         statement: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
         gateId?: string | null | undefined;
         quote: string;
         sourceUrl: string;
         statement: string;
-    }, unknown>>>>>;
+    }, import("../research/finding.ts").ResearchFindingSchemaInput>>>>>;
     mode: z.ZodOptional<z.ZodEnum<{
         COMPREHENSIVE: "COMPREHENSIVE";
         INDIVIDUAL: "INDIVIDUAL";
@@ -22,6 +22,8 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
     userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type HarnessRunCreateDefinition = z.infer<typeof HarnessRunCreateSchemaDefinition>;
+export interface HarnessRunCreateSchemaInput extends z.input<typeof HarnessRunCreateSchemaDefinition> {
+}
 /**
  * Create one harness enrichment run
  *
@@ -30,7 +32,7 @@ type HarnessRunCreateDefinition = z.infer<typeof HarnessRunCreateSchemaDefinitio
  * @contractShape harness.run-create
  * @contractRole canonical
  */
-export declare const HarnessRunCreateSchema: z.ZodType<HarnessRunCreateDefinition>;
+export declare const HarnessRunCreateSchema: z.ZodType<HarnessRunCreateDefinition, HarnessRunCreateSchemaInput>;
 export type HarnessRunCreate = z.infer<typeof HarnessRunCreateSchema>;
 export {};
 //# sourceMappingURL=run-create.d.ts.map

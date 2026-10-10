@@ -8,21 +8,21 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -58,21 +58,21 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -117,12 +117,12 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         fundraiseTransaction: boolean;
         operatingStatus: boolean;
         relationship: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./acquisition-evidence.ts").EntityAcquisitionEvidenceSchemaInput, z.core.$ZodTypeInternals<{
         fundraiseInvestorJoin: boolean;
         fundraiseTransaction: boolean;
         operatingStatus: boolean;
         relationship: boolean;
-    }, unknown>>;
+    }, import("./acquisition-evidence.ts").EntityAcquisitionEvidenceSchemaInput>>;
     fundraiseTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     investorJoinId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -149,6 +149,8 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type EntityAcquisitionDefinition = z.infer<typeof EntityAcquisitionSchemaDefinition>;
+export interface EntityAcquisitionSchemaInput extends z.input<typeof EntityAcquisitionSchemaDefinition> {
+}
 /**
  * Canonical acquisition event: scoped entity is acquired, acquirerEntity is buyer.
  *
@@ -159,7 +161,7 @@ type EntityAcquisitionDefinition = z.infer<typeof EntityAcquisitionSchemaDefinit
  * @contractShape entity.acquisition
  * @contractRole canonical
  */
-export declare const EntityAcquisitionSchema: z.ZodType<EntityAcquisitionDefinition>;
+export declare const EntityAcquisitionSchema: z.ZodType<EntityAcquisitionDefinition, EntityAcquisitionSchemaInput>;
 export type EntityAcquisition = z.infer<typeof EntityAcquisitionSchema>;
 export {};
 //# sourceMappingURL=acquisition.d.ts.map

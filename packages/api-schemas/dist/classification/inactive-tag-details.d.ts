@@ -8,6 +8,8 @@ declare const ClassificationInactiveTagDetailsSchemaDefinition: z.ZodObject<{
     tagId: z.ZodInt;
 }, z.core.$strip>;
 type ClassificationInactiveTagDetailsDefinition = z.infer<typeof ClassificationInactiveTagDetailsSchemaDefinition>;
+export interface ClassificationInactiveTagDetailsSchemaInput extends z.input<typeof ClassificationInactiveTagDetailsSchemaDefinition> {
+}
 /**
  * ProblemDetail.details for HTTP 409 when a classification value exists but is inactive.
  *
@@ -17,7 +19,7 @@ type ClassificationInactiveTagDetailsDefinition = z.infer<typeof ClassificationI
  * @contractShape classification.inactive-tag-details
  * @contractRole canonical
  */
-export declare const ClassificationInactiveTagDetailsSchema: z.ZodType<ClassificationInactiveTagDetailsDefinition>;
+export declare const ClassificationInactiveTagDetailsSchema: z.ZodType<ClassificationInactiveTagDetailsDefinition, ClassificationInactiveTagDetailsSchemaInput>;
 export type ClassificationInactiveTagDetails = z.infer<typeof ClassificationInactiveTagDetailsSchema>;
 export {};
 //# sourceMappingURL=inactive-tag-details.d.ts.map

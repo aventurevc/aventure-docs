@@ -6,6 +6,8 @@ declare const EntityDetailBatchSchemaDefinition: z.ZodObject<{
     url: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strict>;
 type EntityDetailBatchDefinition = z.infer<typeof EntityDetailBatchSchemaDefinition>;
+export interface EntityDetailBatchSchemaInput extends z.input<typeof EntityDetailBatchSchemaDefinition> {
+}
 /**
  * Batch request for entity detail retrieval by id, slug, or current joined URL. Each identifier array accepts at most 200 values, and at most 200 identifiers may be submitted across entityId, slug, and url.
  *
@@ -15,7 +17,7 @@ type EntityDetailBatchDefinition = z.infer<typeof EntityDetailBatchSchemaDefinit
  * @contractShape entity.detail-batch
  * @contractRole canonical
  */
-export declare const EntityDetailBatchSchema: z.ZodType<EntityDetailBatchDefinition>;
+export declare const EntityDetailBatchSchema: z.ZodType<EntityDetailBatchDefinition, EntityDetailBatchSchemaInput>;
 export type EntityDetailBatch = z.infer<typeof EntityDetailBatchSchema>;
 export {};
 //# sourceMappingURL=detail-batch.d.ts.map

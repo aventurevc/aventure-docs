@@ -184,7 +184,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             relevance?: "keyword" | "semantic" | null | undefined;
         };
         unsupported?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./search-interpretation.ts").PersonSearchInterpretationSchemaInput, z.core.$ZodTypeInternals<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
         execution: {
             modeRequested: string;
@@ -368,7 +368,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             relevance?: "keyword" | "semantic" | null | undefined;
         };
         unsupported?: string | null | undefined;
-    }, unknown>>;
+    }, import("./search-interpretation.ts").PersonSearchInterpretationSchemaInput>>;
     investment: z.ZodArray<z.ZodType<{
         evidence: {
             fundManagerRelationshipSource?: {
@@ -494,7 +494,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/investment.ts").SearchInvestmentSchemaInput, z.core.$ZodTypeInternals<{
         evidence: {
             fundManagerRelationshipSource?: {
                 changedAt?: string | null | undefined;
@@ -619,7 +619,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("../search/investment.ts").SearchInvestmentSchemaInput>>>;
     result: z.ZodType<{
         content: {
             createdAt?: string | null | undefined;
@@ -664,7 +664,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
         size: number;
         totalElements: number;
         totalPages: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../pagination/schemas.ts").PageResultPersonSchemaInput, z.core.$ZodTypeInternals<{
         content: {
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
@@ -708,10 +708,12 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
         size: number;
         totalElements: number;
         totalPages: number;
-    }, unknown>>;
+    }, import("../pagination/schemas.ts").PageResultPersonSchemaInput>>;
     searchRequestId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
 }, z.core.$strip>;
 type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchResultSchemaDefinition>;
+export interface PersonNaturalSearchResultSchemaInput extends z.input<typeof PersonNaturalSearchResultSchemaDefinition> {
+}
 /**
  * Natural-language people search result: planner interpretation plus the canonical person page produced by the person list engine.
  *
@@ -727,7 +729,7 @@ type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchRes
  * @contractShape person.natural-search-result
  * @contractRole canonical
  */
-export declare const PersonNaturalSearchResultSchema: z.ZodType<PersonNaturalSearchResultDefinition>;
+export declare const PersonNaturalSearchResultSchema: z.ZodType<PersonNaturalSearchResultDefinition, PersonNaturalSearchResultSchemaInput>;
 export type PersonNaturalSearchResult = z.infer<typeof PersonNaturalSearchResultSchema>;
 export {};
 //# sourceMappingURL=natural-search-result.d.ts.map

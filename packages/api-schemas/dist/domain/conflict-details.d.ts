@@ -25,7 +25,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     };
     url: string;
     urlType: string;
-}, unknown, z.core.$ZodTypeInternals<{
+}, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput, z.core.$ZodTypeInternals<{
     existingJoin: {
         owner: {
             entityId?: string | null | undefined;
@@ -42,21 +42,21 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     };
     url: string;
     urlType: string;
-}, unknown>>, z.ZodType<{
+}, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput>>, z.ZodType<{
     candidateEntityId: string[];
     candidatePersonId: string[];
     hint: string;
     normalizedUrl?: string | null | undefined;
     url: string;
     urlType?: string | null | undefined;
-}, unknown, z.core.$ZodTypeInternals<{
+}, import("../strict/url-lookup-conflict.ts").StrictUrlLookupConflictSchemaInput, z.core.$ZodTypeInternals<{
     candidateEntityId: string[];
     candidatePersonId: string[];
     hint: string;
     normalizedUrl?: string | null | undefined;
     url: string;
     urlType?: string | null | undefined;
-}, unknown>>, z.ZodType<{
+}, import("../strict/url-lookup-conflict.ts").StrictUrlLookupConflictSchemaInput>>, z.ZodType<{
     candidate?: {
         externalId?: string | null | undefined;
         id: string;
@@ -77,7 +77,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     }[] | null | undefined;
     overridePath?: string | null | undefined;
     threshold: number;
-}, unknown, z.core.$ZodTypeInternals<{
+}, import("../duplicate/create-review.ts").DuplicateCreateReviewSchemaInput, z.core.$ZodTypeInternals<{
     candidate?: {
         externalId?: string | null | undefined;
         id: string;
@@ -98,22 +98,22 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     }[] | null | undefined;
     overridePath?: string | null | undefined;
     threshold: number;
-}, unknown>>, z.ZodType<{
+}, import("../duplicate/create-review.ts").DuplicateCreateReviewSchemaInput>>, z.ZodType<{
     availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
     slug: string;
     tagId: number;
-}, unknown, z.core.$ZodTypeInternals<{
+}, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput, z.core.$ZodTypeInternals<{
     availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
     slug: string;
     tagId: number;
-}, unknown>>, z.ZodType<{
+}, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput>>, z.ZodType<{
     conflictingArticleId: number;
     conflictingArticleSlug: string;
     conflictingArticleTitle: string;
-}, unknown, z.core.$ZodTypeInternals<{
+}, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput, z.core.$ZodTypeInternals<{
     conflictingArticleId: number;
     conflictingArticleSlug: string;
     conflictingArticleTitle: string;
-}, unknown>>]>;
+}, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput>>]>;
 export type DomainConflictDetails = z.infer<typeof DomainConflictDetailsSchema>;
 //# sourceMappingURL=conflict-details.d.ts.map

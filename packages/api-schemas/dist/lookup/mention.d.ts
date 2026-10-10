@@ -10,6 +10,8 @@ declare const LookupMentionSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type LookupMentionDefinition = z.infer<typeof LookupMentionSchemaDefinition>;
+export interface LookupMentionSchemaInput extends z.input<typeof LookupMentionSchemaDefinition> {
+}
 /**
  * One company, Product or Service, or person a caller read from a page or screenshot it did not send.
  *
@@ -21,7 +23,7 @@ type LookupMentionDefinition = z.infer<typeof LookupMentionSchemaDefinition>;
  * @contractShape lookup.mention
  * @contractRole canonical
  */
-export declare const LookupMentionSchema: z.ZodType<LookupMentionDefinition>;
+export declare const LookupMentionSchema: z.ZodType<LookupMentionDefinition, LookupMentionSchemaInput>;
 export type LookupMention = z.infer<typeof LookupMentionSchema>;
 export {};
 //# sourceMappingURL=mention.d.ts.map

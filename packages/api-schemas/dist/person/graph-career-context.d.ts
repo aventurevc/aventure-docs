@@ -10,7 +10,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./graph-member.ts").PersonGraphMemberSchemaInput, z.core.$ZodTypeInternals<{
         isCurrent?: boolean | null | undefined;
         personId: string;
         personImage: {
@@ -20,7 +20,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./graph-member.ts").PersonGraphMemberSchemaInput>>>;
     employeeCount: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         asOfDate: z.ZodISODateTime;
         fact: z.ZodType<{
@@ -33,7 +33,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput, z.core.$ZodTypeInternals<{
             asOfDate?: string | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
@@ -43,7 +43,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-        }, unknown>>;
+        }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput>>;
         id: z.ZodString;
     }, z.core.$strip>>>;
     entity: z.ZodObject<{
@@ -55,21 +55,21 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, import("../entity/image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -158,13 +158,13 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -210,7 +210,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -224,7 +224,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../news/news.ts").NewsSchemaInput>>>;
     similarEntity: z.ZodArray<z.ZodType<{
         entity: {
             core: {
@@ -283,7 +283,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             personSlug: string;
             titleName?: string | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./graph-similar-entity.ts").PersonGraphSimilarEntitySchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -341,9 +341,11 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             personSlug: string;
             titleName?: string | null | undefined;
         }[];
-    }, unknown>>>;
+    }, import("./graph-similar-entity.ts").PersonGraphSimilarEntitySchemaInput>>>;
 }, z.core.$strip>;
 type PersonGraphCareerContextDefinition = z.infer<typeof PersonGraphCareerContextSchemaDefinition>;
+export interface PersonGraphCareerContextSchemaInput extends z.input<typeof PersonGraphCareerContextSchemaDefinition> {
+}
 /**
  * Entity facts, recent news, colleagues, and similar entities for one associated entity
  *
@@ -353,7 +355,7 @@ type PersonGraphCareerContextDefinition = z.infer<typeof PersonGraphCareerContex
  * @contractShape person.graph-career-context
  * @contractRole canonical
  */
-export declare const PersonGraphCareerContextSchema: z.ZodType<PersonGraphCareerContextDefinition>;
+export declare const PersonGraphCareerContextSchema: z.ZodType<PersonGraphCareerContextDefinition, PersonGraphCareerContextSchemaInput>;
 export type PersonGraphCareerContext = z.infer<typeof PersonGraphCareerContextSchema>;
 export {};
 //# sourceMappingURL=graph-career-context.d.ts.map

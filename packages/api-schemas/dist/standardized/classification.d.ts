@@ -5,13 +5,13 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodIntersection<z.Zo
     isPrimary?: boolean | null | undefined;
     name: string;
     writable: boolean;
-}, unknown, z.core.$ZodTypeInternals<{
+}, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
     creatable: boolean;
     isCurrent?: boolean | null | undefined;
     isPrimary?: boolean | null | undefined;
     name: string;
     writable: boolean;
-}, unknown>>, z.ZodObject<{
+}, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
     category: z.ZodString;
     code: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     creatable: z.ZodBoolean;
@@ -26,6 +26,7 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodIntersection<z.Zo
     writable: z.ZodBoolean;
 }, z.core.$strip>>;
 type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassificationSchemaDefinition>;
+export type StandardizedClassificationSchemaInput = z.input<typeof StandardizedClassificationSchemaDefinition>;
 /**
  * Canonical standardized classification projection backed by res_classification_ref. Rows are join-existing-only; creatable is false until a taxonomy writer exists.
  *
@@ -59,7 +60,7 @@ type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassific
  * @contractShape standardized.classification
  * @contractRole canonical
  */
-export declare const StandardizedClassificationSchema: z.ZodType<StandardizedClassificationDefinition>;
+export declare const StandardizedClassificationSchema: z.ZodType<StandardizedClassificationDefinition, StandardizedClassificationSchemaInput>;
 export type StandardizedClassification = z.infer<typeof StandardizedClassificationSchema>;
 export {};
 //# sourceMappingURL=classification.d.ts.map

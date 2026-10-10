@@ -21,10 +21,10 @@ declare const MediaUploadSchemaDefinition: z.ZodObject<{
         reference: z.ZodArray<z.ZodType<{
             hammingDistance: number;
             url: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../logo/accuracy-reference.ts").LogoAccuracyReferenceSchemaInput, z.core.$ZodTypeInternals<{
             hammingDistance: number;
             url: string;
-        }, unknown>>>;
+        }, import("../logo/accuracy-reference.ts").LogoAccuracyReferenceSchemaInput>>>;
         referenceObserved: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         sharedFeature: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
@@ -40,6 +40,8 @@ declare const MediaUploadSchemaDefinition: z.ZodObject<{
     targetId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type MediaUploadDefinition = z.infer<typeof MediaUploadSchemaDefinition>;
+export interface MediaUploadSchemaInput extends z.input<typeof MediaUploadSchemaDefinition> {
+}
 /**
  * Managed media asset reference with resolved CDN URL and target metadata
  *
@@ -50,7 +52,7 @@ type MediaUploadDefinition = z.infer<typeof MediaUploadSchemaDefinition>;
  * @contractShape media.upload
  * @contractRole canonical
  */
-export declare const MediaUploadSchema: z.ZodType<MediaUploadDefinition>;
+export declare const MediaUploadSchema: z.ZodType<MediaUploadDefinition, MediaUploadSchemaInput>;
 export type MediaUpload = z.infer<typeof MediaUploadSchema>;
 export {};
 //# sourceMappingURL=upload.d.ts.map

@@ -5,6 +5,8 @@ declare const NewsSubscriptionTestEventSchemaDefinition: z.ZodObject<{
     status: z.ZodInt;
 }, z.core.$strip>;
 type NewsSubscriptionTestEventDefinition = z.infer<typeof NewsSubscriptionTestEventSchemaDefinition>;
+export interface NewsSubscriptionTestEventSchemaInput extends z.input<typeof NewsSubscriptionTestEventSchemaDefinition> {
+}
 /**
  * The receiver's answer to one signed sample entity.news.published event.
  *
@@ -13,7 +15,7 @@ type NewsSubscriptionTestEventDefinition = z.infer<typeof NewsSubscriptionTestEv
  * @contractShape news.subscription-test-event
  * @contractRole canonical
  */
-export declare const NewsSubscriptionTestEventSchema: z.ZodType<NewsSubscriptionTestEventDefinition>;
+export declare const NewsSubscriptionTestEventSchema: z.ZodType<NewsSubscriptionTestEventDefinition, NewsSubscriptionTestEventSchemaInput>;
 export type NewsSubscriptionTestEvent = z.infer<typeof NewsSubscriptionTestEventSchema>;
 export {};
 //# sourceMappingURL=subscription-test-event.d.ts.map

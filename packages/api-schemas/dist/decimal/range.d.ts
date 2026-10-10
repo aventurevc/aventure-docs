@@ -4,6 +4,8 @@ declare const DecimalRangeSchemaDefinition: z.ZodObject<{
     min: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type DecimalRangeDefinition = z.infer<typeof DecimalRangeSchemaDefinition>;
+export interface DecimalRangeSchemaInput extends z.input<typeof DecimalRangeSchemaDefinition> {
+}
 /**
  * Decimal range for monetary and numeric filter criteria
  *
@@ -28,7 +30,7 @@ type DecimalRangeDefinition = z.infer<typeof DecimalRangeSchemaDefinition>;
  * @contractShape decimal.range
  * @contractRole canonical
  */
-export declare const DecimalRangeSchema: z.ZodType<DecimalRangeDefinition>;
+export declare const DecimalRangeSchema: z.ZodType<DecimalRangeDefinition, DecimalRangeSchemaInput>;
 export type DecimalRange = z.infer<typeof DecimalRangeSchema>;
 export {};
 //# sourceMappingURL=range.d.ts.map

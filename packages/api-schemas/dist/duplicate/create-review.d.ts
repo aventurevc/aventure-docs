@@ -10,7 +10,7 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         score: number;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
         externalId?: string | null | undefined;
         id: string;
         name?: string | null | undefined;
@@ -20,7 +20,7 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         score: number;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-    }, unknown>>>>>;
+    }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>>>>;
     newsCandidate: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
         externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         id: z.ZodInt;
@@ -32,6 +32,8 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
     threshold: z.ZodInt;
 }, z.core.$strip>;
 type DuplicateCreateReviewDefinition = z.infer<typeof DuplicateCreateReviewSchemaDefinition>;
+export interface DuplicateCreateReviewSchemaInput extends z.input<typeof DuplicateCreateReviewSchemaDefinition> {
+}
 /**
  * Candidate-review conflict details returned in ProblemDetail.details for create gates and deterministic lookup ambiguity. The returned candidates are the decision surface: update the matching candidate, create with duplicate override only when every candidate is distinct from the source-backed target, or block when identity is unresolved. score and threshold rank review priority; they are not proof that the requested record is absent.
  *
@@ -41,7 +43,7 @@ type DuplicateCreateReviewDefinition = z.infer<typeof DuplicateCreateReviewSchem
  * @contractShape duplicate.create-review
  * @contractRole canonical
  */
-export declare const DuplicateCreateReviewSchema: z.ZodType<DuplicateCreateReviewDefinition>;
+export declare const DuplicateCreateReviewSchema: z.ZodType<DuplicateCreateReviewDefinition, DuplicateCreateReviewSchemaInput>;
 export type DuplicateCreateReview = z.infer<typeof DuplicateCreateReviewSchema>;
 export {};
 //# sourceMappingURL=create-review.d.ts.map

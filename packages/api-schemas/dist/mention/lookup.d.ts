@@ -293,6 +293,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -642,7 +643,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             personId?: string | null | undefined;
         } | null | undefined;
         shellDetail?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../lookup/job-mention.ts").LookupJobMentionSchemaInput, z.core.$ZodTypeInternals<{
         enrichmentRunId?: string | null | undefined;
         entity: {
             core: {
@@ -935,6 +936,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1284,9 +1286,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             personId?: string | null | undefined;
         } | null | undefined;
         shellDetail?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../lookup/job-mention.ts").LookupJobMentionSchemaInput>>>;
+    truncated: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type MentionLookupDefinition = z.infer<typeof MentionLookupSchemaDefinition>;
+export interface MentionLookupSchemaInput extends z.input<typeof MentionLookupSchemaDefinition> {
+}
 /**
  * Every company, organization, investor, and person a page or screenshot names, each identified against stored records.
  *
@@ -1295,7 +1300,7 @@ type MentionLookupDefinition = z.infer<typeof MentionLookupSchemaDefinition>;
  * @contractShape mention.lookup
  * @contractRole canonical
  */
-export declare const MentionLookupSchema: z.ZodType<MentionLookupDefinition>;
+export declare const MentionLookupSchema: z.ZodType<MentionLookupDefinition, MentionLookupSchemaInput>;
 export type MentionLookup = z.infer<typeof MentionLookupSchema>;
 export {};
 //# sourceMappingURL=lookup.d.ts.map

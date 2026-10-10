@@ -2,19 +2,21 @@ import { z } from "zod/v4";
 declare const NewsSubscriptionKeySchemaDefinition: z.ZodObject<{
     arguments: z.ZodType<{
         entityId: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./subscription-arguments.ts").NewsSubscriptionArgumentsSchemaInput, z.core.$ZodTypeInternals<{
         entityId: string;
-    }, unknown>>;
+    }, import("./subscription-arguments.ts").NewsSubscriptionArgumentsSchemaInput>>;
     delivery: z.ZodType<{
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./subscription-endpoint.ts").NewsSubscriptionEndpointSchemaInput, z.core.$ZodTypeInternals<{
         url: string;
-    }, unknown>>;
+    }, import("./subscription-endpoint.ts").NewsSubscriptionEndpointSchemaInput>>;
     name: z.ZodEnum<{
         "entity.news.published": "entity.news.published";
     }>;
 }, z.core.$strip>;
 type NewsSubscriptionKeyDefinition = z.infer<typeof NewsSubscriptionKeySchemaDefinition>;
+export interface NewsSubscriptionKeySchemaInput extends z.input<typeof NewsSubscriptionKeySchemaDefinition> {
+}
 /**
  * Identifies one subscription to remove by its event name, arguments, and url.
  *
@@ -25,7 +27,7 @@ type NewsSubscriptionKeyDefinition = z.infer<typeof NewsSubscriptionKeySchemaDef
  * @contractShape news.subscription-key
  * @contractRole canonical
  */
-export declare const NewsSubscriptionKeySchema: z.ZodType<NewsSubscriptionKeyDefinition>;
+export declare const NewsSubscriptionKeySchema: z.ZodType<NewsSubscriptionKeyDefinition, NewsSubscriptionKeySchemaInput>;
 export type NewsSubscriptionKey = z.infer<typeof NewsSubscriptionKeySchema>;
 export {};
 //# sourceMappingURL=subscription-key.d.ts.map

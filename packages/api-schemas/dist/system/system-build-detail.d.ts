@@ -8,6 +8,8 @@ declare const SystemBuildDetailSchemaDefinition: z.ZodObject<{
     version: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SystemBuildDetailDefinition = z.infer<typeof SystemBuildDetailSchemaDefinition>;
+export interface SystemBuildDetailSchemaInput extends z.input<typeof SystemBuildDetailSchemaDefinition> {
+}
 /**
  * Application build metadata
  *
@@ -17,7 +19,7 @@ type SystemBuildDetailDefinition = z.infer<typeof SystemBuildDetailSchemaDefinit
  * @contractShape system.system-build-detail
  * @contractRole canonical
  */
-export declare const SystemBuildDetailSchema: z.ZodType<SystemBuildDetailDefinition>;
+export declare const SystemBuildDetailSchema: z.ZodType<SystemBuildDetailDefinition, SystemBuildDetailSchemaInput>;
 export type SystemBuildDetail = z.infer<typeof SystemBuildDetailSchema>;
 export {};
 //# sourceMappingURL=system-build-detail.d.ts.map

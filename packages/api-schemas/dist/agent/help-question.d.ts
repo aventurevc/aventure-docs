@@ -11,6 +11,8 @@ declare const AgentHelpQuestionSchemaDefinition: z.ZodObject<{
     }>>>;
 }, z.core.$strip>;
 type AgentHelpQuestionDefinition = z.infer<typeof AgentHelpQuestionSchemaDefinition>;
+export interface AgentHelpQuestionSchemaInput extends z.input<typeof AgentHelpQuestionSchemaDefinition> {
+}
 /**
  * A natural-language question about how to operate the platform, answered from the operation catalog, agent skills, and completion gates.
  *
@@ -20,7 +22,7 @@ type AgentHelpQuestionDefinition = z.infer<typeof AgentHelpQuestionSchemaDefinit
  * @contractShape agent.help-question
  * @contractRole canonical
  */
-export declare const AgentHelpQuestionSchema: z.ZodType<AgentHelpQuestionDefinition>;
+export declare const AgentHelpQuestionSchema: z.ZodType<AgentHelpQuestionDefinition, AgentHelpQuestionSchemaInput>;
 export type AgentHelpQuestion = z.infer<typeof AgentHelpQuestionSchema>;
 export {};
 //# sourceMappingURL=help-question.d.ts.map

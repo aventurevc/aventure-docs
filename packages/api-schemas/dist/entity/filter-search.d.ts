@@ -13,10 +13,10 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
         employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
         entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
         entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -24,17 +24,17 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
             amountInvestedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             amountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                 max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -47,63 +47,63 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
                 averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../int/range.ts").IntRangeSchemaInput>>>>;
             }, z.core.$strip>>;
             investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
             rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             round: z.ZodOptional<z.ZodArray<z.ZodString>>;
             totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             valuationRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
         }, z.core.$strip>>;
         hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -171,13 +171,15 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
         yearFoundedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
     }, z.core.$strict>>;
 }, z.core.$strict>;
 type EntityFilterSearchDefinition = z.infer<typeof EntityFilterSearchSchemaDefinition>;
+export interface EntityFilterSearchSchemaInput extends z.input<typeof EntityFilterSearchSchemaDefinition> {
+}
 /**
  * Record representing a filter search request
  *
@@ -186,7 +188,7 @@ type EntityFilterSearchDefinition = z.infer<typeof EntityFilterSearchSchemaDefin
  * @contractShape entity.filter-search
  * @contractRole canonical
  */
-export declare const EntityFilterSearchSchema: z.ZodType<EntityFilterSearchDefinition>;
+export declare const EntityFilterSearchSchema: z.ZodType<EntityFilterSearchDefinition, EntityFilterSearchSchemaInput>;
 export type EntityFilterSearch = z.infer<typeof EntityFilterSearchSchema>;
 export {};
 //# sourceMappingURL=filter-search.d.ts.map

@@ -10,7 +10,7 @@ declare const NewsEntityMentionSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./resolved-entity-link.ts").NewsResolvedEntityLinkSchemaInput, z.core.$ZodTypeInternals<{
         createdAt: string;
         entityId: string;
         href?: string | null | undefined;
@@ -20,10 +20,12 @@ declare const NewsEntityMentionSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, import("./resolved-entity-link.ts").NewsResolvedEntityLinkSchemaInput>>>;
     newsId: z.ZodInt;
 }, z.core.$strip>;
 type NewsEntityMentionDefinition = z.infer<typeof NewsEntityMentionSchemaDefinition>;
+export interface NewsEntityMentionSchemaInput extends z.input<typeof NewsEntityMentionSchemaDefinition> {
+}
 /**
  * Public entities one news article links to, in link order.
  *
@@ -38,7 +40,7 @@ type NewsEntityMentionDefinition = z.infer<typeof NewsEntityMentionSchemaDefinit
  * @contractShape news.entity-mention
  * @contractRole canonical
  */
-export declare const NewsEntityMentionSchema: z.ZodType<NewsEntityMentionDefinition>;
+export declare const NewsEntityMentionSchema: z.ZodType<NewsEntityMentionDefinition, NewsEntityMentionSchemaInput>;
 export type NewsEntityMention = z.infer<typeof NewsEntityMentionSchema>;
 export {};
 //# sourceMappingURL=entity-mention.d.ts.map

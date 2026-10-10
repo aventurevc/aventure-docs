@@ -9,5 +9,5 @@ export type JsonValue = string | number | boolean | null | JsonValue[] | {
  * @contractRole canonical
  * @ownerModule http/json-value.ts
  */
-export declare const JsonValueSchema: z.ZodType<JsonValue>;
+export declare const JsonValueSchema: z.ZodType<JsonValue, JsonValue>;
 //# sourceMappingURL=json-value.d.ts.map

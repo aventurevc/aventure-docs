@@ -1,31 +1,4 @@
 import { z } from "zod/v4";
-declare const EntityTagSchemaDefinition: z.ZodIntersection<z.ZodType<{
-    creatable: boolean;
-    isCurrent?: boolean | null | undefined;
-    isPrimary?: boolean | null | undefined;
-    name: string;
-    writable: boolean;
-}, unknown, z.core.$ZodTypeInternals<{
-    creatable: boolean;
-    isCurrent?: boolean | null | undefined;
-    isPrimary?: boolean | null | undefined;
-    name: string;
-    writable: boolean;
-}, unknown>>, z.ZodObject<{
-    bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    creatable: z.ZodBoolean;
-    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    id: z.ZodInt;
-    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    name: z.ZodString;
-    slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    type: z.ZodString;
-    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    writable: z.ZodBoolean;
-}, z.core.$strip>>;
-type EntityTagDefinition = z.infer<typeof EntityTagSchemaDefinition>;
 /**
  * Canonical classification tag projection. Catalog/search responses describe registry tags; entity-classification responses include classificationId plus join state.
  *
@@ -59,7 +32,31 @@ type EntityTagDefinition = z.infer<typeof EntityTagSchemaDefinition>;
  * @contractShape entity.tag
  * @contractRole canonical
  */
-export declare const EntityTagSchema: z.ZodType<EntityTagDefinition>;
+export declare const EntityTagSchema: z.ZodIntersection<z.ZodType<{
+    creatable: boolean;
+    isCurrent?: boolean | null | undefined;
+    isPrimary?: boolean | null | undefined;
+    name: string;
+    writable: boolean;
+}, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
+    creatable: boolean;
+    isCurrent?: boolean | null | undefined;
+    isPrimary?: boolean | null | undefined;
+    name: string;
+    writable: boolean;
+}, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
+    bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    creatable: z.ZodBoolean;
+    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    id: z.ZodInt;
+    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    name: z.ZodString;
+    slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    type: z.ZodString;
+    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    writable: z.ZodBoolean;
+}, z.core.$strip>>;
 export type EntityTag = z.infer<typeof EntityTagSchema>;
-export {};
 //# sourceMappingURL=tag.d.ts.map

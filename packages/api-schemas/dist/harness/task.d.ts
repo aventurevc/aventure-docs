@@ -8,6 +8,8 @@ declare const HarnessTaskSchemaDefinition: z.ZodObject<{
     }>, z.ZodString]>;
 }, z.core.$strip>;
 type HarnessTaskDefinition = z.infer<typeof HarnessTaskSchemaDefinition>;
+export interface HarnessTaskSchemaInput extends z.input<typeof HarnessTaskSchemaDefinition> {
+}
 /**
  * One typed task input that must be bound before a run starts.
  *
@@ -18,7 +20,7 @@ type HarnessTaskDefinition = z.infer<typeof HarnessTaskSchemaDefinition>;
  * @contractShape harness.task
  * @contractRole canonical
  */
-export declare const HarnessTaskSchema: z.ZodType<HarnessTaskDefinition>;
+export declare const HarnessTaskSchema: z.ZodType<HarnessTaskDefinition, HarnessTaskSchemaInput>;
 export type HarnessTask = z.infer<typeof HarnessTaskSchema>;
 export {};
 //# sourceMappingURL=task.d.ts.map

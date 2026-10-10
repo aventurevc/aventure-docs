@@ -21,7 +21,7 @@ declare const NewsSubscriptionDetailSchemaDefinition: z.ZodObject<{
             url: string;
         };
         name: "entity.news.published";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./subscription-key.ts").NewsSubscriptionKeySchemaInput, z.core.$ZodTypeInternals<{
         arguments: {
             entityId: string;
         };
@@ -29,11 +29,13 @@ declare const NewsSubscriptionDetailSchemaDefinition: z.ZodObject<{
             url: string;
         };
         name: "entity.news.published";
-    }, unknown>>;
+    }, import("./subscription-key.ts").NewsSubscriptionKeySchemaInput>>;
     updatedAt: z.ZodISODateTime;
     verifiedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type NewsSubscriptionDetailDefinition = z.infer<typeof NewsSubscriptionDetailSchemaDefinition>;
+export interface NewsSubscriptionDetailSchemaInput extends z.input<typeof NewsSubscriptionDetailSchemaDefinition> {
+}
 /**
  * One of the caller's news subscriptions and its delivery state.
  *
@@ -42,7 +44,7 @@ type NewsSubscriptionDetailDefinition = z.infer<typeof NewsSubscriptionDetailSch
  * @contractShape news.subscription-detail
  * @contractRole canonical
  */
-export declare const NewsSubscriptionDetailSchema: z.ZodType<NewsSubscriptionDetailDefinition>;
+export declare const NewsSubscriptionDetailSchema: z.ZodType<NewsSubscriptionDetailDefinition, NewsSubscriptionDetailSchemaInput>;
 export type NewsSubscriptionDetail = z.infer<typeof NewsSubscriptionDetailSchema>;
 export {};
 //# sourceMappingURL=subscription-detail.d.ts.map

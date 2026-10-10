@@ -18,6 +18,8 @@ declare const SearchModeExecutionSchemaDefinition: z.ZodObject<{
     }>, z.ZodString]>;
 }, z.core.$strip>;
 type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDefinition>;
+export interface SearchModeExecutionSchemaInput extends z.input<typeof SearchModeExecutionSchemaDefinition> {
+}
 /**
  * Search strategy requested by the caller and executed by the canonical engine.
  *
@@ -36,7 +38,7 @@ type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDef
  * @contractShape search.mode-execution
  * @contractRole canonical
  */
-export declare const SearchModeExecutionSchema: z.ZodType<SearchModeExecutionDefinition>;
+export declare const SearchModeExecutionSchema: z.ZodType<SearchModeExecutionDefinition, SearchModeExecutionSchemaInput>;
 export type SearchModeExecution = z.infer<typeof SearchModeExecutionSchema>;
 export {};
 //# sourceMappingURL=mode-execution.d.ts.map

@@ -4,6 +4,8 @@ declare const PersonImageSchemaDefinition: z.ZodObject<{
     picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
+export interface PersonImageSchemaInput extends z.input<typeof PersonImageSchemaDefinition> {
+}
 /**
  * Read projection: person image fields for detail/list responses
  *
@@ -41,7 +43,7 @@ type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
  * @contractShape person.image
  * @contractRole canonical
  */
-export declare const PersonImageSchema: z.ZodType<PersonImageDefinition>;
+export declare const PersonImageSchema: z.ZodType<PersonImageDefinition, PersonImageSchemaInput>;
 export type PersonImage = z.infer<typeof PersonImageSchema>;
 export {};
 //# sourceMappingURL=image.d.ts.map

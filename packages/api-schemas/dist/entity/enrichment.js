@@ -12,6 +12,8 @@ const EntityEnrichmentSchemaDefinition = z.object({
     fundingDetail: EntityFundingDetailSchema.nullish(),
     /** Address id of the current headquarters: the current dominant (operating) address; absent when none is on record, even when a domicile (legal seat) exists. Read this instead of the deprecated isHq flag, which marks the legal seat. */
     headquartersAddressId: z.int().nullish(),
+    /** When aVenture last verified that this entity runs no operating headquarters (a remote company); absent while a current operating headquarters is on record or no unexpired verification exists. */
+    headquartersRemoteAsOf: z.iso.datetime({ offset: true }).nullish(),
     text: EntityTextBundleSchema,
     /** URL link filter values */
     urlLink: z.array(EntityUrlLinkSchema),

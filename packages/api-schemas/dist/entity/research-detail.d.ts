@@ -36,6 +36,8 @@ declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaDefinition>;
+export interface EntityResearchDetailSchemaInput extends z.input<typeof EntityResearchDetailSchemaDefinition> {
+}
 /**
  * Canonical research detail row for research.res_entity_detail
  *
@@ -66,7 +68,7 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @contractShape entity.research-detail
  * @contractRole canonical
  */
-export declare const EntityResearchDetailSchema: z.ZodType<EntityResearchDetailDefinition>;
+export declare const EntityResearchDetailSchema: z.ZodType<EntityResearchDetailDefinition, EntityResearchDetailSchemaInput>;
 export type EntityResearchDetail = z.infer<typeof EntityResearchDetailSchema>;
 export {};
 //# sourceMappingURL=research-detail.d.ts.map

@@ -9,16 +9,18 @@ declare const EntityFundraiseInvestorActivitySchemaDefinition: z.ZodObject<{
     topInvestmentStage: z.ZodArray<z.ZodType<{
         count: number;
         stage: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../stage/frequency.ts").StageFrequencySchemaInput, z.core.$ZodTypeInternals<{
         count: number;
         stage: string;
-    }, unknown>>>;
+    }, import("../stage/frequency.ts").StageFrequencySchemaInput>>>;
     totalAmountInvestedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     totalInvestment: z.ZodInt;
     totalPortfolioExit: z.ZodInt;
     totalWriteOff: z.ZodInt;
 }, z.core.$strip>;
 type EntityFundraiseInvestorActivityDefinition = z.infer<typeof EntityFundraiseInvestorActivitySchemaDefinition>;
+export interface EntityFundraiseInvestorActivitySchemaInput extends z.input<typeof EntityFundraiseInvestorActivitySchemaDefinition> {
+}
 /**
  * Investor-perspective activity aggregate for entity and person investors.
  *
@@ -28,7 +30,7 @@ type EntityFundraiseInvestorActivityDefinition = z.infer<typeof EntityFundraiseI
  * @contractShape entity.fundraise-investor-activity
  * @contractRole canonical
  */
-export declare const EntityFundraiseInvestorActivitySchema: z.ZodType<EntityFundraiseInvestorActivityDefinition>;
+export declare const EntityFundraiseInvestorActivitySchema: z.ZodType<EntityFundraiseInvestorActivityDefinition, EntityFundraiseInvestorActivitySchemaInput>;
 export type EntityFundraiseInvestorActivity = z.infer<typeof EntityFundraiseInvestorActivitySchema>;
 export {};
 //# sourceMappingURL=fundraise-investor-activity.d.ts.map

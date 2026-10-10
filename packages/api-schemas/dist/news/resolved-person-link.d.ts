@@ -14,6 +14,8 @@ declare const NewsResolvedPersonLinkSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type NewsResolvedPersonLinkDefinition = z.infer<typeof NewsResolvedPersonLinkSchemaDefinition>;
+export interface NewsResolvedPersonLinkSchemaInput extends z.input<typeof NewsResolvedPersonLinkSchemaDefinition> {
+}
 /**
  * Resolved person mention in news content - hyperlink to a person detected in article text
  *
@@ -24,7 +26,7 @@ type NewsResolvedPersonLinkDefinition = z.infer<typeof NewsResolvedPersonLinkSch
  * @contractShape news.resolved-person-link
  * @contractRole canonical
  */
-export declare const NewsResolvedPersonLinkSchema: z.ZodType<NewsResolvedPersonLinkDefinition>;
+export declare const NewsResolvedPersonLinkSchema: z.ZodType<NewsResolvedPersonLinkDefinition, NewsResolvedPersonLinkSchemaInput>;
 export type NewsResolvedPersonLink = z.infer<typeof NewsResolvedPersonLinkSchema>;
 export {};
 //# sourceMappingURL=resolved-person-link.d.ts.map

@@ -19,11 +19,11 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         entityId: string;
         source: string;
         sourceId: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./answer-citation.ts").SearchAnswerCitationSchemaInput, z.core.$ZodTypeInternals<{
         entityId: string;
         source: string;
         sourceId: string;
-    }, unknown>>>;
+    }, import("./answer-citation.ts").SearchAnswerCitationSchemaInput>>>;
     confidence: z.ZodEnum<{
         HIGH: "HIGH";
         LOW: "LOW";
@@ -39,7 +39,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         }[];
         text: string;
         topic?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./answer-paragraph.ts").SearchAnswerParagraphSchemaInput, z.core.$ZodTypeInternals<{
         citation: {
             entityId: string;
             source: string;
@@ -47,7 +47,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         }[];
         text: string;
         topic?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./answer-paragraph.ts").SearchAnswerParagraphSchemaInput>>>;
     relatedQuery: z.ZodArray<z.ZodString>;
     shareable: z.ZodBoolean;
     text: z.ZodString;

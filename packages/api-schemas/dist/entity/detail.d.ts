@@ -31,21 +31,21 @@ export declare const EntityDetailSchema: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -331,6 +331,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -355,7 +356,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             urlType: string;
         }[];
         urlLinkSuppressedCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./enrichment.ts").EntityEnrichmentSchemaInput, z.core.$ZodTypeInternals<{
         address: {
             address?: number | null | undefined;
             addressLine1?: string | null | undefined;
@@ -613,6 +614,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -637,7 +639,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             urlType: string;
         }[];
         urlLinkSuppressedCount: number;
-    }, unknown>>;
+    }, import("./enrichment.ts").EntityEnrichmentSchemaInput>>;
     fundraiseRound: z.ZodArray<z.ZodType<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
@@ -724,7 +726,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
@@ -810,7 +812,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown>>>;
+    }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
     newsArticle: z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
         category?: string | null | undefined;
@@ -825,7 +827,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -839,7 +841,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../news/news.ts").NewsSchemaInput>>>;
     person: z.ZodArray<z.ZodType<{
         articleCount?: number | null | undefined;
         association: {
@@ -1170,7 +1172,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../person/detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
@@ -1500,7 +1502,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown>>>;
+    }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
     publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     relationship: z.ZodArray<z.ZodType<{
         asOf?: string | null | undefined;
@@ -1560,7 +1562,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         sourceEntityId?: string | null | undefined;
         targetEntityId?: string | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
             fundingStage?: string | null | undefined;
@@ -1618,7 +1620,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         sourceEntityId?: string | null | undefined;
         targetEntityId?: string | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./relationship.ts").EntityRelationshipSchemaInput>>>;
     research: z.ZodType<{
         acceleratorParticipation: {
             accelerator: {
@@ -1702,7 +1704,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             textType: string;
             updatedAt?: string | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
         acceleratorParticipation: {
             accelerator: {
                 defaultCurrency?: string | null | undefined;
@@ -1785,7 +1787,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             textType: string;
             updatedAt?: string | null | undefined;
         }[];
-    }, unknown>>;
+    }, import("./research.ts").EntityResearchSchemaInput>>;
     sitemap: z.ZodObject<{
         hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
         hasAnalysis: z.ZodBoolean;
@@ -1805,7 +1807,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         };
         source?: string | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../unique/id.ts").UniqueIdSchemaInput, z.core.$ZodTypeInternals<{
         createdAt: string;
         id: number;
         identifier: string;
@@ -1816,7 +1818,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         };
         source?: string | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
 }, z.core.$strip>;
 export type EntityDetail = z.infer<typeof EntityDetailSchema>;
 //# sourceMappingURL=detail.d.ts.map

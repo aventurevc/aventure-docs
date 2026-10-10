@@ -6,20 +6,20 @@ declare const PersonSchemaDefinition: z.ZodObject<{
     image: z.ZodType<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./image.ts").PersonImageSchemaInput, z.core.$ZodTypeInternals<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown>>;
+    }, import("./image.ts").PersonImageSchemaInput>>;
     lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     nameAlias: z.ZodArray<z.ZodType<{
         displayable?: boolean | null | undefined;
         name: string;
         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
         displayable?: boolean | null | undefined;
         name: string;
         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-    }, unknown>>>;
+    }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput>>>;
     nameFirst: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     nameFull: z.ZodString;
     nameLast: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -55,14 +55,16 @@ declare const PersonSchemaDefinition: z.ZodObject<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/text-bundle.ts").EntityTextBundleSchemaInput, z.core.$ZodTypeInternals<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown>>;
+    }, import("../entity/text-bundle.ts").EntityTextBundleSchemaInput>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
+export interface PersonSchemaInput extends z.input<typeof PersonSchemaDefinition> {
+}
 /**
  * Canonical person core record
  *
@@ -97,7 +99,7 @@ type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
  * @contractShape person.person
  * @contractRole canonical
  */
-export declare const PersonSchema: z.ZodType<PersonDefinition>;
+export declare const PersonSchema: z.ZodType<PersonDefinition, PersonSchemaInput>;
 export type Person = z.infer<typeof PersonSchema>;
 export {};
 //# sourceMappingURL=person.d.ts.map

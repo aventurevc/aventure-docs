@@ -21,21 +21,21 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, import("./image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -154,6 +154,8 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
     valuationPreMoney: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransactionSchemaDefinition>;
+export interface EntityFundraiseTransactionSchemaInput extends z.input<typeof EntityFundraiseTransactionSchemaDefinition> {
+}
 /**
  * Canonical fundraise transaction view. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.
  *
@@ -186,7 +188,7 @@ type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransa
  * @contractShape entity.fundraise-transaction
  * @contractRole canonical
  */
-export declare const EntityFundraiseTransactionSchema: z.ZodType<EntityFundraiseTransactionDefinition>;
+export declare const EntityFundraiseTransactionSchema: z.ZodType<EntityFundraiseTransactionDefinition, EntityFundraiseTransactionSchemaInput>;
 export type EntityFundraiseTransaction = z.infer<typeof EntityFundraiseTransactionSchema>;
 export {};
 //# sourceMappingURL=fundraise-transaction.d.ts.map

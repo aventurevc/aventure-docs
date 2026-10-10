@@ -21,6 +21,8 @@ declare const EntityTextSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type EntityTextDefinition = z.infer<typeof EntityTextSchemaDefinition>;
+export interface EntityTextSchemaInput extends z.input<typeof EntityTextSchemaDefinition> {
+}
 /**
  * Canonical entity/person text read record
  *
@@ -33,7 +35,7 @@ type EntityTextDefinition = z.infer<typeof EntityTextSchemaDefinition>;
  * @contractShape entity.text
  * @contractRole canonical
  */
-export declare const EntityTextSchema: z.ZodType<EntityTextDefinition>;
+export declare const EntityTextSchema: z.ZodType<EntityTextDefinition, EntityTextSchemaInput>;
 export type EntityText = z.infer<typeof EntityTextSchema>;
 export {};
 //# sourceMappingURL=text.d.ts.map

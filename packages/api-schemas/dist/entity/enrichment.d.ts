@@ -10,13 +10,13 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -249,7 +249,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             writable: boolean;
         })[] | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./classification.ts").EntityClassificationSchemaInput, z.core.$ZodTypeInternals<{
         geoLocationExposure?: ({
             creatable: boolean;
             isCurrent?: boolean | null | undefined;
@@ -450,7 +450,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             writable: boolean;
         })[] | undefined;
-    }, unknown>>;
+    }, import("./classification.ts").EntityClassificationSchemaInput>>;
     fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fundingRoundCount: z.ZodInt;
@@ -502,15 +502,16 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         unconvertedRoundCount: z.ZodInt;
     }, z.core.$strip>>>;
     headquartersAddressId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    headquartersRemoteAsOf: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     text: z.ZodType<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./text-bundle.ts").EntityTextBundleSchemaInput, z.core.$ZodTypeInternals<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown>>;
+    }, import("./text-bundle.ts").EntityTextBundleSchemaInput>>;
     urlLink: z.ZodArray<z.ZodType<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
@@ -528,7 +529,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -545,10 +546,12 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput>>>;
     urlLinkSuppressedCount: z.ZodInt;
 }, z.core.$strip>;
 type EntityEnrichmentDefinition = z.infer<typeof EntityEnrichmentSchemaDefinition>;
+export interface EntityEnrichmentSchemaInput extends z.input<typeof EntityEnrichmentSchemaDefinition> {
+}
 /**
  * Supplemental entity data — addresses, classification tags, funding, text content, and URL links
  *
@@ -575,7 +578,7 @@ type EntityEnrichmentDefinition = z.infer<typeof EntityEnrichmentSchemaDefinitio
  * @contractShape entity.enrichment
  * @contractRole canonical
  */
-export declare const EntityEnrichmentSchema: z.ZodType<EntityEnrichmentDefinition>;
+export declare const EntityEnrichmentSchema: z.ZodType<EntityEnrichmentDefinition, EntityEnrichmentSchemaInput>;
 export type EntityEnrichment = z.infer<typeof EntityEnrichmentSchema>;
 export {};
 //# sourceMappingURL=enrichment.d.ts.map

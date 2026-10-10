@@ -17,6 +17,8 @@ declare const EntityTypeGroupMembershipSchemaDefinition: z.ZodObject<{
     }>>;
 }, z.core.$strip>;
 type EntityTypeGroupMembershipDefinition = z.infer<typeof EntityTypeGroupMembershipSchemaDefinition>;
+export interface EntityTypeGroupMembershipSchemaInput extends z.input<typeof EntityTypeGroupMembershipSchemaDefinition> {
+}
 /**
  * Canonical concrete entity types included by one entity type group.
  *
@@ -27,7 +29,7 @@ type EntityTypeGroupMembershipDefinition = z.infer<typeof EntityTypeGroupMembers
  * @contractShape entity.type-group-membership
  * @contractRole canonical
  */
-export declare const EntityTypeGroupMembershipSchema: z.ZodType<EntityTypeGroupMembershipDefinition>;
+export declare const EntityTypeGroupMembershipSchema: z.ZodType<EntityTypeGroupMembershipDefinition, EntityTypeGroupMembershipSchemaInput>;
 export type EntityTypeGroupMembership = z.infer<typeof EntityTypeGroupMembershipSchema>;
 export {};
 //# sourceMappingURL=type-group-membership.d.ts.map

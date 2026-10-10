@@ -12,17 +12,19 @@ declare const BillingAdditionalUsageSchemaDefinition: z.ZodObject<{
         amountCents: number;
         quantity: number;
         type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./additional-usage-meter.ts").BillingAdditionalUsageMeterSchemaInput, z.core.$ZodTypeInternals<{
         amountCents: number;
         quantity: number;
         type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
-    }, unknown>>>;
+    }, import("./additional-usage-meter.ts").BillingAdditionalUsageMeterSchemaInput>>>;
     resetAt: z.ZodISODateTime;
     spendCapCents: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     spentCents: z.ZodNumber;
     unbilledCents: z.ZodNumber;
 }, z.core.$strip>;
 type BillingAdditionalUsageDefinition = z.infer<typeof BillingAdditionalUsageSchemaDefinition>;
+export interface BillingAdditionalUsageSchemaInput extends z.input<typeof BillingAdditionalUsageSchemaDefinition> {
+}
 /**
  * Opt-in metered usage past the monthly allowance: settings, spend this UTC month, prepaid credit, and unbilled usage.
  *
@@ -32,7 +34,7 @@ type BillingAdditionalUsageDefinition = z.infer<typeof BillingAdditionalUsageSch
  * @contractShape billing.additional-usage
  * @contractRole canonical
  */
-export declare const BillingAdditionalUsageSchema: z.ZodType<BillingAdditionalUsageDefinition>;
+export declare const BillingAdditionalUsageSchema: z.ZodType<BillingAdditionalUsageDefinition, BillingAdditionalUsageSchemaInput>;
 export type BillingAdditionalUsage = z.infer<typeof BillingAdditionalUsageSchema>;
 export {};
 //# sourceMappingURL=additional-usage.d.ts.map

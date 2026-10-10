@@ -15,7 +15,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         spendCapCents?: number | null | undefined;
         spentCents: number;
         unbilledCents: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./additional-usage.ts").BillingAdditionalUsageSchemaInput, z.core.$ZodTypeInternals<{
         availableCreditCents: number;
         blocked: boolean;
         enabled: boolean;
@@ -30,7 +30,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         spendCapCents?: number | null | undefined;
         spentCents: number;
         unbilledCents: number;
-    }, unknown>>;
+    }, import("./additional-usage.ts").BillingAdditionalUsageSchemaInput>>;
     allowance: z.ZodType<{
         company: {
             limit?: number | null | undefined;
@@ -92,7 +92,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../research/allowance-usage.ts").ResearchAllowanceUsageSchemaInput, z.core.$ZodTypeInternals<{
         company: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
@@ -153,7 +153,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-    }, unknown>>;
+    }, import("../research/allowance-usage.ts").ResearchAllowanceUsageSchemaInput>>;
     cancelAtPeriodEnd: z.ZodBoolean;
     entitled: z.ZodBoolean;
     pendingPlan: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
@@ -201,6 +201,8 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDefinition>;
+export interface BillingSubscriptionSchemaInput extends z.input<typeof BillingSubscriptionSchemaDefinition> {
+}
 /**
  * Current plan (Essential, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
  *
@@ -209,7 +211,7 @@ type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDef
  * @contractShape billing.subscription
  * @contractRole canonical
  */
-export declare const BillingSubscriptionSchema: z.ZodType<BillingSubscriptionDefinition>;
+export declare const BillingSubscriptionSchema: z.ZodType<BillingSubscriptionDefinition, BillingSubscriptionSchemaInput>;
 export type BillingSubscription = z.infer<typeof BillingSubscriptionSchema>;
 export {};
 //# sourceMappingURL=subscription.d.ts.map

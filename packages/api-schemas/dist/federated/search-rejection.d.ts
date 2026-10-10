@@ -9,6 +9,8 @@ declare const FederatedSearchRejectionSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type FederatedSearchRejectionDefinition = z.infer<typeof FederatedSearchRejectionSchemaDefinition>;
+export interface FederatedSearchRejectionSchemaInput extends z.input<typeof FederatedSearchRejectionSchemaDefinition> {
+}
 /**
  * One federated scope that rejected the query instead of searching.
  *
@@ -23,7 +25,7 @@ type FederatedSearchRejectionDefinition = z.infer<typeof FederatedSearchRejectio
  * @contractShape federated.search-rejection
  * @contractRole canonical
  */
-export declare const FederatedSearchRejectionSchema: z.ZodType<FederatedSearchRejectionDefinition>;
+export declare const FederatedSearchRejectionSchema: z.ZodType<FederatedSearchRejectionDefinition, FederatedSearchRejectionSchemaInput>;
 export type FederatedSearchRejection = z.infer<typeof FederatedSearchRejectionSchema>;
 export {};
 //# sourceMappingURL=search-rejection.d.ts.map

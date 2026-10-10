@@ -5,6 +5,8 @@ declare const ChartBucketSchemaDefinition: z.ZodObject<{
     start: z.ZodNumber;
 }, z.core.$strip>;
 type ChartBucketDefinition = z.infer<typeof ChartBucketSchemaDefinition>;
+export interface ChartBucketSchemaInput extends z.input<typeof ChartBucketSchemaDefinition> {
+}
 /**
  * Typed bucket for range histogram charts
  *
@@ -16,7 +18,7 @@ type ChartBucketDefinition = z.infer<typeof ChartBucketSchemaDefinition>;
  * @contractShape chart.bucket
  * @contractRole canonical
  */
-export declare const ChartBucketSchema: z.ZodType<ChartBucketDefinition>;
+export declare const ChartBucketSchema: z.ZodType<ChartBucketDefinition, ChartBucketSchemaInput>;
 export type ChartBucket = z.infer<typeof ChartBucketSchema>;
 export {};
 //# sourceMappingURL=bucket.d.ts.map

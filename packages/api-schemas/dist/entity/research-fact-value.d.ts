@@ -21,6 +21,8 @@ declare const EntityResearchFactValueSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type EntityResearchFactValueDefinition = z.infer<typeof EntityResearchFactValueSchemaDefinition>;
+export interface EntityResearchFactValueSchemaInput extends z.input<typeof EntityResearchFactValueSchemaDefinition> {
+}
 /**
  * Canonical typed fact value nested under entity research fields
  *
@@ -31,7 +33,7 @@ type EntityResearchFactValueDefinition = z.infer<typeof EntityResearchFactValueS
  * @contractShape entity.research-fact-value
  * @contractRole canonical
  */
-export declare const EntityResearchFactValueSchema: z.ZodType<EntityResearchFactValueDefinition>;
+export declare const EntityResearchFactValueSchema: z.ZodType<EntityResearchFactValueDefinition, EntityResearchFactValueSchemaInput>;
 export type EntityResearchFactValue = z.infer<typeof EntityResearchFactValueSchema>;
 export {};
 //# sourceMappingURL=research-fact-value.d.ts.map

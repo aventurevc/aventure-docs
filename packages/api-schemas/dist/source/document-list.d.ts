@@ -16,6 +16,8 @@ declare const SourceDocumentListSchemaDefinition: z.ZodObject<{
     upstreamContentEncoding: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SourceDocumentListDefinition = z.infer<typeof SourceDocumentListSchemaDefinition>;
+export interface SourceDocumentListSchemaInput extends z.input<typeof SourceDocumentListSchemaDefinition> {
+}
 /**
  * Metadata-only ledger row for source-document lists
  *
@@ -26,7 +28,7 @@ type SourceDocumentListDefinition = z.infer<typeof SourceDocumentListSchemaDefin
  * @contractShape source.document-list
  * @contractRole canonical
  */
-export declare const SourceDocumentListSchema: z.ZodType<SourceDocumentListDefinition>;
+export declare const SourceDocumentListSchema: z.ZodType<SourceDocumentListDefinition, SourceDocumentListSchemaInput>;
 export type SourceDocumentList = z.infer<typeof SourceDocumentListSchema>;
 export {};
 //# sourceMappingURL=document-list.d.ts.map

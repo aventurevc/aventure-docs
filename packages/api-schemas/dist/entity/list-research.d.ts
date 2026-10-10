@@ -39,7 +39,7 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         id: string;
         program?: string | null | undefined;
         status?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput, z.core.$ZodTypeInternals<{
         accelerator: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -78,7 +78,7 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         id: string;
         program?: string | null | undefined;
         status?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput>>>;
     detail: z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
         derivedRange?: {
@@ -101,7 +101,7 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./research-detail.ts").EntityResearchDetailSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
         derivedRange?: {
             asOfDate: string;
@@ -123,9 +123,11 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown>>>;
+    }, import("./research-detail.ts").EntityResearchDetailSchemaInput>>>;
 }, z.core.$strip>;
 type EntityListResearchDefinition = z.infer<typeof EntityListResearchSchemaDefinition>;
+export interface EntityListResearchSchemaInput extends z.input<typeof EntityListResearchSchemaDefinition> {
+}
 /**
  * Nested research projection owned by EntityList rows, excluding snippet text.
  *
@@ -146,7 +148,7 @@ type EntityListResearchDefinition = z.infer<typeof EntityListResearchSchemaDefin
  * @contractShape entity.list-research
  * @contractRole canonical
  */
-export declare const EntityListResearchSchema: z.ZodType<EntityListResearchDefinition>;
+export declare const EntityListResearchSchema: z.ZodType<EntityListResearchDefinition, EntityListResearchSchemaInput>;
 export type EntityListResearch = z.infer<typeof EntityListResearchSchema>;
 export {};
 //# sourceMappingURL=list-research.d.ts.map

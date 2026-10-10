@@ -291,6 +291,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -478,7 +479,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -769,6 +770,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -956,7 +958,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>;
+    }, import("./list.ts").EntityListSchemaInput>>;
     similarity: z.ZodType<{
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
@@ -968,7 +970,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
         origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./similarity-context.ts").EntitySimilarityContextSchemaInput, z.core.$ZodTypeInternals<{
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
         curatedAsOf?: string | null | undefined;
@@ -979,9 +981,11 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
         origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown>>;
+    }, import("./similarity-context.ts").EntitySimilarityContextSchemaInput>>;
 }, z.core.$strip>;
 type EntitySimilarityResultDefinition = z.infer<typeof EntitySimilarityResultSchemaDefinition>;
+export interface EntitySimilarityResultSchemaInput extends z.input<typeof EntitySimilarityResultSchemaDefinition> {
+}
 /**
  * Similar entity list row with the provenance that explains why it appears. Rows carry the EntityList projection; load full detail through the entity detail endpoints.
  *
@@ -999,7 +1003,7 @@ type EntitySimilarityResultDefinition = z.infer<typeof EntitySimilarityResultSch
  * @contractShape entity.similarity-result
  * @contractRole canonical
  */
-export declare const EntitySimilarityResultSchema: z.ZodType<EntitySimilarityResultDefinition>;
+export declare const EntitySimilarityResultSchema: z.ZodType<EntitySimilarityResultDefinition, EntitySimilarityResultSchemaInput>;
 export type EntitySimilarityResult = z.infer<typeof EntitySimilarityResultSchema>;
 export {};
 //# sourceMappingURL=similarity-result.d.ts.map

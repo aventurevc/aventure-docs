@@ -4,17 +4,19 @@ declare const SearchOrderingEntityFilterSortableSchemaDefinition: z.ZodObject<{
         descending: boolean;
         field: string;
         sortKey?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../sort/order-entity-filter-sortable.ts").SortOrderEntityFilterSortableSchemaInput, z.core.$ZodTypeInternals<{
         descending: boolean;
         field: string;
         sortKey?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../sort/order-entity-filter-sortable.ts").SortOrderEntityFilterSortableSchemaInput>>>;
     relevance: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         keyword: "keyword";
         semantic: "semantic";
     }>>>;
 }, z.core.$strip>;
 type SearchOrderingEntityFilterSortableDefinition = z.infer<typeof SearchOrderingEntityFilterSortableSchemaDefinition>;
+export interface SearchOrderingEntityFilterSortableSchemaInput extends z.input<typeof SearchOrderingEntityFilterSortableSchemaDefinition> {
+}
 /**
  * Ordering applied to a search result page: an optional relevance rank that precedes the sortable-column terms.
  *
@@ -30,7 +32,7 @@ type SearchOrderingEntityFilterSortableDefinition = z.infer<typeof SearchOrderin
  * @contractShape search.ordering-entity-filter-sortable
  * @contractRole canonical
  */
-export declare const SearchOrderingEntityFilterSortableSchema: z.ZodType<SearchOrderingEntityFilterSortableDefinition>;
+export declare const SearchOrderingEntityFilterSortableSchema: z.ZodType<SearchOrderingEntityFilterSortableDefinition, SearchOrderingEntityFilterSortableSchemaInput>;
 export type SearchOrderingEntityFilterSortable = z.infer<typeof SearchOrderingEntityFilterSortableSchema>;
 export {};
 //# sourceMappingURL=ordering-entity-filter-sortable.d.ts.map

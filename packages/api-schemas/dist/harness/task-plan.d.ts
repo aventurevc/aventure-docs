@@ -16,11 +16,11 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
         description: string;
         key: string;
         type: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./task.ts").HarnessTaskSchemaInput, z.core.$ZodTypeInternals<{
         description: string;
         key: string;
         type: string;
-    }, unknown>>>;
+    }, import("./task.ts").HarnessTaskSchemaInput>>>;
     step: z.ZodArray<z.ZodType<{
         cliCommand: string;
         mcpTool?: string | null | undefined;
@@ -37,7 +37,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             reject: string[];
             typeCatalog: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./task-plan-step.ts").HarnessTaskPlanStepSchemaInput, z.core.$ZodTypeInternals<{
         cliCommand: string;
         mcpTool?: string | null | undefined;
         step: {
@@ -53,7 +53,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             reject: string[];
             typeCatalog: string;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("./task-plan-step.ts").HarnessTaskPlanStepSchemaInput>>>;
     taskKey: z.ZodString;
 }, z.core.$strip>;
 export type HarnessTaskPlan = z.infer<typeof HarnessTaskPlanSchema>;

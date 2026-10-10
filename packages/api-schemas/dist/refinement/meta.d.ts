@@ -6,6 +6,8 @@ declare const RefinementMetaSchemaDefinition: z.ZodObject<{
     total: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type RefinementMetaDefinition = z.infer<typeof RefinementMetaSchemaDefinition>;
+export interface RefinementMetaSchemaInput extends z.input<typeof RefinementMetaSchemaDefinition> {
+}
 /**
  * Meta
  *
@@ -15,7 +17,7 @@ type RefinementMetaDefinition = z.infer<typeof RefinementMetaSchemaDefinition>;
  * @contractShape refinement.meta
  * @contractRole canonical
  */
-export declare const RefinementMetaSchema: z.ZodType<RefinementMetaDefinition>;
+export declare const RefinementMetaSchema: z.ZodType<RefinementMetaDefinition, RefinementMetaSchemaInput>;
 export type RefinementMeta = z.infer<typeof RefinementMetaSchema>;
 export {};
 //# sourceMappingURL=meta.d.ts.map

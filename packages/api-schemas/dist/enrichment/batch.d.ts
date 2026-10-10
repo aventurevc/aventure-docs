@@ -11,6 +11,8 @@ declare const EnrichmentBatchSchemaDefinition: z.ZodObject<{
     userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EnrichmentBatchDefinition = z.infer<typeof EnrichmentBatchSchemaDefinition>;
+export interface EnrichmentBatchSchemaInput extends z.input<typeof EnrichmentBatchSchemaDefinition> {
+}
 /**
  * Existing records to enrich in one call, with the run options every run shares
  *
@@ -19,7 +21,7 @@ type EnrichmentBatchDefinition = z.infer<typeof EnrichmentBatchSchemaDefinition>
  * @contractShape enrichment.batch
  * @contractRole canonical
  */
-export declare const EnrichmentBatchSchema: z.ZodType<EnrichmentBatchDefinition>;
+export declare const EnrichmentBatchSchema: z.ZodType<EnrichmentBatchDefinition, EnrichmentBatchSchemaInput>;
 export type EnrichmentBatch = z.infer<typeof EnrichmentBatchSchema>;
 export {};
 //# sourceMappingURL=batch.d.ts.map

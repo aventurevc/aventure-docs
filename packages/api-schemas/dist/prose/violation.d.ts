@@ -17,6 +17,8 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
     reason: z.ZodString;
 }, z.core.$strip>;
 type ProseViolationDefinition = z.infer<typeof ProseViolationSchemaDefinition>;
+export interface ProseViolationSchemaInput extends z.input<typeof ProseViolationSchemaDefinition> {
+}
 /**
  * One rejected passage and one problem it shows; a passage with several problems appears once per problem.
  *
@@ -26,7 +28,7 @@ type ProseViolationDefinition = z.infer<typeof ProseViolationSchemaDefinition>;
  * @contractShape prose.violation
  * @contractRole canonical
  */
-export declare const ProseViolationSchema: z.ZodType<ProseViolationDefinition>;
+export declare const ProseViolationSchema: z.ZodType<ProseViolationDefinition, ProseViolationSchemaInput>;
 export type ProseViolation = z.infer<typeof ProseViolationSchema>;
 export {};
 //# sourceMappingURL=violation.d.ts.map

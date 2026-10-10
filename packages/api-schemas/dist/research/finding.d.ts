@@ -6,6 +6,8 @@ declare const ResearchFindingSchemaDefinition: z.ZodObject<{
     statement: z.ZodString;
 }, z.core.$strip>;
 type ResearchFindingDefinition = z.infer<typeof ResearchFindingSchemaDefinition>;
+export interface ResearchFindingSchemaInput extends z.input<typeof ResearchFindingSchemaDefinition> {
+}
 /**
  * One fact you researched, with the page and exact text that support it. The run checks the quote against the page before it writes the fact.
  *
@@ -15,7 +17,7 @@ type ResearchFindingDefinition = z.infer<typeof ResearchFindingSchemaDefinition>
  * @contractShape research.finding
  * @contractRole canonical
  */
-export declare const ResearchFindingSchema: z.ZodType<ResearchFindingDefinition>;
+export declare const ResearchFindingSchema: z.ZodType<ResearchFindingDefinition, ResearchFindingSchemaInput>;
 export type ResearchFinding = z.infer<typeof ResearchFindingSchema>;
 export {};
 //# sourceMappingURL=finding.d.ts.map

@@ -4,12 +4,12 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     }, z.core.$strip>;
-    refusal: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    refusal: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         ALLOWANCE_EXHAUSTED: "ALLOWANCE_EXHAUSTED";
         AMBIGUOUS: "AMBIGUOUS";
         NOT_FOUND: "NOT_FOUND";
         SUBSCRIPTION_REQUIRED: "SUBSCRIPTION_REQUIRED";
-    }>>>;
+    }>, z.ZodString]>>>;
     run: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         attempt: z.ZodInt;
         chassis: z.ZodEnum<{
@@ -70,6 +70,8 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type EnrichmentDefinition = z.infer<typeof EnrichmentSchemaDefinition>;
+export interface EnrichmentSchemaInput extends z.input<typeof EnrichmentSchemaDefinition> {
+}
 /**
  * One requested record's batch enrichment outcome: the filed run or the refusal
  *
@@ -78,7 +80,7 @@ type EnrichmentDefinition = z.infer<typeof EnrichmentSchemaDefinition>;
  * @contractShape enrichment.enrichment
  * @contractRole canonical
  */
-export declare const EnrichmentSchema: z.ZodType<EnrichmentDefinition>;
+export declare const EnrichmentSchema: z.ZodType<EnrichmentDefinition, EnrichmentSchemaInput>;
 export type Enrichment = z.infer<typeof EnrichmentSchema>;
 export {};
 //# sourceMappingURL=enrichment.d.ts.map

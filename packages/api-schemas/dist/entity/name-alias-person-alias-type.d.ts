@@ -10,6 +10,8 @@ declare const EntityNameAliasPersonAliasTypeSchemaDefinition: z.ZodObject<{
     }>>>;
 }, z.core.$strip>;
 type EntityNameAliasPersonAliasTypeDefinition = z.infer<typeof EntityNameAliasPersonAliasTypeSchemaDefinition>;
+export interface EntityNameAliasPersonAliasTypeSchemaInput extends z.input<typeof EntityNameAliasPersonAliasTypeSchemaDefinition> {
+}
 /**
  * Alternate name used for search and display
  *
@@ -41,7 +43,7 @@ type EntityNameAliasPersonAliasTypeDefinition = z.infer<typeof EntityNameAliasPe
  * @contractShape entity.name-alias-person-alias-type
  * @contractRole canonical
  */
-export declare const EntityNameAliasPersonAliasTypeSchema: z.ZodType<EntityNameAliasPersonAliasTypeDefinition>;
+export declare const EntityNameAliasPersonAliasTypeSchema: z.ZodType<EntityNameAliasPersonAliasTypeDefinition, EntityNameAliasPersonAliasTypeSchemaInput>;
 export type EntityNameAliasPersonAliasType = z.infer<typeof EntityNameAliasPersonAliasTypeSchema>;
 export {};
 //# sourceMappingURL=name-alias-person-alias-type.d.ts.map

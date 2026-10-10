@@ -7,6 +7,8 @@ declare const ClassificationSchemaDefinition: z.ZodObject<{
     writable: z.ZodBoolean;
 }, z.core.$strip>;
 type ClassificationDefinition = z.infer<typeof ClassificationSchemaDefinition>;
+export interface ClassificationSchemaInput extends z.input<typeof ClassificationSchemaDefinition> {
+}
 /**
  * @openapiSchema Classification
  * @endpoint GET /v1/entities
@@ -36,7 +38,7 @@ type ClassificationDefinition = z.infer<typeof ClassificationSchemaDefinition>;
  * @contractShape classification.classification
  * @contractRole canonical
  */
-export declare const ClassificationSchema: z.ZodType<ClassificationDefinition>;
+export declare const ClassificationSchema: z.ZodType<ClassificationDefinition, ClassificationSchemaInput>;
 export type Classification = z.infer<typeof ClassificationSchema>;
 export {};
 //# sourceMappingURL=classification.d.ts.map

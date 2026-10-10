@@ -11,6 +11,8 @@ declare const SearchAnswerCitationSchemaDefinition: z.ZodObject<{
     sourceId: z.ZodString;
 }, z.core.$strip>;
 type SearchAnswerCitationDefinition = z.infer<typeof SearchAnswerCitationSchemaDefinition>;
+export interface SearchAnswerCitationSchemaInput extends z.input<typeof SearchAnswerCitationSchemaDefinition> {
+}
 /**
  * One piece of evidence an answer cites, by its owning record.
  *
@@ -27,7 +29,7 @@ type SearchAnswerCitationDefinition = z.infer<typeof SearchAnswerCitationSchemaD
  * @contractShape search.answer-citation
  * @contractRole canonical
  */
-export declare const SearchAnswerCitationSchema: z.ZodType<SearchAnswerCitationDefinition>;
+export declare const SearchAnswerCitationSchema: z.ZodType<SearchAnswerCitationDefinition, SearchAnswerCitationSchemaInput>;
 export type SearchAnswerCitation = z.infer<typeof SearchAnswerCitationSchema>;
 export {};
 //# sourceMappingURL=answer-citation.d.ts.map

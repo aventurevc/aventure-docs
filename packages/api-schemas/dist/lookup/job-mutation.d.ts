@@ -5,12 +5,13 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
         providerName?: string | null | undefined;
         searchQuery?: string | undefined;
         type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./mention.ts").LookupMentionSchemaInput, z.core.$ZodTypeInternals<{
         name: string;
         providerName?: string | null | undefined;
         searchQuery?: string | undefined;
         type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
-    }, unknown>>>>;
+    }, import("./mention.ts").LookupMentionSchemaInput>>>>;
+    omitRecords: z.ZodOptional<z.ZodBoolean>;
     sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -40,6 +41,8 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type LookupJobMutationDefinition = z.infer<typeof LookupJobMutationSchemaDefinition>;
+export interface LookupJobMutationSchemaInput extends z.input<typeof LookupJobMutationSchemaDefinition> {
+}
 /**
  * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup-mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.
  *
@@ -51,7 +54,7 @@ type LookupJobMutationDefinition = z.infer<typeof LookupJobMutationSchemaDefinit
  * @contractShape lookup.job-mutation
  * @contractRole canonical
  */
-export declare const LookupJobMutationSchema: z.ZodType<LookupJobMutationDefinition>;
+export declare const LookupJobMutationSchema: z.ZodType<LookupJobMutationDefinition, LookupJobMutationSchemaInput>;
 export type LookupJobMutation = z.infer<typeof LookupJobMutationSchema>;
 export {};
 //# sourceMappingURL=job-mutation.d.ts.map

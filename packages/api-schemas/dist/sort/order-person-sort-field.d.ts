@@ -17,6 +17,8 @@ declare const SortOrderPersonSortFieldSchemaDefinition: z.ZodObject<{
     sortKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SortOrderPersonSortFieldDefinition = z.infer<typeof SortOrderPersonSortFieldSchemaDefinition>;
+export interface SortOrderPersonSortFieldSchemaInput extends z.input<typeof SortOrderPersonSortFieldSchemaDefinition> {
+}
 /**
  * Single sort term: which enumerated sort field to use and whether direction is descending.
  *
@@ -32,7 +34,7 @@ type SortOrderPersonSortFieldDefinition = z.infer<typeof SortOrderPersonSortFiel
  * @contractShape sort.order-person-sort-field
  * @contractRole canonical
  */
-export declare const SortOrderPersonSortFieldSchema: z.ZodType<SortOrderPersonSortFieldDefinition>;
+export declare const SortOrderPersonSortFieldSchema: z.ZodType<SortOrderPersonSortFieldDefinition, SortOrderPersonSortFieldSchemaInput>;
 export type SortOrderPersonSortField = z.infer<typeof SortOrderPersonSortFieldSchema>;
 export {};
 //# sourceMappingURL=order-person-sort-field.d.ts.map
