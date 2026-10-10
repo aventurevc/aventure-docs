@@ -268,8 +268,8 @@ Each investor row names the investor by id only, in `investor.entityId` or
 (`aventure entities list --entity-id <id> <id>`) to read their names; for this
 round they include General Catalyst, Thrive Capital, and Goldman Sachs Asset
 Management. `entityId` is always the company that raised, never the investor.
-Amounts stay in each round's own `currency`, and a missing amount does not mean
-zero.
+Amounts stay in each round's own `currency`; do not add different currencies without conversion.
+A missing amount does not mean zero. Cumulative totals require complete, consistently denominated history.
 
 ## List the Recent Portfolio of an Investor
 
