@@ -25,8 +25,10 @@ in.
 
 The examples use Stripe (`4eabfc26-3ed9-4ad3-a935-9be07ae3329a`), Sequoia
 Capital, and Patrick Collison. Swap in the ids returned by your own lookups.
-For MCP results, read the API body in `data.response` and check `ok`, page
-metadata, and truncation warnings before drawing conclusions. The JSON below
+For MCP JSON results, read the API body in `data.response` and check `ok`,
+page metadata, and truncation warnings before drawing conclusions. For an
+operation that offers both formats, set `responseFormat: "json"` when code
+needs structured fields; `auto` may return text in `data`. The JSON below
 shows the API body rather than the full MCP envelope. See
 [Call MCP tools directly](/mcp-tools).
 
@@ -494,13 +496,23 @@ every plan. To find companies that match a description instead of a known
 company, use `POST /v1/search/natural/entities` (CLI:
 `aventure search natural entities --query "..."`).
 
+For a question that needs evidence and an answer, request natural company
+search layers `passage`, `synthesis`, `judgment`, and `web`. Keep the returned
+record list, cited answer, and judgments separate: they can describe
+different subsets. An answer citation names its source and `sourceId`; read
+that source to inspect the supporting text. A retrieved peer or a similar
+company is not automatically a stored competitor relationship. Check
+truncation before treating passages or web-source lists as complete.
+
 ## Read a Company's Acquisitions
 
 To read companies it bought, use `listEntityAcquisitions` with the company's
 returned id and `query.role: "acquirer"`. The default `acquired` role asks
 whether that company was bought; an empty default result does not mean it
 made no acquisitions. `all` includes both sides. Keep the role fixed while
-paging and distinguish acquisitions from investment rounds.
+paging and distinguish acquisitions from investment rounds. Check `status`
+and `transactionStatus` before saying a deal closed; an announced deal or one
+subject to closing conditions is not a completed acquisition.
 
 ```bash
 aventure entities acquisitions list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --role acquirer --size 3

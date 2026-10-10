@@ -39,12 +39,18 @@ cannot find instructions, try a specific catalog query such as
 A low-confidence help answer is not evidence that those reads are
 unavailable; check the current catalog and connection permissions.
 
+Catalog results are bounded by `limit` (at most 100). Compare
+`counts.returned` with `counts.matched`; narrow `root` or `q` to discover
+operations beyond the returned rows. Compact field names do not tell you
+whether a body field takes a string, array, or nested object. Check the API
+reference before building the request.
+
 For example, finding the company a name refers to is `lookupRecord`
 (`POST /v1/lookup`), which runs through `aventure_lookup` and takes the name and
-known kind in its JSON body:
+known kind in its JSON body. `url` is an array even for one URL:
 
 ```json
-{ "operationId": "lookupRecord", "body": { "name": "Stripe", "kind": "ENTITY" } }
+{ "operationId": "lookupRecord", "body": { "name": "Stripe", "kind": "ENTITY", "url": ["https://stripe.com"] }, "responseFormat": "json" }
 ```
 
 The answer reports whether the name matched a record and, when it did, the
@@ -70,7 +76,9 @@ Put path parameters in `pathParams`, URL query parameters in `query`, and the
 JSON request body in `body`, following the selected operation's contract.
 Do not reuse argument placement between operations. For example, `entityId` is
 a path parameter on `GET /v1/entities/{entityId}` but a repeatable query filter
-on `GET /v1/entities`.
+on `GET /v1/entities`. For `searchPeople`, body `entityId` is one JSON
+string; it is not an array. A natural company search nests the request text
+under `body.search.query`, with explicit constraints in `body.filter`.
 
 MCP query and path keys use the API's wire names, not CLI flag names. For
 example, company news takes `query: { "owner.entityId": "<entityId>" }`,
@@ -84,7 +92,10 @@ MCP results include a structured envelope with `ok`, `summary`, and `data`.
 For an API operation, the returned API body is normally in `data.response`;
 status and help have their own data shapes. Prefer `structuredContent` when
 available: the text content can be a readable projection of the response.
-Empty optional envelope fields may be absent.
+Empty optional envelope fields may be absent. An operation that offers both JSON and
+text can choose text in `auto` mode: check `format`, because `data` is then a
+string rather than an API wrapper. Set `responseFormat: "json"` for code that
+needs structured fields on those operations.
 
 An exact profile lookup already returns the record detail, but its embedded
 lists can be incomplete. Read `data.response.core.id` even if envelope `ids`
