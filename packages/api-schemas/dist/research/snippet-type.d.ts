@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const ResearchSnippetTypeSchemaDefinition: z.ZodObject<{
     analysisRenderable: z.ZodBoolean;
+    analysisSectionLabel: z.ZodOptional<z.ZodArray<z.ZodString>>;
     curated: z.ZodBoolean;
     defaultVisible: z.ZodBoolean;
     label: z.ZodString;

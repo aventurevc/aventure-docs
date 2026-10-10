@@ -4,6 +4,8 @@ import { ResearchParagraphShapeSchema } from "./paragraph-shape.js";
 const ResearchSnippetTypeSchemaDefinition = z.object({
     /** Whether curated rows of this snippet type can make the public company Analysis page eligible. */
     analysisRenderable: z.boolean(),
+    /** Ordered headings for the fixed paragraphs of a framework analysis. Empty means ordinary prose; preserve legacy prose when its paragraph count differs. */
+    analysisSectionLabel: z.array(z.string()).optional(),
     /** Whether the type is curated; with analysisRenderable this gates public Analysis-page eligibility. It does not gate snippet display — every type listed here is recognized and defaults to visible, and the row-level visible flag controls display. */
     curated: z.boolean(),
     /** Default visible flag when a write omits visible; true for recognized snippet types even when curated=false. */

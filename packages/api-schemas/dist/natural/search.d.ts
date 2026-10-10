@@ -24,6 +24,7 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
         minimal: "minimal";
         xhigh: "xhigh";
     }>, z.ZodString]>>>;
+    searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
 export interface NaturalSearchSchemaInput extends z.input<typeof NaturalSearchSchemaDefinition> {

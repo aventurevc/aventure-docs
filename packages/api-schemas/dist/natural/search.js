@@ -16,6 +16,8 @@ const NaturalSearchSchemaDefinition = z.object({
     query: z.string().min(1),
     /** Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Callers without private-data access are capped at `medium`. Null keeps the configured per-call and per-model defaults. */
     reasoningEffort: ReasoningEffortSchema.nullish(),
+    /** Search catalog revision this search reads its qualifier prompts and startup vocabulary from, to compare catalog edits; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404. */
+    searchCatalogRevision: z.int().nullish(),
 });
 /**
  * Plain-English search request. The server plans the query into the target domain filter plus sort, then runs that domain's canonical list engine.

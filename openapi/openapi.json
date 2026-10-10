@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.136"
+    "version": "0.8.139"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -6111,6 +6111,13 @@
             },
             "description": "Entity detail as canonical JSON or the same data rendered as compact text/plain.",
             "headers": {
+              "X-Entity-Name-Revision": {
+                "description": "Opaque revision of entity id, brand, legal name, and ordered name aliases.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -7781,6 +7788,13 @@
             },
             "description": "Entity detail as canonical JSON or the same data rendered as compact text/plain.",
             "headers": {
+              "X-Entity-Name-Revision": {
+                "description": "Opaque revision of entity id, brand, legal name, and ordered name aliases.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
               },
@@ -32471,6 +32485,13 @@
             "type": "boolean",
             "description": "Whether curated rows of this snippet type can make the public company Analysis page eligible."
           },
+          "analysisSectionLabel": {
+            "type": "array",
+            "description": "Ordered headings for the fixed paragraphs of a framework analysis. Empty means ordinary prose; preserve legacy prose when its paragraph count differs.",
+            "items": {
+              "type": "string"
+            }
+          },
           "curated": {
             "type": "boolean",
             "description": "Whether the type is curated; with analysisRenderable this gates public Analysis-page eligibility. It does not gate snippet display — every type listed here is recognized and defaults to visible, and the row-level visible flag controls display."
@@ -33984,6 +34005,15 @@
                 "type": "null"
               }
             ]
+          },
+          "searchCatalogRevision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Search catalog revision this search reads its qualifier prompts and startup vocabulary from, to compare catalog edits; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "example": 1
           }
         },
         "required": [
@@ -37276,6 +37306,15 @@
                 "type": "null"
               }
             ]
+          },
+          "searchCatalogRevision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Search catalog revision this search reads its qualifier prompts and startup vocabulary from, to compare catalog edits; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "example": 1
           }
         },
         "required": [
@@ -37322,6 +37361,17 @@
           "provenance": {
             "$ref": "#/components/schemas/FederatedSearchProvenance",
             "description": "Requested and executed strategy for each search scope."
+          },
+          "qualifier": {
+            "description": "A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchQualifier"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -39987,6 +40037,54 @@
           "person",
           "rejection",
           "unavailable"
+        ]
+      },
+      "SearchQualifier": {
+        "type": "object",
+        "description": "A prompt offered beside a broad query's results, with rewritten queries that narrow or widen it.",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Stable qualifier key.",
+            "example": "tech"
+          },
+          "option": {
+            "type": "array",
+            "description": "Rewritten queries the reader can run instead, in display order.",
+            "items": {
+              "$ref": "#/components/schemas/SearchQualifierOption"
+            }
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Text shown above the options.",
+            "example": "This includes established and emerging tech companies."
+          }
+        },
+        "required": [
+          "key",
+          "option",
+          "prompt"
+        ]
+      },
+      "SearchQualifierOption": {
+        "type": "object",
+        "description": "One rewritten query a qualifier offers.",
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Option label.",
+            "example": "Only startups"
+          },
+          "query": {
+            "type": "string",
+            "description": "Search query the option runs.",
+            "example": "tech startups"
+          }
+        },
+        "required": [
+          "label",
+          "query"
         ]
       },
       "FederatedSearchRejection": {

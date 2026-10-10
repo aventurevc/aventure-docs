@@ -271,6 +271,7 @@ declare const PersonNaturalSearchSchemaDefinition: z.ZodObject<{
         model?: string | null | undefined;
         query: string;
         reasoningEffort?: string | null | undefined;
+        searchCatalogRevision?: number | null | undefined;
     }, import("../natural/search.ts").NaturalSearchSchemaInput, z.core.$ZodTypeInternals<{
         answerModel?: string | null | undefined;
         cacheMode?: "bypass" | "refresh" | "use" | undefined;
@@ -278,6 +279,7 @@ declare const PersonNaturalSearchSchemaDefinition: z.ZodObject<{
         model?: string | null | undefined;
         query: string;
         reasoningEffort?: string | null | undefined;
+        searchCatalogRevision?: number | null | undefined;
     }, import("../natural/search.ts").NaturalSearchSchemaInput>>;
 }, z.core.$strip>;
 type PersonNaturalSearchDefinition = z.infer<typeof PersonNaturalSearchSchemaDefinition>;
