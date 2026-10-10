@@ -20,49 +20,49 @@
       "type": "skill-md",
       "description": "Use only when asked for a competitive landscape report on a company, product, or investment firm: the field within a stated boundary, player classes, the axes buyers trade off, a sourced player table, recent funding and M&A, unmet needs, and the subject's position.",
       "url": "/.well-known/agent-skills/competitive-landscape/SKILL.md",
-      "digest": "sha256:1c90504ac89a516befe596345e197517e0d3faa701436e74142b108e252ba369"
+      "digest": "sha256:135adfeda89be43f5f6df741a19e82ab479eb2210fa7c01caf1950e742bc2dea"
     },
     {
       "name": "competitor-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a competitor analysis of a company or product: head-to-head comparison with its closest rivals on product, total cost, customers, distribution, traction, economics, and team, with the subject's relative strength judged on evidence.",
       "url": "/.well-known/agent-skills/competitor-analysis/SKILL.md",
-      "digest": "sha256:17220421368ad958575f8dccc0d4cf49b703ef26a50bc39c52a28e7d74900d66"
+      "digest": "sha256:e391261fb55419d88fb10e042a3520fc20d157d8521906151941076b73e1a9f7"
     },
     {
       "name": "investor-portfolio-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a portfolio analysis of an investment firm or individual investor: funds, observed deal activity by year, stage, sector, and geography, lead and follow-on behavior with coverage stated, verified outcomes, co-investors, stated versus revealed thesis, and recent activity.",
       "url": "/.well-known/agent-skills/investor-portfolio-analysis/SKILL.md",
-      "digest": "sha256:da0d1bf554be7a5456f4b291c9c61902348123a44a830d892f8cd9d7e440ed01"
+      "digest": "sha256:6e43018b1ae482a02c1a371b62b6ad7d0ab9fe34c7cc2afbe64d3f6e1686c858"
     },
     {
       "name": "leadership-track-record",
       "type": "skill-md",
       "description": "Use only when asked for a track record of a founder, executive, or investor: a verified, dated role history, outcomes during each tenure with careful attribution, board seats and investments, public record matters, and unverified claims flagged.",
       "url": "/.well-known/agent-skills/leadership-track-record/SKILL.md",
-      "digest": "sha256:f13a704de7ff12b497643c7a16dccfb47ad82004083fd35ae9f55dfefe6bfd3f"
+      "digest": "sha256:4342942d5e5ef5e7b3941b8e631fb6d78e0f80776289ca94896c141dc0412b2c"
     },
     {
       "name": "market-research",
       "type": "skill-md",
       "description": "Use only when asked for a market research report on the market a company or product sells into: market boundary, size with shown arithmetic, growth, segments, buyers, pricing, regulation, and the subject's position.",
       "url": "/.well-known/agent-skills/market-research/SKILL.md",
-      "digest": "sha256:27dc8c6542c55399f3be6def4e342effa528bf96c7a66735b5fcc335d270f913"
+      "digest": "sha256:e133ea0a1290b79376dc6c8cc152fe8a2fd83b94dd6c8541518d2f7230531315"
     },
     {
       "name": "porters-five-forces",
       "type": "skill-md",
       "description": "Use only when asked for a Porter's Five Forces analysis of the industry a company or product competes in: a defined industry boundary, each force rated from structural evidence, its direction, the profit implication, and the subject's position.",
       "url": "/.well-known/agent-skills/porters-five-forces/SKILL.md",
-      "digest": "sha256:ac2fc8851110b41dc4df8422342386409bf5cbdf925ecbc1de580d91043849d9"
+      "digest": "sha256:eddf5aefc31566c6a5bacdbd8b8d232a7ba5fcac7e0ffce8d46f62bdd8edcdd9"
     },
     {
       "name": "swot-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a SWOT analysis of a company, product, or investment firm: internal strengths and weaknesses, external opportunities and threats, each specific and sourced, ranked for the reader's decision, and crossed into feasible actions.",
       "url": "/.well-known/agent-skills/swot-analysis/SKILL.md",
-      "digest": "sha256:717fba7ce3a1318280ec36ddb58ef1df76053f774761ce0d574d79774d4b9149"
+      "digest": "sha256:1b8191f466dff323fc707dcaeed84236918d881d930e7316c1a053e11f547111"
     }
   ]
 }
