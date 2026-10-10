@@ -5,10 +5,12 @@ slug: use-cases
 keywords: use cases, examples, recipes, playbook, brand, logo, tags, company enrichment, domain lookup, target list, funding history, investor portfolio, competitors, news monitoring
 ---
 
-Each recipe below answers one job with real calls and real responses, abridged.
-Every call is deterministic: the same input returns the same record, and
-nothing is guessed from a name. Finish a [quickstart](/welcome) first so you
-are signed in.
+Each recipe below answers one job with API, CLI, and MCP calls. Responses are
+abridged examples from a previous data snapshot, not a guarantee of current
+counts, roles, or funding totals. Resolve the record from its website or
+profile URL, then reuse the returned id for the reads that follow. Data can
+change between calls. Finish a [quickstart](/welcome) first so you are signed
+in.
 
 | You want | Recipe |
 |----------|--------|
@@ -22,7 +24,11 @@ are signed in.
 | New coverage of a company | [News monitoring](#monitor-news-about-a-company) |
 
 The examples use Stripe (`4eabfc26-3ed9-4ad3-a935-9be07ae3329a`), Sequoia
-Capital, and Patrick Collison. Swap in your own ids.
+Capital, and Patrick Collison. Swap in the ids returned by your own lookups.
+For MCP results, read the API body in `data.response` and check `ok`, page
+metadata, and truncation warnings before drawing conclusions. The JSON below
+shows the API body rather than the full MCP envelope. See
+[Call MCP tools directly](/mcp-tools).
 
 ## Get a Company Brand Kit From Its Website
 
@@ -198,14 +204,14 @@ market. This one finds seed-stage fintech companies headquartered in New York.
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?stage=Seed&tag=Fintech&headquartersState=New%20York&size=3"
+  "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&tag=Fintech&headquartersState=New%20York&size=3"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities list --stage Seed --tag Fintech --headquarters-state "New York" --size 3
+aventure entities list --type-record Company --stage Seed --tag Fintech --headquarters-state "New York" --size 3
 ```
 
 </Tab>
@@ -214,14 +220,14 @@ aventure entities list --stage Seed --tag Fintech --headquarters-state "New York
 Call `aventure_read`:
 
 ```json
-{ "operationId": "listEntities", "query": { "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3 } }
+{ "operationId": "listEntities", "query": { "typeRecord": "Company", "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3 } }
 ```
 
 </Tab>
 </Tabs>
 
-The answer counts 111 companies, led by Alloy (`alloy-brooklyn-ny-us`), Floret,
-and Parthean. Each row's name and slug sit at `content[].core.nameBrand` and
+Read the current count from `totalElements`; `size=3` returns only the first
+page, not the whole market. Each row's name and slug sit at `content[].core.nameBrand` and
 `content[].core.slug`.
 
 Filter values are case-sensitive display names: the tag is `Fintech`, and the
@@ -232,7 +238,9 @@ full list.
 
 ## Read a Funding History and the Investors in a Round
 
-List the rounds newest first, then name a round's label to list its investors.
+List the rounds newest first, then use the chosen round's returned `id` as
+`transactionId` to list its investors. Labels such as `Series A` can recur;
+when the id is unknown, use `round` together with the exact `dateAnnounced`.
 
 <Tabs>
 <Tab title="API">
@@ -242,7 +250,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-rounds?size=5&sort=dateAnnounced,desc"
 
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-investor-joins?round=Series%20I&size=5"
+  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-investor-joins?transactionId=1d9e0ca8-6653-40ee-93ac-6c000e08fe98&size=5"
 ```
 
 </Tab>
@@ -250,7 +258,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 
 ```bash
 aventure entities fundraise-rounds list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --size 5 --sort dateAnnounced,desc
-aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --round "Series I" --size 5
+aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --transaction-id 1d9e0ca8-6653-40ee-93ac-6c000e08fe98 --size 5
 ```
 
 </Tab>
@@ -270,14 +278,14 @@ Call `aventure_read` once per operation:
 {
   "operationId": "listEntityFundraiseInvestorJoins",
   "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
-  "query": { "round": "Series I", "size": 5 }
+  "query": { "transactionId": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98", "size": 5 }
 }
 ```
 
 </Tab>
 </Tabs>
 
-Stripe has 19 rounds. Its Series I:
+One recorded Series I round in the example snapshot:
 
 ```json
 {
@@ -338,8 +346,8 @@ Call `aventure_read` with `getEntityLookup`, then:
 </Tab>
 </Tabs>
 
-Sequoia Capital has 44 portfolio companies with a round since January 2025.
-The newest, abridged:
+Read `totalElements` for the current portfolio count matching the date
+filter. One example row, abridged:
 
 ```json
 {
@@ -394,6 +402,9 @@ Call `aventure_read` with `getPersonLookup`, then:
 
 </Tab>
 </Tabs>
+
+The role list is paginated; the abridged array below shows its `content`, not
+the complete page. Fetch all pages before claiming to have every role.
 
 ```json
 [
@@ -492,8 +503,11 @@ Call `aventure_read`:
 
 Each article carries `title`, `publication`, `publishedAt`, `excerpt`, and
 `newsUrlOriginal`, newest first. `publishedAfter` includes the date you send,
-so store the date of each check and send it next time. The query key is the
-dotted `owner.entityId`; `owner.personId` does the same for a person. An
+so store the date of each check and send it next time. Deduplicate overlapping
+checks by article id and fetch all relevant pages before advancing the saved
+date. The query key is the
+dotted `owner.entityId`; `owner.personId` does the same for a person. Use one
+owner selector at a time. An
 article can mention the company in passing, so read its `excerpt` before you
 alert on it. To start from an article instead, [identify names in an
 article](/lookup-articles) finds every company and person it names.
@@ -508,3 +522,4 @@ article](/lookup-articles) finds every company and person it names.
 
 [Plans and usage](/plans-and-usage) covers every allowance, and the
 [API reference](/api-reference) lists every parameter and response field.
+
