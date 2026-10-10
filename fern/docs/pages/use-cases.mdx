@@ -5,12 +5,8 @@ slug: use-cases
 keywords: use cases, examples, recipes, playbook, brand, logo, tags, company enrichment, domain lookup, target list, funding history, investor portfolio, competitors, news monitoring
 ---
 
-Each recipe below answers one job with API, CLI, and MCP calls. Responses are
-abridged examples from a previous data snapshot, not a guarantee of current
-counts, roles, or funding totals. Resolve the record from its website or
-profile URL, then reuse the returned id for the reads that follow. Data can
-change between calls. Finish a [quickstart](/welcome) first so you are signed
-in.
+Each recipe answers one job with API, CLI, and MCP calls. Responses are abridged examples from a previous snapshot, not guarantees of current counts, roles, or funding totals.
+Resolve the record from its website or profile URL, then reuse its returned id. Data can change between calls. Finish a [quickstart](/welcome) first to sign in.
 
 | You want | Recipe |
 |----------|--------|
@@ -32,11 +28,8 @@ needs structured fields; `auto` may return text in `data`. The JSON below
 shows the API body rather than the full MCP envelope. See
 [Call MCP tools directly](/mcp-tools).
 
-Profile lookups include related data, but a compact response may omit rows
-or shorten research text. Fetch the corresponding rounds, roles, or news
-sub-resource by the returned `core.id` and page through it before claiming
-complete coverage. A successful lookup alone does not make its embedded
-lists complete.
+Compact profile lookups may omit related rows or shorten research text. Page through the corresponding rounds, roles, or news sub-resource using the returned `core.id` before claiming complete coverage.
+A successful lookup alone does not make its embedded lists complete.
 
 ## Get a Company Brand Kit From Its Website
 
@@ -70,35 +63,14 @@ aventure entities brand get --url stripe.com --data
 Call `aventure_read`:
 
 ```json
-{ "operationId": "getEntityBrand", "query": { "url": "stripe.com" } }
+{"operationId": "getEntityBrand", "query": {"url": "stripe.com"}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-{
-  "id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a",
-  "nameBrand": "Stripe",
-  "nameLegal": "Stripe, Inc.",
-  "logoSquare": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
-  "tag": [
-    { "name": "Platform", "isPrimary": false },
-    { "name": "SaaS", "isPrimary": true }
-  ],
-  "link": [
-    { "url": "https://stripe.com/", "urlType": "website" },
-    { "url": "https://www.bloomberg.com/profile/company/1453219D:US", "urlType": "bloomberg" },
-    { "url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase" },
-    { "url": "https://facebook.com/stripehq", "urlType": "facebook" },
-    { "url": "https://github.com/stripe", "urlType": "github" },
-    { "url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin" },
-    { "url": "https://x.com/stripe", "urlType": "twitter" },
-    { "url": "https://wellfound.com/company/stripe", "urlType": "wellfound" },
-    { "url": "https://en.wikipedia.org/wiki/Stripe,_Inc.", "urlType": "wikipedia" },
-    { "url": "https://ycombinator.com/companies/stripe", "urlType": "ycombinator" }
-  ]
-}
+{"id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "nameBrand": "Stripe", "nameLegal": "Stripe, Inc.", "logoSquare": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png", "tag": [{"name": "Platform", "isPrimary": false}, {"name": "SaaS", "isPrimary": true}], "link": [{"url": "https://stripe.com/", "urlType": "website"}, {"url": "https://www.bloomberg.com/profile/company/1453219D:US", "urlType": "bloomberg"}, {"url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase"}, {"url": "https://facebook.com/stripehq", "urlType": "facebook"}, {"url": "https://github.com/stripe", "urlType": "github"}, {"url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin"}, {"url": "https://x.com/stripe", "urlType": "twitter"}, {"url": "https://wellfound.com/company/stripe", "urlType": "wellfound"}, {"url": "https://en.wikipedia.org/wiki/Stripe,_Inc.", "urlType": "wikipedia"}, {"url": "https://ycombinator.com/companies/stripe", "urlType": "ycombinator"}]}
 ```
 
 | Field | Holds |
@@ -133,17 +105,14 @@ aventure entities logo get --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a
 Call `aventure_read`:
 
 ```json
-{ "operationId": "getEntityLogo", "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" } }
+{"operationId": "getEntityLogo", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-{
-  "path": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
-  "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png"
-}
+{"path": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png", "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png"}
 ```
 
 Each brand read counts one brand view per company per calendar month (UTC), on
@@ -181,18 +150,14 @@ aventure entities lookup-matches --url stripe.com notion.so zzqx-unknown-domain-
 Call `aventure_lookup`:
 
 ```json
-{ "operationId": "lookupEntityMatches", "body": { "url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"] } }
+{"operationId": "lookupEntityMatches", "body": {"url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"]}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-[
-  { "input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": { "core": { "nameBrand": "Stripe" } } },
-  { "input": "notion.so", "inputType": "URL", "status": "MATCHED", "detail": { "core": { "nameBrand": "Notion", "slug": "notion" } } },
-  { "input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": [] }
-]
+[{"input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Stripe"}}}, {"input": "notion.so", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Notion", "slug": "notion"}}}, {"input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": []}]
 ```
 
 An `AMBIGUOUS` row lists the records that share the URL in
@@ -228,7 +193,7 @@ aventure entities list --type-record Company --stage Seed --tag Fintech --headqu
 Call `aventure_read`:
 
 ```json
-{ "operationId": "listEntities", "query": { "typeRecord": "Company", "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3 } }
+{"operationId": "listEntities", "query": {"typeRecord": "Company", "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3}}
 ```
 
 </Tab>
@@ -282,19 +247,11 @@ aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a
 Call `aventure_read` once per operation:
 
 ```json
-{
-  "operationId": "listEntityFundraiseRounds",
-  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
-  "query": { "size": 5, "sort": "dateAnnounced,desc" }
-}
+{"operationId": "listEntityFundraiseRounds", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}, "query": {"size": 5, "sort": "dateAnnounced,desc"}}
 ```
 
 ```json
-{
-  "operationId": "listEntityFundraiseInvestorJoins",
-  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
-  "query": { "transactionId": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98", "size": 5 }
-}
+{"operationId": "listEntityFundraiseInvestorJoins", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}, "query": {"transactionId": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98", "size": 5}}
 ```
 
 </Tab>
@@ -303,14 +260,7 @@ Call `aventure_read` once per operation:
 One recorded Series I round in the example snapshot:
 
 ```json
-{
-  "id": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98",
-  "round": "Series I",
-  "amountRaised": 6500000000,
-  "currency": "USD",
-  "dateAnnounced": "2023-03-15T00:00:00.000Z",
-  "investorCount": 10
-}
+{"id": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98", "round": "Series I", "amountRaised": 6500000000, "currency": "USD", "dateAnnounced": "2023-03-15T00:00:00.000Z", "investorCount": 10}
 ```
 
 Each investor row names the investor by id only, in `investor.entityId` or
@@ -351,11 +301,7 @@ aventure entities investments list --entity-id 9187060c-8107-4f4c-9719-f185d2c8e
 Call `aventure_read` with `getEntityLookup`, then:
 
 ```json
-{
-  "operationId": "listEntityInvestments",
-  "pathParams": { "entityId": "9187060c-8107-4f4c-9719-f185d2c8ee7d" },
-  "query": { "latestPerEntity": true, "dateFrom": "2025-01-01", "size": 3 }
-}
+{"operationId": "listEntityInvestments", "pathParams": {"entityId": "9187060c-8107-4f4c-9719-f185d2c8ee7d"}, "query": {"latestPerEntity": true, "dateFrom": "2025-01-01", "size": 3}}
 ```
 
 </Tab>
@@ -365,14 +311,7 @@ Read `totalElements` for the current portfolio count matching the date
 filter. One example row, abridged:
 
 ```json
-{
-  "round": "Series B",
-  "amountRaised": 50000000,
-  "currency": "USD",
-  "dateAnnounced": "2026-09-30T00:00:00.000Z",
-  "entity": { "core": { "nameBrand": "Flow Engineering", "slug": "flow-engineering-san-francisco-ca-us" } },
-  "investorAttribution": { "leadInvestor": false, "attributionType": "direct" }
-}
+{"round": "Series B", "amountRaised": 50000000, "currency": "USD", "dateAnnounced": "2026-09-30T00:00:00.000Z", "entity": {"core": {"nameBrand": "Flow Engineering", "slug": "flow-engineering-san-francisco-ca-us"}}, "investorAttribution": {"leadInvestor": false, "attributionType": "direct"}}
 ```
 
 `latestPerEntity=true` keeps one row per company. `dateFrom` and `dateTo` take
@@ -418,7 +357,7 @@ aventure people entities list --person-id 44a15937-50df-4970-a32e-130e2c3ca150 -
 Call `aventure_read` with `getPersonLookup`, then:
 
 ```json
-{ "operationId": "listPersonEntityAssociations", "pathParams": { "personId": "44a15937-50df-4970-a32e-130e2c3ca150" }, "query": { "size": 5 } }
+{"operationId": "listPersonEntityAssociations", "pathParams": {"personId": "44a15937-50df-4970-a32e-130e2c3ca150"}, "query": {"size": 5}}
 ```
 
 </Tab>
@@ -428,11 +367,7 @@ The role list is paginated; the abridged array below shows its `content`, not
 the complete page. Fetch all pages before claiming to have every role.
 
 ```json
-[
-  { "entityName": "Stripe", "entitySlug": "stripe-south-san-francisco-ca-us", "titleName": "Co-Founder & CEO", "isCurrent": true },
-  { "entityName": "Auctomatic", "entitySlug": "auctomatic-san-francisco-ca-us", "titleName": "Cofounder", "isCurrent": false,
-    "startDate": "2007-01-01T00:00Z", "endDate": "2008-01-01T00:00Z" }
-]
+[{"entityName": "Stripe", "entitySlug": "stripe-south-san-francisco-ca-us", "titleName": "Co-Founder & CEO", "isCurrent": true}, {"entityName": "Auctomatic", "entitySlug": "auctomatic-san-francisco-ca-us", "titleName": "Cofounder", "isCurrent": false, "startDate": "2007-01-01T00:00Z", "endDate": "2008-01-01T00:00Z"}]
 ```
 
 The person lookup counts one person profile view; the role list does not.
@@ -468,10 +403,7 @@ aventure entities similar list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a 
 Call `aventure_read`:
 
 ```json
-{
-  "operationId": "listEntitySimilarEntities",
-  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" }, "query": { "relationshipType": "competitor", "size": 5 }
-}
+{"operationId": "listEntitySimilarEntities", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}, "query": {"relationshipType": "competitor", "size": 5}}
 ```
 
 </Tab>
@@ -480,14 +412,7 @@ Call `aventure_read`:
 Each row pairs a company with why it is listed:
 
 ```json
-{
-  "entity": { "core": { "nameBrand": "Block", "slug": "block-san-francisco-ca-us" } },
-  "similarity": {
-    "origin": "curated",
-    "curatedRelationshipType": "competitor",
-    "curatedSource": "Stripe competes with Block across payments and financial infrastructure."
-  }
-}
+{"entity": {"core": {"nameBrand": "Block", "slug": "block-san-francisco-ca-us"}}, "similarity": {"origin": "curated", "curatedRelationshipType": "competitor", "curatedSource": "Stripe competes with Block across payments and financial infrastructure."}}
 ```
 
 Stripe's stored competitors include Block, Wise, and Visa. Without
@@ -544,7 +469,7 @@ aventure news list --owner-entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --publ
 Call `aventure_read`:
 
 ```json
-{ "operationId": "listNews", "query": { "owner.entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "publishedAfter": "2026-09-01", "size": 3 } }
+{"operationId": "listNews", "query": {"owner.entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "publishedAfter": "2026-09-01", "size": 3}}
 ```
 
 </Tab>
