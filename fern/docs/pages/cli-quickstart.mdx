@@ -19,8 +19,10 @@ terminal commands:
 Set up the aVenture CLI for me. It needs Node.js 24.18.0 or later.
 1. Install it: npm install --global @aventurevc/aventure-cli
 2. Run `aventure auth login` so I can approve the sign-in in my browser.
-   In a headless environment use `aventure auth login --no-browser` and
-   show me its approval link and one-time code.
+   In a headless environment use `aventure auth login --no-browser`.
+   If it returns a device approval link and code, show them to me.
+   If device approval is unavailable, report the error and offer the
+   documented `aventure auth login --key --no-browser` fallback.
 3. When I'm signed in, confirm it works:
    aventure entities lookup-exact get --url https://stripe.com
 Use `aventure --help` to find other commands.
