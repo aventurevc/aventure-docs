@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.149"
+    "version": "0.8.151"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -1741,12 +1741,12 @@
         ],
         "x-aventure-cli-composite": {
           "command": "auth login",
-          "description": "Sign in through your browser, or use --no-browser for OAuth device authorization, and save verified CLI access in the credential store.",
+          "description": "Sign in through your browser and save verified CLI access in the credential store. Use --no-browser for OAuth device authorization only when the issuer advertises device-grant support; otherwise use --key --no-browser for API-key approval.",
           "localOption": [
             {
               "optionKey": "browser",
               "flag": "--no-browser",
-              "description": "Use OAuth device authorization: print a sign-in URL and code, then wait for approval. With --key, print the API-key approval URL."
+              "description": "Use OAuth device authorization only when the issuer advertises device-grant support: print a sign-in URL and code, then wait for approval. Otherwise use --key --no-browser for API-key approval."
             },
             {
               "optionKey": "providers",
@@ -16893,7 +16893,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Returns the identification record for a subject — what the platform knows about it, as MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility — by running the entity and person identification ladders with the requested type and provider. To look up or enrich one record from an external source by url, slug, or name, use lookupRecord (POST /v1/lookup). Send name, url, or both; neither answers 422. This read never schedules enrichment or repair; a match it finds stored again as other records files one background merge run for them, once per survivor per UTC day. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Returns the identification record for a subject — what the platform knows about it, as MATCHED, NO_MATCH, or NEEDS_REVIEW within the caller's visibility — by running the entity and person identification ladders with the requested type and provider. To look up or enrich one record from an external source by url, slug, or name, use lookupRecord (POST /v1/lookup). Send name, url, or both; neither answers 422. This read never schedules enrichment, merge, or repair. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
