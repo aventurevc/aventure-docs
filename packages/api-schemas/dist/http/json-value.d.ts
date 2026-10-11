@@ -1,6 +1,8 @@
 import { z } from "zod/v4";
-export type JsonValue = string | number | boolean | null | JsonValue[] | {
-    [key: string]: JsonValue;
+export type JsonValue = string | number | boolean | null | JsonValue[] | JsonFields;
+/** An absent member (`undefined`) is omitted on serialization, as `JSON.stringify` does. */
+export type JsonFields = {
+    [key: string]: JsonValue | undefined;
 };
 /**
  * @usedByEndpoint none:external-root
