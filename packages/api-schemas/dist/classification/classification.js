@@ -33,7 +33,6 @@ const ClassificationSchemaDefinition = z.object({
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityTagSchema
- * @usedBySchema StandardizedClassificationSchema
  * @contractShape classification.classification
  * @contractRole canonical
  */

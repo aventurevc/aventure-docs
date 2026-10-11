@@ -1,7 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-import { ClassificationSchema } from "../classification/classification.js";
-const StandardizedClassificationSchemaDefinition = z.intersection(ClassificationSchema, z.object({
+const StandardizedClassificationSchemaDefinition = z.object({
     /** Standardized category token. */
     category: z.string(),
     /** Standardized classification code when present. */
@@ -26,7 +25,7 @@ const StandardizedClassificationSchemaDefinition = z.intersection(Classification
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Existing standardized rows can be joined through classificationId. */
     writable: z.boolean(),
-}));
+});
 /**
  * Canonical standardized classification projection backed by res_classification_ref. Rows are join-existing-only; creatable is false until a taxonomy writer exists.
  *

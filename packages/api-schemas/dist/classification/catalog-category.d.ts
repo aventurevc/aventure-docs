@@ -3,12 +3,6 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
     alias: z.ZodArray<z.ZodString>;
     category: z.ZodString;
     classification: z.ZodArray<z.ZodType<{
-        creatable: boolean;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        writable: boolean;
-    } & {
         category: string;
         code?: number | null | undefined;
         creatable: boolean;
@@ -21,7 +15,7 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         name: string;
         updatedAt?: string | null | undefined;
         writable: boolean;
-    }, import("./classification.ts").ClassificationSchemaInput & {
+    }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput, z.core.$ZodTypeInternals<{
         category: string;
         code?: number | null | undefined;
         creatable: boolean;
@@ -34,39 +28,7 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         name: string;
         updatedAt?: string | null | undefined;
         writable: boolean;
-    }, z.core.$ZodTypeInternals<{
-        creatable: boolean;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        writable: boolean;
-    } & {
-        category: string;
-        code?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        entityClassificationId?: number | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        level?: number | null | undefined;
-        name: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, import("./classification.ts").ClassificationSchemaInput & {
-        category: string;
-        code?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        entityClassificationId?: number | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        level?: number | null | undefined;
-        name: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }>>>;
+    }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput>>>;
     classificationCount: z.ZodInt;
     creatable: z.ZodBoolean;
     hierarchical: z.ZodBoolean;

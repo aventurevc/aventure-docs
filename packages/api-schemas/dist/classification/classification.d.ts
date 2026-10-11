@@ -34,7 +34,6 @@ export interface ClassificationSchemaInput extends z.input<typeof Classification
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityTagSchema
- * @usedBySchema StandardizedClassificationSchema
  * @contractShape classification.classification
  * @contractRole canonical
  */

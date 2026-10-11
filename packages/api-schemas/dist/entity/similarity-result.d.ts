@@ -137,13 +137,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                     writable: boolean;
                 })[] | undefined;
-                standardizedClassification?: ({
-                    creatable: boolean;
-                    isCurrent?: boolean | null | undefined;
-                    isPrimary?: boolean | null | undefined;
-                    name: string;
-                    writable: boolean;
-                } & {
+                standardizedClassification?: {
                     category: string;
                     code?: number | null | undefined;
                     creatable: boolean;
@@ -156,7 +150,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     name: string;
                     updatedAt?: string | null | undefined;
                     writable: boolean;
-                })[] | undefined;
+                }[] | undefined;
                 tag?: ({
                     creatable: boolean;
                     isCurrent?: boolean | null | undefined;
@@ -617,13 +611,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                     writable: boolean;
                 })[] | undefined;
-                standardizedClassification?: ({
-                    creatable: boolean;
-                    isCurrent?: boolean | null | undefined;
-                    isPrimary?: boolean | null | undefined;
-                    name: string;
-                    writable: boolean;
-                } & {
+                standardizedClassification?: {
                     category: string;
                     code?: number | null | undefined;
                     creatable: boolean;
@@ -636,7 +624,7 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     name: string;
                     updatedAt?: string | null | undefined;
                     writable: boolean;
-                })[] | undefined;
+                }[] | undefined;
                 tag?: ({
                     creatable: boolean;
                     isCurrent?: boolean | null | undefined;

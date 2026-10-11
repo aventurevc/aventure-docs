@@ -62,13 +62,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
     category: z.ZodArray<z.ZodType<{
         alias: string[];
         category: string;
-        classification: ({
-            creatable: boolean;
-            isCurrent?: boolean | null | undefined;
-            isPrimary?: boolean | null | undefined;
-            name: string;
-            writable: boolean;
-        } & {
+        classification: {
             category: string;
             code?: number | null | undefined;
             creatable: boolean;
@@ -81,7 +75,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
             name: string;
             updatedAt?: string | null | undefined;
             writable: boolean;
-        })[];
+        }[];
         classificationCount: number;
         creatable: boolean;
         hierarchical: boolean;
@@ -90,13 +84,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
     }, import("./catalog-category.ts").ClassificationCatalogCategorySchemaInput, z.core.$ZodTypeInternals<{
         alias: string[];
         category: string;
-        classification: ({
-            creatable: boolean;
-            isCurrent?: boolean | null | undefined;
-            isPrimary?: boolean | null | undefined;
-            name: string;
-            writable: boolean;
-        } & {
+        classification: {
             category: string;
             code?: number | null | undefined;
             creatable: boolean;
@@ -109,7 +97,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
             name: string;
             updatedAt?: string | null | undefined;
             writable: boolean;
-        })[];
+        }[];
         classificationCount: number;
         creatable: boolean;
         hierarchical: boolean;

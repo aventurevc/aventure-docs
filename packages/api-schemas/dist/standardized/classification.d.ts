@@ -1,17 +1,5 @@
 import { z } from "zod/v4";
-declare const StandardizedClassificationSchemaDefinition: z.ZodIntersection<z.ZodType<{
-    creatable: boolean;
-    isCurrent?: boolean | null | undefined;
-    isPrimary?: boolean | null | undefined;
-    name: string;
-    writable: boolean;
-}, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-    creatable: boolean;
-    isCurrent?: boolean | null | undefined;
-    isPrimary?: boolean | null | undefined;
-    name: string;
-    writable: boolean;
-}, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
+declare const StandardizedClassificationSchemaDefinition: z.ZodObject<{
     category: z.ZodString;
     code: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     creatable: z.ZodBoolean;
@@ -24,9 +12,10 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodIntersection<z.Zo
     name: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     writable: z.ZodBoolean;
-}, z.core.$strip>>;
+}, z.core.$strip>;
 type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassificationSchemaDefinition>;
-export type StandardizedClassificationSchemaInput = z.input<typeof StandardizedClassificationSchemaDefinition>;
+export interface StandardizedClassificationSchemaInput extends z.input<typeof StandardizedClassificationSchemaDefinition> {
+}
 /**
  * Canonical standardized classification projection backed by res_classification_ref. Rows are join-existing-only; creatable is false until a taxonomy writer exists.
  *
