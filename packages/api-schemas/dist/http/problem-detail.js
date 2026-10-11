@@ -34,6 +34,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "billing_allowance_exhausted",
             /** The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt. */
             "billing_additional_usage_cap_reached",
+            /** The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key. */
+            "billing_credit_checkout_closed",
             /** A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email. */
             "account_exists",
             /** Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle. */
@@ -52,6 +54,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "JOBRUNR_DISABLED",
             /** JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error). */
             "jobrunr_disabled",
+            /** A catalog task step runs an operation this API instance does not serve, so its plan cannot be projected: rollout skew, or an instance whose configuration disables that operation. Agent action: retry after the rollout; on a deployed instance that persists, report it as rollout skew. */
+            "task_plan_operation_unserved",
             /** JobRunr backing storage (Postgres) is unavailable. Agent action: stop; retrying will not help until DB connectivity is restored. */
             "JOBRUNR_STORAGE_UNAVAILABLE",
             /** JobRunr backing storage (Postgres) is unavailable. Agent action: stop; retrying will not help until DB connectivity is restored. */
@@ -86,6 +90,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "image_photographic",
             /** An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately. */
             "web_crawl_fetch_failed",
+            /** A request that must not wait found another request already fetching its source document. Agent action: retry after retryAfterSeconds (also in the Retry-After header); the existing fetch keeps running and this request did not start another. */
+            "source_document_fetch_busy",
             /** A crawl-run request named an entity or person that has no current primary website URL. Agent action: add or activate the owner's website URL, then resubmit; retrying the unchanged request cannot succeed. */
             "primary_website_missing",
             /** RSS news-ingest feed fetch failed after retries or with the breaker open. Agent action: inspect the configured feed URL and upstream status; do not retry the enqueue immediately. */

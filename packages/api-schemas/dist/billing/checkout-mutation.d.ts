@@ -1,12 +1,12 @@
 import { z } from "zod/v4";
 declare const BillingCheckoutMutationSchemaDefinition: z.ZodObject<{
-    plan: z.ZodEnum<{
+    plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-    }>;
+    }>, z.ZodString]>;
     uiMode: z.ZodOptional<z.ZodEnum<{
         ELEMENTS: "ELEMENTS";
         HOSTED_PAGE: "HOSTED_PAGE";

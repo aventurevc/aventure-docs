@@ -18,11 +18,8 @@ import { z } from "zod/v4";
  * @contractShape billing.plan-type
  * @contractRole canonical
  */
-export const BillingPlanTypeSchema = z.enum([
-    "PLUS_MONTHLY",
-    "PLUS_YEARLY",
-    "PRO_MONTHLY",
-    "PRO_YEARLY",
-    "PRO_YEARLY_PROMOTION",
+export const BillingPlanTypeSchema = z.union([
+    z.enum(["PLUS_MONTHLY", "PLUS_YEARLY", "PRO_MONTHLY", "PRO_YEARLY", "PRO_YEARLY_PROMOTION"]),
+    z.string(),
 ]);
 //# sourceMappingURL=plan-type.js.map

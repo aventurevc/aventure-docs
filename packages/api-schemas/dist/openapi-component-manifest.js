@@ -53,6 +53,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/additional-usage-meter",
         schemaName: "BillingAdditionalUsageMeterSchema",
     },
+    BillingAdditionalUsageMutation: {
+        modulePath: "billing/additional-usage-mutation",
+        schemaName: "BillingAdditionalUsageMutationSchema",
+    },
     BillingAdditionalUsageType: {
         modulePath: "billing/additional-usage-type",
         schemaName: "BillingAdditionalUsageTypeSchema",
@@ -91,6 +95,20 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/credit-pack-type",
         schemaName: "BillingCreditPackTypeSchema",
     },
+    BillingCreditPurchase: {
+        modulePath: "billing/credit-purchase",
+        schemaName: "BillingCreditPurchaseSchema",
+    },
+    BillingCreditPurchaseConfirmation: {
+        modulePath: "billing/credit-purchase-confirmation",
+        schemaName: "BillingCreditPurchaseConfirmationSchema",
+    },
+    BillingCreditPurchaseMutation: {
+        modulePath: "billing/credit-purchase-mutation",
+        schemaName: "BillingCreditPurchaseMutationSchema",
+    },
+    BillingDiscount: { modulePath: "billing/discount", schemaName: "BillingDiscountSchema" },
+    BillingNextCharge: { modulePath: "billing/next-charge", schemaName: "BillingNextChargeSchema" },
     BillingPaymentMethod: {
         modulePath: "billing/payment-method",
         schemaName: "BillingPaymentMethodSchema",
@@ -106,6 +124,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     BillingPlanType: { modulePath: "billing/plan-type", schemaName: "BillingPlanTypeSchema" },
     BillingPortal: { modulePath: "billing/portal", schemaName: "BillingPortalSchema" },
+    BillingPortalMutation: {
+        modulePath: "billing/portal-mutation",
+        schemaName: "BillingPortalMutationSchema",
+    },
     BillingRecurringPrice: {
         modulePath: "billing/recurring-price",
         schemaName: "BillingRecurringPriceSchema",

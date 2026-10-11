@@ -5,13 +5,13 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
     currency: z.ZodString;
     displayName: z.ZodString;
     introductoryAmount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    plan: z.ZodEnum<{
+    plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-    }>;
+    }>, z.ZodString]>;
     tier: z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";

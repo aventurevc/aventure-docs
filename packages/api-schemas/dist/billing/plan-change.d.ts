@@ -3,13 +3,13 @@ declare const BillingPlanChangeSchemaDefinition: z.ZodObject<{
     effectiveAt: z.ZodISODateTime;
     paymentClientSecret: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     paymentUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    plan: z.ZodEnum<{
+    plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-    }>;
+    }>, z.ZodString]>;
     publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingPlanChangeDefinition = z.infer<typeof BillingPlanChangeSchemaDefinition>;

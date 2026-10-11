@@ -1,12 +1,12 @@
 import { z } from "zod/v4";
 declare const BillingPlanChangeMutationSchemaDefinition: z.ZodObject<{
-    plan: z.ZodEnum<{
+    plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-    }>;
+    }>, z.ZodString]>;
     prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutationSchemaDefinition>;

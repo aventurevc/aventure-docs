@@ -17,12 +17,12 @@ import { z } from "zod/v4";
  * @contractShape billing.plan-type
  * @contractRole canonical
  */
-export declare const BillingPlanTypeSchema: z.ZodEnum<{
+export declare const BillingPlanTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     PLUS_MONTHLY: "PLUS_MONTHLY";
     PLUS_YEARLY: "PLUS_YEARLY";
     PRO_MONTHLY: "PRO_MONTHLY";
     PRO_YEARLY: "PRO_YEARLY";
     PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-}>;
+}>, z.ZodString]>;
 export type BillingPlanType = z.infer<typeof BillingPlanTypeSchema>;
 //# sourceMappingURL=plan-type.d.ts.map

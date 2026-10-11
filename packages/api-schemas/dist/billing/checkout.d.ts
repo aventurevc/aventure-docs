@@ -2,13 +2,13 @@ import { z } from "zod/v4";
 declare const BillingCheckoutSchemaDefinition: z.ZodObject<{
     clientSecret: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     expiresAt: z.ZodISODateTime;
-    plan: z.ZodEnum<{
+    plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
-    }>;
+    }>, z.ZodString]>;
     publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
