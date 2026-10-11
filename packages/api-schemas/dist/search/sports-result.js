@@ -12,8 +12,6 @@ import { SearchSportsTeamSchema } from "./sports-team.js";
  * @contractRole canonical
  */
 export const SearchSportsResultSchema = z.object({
-    /** Game date as Google states it */
-    date: z.string().nullish(),
     /** League or tournament */
     league: z.string().nullish(),
     /** Stage of the competition */

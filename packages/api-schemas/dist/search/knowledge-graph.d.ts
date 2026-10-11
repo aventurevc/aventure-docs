@@ -10,6 +10,13 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const SearchKnowledgeGraphSchema: z.ZodObject<{
+    attribute: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        name: string;
+        value: string;
+    }, import("./knowledge-graph-attribute.ts").SearchKnowledgeGraphAttributeSchemaInput, z.core.$ZodTypeInternals<{
+        name: string;
+        value: string;
+    }, import("./knowledge-graph-attribute.ts").SearchKnowledgeGraphAttributeSchemaInput>>>>>;
     description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     type: z.ZodOptional<z.ZodNullable<z.ZodString>>;

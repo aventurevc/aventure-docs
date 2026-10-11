@@ -905,6 +905,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/knowledge-graph",
         schemaName: "SearchKnowledgeGraphSchema",
     },
+    SearchKnowledgeGraphAttribute: {
+        modulePath: "search/knowledge-graph-attribute",
+        schemaName: "SearchKnowledgeGraphAttributeSchema",
+    },
+    SearchKnowledgeGraphFact: {
+        modulePath: "search/knowledge-graph-fact",
+        schemaName: "SearchKnowledgeGraphFactSchema",
+    },
     SearchLayer: { modulePath: "search/layer", schemaName: "SearchLayerSchema" },
     SearchMode: { modulePath: "search/mode", schemaName: "SearchModeSchema" },
     SearchModeExecution: {

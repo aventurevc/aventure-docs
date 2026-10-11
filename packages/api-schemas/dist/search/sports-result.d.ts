@@ -10,7 +10,6 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const SearchSportsResultSchema: z.ZodObject<{
-    date: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     league: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     stage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     team: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{

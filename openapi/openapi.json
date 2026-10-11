@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.159"
+    "version": "0.8.160"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -37136,8 +37136,7 @@
               {
                 "type": "null"
               }
-            ],
-            "x-aventure-detail": true
+            ]
           },
           "publicUrl": {
             "type": [
@@ -39021,7 +39020,8 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "x-aventure-detail": true
           },
           "document": {
             "$ref": "#/components/schemas/SourceDocumentList",
@@ -39036,7 +39036,8 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "x-aventure-detail": true
           },
           "relatedQuestion": {
             "type": [
@@ -39046,7 +39047,8 @@
             "description": "Google's \"People also ask\" questions; null when the page shows none",
             "items": {
               "$ref": "#/components/schemas/SearchRelatedQuestion"
-            }
+            },
+            "x-aventure-detail": true
           },
           "relatedSearch": {
             "type": [
@@ -39056,7 +39058,8 @@
             "description": "Google's related searches; null when the page shows none",
             "items": {
               "type": "string"
-            }
+            },
+            "x-aventure-detail": true
           },
           "result": {
             "type": "array",
@@ -39078,7 +39081,8 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "x-aventure-detail": true
           }
         },
         "required": [
@@ -39384,6 +39388,16 @@
         "type": "object",
         "description": "Google's knowledge panel for the entity the query names",
         "properties": {
+          "attribute": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Facts the panel states, such as founding date, CEO, and headquarters",
+            "items": {
+              "$ref": "#/components/schemas/SearchKnowledgeGraphAttribute"
+            }
+          },
           "description": {
             "type": [
               "string",
@@ -39480,13 +39494,6 @@
         "type": "object",
         "description": "Google's spotlight for one game the query names",
         "properties": {
-          "date": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "description": "Game date as Google states it"
-          },
           "league": {
             "type": [
               "string",
@@ -39540,6 +39547,35 @@
         },
         "required": [
           "name"
+        ]
+      },
+      "SearchKnowledgeGraphAttribute": {
+        "type": "object",
+        "description": "One fact Google's knowledge panel states",
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/SearchKnowledgeGraphFact",
+            "description": "Fact the panel labels",
+            "example": "founded"
+          },
+          "value": {
+            "type": "string",
+            "description": "Value as the panel states it",
+            "example": "2010"
+          }
+        },
+        "required": [
+          "name",
+          "value"
+        ]
+      },
+      "SearchKnowledgeGraphFact": {
+        "type": "string",
+        "description": "Knowledge panel fact name",
+        "x-extensible-enum": [
+          "founded",
+          "ceo",
+          "headquarters"
         ]
       },
       "SearchAiOverviewReference": {

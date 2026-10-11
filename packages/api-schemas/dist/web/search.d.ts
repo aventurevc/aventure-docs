@@ -55,6 +55,13 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         upstreamContentEncoding?: string | null | undefined;
     }, import("../source/document-list.ts").SourceDocumentListSchemaInput>>;
     knowledgeGraph: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        attribute: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+            name: string;
+            value: string;
+        }, import("../search/knowledge-graph-attribute.ts").SearchKnowledgeGraphAttributeSchemaInput, z.core.$ZodTypeInternals<{
+            name: string;
+            value: string;
+        }, import("../search/knowledge-graph-attribute.ts").SearchKnowledgeGraphAttributeSchemaInput>>>>>;
         description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -123,7 +130,6 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         tenantPolicyRevision?: number | null | undefined;
     }, import("../search/search.ts").SearchSchemaInput>>;
     sportsResult: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        date: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         league: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         stage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         team: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
