@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { HarnessRunEnvironmentSchema } from "../harness/run-environment.js";
+import { WebSearchProviderSchema } from "../web/search-provider.js";
 const SearchSchemaDefinition = z.object({
     /** Allow intentional money-like text without a currency marker; prefer --from-file. */
     allowSuspectedShellStrip: z.boolean().nullish(),
@@ -11,12 +12,14 @@ const SearchSchemaDefinition = z.object({
     cacheKey: z.string().nullish(),
     /** Server-selected search catalog revision. */
     catalogRevision: z.int().nullish(),
-    /** Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search. */
+    /** Deprecated alias for `provider: EXA_DEEP`; `true` with any other `provider` is refused with 400. */
     deep: z.boolean().default(false).optional(),
-    /** Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). Without it, a search whose token is still live fetches the overview in the background and later reads return it. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one. */
+    /** Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored. An explicit `true` also reruns a stored search older than SerpAPI's one-hour cache to get a fresh token (its one-minute overview token expired and the cache would return it unchanged). With the flag false, a harness-run credential fetches from a live token only and never reruns a search. Without either, no deferred overview is fetched; one an earlier fetch stored still comes back at no extra cost. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one. */
     deferredAiOverview: z.boolean().default(false).optional(),
     /** Search language code */
     language: z.string().nullish(),
+    /** Provider to search; omitted keeps the default, SerpAPI. EXA runs Exa's instant search with highlights and never falls back to SerpAPI: an Exa failure answers 503. EXA_DEEP runs Exa's slower, broader deep search (higher recall for market and provider questions, about 3-6 s) and falls back to SerpAPI on an Exa failure. Both Exa providers answer synchronously (`Prefer: respond-async` does not apply), are stored apart from SerpAPI results, and are charged like any search. */
+    provider: WebSearchProviderSchema.nullish(),
     /** Search region code */
     region: z.string().nullish(),
     /** Maximum number of normalized results to keep */
