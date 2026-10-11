@@ -16,6 +16,13 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         }, import("../search/ai-overview-reference.ts").SearchAiOverviewReferenceSchemaInput>>>;
         text: z.ZodString;
     }, z.core.$strip>>>;
+    answerBox: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        answer: z.ZodString;
+        snippet: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        type: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
     document: z.ZodType<{
         cacheHitCount: number;
         createdAt: string;
@@ -47,6 +54,24 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         sourceKey: string;
         upstreamContentEncoding?: string | null | undefined;
     }, import("../source/document-list.ts").SourceDocumentListSchemaInput>>;
+    knowledgeGraph: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        type: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
+    relatedQuestion: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        question: string;
+        snippet?: string | null | undefined;
+        title?: string | null | undefined;
+        url?: string | null | undefined;
+    }, import("../search/related-question.ts").SearchRelatedQuestionSchemaInput, z.core.$ZodTypeInternals<{
+        question: string;
+        snippet?: string | null | undefined;
+        title?: string | null | undefined;
+        url?: string | null | undefined;
+    }, import("../search/related-question.ts").SearchRelatedQuestionSchemaInput>>>>>;
+    relatedSearch: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     result: z.ZodArray<z.ZodType<{
         relevanceScore: number;
         snippet: string;
@@ -97,6 +122,19 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         tenant?: "development" | "production" | "staging" | "unassigned" | null | undefined;
         tenantPolicyRevision?: number | null | undefined;
     }, import("../search/search.ts").SearchSchemaInput>>;
+    sportsResult: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        date: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        league: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        stage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        team: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+            name: string;
+            seeding?: number | null | undefined;
+        }, import("../search/sports-team.ts").SearchSportsTeamSchemaInput, z.core.$ZodTypeInternals<{
+            name: string;
+            seeding?: number | null | undefined;
+        }, import("../search/sports-team.ts").SearchSportsTeamSchemaInput>>>>>;
+        venue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
 }, z.core.$strip>;
 type WebSearchDefinition = z.infer<typeof WebSearchSchemaDefinition>;
 export interface WebSearchSchemaInput extends z.input<typeof WebSearchSchemaDefinition> {

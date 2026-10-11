@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.158"
+    "version": "0.8.159"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -39012,9 +39012,51 @@
               }
             ]
           },
+          "answerBox": {
+            "description": "Google's direct answer box; null when the page shows none",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchAnswerBox"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "document": {
             "$ref": "#/components/schemas/SourceDocumentList",
             "description": "Source-document ledger row backing this result"
+          },
+          "knowledgeGraph": {
+            "description": "Google's knowledge panel; null when the page shows none",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchKnowledgeGraph"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relatedQuestion": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Google's \"People also ask\" questions; null when the page shows none",
+            "items": {
+              "$ref": "#/components/schemas/SearchRelatedQuestion"
+            }
+          },
+          "relatedSearch": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Google's related searches; null when the page shows none",
+            "items": {
+              "type": "string"
+            }
           },
           "result": {
             "type": "array",
@@ -39026,6 +39068,17 @@
           "search": {
             "$ref": "#/components/schemas/Search",
             "description": "Web search request represented by this result"
+          },
+          "sportsResult": {
+            "description": "Google's game spotlight; null when the page shows none",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SearchSportsResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
           }
         },
         "required": [
@@ -39196,6 +39249,48 @@
           "text"
         ]
       },
+      "SearchAnswerBox": {
+        "type": "object",
+        "description": "Google's direct answer shown above the results",
+        "properties": {
+          "answer": {
+            "type": "string",
+            "description": "Direct answer text; Google's snippet when the box states no separate answer"
+          },
+          "snippet": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Supporting snippet the box shows"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Title of the page the answer comes from"
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Google's answer-box kind",
+            "example": "organic_result"
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL of the page the answer comes from"
+          }
+        },
+        "required": [
+          "answer"
+        ]
+      },
       "SourceDocumentList": {
         "type": "object",
         "description": "Metadata-only ledger row for source-document lists",
@@ -39285,6 +39380,77 @@
           "sourceKey"
         ]
       },
+      "SearchKnowledgeGraph": {
+        "type": "object",
+        "description": "Google's knowledge panel for the entity the query names",
+        "properties": {
+          "description": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Entity description the panel shows"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Entity name the panel shows",
+            "example": "Stripe"
+          },
+          "type": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Entity kind Google states",
+            "example": "Financial services company"
+          },
+          "website": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Official website the panel links"
+          }
+        }
+      },
+      "SearchRelatedQuestion": {
+        "type": "object",
+        "description": "One \"People also ask\" question Google shows for the query",
+        "properties": {
+          "question": {
+            "type": "string",
+            "description": "Question text",
+            "example": "When was Stripe founded?"
+          },
+          "snippet": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Answer snippet; null when Google answers the question with an AI Overview"
+          },
+          "title": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Title of the page the snippet comes from"
+          },
+          "url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "URL of the page the snippet comes from"
+          }
+        },
+        "required": [
+          "question"
+        ]
+      },
       "SearchHit": {
         "type": "object",
         "description": "One normalized web-search hit with its title, URL, snippet, and relevance score",
@@ -39308,6 +39474,72 @@
           "snippet",
           "title",
           "url"
+        ]
+      },
+      "SearchSportsResult": {
+        "type": "object",
+        "description": "Google's spotlight for one game the query names",
+        "properties": {
+          "date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Game date as Google states it"
+          },
+          "league": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "League or tournament",
+            "example": "NBA"
+          },
+          "stage": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Stage of the competition"
+          },
+          "team": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Teams in the game",
+            "items": {
+              "$ref": "#/components/schemas/SearchSportsTeam"
+            }
+          },
+          "venue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Venue or stadium"
+          }
+        }
+      },
+      "SearchSportsTeam": {
+        "type": "object",
+        "description": "One team in a spotlighted game",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Team name"
+          },
+          "seeding": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Tournament seeding when Google states one"
+          }
+        },
+        "required": [
+          "name"
         ]
       },
       "SearchAiOverviewReference": {

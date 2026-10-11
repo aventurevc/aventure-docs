@@ -875,6 +875,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "SearchAiOverviewReferenceSchema",
     },
     SearchAnswer: { modulePath: "search/answer", schemaName: "SearchAnswerSchema" },
+    SearchAnswerBox: { modulePath: "search/answer-box", schemaName: "SearchAnswerBoxSchema" },
     SearchAnswerCitation: {
         modulePath: "search/answer-citation",
         schemaName: "SearchAnswerCitationSchema",
@@ -900,6 +901,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     SearchInvestment: { modulePath: "search/investment", schemaName: "SearchInvestmentSchema" },
     SearchJudgment: { modulePath: "search/judgment", schemaName: "SearchJudgmentSchema" },
+    SearchKnowledgeGraph: {
+        modulePath: "search/knowledge-graph",
+        schemaName: "SearchKnowledgeGraphSchema",
+    },
     SearchLayer: { modulePath: "search/layer", schemaName: "SearchLayerSchema" },
     SearchMode: { modulePath: "search/mode", schemaName: "SearchModeSchema" },
     SearchModeExecution: {
@@ -920,7 +925,16 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/qualifier-option",
         schemaName: "SearchQualifierOptionSchema",
     },
+    SearchRelatedQuestion: {
+        modulePath: "search/related-question",
+        schemaName: "SearchRelatedQuestionSchema",
+    },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
+    SearchSportsResult: {
+        modulePath: "search/sports-result",
+        schemaName: "SearchSportsResultSchema",
+    },
+    SearchSportsTeam: { modulePath: "search/sports-team", schemaName: "SearchSportsTeamSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
     SecListingProspectus: {
         modulePath: "sec/listing-prospectus",
