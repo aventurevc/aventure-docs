@@ -97,7 +97,7 @@ navigation:
               - entityAcquisitions
               - entityClassifications
               - entityAddresses
-              - entityMedia
+            - entityLogo
               - entityResearch
               - entitySimilar
               - entityMaintenance
@@ -110,12 +110,12 @@ navigation:
               - personInvestments
               - personMetadata
               - personAddresses
-              - personMedia
+            - personPhoto
           - section: News and Content
             skip-slug: true
             contents:
               - news
-              - newsMedia
+            - newsThumbnail
               - publications
               - researchBlogPosts
               - texts
