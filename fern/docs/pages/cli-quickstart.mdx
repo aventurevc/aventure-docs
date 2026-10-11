@@ -19,7 +19,10 @@ terminal commands:
 Set up the aVenture CLI for me. It needs Node.js 24.18.0 or later.
 1. Install it: npm install --global @aventurevc/aventure-cli
 2. Run `aventure auth login` so I can approve the sign-in in my browser.
-   If no browser opens, show me the sign-in link and code it prints.
+   In a headless environment use `aventure auth login --no-browser`.
+   If it returns a device approval link and code, show them to me.
+   If device approval is unavailable, report the error and offer the
+   documented `aventure auth login --key --no-browser` fallback.
 3. When I'm signed in, confirm it works:
    aventure entities lookup-exact get --url https://stripe.com
 Use `aventure --help` to find other commands.
@@ -36,6 +39,17 @@ npm install --global @aventurevc/aventure-cli
 ```
 
 The CLI requires Node.js 24.18.0 or later.
+
+If a global install fails with `EACCES`, use a writable user prefix and add
+its executable directory to your shell's path:
+
+```bash
+npm install --global --prefix "$HOME/.local" @aventurevc/aventure-cli
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+Keep that `PATH` setting in your shell configuration if you want it in later
+terminal sessions.
 
 </Step>
 <Step title="Sign In">
@@ -57,6 +71,9 @@ aventure entities lookup-exact get --url https://stripe.com
 ```
 
 The answer is the company's profile; `core.id` is the `id` the commands below take.
+With `--json`, it is at `data.response.core.id`. Check `truncated` before using
+embedded funding, people, or news lists as complete; use the paginated reads
+below to recover the sections you need.
 This works on every plan.
 
 </Step>
@@ -72,18 +89,18 @@ or a keyword with `aventure entities search --text-search Stripe`.
 
 | You have | Command |
 |---|---|
-| A name | `aventure lookup Stripe` |
-| A name that several companies share | `aventure lookup Mercury --context "banking for startups" --location "San Francisco"` |
+| A name | `aventure lookup --kind ENTITY --name Stripe` |
+| A name that several companies share | `aventure lookup --kind ENTITY --name Mercury --context "banking for startups" --location "San Francisco"` |
 | A website | `aventure lookup --name Stripe --url https://stripe.com` |
-| A description | `aventure search --query "seed-stage climate software companies in Austin"` |
+| A description | `aventure search natural entities --query "seed-stage climate software companies in Austin" --size 5` |
 
 ## Find a Person
 
 | You have | Command |
 |---|---|
-| A name | `aventure people lookup "Patrick Collison" --context "Stripe co-founder"` |
-| A LinkedIn profile | `aventure people lookup "Patrick Collison" --url https://www.linkedin.com/in/patrickcollison` |
-| A description | `aventure search --query "fintech founders who previously worked at PayPal"` |
+| A name | `aventure lookup --kind PERSON --name "Patrick Collison" --context "Stripe co-founder"` |
+| A LinkedIn profile | `aventure people lookup-exact get --url https://www.linkedin.com/in/patrickcollison` |
+| A description | `aventure search natural people --query "fintech founders who previously worked at PayPal" --size 5` |
 
 [Identify a company or person](/lookup) explains each lookup answer.
 
@@ -122,12 +139,18 @@ aventure billing plans list         # plans with monthly and annual prices
 - `--text` is the default in a terminal: a table for a list and labeled fields for one record.
 - `--data` prints the response as JSON. It is the default when output is piped.
 - `--json` prints the full result envelope, capped at 50 KB.
-- `--data-full` prints uncapped JSON.
+- `--data-full` prints uncapped JSON for bounded programs; never use it in an LLM agent.
 - `--all-fields` adds the detail fields that `--text` hides.
 
 Exit code `0` means the call succeeded and `1` means it failed, so a script can
 branch on the exit code without parsing output. With `--json`, check `ok` before
 reading `data.response`.
+
+`--data` also has a 50 KB limit and can return a truncation envelope instead
+of the plain body. For automated research, use `--json` to keep `ok`, warnings,
+continuation tokens, and truncation metadata in a consistent shape. A
+successful exit code proves the operation worked, not that every nested
+section is complete. Follow [result recovery](/mcp-tools#read-the-result-before-continuing).
 
 ## Find the Right Command
 
@@ -155,3 +178,4 @@ needs. For a body-based universal lookup, the generated command is
 - [Use cases and examples](/use-cases) has a command recipe for each common job.
 - [MCP quickstart](/mcp) puts the same data inside an AI client.
 - The CLI is published as [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli), with [source on GitHub](https://github.com/aventurevc/aventure-cli).
+

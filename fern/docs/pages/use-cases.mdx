@@ -5,10 +5,8 @@ slug: use-cases
 keywords: use cases, examples, recipes, playbook, brand, logo, tags, company enrichment, domain lookup, target list, funding history, investor portfolio, competitors, news monitoring
 ---
 
-Each recipe below answers one job with real calls and real responses, abridged.
-Every call is deterministic: the same input returns the same record, and
-nothing is guessed from a name. Finish a [quickstart](/welcome) first so you
-are signed in.
+Each recipe answers one job with API, CLI, and MCP calls. Responses are abridged examples from a previous snapshot, not guarantees of current counts, roles, or funding totals.
+Resolve the record from its website or profile URL, then reuse its returned id. Data can change between calls. Finish a [quickstart](/welcome) first to sign in.
 
 | You want | Recipe |
 |----------|--------|
@@ -22,7 +20,16 @@ are signed in.
 | New coverage of a company | [News monitoring](#monitor-news-about-a-company) |
 
 The examples use Stripe (`4eabfc26-3ed9-4ad3-a935-9be07ae3329a`), Sequoia
-Capital, and Patrick Collison. Swap in your own ids.
+Capital, and Patrick Collison. Swap in the ids returned by your own lookups.
+For MCP JSON results, read the API body in `data.response` and check `ok`,
+page metadata, and truncation warnings before drawing conclusions. For an
+operation that offers both formats, set `responseFormat: "json"` when code
+needs structured fields; `auto` may return text in `data`. The JSON below
+shows the API body rather than the full MCP envelope. See
+[Call MCP tools directly](/mcp-tools).
+
+Compact profile lookups may omit related rows or shorten research text. Page through the corresponding rounds, roles, or news sub-resource using the returned `core.id` before claiming complete coverage.
+A successful lookup alone does not make its embedded lists complete.
 
 ## Get a Company Brand Kit From Its Website
 
@@ -56,35 +63,14 @@ aventure entities brand get --url stripe.com --data
 Call `aventure_read`:
 
 ```json
-{ "operationId": "getEntityBrand", "query": { "url": "stripe.com" } }
+{"operationId": "getEntityBrand", "query": {"url": "stripe.com"}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-{
-  "id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a",
-  "nameBrand": "Stripe",
-  "nameLegal": "Stripe, Inc.",
-  "logoSquare": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
-  "tag": [
-    { "name": "Platform", "isPrimary": false },
-    { "name": "SaaS", "isPrimary": true }
-  ],
-  "link": [
-    { "url": "https://stripe.com/", "urlType": "website" },
-    { "url": "https://www.bloomberg.com/profile/company/1453219D:US", "urlType": "bloomberg" },
-    { "url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase" },
-    { "url": "https://facebook.com/stripehq", "urlType": "facebook" },
-    { "url": "https://github.com/stripe", "urlType": "github" },
-    { "url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin" },
-    { "url": "https://x.com/stripe", "urlType": "twitter" },
-    { "url": "https://wellfound.com/company/stripe", "urlType": "wellfound" },
-    { "url": "https://en.wikipedia.org/wiki/Stripe,_Inc.", "urlType": "wikipedia" },
-    { "url": "https://ycombinator.com/companies/stripe", "urlType": "ycombinator" }
-  ]
-}
+{"id": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "nameBrand": "Stripe", "nameLegal": "Stripe, Inc.", "logoSquare": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png", "tag": [{"name": "Platform", "isPrimary": false}, {"name": "SaaS", "isPrimary": true}], "link": [{"url": "https://stripe.com/", "urlType": "website"}, {"url": "https://www.bloomberg.com/profile/company/1453219D:US", "urlType": "bloomberg"}, {"url": "https://crunchbase.com/organization/stripe", "urlType": "crunchbase"}, {"url": "https://facebook.com/stripehq", "urlType": "facebook"}, {"url": "https://github.com/stripe", "urlType": "github"}, {"url": "https://www.linkedin.com/company/stripe", "urlType": "linkedin"}, {"url": "https://x.com/stripe", "urlType": "twitter"}, {"url": "https://wellfound.com/company/stripe", "urlType": "wellfound"}, {"url": "https://en.wikipedia.org/wiki/Stripe,_Inc.", "urlType": "wikipedia"}, {"url": "https://ycombinator.com/companies/stripe", "urlType": "ycombinator"}]}
 ```
 
 | Field | Holds |
@@ -119,17 +105,14 @@ aventure entities logo get --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a
 Call `aventure_read`:
 
 ```json
-{ "operationId": "getEntityLogo", "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" } }
+{"operationId": "getEntityLogo", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-{
-  "path": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png",
-  "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png"
-}
+{"path": "/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png", "cdnUrl": "https://images-v2.aventure.vc/logos/gfc/gfcNIiXzgUdP6tGupXsKe.png"}
 ```
 
 Each brand read counts one brand view per company per calendar month (UTC), on
@@ -167,18 +150,14 @@ aventure entities lookup-matches --url stripe.com notion.so zzqx-unknown-domain-
 Call `aventure_lookup`:
 
 ```json
-{ "operationId": "lookupEntityMatches", "body": { "url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"] } }
+{"operationId": "lookupEntityMatches", "body": {"url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"]}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-[
-  { "input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": { "core": { "nameBrand": "Stripe" } } },
-  { "input": "notion.so", "inputType": "URL", "status": "MATCHED", "detail": { "core": { "nameBrand": "Notion", "slug": "notion" } } },
-  { "input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": [] }
-]
+[{"input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Stripe"}}}, {"input": "notion.so", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Notion", "slug": "notion"}}}, {"input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": []}]
 ```
 
 An `AMBIGUOUS` row lists the records that share the URL in
@@ -198,14 +177,14 @@ market. This one finds seed-stage fintech companies headquartered in New York.
 
 ```bash
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?stage=Seed&tag=Fintech&headquartersState=New%20York&size=3"
+  "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&tag=Fintech&headquartersState=New%20York&size=3"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities list --stage Seed --tag Fintech --headquarters-state "New York" --size 3
+aventure entities list --type-record Company --stage Seed --tag Fintech --headquarters-state "New York" --size 3
 ```
 
 </Tab>
@@ -214,14 +193,14 @@ aventure entities list --stage Seed --tag Fintech --headquarters-state "New York
 Call `aventure_read`:
 
 ```json
-{ "operationId": "listEntities", "query": { "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3 } }
+{"operationId": "listEntities", "query": {"typeRecord": "Company", "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3}}
 ```
 
 </Tab>
 </Tabs>
 
-The answer counts 111 companies, led by Alloy (`alloy-brooklyn-ny-us`), Floret,
-and Parthean. Each row's name and slug sit at `content[].core.nameBrand` and
+Read the current count from `totalElements`; `size=3` returns only the first
+page, not the whole market. Each row's name and slug sit at `content[].core.nameBrand` and
 `content[].core.slug`.
 
 Filter values are case-sensitive display names: the tag is `Fintech`, and the
@@ -230,9 +209,18 @@ state is `New York`, not `NY`. `GET /v1/entities/filters` (CLI:
 [Pagination and filtering](/pagination-and-filtering) covers paging through the
 full list.
 
+For a plain-English discovery query, inspect the returned `interpretation`
+before using its count. City and state are different filters, and a semantic
+match for "fintech" is different from an exact `industry` or `tag` value.
+Use explicit filter fields for hard requirements. Natural search puts its
+paged records in `result`; a count-only typed search can return no rows while
+`totalElements` remains positive.
+
 ## Read a Funding History and the Investors in a Round
 
-List the rounds newest first, then name a round's label to list its investors.
+List the rounds newest first, then use the chosen round's returned `id` as
+`transactionId` to list its investors. Labels such as `Series A` can recur;
+when the id is unknown, use `round` together with the exact `dateAnnounced`.
 
 <Tabs>
 <Tab title="API">
@@ -242,7 +230,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-rounds?size=5&sort=dateAnnounced,desc"
 
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-investor-joins?round=Series%20I&size=5"
+  "https://api.aventure.vc/v1/entities/4eabfc26-3ed9-4ad3-a935-9be07ae3329a/fundraise-investor-joins?transactionId=1d9e0ca8-6653-40ee-93ac-6c000e08fe98&size=5"
 ```
 
 </Tab>
@@ -250,7 +238,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 
 ```bash
 aventure entities fundraise-rounds list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --size 5 --sort dateAnnounced,desc
-aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --round "Series I" --size 5
+aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --transaction-id 1d9e0ca8-6653-40ee-93ac-6c000e08fe98 --size 5
 ```
 
 </Tab>
@@ -259,35 +247,20 @@ aventure entities fundraise-investor-joins list --entity-id 4eabfc26-3ed9-4ad3-a
 Call `aventure_read` once per operation:
 
 ```json
-{
-  "operationId": "listEntityFundraiseRounds",
-  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
-  "query": { "size": 5, "sort": "dateAnnounced,desc" }
-}
+{"operationId": "listEntityFundraiseRounds", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}, "query": {"size": 5, "sort": "dateAnnounced,desc"}}
 ```
 
 ```json
-{
-  "operationId": "listEntityFundraiseInvestorJoins",
-  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" },
-  "query": { "round": "Series I", "size": 5 }
-}
+{"operationId": "listEntityFundraiseInvestorJoins", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}, "query": {"transactionId": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98", "size": 5}}
 ```
 
 </Tab>
 </Tabs>
 
-Stripe has 19 rounds. Its Series I:
+One recorded Series I round in the example snapshot:
 
 ```json
-{
-  "id": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98",
-  "round": "Series I",
-  "amountRaised": 6500000000,
-  "currency": "USD",
-  "dateAnnounced": "2023-03-15T00:00:00.000Z",
-  "investorCount": 10
-}
+{"id": "1d9e0ca8-6653-40ee-93ac-6c000e08fe98", "round": "Series I", "amountRaised": 6500000000, "currency": "USD", "dateAnnounced": "2023-03-15T00:00:00.000Z", "investorCount": 10}
 ```
 
 Each investor row names the investor by id only, in `investor.entityId` or
@@ -295,8 +268,8 @@ Each investor row names the investor by id only, in `investor.entityId` or
 (`aventure entities list --entity-id <id> <id>`) to read their names; for this
 round they include General Catalyst, Thrive Capital, and Goldman Sachs Asset
 Management. `entityId` is always the company that raised, never the investor.
-Amounts stay in each round's own `currency`, and a missing amount does not mean
-zero.
+Amounts stay in each round's own `currency`; do not add different currencies without conversion.
+A missing amount does not mean zero. Cumulative totals require complete, consistently denominated history.
 
 ## List the Recent Portfolio of an Investor
 
@@ -328,28 +301,17 @@ aventure entities investments list --entity-id 9187060c-8107-4f4c-9719-f185d2c8e
 Call `aventure_read` with `getEntityLookup`, then:
 
 ```json
-{
-  "operationId": "listEntityInvestments",
-  "pathParams": { "entityId": "9187060c-8107-4f4c-9719-f185d2c8ee7d" },
-  "query": { "latestPerEntity": true, "dateFrom": "2025-01-01", "size": 3 }
-}
+{"operationId": "listEntityInvestments", "pathParams": {"entityId": "9187060c-8107-4f4c-9719-f185d2c8ee7d"}, "query": {"latestPerEntity": true, "dateFrom": "2025-01-01", "size": 3}}
 ```
 
 </Tab>
 </Tabs>
 
-Sequoia Capital has 44 portfolio companies with a round since January 2025.
-The newest, abridged:
+Read `totalElements` for the current portfolio count matching the date
+filter. One example row, abridged:
 
 ```json
-{
-  "round": "Series B",
-  "amountRaised": 50000000,
-  "currency": "USD",
-  "dateAnnounced": "2026-09-30T00:00:00.000Z",
-  "entity": { "core": { "nameBrand": "Flow Engineering", "slug": "flow-engineering-san-francisco-ca-us" } },
-  "investorAttribution": { "leadInvestor": false, "attributionType": "direct" }
-}
+{"round": "Series B", "amountRaised": 50000000, "currency": "USD", "dateAnnounced": "2026-09-30T00:00:00.000Z", "entity": {"core": {"nameBrand": "Flow Engineering", "slug": "flow-engineering-san-francisco-ca-us"}}, "investorAttribution": {"leadInvestor": false, "attributionType": "direct"}}
 ```
 
 `latestPerEntity=true` keeps one row per company. `dateFrom` and `dateTo` take
@@ -358,6 +320,12 @@ The newest, abridged:
 no date or one-row-per-company filter, so sort it with `sort=date,desc`. The
 reverse question, who backed one company, is
 `GET /v1/entities/{entityId}/investors`.
+
+Do not report `amountRaised` as the investor's own contribution. Use
+`investorAttribution.amountInvested` when present; if it is absent, the
+individual contribution is unknown. Person investment rows use `amount` for
+the round amount and `date` for the round date; retain the returned field
+names when comparing them with other timestamps.
 
 ## Trace Every Company a Founder Has Worked At
 
@@ -389,23 +357,28 @@ aventure people entities list --person-id 44a15937-50df-4970-a32e-130e2c3ca150 -
 Call `aventure_read` with `getPersonLookup`, then:
 
 ```json
-{ "operationId": "listPersonEntityAssociations", "pathParams": { "personId": "44a15937-50df-4970-a32e-130e2c3ca150" }, "query": { "size": 5 } }
+{"operationId": "listPersonEntityAssociations", "pathParams": {"personId": "44a15937-50df-4970-a32e-130e2c3ca150"}, "query": {"size": 5}}
 ```
 
 </Tab>
 </Tabs>
 
+The role list is paginated; the abridged array below shows its `content`, not
+the complete page. Fetch all pages before claiming to have every role.
+
 ```json
-[
-  { "entityName": "Stripe", "entitySlug": "stripe-south-san-francisco-ca-us", "titleName": "Co-Founder & CEO", "isCurrent": true },
-  { "entityName": "Auctomatic", "entitySlug": "auctomatic-san-francisco-ca-us", "titleName": "Cofounder", "isCurrent": false,
-    "startDate": "2007-01-01T00:00Z", "endDate": "2008-01-01T00:00Z" }
-]
+[{"entityName": "Stripe", "entitySlug": "stripe-south-san-francisco-ca-us", "titleName": "Co-Founder & CEO", "isCurrent": true}, {"entityName": "Auctomatic", "entitySlug": "auctomatic-san-francisco-ca-us", "titleName": "Cofounder", "isCurrent": false, "startDate": "2007-01-01T00:00Z", "endDate": "2008-01-01T00:00Z"}]
 ```
 
 The person lookup counts one person profile view; the role list does not.
 `GET /v1/entities/{entityId}/people` answers the reverse question: who works at
 one company.
+
+Use the association's `titleName`, `isCurrent`, `startDate`, and `endDate`
+for that person's role at that company. A person's general bio can describe
+a different company. Preserve date precision: a value such as `2010` is a
+year, not proof of a January 1 start. Missing end dates do not establish a
+current role; use `isCurrent`.
 
 ## Find the Competitors of a Company
 
@@ -430,10 +403,7 @@ aventure entities similar list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a 
 Call `aventure_read`:
 
 ```json
-{
-  "operationId": "listEntitySimilarEntities",
-  "pathParams": { "entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a" }, "query": { "relationshipType": "competitor", "size": 5 }
-}
+{"operationId": "listEntitySimilarEntities", "pathParams": {"entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a"}, "query": {"relationshipType": "competitor", "size": 5}}
 ```
 
 </Tab>
@@ -442,14 +412,7 @@ Call `aventure_read`:
 Each row pairs a company with why it is listed:
 
 ```json
-{
-  "entity": { "core": { "nameBrand": "Block", "slug": "block-san-francisco-ca-us" } },
-  "similarity": {
-    "origin": "curated",
-    "curatedRelationshipType": "competitor",
-    "curatedSource": "Stripe competes with Block across payments and financial infrastructure."
-  }
-}
+{"entity": {"core": {"nameBrand": "Block", "slug": "block-san-francisco-ca-us"}}, "similarity": {"origin": "curated", "curatedRelationshipType": "competitor", "curatedSource": "Stripe competes with Block across payments and financial infrastructure."}}
 ```
 
 Stripe's stored competitors include Block, Wise, and Visa. Without
@@ -457,6 +420,28 @@ Stripe's stored competitors include Block, Wise, and Visa. Without
 every plan. To find companies that match a description instead of a known
 company, use `POST /v1/search/natural/entities` (CLI:
 `aventure search natural entities --query "..."`).
+
+For a question that needs evidence and an answer, request natural company
+search layers `passage`, `synthesis`, `judgment`, and `web`. Keep the returned
+record list, cited answer, and judgments separate: they can describe
+different subsets. An answer citation names its source and `sourceId`; read
+that source to inspect the supporting text. A retrieved peer or a similar
+company is not automatically a stored competitor relationship. Check
+truncation before treating passages or web-source lists as complete.
+
+## Read a Company's Acquisitions
+
+To read companies it bought, use `listEntityAcquisitions` with the company's
+returned id and `query.role: "acquirer"`. The default `acquired` role asks
+whether that company was bought; an empty default result does not mean it
+made no acquisitions. `all` includes both sides. Keep the role fixed while
+paging and distinguish acquisitions from investment rounds. Check `status`
+and `transactionStatus` before saying a deal closed; an announced deal or one
+subject to closing conditions is not a completed acquisition.
+
+```bash
+aventure entities acquisitions list --entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --role acquirer --size 3
+```
 
 ## Monitor News About a Company
 
@@ -484,7 +469,7 @@ aventure news list --owner-entity-id 4eabfc26-3ed9-4ad3-a935-9be07ae3329a --publ
 Call `aventure_read`:
 
 ```json
-{ "operationId": "listNews", "query": { "owner.entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "publishedAfter": "2026-09-01", "size": 3 } }
+{"operationId": "listNews", "query": {"owner.entityId": "4eabfc26-3ed9-4ad3-a935-9be07ae3329a", "publishedAfter": "2026-09-01", "size": 3}}
 ```
 
 </Tab>
@@ -492,8 +477,11 @@ Call `aventure_read`:
 
 Each article carries `title`, `publication`, `publishedAt`, `excerpt`, and
 `newsUrlOriginal`, newest first. `publishedAfter` includes the date you send,
-so store the date of each check and send it next time. The query key is the
-dotted `owner.entityId`; `owner.personId` does the same for a person. An
+so store the date of each check and send it next time. Deduplicate overlapping
+checks by article id and fetch all relevant pages before advancing the saved
+date. The query key is the
+dotted `owner.entityId`; `owner.personId` does the same for a person. Use one
+owner selector at a time. An
 article can mention the company in passing, so read its `excerpt` before you
 alert on it. To start from an article instead, [identify names in an
 article](/lookup-articles) finds every company and person it names.
@@ -508,3 +496,4 @@ article](/lookup-articles) finds every company and person it names.
 
 [Plans and usage](/plans-and-usage) covers every allowance, and the
 [API reference](/api-reference) lists every parameter and response field.
+

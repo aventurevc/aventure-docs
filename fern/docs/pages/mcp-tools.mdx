@@ -19,23 +19,45 @@ query is rejected with `Pass operationId or method+path.`
 { "q": "look up a company by name", "resolve": true }
 ```
 
-With `resolve`, help returns one recommendation instead of a catalog. In the
-answer, `mcpTool` names the tool to call, and `apiRoute` gives the method and
-path. `pathInput`, `queryInput`, and `bodyInput` list the operation's argument
-names, and `missingInputs` lists the arguments the call still needs.
+With `resolve`, help returns an `outcome` instead of a catalog. An
+`OPERATION_ADVICE` answer has an `operation.mcpCall`; a `TASK_PLAN` has
+`taskPlan.step` entries, each with an `mcpCall` when this connection can run
+the step. `mcpCall.tool` names the tool and the remaining fields form its
+arguments. Fill in placeholders such as `<entityId>` with real values before
+calling it. The skeleton contains required inputs; consult the operation's
+API reference or catalog entry for optional filters and the full body shape.
+
+An outcome of `CLARIFY` or `ABSTAIN` is not an executable recommendation.
+Read the answer and supply the missing context instead of inventing a call.
+Also check warnings: an operation or task step may be outside this server's
+catalog or unavailable to the current connection. Help does not execute the
+recommended operations.
+
+Ask for one operation or coherent task at a time. If a broad help answer
+cannot find instructions, try a specific catalog query such as
+`{ "q": "listEntityFundraiseRounds" }`, or consult the API reference.
+A low-confidence help answer is not evidence that those reads are
+unavailable; check the current catalog and connection permissions.
+
+Catalog results are bounded by `limit` (at most 100). Compare
+`counts.returned` with `counts.matched`; narrow `root` or `q` to discover
+operations beyond the returned rows. Compact field names do not tell you
+whether a body field takes a string, array, or nested object. Check the API
+reference before building the request.
 
 For example, finding the company a name refers to is `lookupRecord`
 (`POST /v1/lookup`), which runs through `aventure_lookup` and takes the name and
-known kind in its JSON body:
+known kind in its JSON body. `url` is an array even for one URL:
 
 ```json
-{ "operationId": "lookupRecord", "body": { "name": "Stripe", "kind": "ENTITY" } }
+{ "operationId": "lookupRecord", "body": { "name": "Stripe", "kind": "ENTITY", "url": ["https://stripe.com"] }, "responseFormat": "json" }
 ```
 
 The answer reports whether the name matched a record and, when it did, the
 record's `id` and `slug` for the reads that follow.
 
-Split `apiRoute` into `method` and `path` and pass both exactly as printed.
+Use the returned `mcpCall` when available. For a catalog row, use its
+`operationId`, or pass its `method` and `path` exactly as printed.
 Never derive an `operationId` from a route: an id that does not exist is
 rejected with `OpenAPI operationId not found`. Take `operationId` from the
 [API reference](/api-reference) or from an `aventure_help` catalog row, which
@@ -50,16 +72,82 @@ operation's URL query parameters, and `aventure_help` ignores it. Calling help
 without `q` is not an error; it returns the start of the full catalog, unranked.
 </Note>
 
-Put each input where the help answer says it goes: `pathInput` values in
-`pathParams`, `queryInput` values in `query`, `bodyInput` values in `body`.
+Put path parameters in `pathParams`, URL query parameters in `query`, and the
+JSON request body in `body`, following the selected operation's contract.
 Do not reuse argument placement between operations. For example, `entityId` is
 a path parameter on `GET /v1/entities/{entityId}` but a repeatable query filter
-on `GET /v1/entities`.
+on `GET /v1/entities`. For `searchPeople`, body `entityId` is one JSON
+string; it is not an array. A natural company search nests the request text
+under `body.search.query`, with explicit constraints in `body.filter`.
+
+MCP query and path keys use the API's wire names, not CLI flag names. For
+example, company news takes `query: { "owner.entityId": "<entityId>" }`,
+not `ownerEntityId` or `owner-entity-id`. Only declared parameters and headers
+are accepted. Use the tool matching the operation's intent; a read operation
+does not run through `aventure_search` merely because it has filters.
+
+## Read the Result Before Continuing
+
+MCP results include a structured envelope with `ok`, `summary`, and `data`.
+For an API operation, the returned API body is normally in `data.response`;
+status and help have their own data shapes. Prefer `structuredContent` when
+available: the text content can be a readable projection of the response.
+Empty optional envelope fields may be absent. An operation that offers both JSON and
+text can choose text in `auto` mode: check `format`, because `data` is then a
+string rather than an API wrapper. Set `responseFormat: "json"` for code that
+needs structured fields on those operations.
+
+An exact profile lookup already returns the record detail, but its embedded
+lists can be incomplete. Read `data.response.core.id` even if envelope `ids`
+is empty. A truncated profile can preserve that id while shortening rounds,
+people, news, and research text. Use it with the appropriate paginated
+sub-resource; do not repeat the same full-profile lookup for completeness.
+
+Check `ok` before using a result. Keep the error code, detail, trace id, and
+any supplied hints when reporting a failure. A missing or ambiguous match is
+not evidence that a company has no funding, people, or news. A `401` calls for
+sign-in; a `403`, plan restriction, exhausted allowance, or rate limit needs
+the corresponding permission, plan, reset, or retry guidance.
+
+List results are pages. Start at page `0`, set a small `size`, and continue
+using the returned page metadata or cursor supported by that operation.
+`totalElements` counts all matches, not just the current `content`. Follow
+[pagination and filtering](/pagination-and-filtering); do not call a partial
+page a complete research result.
+
+For cursor traversal, pass the returned `data.nextCursor` as `query.cursor`
+and keep the same filters and sort. Cursor responses can still report page
+number `0` and `first: true`; use the continuation token rather than those
+flags to choose the next request. Do not decode or construct a cursor.
+
+Natural search returns `data.response.interpretation` and a page in
+`data.response.result`; the outer envelope may have no `page` field. Inspect
+the interpreted filters and the nested page. Confidence does not guarantee
+that a phrase such as "New York" selected the city rather than the state,
+or that "fintech" became an exact industry filter. Put required constraints
+in the operation's explicit `filter` input.
+
+With `countOnly`, an empty `content` and `empty: true` can accompany a positive
+`totalElements`. Use that total for the count; request rows separately.
+
+Check nested omissions too: a page can retain every outer row while
+shortening each row's investor attributions, rounds, or research detail.
+Page metadata describes the outer list, not the completeness of those
+nested sections. Use smaller pages or the relevant section read to recover
+the fields you need.
+
+Some operations finish asynchronously. If the result hands back a running
+job and a status reference, poll that status with `GET` until completion or
+report that it is still running. Do not resubmit the original operation to
+poll it, and do not treat an accepted job as a completed lookup.
 
 <Note>
 `responseFormat` applies only to operations that declare a `text/plain`
 response. Setting it to `text` on a JSON-only operation fails with `does not
 offer text/plain`, so leave it unset unless the operation offers both. If a
-response is truncated, reduce `size` and page through the relevant
-sub-resource instead of changing the format.
+response is truncated, inspect `truncated`, `omitted`, `warnings`, and the
+recovery guidance. Reduce `size` and page through the relevant sub-resource
+instead of changing the format. A compact receipt for a successful write
+means the write already took effect; do not repeat it to recover its body.
 </Note>
+
