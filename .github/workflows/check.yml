@@ -37,6 +37,9 @@ jobs:
         with:
           node-version: "24"
 
+      - name: Check documented Bash examples
+        run: scripts/check-docs-site.sh
+
       - name: Setup Fern CLI
         uses: fern-api/setup-fern-cli@v1
 

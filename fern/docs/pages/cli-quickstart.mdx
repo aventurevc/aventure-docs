@@ -109,10 +109,12 @@ or a keyword with `aventure entities search --text-search Stripe`.
 ## Go Deeper on a Record
 
 ```bash
-aventure entities get --entity-id <id>
-aventure entities fundraise-rounds list --entity-id <id>
-aventure entities people list --entity-id <id>
-aventure people get --person-id <id>
+ENTITY_ID='4eabfc26-3ed9-4ad3-a935-9be07ae3329a'
+PERSON_ID='44a15937-50df-4970-a32e-130e2c3ca150'
+aventure entities get --entity-id "$ENTITY_ID"
+aventure entities fundraise-rounds list --entity-id "$ENTITY_ID"
+aventure entities people list --entity-id "$ENTITY_ID"
+aventure people get --person-id "$PERSON_ID"
 ```
 
 Filter the company list with flags such as `--stage`, `--headquarters-city`,

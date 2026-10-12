@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Verify a published Fern site against the checked-in OpenAPI input.
-#   scripts/check-docs-site.sh <site-base-url>
+#   scripts/check-docs-site.sh [site-base-url]
+# Without a URL, validate documented Bash syntax without making requests.
 # 1. The custom root <site>/llms.txt is byte-identical to fern/llms.txt.
 # 2. Every operation in openapi/openapi.json has exactly one reference page in
 #    <site>/api-reference/llms.txt, and each page's Markdown declares the
@@ -9,12 +10,43 @@
 # 3. The immutable OpenAPI artifact linked from the API overview page is
 #    byte-identical to the checked-in input.
 # 4. The Fern-managed <site>/openapi.json still lists every operation.
-# Requires cmp, curl, jq, shasum. Exit 1 on any discrepancy.
+# Requires Node.js 24 and Bash; site verification also needs cmp, curl, jq,
+# shasum. Exit 1 on any discrepancy.
 set -euo pipefail
 
-BASE="${1:?usage: $0 <site-base-url>}"
-BASE="${BASE%/}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+node --input-type=module - "$ROOT/fern/docs/pages" <<'NODE'
+import { readdirSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
+
+const pageRoot = process.argv[2];
+let checkedExamples = 0;
+let failedExamples = 0;
+for (const pageEntry of readdirSync(pageRoot, { recursive: true, withFileTypes: true })) {
+  if (!pageEntry.isFile() || !pageEntry.name.endsWith('.mdx')) continue;
+  const pagePath = join(pageEntry.parentPath, pageEntry.name);
+  const pageText = readFileSync(pagePath, 'utf8');
+  for (const bashFence of pageText.matchAll(/^```bash[^\r\n]*\r?\n([\s\S]*?)^```[ \t]*\r?$/gm)) {
+    checkedExamples++;
+    const syntaxResult = spawnSync('bash', ['-n'], {
+      input: bashFence[1], encoding: 'utf8', timeout: 5000,
+    });
+    if (syntaxResult.error) throw syntaxResult.error;
+    if (syntaxResult.status !== 0) {
+      failedExamples++;
+      const lineNumber = pageText.slice(0, bashFence.index).split('\n').length;
+      process.stderr.write(`${pagePath}:${lineNumber}\n${syntaxResult.stderr}`);
+    }
+  }
+}
+console.log(`documented_bash_examples=${checkedExamples}`);
+process.exitCode = failedExamples > 0 ? 1 : 0;
+NODE
+
+BASE="${1:-}"
+[ -n "$BASE" ] || exit 0
+BASE="${BASE%/}"
 SPEC="$ROOT/openapi/openapi.json"
 ROOT_LLMS="$ROOT/fern/llms.txt"
 TMP="$(mktemp -d)"

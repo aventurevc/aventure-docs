@@ -76,12 +76,12 @@ By name, with context:
 curl -X POST \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
-  -d '{"name": "Patrick Collison", "context": "Stripe co-founder"}' \
-  "https://api.aventure.vc/v1/people/lookup"
+  -d '{"kind": "PERSON", "name": "Patrick Collison", "context": "Stripe co-founder"}' \
+  "https://api.aventure.vc/v1/lookup"
 ```
 
 By LinkedIn profile, pass the profile in `url` instead:
-`{"name": "Patrick Collison", "url": ["https://www.linkedin.com/in/patrickcollison"]}`.
+`{"kind": "PERSON", "url": ["https://www.linkedin.com/in/patrickcollison"]}`.
 To find people by description, use the same `POST /v1/search` as step 4, such as
 `{"query": "fintech founders who previously worked at PayPal"}`.
 
@@ -90,7 +90,7 @@ To find people by description, use the same `POST /v1/search` as step 4, such as
 Set `ENTITY_ID` to `core.id` from step 2 and list its rounds:
 
 ```bash
-ENTITY_ID=<core.id from step 2>
+ENTITY_ID='4eabfc26-3ed9-4ad3-a935-9be07ae3329a'
 curl -H "Authorization: Bearer $AUTH_TOKEN" \
   "https://api.aventure.vc/v1/entities/$ENTITY_ID/fundraise-rounds?size=5"
 ```
