@@ -58,10 +58,12 @@ terminal sessions.
 aventure auth login
 ```
 
-The command opens your browser to sign in and waits while you approve. Without
-a browser, such as over SSH or in a container, it prints a sign-in URL and a
-one-time code to approve on any device; `--no-browser` forces that mode. For CI, set `AUTH_TOKEN` to an
-[API key](/authentication#create-an-api-key) instead.
+The command opens your browser to sign in and waits while you approve. Over
+SSH or in a container, use `aventure auth login --no-browser`. When the issuer
+supports device authorization, it prints a sign-in URL and a one-time code
+to approve on another device. If device authorization is unavailable, follow
+the reported error and the [API-key approval fallback](/authentication#sign-in-from-the-cli).
+For CI, set `AUTH_TOKEN` to an [API key](/authentication#create-an-api-key) instead.
 
 </Step>
 <Step title="Find a Company">
