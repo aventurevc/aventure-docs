@@ -27,10 +27,11 @@ for (const pageEntry of readdirSync(pageRoot, { recursive: true, withFileTypes: 
   if (!pageEntry.isFile() || !pageEntry.name.endsWith('.mdx')) continue;
   const pagePath = join(pageEntry.parentPath, pageEntry.name);
   const pageText = readFileSync(pagePath, 'utf8');
-  for (const bashFence of pageText.matchAll(/^```bash[^\r\n]*\r?\n([\s\S]*?)^```[ \t]*\r?$/gm)) {
+  for (const bashFence of pageText.matchAll(/^( {0,3})```bash[^\r\n]*\r?\n([\s\S]*?)^ {0,3}```[ \t]*\r?$/gm)) {
     checkedExamples++;
+    const source = bashFence[2].replace(new RegExp(`^ {0,${bashFence[1].length}}`, 'gm'), '');
     const syntaxResult = spawnSync('bash', ['-n'], {
-      input: bashFence[1], encoding: 'utf8', timeout: 5000,
+      input: source, encoding: 'utf8', timeout: 5000,
     });
     if (syntaxResult.error) throw syntaxResult.error;
     if (syntaxResult.status !== 0) {
@@ -44,8 +45,8 @@ console.log(`documented_bash_examples=${checkedExamples}`);
 process.exitCode = failedExamples > 0 ? 1 : 0;
 NODE
 
-BASE="${1:-}"
-[ -n "$BASE" ] || exit 0
+[ "$#" -gt 0 ] || exit 0
+BASE="${1:?usage: $0 [site-base-url]}"
 BASE="${BASE%/}"
 SPEC="$ROOT/openapi/openapi.json"
 ROOT_LLMS="$ROOT/fern/llms.txt"
