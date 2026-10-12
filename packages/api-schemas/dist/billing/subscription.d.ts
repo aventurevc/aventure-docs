@@ -155,6 +155,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         };
     }, import("../research/allowance-usage.ts").ResearchAllowanceUsageSchemaInput>>;
     cancelAtPeriodEnd: z.ZodBoolean;
+    creditPurchasable: z.ZodBoolean;
     entitled: z.ZodBoolean;
     originalStart: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     pendingPlan: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{

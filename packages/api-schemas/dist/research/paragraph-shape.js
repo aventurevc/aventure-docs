@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Write-time per-paragraph shape rule for governed text bodies. Paragraphs split on `\n\n` (one blank line). Each paragraph must satisfy minChars..maxChars and minSentences..maxSentences; whole body must satisfy minParagraphs..maxParagraphs (null maxParagraphs = unbounded). Sentence boundaries follow Unicode rules (java.text.BreakIterator), so 'Inc.' and 'U.S.' do not split a sentence.
+ * Write-time per-paragraph shape rule for governed text bodies. Paragraphs split on `\n\n` (one blank line). Each paragraph must satisfy minChars..maxChars and minSentences..maxSentences; whole body must satisfy minParagraphs..maxParagraphs (null maxParagraphs = unbounded). Sentence boundaries follow Unicode rules (java.text.BreakIterator), so 'Inc.' and 'U.S.' do not split a sentence. Each paragraph ends in terminal punctuation (. ! ? or the CJK full stop, exclamation, and question marks), optionally followed by a closing quote, parenthesis, bracket, or guillemet.
  *
  * @openapiSchema ResearchParagraphShape
  * @endpoint GET /v1/entities/research-snippets/types

@@ -8,6 +8,7 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
         limit?: number | null | undefined;
         type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
     }, import("./catalog-allowance.ts").BillingCatalogAllowanceSchemaInput>>>;
+    description: z.ZodString;
     displayName: z.ZodString;
     tier: z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";

@@ -5,6 +5,8 @@ declare const BillingPlanChangePreviewSchemaDefinition: z.ZodObject<{
     effectiveAt: z.ZodISODateTime;
     paymentMethod: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         brand: z.ZodString;
+        expiryMonth: z.ZodInt;
+        expiryYear: z.ZodInt;
         last4: z.ZodString;
     }, z.core.$strip>>>;
     prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.163"
+    "version": "0.8.164"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3753,6 +3753,154 @@
           }
         ],
         "summary": "Preview the Next Subscription Charge",
+        "tags": [
+          "Billing"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/billing/subscription/payment-profile": {
+      "get": {
+        "description": "Return the card paying the caller's continuing Stripe subscription (brand, last four digits, expiry) and whether Checkout would charge each plan's introductoryAmount from GET /v1/billing/plans on the first payment, which only an account the App Store does not bill, with no earlier subscription, payment, or unvoided invoice, gets. Read live from Stripe and never stored; 503 when Stripe is unavailable.",
+        "operationId": "getBillingPaymentProfile",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingPaymentProfile"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Read Your Card on File and Introductory Offer",
         "tags": [
           "Billing"
         ],
@@ -31746,6 +31894,10 @@
             "type": "boolean",
             "description": "True when the plan is cancelled and ends at periodEnd"
           },
+          "creditPurchasable": {
+            "type": "boolean",
+            "description": "True when POST /v1/billing/credit-purchases sells this account a prepaid credit pack; false for an operator, a plan the App Store bills, an Unlimited plan, or a continuing paid plan that is not entitled (INCOMPLETE, PAST_DUE, UNPAID, or PAUSED)"
+          },
           "entitled": {
             "type": "boolean",
             "description": "True while the subscription grants its paid tier"
@@ -31855,6 +32007,7 @@
           "additionalUsage",
           "allowance",
           "cancelAtPeriodEnd",
+          "creditPurchasable",
           "entitled",
           "status",
           "tier"
@@ -31909,6 +32062,30 @@
           "chargeAt",
           "currency",
           "discount"
+        ]
+      },
+      "BillingPaymentProfile": {
+        "type": "object",
+        "description": "The caller's card on file and whether Checkout would charge each plan's introductoryAmount on the first payment, read live from Stripe.",
+        "properties": {
+          "introductoryOfferEligible": {
+            "type": "boolean",
+            "description": "True when the catalog offers introductoryAmount, the App Store does not bill the account, and it has no earlier subscription, payment, or unvoided invoice; false otherwise"
+          },
+          "paymentMethod": {
+            "description": "Card that pays the continuing Stripe subscription; absent without one or when it is paid by something other than a card",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BillingPaymentMethod"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "introductoryOfferEligible"
         ]
       },
       "EnrichmentBatch": {
@@ -44114,7 +44291,7 @@
       },
       "ResearchParagraphShape": {
         "type": "object",
-        "description": "Write-time per-paragraph shape rule for governed text bodies. Paragraphs split on `\\n\\n` (one blank line). Each paragraph must satisfy minChars..maxChars and minSentences..maxSentences; whole body must satisfy minParagraphs..maxParagraphs (null maxParagraphs = unbounded). Sentence boundaries follow Unicode rules (java.text.BreakIterator), so 'Inc.' and 'U.S.' do not split a sentence.",
+        "description": "Write-time per-paragraph shape rule for governed text bodies. Paragraphs split on `\\n\\n` (one blank line). Each paragraph must satisfy minChars..maxChars and minSentences..maxSentences; whole body must satisfy minParagraphs..maxParagraphs (null maxParagraphs = unbounded). Sentence boundaries follow Unicode rules (java.text.BreakIterator), so 'Inc.' and 'U.S.' do not split a sentence. Each paragraph ends in terminal punctuation (. ! ? or the CJK full stop, exclamation, and question marks), optionally followed by a closing quote, parenthesis, bracket, or guillemet.",
         "properties": {
           "maxChars": {
             "type": "integer",
@@ -45121,6 +45298,40 @@
           "SUBSCRIPTION_REQUIRED"
         ]
       },
+      "BillingPaymentMethod": {
+        "type": "object",
+        "description": "Card on file that pays the subscription.",
+        "properties": {
+          "brand": {
+            "type": "string",
+            "description": "Card brand as Stripe reports it",
+            "example": "visa"
+          },
+          "expiryMonth": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Expiry month, 1 through 12",
+            "example": 12
+          },
+          "expiryYear": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Four-digit expiry year",
+            "example": 2034
+          },
+          "last4": {
+            "type": "string",
+            "description": "Last four digits of the card number",
+            "example": "4242"
+          }
+        },
+        "required": [
+          "brand",
+          "expiryMonth",
+          "expiryYear",
+          "last4"
+        ]
+      },
       "BillingDiscount": {
         "type": "object",
         "description": "A coupon applied to the next invoice.",
@@ -45372,6 +45583,10 @@
               "$ref": "#/components/schemas/BillingCatalogAllowance"
             }
           },
+          "description": {
+            "type": "string",
+            "description": "Who the tier is for, in one or two sentences; it states no caps or prices, which allowance and plan carry."
+          },
           "displayName": {
             "type": "string"
           },
@@ -45387,6 +45602,7 @@
         },
         "required": [
           "allowance",
+          "description",
           "displayName",
           "tier"
         ]
@@ -45440,26 +45656,6 @@
           "PERSON_VIEW",
           "WEB_SEARCH",
           "AI_CREDIT"
-        ]
-      },
-      "BillingPaymentMethod": {
-        "type": "object",
-        "description": "Card on file that pays the subscription.",
-        "properties": {
-          "brand": {
-            "type": "string",
-            "description": "Card brand as Stripe reports it",
-            "example": "visa"
-          },
-          "last4": {
-            "type": "string",
-            "description": "Last four digits of the card number",
-            "example": "4242"
-          }
-        },
-        "required": [
-          "brand",
-          "last4"
         ]
       },
       "BillingCheckoutUiMode": {

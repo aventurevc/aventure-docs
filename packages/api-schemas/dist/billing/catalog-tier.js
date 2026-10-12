@@ -5,6 +5,8 @@ const BillingCatalogTierSchemaDefinition = z.object({
     /** Researchly AI credits per Researchly billing period; 0 withholds them and absent means uncapped. */
     aiCreditLimit: z.int().nullish(),
     allowance: z.array(BillingCatalogAllowanceSchema),
+    /** Who the tier is for, in one or two sentences; it states no caps or prices, which allowance and plan carry. */
+    description: z.string(),
     displayName: z.string(),
     tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
 });

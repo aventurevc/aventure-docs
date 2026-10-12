@@ -40,6 +40,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
             limit?: number | null | undefined;
             type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         }[];
+        description: string;
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
     }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput, z.core.$ZodTypeInternals<{
@@ -48,6 +49,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
             limit?: number | null | undefined;
             type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
         }[];
+        description: string;
         displayName: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
     }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput>>>;

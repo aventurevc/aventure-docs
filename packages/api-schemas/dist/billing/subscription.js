@@ -10,6 +10,8 @@ const BillingSubscriptionSchemaDefinition = z.object({
     allowance: ResearchAllowanceUsageSchema,
     /** True when the plan is cancelled and ends at periodEnd */
     cancelAtPeriodEnd: z.boolean(),
+    /** True when POST /v1/billing/credit-purchases sells this account a prepaid credit pack; false for an operator, a plan the App Store bills, an Unlimited plan, or a continuing paid plan that is not entitled (INCOMPLETE, PAST_DUE, UNPAID, or PAUSED) */
+    creditPurchasable: z.boolean(),
     /** True while the subscription grants its paid tier */
     entitled: z.boolean(),
     /** Original start of the continuing paid subscription; absent when the provider did not supply it */
