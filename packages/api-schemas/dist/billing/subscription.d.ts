@@ -163,6 +163,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]>>>;
     pendingPlanAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     periodEnd: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -173,6 +174,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]>>>;
     provider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         APP_STORE: "APP_STORE";

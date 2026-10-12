@@ -6,6 +6,7 @@ declare const BillingPlanChangeMutationSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]>;
     prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
