@@ -165,6 +165,8 @@ const ProblemDetailSchemaDefinition = z.object({
     /** Structured conflict details. Create duplicate reviews and deterministic lookup ambiguity return DuplicateCreateReview; the returned candidates are the decision surface for update, create-with-override, or block. score/threshold rank review priority and are not proof that the requested record is absent. */
     details: DomainConflictDetailsSchema.nullish(),
     error: z.record(z.string(), z.string()).nullish(),
+    /** On a duplicate 409, the id of the stored record the request collided with; read or update that record instead of creating it again. Absent when the conflict names no single stored record. */
+    existingRecordId: z.string().nullish(),
     existingRedirect: RedirectSlugPathSchema.nullish(),
     feId: z.string().nullish(),
     field: z.string().nullish(),
