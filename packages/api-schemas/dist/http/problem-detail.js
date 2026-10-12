@@ -28,7 +28,7 @@ const ProblemDetailSchemaDefinition = z.object({
             "subscription_canceled",
             /** Caller's subscription has a failed or unfinished payment, so it does not include this operation until the payment succeeds. Agent action: surface ProblemDetail.detail and stop; the account must update its payment method through the resolution's Billing Portal endpoint. */
             "subscription_past_due",
-            /** Caller's subscription is paused, so it does not include this operation. Agent action: surface ProblemDetail.detail and stop; the account must resume the subscription through the resolution's Billing Portal endpoint. */
+            /** Caller's subscription is paused, so it does not include this operation. Agent action: surface ProblemDetail.detail and stop; the account must add a payment method through the resolution's Billing Portal endpoint, then resume with PATCH /v1/billing/subscription and paused false. */
             "subscription_paused",
             /** The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; resetAt is when the meter refills and is typically weeks away. Do not retry inside the period even though the status is 429. */
             "billing_allowance_exhausted",

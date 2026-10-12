@@ -8,7 +8,9 @@ const EntityTextSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Type-safe identifier for text records */
     id: z.int(),
+    /** Whether this is the owner's current text of its textType; setting it clears the flag on the owner's other texts of that type. */
     isCurrent: z.boolean().nullish(),
+    /** Whether this is the owner's primary text of its textType; setting it clears the flag on the owner's other texts of that type. */
     isPrimary: z.boolean().nullish(),
     language: z.string().nullish(),
     /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
