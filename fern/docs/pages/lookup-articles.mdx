@@ -16,7 +16,7 @@ already hold, start a [bulk lookup job](/lookup-jobs) instead.
 | Need | CLI | Result |
 |---|---|---|
 | One synchronous JSON response from an article, screenshot, or supplied mention names | `aventure lookup-mentions --source-url "<article-url>"` (or `--file "<image>"`, `--mention-name ...`) | Identifications only; it creates no records or research runs |
-| Asynchronous article processing | `aventure lookup-jobs create --source-url "<article-url>"` | Identifications, plus a new record and a research run for each confirmed new name |
+| Asynchronous article processing | `aventure lookup-jobs create --source-url "<article-url>"` | Identifications, plus a record for each confirmed new name, usually with a research run |
 | Bounded identification-only work | `aventure lookup-jobs create --max-names 8 --source-url "<article-url>"` or repeated `--mention-name` | Identifications only; it creates no records or research runs |
 
 Use the synchronous path when you need the answer in one response. Use the

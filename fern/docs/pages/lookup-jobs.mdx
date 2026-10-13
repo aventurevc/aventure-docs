@@ -156,8 +156,8 @@ For a handful of names, `POST /v1/lookup-mentions` (CLI `aventure lookup-mention
 MCP `lookupMentions`) answers in the request, from a page, a screenshot, or a
 `mention` list. Send `Accept: text/event-stream` to receive each name as a
 `mention` event the moment it settles, fastest first, followed by one `complete`
-event with the whole answer. The streaming variant also files a new record for
-each `NO_MATCH` name whose own website names it.
+event with the whole answer. The streaming variant also files a record for
+each `NO_MATCH` name whose own website names it, usually with a research run.
 
 A single lookup that may outlast the request can run as a job too: send it with
 [`Prefer: respond-async`](/async-requests).
