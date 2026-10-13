@@ -90,8 +90,8 @@ stored again. `NO_MATCH` covers only the records your credential can see.
   record, or the name is an exact id, slug, or registry id. No judgment is
   involved.
 - **`JUDGMENT`**: a decision model compared the candidates against your name
-  and clues. `matchConfidence` and each candidate's `probability` carry its
-  scores from 0 to 1.
+  and clues. Each candidate's `probability`, from 0 to 1, is the confidence
+  to act on.
 - **`WEB_EVIDENCE`**: the judgment also used a web search. `officialUrl` holds
   the subject's own website or profile when the search found one.
 
