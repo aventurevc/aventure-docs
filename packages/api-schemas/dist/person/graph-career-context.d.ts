@@ -22,7 +22,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         titleName?: string | null | undefined;
     }, import("./graph-member.ts").PersonGraphMemberSchemaInput>>>;
     employeeCount: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        asOfDate: z.ZodISODateTime;
+        asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fact: z.ZodType<{
             asOfDate?: string | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;

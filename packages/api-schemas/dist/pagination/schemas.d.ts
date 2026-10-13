@@ -213,7 +213,7 @@ export declare const PageClassificationSchema: z.ZodType<PageClassificationDefin
 export type PageClassification = z.infer<typeof PageClassificationSchema>;
 declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        asOfDate: z.ZodISODateTime;
+        asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fact: z.ZodType<{
             asOfDate?: string | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;

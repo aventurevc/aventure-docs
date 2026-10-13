@@ -9,8 +9,8 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         Medium: "Medium";
         Verified: "Verified";
     }>>>;
-    dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    dateFundingComplete: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    dateFundingComplete: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     dateInvestorExit: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     entity: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         core: z.ZodObject<{

@@ -76,10 +76,10 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         headquartersRegion?: string | null | undefined;
         industry?: string | null | undefined;
     }, import("./invested-company.ts").PersonInvestedCompanySchemaInput>>;
-    date: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    date: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     fundraiseTransaction: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         amountRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-        dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         id: z.ZodUUID;
         image: z.ZodType<{
             isMonogram: boolean;

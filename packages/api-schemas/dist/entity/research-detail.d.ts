@@ -1,8 +1,8 @@
 import { z } from "zod/v4";
 declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
-    asOfDate: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     derivedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        asOfDate: z.ZodISODateTime;
+        asOfDate: z.ZodString;
         bucket: z.ZodEnum<{
             beyondTwoYears: "beyondTwoYears";
             pastDue: "pastDue";
