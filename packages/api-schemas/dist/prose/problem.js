@@ -19,6 +19,7 @@ export const ProseProblemSchema = z.union([
         "temporal",
         "factList",
         "mojibake",
+        "unsupported",
         "legalSource",
         "textContract",
     ]),

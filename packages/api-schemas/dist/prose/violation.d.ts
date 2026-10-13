@@ -12,6 +12,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         structured: "structured";
         temporal: "temporal";
         textContract: "textContract";
+        unsupported: "unsupported";
         voice: "voice";
     }>, z.ZodString]>;
     reason: z.ZodString;

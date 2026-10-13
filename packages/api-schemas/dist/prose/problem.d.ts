@@ -18,6 +18,7 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     structured: "structured";
     temporal: "temporal";
     textContract: "textContract";
+    unsupported: "unsupported";
     voice: "voice";
 }>, z.ZodString]>;
 export type ProseProblem = z.infer<typeof ProseProblemSchema>;
