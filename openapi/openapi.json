@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.151"
+    "version": "0.8.153"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -17222,7 +17222,7 @@
         }
       },
       "post": {
-        "description": "Looks up one record from an external source by url, slug, or name — identifying a company, product, service, or person in one call. Set scheduleEnrichment=true to enrich a matched record; omitted and false leave matched records unchanged. When fileOnMiss=true creates a new hidden record, omitted keeps automatic enrichment and false files the record and starts its logo import, with no enrichment run. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, refine once with an evidenced subject URL or known kind; a NEEDS_REVIEW that remains is an abstention, so settle it from first-party evidence and never create or pick a candidate from scores. A candidate URL becomes a subject URL only with independent binding evidence. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId set when enrichment is scheduled; without created, detail says why nothing was filed. To have aVenture research a NO_MATCH subject and add it, file POST /v1/harness/runs with its url and name (CLI: harness runs create), which spends one research unit. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. The legacy flag: legacy=true treats name only as an exact id, public handle, registry id, or slug — no model call, no web search, 404 when nothing matches; exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Looks up one record from an external source by url, slug, or name — identifying a company, product, service, or person in one call. Set scheduleEnrichment=true to enrich a matched record; omitted and false leave matched records unchanged. When fileOnMiss=true creates a new hidden record, omitted keeps automatic enrichment and false files the record and starts its logo import, with no enrichment run. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. A url sent alone that proves no stored record is looked up under its site's own brand; a url that names no brand (a profile page, a redirect to another party, no live site) answers NO_MATCH saying why. Send kind (ENTITY or PERSON) when you know which kind the subject is, so only that ladder runs; typeRecord, or providerId for a Product or Service from a known provider, implies ENTITY; context never changes these constraints. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug settles at once; otherwise the entity and person ladders both run. Returns MATCHED when a URL, slug, or registry-id proof settles one kind, when exactly one kind matches and the other finds nothing, or when a match carries the name and the other kind, unproven, has no record that could carry it; NO_MATCH when neither finds the subject; and NEEDS_REVIEW otherwise, including when a company and a person share the name. match.owner says which kind matched: with entityId, match.record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} (CLI: entities get) or enrich it with POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich); with personId, use GET /v1/people/{personId} (CLI: people get) or POST /v1/people/{personId}/enrichments (CLI: people enrichments enrich). On NEEDS_REVIEW, refine once with an evidenced subject URL or known kind; a NEEDS_REVIEW that remains is an abstention, so settle it from first-party evidence and never create or pick a candidate from scores. A candidate URL becomes a subject URL only with independent binding evidence. Without fileOnMiss this answer never creates records. With fileOnMiss=true (signed-in user or admin key), a NO_MATCH whose own site web search finds and whose live page names it is filed as a hidden record under its site's own brand and returned as created with 201 Created and the record's Location (a text/plain answer stays 200), with enrichmentRunId set when enrichment is scheduled; without created, detail says why nothing was filed. To have aVenture research a NO_MATCH subject and add it, file POST /v1/harness/runs with its url and name (CLI: harness runs create), which spends one research unit. Create a record yourself only after a NO_MATCH that carries no created and whose detail does not say a hidden record may still be filed. NO_MATCH means the ladders did not settle the subject, never that no record exists: when the queried name is a former, alternate, or legal name, re-probe it through the entityName filter of GET /v1/entities (CLI: entities list --entity-name \"<name>\"), which resolves stored brand, legal, and alias names, before creating. Accept: text/event-stream streams the same answer as events identification, created, and complete. Prefer: respond-async applies only without fileOnMiss=true, which always answers live; a name that is exactly a record's id, handle, or slug still answers 200 at once. Enrichment of a matched record is scheduled only with scheduleEnrichment=true. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. The legacy flag: legacy=true treats name only as an exact id, public handle, registry id, or slug — no model call, no web search, 404 when nothing matches; exact id only: legacy=true with {\"name\":\"eV1StGXR8Z5a\"}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -26739,7 +26739,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Deprecated: Find the Record Behind an ID, Slug, or URL",
+        "summary": "Deprecated: Resolve an Entity or Person by Identifier Token",
         "tags": [
           "Search"
         ],
@@ -29133,7 +29133,7 @@
     },
     "/v1/web/search": {
       "post": {
-        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. This is the read for external facts a stored record lacks — a publication or release date, press coverage, an app-store listing — that no catalog operation stores. For the source documents earlier fetches and searches already captured, list them with listSourceDocuments instead of searching again. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `deep` to search with Exa's slower, broader deep search instead; it answers synchronously and is stored apart from default results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
+        "description": "Runs a live web search, returns a stored result when a fresh version exists, and durably records fresh results in the source-document store. This is the read for external facts a stored record lacks — a publication or release date, press coverage, an app-store listing — that no catalog operation stores. For the source documents earlier fetches and searches already captured, list them with listSourceDocuments instead of searching again. Each successful search uses one web search from the signed-in account's monthly allowance. Past it, a subscriber with additional usage on pays 2.5 cents per search; otherwise the call answers 429 with a usage-limit message and upgrade links. A query naming too few distinct words (a bare brand, or a brand plus a number) is refused with 422 before any provider call or charge; name what you are looking for and a disambiguator such as the domain. A cache miss spends a SerpAPI provider search, and each distinct query spends one search from a harness run's budget; an identical repeat is served from the stored document. Set `provider` to EXA for Exa's instant search (no SerpAPI fallback) or EXA_DEEP for its slower, broader deep search; both answer synchronously and are stored apart from SerpAPI results. A search SerpAPI is still running after aVenture's live wait answers 503 with Retry-After; send `Prefer: respond-async` to receive 202 with a Location status URL instead, and poll it after Retry-After. Neither charges an allowance search.",
         "operationId": "searchWeb",
         "parameters": [
           {
@@ -29169,7 +29169,7 @@
             }
           },
           {
-            "description": "Send respond-async to receive a pollable job when a live web search is still running; deep=true answers live.",
+            "description": "Send respond-async to receive a pollable job when a live web search is still running; an Exa provider answers live.",
             "in": "header",
             "name": "Prefer",
             "schema": {
@@ -30818,6 +30818,14 @@
           "entitled": {
             "type": "boolean",
             "description": "True while the subscription grants its paid tier"
+          },
+          "originalStart": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Original start of the continuing paid subscription; absent when the provider did not supply it"
           },
           "pendingPlan": {
             "description": "Plan a scheduled change moves the subscription to at pendingPlanAt; absent when nothing is scheduled",
@@ -37930,12 +37938,13 @@
           "deep": {
             "type": "boolean",
             "default": false,
-            "description": "Run Exa's slower, broader deep search instead of the default provider: higher recall for market and provider questions, about 3-6 s per search, answered synchronously (`Prefer: respond-async` does not apply). Charged like any search."
+            "deprecated": true,
+            "description": "Deprecated alias for `provider: EXA_DEEP`; `true` with any other `provider` is refused with 400."
           },
           "deferredAiOverview": {
             "type": "boolean",
             "default": false,
-            "description": "Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored, plus a fresh search first when the stored search is over an hour old (its one-minute overview token expired and SerpAPI's cache would return it unchanged). Without it, a search whose token is still live fetches the overview in the background and later reads return it. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one."
+            "description": "Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored. An explicit `true` also reruns a stored search older than SerpAPI's one-hour cache to get a fresh token (its one-minute overview token expired and the cache would return it unchanged). A harness-run credential fetches from a live token only and never reruns a search. Without either, no deferred overview is fetched; one an earlier fetch stored still comes back at no extra cost. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one."
           },
           "language": {
             "type": [
@@ -37944,6 +37953,17 @@
             ],
             "description": "Search language code",
             "example": "en"
+          },
+          "provider": {
+            "description": "Provider to search; omitted keeps the default, SerpAPI. EXA runs Exa's instant search with highlights and never falls back to SerpAPI: an Exa failure answers 503. EXA_DEEP runs Exa's slower, broader deep search (higher recall for market and provider questions, about 3-6 s) and falls back to SerpAPI on an Exa failure. Both Exa providers answer synchronously (`Prefer: respond-async` does not apply), are stored apart from SerpAPI results, and are charged like any search.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/WebSearchProvider"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "region": {
             "type": [
@@ -38017,7 +38037,7 @@
         "description": "Live web search result with its backing source-document row and normalized items",
         "properties": {
           "aiOverview": {
-            "description": "Google's AI Overview: returned whenever Google answers inline or its deferred overview is stored (fetched in the background after an earlier search, or waited for with `deferredAiOverview`); null when Google produced none or its deferred overview is not stored yet",
+            "description": "Google's AI Overview: returned whenever Google answers inline or its deferred overview is stored (fetched by this or an earlier search that set `deferredAiOverview`); null when Google produced none or no such fetch stored its deferred overview",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/SearchAiOverview"
@@ -38360,6 +38380,15 @@
           "index",
           "title",
           "url"
+        ]
+      },
+      "WebSearchProvider": {
+        "type": "string",
+        "description": "Upstream web search provider: SERPAPI is Google results through SerpAPI, EXA is Exa's instant search with highlights, and EXA_DEEP is Exa's slower, broader deep search.",
+        "x-extensible-enum": [
+          "SERPAPI",
+          "EXA",
+          "EXA_DEEP"
         ]
       },
       "EntityPersonOwner": {

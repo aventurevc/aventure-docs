@@ -7,6 +7,11 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     deep: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     deferredAiOverview: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    provider: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        EXA: "EXA";
+        EXA_DEEP: "EXA_DEEP";
+        SERPAPI: "SERPAPI";
+    }>, z.ZodString]>>>;
     region: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resultLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     retrievedFor: z.ZodOptional<z.ZodNullable<z.ZodObject<{

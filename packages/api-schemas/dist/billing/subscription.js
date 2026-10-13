@@ -12,6 +12,8 @@ const BillingSubscriptionSchemaDefinition = z.object({
     cancelAtPeriodEnd: z.boolean(),
     /** True while the subscription grants its paid tier */
     entitled: z.boolean(),
+    /** Original start of the continuing paid subscription; absent when the provider did not supply it */
+    originalStart: z.iso.datetime({ offset: true }).nullish(),
     /** Plan a scheduled change moves the subscription to at pendingPlanAt; absent when nothing is scheduled */
     pendingPlan: BillingPlanTypeSchema.nullish(),
     /** When pendingPlan takes effect; absent when nothing is scheduled */
