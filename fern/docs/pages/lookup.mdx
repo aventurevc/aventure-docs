@@ -17,15 +17,14 @@ one record matches, none does, or a person has to decide.
 
 ## Pick an Entry Point
 
-| Operation | Use it when | CLI | MCP `operationId` |
-|-----------|-------------|-----|-------------------|
-| `GET /v1/lookup` | Query clues identify a company, product, service, or person without scheduling enrichment | `aventure lookup` | `getIdentification` |
-| `POST /v1/lookup` | One body-based universal lookup, or a known kind | `aventure lookup-from-file` | `lookupRecord` |
-| `GET /v1/entities/lookup-exact` or `/v1/people/lookup-exact` | An exact slug, website, domain, or profile URL should return full detail | `aventure entities lookup-exact get` or `aventure people lookup-exact get` | `getEntityLookup` or `getPersonLookup` |
+| Operation | Use it when | CLI |
+|-----------|-------------|-----|
+| `GET /v1/lookup` | Query clues identify a company, product, service, or person without scheduling research | `aventure lookup` |
+| `POST /v1/lookup` | You send the clues as a JSON body, optionally with a known `kind` | `aventure lookup-from-file` |
+| `GET /v1/entities/lookup-exact` or `/v1/people/lookup-exact` | You hold an exact slug, website, domain, or profile URL and want the full record | `aventure entities lookup-exact get` or `aventure people lookup-exact get` |
 
-The older `POST /v1/entities/lookup` and `POST /v1/people/lookup` routes remain
-deprecated compatibility aliases. Use `lookup-from-file` with `kind=ENTITY` or
-`kind=PERSON` for new integrations.
+`POST /v1/entities/lookup` and `POST /v1/people/lookup` are deprecated. Send
+`POST /v1/lookup` with `kind` set to `ENTITY` or `PERSON` instead.
 
 The two `/v1/lookup` operations return the same identification shape. The GET
 operation takes query parameters; the POST operation takes the body shown below.

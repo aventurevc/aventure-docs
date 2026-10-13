@@ -11,10 +11,10 @@ names, or one long page whose names you want identified, and a bound on how
 many names to process. The job runs in the background and returns each name's
 [lookup answer](/lookup#act-on-the-answer) as it settles.
 
-Bulk jobs only identify. They never create placeholder records and never
-schedule research, so a `NO_MATCH` stays a `NO_MATCH`. Use an
-[article lookup](/lookup-articles) when you want placeholders filed for new
-names.
+Bulk jobs only identify. They never create records and never schedule
+research, so a `NO_MATCH` stays a `NO_MATCH`. Use an
+[article lookup](/lookup-articles) when you want new records filed for names
+aVenture does not have yet.
 
 ## Start a Job
 
@@ -156,8 +156,8 @@ For a handful of names, `POST /v1/lookup-mentions` (CLI `aventure lookup-mention
 MCP `lookupMentions`) answers in the request, from a page, a screenshot, or a
 `mention` list. Send `Accept: text/event-stream` to receive each name as a
 `mention` event the moment it settles, fastest first, followed by one `complete`
-event with the whole answer. The streaming variant also files a hidden
-placeholder record for each `NO_MATCH` name whose own website names it.
+event with the whole answer. The streaming variant also files a new record for
+each `NO_MATCH` name whose own website names it.
 
 A single lookup that may outlast the request can run as a job too: send it with
 [`Prefer: respond-async`](/async-requests).

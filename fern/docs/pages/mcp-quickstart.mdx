@@ -14,20 +14,17 @@ choose **Connect aVenture**.
 
 ## Choose Your AI App
 
-Use the hosted URL `https://mcp.aventure.vc/mcp` with **Streamable HTTP** and
-**OAuth**. aVenture already supports OAuth discovery through Clerk. Let your
-client discover and register its OAuth client automatically (DCR). Leave
-manually entered client credentials empty for this flow.
-Sign in to your aVenture account and approve the access requested.
+Every app connects to the same hosted server:
 
-Adding a connector and authorizing it are separate steps. A setup prompt can
-perform the steps its app exposes; account consent still happens in the sign-in
-screen. The prompts below also verify the connection with a real company read.
+| Setting | Value |
+|---------|-------|
+| Server URL | `https://mcp.aventure.vc/mcp` |
+| Transport | Streamable HTTP |
+| Authentication | OAuth with automatic client registration; leave client ID and secret empty |
 
-A full-profile lookup can return a compact response. Check `truncated` and
-`omitted` before calling its embedded funding, people, or news complete. To
-recover a section, read its paginated sub-resource using the returned record
-id; repeating the same profile lookup does not recover the omitted rows.
+When the app opens aVenture's sign-in page, sign in to your aVenture account and
+approve the access it asks for. Most tabs end with a one-shot prompt to paste
+into that app; it finishes setup and runs a first lookup.
 
 <Tabs>
 <Tab title="ChatGPT">
@@ -44,22 +41,16 @@ Creation alone does not install the plugin in a conversation. Custom MCP setup
 uses ChatGPT's web interface; check the installed plugin's availability in your
 mobile app before using it there.
 
-**Setup and first result prompt**
+**One-shot prompt**
 
 ```text
-Connect aVenture to this ChatGPT account using https://mcp.aventure.vc/mcp
-(Streamable HTTP, OAuth with discovery). Use the built-in plugin setup if
-available. Otherwise guide me through ChatGPT Plugins > + > Add custom MCP
-server, create it as a plugin, and install it. Let me complete aVenture's
-Clerk sign-in and consent when prompted.
-
-Once its tools are available, call aventure_status and confirm which
-aVenture account is connected. Use aventure_help with resolve:true to find the exact
-website lookup for https://stripe.com, then call the returned tool with
-its required operation and inputs. Summarize the company using only the
-returned data, link its aVenture profile if returned, and state any missing
-or truncated data. Recover truncated sections with paginated reads by id.
-If setup is blocked, identify the exact step and error.
+Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth with automatic client registration). If you cannot
+add it yourself, walk me through ChatGPT Plugins > + > Add custom MCP server,
+then create and install it as a plugin. After I sign in to aVenture, call
+aventure_status to confirm my account, then look up https://stripe.com on
+aVenture and summarize what it returns. If a step fails, tell me which step
+and the exact error.
 ```
 
 [ChatGPT's current setup instructions](https://developers.openai.com/api/docs/guides/custom-mcp-server)
@@ -72,7 +63,7 @@ If setup is blocked, identify the exact step and error.
 3. Name it **aVenture**, enter `https://mcp.aventure.vc/mcp`, and continue.
 4. Keep the detected OAuth settings. Choose **Sign in now** and
    **Register automatically**.
-5. Add the connector and approve aVenture's Clerk sign-in.
+5. Add the connector, sign in to aVenture, and approve the access it asks for.
 6. In your chat's **+ > Connectors** menu, enable aVenture.
 
 Claude's mobile connector installation is in beta; web and Desktop are the
@@ -80,22 +71,16 @@ primary custom connector setup routes. A connected web connector is available
 on mobile under the same Claude account. Team and Enterprise administrators may
 need to enable the connector first.
 
-**Setup and first result prompt**
+**One-shot prompt**
 
 ```text
-Connect aVenture using https://mcp.aventure.vc/mcp (Streamable HTTP,
-OAuth with discovery). Use the connector setup if available; otherwise
-guide me through Customize > Connectors > Add > Custom > Web.
-Use Sign in now and automatic client registration.
-Let me finish aVenture's Clerk sign-in and consent, then enable aVenture
-for this conversation.
-
-Call aventure_status to confirm my connected account. Use aventure_help with resolve:true
-to find the exact website lookup for https://stripe.com, then call its
-recommended tool with the required operation and inputs. Summarize the
-returned company and link its aVenture profile if returned. Identify missing
-or truncated fields; recover truncated sections with paginated reads by id.
-Report the exact connection error instead of guessing.
+Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth with automatic client registration). If you cannot
+add it yourself, walk me through Customize > Connectors > Add > Custom > Web,
+then enable aVenture for this chat. After I sign in to aVenture, call
+aventure_status to confirm my account, then look up https://stripe.com on
+aVenture and summarize what it returns. If a step fails, tell me which step
+and the exact error.
 ```
 
 [Claude's current connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
@@ -104,43 +89,32 @@ Report the exact connection error instead of guessing.
 <Tab title="Gemini">
 
 <Note>
-aVenture in Gemini Apps is not yet a supported onboarding path. The current
-consent form policy does not list a Gemini callback origin. The setup steps
-and prompt below describe the intended flow; enable it only after the exact
-callback origin is allowed and authenticated end-to-end testing passes.
-Gemini CLI has separate settings and verification.
+Gemini Apps cannot finish aVenture's sign-in yet: aVenture's sign-in page does
+not yet accept Gemini's custom app callback. The steps below apply once it
+does. The Gemini CLI tab has its own setup.
 </Note>
-
-**Intended setup after compatibility verification**
 
 1. Open [Gemini on the web](https://gemini.google.com).
 2. Go to **Settings > Connected Apps > Custom apps**.
 3. Select **Add a custom app**, enter `https://mcp.aventure.vc/mcp`, and select
    **Next**.
-4. Follow the OAuth sign-in and consent screens for your aVenture account.
-5. In a chat, type **@** and select aVenture to use the connected app.
+4. Sign in to your aVenture account and approve the access it asks for.
+5. In a chat, type **@** and select aVenture.
 
-Google currently requires a personal Google Account, age 18 or over, US
-availability, English, and **Keep Activity** enabled. Custom apps are connected
-on the web and then usable on web and mobile. Gemini Apps and Gemini CLI have
-separate connection settings.
+Google limits custom apps to personal Google Accounts of users 18 or older in
+the US, in English, with **Keep Activity** on. You add a custom app on the web;
+it then works on web and mobile.
 
-**Prompt for use after compatibility verification**
+**One-shot prompt**
 
 ```text
-Help me connect aVenture in Gemini Connected Apps using
-https://mcp.aventure.vc/mcp (Streamable HTTP, OAuth with discovery).
-Use the custom app setup if available; otherwise guide me through
+Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth). If you cannot add it yourself, walk me through
 Settings > Connected Apps > Custom apps > Add a custom app on the web.
-Let me complete aVenture's Clerk sign-in and consent.
-
-When I select @aVenture, call aventure_status to verify my account.
-Use aventure_help with resolve:true for an exact website lookup for
-https://stripe.com, then call its recommended tool with the required
-operation and inputs. Summarize the returned company, link its aVenture
-profile if returned, and identify missing or truncated fields. Recover
-truncated sections with paginated reads by id. If authorization does not
-complete, report its exact error and the blocked step.
+After I sign in to aVenture, call aventure_status through @aVenture to
+confirm my account, then look up https://stripe.com on aVenture and
+summarize what it returns. If a step fails, tell me which step and the
+exact error.
 ```
 
 [Gemini's current custom app instructions](https://support.google.com/gemini/answer/17209137?hl=en-12)
@@ -159,20 +133,15 @@ Complete the browser sign-in, then open `/mcp` in Claude Code and verify that
 aVenture's tools are connected. If your Claude Code version does not provide
 `mcp login`, use `/mcp`, select `aventure`, and sign in there.
 
-**Setup and first result prompt**
+**One-shot prompt**
 
 ```text
-Set up the hosted aVenture MCP in Claude Code at user scope:
+Add the aVenture MCP server at user scope, reusing it if it already exists:
 claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
-
-If aventure is already configured with that URL, reuse it.
-Run claude mcp login aventure, or guide me to /mcp to sign in
-if this installed version requires it. Use OAuth discovery and let me
-complete Clerk authorization. Verify connected tools, call aventure_status,
-then use aventure_help with resolve:true to resolve and read the exact profile for
-https://stripe.com. Report the returned company, its aVenture profile link
-if returned, missing or truncated data, and any blocked step. Recover
-truncated sections with paginated reads by id.
+Then run claude mcp login aventure (or send me to /mcp to sign in). After I
+sign in to aVenture, call aventure_status to confirm my account, then look up
+https://stripe.com on aVenture and summarize what it returns. If a step
+fails, tell me which step and the exact error.
 ```
 
 [Claude Code's current MCP instructions](https://code.claude.com/docs/en/mcp)
@@ -273,11 +242,16 @@ The assistant picks the tools itself:
 
 | Tool | What it does |
 |------|--------------|
-| `aventure_lookup` | Finds a company or person by name, website, or LinkedIn URL |
-| `aventure_search` | Finds companies, people, and news from a description |
-| `aventure_read` | Reads a full profile and its funding rounds, people, and news |
-| `aventure_help` | Finds the right operation for a task |
+| `aventure_lookup` | Identifies a company or person by name, website, or LinkedIn URL |
+| `aventure_search` | Runs the search operation that `aventure_help` names; pass the search text in its `query` or `body` |
+| `aventure_read` | Reads a profile and its funding rounds, people, and news |
+| `aventure_help` | Finds the operation for a task described in plain English |
 | `aventure_status` | Confirms the connection and your sign-in |
+| `aventure_write`, `aventure_delete` | Appear only for accounts allowed to change aVenture records |
+
+A long profile can come back shortened. When a result reports `truncated` or
+`omitted`, ask for the missing funding rounds, people, or news by name; the
+assistant reads them page by page.
 
 Calls draw on your plan's monthly allowances. When one runs out, the answer
 names the limit and how to upgrade; you can also ask the assistant to list plans

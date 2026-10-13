@@ -16,13 +16,13 @@ already hold, start a [bulk lookup job](/lookup-jobs) instead.
 | Need | CLI | Result |
 |---|---|---|
 | One synchronous JSON response from an article, screenshot, or supplied mention names | `aventure lookup-mentions --source-url "<article-url>"` (or `--file "<image>"`, `--mention-name ...`) | Identifications only; it creates no records or research runs |
-| Standard asynchronous article processing | `aventure lookup-jobs create --source-url "<article-url>"` | May create hidden `shell` records and queue research for them |
-| Bounded lookup-only bulk work | `aventure lookup-jobs create --max-names 8 --source-url "<article-url>"` or repeated `--mention-name` | Identifications only; no shells or enrichment are scheduled |
+| Asynchronous article processing | `aventure lookup-jobs create --source-url "<article-url>"` | Identifications, plus a new record and a research run for each confirmed new name |
+| Bounded identification-only work | `aventure lookup-jobs create --max-names 8 --source-url "<article-url>"` or repeated `--mention-name` | Identifications only; it creates no records or research runs |
 
-Use the synchronous path when the caller needs the answer in one response. Use
-the standard job when article names may need hidden placeholders. Use
-`--max-names` when the caller owns continuation and wants a bounded lookup-only
-batch.
+Use the synchronous path when you need the answer in one response. Use the
+asynchronous job when the article may name companies or people aVenture does
+not have yet. Use `--max-names` when you want a bounded batch of
+identifications and will continue the article yourself.
 
 1. Start the job with `POST /v1/lookup-jobs` and a body holding `sourceUrl`,
    `sourceNewsId`, or both. The call returns `202` with a `jobId`. Sending the
@@ -33,12 +33,12 @@ batch.
    writes it and a `mentionType` of `COMPANY` or `PERSON`:
    - `identification` is the lookup answer, read exactly as in
      [Act on the answer](/lookup#act-on-the-answer).
-   - `shell` is set when the answer is `NO_MATCH` and the job created a hidden
-     placeholder record for the name. The job creates one only when the article
-     and a live page on another site both name the subject. `shell` holds its
-     `entityId` or `personId`; creating it costs nothing, and you can send it
-     straight to a [research update](/research-updates).
-   - `shellDetail` says, in one sentence, why no placeholder was created for a
+   - `shell` is set when the answer is `NO_MATCH` and the job filed a new
+     record for the name. The job files one only when the article and the
+     subject's own live website both name it. `shell` holds the new record's
+     `entityId` or `personId`, and `enrichmentRunId` names the research run
+     that fills in its profile. Filing it costs nothing.
+   - `shellDetail` says, in one sentence, why no new record was filed for a
      `NO_MATCH` name.
    - `failureReason` replaces `identification` when a name could not be
      identified. Send that name alone to `POST /v1/lookup`.
@@ -79,5 +79,6 @@ aventure lookup-jobs get --job-id "$JOB_ID"
 ```
 </CodeBlocks>
 
-Collect the ids from each mention's `match.owner` or `shell`, then
-[queue research](/research-updates) on the ones worth updating.
+Collect the ids from each matched mention's `match.owner`, then
+[queue research](/research-updates) on the ones worth updating. New records in
+`shell` already have a research run.
