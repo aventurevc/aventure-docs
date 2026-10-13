@@ -491,6 +491,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     totalRaisedUsd?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
+                headquartersAddressId?: number | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1132,6 +1133,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     totalRaisedUsd?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
+                headquartersAddressId?: number | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1491,6 +1493,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             searchQuery?: string | undefined;
             type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         }[] | undefined;
+        sourceDocumentId?: string | null | undefined;
         sourceNewsId?: number | null | undefined;
         sourceUrl?: string | null | undefined;
         subject?: {
@@ -1511,6 +1514,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             searchQuery?: string | undefined;
             type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         }[] | undefined;
+        sourceDocumentId?: string | null | undefined;
         sourceNewsId?: number | null | undefined;
         sourceUrl?: string | null | undefined;
         subject?: {

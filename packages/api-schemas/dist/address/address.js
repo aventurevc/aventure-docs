@@ -65,7 +65,7 @@ export const AddressSchema = z.object({
     id: z.int().nullish(),
     /** Deprecated aggregate compatibility flag; true when any association is current */
     isCurrent: z.boolean().nullish(),
-    /** Deprecated legacy flag marking the headquarters or legal/registered address */
+    /** Deprecated legacy flag marking the current legal/registered seat (domicile), not the operating headquarters; read EntityEnrichment.headquartersAddressId for the headquarters */
     isHq: z.boolean().nullish(),
     /** Deprecated legacy flag marking the primary display address */
     isPrimary: z.boolean().nullish(),
