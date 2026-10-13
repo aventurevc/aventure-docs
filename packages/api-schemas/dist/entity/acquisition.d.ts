@@ -101,9 +101,9 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
     amount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    announcedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    asOf: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
-    completedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    announcedAt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    asOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    completedAt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     dataConfidence: z.ZodOptional<z.ZodNullable<z.ZodEnum<{

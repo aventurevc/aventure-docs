@@ -2,7 +2,7 @@ import { z } from "zod/v4";
 declare const EntitySimilarityContextSchemaDefinition: z.ZodObject<{
     compositeScore: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     cosineScore: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    curatedAsOf: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
+    curatedAsOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     curatedRelationshipType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     curatedSource: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     derivedFromEntityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

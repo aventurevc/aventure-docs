@@ -213,9 +213,10 @@ export declare const PageClassificationSchema: z.ZodType<PageClassificationDefin
 export type PageClassification = z.infer<typeof PageClassificationSchema>;
 declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        asOfDate: z.ZodISODateTime;
+        asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fact: z.ZodType<{
             asOfDate?: string | null | undefined;
+            currentEligible?: boolean | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
             numericValue?: number | null | undefined;
@@ -226,6 +227,7 @@ declare const PageEmployeeCountSchemaDefinition: z.ZodObject<{
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
         }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput, z.core.$ZodTypeInternals<{
             asOfDate?: string | null | undefined;
+            currentEligible?: boolean | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
             numericValue?: number | null | undefined;
@@ -2229,6 +2231,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -2312,6 +2315,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -3556,6 +3560,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
+                    currentEligible?: boolean | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -4489,6 +4494,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
+                    currentEligible?: boolean | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -5055,6 +5061,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -5534,6 +5541,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -6016,6 +6024,7 @@ export type PageEntityRelationship = z.infer<typeof PageEntityRelationshipSchema
 declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
+        currentEligible?: boolean | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -6038,6 +6047,7 @@ declare const PageEntityResearchDetailSchemaDefinition: z.ZodObject<{
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, import("../entity/research-detail.ts").EntityResearchDetailSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
+        currentEligible?: boolean | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -6604,6 +6614,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
+                    currentEligible?: boolean | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -7097,6 +7108,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 }[];
                 detail: {
                     asOfDate?: string | null | undefined;
+                    currentEligible?: boolean | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -10411,6 +10423,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -10890,6 +10903,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             }[];
             detail: {
                 asOfDate?: string | null | undefined;
+                currentEligible?: boolean | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";

@@ -1664,6 +1664,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         }[];
         detail: {
             asOfDate?: string | null | undefined;
+            currentEligible?: boolean | null | undefined;
             derivedRange?: {
                 asOfDate: string;
                 bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -1747,6 +1748,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         }[];
         detail: {
             asOfDate?: string | null | undefined;
+            currentEligible?: boolean | null | undefined;
             derivedRange?: {
                 asOfDate: string;
                 bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";

@@ -4,7 +4,13 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { EntityResearchValueTypeSchema } from "./research-value-type.js";
 import { ResearchDerivedRangeSchema } from "../research/derived-range.js";
 const EntityResearchDetailSchemaDefinition = z.object({
-    asOfDate: z.iso.datetime({ offset: true }).nullish(),
+    /** Date the research detail applies to, preserving the source's calendar or timestamp precision. */
+    asOfDate: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
+    /** Eligibility as a current fact at response time; multiple rows may be eligible. Select the first eligible row in the returned authoritative order. */
+    currentEligible: z.boolean().nullish(),
     /** Read-only range derived only for targetDateAbsolute detail rows */
     derivedRange: ResearchDerivedRangeSchema.nullish(),
     discreteValue: z.number().nullish(),

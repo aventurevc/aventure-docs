@@ -5,7 +5,7 @@ import { SearchHitSchema } from "../search/hit.js";
 import { SearchSchema } from "../search/search.js";
 import { SourceDocumentListSchema } from "../source/document-list.js";
 const WebSearchSchemaDefinition = z.object({
-    /** Google's AI Overview: returned whenever Google answers inline, or fetched on request with `deferredAiOverview`; null when Google produced none or deferred it unrequested */
+    /** Google's AI Overview: returned whenever Google answers inline or its deferred overview is stored (fetched in the background after an earlier search, or waited for with `deferredAiOverview`); null when Google produced none or its deferred overview is not stored yet */
     aiOverview: SearchAiOverviewSchema.nullish(),
     /** Source-document ledger row backing this result */
     document: SourceDocumentListSchema,

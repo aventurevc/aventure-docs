@@ -22,9 +22,10 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         titleName?: string | null | undefined;
     }, import("./graph-member.ts").PersonGraphMemberSchemaInput>>>;
     employeeCount: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        asOfDate: z.ZodISODateTime;
+        asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fact: z.ZodType<{
             asOfDate?: string | null | undefined;
+            currentEligible?: boolean | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
             numericValue?: number | null | undefined;
@@ -35,6 +36,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
         }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput, z.core.$ZodTypeInternals<{
             asOfDate?: string | null | undefined;
+            currentEligible?: boolean | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
             numericValue?: number | null | undefined;

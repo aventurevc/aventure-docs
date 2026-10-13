@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
-    asOf: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
+    asOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     comparisonSignals: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         fundingStage: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             Acquired: "Acquired";

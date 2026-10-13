@@ -12,9 +12,21 @@ const EntityAcquisitionSchemaDefinition = z.object({
     /** Buyer — read-only nested display projection. Mutations identify the buyer only via the flat acquirerEntityId UUID, never a nested entity object. */
     acquirerEntity: EntitySchema,
     amount: z.number().int().nullish(),
-    announcedAt: z.iso.datetime({ offset: true }).nullish(),
-    asOf: z.iso.date().nullish(),
-    completedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Acquisition announcement date or instant, retaining its stored precision. */
+    announcedAt: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
+    /** Effective acquisition date or instant, retaining its stored precision. */
+    asOf: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
+    /** Acquisition completion date or instant, retaining its stored precision. */
+    completedAt: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .nullish(),
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     currency: z.string().nullish(),
     dataConfidence: FundraiseDataConfidenceSchema.nullish(),
