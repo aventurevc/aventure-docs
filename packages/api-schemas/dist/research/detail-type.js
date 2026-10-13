@@ -8,7 +8,7 @@ const ResearchDetailTypeSchemaDefinition = z.object({
     allowedToken: z.array(z.string()).nullish(),
     curated: z.boolean(),
     label: z.string(),
-    /** Inclusive numeric bounds for numericRatio, numericScore, and numericGrowthRate. numericGrowthRate values use percentage points: 80 means 80%, not 0.8. */
+    /** Inclusive numeric bounds for monetary and numericRatio, numericScore, and numericGrowthRate values. numericGrowthRate uses percentage points: 80 means 80%, not 0.8. */
     range: ResearchValueRangeSchema.nullish(),
     targetPath: z.string(),
     /** Whether rows are dated history; true means add current observations and keep believable old rows. */
