@@ -49,6 +49,8 @@ const EntityUrlLinkSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
@@ -56,6 +58,7 @@ const EntityUrlLinkSchemaDefinition = z.object({
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityBrandSchema
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityPersonAssociationSchema

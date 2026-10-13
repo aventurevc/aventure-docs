@@ -18,12 +18,15 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityComparisonSignalsSchema
  * @usedBySchema EntityFundingDetailSchema
  * @contractShape funding.stage

@@ -2,6 +2,8 @@
 import { z } from "zod/v4";
 import { HelpScopeSchema } from "../help/scope.js";
 const AgentHelpQuestionSchemaDefinition = z.object({
+    /** False limits the help corpus to public operations and to catalog tasks whose every step is a public operation, the catalog a public build can run; true requires private-visibility authority; null uses the caller's own visibility. */
+    includePrivate: z.boolean().nullish(),
     /** Optional chat model that answers the question; null uses the configured default. A caller without admin authority may only choose an allowlisted model; an ineligible model is rejected with 422. Admin callers are unrestricted. */
     model: z.string().nullish(),
     /** The question to answer, in natural language. */

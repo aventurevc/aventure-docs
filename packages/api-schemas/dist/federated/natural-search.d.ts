@@ -1,5 +1,10 @@
 import { z } from "zod/v4";
 declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
+    cacheMode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
+        bypass: "bypass";
+        refresh: "refresh";
+        use: "use";
+    }>>>;
     entityFilter: z.ZodOptional<z.ZodObject<{
         acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
         acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;

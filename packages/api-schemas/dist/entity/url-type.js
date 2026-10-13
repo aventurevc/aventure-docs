@@ -26,6 +26,8 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/people/{personId}/urls/{urlId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/lookup-batch
@@ -35,6 +37,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityListFilterSchema
  * @usedBySchema EntityUrlLinkSchema

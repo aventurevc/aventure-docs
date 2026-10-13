@@ -2,8 +2,11 @@
 import { z } from "zod/v4";
 import { EntityFilterSchema } from "../entity/filter.js";
 import { ReasoningEffortSchema } from "../reasoning/effort.js";
+import { SearchCacheModeSchema } from "../search/cache-mode.js";
 import { SearchModeSchema } from "../search/mode.js";
 const FederatedNaturalSearchSchemaDefinition = z.object({
+    /** Search-stage cache policy. use reuses cached search work; bypass computes fresh without retaining outputs; refresh computes fresh and replaces normal entries. Record and immutable query-vector caches retain their own policy. */
+    cacheMode: SearchCacheModeSchema.default("use").optional(),
     /** Explicit entity constraints for the entity scope only, as on POST /v1/search/natural/entities: caller-supplied fields override planner values. The person and news scopes ignore it. */
     entityFilter: EntityFilterSchema.optional(),
     /** Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword`, `semantic`, and `hybrid` (`semantic` and `hybrid` only for one entity's or person's content). */
