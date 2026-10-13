@@ -19,6 +19,7 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     investorAttribution: FundraiseInvestmentAttributionSchema.nullish(),
     /** Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor. */
     investorCount: z.int().nullish(),
+    /** Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written. */
     round: z.string().nullish(),
     sourceAttribution: z.array(FundraiseInvestmentAttributionSchema),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
