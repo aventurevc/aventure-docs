@@ -11,6 +11,8 @@ declare const AddressAssociationSchemaDefinition: z.ZodObject<{
     startDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
 }, z.core.$strip>;
 type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefinition>;
+export interface AddressAssociationSchemaInput extends z.input<typeof AddressAssociationSchemaDefinition> {
+}
 /**
  * One role and effective period for a physical address association
  *
@@ -50,7 +52,7 @@ type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefin
  * @contractShape address.association
  * @contractRole canonical
  */
-export declare const AddressAssociationSchema: z.ZodType<AddressAssociationDefinition>;
+export declare const AddressAssociationSchema: z.ZodType<AddressAssociationDefinition, AddressAssociationSchemaInput>;
 export type AddressAssociation = z.infer<typeof AddressAssociationSchema>;
 export {};
 //# sourceMappingURL=association.d.ts.map

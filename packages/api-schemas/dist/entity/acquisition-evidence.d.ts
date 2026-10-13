@@ -6,6 +6,8 @@ declare const EntityAcquisitionEvidenceSchemaDefinition: z.ZodObject<{
     relationship: z.ZodBoolean;
 }, z.core.$strip>;
 type EntityAcquisitionEvidenceDefinition = z.infer<typeof EntityAcquisitionEvidenceSchemaDefinition>;
+export interface EntityAcquisitionEvidenceSchemaInput extends z.input<typeof EntityAcquisitionEvidenceSchemaDefinition> {
+}
 /**
  * Booleans confirming each managed row written by the acquisition endpoint.
  *
@@ -16,7 +18,7 @@ type EntityAcquisitionEvidenceDefinition = z.infer<typeof EntityAcquisitionEvide
  * @contractShape entity.acquisition-evidence
  * @contractRole canonical
  */
-export declare const EntityAcquisitionEvidenceSchema: z.ZodType<EntityAcquisitionEvidenceDefinition>;
+export declare const EntityAcquisitionEvidenceSchema: z.ZodType<EntityAcquisitionEvidenceDefinition, EntityAcquisitionEvidenceSchemaInput>;
 export type EntityAcquisitionEvidence = z.infer<typeof EntityAcquisitionEvidenceSchema>;
 export {};
 //# sourceMappingURL=acquisition-evidence.d.ts.map

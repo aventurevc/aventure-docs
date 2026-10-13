@@ -4,6 +4,8 @@ declare const StageFrequencySchemaDefinition: z.ZodObject<{
     stage: z.ZodString;
 }, z.core.$strip>;
 type StageFrequencyDefinition = z.infer<typeof StageFrequencySchemaDefinition>;
+export interface StageFrequencySchemaInput extends z.input<typeof StageFrequencySchemaDefinition> {
+}
 /**
  * Canonical equity stage derived from a transaction calculatedRoundLabel, with deal frequency ranked by count descending.
  *
@@ -14,7 +16,7 @@ type StageFrequencyDefinition = z.infer<typeof StageFrequencySchemaDefinition>;
  * @contractShape stage.frequency
  * @contractRole canonical
  */
-export declare const StageFrequencySchema: z.ZodType<StageFrequencyDefinition>;
+export declare const StageFrequencySchema: z.ZodType<StageFrequencyDefinition, StageFrequencySchemaInput>;
 export type StageFrequency = z.infer<typeof StageFrequencySchema>;
 export {};
 //# sourceMappingURL=frequency.d.ts.map

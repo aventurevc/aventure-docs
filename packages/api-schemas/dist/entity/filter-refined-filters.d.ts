@@ -36,7 +36,7 @@ declare const EntityFilterRefinedFiltersSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./filter-entry.ts").EntityFilterEntrySchemaInput, z.core.$ZodTypeInternals<{
         chart: {
             amount: number;
             end: number;
@@ -72,20 +72,22 @@ declare const EntityFilterRefinedFiltersSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("./filter-entry.ts").EntityFilterEntrySchemaInput>>>;
     meta: z.ZodType<{
         degraded: boolean;
         limit: number;
         page: number;
         total?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../refinement/meta.ts").RefinementMetaSchemaInput, z.core.$ZodTypeInternals<{
         degraded: boolean;
         limit: number;
         page: number;
         total?: number | null | undefined;
-    }, unknown>>;
+    }, import("../refinement/meta.ts").RefinementMetaSchemaInput>>;
 }, z.core.$strip>;
 type EntityFilterRefinedFiltersDefinition = z.infer<typeof EntityFilterRefinedFiltersSchemaDefinition>;
+export interface EntityFilterRefinedFiltersSchemaInput extends z.input<typeof EntityFilterRefinedFiltersSchemaDefinition> {
+}
 /**
  * Refined filters
  *
@@ -94,7 +96,7 @@ type EntityFilterRefinedFiltersDefinition = z.infer<typeof EntityFilterRefinedFi
  * @contractShape entity.filter-refined-filters
  * @contractRole canonical
  */
-export declare const EntityFilterRefinedFiltersSchema: z.ZodType<EntityFilterRefinedFiltersDefinition>;
+export declare const EntityFilterRefinedFiltersSchema: z.ZodType<EntityFilterRefinedFiltersDefinition, EntityFilterRefinedFiltersSchemaInput>;
 export type EntityFilterRefinedFilters = z.infer<typeof EntityFilterRefinedFiltersSchema>;
 export {};
 //# sourceMappingURL=filter-refined-filters.d.ts.map

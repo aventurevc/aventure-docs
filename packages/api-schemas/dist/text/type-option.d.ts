@@ -15,6 +15,8 @@ declare const TextTypeOptionSchemaDefinition: z.ZodObject<{
     rewriteHint: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type TextTypeOptionDefinition = z.infer<typeof TextTypeOptionSchemaDefinition>;
+export interface TextTypeOptionSchemaInput extends z.input<typeof TextTypeOptionSchemaDefinition> {
+}
 /**
  * Canonical textType value accepted by text endpoints; entity rows include minWords, maxWords, rewriteHint, and paragraphShape when a governed text contract applies.
  *
@@ -24,7 +26,7 @@ type TextTypeOptionDefinition = z.infer<typeof TextTypeOptionSchemaDefinition>;
  * @contractShape text.type-option
  * @contractRole canonical
  */
-export declare const TextTypeOptionSchema: z.ZodType<TextTypeOptionDefinition>;
+export declare const TextTypeOptionSchema: z.ZodType<TextTypeOptionDefinition, TextTypeOptionSchemaInput>;
 export type TextTypeOption = z.infer<typeof TextTypeOptionSchema>;
 export {};
 //# sourceMappingURL=type-option.d.ts.map

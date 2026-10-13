@@ -15,7 +15,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -29,7 +29,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>;
+    }, import("./news.ts").NewsSchemaInput>>;
     entityMentionResolved: z.ZodArray<z.ZodType<{
         createdAt: string;
         entityId: string;
@@ -40,7 +40,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./resolved-entity-link.ts").NewsResolvedEntityLinkSchemaInput, z.core.$ZodTypeInternals<{
         createdAt: string;
         entityId: string;
         href?: string | null | undefined;
@@ -50,7 +50,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, import("./resolved-entity-link.ts").NewsResolvedEntityLinkSchemaInput>>>;
     externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     linkedContent: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     linkerCompleted: z.ZodOptional<z.ZodBoolean>;
@@ -62,7 +62,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         personId: string;
         slug?: string | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./resolved-person-link.ts").NewsResolvedPersonLinkSchemaInput, z.core.$ZodTypeInternals<{
         createdAt: string;
         href?: string | null | undefined;
         matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
@@ -70,9 +70,11 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         personId: string;
         slug?: string | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, import("./resolved-person-link.ts").NewsResolvedPersonLinkSchemaInput>>>;
 }, z.core.$strip>;
 type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
+export interface NewsDetailSchemaInput extends z.input<typeof NewsDetailSchemaDefinition> {
+}
 /**
  * Canonical news detail owner
  *
@@ -82,7 +84,7 @@ type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
  * @contractShape news.detail
  * @contractRole canonical
  */
-export declare const NewsDetailSchema: z.ZodType<NewsDetailDefinition>;
+export declare const NewsDetailSchema: z.ZodType<NewsDetailDefinition, NewsDetailSchemaInput>;
 export type NewsDetail = z.infer<typeof NewsDetailSchema>;
 export {};
 //# sourceMappingURL=detail.d.ts.map

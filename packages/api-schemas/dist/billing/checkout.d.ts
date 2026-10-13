@@ -13,6 +13,8 @@ declare const BillingCheckoutSchemaDefinition: z.ZodObject<{
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingCheckoutDefinition = z.infer<typeof BillingCheckoutSchemaDefinition>;
+export interface BillingCheckoutSchemaInput extends z.input<typeof BillingCheckoutSchemaDefinition> {
+}
 /**
  * Checkout Session destination or client secret and expiry without provider identifiers.
  *
@@ -21,7 +23,7 @@ type BillingCheckoutDefinition = z.infer<typeof BillingCheckoutSchemaDefinition>
  * @contractShape billing.checkout
  * @contractRole canonical
  */
-export declare const BillingCheckoutSchema: z.ZodType<BillingCheckoutDefinition>;
+export declare const BillingCheckoutSchema: z.ZodType<BillingCheckoutDefinition, BillingCheckoutSchemaInput>;
 export type BillingCheckout = z.infer<typeof BillingCheckoutSchema>;
 export {};
 //# sourceMappingURL=checkout.d.ts.map

@@ -26,6 +26,8 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
     }>, z.ZodString]>>>;
 }, z.core.$strip>;
 type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
+export interface NaturalSearchSchemaInput extends z.input<typeof NaturalSearchSchemaDefinition> {
+}
 /**
  * Plain-English search request. The server plans the query into the target domain filter plus sort, then runs that domain's canonical list engine.
  *
@@ -39,7 +41,7 @@ type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
  * @contractShape natural.search
  * @contractRole canonical
  */
-export declare const NaturalSearchSchema: z.ZodType<NaturalSearchDefinition>;
+export declare const NaturalSearchSchema: z.ZodType<NaturalSearchDefinition, NaturalSearchSchemaInput>;
 export type NaturalSearch = z.infer<typeof NaturalSearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

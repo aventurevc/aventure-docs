@@ -5,6 +5,8 @@ declare const EntityImageSchemaDefinition: z.ZodObject<{
     logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
+export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchemaDefinition> {
+}
 /**
  * Grouped entity image fields for square, standard, and monogram logo state
  *
@@ -56,7 +58,7 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * @contractShape entity.image
  * @contractRole canonical
  */
-export declare const EntityImageSchema: z.ZodType<EntityImageDefinition>;
+export declare const EntityImageSchema: z.ZodType<EntityImageDefinition, EntityImageSchemaInput>;
 export type EntityImage = z.infer<typeof EntityImageSchema>;
 export {};
 //# sourceMappingURL=image.d.ts.map

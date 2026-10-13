@@ -8,21 +8,21 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -61,7 +61,7 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./similarity-context.ts").EntitySimilarityContextSchemaInput, z.core.$ZodTypeInternals<{
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
         curatedAsOf?: string | null | undefined;
@@ -72,7 +72,7 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown>>;
+    }, import("./similarity-context.ts").EntitySimilarityContextSchemaInput>>;
     urlLink: z.ZodArray<z.ZodType<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
@@ -90,7 +90,7 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -107,9 +107,11 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, import("./url-link.ts").EntityUrlLinkSchemaInput>>>;
 }, z.core.$strip>;
 type EntitySimilaritySummaryDefinition = z.infer<typeof EntitySimilaritySummarySchemaDefinition>;
+export interface EntitySimilaritySummarySchemaInput extends z.input<typeof EntitySimilaritySummarySchemaDefinition> {
+}
 /**
  * Lean similar-entity rail row: core identity, current URL links, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.
  *
@@ -119,7 +121,7 @@ type EntitySimilaritySummaryDefinition = z.infer<typeof EntitySimilaritySummaryS
  * @contractShape entity.similarity-summary
  * @contractRole canonical
  */
-export declare const EntitySimilaritySummarySchema: z.ZodType<EntitySimilaritySummaryDefinition>;
+export declare const EntitySimilaritySummarySchema: z.ZodType<EntitySimilaritySummaryDefinition, EntitySimilaritySummarySchemaInput>;
 export type EntitySimilaritySummary = z.infer<typeof EntitySimilaritySummarySchema>;
 export {};
 //# sourceMappingURL=similarity-summary.d.ts.map

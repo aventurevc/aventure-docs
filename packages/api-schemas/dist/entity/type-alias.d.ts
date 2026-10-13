@@ -8,6 +8,8 @@ declare const EntityTypeAliasSchemaDefinition: z.ZodObject<{
     publicPathPrefix: z.ZodString;
 }, z.core.$strip>;
 type EntityTypeAliasDefinition = z.infer<typeof EntityTypeAliasSchemaDefinition>;
+export interface EntityTypeAliasSchemaInput extends z.input<typeof EntityTypeAliasSchemaDefinition> {
+}
 /**
  * Canonical EntityType value, accepted aliases, and public routing metadata.
  *
@@ -16,7 +18,7 @@ type EntityTypeAliasDefinition = z.infer<typeof EntityTypeAliasSchemaDefinition>
  * @contractShape entity.type-alias
  * @contractRole canonical
  */
-export declare const EntityTypeAliasSchema: z.ZodType<EntityTypeAliasDefinition>;
+export declare const EntityTypeAliasSchema: z.ZodType<EntityTypeAliasDefinition, EntityTypeAliasSchemaInput>;
 export type EntityTypeAlias = z.infer<typeof EntityTypeAliasSchema>;
 export {};
 //# sourceMappingURL=type-alias.d.ts.map

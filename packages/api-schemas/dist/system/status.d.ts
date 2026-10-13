@@ -14,14 +14,16 @@ declare const SystemStatusSchemaDefinition: z.ZodObject<{
         downtimeSeconds?: number | null | undefined;
         error?: string | null | undefined;
         incidents?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../uptime/uptime.ts").UptimeSchemaInput, z.core.$ZodTypeInternals<{
         availability?: number | null | undefined;
         downtimeSeconds?: number | null | undefined;
         error?: string | null | undefined;
         incidents?: number | null | undefined;
-    }, unknown>>;
+    }, import("../uptime/uptime.ts").UptimeSchemaInput>>;
 }, z.core.$strip>;
 type SystemStatusDefinition = z.infer<typeof SystemStatusSchemaDefinition>;
+export interface SystemStatusSchemaInput extends z.input<typeof SystemStatusSchemaDefinition> {
+}
 /**
  * Uptime SLA, served-operation identity, and Apple app update policy
  *
@@ -30,7 +32,7 @@ type SystemStatusDefinition = z.infer<typeof SystemStatusSchemaDefinition>;
  * @contractShape system.status
  * @contractRole canonical
  */
-export declare const SystemStatusSchema: z.ZodType<SystemStatusDefinition>;
+export declare const SystemStatusSchema: z.ZodType<SystemStatusDefinition, SystemStatusSchemaInput>;
 export type SystemStatus = z.infer<typeof SystemStatusSchema>;
 export {};
 //# sourceMappingURL=status.d.ts.map

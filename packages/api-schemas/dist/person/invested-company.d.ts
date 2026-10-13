@@ -8,21 +8,21 @@ declare const PersonInvestedCompanySchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("../entity/image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -56,6 +56,8 @@ declare const PersonInvestedCompanySchemaDefinition: z.ZodObject<{
     industry: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type PersonInvestedCompanyDefinition = z.infer<typeof PersonInvestedCompanySchemaDefinition>;
+export interface PersonInvestedCompanySchemaInput extends z.input<typeof PersonInvestedCompanySchemaDefinition> {
+}
 /**
  * Company metadata associated with a person investment
  *
@@ -81,7 +83,7 @@ type PersonInvestedCompanyDefinition = z.infer<typeof PersonInvestedCompanySchem
  * @contractShape person.invested-company
  * @contractRole canonical
  */
-export declare const PersonInvestedCompanySchema: z.ZodType<PersonInvestedCompanyDefinition>;
+export declare const PersonInvestedCompanySchema: z.ZodType<PersonInvestedCompanyDefinition, PersonInvestedCompanySchemaInput>;
 export type PersonInvestedCompany = z.infer<typeof PersonInvestedCompanySchema>;
 export {};
 //# sourceMappingURL=invested-company.d.ts.map

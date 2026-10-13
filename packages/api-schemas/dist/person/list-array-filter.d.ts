@@ -19,17 +19,17 @@ export declare const PersonListArrayFilterSchema: z.ZodObject<{
     amountInvestedRange: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>>;
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>>;
     amountRaisedRange: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>>;
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>>;
     entityName: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     investedCompany: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     personTitle: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
@@ -37,10 +37,10 @@ export declare const PersonListArrayFilterSchema: z.ZodObject<{
     totalInvestmentCount: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>>;
+    }, import("../int/range.ts").IntRangeSchemaInput>>>>>;
     typeRecord: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodEnum<{
         "Business Line": "Business Line";
         Company: "Company";

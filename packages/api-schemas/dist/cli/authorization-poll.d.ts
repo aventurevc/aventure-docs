@@ -37,6 +37,8 @@ declare const CliAuthorizationPollSchemaDefinition: z.ZodObject<{
     }>>>;
 }, z.core.$strip>;
 type CliAuthorizationPollDefinition = z.infer<typeof CliAuthorizationPollSchemaDefinition>;
+export interface CliAuthorizationPollSchemaInput extends z.input<typeof CliAuthorizationPollSchemaDefinition> {
+}
 /**
  * Current broker state and encrypted delivery when the key is ready
  *
@@ -45,7 +47,7 @@ type CliAuthorizationPollDefinition = z.infer<typeof CliAuthorizationPollSchemaD
  * @contractShape cli.authorization-poll
  * @contractRole canonical
  */
-export declare const CliAuthorizationPollSchema: z.ZodType<CliAuthorizationPollDefinition>;
+export declare const CliAuthorizationPollSchema: z.ZodType<CliAuthorizationPollDefinition, CliAuthorizationPollSchemaInput>;
 export type CliAuthorizationPoll = z.infer<typeof CliAuthorizationPollSchema>;
 export {};
 //# sourceMappingURL=authorization-poll.d.ts.map

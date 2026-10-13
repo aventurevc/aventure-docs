@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
+    appStoreProductId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     cadence: z.ZodString;
     currency: z.ZodString;
     displayName: z.ZodString;
@@ -20,6 +21,8 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
     unitAmount: z.ZodNumber;
 }, z.core.$strip>;
 type BillingCatalogPlanDefinition = z.infer<typeof BillingCatalogPlanSchemaDefinition>;
+export interface BillingCatalogPlanSchemaInput extends z.input<typeof BillingCatalogPlanSchemaDefinition> {
+}
 /**
  * One Checkout plan and its recurring price.
  *
@@ -29,7 +32,7 @@ type BillingCatalogPlanDefinition = z.infer<typeof BillingCatalogPlanSchemaDefin
  * @contractShape billing.catalog-plan
  * @contractRole canonical
  */
-export declare const BillingCatalogPlanSchema: z.ZodType<BillingCatalogPlanDefinition>;
+export declare const BillingCatalogPlanSchema: z.ZodType<BillingCatalogPlanDefinition, BillingCatalogPlanSchemaInput>;
 export type BillingCatalogPlan = z.infer<typeof BillingCatalogPlanSchema>;
 export {};
 //# sourceMappingURL=catalog-plan.d.ts.map

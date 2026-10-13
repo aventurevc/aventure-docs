@@ -29,7 +29,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
         tagCount: number;
         type: string;
         writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-bucket.ts").ClassificationCatalogBucketSchemaInput, z.core.$ZodTypeInternals<{
         alias: string[];
         bucket?: string | null | undefined;
         creatable: boolean;
@@ -58,7 +58,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
         tagCount: number;
         type: string;
         writable: boolean;
-    }, unknown>>>;
+    }, import("./catalog-bucket.ts").ClassificationCatalogBucketSchemaInput>>>;
     category: z.ZodArray<z.ZodType<{
         alias: string[];
         category: string;
@@ -87,7 +87,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
         hierarchical: boolean;
         label: string;
         writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-category.ts").ClassificationCatalogCategorySchemaInput, z.core.$ZodTypeInternals<{
         alias: string[];
         category: string;
         classification: ({
@@ -115,7 +115,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
         hierarchical: boolean;
         label: string;
         writable: boolean;
-    }, unknown>>>;
+    }, import("./catalog-category.ts").ClassificationCatalogCategorySchemaInput>>>;
     generatedAt: z.ZodISODateTime;
     totalBucket: z.ZodInt;
     totalCategory: z.ZodInt;
@@ -123,6 +123,8 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
     totalTag: z.ZodInt;
 }, z.core.$strip>;
 type ClassificationCatalogDefinition = z.infer<typeof ClassificationCatalogSchemaDefinition>;
+export interface ClassificationCatalogSchemaInput extends z.input<typeof ClassificationCatalogSchemaDefinition> {
+}
 /**
  * Full active entity classification taxonomy in one payload. Dormant registry tags are omitted from the catalog and surface through write-time 409 recovery instead.
  *
@@ -131,7 +133,7 @@ type ClassificationCatalogDefinition = z.infer<typeof ClassificationCatalogSchem
  * @contractShape classification.catalog
  * @contractRole canonical
  */
-export declare const ClassificationCatalogSchema: z.ZodType<ClassificationCatalogDefinition>;
+export declare const ClassificationCatalogSchema: z.ZodType<ClassificationCatalogDefinition, ClassificationCatalogSchemaInput>;
 export type ClassificationCatalog = z.infer<typeof ClassificationCatalogSchema>;
 export {};
 //# sourceMappingURL=catalog.d.ts.map

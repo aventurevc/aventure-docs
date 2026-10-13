@@ -5,11 +5,11 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             entityId: string;
             source: string;
             sourceId: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../search/answer-citation.ts").SearchAnswerCitationSchemaInput, z.core.$ZodTypeInternals<{
             entityId: string;
             source: string;
             sourceId: string;
-        }, unknown>>>;
+        }, import("../search/answer-citation.ts").SearchAnswerCitationSchemaInput>>>;
         confidence: z.ZodEnum<{
             HIGH: "HIGH";
             LOW: "LOW";
@@ -25,7 +25,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             }[];
             text: string;
             topic?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput, z.core.$ZodTypeInternals<{
             citation: {
                 entityId: string;
                 source: string;
@@ -33,7 +33,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             }[];
             text: string;
             topic?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput>>>;
         relatedQuery: z.ZodArray<z.ZodString>;
         shareable: z.ZodBoolean;
         text: z.ZodString;
@@ -169,7 +169,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         };
         subjectEntityName: string[];
         unsupported?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/interpretation.ts").SearchInterpretationSchemaInput, z.core.$ZodTypeInternals<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
         execution: {
             modeRequested: string;
@@ -299,7 +299,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         };
         subjectEntityName: string[];
         unsupported?: string | null | undefined;
-    }, unknown>>;
+    }, import("../search/interpretation.ts").SearchInterpretationSchemaInput>>;
     investment: z.ZodArray<z.ZodType<{
         evidence: {
             fundManagerRelationshipSource?: {
@@ -425,7 +425,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/investment.ts").SearchInvestmentSchemaInput, z.core.$ZodTypeInternals<{
         evidence: {
             fundManagerRelationshipSource?: {
                 changedAt?: string | null | undefined;
@@ -550,7 +550,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("../search/investment.ts").SearchInvestmentSchemaInput>>>;
     judgment: z.ZodArray<z.ZodType<{
         entityId: string;
         matchedOffering?: {
@@ -587,7 +587,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         probability: number;
         webUrl: string[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/judgment.ts").SearchJudgmentSchemaInput, z.core.$ZodTypeInternals<{
         entityId: string;
         matchedOffering?: {
             defaultCurrency?: string | null | undefined;
@@ -623,7 +623,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         probability: number;
         webUrl: string[];
-    }, unknown>>>;
+    }, import("../search/judgment.ts").SearchJudgmentSchemaInput>>>;
     passage: z.ZodArray<z.ZodType<{
         entityId: string;
         label: string;
@@ -633,7 +633,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         sourceId: string;
         text: string;
         url?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../search/passage.ts").SearchPassageSchemaInput, z.core.$ZodTypeInternals<{
         entityId: string;
         label: string;
         publishedAt?: string | null | undefined;
@@ -642,7 +642,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         sourceId: string;
         text: string;
         url?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../search/passage.ts").SearchPassageSchemaInput>>>;
     peer: z.ZodArray<z.ZodType<{
         entity: {
             core: {
@@ -935,6 +935,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1135,7 +1136,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sharedSectionCount?: number | null | undefined;
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/similarity-result.ts").EntitySimilarityResultSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -1427,6 +1428,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1627,7 +1629,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             rank: number;
             sharedSectionCount?: number | null | undefined;
         };
-    }, unknown>>>;
+    }, import("../entity/similarity-result.ts").EntitySimilarityResultSchemaInput>>>;
     pendingWebQuery: z.ZodArray<z.ZodString>;
     result: z.ZodType<{
         content: {
@@ -1921,6 +1923,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -2113,7 +2116,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         size: number;
         totalElements: number;
         totalPages: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../pagination/schemas.ts").PageResultEntityListSchemaInput, z.core.$ZodTypeInternals<{
         content: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -2405,6 +2408,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -2597,7 +2601,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         size: number;
         totalElements: number;
         totalPages: number;
-    }, unknown>>;
+    }, import("../pagination/schemas.ts").PageResultEntityListSchemaInput>>;
     searchRequestId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     subject: z.ZodArray<z.ZodType<{
         core: {
@@ -2890,6 +2894,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -3077,7 +3082,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -3368,6 +3373,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -3555,9 +3561,11 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("../entity/list.ts").EntityListSchemaInput>>>;
 }, z.core.$strip>;
 type NaturalSearchResultDefinition = z.infer<typeof NaturalSearchResultSchemaDefinition>;
+export interface NaturalSearchResultSchemaInput extends z.input<typeof NaturalSearchResultSchemaDefinition> {
+}
 /**
  * Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.
  *
@@ -3573,7 +3581,7 @@ type NaturalSearchResultDefinition = z.infer<typeof NaturalSearchResultSchemaDef
  * @contractShape natural.search-result
  * @contractRole canonical
  */
-export declare const NaturalSearchResultSchema: z.ZodType<NaturalSearchResultDefinition>;
+export declare const NaturalSearchResultSchema: z.ZodType<NaturalSearchResultDefinition, NaturalSearchResultSchemaInput>;
 export type NaturalSearchResult = z.infer<typeof NaturalSearchResultSchema>;
 export {};
 //# sourceMappingURL=search-result.d.ts.map

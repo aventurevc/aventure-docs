@@ -11,13 +11,15 @@ declare const AuthProviderCatalogSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type AuthProviderCatalogDefinition = z.infer<typeof AuthProviderCatalogSchemaDefinition>;
+export interface AuthProviderCatalogSchemaInput extends z.input<typeof AuthProviderCatalogSchemaDefinition> {
+}
 /**
  * @openapiSchema AuthProviderCatalog
  * @endpoint GET /v1/auth/providers
  * @contractShape auth.provider-catalog
  * @contractRole canonical
  */
-export declare const AuthProviderCatalogSchema: z.ZodType<AuthProviderCatalogDefinition>;
+export declare const AuthProviderCatalogSchema: z.ZodType<AuthProviderCatalogDefinition, AuthProviderCatalogSchemaInput>;
 export type AuthProviderCatalog = z.infer<typeof AuthProviderCatalogSchema>;
 export {};
 //# sourceMappingURL=provider-catalog.d.ts.map

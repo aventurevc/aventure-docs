@@ -25,10 +25,10 @@ declare const SharedSearchMutationSchemaDefinition: z.ZodObject<{
             employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
             entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
             entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -36,17 +36,17 @@ declare const SharedSearchMutationSchemaDefinition: z.ZodObject<{
                 amountInvestedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 amountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                     max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                     min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -59,63 +59,63 @@ declare const SharedSearchMutationSchemaDefinition: z.ZodObject<{
                     averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown, z.core.$ZodTypeInternals<{
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown>>>>;
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                     largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown, z.core.$ZodTypeInternals<{
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown>>>>;
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                     smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown, z.core.$ZodTypeInternals<{
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown>>>>;
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                     totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown, z.core.$ZodTypeInternals<{
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown>>>>;
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                     totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown, z.core.$ZodTypeInternals<{
+                    }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
-                    }, unknown>>>>;
+                    }, import("../int/range.ts").IntRangeSchemaInput>>>>;
                 }, z.core.$strip>>;
                 investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../int/range.ts").IntRangeSchemaInput>>>>;
                 rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
                 round: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 valuationRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, unknown>>>>;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             }, z.core.$strip>>;
             hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -183,10 +183,10 @@ declare const SharedSearchMutationSchemaDefinition: z.ZodObject<{
             yearFoundedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
         }, z.core.$strict>>;
         mode: z.ZodOptional<z.ZodDefault<z.ZodUnion<readonly [z.ZodEnum<{
             auto: "auto";
@@ -209,9 +209,12 @@ declare const SharedSearchMutationSchemaDefinition: z.ZodObject<{
             xhigh: "xhigh";
         }>, z.ZodString]>>>;
     }, z.core.$strip>>>;
+    searchRequestId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     size: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type SharedSearchMutationDefinition = z.infer<typeof SharedSearchMutationSchemaDefinition>;
+export interface SharedSearchMutationSchemaInput extends z.input<typeof SharedSearchMutationSchemaDefinition> {
+}
 /**
  * Publish a query under a stable client UUID; retries return the same saved answer.
  *
@@ -220,7 +223,7 @@ type SharedSearchMutationDefinition = z.infer<typeof SharedSearchMutationSchemaD
  * @contractShape shared.search-mutation
  * @contractRole canonical
  */
-export declare const SharedSearchMutationSchema: z.ZodType<SharedSearchMutationDefinition>;
+export declare const SharedSearchMutationSchema: z.ZodType<SharedSearchMutationDefinition, SharedSearchMutationSchemaInput>;
 export type SharedSearchMutation = z.infer<typeof SharedSearchMutationSchema>;
 export {};
 //# sourceMappingURL=search-mutation.d.ts.map

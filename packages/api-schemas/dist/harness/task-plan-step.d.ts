@@ -6,11 +6,11 @@ declare const HarnessTaskPlanStepSchemaDefinition: z.ZodObject<{
         instruction: string;
         operationId: string;
         stepKey: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./task-step.ts").HarnessTaskStepSchemaInput, z.core.$ZodTypeInternals<{
         instruction: string;
         operationId: string;
         stepKey: string;
-    }, unknown>>;
+    }, import("./task-step.ts").HarnessTaskStepSchemaInput>>;
     writeGuidance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         body: z.ZodString;
         expectation: z.ZodString;
@@ -21,6 +21,8 @@ declare const HarnessTaskPlanStepSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type HarnessTaskPlanStepDefinition = z.infer<typeof HarnessTaskPlanStepSchemaDefinition>;
+export interface HarnessTaskPlanStepSchemaInput extends z.input<typeof HarnessTaskPlanStepSchemaDefinition> {
+}
 /**
  * One task step with the CLI command and MCP tool that run its operation.
  *
@@ -31,7 +33,7 @@ type HarnessTaskPlanStepDefinition = z.infer<typeof HarnessTaskPlanStepSchemaDef
  * @contractShape harness.task-plan-step
  * @contractRole canonical
  */
-export declare const HarnessTaskPlanStepSchema: z.ZodType<HarnessTaskPlanStepDefinition>;
+export declare const HarnessTaskPlanStepSchema: z.ZodType<HarnessTaskPlanStepDefinition, HarnessTaskPlanStepSchemaInput>;
 export type HarnessTaskPlanStep = z.infer<typeof HarnessTaskPlanStepSchema>;
 export {};
 //# sourceMappingURL=task-plan-step.d.ts.map

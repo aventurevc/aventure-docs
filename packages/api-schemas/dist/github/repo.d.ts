@@ -20,6 +20,8 @@ declare const GithubRepoSchemaDefinition: z.ZodObject<{
     url: z.ZodString;
 }, z.core.$strip>;
 type GithubRepoDefinition = z.infer<typeof GithubRepoSchemaDefinition>;
+export interface GithubRepoSchemaInput extends z.input<typeof GithubRepoSchemaDefinition> {
+}
 /**
  * GitHub repository synced for an entity or person from their current github URL links. githubId is GitHub's stable numeric repository id; rows are replaced per owner on each sync, so counts and timestamps reflect the last sync.
  *
@@ -30,7 +32,7 @@ type GithubRepoDefinition = z.infer<typeof GithubRepoSchemaDefinition>;
  * @contractShape github.repo
  * @contractRole canonical
  */
-export declare const GithubRepoSchema: z.ZodType<GithubRepoDefinition>;
+export declare const GithubRepoSchema: z.ZodType<GithubRepoDefinition, GithubRepoSchemaInput>;
 export type GithubRepo = z.infer<typeof GithubRepoSchema>;
 export {};
 //# sourceMappingURL=repo.d.ts.map

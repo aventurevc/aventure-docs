@@ -15,6 +15,8 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SearchDefinition = z.infer<typeof SearchSchemaDefinition>;
+export interface SearchSchemaInput extends z.input<typeof SearchSchemaDefinition> {
+}
 /**
  * Live web search request with cache controls
  *
@@ -25,7 +27,7 @@ type SearchDefinition = z.infer<typeof SearchSchemaDefinition>;
  * @contractShape search.search
  * @contractRole canonical
  */
-export declare const SearchSchema: z.ZodType<SearchDefinition>;
+export declare const SearchSchema: z.ZodType<SearchDefinition, SearchSchemaInput>;
 export type Search = z.infer<typeof SearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

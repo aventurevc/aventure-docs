@@ -109,7 +109,7 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../fundraise/investment-evidence.ts").FundraiseInvestmentEvidenceSchemaInput, z.core.$ZodTypeInternals<{
         fundManagerRelationshipSource?: {
             changedAt?: string | null | undefined;
             dataSourceUpdatedAt?: string | null | undefined;
@@ -218,7 +218,7 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
             sourceId?: string | null | undefined;
             status?: string | null | undefined;
         } | null | undefined;
-    }, unknown>>;
+    }, import("../fundraise/investment-evidence.ts").FundraiseInvestmentEvidenceSchemaInput>>;
     investor: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -248,6 +248,8 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type SearchInvestmentDefinition = z.infer<typeof SearchInvestmentSchemaDefinition>;
+export interface SearchInvestmentSchemaInput extends z.input<typeof SearchInvestmentSchemaDefinition> {
+}
 /**
  * Canonical investor participation and matched portfolio offering evidence.
  *
@@ -265,7 +267,7 @@ type SearchInvestmentDefinition = z.infer<typeof SearchInvestmentSchemaDefinitio
  * @contractShape search.investment
  * @contractRole canonical
  */
-export declare const SearchInvestmentSchema: z.ZodType<SearchInvestmentDefinition>;
+export declare const SearchInvestmentSchema: z.ZodType<SearchInvestmentDefinition, SearchInvestmentSchemaInput>;
 export type SearchInvestment = z.infer<typeof SearchInvestmentSchema>;
 export {};
 //# sourceMappingURL=investment.d.ts.map

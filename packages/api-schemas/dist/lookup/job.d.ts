@@ -33,7 +33,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
                 externalId?: string | null | undefined;
                 id: string;
                 name?: string | null | undefined;
@@ -43,7 +43,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown>>;
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>;
@@ -77,7 +77,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
                 externalId?: string | null | undefined;
                 id: string;
                 name?: string | null | undefined;
@@ -87,7 +87,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown>>;
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>>;
@@ -122,7 +122,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
                 externalId?: string | null | undefined;
                 id: string;
                 name?: string | null | undefined;
@@ -132,7 +132,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown>>;
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>;
@@ -168,7 +168,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
                 externalId?: string | null | undefined;
                 id: string;
                 name?: string | null | undefined;
@@ -178,7 +178,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 score: number;
                 slug?: string | null | undefined;
                 typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-            }, unknown>>;
+            }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>>;
@@ -492,6 +492,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -841,7 +842,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             personId?: string | null | undefined;
         } | null | undefined;
         shellDetail?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./job-mention.ts").LookupJobMentionSchemaInput, z.core.$ZodTypeInternals<{
         enrichmentRunId?: string | null | undefined;
         entity: {
             core: {
@@ -1134,6 +1135,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1483,7 +1485,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             personId?: string | null | undefined;
         } | null | undefined;
         shellDetail?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./job-mention.ts").LookupJobMentionSchemaInput>>>;
     namesFound: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     namesProcessed: z.ZodInt;
     source: z.ZodType<{
@@ -1493,6 +1495,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             searchQuery?: string | undefined;
             type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         }[] | undefined;
+        omitRecords?: boolean | undefined;
         sourceDocumentId?: string | null | undefined;
         sourceNewsId?: number | null | undefined;
         sourceUrl?: string | null | undefined;
@@ -1507,13 +1510,14 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             url?: string[] | undefined;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./job-mutation.ts").LookupJobMutationSchemaInput, z.core.$ZodTypeInternals<{
         mention?: {
             name: string;
             providerName?: string | null | undefined;
             searchQuery?: string | undefined;
             type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         }[] | undefined;
+        omitRecords?: boolean | undefined;
         sourceDocumentId?: string | null | undefined;
         sourceNewsId?: number | null | undefined;
         sourceUrl?: string | null | undefined;
@@ -1528,7 +1532,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
             url?: string[] | undefined;
         } | null | undefined;
-    }, unknown>>;
+    }, import("./job-mutation.ts").LookupJobMutationSchemaInput>>;
     state: z.ZodEnum<{
         CANCELED: "CANCELED";
         COMPLETED: "COMPLETED";
@@ -1540,6 +1544,8 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type LookupJobDefinition = z.infer<typeof LookupJobSchemaDefinition>;
+export interface LookupJobSchemaInput extends z.input<typeof LookupJobSchemaDefinition> {
+}
 /**
  * An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names, or the identification of its subject.
  *
@@ -1548,7 +1554,7 @@ type LookupJobDefinition = z.infer<typeof LookupJobSchemaDefinition>;
  * @contractShape lookup.job
  * @contractRole canonical
  */
-export declare const LookupJobSchema: z.ZodType<LookupJobDefinition>;
+export declare const LookupJobSchema: z.ZodType<LookupJobDefinition, LookupJobSchemaInput>;
 export type LookupJob = z.infer<typeof LookupJobSchema>;
 export {};
 //# sourceMappingURL=job.d.ts.map

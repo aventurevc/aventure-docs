@@ -38,7 +38,7 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         headquartersCountry?: string | null | undefined;
         headquartersRegion?: string | null | undefined;
         industry?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./invested-company.ts").PersonInvestedCompanySchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -75,7 +75,7 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         headquartersCountry?: string | null | undefined;
         headquartersRegion?: string | null | undefined;
         industry?: string | null | undefined;
-    }, unknown>>;
+    }, import("./invested-company.ts").PersonInvestedCompanySchemaInput>>;
     date: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     fundraiseTransaction: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         amountRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -85,11 +85,11 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("../entity/image.ts").EntityImageSchemaInput>>;
         investorCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         nameBrand: z.ZodString;
         round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -118,6 +118,8 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinition>;
+export interface PersonInvestmentSchemaInput extends z.input<typeof PersonInvestmentSchemaDefinition> {
+}
 /**
  * Domain model for a person's investment in an entity (fundraise transaction)
  *
@@ -144,7 +146,7 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
  * @contractShape person.investment
  * @contractRole canonical
  */
-export declare const PersonInvestmentSchema: z.ZodType<PersonInvestmentDefinition>;
+export declare const PersonInvestmentSchema: z.ZodType<PersonInvestmentDefinition, PersonInvestmentSchemaInput>;
 export type PersonInvestment = z.infer<typeof PersonInvestmentSchema>;
 export {};
 //# sourceMappingURL=investment.d.ts.map

@@ -12,6 +12,8 @@ declare const BillingCatalogAdditionalUsageSchemaDefinition: z.ZodObject<{
     unitAmount: z.ZodNumber;
 }, z.core.$strip>;
 type BillingCatalogAdditionalUsageDefinition = z.infer<typeof BillingCatalogAdditionalUsageSchemaDefinition>;
+export interface BillingCatalogAdditionalUsageSchemaInput extends z.input<typeof BillingCatalogAdditionalUsageSchemaDefinition> {
+}
 /**
  * Price of one unit of usage past a paid tier's monthly cap.
  *
@@ -21,7 +23,7 @@ type BillingCatalogAdditionalUsageDefinition = z.infer<typeof BillingCatalogAddi
  * @contractShape billing.catalog-additional-usage
  * @contractRole canonical
  */
-export declare const BillingCatalogAdditionalUsageSchema: z.ZodType<BillingCatalogAdditionalUsageDefinition>;
+export declare const BillingCatalogAdditionalUsageSchema: z.ZodType<BillingCatalogAdditionalUsageDefinition, BillingCatalogAdditionalUsageSchemaInput>;
 export type BillingCatalogAdditionalUsage = z.infer<typeof BillingCatalogAdditionalUsageSchema>;
 export {};
 //# sourceMappingURL=catalog-additional-usage.d.ts.map

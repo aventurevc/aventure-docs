@@ -5,6 +5,8 @@ declare const HarnessTaskStepSchemaDefinition: z.ZodObject<{
     stepKey: z.ZodString;
 }, z.core.$strip>;
 type HarnessTaskStepDefinition = z.infer<typeof HarnessTaskStepSchemaDefinition>;
+export interface HarnessTaskStepSchemaInput extends z.input<typeof HarnessTaskStepSchemaDefinition> {
+}
 /**
  * One ordered task step: its key, instruction, and the operation that runs it.
  *
@@ -15,7 +17,7 @@ type HarnessTaskStepDefinition = z.infer<typeof HarnessTaskStepSchemaDefinition>
  * @contractShape harness.task-step
  * @contractRole canonical
  */
-export declare const HarnessTaskStepSchema: z.ZodType<HarnessTaskStepDefinition>;
+export declare const HarnessTaskStepSchema: z.ZodType<HarnessTaskStepDefinition, HarnessTaskStepSchemaInput>;
 export type HarnessTaskStep = z.infer<typeof HarnessTaskStepSchema>;
 export {};
 //# sourceMappingURL=task-step.d.ts.map

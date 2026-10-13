@@ -7,6 +7,8 @@ declare const UrlDuplicateJoinSchemaDefinition: z.ZodObject<{
     urlId: z.ZodInt;
 }, z.core.$strip>;
 type UrlDuplicateJoinDefinition = z.infer<typeof UrlDuplicateJoinSchemaDefinition>;
+export interface UrlDuplicateJoinSchemaInput extends z.input<typeof UrlDuplicateJoinSchemaDefinition> {
+}
 /**
  * URL ownership join row identifying which entity or person currently owns a normalized URL.
  *
@@ -16,7 +18,7 @@ type UrlDuplicateJoinDefinition = z.infer<typeof UrlDuplicateJoinSchemaDefinitio
  * @contractShape url.duplicate-join
  * @contractRole canonical
  */
-export declare const UrlDuplicateJoinSchema: z.ZodType<UrlDuplicateJoinDefinition>;
+export declare const UrlDuplicateJoinSchema: z.ZodType<UrlDuplicateJoinDefinition, UrlDuplicateJoinSchemaInput>;
 export type UrlDuplicateJoin = z.infer<typeof UrlDuplicateJoinSchema>;
 export {};
 //# sourceMappingURL=duplicate-join.d.ts.map

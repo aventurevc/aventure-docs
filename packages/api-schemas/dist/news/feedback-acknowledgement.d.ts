@@ -8,6 +8,8 @@ declare const NewsFeedbackAcknowledgementSchemaDefinition: z.ZodObject<{
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type NewsFeedbackAcknowledgementDefinition = z.infer<typeof NewsFeedbackAcknowledgementSchemaDefinition>;
+export interface NewsFeedbackAcknowledgementSchemaInput extends z.input<typeof NewsFeedbackAcknowledgementSchemaDefinition> {
+}
 /**
  * Feedback acknowledgment for news articles - non-mutating response
  *
@@ -16,7 +18,7 @@ type NewsFeedbackAcknowledgementDefinition = z.infer<typeof NewsFeedbackAcknowle
  * @contractShape news.feedback-acknowledgement
  * @contractRole canonical
  */
-export declare const NewsFeedbackAcknowledgementSchema: z.ZodType<NewsFeedbackAcknowledgementDefinition>;
+export declare const NewsFeedbackAcknowledgementSchema: z.ZodType<NewsFeedbackAcknowledgementDefinition, NewsFeedbackAcknowledgementSchemaInput>;
 export type NewsFeedbackAcknowledgement = z.infer<typeof NewsFeedbackAcknowledgementSchema>;
 export {};
 //# sourceMappingURL=feedback-acknowledgement.d.ts.map

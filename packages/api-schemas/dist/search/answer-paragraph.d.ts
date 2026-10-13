@@ -4,15 +4,17 @@ declare const SearchAnswerParagraphSchemaDefinition: z.ZodObject<{
         entityId: string;
         source: string;
         sourceId: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./answer-citation.ts").SearchAnswerCitationSchemaInput, z.core.$ZodTypeInternals<{
         entityId: string;
         source: string;
         sourceId: string;
-    }, unknown>>>;
+    }, import("./answer-citation.ts").SearchAnswerCitationSchemaInput>>>;
     text: z.ZodString;
     topic: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SearchAnswerParagraphDefinition = z.infer<typeof SearchAnswerParagraphSchemaDefinition>;
+export interface SearchAnswerParagraphSchemaInput extends z.input<typeof SearchAnswerParagraphSchemaDefinition> {
+}
 /**
  * One paragraph of an answer and the evidence it rests on.
  *
@@ -28,7 +30,7 @@ type SearchAnswerParagraphDefinition = z.infer<typeof SearchAnswerParagraphSchem
  * @contractShape search.answer-paragraph
  * @contractRole canonical
  */
-export declare const SearchAnswerParagraphSchema: z.ZodType<SearchAnswerParagraphDefinition>;
+export declare const SearchAnswerParagraphSchema: z.ZodType<SearchAnswerParagraphDefinition, SearchAnswerParagraphSchemaInput>;
 export type SearchAnswerParagraph = z.infer<typeof SearchAnswerParagraphSchema>;
 export {};
 //# sourceMappingURL=answer-paragraph.d.ts.map

@@ -15,6 +15,8 @@ declare const NewsSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type NewsDefinition = z.infer<typeof NewsSchemaDefinition>;
+export interface NewsSchemaInput extends z.input<typeof NewsSchemaDefinition> {
+}
 /**
  * Canonical news owner for list and core semantics
  *
@@ -45,7 +47,7 @@ type NewsDefinition = z.infer<typeof NewsSchemaDefinition>;
  * @contractShape news.news
  * @contractRole canonical
  */
-export declare const NewsSchema: z.ZodType<NewsDefinition>;
+export declare const NewsSchema: z.ZodType<NewsDefinition, NewsSchemaInput>;
 export type News = z.infer<typeof NewsSchema>;
 export {};
 //# sourceMappingURL=news.d.ts.map

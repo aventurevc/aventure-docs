@@ -51,13 +51,13 @@ export declare const AddressSchema: z.ZodObject<{
         isCurrent: boolean;
         role?: "domicile" | "dominant" | "origin" | null | undefined;
         startDate?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
         endDate?: string | null | undefined;
         id: number;
         isCurrent: boolean;
         role?: "domicile" | "dominant" | "origin" | null | undefined;
         startDate?: string | null | undefined;
-    }, unknown>>>>;
+    }, import("./association.ts").AddressAssociationSchemaInput>>>>;
     city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         name: z.ZodString;

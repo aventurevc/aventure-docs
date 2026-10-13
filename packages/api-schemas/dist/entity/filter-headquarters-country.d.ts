@@ -4,12 +4,14 @@ declare const EntityFilterHeadquartersCountrySchemaDefinition: z.ZodObject<{
     state: z.ZodArray<z.ZodType<{
         city: string[];
         state: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./filter-headquarters-state-city.ts").EntityFilterHeadquartersStateCitySchemaInput, z.core.$ZodTypeInternals<{
         city: string[];
         state: string;
-    }, unknown>>>;
+    }, import("./filter-headquarters-state-city.ts").EntityFilterHeadquartersStateCitySchemaInput>>>;
 }, z.core.$strip>;
 type EntityFilterHeadquartersCountryDefinition = z.infer<typeof EntityFilterHeadquartersCountrySchemaDefinition>;
+export interface EntityFilterHeadquartersCountrySchemaInput extends z.input<typeof EntityFilterHeadquartersCountrySchemaDefinition> {
+}
 /**
  * Country with its states (and optionally cities)
  *
@@ -21,7 +23,7 @@ type EntityFilterHeadquartersCountryDefinition = z.infer<typeof EntityFilterHead
  * @contractShape entity.filter-headquarters-country
  * @contractRole canonical
  */
-export declare const EntityFilterHeadquartersCountrySchema: z.ZodType<EntityFilterHeadquartersCountryDefinition>;
+export declare const EntityFilterHeadquartersCountrySchema: z.ZodType<EntityFilterHeadquartersCountryDefinition, EntityFilterHeadquartersCountrySchemaInput>;
 export type EntityFilterHeadquartersCountry = z.infer<typeof EntityFilterHeadquartersCountrySchema>;
 export {};
 //# sourceMappingURL=filter-headquarters-country.d.ts.map

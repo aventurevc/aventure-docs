@@ -24,6 +24,8 @@ declare const EntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type EntityFundraiseInvestorJoinDefinition = z.infer<typeof EntityFundraiseInvestorJoinSchemaDefinition>;
+export interface EntityFundraiseInvestorJoinSchemaInput extends z.input<typeof EntityFundraiseInvestorJoinSchemaDefinition> {
+}
 /**
  * Canonical fundraise investor join row for API serialization
  *
@@ -34,7 +36,7 @@ type EntityFundraiseInvestorJoinDefinition = z.infer<typeof EntityFundraiseInves
  * @contractShape entity.fundraise-investor-join
  * @contractRole canonical
  */
-export declare const EntityFundraiseInvestorJoinSchema: z.ZodType<EntityFundraiseInvestorJoinDefinition>;
+export declare const EntityFundraiseInvestorJoinSchema: z.ZodType<EntityFundraiseInvestorJoinDefinition, EntityFundraiseInvestorJoinSchemaInput>;
 export type EntityFundraiseInvestorJoin = z.infer<typeof EntityFundraiseInvestorJoinSchema>;
 export {};
 //# sourceMappingURL=fundraise-investor-join.d.ts.map

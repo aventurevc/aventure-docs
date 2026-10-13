@@ -14,6 +14,8 @@ declare const SlugLocationSchemaDefinition: z.ZodObject<{
     url: z.ZodString;
 }, z.core.$strip>;
 type SlugLocationDefinition = z.infer<typeof SlugLocationSchemaDefinition>;
+export interface SlugLocationSchemaInput extends z.input<typeof SlugLocationSchemaDefinition> {
+}
 /**
  * Current slug location for a resource
  *
@@ -22,7 +24,7 @@ type SlugLocationDefinition = z.infer<typeof SlugLocationSchemaDefinition>;
  * @contractShape slug.location
  * @contractRole canonical
  */
-export declare const SlugLocationSchema: z.ZodType<SlugLocationDefinition>;
+export declare const SlugLocationSchema: z.ZodType<SlugLocationDefinition, SlugLocationSchemaInput>;
 export type SlugLocation = z.infer<typeof SlugLocationSchema>;
 export {};
 //# sourceMappingURL=location.d.ts.map

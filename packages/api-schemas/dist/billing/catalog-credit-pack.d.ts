@@ -9,6 +9,8 @@ declare const BillingCatalogCreditPackSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type BillingCatalogCreditPackDefinition = z.infer<typeof BillingCatalogCreditPackSchemaDefinition>;
+export interface BillingCatalogCreditPackSchemaInput extends z.input<typeof BillingCatalogCreditPackSchemaDefinition> {
+}
 /**
  * One prepaid credit pack.
  *
@@ -18,7 +20,7 @@ type BillingCatalogCreditPackDefinition = z.infer<typeof BillingCatalogCreditPac
  * @contractShape billing.catalog-credit-pack
  * @contractRole canonical
  */
-export declare const BillingCatalogCreditPackSchema: z.ZodType<BillingCatalogCreditPackDefinition>;
+export declare const BillingCatalogCreditPackSchema: z.ZodType<BillingCatalogCreditPackDefinition, BillingCatalogCreditPackSchemaInput>;
 export type BillingCatalogCreditPack = z.infer<typeof BillingCatalogCreditPackSchema>;
 export {};
 //# sourceMappingURL=catalog-credit-pack.d.ts.map

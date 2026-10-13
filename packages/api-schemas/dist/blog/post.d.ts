@@ -31,6 +31,8 @@ declare const BlogPostSchemaDefinition: z.ZodObject<{
     url: z.ZodString;
 }, z.core.$strip>;
 type BlogPostDefinition = z.infer<typeof BlogPostSchemaDefinition>;
+export interface BlogPostSchemaInput extends z.input<typeof BlogPostSchemaDefinition> {
+}
 /**
  * External research-side blog post owned by exactly one entity or person. Unrelated to app.app_blog_article.
  *
@@ -43,7 +45,7 @@ type BlogPostDefinition = z.infer<typeof BlogPostSchemaDefinition>;
  * @contractShape blog.post
  * @contractRole canonical
  */
-export declare const BlogPostSchema: z.ZodType<BlogPostDefinition>;
+export declare const BlogPostSchema: z.ZodType<BlogPostDefinition, BlogPostSchemaInput>;
 export type BlogPost = z.infer<typeof BlogPostSchema>;
 export {};
 //# sourceMappingURL=post.d.ts.map

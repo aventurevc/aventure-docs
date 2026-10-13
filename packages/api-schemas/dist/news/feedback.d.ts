@@ -6,6 +6,8 @@ declare const NewsFeedbackSchemaDefinition: z.ZodObject<{
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type NewsFeedbackDefinition = z.infer<typeof NewsFeedbackSchemaDefinition>;
+export interface NewsFeedbackSchemaInput extends z.input<typeof NewsFeedbackSchemaDefinition> {
+}
 /**
  * Feedback submission for a news article
  *
@@ -14,7 +16,7 @@ type NewsFeedbackDefinition = z.infer<typeof NewsFeedbackSchemaDefinition>;
  * @contractShape news.feedback
  * @contractRole canonical
  */
-export declare const NewsFeedbackSchema: z.ZodType<NewsFeedbackDefinition>;
+export declare const NewsFeedbackSchema: z.ZodType<NewsFeedbackDefinition, NewsFeedbackSchemaInput>;
 export type NewsFeedback = z.infer<typeof NewsFeedbackSchema>;
 export {};
 //# sourceMappingURL=feedback.d.ts.map

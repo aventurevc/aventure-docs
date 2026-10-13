@@ -39,7 +39,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         id: string;
         program?: string | null | undefined;
         status?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput, z.core.$ZodTypeInternals<{
         accelerator: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -78,7 +78,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         id: string;
         program?: string | null | undefined;
         status?: string | null | undefined;
-    }, unknown>>>;
+    }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput>>>;
     detail: z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
         derivedRange?: {
@@ -101,7 +101,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./research-detail.ts").EntityResearchDetailSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
         derivedRange?: {
             asOfDate: string;
@@ -123,7 +123,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown>>>;
+    }, import("./research-detail.ts").EntityResearchDetailSchemaInput>>>;
     snippet: z.ZodArray<z.ZodObject<{
         compliance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             characterCount: z.ZodInt;
@@ -145,6 +145,8 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>;
 }, z.core.$strip>;
 type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
+export interface EntityResearchSchemaInput extends z.input<typeof EntityResearchSchemaDefinition> {
+}
 /**
  * Combined entity research disclosure: governed detail rows, research text snippets, and joined accelerator participation.
  *
@@ -166,7 +168,7 @@ type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
  * @contractShape entity.research
  * @contractRole canonical
  */
-export declare const EntityResearchSchema: z.ZodType<EntityResearchDefinition>;
+export declare const EntityResearchSchema: z.ZodType<EntityResearchDefinition, EntityResearchSchemaInput>;
 export type EntityResearch = z.infer<typeof EntityResearchSchema>;
 export {};
 //# sourceMappingURL=research.d.ts.map

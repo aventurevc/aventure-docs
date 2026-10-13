@@ -13,6 +13,8 @@ declare const BillingCheckoutMutationSchemaDefinition: z.ZodObject<{
     }>>;
 }, z.core.$strip>;
 type BillingCheckoutMutationDefinition = z.infer<typeof BillingCheckoutMutationSchemaDefinition>;
+export interface BillingCheckoutMutationSchemaInput extends z.input<typeof BillingCheckoutMutationSchemaDefinition> {
+}
 /**
  * Caller-selected plan and Checkout presentation for server-owned Checkout creation.
  *
@@ -21,7 +23,7 @@ type BillingCheckoutMutationDefinition = z.infer<typeof BillingCheckoutMutationS
  * @contractShape billing.checkout-mutation
  * @contractRole canonical
  */
-export declare const BillingCheckoutMutationSchema: z.ZodType<BillingCheckoutMutationDefinition>;
+export declare const BillingCheckoutMutationSchema: z.ZodType<BillingCheckoutMutationDefinition, BillingCheckoutMutationSchemaInput>;
 export type BillingCheckoutMutation = z.infer<typeof BillingCheckoutMutationSchema>;
 export {};
 //# sourceMappingURL=checkout-mutation.d.ts.map

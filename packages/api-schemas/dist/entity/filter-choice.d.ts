@@ -8,6 +8,8 @@ declare const EntityFilterChoiceSchemaDefinition: z.ZodObject<{
     value: z.ZodString;
 }, z.core.$strip>;
 type EntityFilterChoiceDefinition = z.infer<typeof EntityFilterChoiceSchemaDefinition>;
+export interface EntityFilterChoiceSchemaInput extends z.input<typeof EntityFilterChoiceSchemaDefinition> {
+}
 /**
  * Filter choice payload served by filter endpoints
  *
@@ -19,7 +21,7 @@ type EntityFilterChoiceDefinition = z.infer<typeof EntityFilterChoiceSchemaDefin
  * @contractShape entity.filter-choice
  * @contractRole canonical
  */
-export declare const EntityFilterChoiceSchema: z.ZodType<EntityFilterChoiceDefinition>;
+export declare const EntityFilterChoiceSchema: z.ZodType<EntityFilterChoiceDefinition, EntityFilterChoiceSchemaInput>;
 export type EntityFilterChoice = z.infer<typeof EntityFilterChoiceSchema>;
 export {};
 //# sourceMappingURL=filter-choice.d.ts.map

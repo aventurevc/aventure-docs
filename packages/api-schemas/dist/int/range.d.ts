@@ -4,6 +4,8 @@ declare const IntRangeSchemaDefinition: z.ZodObject<{
     min: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type IntRangeDefinition = z.infer<typeof IntRangeSchemaDefinition>;
+export interface IntRangeSchemaInput extends z.input<typeof IntRangeSchemaDefinition> {
+}
 /**
  * Integer range for count-based filter criteria
  *
@@ -30,7 +32,7 @@ type IntRangeDefinition = z.infer<typeof IntRangeSchemaDefinition>;
  * @contractShape int.range
  * @contractRole canonical
  */
-export declare const IntRangeSchema: z.ZodType<IntRangeDefinition>;
+export declare const IntRangeSchema: z.ZodType<IntRangeDefinition, IntRangeSchemaInput>;
 export type IntRange = z.infer<typeof IntRangeSchema>;
 export {};
 //# sourceMappingURL=range.d.ts.map

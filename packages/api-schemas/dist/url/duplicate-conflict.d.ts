@@ -6,13 +6,13 @@ declare const UrlDuplicateConflictSchemaDefinition: z.ZodObject<{
             personId?: string | null | undefined;
         };
         urlId: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./duplicate-join.ts").UrlDuplicateJoinSchemaInput, z.core.$ZodTypeInternals<{
         owner: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         };
         urlId: number;
-    }, unknown>>>;
+    }, import("./duplicate-join.ts").UrlDuplicateJoinSchemaInput>>>;
     fragmentIgnored: z.ZodBoolean;
     guidance: z.ZodString;
     normalizedUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -24,6 +24,8 @@ declare const UrlDuplicateConflictSchemaDefinition: z.ZodObject<{
     urlType: z.ZodString;
 }, z.core.$strip>;
 type UrlDuplicateConflictDefinition = z.infer<typeof UrlDuplicateConflictSchemaDefinition>;
+export interface UrlDuplicateConflictSchemaInput extends z.input<typeof UrlDuplicateConflictSchemaDefinition> {
+}
 /**
  * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; resolve by demoting the existing owner (isCurrent=false, isPrimary=false) before promoting the new owner.
  *
@@ -33,7 +35,7 @@ type UrlDuplicateConflictDefinition = z.infer<typeof UrlDuplicateConflictSchemaD
  * @contractShape url.duplicate-conflict
  * @contractRole canonical
  */
-export declare const UrlDuplicateConflictSchema: z.ZodType<UrlDuplicateConflictDefinition>;
+export declare const UrlDuplicateConflictSchema: z.ZodType<UrlDuplicateConflictDefinition, UrlDuplicateConflictSchemaInput>;
 export type UrlDuplicateConflict = z.infer<typeof UrlDuplicateConflictSchema>;
 export {};
 //# sourceMappingURL=duplicate-conflict.d.ts.map

@@ -5,6 +5,8 @@ declare const JobEnqueueSchemaDefinition: z.ZodObject<{
     statusUrl: z.ZodString;
 }, z.core.$strip>;
 type JobEnqueueDefinition = z.infer<typeof JobEnqueueSchemaDefinition>;
+export interface JobEnqueueSchemaInput extends z.input<typeof JobEnqueueSchemaDefinition> {
+}
 /**
  * Accepted asynchronous app job enqueue response.
  *
@@ -19,7 +21,7 @@ type JobEnqueueDefinition = z.infer<typeof JobEnqueueSchemaDefinition>;
  * @contractShape job.enqueue
  * @contractRole canonical
  */
-export declare const JobEnqueueSchema: z.ZodType<JobEnqueueDefinition>;
+export declare const JobEnqueueSchema: z.ZodType<JobEnqueueDefinition, JobEnqueueSchemaInput>;
 export type JobEnqueue = z.infer<typeof JobEnqueueSchema>;
 export {};
 //# sourceMappingURL=enqueue.d.ts.map

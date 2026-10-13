@@ -15,6 +15,8 @@ declare const BillingPlanChangePreviewSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>;
 }, z.core.$strip>;
 type BillingPlanChangePreviewDefinition = z.infer<typeof BillingPlanChangePreviewSchemaDefinition>;
+export interface BillingPlanChangePreviewSchemaInput extends z.input<typeof BillingPlanChangePreviewSchemaDefinition> {
+}
 /**
  * Preview of POST /v1/billing/plan-changes for the same plan: the amount charged on confirmation, when the plan takes effect, the renewal price after it, and the card that pays.
  *
@@ -23,7 +25,7 @@ type BillingPlanChangePreviewDefinition = z.infer<typeof BillingPlanChangePrevie
  * @contractShape billing.plan-change-preview
  * @contractRole canonical
  */
-export declare const BillingPlanChangePreviewSchema: z.ZodType<BillingPlanChangePreviewDefinition>;
+export declare const BillingPlanChangePreviewSchema: z.ZodType<BillingPlanChangePreviewDefinition, BillingPlanChangePreviewSchemaInput>;
 export type BillingPlanChangePreview = z.infer<typeof BillingPlanChangePreviewSchema>;
 export {};
 //# sourceMappingURL=plan-change-preview.d.ts.map

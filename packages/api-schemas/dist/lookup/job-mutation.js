@@ -5,6 +5,8 @@ import { LookupMentionSchema } from "./mention.js";
 const LookupJobMutationSchemaDefinition = z.object({
     /** Companies and people the caller already read, identified without sending the page or screenshot. Send them alone, without an article or file. On lookup jobs, maxNames is required and no shell records or enrichment are scheduled. */
     mention: z.array(LookupMentionSchema).optional(),
+    /** POST /v1/lookup-mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer. */
+    omitRecords: z.boolean().optional(),
     /** Id of a recorded source document whose text is the article, such as an email recorded with POST /v1/research/source-documents; send it alone. Only POST /v1/lookup-mentions reads it, for the admin key or RBAC EDIT_CACHE. */
     sourceDocumentId: z.uuid().nullish(),
     /** aVenture news id of the article; an id that names no stored article is an error. */

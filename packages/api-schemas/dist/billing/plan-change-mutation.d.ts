@@ -10,6 +10,8 @@ declare const BillingPlanChangeMutationSchemaDefinition: z.ZodObject<{
     prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
 type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutationSchemaDefinition>;
+export interface BillingPlanChangeMutationSchemaInput extends z.input<typeof BillingPlanChangeMutationSchemaDefinition> {
+}
 /**
  * Caller-selected plan for changing a continuing AI Plus or AI Pro subscription.
  *
@@ -19,7 +21,7 @@ type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutat
  * @contractShape billing.plan-change-mutation
  * @contractRole canonical
  */
-export declare const BillingPlanChangeMutationSchema: z.ZodType<BillingPlanChangeMutationDefinition>;
+export declare const BillingPlanChangeMutationSchema: z.ZodType<BillingPlanChangeMutationDefinition, BillingPlanChangeMutationSchemaInput>;
 export type BillingPlanChangeMutation = z.infer<typeof BillingPlanChangeMutationSchema>;
 export {};
 //# sourceMappingURL=plan-change-mutation.d.ts.map

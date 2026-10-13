@@ -2,6 +2,8 @@
 import { z } from "zod/v4";
 import { BillingPlanTypeSchema } from "./plan-type.js";
 const BillingCatalogPlanSchemaDefinition = z.object({
+    /** App Store product id that sells this plan in the iOS and Mac apps; absent when the plan sells only on the web. */
+    appStoreProductId: z.string().nullish(),
     /** ISO 8601 billing period. */
     cadence: z.string(),
     /** ISO 4217 currency code. */

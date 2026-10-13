@@ -5,50 +5,39 @@ declare const ClassificationCatalogBucketSchemaDefinition: z.ZodObject<{
     creatable: z.ZodBoolean;
     hierarchical: z.ZodBoolean;
     label: z.ZodString;
-    tag: z.ZodArray<z.ZodType<{
+    tag: z.ZodArray<z.ZodIntersection<z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown>>>;
+    }, import("./classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
+        bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        creatable: z.ZodBoolean;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        name: z.ZodString;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        type: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        writable: z.ZodBoolean;
+    }, z.core.$strip>>>;
     tagCount: z.ZodInt;
     type: z.ZodString;
     writable: z.ZodBoolean;
 }, z.core.$strip>;
 type ClassificationCatalogBucketDefinition = z.infer<typeof ClassificationCatalogBucketSchemaDefinition>;
+export interface ClassificationCatalogBucketSchemaInput extends z.input<typeof ClassificationCatalogBucketSchemaDefinition> {
+}
 /**
  * Classification bucket with active registry tags and accepted-spelling aliases.
  *
@@ -58,7 +47,7 @@ type ClassificationCatalogBucketDefinition = z.infer<typeof ClassificationCatalo
  * @contractShape classification.catalog-bucket
  * @contractRole canonical
  */
-export declare const ClassificationCatalogBucketSchema: z.ZodType<ClassificationCatalogBucketDefinition>;
+export declare const ClassificationCatalogBucketSchema: z.ZodType<ClassificationCatalogBucketDefinition, ClassificationCatalogBucketSchemaInput>;
 export type ClassificationCatalogBucket = z.infer<typeof ClassificationCatalogBucketSchema>;
 export {};
 //# sourceMappingURL=catalog-bucket.d.ts.map

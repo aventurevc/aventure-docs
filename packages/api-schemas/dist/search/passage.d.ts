@@ -16,6 +16,8 @@ declare const SearchPassageSchemaDefinition: z.ZodObject<{
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SearchPassageDefinition = z.infer<typeof SearchPassageSchemaDefinition>;
+export interface SearchPassageSchemaInput extends z.input<typeof SearchPassageSchemaDefinition> {
+}
 /**
  * Text passage ranked by semantic closeness to a natural-language question, read from its owning record.
  *
@@ -31,7 +33,7 @@ type SearchPassageDefinition = z.infer<typeof SearchPassageSchemaDefinition>;
  * @contractShape search.passage
  * @contractRole canonical
  */
-export declare const SearchPassageSchema: z.ZodType<SearchPassageDefinition>;
+export declare const SearchPassageSchema: z.ZodType<SearchPassageDefinition, SearchPassageSchemaInput>;
 export type SearchPassage = z.infer<typeof SearchPassageSchema>;
 export {};
 //# sourceMappingURL=passage.d.ts.map

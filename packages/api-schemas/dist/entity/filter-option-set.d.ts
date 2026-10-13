@@ -36,7 +36,7 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./filter-entry.ts").EntityFilterEntrySchemaInput, z.core.$ZodTypeInternals<{
         chart: {
             amount: number;
             end: number;
@@ -72,7 +72,7 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("./filter-entry.ts").EntityFilterEntrySchemaInput>>>;
     filtersMeta: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         defaultOptionLimit: z.ZodInt;
         defaultTypeGroup: z.ZodOptional<z.ZodEnum<{
@@ -92,10 +92,10 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
         typeGroupMembership: z.ZodOptional<z.ZodArray<z.ZodType<{
             typeGroup: "Investor" | "Organization";
             typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./type-group-membership.ts").EntityTypeGroupMembershipSchemaInput, z.core.$ZodTypeInternals<{
             typeGroup: "Investor" | "Organization";
             typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
-        }, unknown>>>>;
+        }, import("./type-group-membership.ts").EntityTypeGroupMembershipSchemaInput>>>>;
     }, z.core.$strip>>>;
     rangeFilterEntry: z.ZodArray<z.ZodType<{
         chart: {
@@ -133,7 +133,7 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./filter-entry.ts").EntityFilterEntrySchemaInput, z.core.$ZodTypeInternals<{
         chart: {
             amount: number;
             end: number;
@@ -169,9 +169,11 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
-    }, unknown>>>;
+    }, import("./filter-entry.ts").EntityFilterEntrySchemaInput>>>;
 }, z.core.$strip>;
 type EntityFilterOptionSetDefinition = z.infer<typeof EntityFilterOptionSetSchemaDefinition>;
+export interface EntityFilterOptionSetSchemaInput extends z.input<typeof EntityFilterOptionSetSchemaDefinition> {
+}
 /**
  * Available filter options for list endpoints
  *
@@ -181,7 +183,7 @@ type EntityFilterOptionSetDefinition = z.infer<typeof EntityFilterOptionSetSchem
  * @contractShape entity.filter-option-set
  * @contractRole canonical
  */
-export declare const EntityFilterOptionSetSchema: z.ZodType<EntityFilterOptionSetDefinition>;
+export declare const EntityFilterOptionSetSchema: z.ZodType<EntityFilterOptionSetDefinition, EntityFilterOptionSetSchemaInput>;
 export type EntityFilterOptionSet = z.infer<typeof EntityFilterOptionSetSchema>;
 export {};
 //# sourceMappingURL=filter-option-set.d.ts.map

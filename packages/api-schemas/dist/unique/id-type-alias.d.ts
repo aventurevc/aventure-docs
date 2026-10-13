@@ -10,6 +10,8 @@ declare const UniqueIdTypeAliasSchemaDefinition: z.ZodObject<{
     pattern: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type UniqueIdTypeAliasDefinition = z.infer<typeof UniqueIdTypeAliasSchemaDefinition>;
+export interface UniqueIdTypeAliasSchemaInput extends z.input<typeof UniqueIdTypeAliasSchemaDefinition> {
+}
 /**
  * Canonical uniqueId type value plus its label, accepted aliases, owner scope, and format pattern.
  *
@@ -18,7 +20,7 @@ type UniqueIdTypeAliasDefinition = z.infer<typeof UniqueIdTypeAliasSchemaDefinit
  * @contractShape unique.id-type-alias
  * @contractRole canonical
  */
-export declare const UniqueIdTypeAliasSchema: z.ZodType<UniqueIdTypeAliasDefinition>;
+export declare const UniqueIdTypeAliasSchema: z.ZodType<UniqueIdTypeAliasDefinition, UniqueIdTypeAliasSchemaInput>;
 export type UniqueIdTypeAlias = z.infer<typeof UniqueIdTypeAliasSchema>;
 export {};
 //# sourceMappingURL=id-type-alias.d.ts.map

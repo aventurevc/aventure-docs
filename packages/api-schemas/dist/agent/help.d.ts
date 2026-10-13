@@ -6,12 +6,12 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
         sourceId: string;
         sourceType: string;
         sourceVersion?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../help/citation.ts").HelpCitationSchemaInput, z.core.$ZodTypeInternals<{
         excerpt: string;
         sourceId: string;
         sourceType: string;
         sourceVersion?: string | null | undefined;
-    }, unknown>>>;
+    }, import("../help/citation.ts").HelpCitationSchemaInput>>>;
     confidence: z.ZodEnum<{
         HIGH: "HIGH";
         LOW: "LOW";
@@ -23,12 +23,12 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
             sourceId: string;
             sourceType: string;
             sourceVersion?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../help/citation.ts").HelpCitationSchemaInput, z.core.$ZodTypeInternals<{
             excerpt: string;
             sourceId: string;
             sourceType: string;
             sourceVersion?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../help/citation.ts").HelpCitationSchemaInput>>>;
         operationId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         outcome: z.ZodEnum<{
             ABSTAIN: "ABSTAIN";
@@ -45,11 +45,11 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
                 description: string;
                 key: string;
                 type: string;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../harness/task.ts").HarnessTaskSchemaInput, z.core.$ZodTypeInternals<{
                 description: string;
                 key: string;
                 type: string;
-            }, unknown>>>;
+            }, import("../harness/task.ts").HarnessTaskSchemaInput>>>;
             step: z.ZodArray<z.ZodType<{
                 cliCommand: string;
                 mcpTool?: string | null | undefined;
@@ -66,7 +66,7 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
                     reject: string[];
                     typeCatalog: string;
                 } | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("../harness/task-plan-step.ts").HarnessTaskPlanStepSchemaInput, z.core.$ZodTypeInternals<{
                 cliCommand: string;
                 mcpTool?: string | null | undefined;
                 step: {
@@ -82,12 +82,14 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
                     reject: string[];
                     typeCatalog: string;
                 } | null | undefined;
-            }, unknown>>>;
+            }, import("../harness/task-plan-step.ts").HarnessTaskPlanStepSchemaInput>>>;
             taskKey: z.ZodString;
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;
+export interface AgentHelpSchemaInput extends z.input<typeof AgentHelpSchemaDefinition> {
+}
 /**
  * Grounded natural-language help answer with citations to specific operations, skills, or completion gates. Unsupported questions abstain (LOW confidence) rather than guess.
  *
@@ -97,7 +99,7 @@ type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;
  * @contractShape agent.help
  * @contractRole canonical
  */
-export declare const AgentHelpSchema: z.ZodType<AgentHelpDefinition>;
+export declare const AgentHelpSchema: z.ZodType<AgentHelpDefinition, AgentHelpSchemaInput>;
 export type AgentHelp = z.infer<typeof AgentHelpSchema>;
 export {};
 //# sourceMappingURL=help.d.ts.map

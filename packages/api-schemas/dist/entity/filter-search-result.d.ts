@@ -4,6 +4,8 @@ declare const EntityFilterSearchResultSchemaDefinition: z.ZodObject<{
     result: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
 type EntityFilterSearchResultDefinition = z.infer<typeof EntityFilterSearchResultSchemaDefinition>;
+export interface EntityFilterSearchResultSchemaInput extends z.input<typeof EntityFilterSearchResultSchemaDefinition> {
+}
 /**
  * Typeahead search result pairing a filter key with matching option values
  *
@@ -13,7 +15,7 @@ type EntityFilterSearchResultDefinition = z.infer<typeof EntityFilterSearchResul
  * @contractShape entity.filter-search-result
  * @contractRole canonical
  */
-export declare const EntityFilterSearchResultSchema: z.ZodType<EntityFilterSearchResultDefinition>;
+export declare const EntityFilterSearchResultSchema: z.ZodType<EntityFilterSearchResultDefinition, EntityFilterSearchResultSchemaInput>;
 export type EntityFilterSearchResult = z.infer<typeof EntityFilterSearchResultSchema>;
 export {};
 //# sourceMappingURL=filter-search-result.d.ts.map

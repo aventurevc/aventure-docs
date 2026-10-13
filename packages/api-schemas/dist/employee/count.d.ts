@@ -22,7 +22,7 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         textValue?: string | null | undefined;
         updatedAt?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;
         dateValue?: string | null | undefined;
@@ -32,7 +32,7 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         textValue?: string | null | undefined;
         updatedAt?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown>>;
+    }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput>>;
     id: z.ZodString;
 }, z.core.$strip>;
 export type EmployeeCount = z.infer<typeof EmployeeCountSchema>;

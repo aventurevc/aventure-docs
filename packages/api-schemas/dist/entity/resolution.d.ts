@@ -10,21 +10,21 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, import("./image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -310,6 +310,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -334,7 +335,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./enrichment.ts").EntityEnrichmentSchemaInput, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
                 addressLine1?: string | null | undefined;
@@ -592,6 +593,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -616,7 +618,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 urlType: string;
             }[];
             urlLinkSuppressedCount: number;
-        }, unknown>>;
+        }, import("./enrichment.ts").EntityEnrichmentSchemaInput>>;
         fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
@@ -703,7 +705,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput, z.core.$ZodTypeInternals<{
             amountRaised?: number | null | undefined;
             createdAt?: string | null | undefined;
             currency?: string | null | undefined;
@@ -789,7 +791,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
-        }, unknown>>>;
+        }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
         newsArticle: z.ZodArray<z.ZodType<{
             author?: string | null | undefined;
             category?: string | null | undefined;
@@ -804,7 +806,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             title: string;
             updatedAt?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
             author?: string | null | undefined;
             category?: string | null | undefined;
             createdAt?: string | null | undefined;
@@ -818,7 +820,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             title: string;
             updatedAt?: string | null | undefined;
-        }, unknown>>>;
+        }, import("../news/news.ts").NewsSchemaInput>>>;
         person: z.ZodArray<z.ZodType<{
             articleCount?: number | null | undefined;
             association: {
@@ -1149,7 +1151,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../person/detail.ts").PersonDetailSchemaInput, z.core.$ZodTypeInternals<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
@@ -1479,7 +1481,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
-        }, unknown>>>;
+        }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
@@ -1539,7 +1541,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
             comparisonSignals?: {
                 fundingStage?: string | null | undefined;
@@ -1597,7 +1599,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             sourceEntityId?: string | null | undefined;
             targetEntityId?: string | null | undefined;
             updatedAt?: string | null | undefined;
-        }, unknown>>>;
+        }, import("./relationship.ts").EntityRelationshipSchemaInput>>>;
         research: z.ZodType<{
             acceleratorParticipation: {
                 accelerator: {
@@ -1681,7 +1683,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 textType: string;
                 updatedAt?: string | null | undefined;
             }[];
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("./research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
                 accelerator: {
                     defaultCurrency?: string | null | undefined;
@@ -1764,7 +1766,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 textType: string;
                 updatedAt?: string | null | undefined;
             }[];
-        }, unknown>>;
+        }, import("./research.ts").EntityResearchSchemaInput>>;
         sitemap: z.ZodObject<{
             hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
             hasAnalysis: z.ZodBoolean;
@@ -1784,7 +1786,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             };
             source?: string | null | undefined;
             updatedAt: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../unique/id.ts").UniqueIdSchemaInput, z.core.$ZodTypeInternals<{
             createdAt: string;
             id: number;
             identifier: string;
@@ -1795,7 +1797,7 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
             };
             source?: string | null | undefined;
             updatedAt: string;
-        }, unknown>>>;
+        }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
     }, z.core.$strip>>>;
     input: z.ZodString;
     inputType: z.ZodEnum<{
@@ -1810,6 +1812,8 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type EntityResolutionDefinition = z.infer<typeof EntityResolutionSchemaDefinition>;
+export interface EntityResolutionSchemaInput extends z.input<typeof EntityResolutionSchemaDefinition> {
+}
 /**
  * Resolution of one queried identifier (id, slug, or current joined URL) to its current entity. Echoes the raw input; matched rows carry the full detail, ambiguous rows carry the conflicting candidate ids, missing rows carry neither.
  *
@@ -1818,7 +1822,7 @@ type EntityResolutionDefinition = z.infer<typeof EntityResolutionSchemaDefinitio
  * @contractShape entity.resolution
  * @contractRole canonical
  */
-export declare const EntityResolutionSchema: z.ZodType<EntityResolutionDefinition>;
+export declare const EntityResolutionSchema: z.ZodType<EntityResolutionDefinition, EntityResolutionSchemaInput>;
 export type EntityResolution = z.infer<typeof EntityResolutionSchema>;
 export {};
 //# sourceMappingURL=resolution.d.ts.map

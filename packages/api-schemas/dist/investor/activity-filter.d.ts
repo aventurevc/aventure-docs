@@ -24,38 +24,38 @@ export declare const InvestorActivityFilterSchema: z.ZodObject<{
     averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
     largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
     smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
     totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
     totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, import("../int/range.ts").IntRangeSchemaInput>>>>;
 }, z.core.$strip>;
 export type InvestorActivityFilter = z.infer<typeof InvestorActivityFilterSchema>;
 //# sourceMappingURL=activity-filter.d.ts.map

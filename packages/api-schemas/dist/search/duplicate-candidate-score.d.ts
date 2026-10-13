@@ -21,6 +21,8 @@ declare const SearchDuplicateCandidateScoreSchemaDefinition: z.ZodObject<{
     }>>>;
 }, z.core.$strip>;
 type SearchDuplicateCandidateScoreDefinition = z.infer<typeof SearchDuplicateCandidateScoreSchemaDefinition>;
+export interface SearchDuplicateCandidateScoreSchemaInput extends z.input<typeof SearchDuplicateCandidateScoreSchemaDefinition> {
+}
 /**
  * Duplicate candidate scoring result. Use id/name/slug/typeRecord/reason to decide whether the candidate is the requested record. score ranks review priority; it does not prove absence.
  *
@@ -31,7 +33,7 @@ type SearchDuplicateCandidateScoreDefinition = z.infer<typeof SearchDuplicateCan
  * @contractShape search.duplicate-candidate-score
  * @contractRole canonical
  */
-export declare const SearchDuplicateCandidateScoreSchema: z.ZodType<SearchDuplicateCandidateScoreDefinition>;
+export declare const SearchDuplicateCandidateScoreSchema: z.ZodType<SearchDuplicateCandidateScoreDefinition, SearchDuplicateCandidateScoreSchemaInput>;
 export type SearchDuplicateCandidateScore = z.infer<typeof SearchDuplicateCandidateScoreSchema>;
 export {};
 //# sourceMappingURL=duplicate-candidate-score.d.ts.map

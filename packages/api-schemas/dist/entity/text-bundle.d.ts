@@ -5,6 +5,8 @@ declare const EntityTextBundleSchemaDefinition: z.ZodObject<{
     short: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EntityTextBundleDefinition = z.infer<typeof EntityTextBundleSchemaDefinition>;
+export interface EntityTextBundleSchemaInput extends z.input<typeof EntityTextBundleSchemaDefinition> {
+}
 /**
  * Grouped entity/person text content
  *
@@ -39,7 +41,7 @@ type EntityTextBundleDefinition = z.infer<typeof EntityTextBundleSchemaDefinitio
  * @contractShape entity.text-bundle
  * @contractRole canonical
  */
-export declare const EntityTextBundleSchema: z.ZodType<EntityTextBundleDefinition>;
+export declare const EntityTextBundleSchema: z.ZodType<EntityTextBundleDefinition, EntityTextBundleSchemaInput>;
 export type EntityTextBundle = z.infer<typeof EntityTextBundleSchema>;
 export {};
 //# sourceMappingURL=text-bundle.d.ts.map

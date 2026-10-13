@@ -5,6 +5,8 @@ declare const UrlTypeAliasSchemaDefinition: z.ZodObject<{
     hostDomain: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
 type UrlTypeAliasDefinition = z.infer<typeof UrlTypeAliasSchemaDefinition>;
+export interface UrlTypeAliasSchemaInput extends z.input<typeof UrlTypeAliasSchemaDefinition> {
+}
 /**
  * Canonical urlType value plus accepted alias and platform host tokens.
  *
@@ -13,7 +15,7 @@ type UrlTypeAliasDefinition = z.infer<typeof UrlTypeAliasSchemaDefinition>;
  * @contractShape url.type-alias
  * @contractRole canonical
  */
-export declare const UrlTypeAliasSchema: z.ZodType<UrlTypeAliasDefinition>;
+export declare const UrlTypeAliasSchema: z.ZodType<UrlTypeAliasDefinition, UrlTypeAliasSchemaInput>;
 export type UrlTypeAlias = z.infer<typeof UrlTypeAliasSchema>;
 export {};
 //# sourceMappingURL=type-alias.d.ts.map

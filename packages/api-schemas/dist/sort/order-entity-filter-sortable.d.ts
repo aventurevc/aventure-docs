@@ -25,6 +25,8 @@ declare const SortOrderEntityFilterSortableSchemaDefinition: z.ZodObject<{
     sortKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SortOrderEntityFilterSortableDefinition = z.infer<typeof SortOrderEntityFilterSortableSchemaDefinition>;
+export interface SortOrderEntityFilterSortableSchemaInput extends z.input<typeof SortOrderEntityFilterSortableSchemaDefinition> {
+}
 /**
  * Single sort term: which enumerated sort field to use and whether direction is descending.
  *
@@ -40,7 +42,7 @@ type SortOrderEntityFilterSortableDefinition = z.infer<typeof SortOrderEntityFil
  * @contractShape sort.order-entity-filter-sortable
  * @contractRole canonical
  */
-export declare const SortOrderEntityFilterSortableSchema: z.ZodType<SortOrderEntityFilterSortableDefinition>;
+export declare const SortOrderEntityFilterSortableSchema: z.ZodType<SortOrderEntityFilterSortableDefinition, SortOrderEntityFilterSortableSchemaInput>;
 export type SortOrderEntityFilterSortable = z.infer<typeof SortOrderEntityFilterSortableSchema>;
 export {};
 //# sourceMappingURL=order-entity-filter-sortable.d.ts.map

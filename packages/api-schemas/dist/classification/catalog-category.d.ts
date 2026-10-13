@@ -21,7 +21,20 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         name: string;
         updatedAt?: string | null | undefined;
         writable: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./classification.ts").ClassificationSchemaInput & {
+        category: string;
+        code?: number | null | undefined;
+        creatable: boolean;
+        createdAt?: string | null | undefined;
+        entityClassificationId?: number | null | undefined;
+        id: number;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        level?: number | null | undefined;
+        name: string;
+        updatedAt?: string | null | undefined;
+        writable: boolean;
+    }, z.core.$ZodTypeInternals<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -40,7 +53,20 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         name: string;
         updatedAt?: string | null | undefined;
         writable: boolean;
-    }, unknown>>>;
+    }, import("./classification.ts").ClassificationSchemaInput & {
+        category: string;
+        code?: number | null | undefined;
+        creatable: boolean;
+        createdAt?: string | null | undefined;
+        entityClassificationId?: number | null | undefined;
+        id: number;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        level?: number | null | undefined;
+        name: string;
+        updatedAt?: string | null | undefined;
+        writable: boolean;
+    }>>>;
     classificationCount: z.ZodInt;
     creatable: z.ZodBoolean;
     hierarchical: z.ZodBoolean;
@@ -48,6 +74,8 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
     writable: z.ZodBoolean;
 }, z.core.$strip>;
 type ClassificationCatalogCategoryDefinition = z.infer<typeof ClassificationCatalogCategorySchemaDefinition>;
+export interface ClassificationCatalogCategorySchemaInput extends z.input<typeof ClassificationCatalogCategorySchemaDefinition> {
+}
 /**
  * Standardized classification category with accepted spellings and registry rows.
  *
@@ -57,7 +85,7 @@ type ClassificationCatalogCategoryDefinition = z.infer<typeof ClassificationCata
  * @contractShape classification.catalog-category
  * @contractRole canonical
  */
-export declare const ClassificationCatalogCategorySchema: z.ZodType<ClassificationCatalogCategoryDefinition>;
+export declare const ClassificationCatalogCategorySchema: z.ZodType<ClassificationCatalogCategoryDefinition, ClassificationCatalogCategorySchemaInput>;
 export type ClassificationCatalogCategory = z.infer<typeof ClassificationCatalogCategorySchema>;
 export {};
 //# sourceMappingURL=catalog-category.d.ts.map

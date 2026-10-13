@@ -44,6 +44,8 @@ declare const CliAuthorizationSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type CliAuthorizationDefinition = z.infer<typeof CliAuthorizationSchemaDefinition>;
+export interface CliAuthorizationSchemaInput extends z.input<typeof CliAuthorizationSchemaDefinition> {
+}
 /**
  * Browser-approved CLI authorization metadata. Secret poll and encrypted-delivery material are exposed only by their dedicated one-time response contracts.
  *
@@ -52,7 +54,7 @@ type CliAuthorizationDefinition = z.infer<typeof CliAuthorizationSchemaDefinitio
  * @contractShape cli.authorization
  * @contractRole canonical
  */
-export declare const CliAuthorizationSchema: z.ZodType<CliAuthorizationDefinition>;
+export declare const CliAuthorizationSchema: z.ZodType<CliAuthorizationDefinition, CliAuthorizationSchemaInput>;
 export type CliAuthorization = z.infer<typeof CliAuthorizationSchema>;
 export {};
 //# sourceMappingURL=authorization.d.ts.map

@@ -13,6 +13,8 @@ declare const BillingAdditionalUsageMeterSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type BillingAdditionalUsageMeterDefinition = z.infer<typeof BillingAdditionalUsageMeterSchemaDefinition>;
+export interface BillingAdditionalUsageMeterSchemaInput extends z.input<typeof BillingAdditionalUsageMeterSchemaDefinition> {
+}
 /**
  * One meter's additional usage this UTC month.
  *
@@ -22,7 +24,7 @@ type BillingAdditionalUsageMeterDefinition = z.infer<typeof BillingAdditionalUsa
  * @contractShape billing.additional-usage-meter
  * @contractRole canonical
  */
-export declare const BillingAdditionalUsageMeterSchema: z.ZodType<BillingAdditionalUsageMeterDefinition>;
+export declare const BillingAdditionalUsageMeterSchema: z.ZodType<BillingAdditionalUsageMeterDefinition, BillingAdditionalUsageMeterSchemaInput>;
 export type BillingAdditionalUsageMeter = z.infer<typeof BillingAdditionalUsageMeterSchema>;
 export {};
 //# sourceMappingURL=additional-usage-meter.d.ts.map

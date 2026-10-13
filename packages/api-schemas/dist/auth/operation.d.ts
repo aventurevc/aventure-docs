@@ -12,6 +12,8 @@ declare const AuthOperationSchemaDefinition: z.ZodObject<{
     path: z.ZodString;
 }, z.core.$strip>;
 type AuthOperationDefinition = z.infer<typeof AuthOperationSchemaDefinition>;
+export interface AuthOperationSchemaInput extends z.input<typeof AuthOperationSchemaDefinition> {
+}
 /**
  * Generated API operation candidate identified by operation id, method, and path.
  *
@@ -22,7 +24,7 @@ type AuthOperationDefinition = z.infer<typeof AuthOperationSchemaDefinition>;
  * @contractShape auth.operation
  * @contractRole canonical
  */
-export declare const AuthOperationSchema: z.ZodType<AuthOperationDefinition>;
+export declare const AuthOperationSchema: z.ZodType<AuthOperationDefinition, AuthOperationSchemaInput>;
 export type AuthOperation = z.infer<typeof AuthOperationSchema>;
 export {};
 //# sourceMappingURL=operation.d.ts.map

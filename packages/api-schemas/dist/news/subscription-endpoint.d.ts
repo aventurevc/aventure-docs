@@ -3,6 +3,8 @@ declare const NewsSubscriptionEndpointSchemaDefinition: z.ZodObject<{
     url: z.ZodString;
 }, z.core.$strip>;
 type NewsSubscriptionEndpointDefinition = z.infer<typeof NewsSubscriptionEndpointSchemaDefinition>;
+export interface NewsSubscriptionEndpointSchemaInput extends z.input<typeof NewsSubscriptionEndpointSchemaDefinition> {
+}
 /**
  * Webhook delivery target.
  *
@@ -13,7 +15,7 @@ type NewsSubscriptionEndpointDefinition = z.infer<typeof NewsSubscriptionEndpoin
  * @contractShape news.subscription-endpoint
  * @contractRole canonical
  */
-export declare const NewsSubscriptionEndpointSchema: z.ZodType<NewsSubscriptionEndpointDefinition>;
+export declare const NewsSubscriptionEndpointSchema: z.ZodType<NewsSubscriptionEndpointDefinition, NewsSubscriptionEndpointSchemaInput>;
 export type NewsSubscriptionEndpoint = z.infer<typeof NewsSubscriptionEndpointSchema>;
 export {};
 //# sourceMappingURL=subscription-endpoint.d.ts.map

@@ -6,6 +6,8 @@ declare const NewsSubscriptionGrantSchemaDefinition: z.ZodObject<{
     truncated: z.ZodBoolean;
 }, z.core.$strip>;
 type NewsSubscriptionGrantDefinition = z.infer<typeof NewsSubscriptionGrantSchemaDefinition>;
+export interface NewsSubscriptionGrantSchemaInput extends z.input<typeof NewsSubscriptionGrantSchemaDefinition> {
+}
 /**
  * Granted news subscription.
  *
@@ -14,7 +16,7 @@ type NewsSubscriptionGrantDefinition = z.infer<typeof NewsSubscriptionGrantSchem
  * @contractShape news.subscription-grant
  * @contractRole canonical
  */
-export declare const NewsSubscriptionGrantSchema: z.ZodType<NewsSubscriptionGrantDefinition>;
+export declare const NewsSubscriptionGrantSchema: z.ZodType<NewsSubscriptionGrantDefinition, NewsSubscriptionGrantSchemaInput>;
 export type NewsSubscriptionGrant = z.infer<typeof NewsSubscriptionGrantSchema>;
 export {};
 //# sourceMappingURL=subscription-grant.d.ts.map

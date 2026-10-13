@@ -3,6 +3,8 @@ declare const EnrichmentPromptSchemaDefinition: z.ZodObject<{
     userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EnrichmentPromptDefinition = z.infer<typeof EnrichmentPromptSchemaDefinition>;
+export interface EnrichmentPromptSchemaInput extends z.input<typeof EnrichmentPromptSchemaDefinition> {
+}
 /**
  * Optional steering for one company or person enrichment run
  *
@@ -12,7 +14,7 @@ type EnrichmentPromptDefinition = z.infer<typeof EnrichmentPromptSchemaDefinitio
  * @contractShape enrichment.prompt
  * @contractRole canonical
  */
-export declare const EnrichmentPromptSchema: z.ZodType<EnrichmentPromptDefinition>;
+export declare const EnrichmentPromptSchema: z.ZodType<EnrichmentPromptDefinition, EnrichmentPromptSchemaInput>;
 export type EnrichmentPrompt = z.infer<typeof EnrichmentPromptSchema>;
 export {};
 //# sourceMappingURL=prompt.d.ts.map

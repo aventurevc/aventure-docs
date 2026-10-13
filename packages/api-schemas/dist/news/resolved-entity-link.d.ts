@@ -26,6 +26,8 @@ declare const NewsResolvedEntityLinkSchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type NewsResolvedEntityLinkDefinition = z.infer<typeof NewsResolvedEntityLinkSchemaDefinition>;
+export interface NewsResolvedEntityLinkSchemaInput extends z.input<typeof NewsResolvedEntityLinkSchemaDefinition> {
+}
 /**
  * Resolved entity mention in news content - hyperlink to an entity detected in article text
  *
@@ -43,7 +45,7 @@ type NewsResolvedEntityLinkDefinition = z.infer<typeof NewsResolvedEntityLinkSch
  * @contractShape news.resolved-entity-link
  * @contractRole canonical
  */
-export declare const NewsResolvedEntityLinkSchema: z.ZodType<NewsResolvedEntityLinkDefinition>;
+export declare const NewsResolvedEntityLinkSchema: z.ZodType<NewsResolvedEntityLinkDefinition, NewsResolvedEntityLinkSchemaInput>;
 export type NewsResolvedEntityLink = z.infer<typeof NewsResolvedEntityLinkSchema>;
 export {};
 //# sourceMappingURL=resolved-entity-link.d.ts.map

@@ -9,21 +9,21 @@ declare const SearchJudgmentSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, import("../entity/image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -55,6 +55,8 @@ declare const SearchJudgmentSchemaDefinition: z.ZodObject<{
     webUrl: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
 type SearchJudgmentDefinition = z.infer<typeof SearchJudgmentSchemaDefinition>;
+export interface SearchJudgmentSchemaInput extends z.input<typeof SearchJudgmentSchemaDefinition> {
+}
 /**
  * An entity that answers a competitor, market, or provider question, with the judged probability that it does.
  *
@@ -70,7 +72,7 @@ type SearchJudgmentDefinition = z.infer<typeof SearchJudgmentSchemaDefinition>;
  * @contractShape search.judgment
  * @contractRole canonical
  */
-export declare const SearchJudgmentSchema: z.ZodType<SearchJudgmentDefinition>;
+export declare const SearchJudgmentSchema: z.ZodType<SearchJudgmentDefinition, SearchJudgmentSchemaInput>;
 export type SearchJudgment = z.infer<typeof SearchJudgmentSchema>;
 export {};
 //# sourceMappingURL=judgment.d.ts.map

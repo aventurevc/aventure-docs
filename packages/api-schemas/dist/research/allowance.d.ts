@@ -6,6 +6,8 @@ declare const ResearchAllowanceSchemaDefinition: z.ZodObject<{
     used: z.ZodInt;
 }, z.core.$strip>;
 type ResearchAllowanceDefinition = z.infer<typeof ResearchAllowanceSchemaDefinition>;
+export interface ResearchAllowanceSchemaInput extends z.input<typeof ResearchAllowanceSchemaDefinition> {
+}
 /**
  * Usage allowance for one meter in one billing period, the UTC month by default
  *
@@ -16,7 +18,7 @@ type ResearchAllowanceDefinition = z.infer<typeof ResearchAllowanceSchemaDefinit
  * @contractShape research.allowance
  * @contractRole canonical
  */
-export declare const ResearchAllowanceSchema: z.ZodType<ResearchAllowanceDefinition>;
+export declare const ResearchAllowanceSchema: z.ZodType<ResearchAllowanceDefinition, ResearchAllowanceSchemaInput>;
 export type ResearchAllowance = z.infer<typeof ResearchAllowanceSchema>;
 export {};
 //# sourceMappingURL=allowance.d.ts.map

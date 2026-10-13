@@ -6,6 +6,8 @@ declare const UptimeSchemaDefinition: z.ZodObject<{
     incidents: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type UptimeDefinition = z.infer<typeof UptimeSchemaDefinition>;
+export interface UptimeSchemaInput extends z.input<typeof UptimeSchemaDefinition> {
+}
 /**
  * Uptime SLA data from external uptime monitoring
  *
@@ -15,7 +17,7 @@ type UptimeDefinition = z.infer<typeof UptimeSchemaDefinition>;
  * @contractShape uptime.uptime
  * @contractRole canonical
  */
-export declare const UptimeSchema: z.ZodType<UptimeDefinition>;
+export declare const UptimeSchema: z.ZodType<UptimeDefinition, UptimeSchemaInput>;
 export type Uptime = z.infer<typeof UptimeSchema>;
 export {};
 //# sourceMappingURL=uptime.d.ts.map

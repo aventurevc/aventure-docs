@@ -8,6 +8,8 @@ declare const StrictUrlLookupConflictSchemaDefinition: z.ZodObject<{
     urlType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type StrictUrlLookupConflictDefinition = z.infer<typeof StrictUrlLookupConflictSchemaDefinition>;
+export interface StrictUrlLookupConflictSchemaInput extends z.input<typeof StrictUrlLookupConflictSchemaDefinition> {
+}
 /**
  * Typed extension on ProblemDetail.details for HTTP 409 when a strict URL lookup (GET /v1/entities/lookup-exact?url=...) resolves to more than one current owner. The candidate lists return every current owner that matches the normalized URL key; the caller must add disambiguating signals (urlType, typeRecord, slug) to resolve to a single owner.
  *
@@ -17,7 +19,7 @@ type StrictUrlLookupConflictDefinition = z.infer<typeof StrictUrlLookupConflictS
  * @contractShape strict.url-lookup-conflict
  * @contractRole canonical
  */
-export declare const StrictUrlLookupConflictSchema: z.ZodType<StrictUrlLookupConflictDefinition>;
+export declare const StrictUrlLookupConflictSchema: z.ZodType<StrictUrlLookupConflictDefinition, StrictUrlLookupConflictSchemaInput>;
 export type StrictUrlLookupConflict = z.infer<typeof StrictUrlLookupConflictSchema>;
 export {};
 //# sourceMappingURL=url-lookup-conflict.d.ts.map

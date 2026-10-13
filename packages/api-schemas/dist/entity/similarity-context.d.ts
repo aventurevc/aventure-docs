@@ -18,6 +18,8 @@ declare const EntitySimilarityContextSchemaDefinition: z.ZodObject<{
     sharedSectionCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type EntitySimilarityContextDefinition = z.infer<typeof EntitySimilarityContextSchemaDefinition>;
+export interface EntitySimilarityContextSchemaInput extends z.input<typeof EntitySimilarityContextSchemaDefinition> {
+}
 /**
  * Per-row provenance for a similar-entity result
  *
@@ -36,7 +38,7 @@ type EntitySimilarityContextDefinition = z.infer<typeof EntitySimilarityContextS
  * @contractShape entity.similarity-context
  * @contractRole canonical
  */
-export declare const EntitySimilarityContextSchema: z.ZodType<EntitySimilarityContextDefinition>;
+export declare const EntitySimilarityContextSchema: z.ZodType<EntitySimilarityContextDefinition, EntitySimilarityContextSchemaInput>;
 export type EntitySimilarityContext = z.infer<typeof EntitySimilarityContextSchema>;
 export {};
 //# sourceMappingURL=similarity-context.d.ts.map

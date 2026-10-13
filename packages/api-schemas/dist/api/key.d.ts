@@ -17,6 +17,8 @@ declare const ApiKeySchemaDefinition: z.ZodObject<{
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type ApiKeyDefinition = z.infer<typeof ApiKeySchemaDefinition>;
+export interface ApiKeySchemaInput extends z.input<typeof ApiKeySchemaDefinition> {
+}
 /**
  * API key metadata; never contains the key secret
  *
@@ -26,7 +28,7 @@ type ApiKeyDefinition = z.infer<typeof ApiKeySchemaDefinition>;
  * @contractShape api.key
  * @contractRole canonical
  */
-export declare const ApiKeySchema: z.ZodType<ApiKeyDefinition>;
+export declare const ApiKeySchema: z.ZodType<ApiKeyDefinition, ApiKeySchemaInput>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 export {};
 //# sourceMappingURL=key.d.ts.map

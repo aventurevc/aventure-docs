@@ -4,10 +4,10 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
     allowance: z.ZodArray<z.ZodType<{
         limit?: number | null | undefined;
         type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./catalog-allowance.ts").BillingCatalogAllowanceSchemaInput, z.core.$ZodTypeInternals<{
         limit?: number | null | undefined;
         type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
-    }, unknown>>>;
+    }, import("./catalog-allowance.ts").BillingCatalogAllowanceSchemaInput>>>;
     displayName: z.ZodString;
     tier: z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";
@@ -17,6 +17,8 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
     }>;
 }, z.core.$strip>;
 type BillingCatalogTierDefinition = z.infer<typeof BillingCatalogTierSchemaDefinition>;
+export interface BillingCatalogTierSchemaInput extends z.input<typeof BillingCatalogTierSchemaDefinition> {
+}
 /**
  * One subscription tier and its monthly caps.
  *
@@ -26,7 +28,7 @@ type BillingCatalogTierDefinition = z.infer<typeof BillingCatalogTierSchemaDefin
  * @contractShape billing.catalog-tier
  * @contractRole canonical
  */
-export declare const BillingCatalogTierSchema: z.ZodType<BillingCatalogTierDefinition>;
+export declare const BillingCatalogTierSchema: z.ZodType<BillingCatalogTierDefinition, BillingCatalogTierSchemaInput>;
 export type BillingCatalogTier = z.infer<typeof BillingCatalogTierSchema>;
 export {};
 //# sourceMappingURL=catalog-tier.d.ts.map

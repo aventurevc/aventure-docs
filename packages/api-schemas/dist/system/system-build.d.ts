@@ -7,16 +7,18 @@ declare const SystemBuildSchemaDefinition: z.ZodObject<{
         revision?: string | null | undefined;
         time?: string | null | undefined;
         version?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, import("./system-build-detail.ts").SystemBuildDetailSchemaInput, z.core.$ZodTypeInternals<{
         artifact?: string | null | undefined;
         group?: string | null | undefined;
         name?: string | null | undefined;
         revision?: string | null | undefined;
         time?: string | null | undefined;
         version?: string | null | undefined;
-    }, unknown>>;
+    }, import("./system-build-detail.ts").SystemBuildDetailSchemaInput>>;
 }, z.core.$strip>;
 type SystemBuildDefinition = z.infer<typeof SystemBuildSchemaDefinition>;
+export interface SystemBuildSchemaInput extends z.input<typeof SystemBuildSchemaDefinition> {
+}
 /**
  * Build metadata exposed by the public info alias
  *
@@ -25,7 +27,7 @@ type SystemBuildDefinition = z.infer<typeof SystemBuildSchemaDefinition>;
  * @contractShape system.system-build
  * @contractRole canonical
  */
-export declare const SystemBuildSchema: z.ZodType<SystemBuildDefinition>;
+export declare const SystemBuildSchema: z.ZodType<SystemBuildDefinition, SystemBuildSchemaInput>;
 export type SystemBuild = z.infer<typeof SystemBuildSchema>;
 export {};
 //# sourceMappingURL=system-build.d.ts.map

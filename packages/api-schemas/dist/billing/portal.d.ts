@@ -3,6 +3,8 @@ declare const BillingPortalSchemaDefinition: z.ZodObject<{
     url: z.ZodString;
 }, z.core.$strip>;
 type BillingPortalDefinition = z.infer<typeof BillingPortalSchemaDefinition>;
+export interface BillingPortalSchemaInput extends z.input<typeof BillingPortalSchemaDefinition> {
+}
 /**
  * Hosted Billing Portal destination without provider identifiers.
  *
@@ -11,7 +13,7 @@ type BillingPortalDefinition = z.infer<typeof BillingPortalSchemaDefinition>;
  * @contractShape billing.portal
  * @contractRole canonical
  */
-export declare const BillingPortalSchema: z.ZodType<BillingPortalDefinition>;
+export declare const BillingPortalSchema: z.ZodType<BillingPortalDefinition, BillingPortalSchemaInput>;
 export type BillingPortal = z.infer<typeof BillingPortalSchema>;
 export {};
 //# sourceMappingURL=portal.d.ts.map
