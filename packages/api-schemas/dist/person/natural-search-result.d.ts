@@ -69,6 +69,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             order: {
                 descending: boolean;
                 field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+                sortKey?: string | null | undefined;
             }[];
             relevance?: "keyword" | "semantic" | null | undefined;
         };
@@ -142,6 +143,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             order: {
                 descending: boolean;
                 field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+                sortKey?: string | null | undefined;
             }[];
             relevance?: "keyword" | "semantic" | null | undefined;
         };

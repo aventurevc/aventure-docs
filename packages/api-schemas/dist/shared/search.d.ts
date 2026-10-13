@@ -31,6 +31,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     topic?: string | null | undefined;
                 }[];
                 relatedQuery: string[];
+                shareable: boolean;
                 text: string;
                 title?: string | null | undefined;
             } | null | undefined;
@@ -64,6 +65,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
+                        dateAnnouncedRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
                         investedCompanyName?: string[] | undefined;
                         investedCountry?: string[] | undefined;
                         investedIndustry?: string[] | undefined;
@@ -151,6 +156,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     order: {
                         descending: boolean;
                         field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+                        sortKey?: string | null | undefined;
                     }[];
                     relevance?: "keyword" | "semantic" | null | undefined;
                 };
@@ -3272,6 +3278,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     order: {
                         descending: boolean;
                         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+                        sortKey?: string | null | undefined;
                     }[];
                     relevance?: "keyword" | "semantic" | null | undefined;
                 };
@@ -3826,6 +3833,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     topic?: string | null | undefined;
                 }[];
                 relatedQuery: string[];
+                shareable: boolean;
                 text: string;
                 title?: string | null | undefined;
             } | null | undefined;
@@ -3859,6 +3867,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
+                        dateAnnouncedRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
                         investedCompanyName?: string[] | undefined;
                         investedCountry?: string[] | undefined;
                         investedIndustry?: string[] | undefined;
@@ -3946,6 +3958,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     order: {
                         descending: boolean;
                         field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+                        sortKey?: string | null | undefined;
                     }[];
                     relevance?: "keyword" | "semantic" | null | undefined;
                 };
@@ -7067,6 +7080,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     order: {
                         descending: boolean;
                         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+                        sortKey?: string | null | undefined;
                     }[];
                     relevance?: "keyword" | "semantic" | null | undefined;
                 };

@@ -3,9 +3,11 @@ declare const SearchOrderingPersonSortFieldSchemaDefinition: z.ZodObject<{
     order: z.ZodArray<z.ZodType<{
         descending: boolean;
         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+        sortKey?: string | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         descending: boolean;
         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+        sortKey?: string | null | undefined;
     }, unknown>>>;
     relevance: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         keyword: "keyword";

@@ -20,6 +20,7 @@ declare const SortOrderEntityFilterSortableSchemaDefinition: z.ZodObject<{
         UPDATED_AT: "UPDATED_AT";
         YEAR_FOUNDED: "YEAR_FOUNDED";
     }>;
+    sortKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SortOrderEntityFilterSortableDefinition = z.infer<typeof SortOrderEntityFilterSortableSchemaDefinition>;
 /**
