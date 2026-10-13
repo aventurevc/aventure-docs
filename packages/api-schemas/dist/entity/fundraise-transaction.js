@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityFundraiseTransactionEntitySchema } from "./fundraise-transaction-entity.js";
+import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseDataConfidenceSchema } from "../fundraise/data-confidence.js";
 import { FundraiseInvestmentAttributionSchema } from "../fundraise/investment-attribution.js";
 const EntityFundraiseTransactionSchemaDefinition = z.object({
@@ -27,6 +28,8 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     investorAttribution: FundraiseInvestmentAttributionSchema.nullish(),
     /** Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor. */
     investorCount: z.int().nullish(),
+    /** Published page supporting this round, from its latest economic value write. */
+    publicSource: EntityResearchPublicSourceSchema.nullish(),
     /** Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written. */
     round: z.string().nullish(),
     sourceAttribution: z.array(FundraiseInvestmentAttributionSchema),

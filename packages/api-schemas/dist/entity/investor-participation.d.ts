@@ -675,6 +675,12 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 transactionId: string;
             } | null | undefined;
             investorCount?: number | null | undefined;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
             round?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
@@ -761,6 +767,12 @@ declare const EntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 transactionId: string;
             } | null | undefined;
             investorCount?: number | null | undefined;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
             round?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;

@@ -132,6 +132,12 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         transactionId: z.ZodUUID;
     }, z.core.$strip>>>;
     investorCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        recordedAt: z.ZodISODateTime;
+        sourceDetail: z.ZodString;
+    }, z.core.$strip>>>;
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceAttribution: z.ZodArray<z.ZodObject<{
         amountInvested: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
