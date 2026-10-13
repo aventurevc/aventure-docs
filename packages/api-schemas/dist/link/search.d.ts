@@ -620,6 +620,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             totalRaisedUsd?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
+                        headquartersAddressId?: number | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -1113,6 +1114,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             totalRaisedUsd?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
+                        headquartersAddressId?: number | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -1597,6 +1599,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         totalRaisedUsd?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
+                    headquartersAddressId?: number | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -2076,6 +2079,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     totalRaisedUsd?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
+                headquartersAddressId?: number | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -4064,6 +4068,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             totalRaisedUsd?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
+                        headquartersAddressId?: number | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -4557,6 +4562,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             totalRaisedUsd?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
+                        headquartersAddressId?: number | null | undefined;
                         text: {
                             expanded?: string | null | undefined;
                             generatedDescription?: string | null | undefined;
@@ -5041,6 +5047,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         totalRaisedUsd?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
+                    headquartersAddressId?: number | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -5520,6 +5527,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     totalRaisedUsd?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
+                headquartersAddressId?: number | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;

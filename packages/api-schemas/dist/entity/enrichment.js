@@ -10,6 +10,8 @@ const EntityEnrichmentSchemaDefinition = z.object({
     /** Entity classification join projection for this read surface. Single-detail and full-detail batch reads include full history; list, default batch, and similar-entity reads may filter to current joins. Use GET /v1/entities/{entityId}/classifications?includeInactive=true for authoritative join history. */
     classification: EntityClassificationSchema,
     fundingDetail: EntityFundingDetailSchema.nullish(),
+    /** Address id of the current headquarters: the current dominant (operating) address, else the current domicile (legal seat); absent when neither is on record. Read this instead of the deprecated isHq flag, which marks the legal seat. */
+    headquartersAddressId: z.int().nullish(),
     text: EntityTextBundleSchema,
     /** URL link filter values */
     urlLink: z.array(EntityUrlLinkSchema),
