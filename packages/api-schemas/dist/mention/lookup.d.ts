@@ -293,6 +293,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -935,6 +936,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1285,6 +1287,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, unknown>>>;
+    truncated: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type MentionLookupDefinition = z.infer<typeof MentionLookupSchemaDefinition>;
 /**

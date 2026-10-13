@@ -331,6 +331,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -613,6 +614,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;

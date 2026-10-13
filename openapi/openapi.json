@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.125"
+    "version": "0.8.130"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -7756,7 +7756,7 @@
     },
     "/v1/entities/{entityId}/acquisitions": {
       "get": {
-        "description": "Returns a row only when both sides of the acquisition are published. A 404 for an acquisition that the entity relationships resource lists means one side is not published yet. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired. List responses are ordered by most recent acquisition event first.",
+        "description": "Returns a row only when both sides of the acquisition are published, unless includePrivate=true under a credential that reads private entities, which returns every row. A 404 for an acquisition that the entity relationships resource lists means one side is not published; repeat the read with includePrivate=true. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired. List responses are ordered by most recent acquisition event first.",
         "operationId": "listEntityAcquisitions",
         "parameters": [
           {
@@ -7954,7 +7954,7 @@
     },
     "/v1/entities/{entityId}/acquisitions/{relationshipId}": {
       "get": {
-        "description": "Returns a row only when both sides of the acquisition are published. A 404 for an acquisition that the entity relationships resource lists means one side is not published yet. A gated miss on an existing row returns 404 with title 'Acquisition Exists but a Counterpart Entity Is Not Public'. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired.",
+        "description": "Returns a row only when both sides of the acquisition are published, unless includePrivate=true under a credential that reads private entities, which returns every row. A 404 for an acquisition that the entity relationships resource lists means one side is not published; repeat the read with includePrivate=true. A gated miss on an existing row returns 404 with title 'Acquisition Exists but a Counterpart Entity Is Not Public'. The acquired/acquirer roles in each row are always declared explicitly in the response via the acquiredEntity and acquirerEntity fields. The role query parameter selects which side of the acquisition the path entity is on: acquired (default) lists acquisitions where the path entity was bought; acquirer lists acquisitions where the path entity was the buyer; all lists or reads both sides in one response. Writes (POST/PUT/PATCH/DELETE) ignore role and always treat the path entity as acquired.",
         "operationId": "getEntityAcquisition",
         "parameters": [
           {
@@ -32219,7 +32219,7 @@
             "type": "string"
           },
           "range": {
-            "description": "Inclusive numeric bounds for numericRatio, numericScore, and numericGrowthRate. numericGrowthRate values use percentage points: 80 means 80%, not 0.8.",
+            "description": "Inclusive numeric bounds for monetary and numericRatio, numericScore, and numericGrowthRate values. numericGrowthRate uses percentage points: 80 means 80%, not 0.8.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/ResearchValueRange"
@@ -34296,7 +34296,9 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written.",
+            "readOnly": true
           },
           "sourceAttribution": {
             "type": "array",
@@ -36031,6 +36033,10 @@
             "items": {
               "$ref": "#/components/schemas/LookupJobMention"
             }
+          },
+          "truncated": {
+            "type": "boolean",
+            "description": "True when the page names more than this answer holds: more names than one live lookup reads, or a body longer than the read limit. A lookup job with maxNames reads every name."
           }
         },
         "required": [
@@ -37364,6 +37370,14 @@
                 "type": "null"
               }
             ]
+          },
+          "searchRequestId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "entity.searchRequestId of the federated search response the sharing page showed. When that search was signed in, asked this query (ignoring case), and its shareable answer is still kept, the share publishes exactly that answer without searching again; otherwise search, size, and layer apply."
           },
           "size": {
             "type": [
@@ -39109,6 +39123,15 @@
             "description": "Address id of the current headquarters: the current dominant (operating) address; absent when none is on record, even when a domicile (legal seat) exists. Read this instead of the deprecated isHq flag, which marks the legal seat.",
             "example": 123,
             "readOnly": true
+          },
+          "headquartersRemoteAsOf": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "When aVenture last verified that this entity runs no operating headquarters (a remote company); absent while a current operating headquarters is on record or no unexpired verification exists.",
+            "example": "2026-10-01T00:00:00Z"
           },
           "text": {
             "$ref": "#/components/schemas/EntityTextBundle"

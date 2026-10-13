@@ -1,24 +1,11 @@
 import { z } from "zod/v4";
 declare const EntityClassificationSuggestionSchemaDefinition: z.ZodObject<{
     alreadyJoined: z.ZodBoolean;
-    classification: z.ZodUnion<readonly [z.ZodType<{
+    classification: z.ZodUnion<readonly [z.ZodIntersection<z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
-        writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
         writable: boolean;
     }, unknown, z.core.$ZodTypeInternals<{
         creatable: boolean;
@@ -26,20 +13,20 @@ declare const EntityClassificationSuggestionSchemaDefinition: z.ZodObject<{
         isPrimary?: boolean | null | undefined;
         name: string;
         writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown>>, z.ZodType<{
+    }, unknown>>, z.ZodObject<{
+        bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        creatable: z.ZodBoolean;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        name: z.ZodString;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        type: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        writable: z.ZodBoolean;
+    }, z.core.$strip>>, z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;

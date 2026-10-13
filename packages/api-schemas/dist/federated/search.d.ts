@@ -620,6 +620,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -1114,6 +1115,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -1599,6 +1601,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -2407,6 +2410,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -2901,6 +2905,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
+                    headquartersRemoteAsOf?: string | null | undefined;
                     text: {
                         expanded?: string | null | undefined;
                         generatedDescription?: string | null | undefined;
@@ -3386,6 +3391,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3884,6 +3890,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -4166,6 +4173,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
