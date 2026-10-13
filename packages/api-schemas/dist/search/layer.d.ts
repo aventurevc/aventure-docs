@@ -5,6 +5,8 @@ import { z } from "zod/v4";
  * @openapiSchema SearchLayer
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema SharedSearchMutationSchema
  * @contractShape search.layer
  * @contractRole canonical
  */

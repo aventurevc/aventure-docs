@@ -30,6 +30,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         MEDIUM: "MEDIUM";
     }>;
     description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    heading: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     paragraph: z.ZodArray<z.ZodType<{
         citation: {
             entityId: string;

@@ -61,7 +61,7 @@ export const AddressSchema = z.object({
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Single-line formatted address */
     fullAddress: z.string().nullish(),
-    /** Address record identifier */
+    /** Id of this listed row's first association; PATCH and DELETE address one association by its association[].id, so a row holding several roles needs one call each */
     id: z.int().nullish(),
     /** Deprecated aggregate compatibility flag; true when any association is current */
     isCurrent: z.boolean().nullish(),

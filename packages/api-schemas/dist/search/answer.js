@@ -25,6 +25,8 @@ export const SearchAnswerSchema = z.object({
     confidence: ConfidenceSchema,
     /** One- or two-sentence summary of at most 155 characters for a search-result snippet; absent when the answer abstains. */
     description: z.string().nullish(),
+    /** The question as the answer page's heading: the asker's own words in title case, with record names in their stored casing; it never adds, drops, or corrects a word. Absent when the answer abstains. */
+    heading: z.string().nullish(),
     /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it. */
     paragraph: z.array(SearchAnswerParagraphSchema),
     /** Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains. */
@@ -33,7 +35,7 @@ export const SearchAnswerSchema = z.object({
     shareable: z.boolean(),
     /** Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports. */
     text: z.string(),
-    /** Page title of at most 60 characters naming the answer's subject and scope, written by the same model call; absent when the answer abstains. */
+    /** Page title of at most 60 characters naming the answer's subject, then the angle and scope its paragraphs cover, written by the same model call; pages show it as the subheading under `heading`. Absent when the answer abstains. */
     title: z.string().nullish(),
 });
 //# sourceMappingURL=answer.js.map

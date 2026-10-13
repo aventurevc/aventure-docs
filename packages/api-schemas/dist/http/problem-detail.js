@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { DomainConflictDetailsSchema } from "../domain/conflict-details.js";
 import { JsonValueSchema } from "./json-value.js";
 import { ProblemResolutionSchema } from "../problem/resolution.js";
+import { ProseViolationSchema } from "../prose/violation.js";
 import { CurrentSlugOwnerSchema } from "../redirect/current-slug-owner.js";
 import { RedirectSlugPathSchema } from "../redirect/redirect-slug-path.js";
 const ProblemDetailSchemaDefinition = z.object({
@@ -43,6 +44,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "suspectedShellStrip",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
             "suspected_shell_strip",
+            /** Entity text or a research snippet was rejected by its prose judge or text contract. Agent action: rewrite every passage in ProblemDetail.proseViolation at once and resend the whole text; ProblemDetail.hint names the override only when every violation is overridable. */
+            "prose_rejected",
             /** A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal. */
             "url_surface_misclassification",
             /** JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error). */
@@ -190,6 +193,8 @@ const ProblemDetailSchemaDefinition = z.object({
     parseError: z.string().nullish(),
     path: z.string().nullish(),
     properties: z.record(z.string(), JsonValueSchema).optional(),
+    /** Every rejected passage of a PROSE_REJECTED write, once per problem it shows; absent for every other problem. */
+    proseViolation: z.array(ProseViolationSchema).nullish(),
     /** Cap minus used for the limitType meter, never negative. */
     remaining: z.number().int().nullish(),
     requiredRole: z.string().nullish(),

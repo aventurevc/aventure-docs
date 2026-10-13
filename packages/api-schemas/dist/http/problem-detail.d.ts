@@ -55,6 +55,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         origin_detail_capacity: "origin_detail_capacity";
         origin_detail_shutdown: "origin_detail_shutdown";
         primary_website_missing: "primary_website_missing";
+        prose_rejected: "prose_rejected";
         r2_delete_failed: "r2_delete_failed";
         r2_fetch_failed: "r2_fetch_failed";
         r2_upload_failed: "r2_upload_failed";
@@ -243,6 +244,17 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     parseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     path: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("./json-value.ts").JsonValue, unknown, z.core.$ZodTypeInternals<import("./json-value.ts").JsonValue, unknown>>>>;
+    proseViolation: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        overridable: boolean;
+        passage: string;
+        problem: string;
+        reason: string;
+    }, unknown, z.core.$ZodTypeInternals<{
+        overridable: boolean;
+        passage: string;
+        problem: string;
+        reason: string;
+    }, unknown>>>>>;
     remaining: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     requiredRole: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resetAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

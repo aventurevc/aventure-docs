@@ -20,6 +20,8 @@ const ResearchSnippetTypeSchemaDefinition = z.object({
     targetPath: z.string(),
     /** Canonical snippet type token used on the wire. */
     typeValue: z.string(),
+    /** The strategic question this snippet type answers and how to shape it. Snippets are point-in-time strategic analysis of the company's position against its market and named alternatives: open with the judgment and cite dated, sourced details only as evidence for it, never as a fact list. */
+    writeHint: z.string(),
 });
 /**
  * Canonical research snippet type with the governance rules write callers must satisfy.

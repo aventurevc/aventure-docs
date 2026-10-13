@@ -1,5 +1,16 @@
 import { z } from "zod/v4";
-declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
+/**
+ * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.
+ *
+ * @openapiSchema FederatedNaturalSearch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema SharedSearchMutationSchema
+ * @contractShape federated.natural-search
+ * @contractRole canonical
+ */
+export declare const FederatedNaturalSearchSchema: z.ZodObject<{
+    answerModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     cacheMode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
         bypass: "bypass";
         refresh: "refresh";
@@ -199,16 +210,5 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
         xhigh: "xhigh";
     }>, z.ZodString]>>>;
 }, z.core.$strip>;
-type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
-/**
- * Plain-English search across companies, people, and news, plus optional per-scope entity constraints and page sizes.
- *
- * @openapiSchema FederatedNaturalSearch
- * @endpoint POST /v1/search
- * @contractShape federated.natural-search
- * @contractRole canonical
- */
-export declare const FederatedNaturalSearchSchema: z.ZodType<FederatedNaturalSearchDefinition>;
 export type FederatedNaturalSearch = z.infer<typeof FederatedNaturalSearchSchema>;
-export {};
 //# sourceMappingURL=natural-search.d.ts.map

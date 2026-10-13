@@ -29,6 +29,14 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             operationId: string;
             stepKey: string;
         };
+        writeGuidance?: {
+            body: string;
+            expectation: string;
+            method: string[];
+            override: string;
+            reject: string[];
+            typeCatalog: string;
+        } | null | undefined;
     }, unknown, z.core.$ZodTypeInternals<{
         cliCommand: string;
         mcpTool?: string | null | undefined;
@@ -37,6 +45,14 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             operationId: string;
             stepKey: string;
         };
+        writeGuidance?: {
+            body: string;
+            expectation: string;
+            method: string[];
+            override: string;
+            reject: string[];
+            typeCatalog: string;
+        } | null | undefined;
     }, unknown>>>;
     taskKey: z.ZodString;
 }, z.core.$strip>;

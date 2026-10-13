@@ -9,6 +9,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             }[];
             confidence: "HIGH" | "LOW" | "MEDIUM";
             description?: string | null | undefined;
+            heading?: string | null | undefined;
             paragraph: {
                 citation: {
                     entityId: string;
@@ -146,7 +147,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             sort: {
                 order: {
                     descending: boolean;
-                    field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+                    field: string;
                     sortKey?: string | null | undefined;
                 }[];
                 relevance?: "keyword" | "semantic" | null | undefined;
@@ -1795,6 +1796,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             }[];
             confidence: "HIGH" | "LOW" | "MEDIUM";
             description?: string | null | undefined;
+            heading?: string | null | undefined;
             paragraph: {
                 citation: {
                     entityId: string;
@@ -1932,7 +1934,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             sort: {
                 order: {
                     descending: boolean;
-                    field: "ACCELERATOR_BRAND" | "ACCELERATOR_COHORT" | "AMOUNT_INVESTED" | "CREATED_AT" | "EMPLOYEE_COUNT" | "HEADQUARTERS_COUNTRY" | "ID" | "LATEST_VALUATION" | "MOST_RECENT_AMOUNT" | "MOST_RECENT_DATE" | "NAME_BRAND" | "RECENT_INVESTMENT_AT" | "STAGE" | "STATUS_OPERATING" | "TOTAL_RAISED" | "UPDATED_AT" | "YEAR_FOUNDED";
+                    field: string;
                     sortKey?: string | null | undefined;
                 }[];
                 relevance?: "keyword" | "semantic" | null | undefined;
