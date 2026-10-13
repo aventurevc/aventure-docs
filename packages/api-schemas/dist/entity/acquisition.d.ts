@@ -8,21 +8,37 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -58,21 +74,37 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -117,12 +149,22 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         fundraiseTransaction: boolean;
         operatingStatus: boolean;
         relationship: boolean;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         fundraiseInvestorJoin: boolean;
         fundraiseTransaction: boolean;
         operatingStatus: boolean;
         relationship: boolean;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        fundraiseInvestorJoin: boolean;
+        fundraiseTransaction: boolean;
+        operatingStatus: boolean;
+        relationship: boolean;
+    }, {
+        fundraiseInvestorJoin: boolean;
+        fundraiseTransaction: boolean;
+        operatingStatus: boolean;
+        relationship: boolean;
+    }>>;
     fundraiseTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     investorJoinId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -159,7 +201,7 @@ type EntityAcquisitionDefinition = z.infer<typeof EntityAcquisitionSchemaDefinit
  * @contractShape entity.acquisition
  * @contractRole canonical
  */
-export declare const EntityAcquisitionSchema: z.ZodType<EntityAcquisitionDefinition>;
+export declare const EntityAcquisitionSchema: z.ZodType<EntityAcquisitionDefinition, z.input<typeof EntityAcquisitionSchemaDefinition>>;
 export type EntityAcquisition = z.infer<typeof EntityAcquisitionSchema>;
 export {};
 //# sourceMappingURL=acquisition.d.ts.map

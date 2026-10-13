@@ -36,7 +36,7 @@ type EntitySimilarityContextDefinition = z.infer<typeof EntitySimilarityContextS
  * @contractShape entity.similarity-context
  * @contractRole canonical
  */
-export declare const EntitySimilarityContextSchema: z.ZodType<EntitySimilarityContextDefinition>;
+export declare const EntitySimilarityContextSchema: z.ZodType<EntitySimilarityContextDefinition, z.input<typeof EntitySimilarityContextSchemaDefinition>>;
 export type EntitySimilarityContext = z.infer<typeof EntitySimilarityContextSchema>;
 export {};
 //# sourceMappingURL=similarity-context.d.ts.map

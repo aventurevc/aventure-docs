@@ -10,7 +10,7 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         score: number;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         externalId?: string | null | undefined;
         id: string;
         name?: string | null | undefined;
@@ -20,7 +20,27 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         score: number;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-    }, unknown>>>>>;
+    }, z.core.$ZodTypeInternals<{
+        externalId?: string | null | undefined;
+        id: string;
+        name?: string | null | undefined;
+        operatingStatus?: string | null | undefined;
+        publicPath?: string | null | undefined;
+        reason: string[];
+        score: number;
+        slug?: string | null | undefined;
+        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+    }, {
+        externalId?: string | null | undefined;
+        id: string;
+        name?: string | null | undefined;
+        operatingStatus?: string | null | undefined;
+        publicPath?: string | null | undefined;
+        reason: string[];
+        score: number;
+        slug?: string | null | undefined;
+        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+    }>>>>>;
     newsCandidate: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
         externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         id: z.ZodInt;
@@ -41,7 +61,7 @@ type DuplicateCreateReviewDefinition = z.infer<typeof DuplicateCreateReviewSchem
  * @contractShape duplicate.create-review
  * @contractRole canonical
  */
-export declare const DuplicateCreateReviewSchema: z.ZodType<DuplicateCreateReviewDefinition>;
+export declare const DuplicateCreateReviewSchema: z.ZodType<DuplicateCreateReviewDefinition, z.input<typeof DuplicateCreateReviewSchemaDefinition>>;
 export type DuplicateCreateReview = z.infer<typeof DuplicateCreateReviewSchema>;
 export {};
 //# sourceMappingURL=create-review.d.ts.map

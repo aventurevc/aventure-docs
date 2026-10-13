@@ -15,7 +15,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -29,7 +29,35 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }, {
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }>>;
     entityMentionResolved: z.ZodArray<z.ZodType<{
         createdAt: string;
         entityId: string;
@@ -40,7 +68,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         createdAt: string;
         entityId: string;
         href?: string | null | undefined;
@@ -50,7 +78,27 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        createdAt: string;
+        entityId: string;
+        href?: string | null | undefined;
+        internal: boolean;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+        mention?: string | null | undefined;
+        slug?: string | null | undefined;
+        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        updatedAt: string;
+    }, {
+        createdAt: string;
+        entityId: string;
+        href?: string | null | undefined;
+        internal: boolean;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+        mention?: string | null | undefined;
+        slug?: string | null | undefined;
+        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        updatedAt: string;
+    }>>>;
     externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     linkedContent: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     linkerCompleted: z.ZodOptional<z.ZodBoolean>;
@@ -62,7 +110,7 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         personId: string;
         slug?: string | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         createdAt: string;
         href?: string | null | undefined;
         matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
@@ -70,7 +118,23 @@ declare const NewsDetailSchemaDefinition: z.ZodObject<{
         personId: string;
         slug?: string | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        createdAt: string;
+        href?: string | null | undefined;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+        mention?: string | null | undefined;
+        personId: string;
+        slug?: string | null | undefined;
+        updatedAt: string;
+    }, {
+        createdAt: string;
+        href?: string | null | undefined;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+        mention?: string | null | undefined;
+        personId: string;
+        slug?: string | null | undefined;
+        updatedAt: string;
+    }>>>;
 }, z.core.$strip>;
 type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
 /**
@@ -82,7 +146,7 @@ type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
  * @contractShape news.detail
  * @contractRole canonical
  */
-export declare const NewsDetailSchema: z.ZodType<NewsDetailDefinition>;
+export declare const NewsDetailSchema: z.ZodType<NewsDetailDefinition, z.input<typeof NewsDetailSchemaDefinition>>;
 export type NewsDetail = z.infer<typeof NewsDetailSchema>;
 export {};
 //# sourceMappingURL=detail.d.ts.map

@@ -2,14 +2,22 @@ import { z } from "zod/v4";
 declare const NewsSubscriptionKeySchemaDefinition: z.ZodObject<{
     arguments: z.ZodType<{
         entityId: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         entityId: string;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        entityId: string;
+    }, {
+        entityId: string;
+    }>>;
     delivery: z.ZodType<{
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         url: string;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        url: string;
+    }, {
+        url: string;
+    }>>;
     name: z.ZodEnum<{
         "entity.news.published": "entity.news.published";
     }>;
@@ -25,7 +33,7 @@ type NewsSubscriptionKeyDefinition = z.infer<typeof NewsSubscriptionKeySchemaDef
  * @contractShape news.subscription-key
  * @contractRole canonical
  */
-export declare const NewsSubscriptionKeySchema: z.ZodType<NewsSubscriptionKeyDefinition>;
+export declare const NewsSubscriptionKeySchema: z.ZodType<NewsSubscriptionKeyDefinition, z.input<typeof NewsSubscriptionKeySchemaDefinition>>;
 export type NewsSubscriptionKey = z.infer<typeof NewsSubscriptionKeySchema>;
 export {};
 //# sourceMappingURL=subscription-key.d.ts.map

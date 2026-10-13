@@ -6,13 +6,25 @@ declare const UrlDuplicateConflictSchemaDefinition: z.ZodObject<{
             personId?: string | null | undefined;
         };
         urlId: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         owner: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
         };
         urlId: number;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        owner: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        urlId: number;
+    }, {
+        owner: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        urlId: number;
+    }>>>;
     fragmentIgnored: z.ZodBoolean;
     guidance: z.ZodString;
     normalizedUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -33,7 +45,7 @@ type UrlDuplicateConflictDefinition = z.infer<typeof UrlDuplicateConflictSchemaD
  * @contractShape url.duplicate-conflict
  * @contractRole canonical
  */
-export declare const UrlDuplicateConflictSchema: z.ZodType<UrlDuplicateConflictDefinition>;
+export declare const UrlDuplicateConflictSchema: z.ZodType<UrlDuplicateConflictDefinition, z.input<typeof UrlDuplicateConflictSchemaDefinition>>;
 export type UrlDuplicateConflict = z.infer<typeof UrlDuplicateConflictSchema>;
 export {};
 //# sourceMappingURL=duplicate-conflict.d.ts.map

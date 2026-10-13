@@ -5,13 +5,25 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodIntersection<z.Zo
     isPrimary?: boolean | null | undefined;
     name: string;
     writable: boolean;
-}, unknown, z.core.$ZodTypeInternals<{
+}, {
     creatable: boolean;
     isCurrent?: boolean | null | undefined;
     isPrimary?: boolean | null | undefined;
     name: string;
     writable: boolean;
-}, unknown>>, z.ZodObject<{
+}, z.core.$ZodTypeInternals<{
+    creatable: boolean;
+    isCurrent?: boolean | null | undefined;
+    isPrimary?: boolean | null | undefined;
+    name: string;
+    writable: boolean;
+}, {
+    creatable: boolean;
+    isCurrent?: boolean | null | undefined;
+    isPrimary?: boolean | null | undefined;
+    name: string;
+    writable: boolean;
+}>>, z.ZodObject<{
     category: z.ZodString;
     code: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     creatable: z.ZodBoolean;
@@ -59,7 +71,7 @@ type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassific
  * @contractShape standardized.classification
  * @contractRole canonical
  */
-export declare const StandardizedClassificationSchema: z.ZodType<StandardizedClassificationDefinition>;
+export declare const StandardizedClassificationSchema: z.ZodType<StandardizedClassificationDefinition, z.input<typeof StandardizedClassificationSchemaDefinition>>;
 export type StandardizedClassification = z.infer<typeof StandardizedClassificationSchema>;
 export {};
 //# sourceMappingURL=classification.d.ts.map

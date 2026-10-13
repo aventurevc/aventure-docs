@@ -31,10 +31,16 @@ export declare const LogoAccuracySchema: z.ZodObject<{
     reference: z.ZodArray<z.ZodType<{
         hammingDistance: number;
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         hammingDistance: number;
         url: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        hammingDistance: number;
+        url: string;
+    }, {
+        hammingDistance: number;
+        url: string;
+    }>>>;
     referenceObserved: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sharedFeature: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;

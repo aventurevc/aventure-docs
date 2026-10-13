@@ -111,7 +111,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         };
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         existingJoin: {
             owner: {
                 entityId?: string | null | undefined;
@@ -128,21 +128,69 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         };
         url: string;
         urlType: string;
-    }, unknown>>, z.ZodType<{
+    }, z.core.$ZodTypeInternals<{
+        existingJoin: {
+            owner: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            };
+            urlId: number;
+        }[];
+        fragmentIgnored: boolean;
+        guidance: string;
+        normalizedUrl?: string | null | undefined;
+        requestedOwner: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        url: string;
+        urlType: string;
+    }, {
+        existingJoin: {
+            owner: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            };
+            urlId: number;
+        }[];
+        fragmentIgnored: boolean;
+        guidance: string;
+        normalizedUrl?: string | null | undefined;
+        requestedOwner: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        url: string;
+        urlType: string;
+    }>>, z.ZodType<{
         candidateEntityId: string[];
         candidatePersonId: string[];
         hint: string;
         normalizedUrl?: string | null | undefined;
         url: string;
         urlType?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         candidateEntityId: string[];
         candidatePersonId: string[];
         hint: string;
         normalizedUrl?: string | null | undefined;
         url: string;
         urlType?: string | null | undefined;
-    }, unknown>>, z.ZodType<{
+    }, z.core.$ZodTypeInternals<{
+        candidateEntityId: string[];
+        candidatePersonId: string[];
+        hint: string;
+        normalizedUrl?: string | null | undefined;
+        url: string;
+        urlType?: string | null | undefined;
+    }, {
+        candidateEntityId: string[];
+        candidatePersonId: string[];
+        hint: string;
+        normalizedUrl?: string | null | undefined;
+        url: string;
+        urlType?: string | null | undefined;
+    }>>, z.ZodType<{
         candidate?: {
             externalId?: string | null | undefined;
             id: string;
@@ -163,7 +211,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         }[] | null | undefined;
         overridePath?: string | null | undefined;
         threshold: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         candidate?: {
             externalId?: string | null | undefined;
             id: string;
@@ -184,23 +232,81 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         }[] | null | undefined;
         overridePath?: string | null | undefined;
         threshold: number;
-    }, unknown>>, z.ZodType<{
+    }, z.core.$ZodTypeInternals<{
+        candidate?: {
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }[] | null | undefined;
+        newsCandidate?: {
+            externalId?: string | null | undefined;
+            id: number;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+        }[] | null | undefined;
+        overridePath?: string | null | undefined;
+        threshold: number;
+    }, {
+        candidate?: {
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }[] | null | undefined;
+        newsCandidate?: {
+            externalId?: string | null | undefined;
+            id: number;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+        }[] | null | undefined;
+        overridePath?: string | null | undefined;
+        threshold: number;
+    }>>, z.ZodType<{
         availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
         slug: string;
         tagId: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
         slug: string;
         tagId: number;
-    }, unknown>>, z.ZodType<{
+    }, z.core.$ZodTypeInternals<{
+        availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
+        slug: string;
+        tagId: number;
+    }, {
+        availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
+        slug: string;
+        tagId: number;
+    }>>, z.ZodType<{
         conflictingArticleId: number;
         conflictingArticleSlug: string;
         conflictingArticleTitle: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         conflictingArticleId: number;
         conflictingArticleSlug: string;
         conflictingArticleTitle: string;
-    }, unknown>>]>>>;
+    }, z.core.$ZodTypeInternals<{
+        conflictingArticleId: number;
+        conflictingArticleSlug: string;
+        conflictingArticleTitle: string;
+    }, {
+        conflictingArticleId: number;
+        conflictingArticleSlug: string;
+        conflictingArticleTitle: string;
+    }>>]>>>;
     error: z.ZodOptional<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>>;
     existingRedirect: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         newUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -217,6 +323,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     feId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     field: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    filedRunId: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodUUID>>>;
     hammingDistance: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     hint: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     instance: z.ZodOptional<z.ZodString>;
@@ -243,18 +350,28 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     moderationReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     parseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     path: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("./json-value.ts").JsonValue, unknown, z.core.$ZodTypeInternals<import("./json-value.ts").JsonValue, unknown>>>>;
+    properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("./json-value.ts").JsonValue, import("./json-value.ts").JsonValue, z.core.$ZodTypeInternals<import("./json-value.ts").JsonValue, import("./json-value.ts").JsonValue>>>>;
     proseViolation: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         overridable: boolean;
         passage: string;
         problem: string;
         reason: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         overridable: boolean;
         passage: string;
         problem: string;
         reason: string;
-    }, unknown>>>>>;
+    }, z.core.$ZodTypeInternals<{
+        overridable: boolean;
+        passage: string;
+        problem: string;
+        reason: string;
+    }, {
+        overridable: boolean;
+        passage: string;
+        problem: string;
+        reason: string;
+    }>>>>>;
     remaining: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     requiredRole: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resetAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -297,7 +414,7 @@ type ProblemDetailDefinition = z.infer<typeof ProblemDetailSchemaDefinition>;
  * @contractShape http.problem-detail
  * @contractRole canonical
  */
-export declare const ProblemDetailSchema: z.ZodType<ProblemDetailDefinition>;
+export declare const ProblemDetailSchema: z.ZodType<ProblemDetailDefinition, z.input<typeof ProblemDetailSchemaDefinition>>;
 export type ProblemDetail = z.infer<typeof ProblemDetailSchema>;
 export {};
 //# sourceMappingURL=problem-detail.d.ts.map

@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SecListingProspectusSchema } from "./listing-prospectus.js";
 const SecCompanySchemaDefinition = z.object({
     /** SEC Central Index Key, 10-digit zero-padded. The stable cross-sync join key. */
     cik: z.string(),
@@ -11,6 +12,8 @@ const SecCompanySchemaDefinition = z.object({
     exchange: z.array(z.string()),
     /** SEC filer size category. */
     filerCategory: z.string().nullish(),
+    /** Date of the registrant's earliest EDGAR filing. EDGAR filing became mandatory for all registrants in May 1996, so a listing before this date predates the electronic record. */
+    filingHistoryStart: z.iso.date().nullish(),
     /** Fiscal year-end as MMDD. */
     fiscalYearEnd: z.string().nullish(),
     /** Headquarters city from the SEC business address. */
@@ -25,13 +28,15 @@ const SecCompanySchemaDefinition = z.object({
     headquartersStreet: z.string().nullish(),
     /** True when SEC classifies this registrant as an operating company, false for a SPAC/trust/holding/shell vehicle. */
     isOperating: z.boolean(),
+    /** The registrant's IPO prospectus: its first final prospectus (Form 424B4 or 424B1), reported only when an offering registration statement (S-1, F-1, SB-2, S-11) precedes it and no annual or quarterly report does. Null when EDGAR shows no such prospectus, including every company that listed before its EDGAR history starts and every follow-on offering. */
+    listingProspectus: SecListingProspectusSchema.nullish(),
     /** How the query resolved to this registrant. */
     matchedVia: z.enum(["TICKER", "NAME"]),
     /** Former registered legal names from SEC `formerNames`, most recent first. */
     nameAlias: z.array(z.string()),
     /** Registered legal name from SEC filings. */
     nameLegal: z.string(),
-    /** Other registrants whose name also matched the query (legal names). Empty for an exact ticker resolution; non-empty signals an ambiguous name query. */
+    /** Other registrants whose title also contains the name query (legal names) beside the exact title match that bound. Empty for a ticker resolution. */
     otherCandidate: z.array(z.string()),
     /** Business phone from SEC filings. */
     phone: z.string().nullish(),

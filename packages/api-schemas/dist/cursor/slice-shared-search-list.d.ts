@@ -5,12 +5,22 @@ declare const CursorSliceSharedSearchListSchemaDefinition: z.ZodObject<{
         id: string;
         query: string;
         slug: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         createdAt: string;
         id: string;
         query: string;
         slug: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        createdAt: string;
+        id: string;
+        query: string;
+        slug: string;
+    }, {
+        createdAt: string;
+        id: string;
+        query: string;
+        slug: string;
+    }>>>;
     nextCursor: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type CursorSliceSharedSearchListDefinition = z.infer<typeof CursorSliceSharedSearchListSchemaDefinition>;
@@ -20,7 +30,7 @@ type CursorSliceSharedSearchListDefinition = z.infer<typeof CursorSliceSharedSea
  * @contractShape cursor.slice-shared-search-list
  * @contractRole canonical
  */
-export declare const CursorSliceSharedSearchListSchema: z.ZodType<CursorSliceSharedSearchListDefinition>;
+export declare const CursorSliceSharedSearchListSchema: z.ZodType<CursorSliceSharedSearchListDefinition, z.input<typeof CursorSliceSharedSearchListSchemaDefinition>>;
 export type CursorSliceSharedSearchList = z.infer<typeof CursorSliceSharedSearchListSchema>;
 export {};
 //# sourceMappingURL=slice-shared-search-list.d.ts.map

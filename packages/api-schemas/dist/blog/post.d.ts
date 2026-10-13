@@ -43,7 +43,7 @@ type BlogPostDefinition = z.infer<typeof BlogPostSchemaDefinition>;
  * @contractShape blog.post
  * @contractRole canonical
  */
-export declare const BlogPostSchema: z.ZodType<BlogPostDefinition>;
+export declare const BlogPostSchema: z.ZodType<BlogPostDefinition, z.input<typeof BlogPostSchemaDefinition>>;
 export type BlogPost = z.infer<typeof BlogPostSchema>;
 export {};
 //# sourceMappingURL=post.d.ts.map

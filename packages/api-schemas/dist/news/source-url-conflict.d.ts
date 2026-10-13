@@ -14,7 +14,7 @@ type NewsSourceUrlConflictDefinition = z.infer<typeof NewsSourceUrlConflictSchem
  * @contractShape news.source-url-conflict
  * @contractRole canonical
  */
-export declare const NewsSourceUrlConflictSchema: z.ZodType<NewsSourceUrlConflictDefinition>;
+export declare const NewsSourceUrlConflictSchema: z.ZodType<NewsSourceUrlConflictDefinition, z.input<typeof NewsSourceUrlConflictSchemaDefinition>>;
 export type NewsSourceUrlConflict = z.infer<typeof NewsSourceUrlConflictSchema>;
 export {};
 //# sourceMappingURL=source-url-conflict.d.ts.map

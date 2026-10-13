@@ -45,7 +45,7 @@ type NewsDefinition = z.infer<typeof NewsSchemaDefinition>;
  * @contractShape news.news
  * @contractRole canonical
  */
-export declare const NewsSchema: z.ZodType<NewsDefinition>;
+export declare const NewsSchema: z.ZodType<NewsDefinition, z.input<typeof NewsSchemaDefinition>>;
 export type News = z.infer<typeof NewsSchema>;
 export {};
 //# sourceMappingURL=news.d.ts.map

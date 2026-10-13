@@ -23,7 +23,7 @@ type PublicationFacetDefinition = z.infer<typeof PublicationFacetSchemaDefinitio
  * @contractShape publication.facet
  * @contractRole canonical
  */
-export declare const PublicationFacetSchema: z.ZodType<PublicationFacetDefinition>;
+export declare const PublicationFacetSchema: z.ZodType<PublicationFacetDefinition, z.input<typeof PublicationFacetSchemaDefinition>>;
 export type PublicationFacet = z.infer<typeof PublicationFacetSchema>;
 export {};
 //# sourceMappingURL=facet.d.ts.map

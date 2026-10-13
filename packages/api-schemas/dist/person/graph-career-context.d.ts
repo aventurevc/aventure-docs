@@ -10,7 +10,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isCurrent?: boolean | null | undefined;
         personId: string;
         personImage: {
@@ -20,7 +20,27 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        isCurrent?: boolean | null | undefined;
+        personId: string;
+        personImage: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        personName: string;
+        personSlug: string;
+        titleName?: string | null | undefined;
+    }, {
+        isCurrent?: boolean | null | undefined;
+        personId: string;
+        personImage: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        personName: string;
+        personSlug: string;
+        titleName?: string | null | undefined;
+    }>>>;
     employeeCount: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         asOfDate: z.ZodISODateTime;
         fact: z.ZodType<{
@@ -33,7 +53,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             asOfDate?: string | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
@@ -43,7 +63,27 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
             valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            asOfDate?: string | null | undefined;
+            dataConfidence?: "high" | "low" | "medium" | null | undefined;
+            dateValue?: string | null | undefined;
+            numericValue?: number | null | undefined;
+            referenceValue?: string | null | undefined;
+            source?: string | null | undefined;
+            textValue?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+        }, {
+            asOfDate?: string | null | undefined;
+            dataConfidence?: "high" | "low" | "medium" | null | undefined;
+            dateValue?: string | null | undefined;
+            numericValue?: number | null | undefined;
+            referenceValue?: string | null | undefined;
+            source?: string | null | undefined;
+            textValue?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+        }>>;
         id: z.ZodString;
     }, z.core.$strip>>>;
     entity: z.ZodObject<{
@@ -55,21 +95,37 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, z.core.$ZodTypeInternals<{
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }, {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, z.core.$ZodTypeInternals<{
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }, {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -158,13 +214,25 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }, {
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -210,7 +278,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -224,7 +292,35 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }, {
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }>>>;
     similarEntity: z.ZodArray<z.ZodType<{
         entity: {
             core: {
@@ -283,7 +379,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             personSlug: string;
             titleName?: string | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -341,7 +437,123 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             personSlug: string;
             titleName?: string | null | undefined;
         }[];
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        entity: {
+            core: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            fundingDetail?: {
+                currency?: string | null | undefined;
+                fundingRoundCount: number;
+                investorCount: number;
+                latestValuation?: number | null | undefined;
+                mostRecentAmount?: number | null | undefined;
+                mostRecentDate?: string | null | undefined;
+                stage?: string | null | undefined;
+                totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
+            } | null | undefined;
+        };
+        keyPerson: {
+            isCurrent?: boolean | null | undefined;
+            personId: string;
+            personImage: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+            };
+            personName: string;
+            personSlug: string;
+            titleName?: string | null | undefined;
+        }[];
+    }, {
+        entity: {
+            core: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            fundingDetail?: {
+                currency?: string | null | undefined;
+                fundingRoundCount: number;
+                investorCount: number;
+                latestValuation?: number | null | undefined;
+                mostRecentAmount?: number | null | undefined;
+                mostRecentDate?: string | null | undefined;
+                stage?: string | null | undefined;
+                totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
+            } | null | undefined;
+        };
+        keyPerson: {
+            isCurrent?: boolean | null | undefined;
+            personId: string;
+            personImage: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+            };
+            personName: string;
+            personSlug: string;
+            titleName?: string | null | undefined;
+        }[];
+    }>>>;
 }, z.core.$strip>;
 type PersonGraphCareerContextDefinition = z.infer<typeof PersonGraphCareerContextSchemaDefinition>;
 /**
@@ -353,7 +565,7 @@ type PersonGraphCareerContextDefinition = z.infer<typeof PersonGraphCareerContex
  * @contractShape person.graph-career-context
  * @contractRole canonical
  */
-export declare const PersonGraphCareerContextSchema: z.ZodType<PersonGraphCareerContextDefinition>;
+export declare const PersonGraphCareerContextSchema: z.ZodType<PersonGraphCareerContextDefinition, z.input<typeof PersonGraphCareerContextSchemaDefinition>>;
 export type PersonGraphCareerContext = z.infer<typeof PersonGraphCareerContextSchema>;
 export {};
 //# sourceMappingURL=graph-career-context.d.ts.map

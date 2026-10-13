@@ -40,7 +40,7 @@ type SortOrderEntityFilterSortableDefinition = z.infer<typeof SortOrderEntityFil
  * @contractShape sort.order-entity-filter-sortable
  * @contractRole canonical
  */
-export declare const SortOrderEntityFilterSortableSchema: z.ZodType<SortOrderEntityFilterSortableDefinition>;
+export declare const SortOrderEntityFilterSortableSchema: z.ZodType<SortOrderEntityFilterSortableDefinition, z.input<typeof SortOrderEntityFilterSortableSchemaDefinition>>;
 export type SortOrderEntityFilterSortable = z.infer<typeof SortOrderEntityFilterSortableSchema>;
 export {};
 //# sourceMappingURL=order-entity-filter-sortable.d.ts.map

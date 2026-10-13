@@ -13,7 +13,7 @@ type UrlTypeAliasDefinition = z.infer<typeof UrlTypeAliasSchemaDefinition>;
  * @contractShape url.type-alias
  * @contractRole canonical
  */
-export declare const UrlTypeAliasSchema: z.ZodType<UrlTypeAliasDefinition>;
+export declare const UrlTypeAliasSchema: z.ZodType<UrlTypeAliasDefinition, z.input<typeof UrlTypeAliasSchemaDefinition>>;
 export type UrlTypeAlias = z.infer<typeof UrlTypeAliasSchema>;
 export {};
 //# sourceMappingURL=type-alias.d.ts.map

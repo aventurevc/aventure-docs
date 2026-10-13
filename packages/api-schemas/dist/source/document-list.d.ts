@@ -26,7 +26,7 @@ type SourceDocumentListDefinition = z.infer<typeof SourceDocumentListSchemaDefin
  * @contractShape source.document-list
  * @contractRole canonical
  */
-export declare const SourceDocumentListSchema: z.ZodType<SourceDocumentListDefinition>;
+export declare const SourceDocumentListSchema: z.ZodType<SourceDocumentListDefinition, z.input<typeof SourceDocumentListSchemaDefinition>>;
 export type SourceDocumentList = z.infer<typeof SourceDocumentListSchema>;
 export {};
 //# sourceMappingURL=document-list.d.ts.map

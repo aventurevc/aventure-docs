@@ -8,21 +8,37 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -66,21 +82,37 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -177,7 +209,7 @@ type HarnessRunDetailDefinition = z.infer<typeof HarnessRunDetailSchemaDefinitio
  * @contractShape harness.run-detail
  * @contractRole canonical
  */
-export declare const HarnessRunDetailSchema: z.ZodType<HarnessRunDetailDefinition>;
+export declare const HarnessRunDetailSchema: z.ZodType<HarnessRunDetailDefinition, z.input<typeof HarnessRunDetailSchemaDefinition>>;
 export type HarnessRunDetail = z.infer<typeof HarnessRunDetailSchema>;
 export {};
 //# sourceMappingURL=run-detail.d.ts.map

@@ -16,7 +16,7 @@ type NewsFeedbackAcknowledgementDefinition = z.infer<typeof NewsFeedbackAcknowle
  * @contractShape news.feedback-acknowledgement
  * @contractRole canonical
  */
-export declare const NewsFeedbackAcknowledgementSchema: z.ZodType<NewsFeedbackAcknowledgementDefinition>;
+export declare const NewsFeedbackAcknowledgementSchema: z.ZodType<NewsFeedbackAcknowledgementDefinition, z.input<typeof NewsFeedbackAcknowledgementSchemaDefinition>>;
 export type NewsFeedbackAcknowledgement = z.infer<typeof NewsFeedbackAcknowledgementSchema>;
 export {};
 //# sourceMappingURL=feedback-acknowledgement.d.ts.map

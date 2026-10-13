@@ -25,7 +25,7 @@ type HelpCitationDefinition = z.infer<typeof HelpCitationSchemaDefinition>;
  * @contractShape help.citation
  * @contractRole canonical
  */
-export declare const HelpCitationSchema: z.ZodType<HelpCitationDefinition>;
+export declare const HelpCitationSchema: z.ZodType<HelpCitationDefinition, z.input<typeof HelpCitationSchemaDefinition>>;
 export type HelpCitation = z.infer<typeof HelpCitationSchema>;
 export {};
 //# sourceMappingURL=citation.d.ts.map

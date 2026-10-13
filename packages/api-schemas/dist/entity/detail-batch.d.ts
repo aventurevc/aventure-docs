@@ -15,7 +15,7 @@ type EntityDetailBatchDefinition = z.infer<typeof EntityDetailBatchSchemaDefinit
  * @contractShape entity.detail-batch
  * @contractRole canonical
  */
-export declare const EntityDetailBatchSchema: z.ZodType<EntityDetailBatchDefinition>;
+export declare const EntityDetailBatchSchema: z.ZodType<EntityDetailBatchDefinition, z.input<typeof EntityDetailBatchSchemaDefinition>>;
 export type EntityDetailBatch = z.infer<typeof EntityDetailBatchSchema>;
 export {};
 //# sourceMappingURL=detail-batch.d.ts.map

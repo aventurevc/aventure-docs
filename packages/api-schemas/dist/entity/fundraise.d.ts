@@ -32,11 +32,19 @@ export declare const EntityFundraiseSchema: z.ZodObject<{
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        isMonogram: boolean;
+        logo?: string | null | undefined;
+        logoSquare?: string | null | undefined;
+    }, {
+        isMonogram: boolean;
+        logo?: string | null | undefined;
+        logoSquare?: string | null | undefined;
+    }>>;
     investorCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     nameBrand: z.ZodString;
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;

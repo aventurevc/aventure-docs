@@ -19,7 +19,7 @@ type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutat
  * @contractShape billing.plan-change-mutation
  * @contractRole canonical
  */
-export declare const BillingPlanChangeMutationSchema: z.ZodType<BillingPlanChangeMutationDefinition>;
+export declare const BillingPlanChangeMutationSchema: z.ZodType<BillingPlanChangeMutationDefinition, z.input<typeof BillingPlanChangeMutationSchemaDefinition>>;
 export type BillingPlanChangeMutation = z.infer<typeof BillingPlanChangeMutationSchema>;
 export {};
 //# sourceMappingURL=plan-change-mutation.d.ts.map

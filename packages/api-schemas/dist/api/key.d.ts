@@ -26,7 +26,7 @@ type ApiKeyDefinition = z.infer<typeof ApiKeySchemaDefinition>;
  * @contractShape api.key
  * @contractRole canonical
  */
-export declare const ApiKeySchema: z.ZodType<ApiKeyDefinition>;
+export declare const ApiKeySchema: z.ZodType<ApiKeyDefinition, z.input<typeof ApiKeySchemaDefinition>>;
 export type ApiKey = z.infer<typeof ApiKeySchema>;
 export {};
 //# sourceMappingURL=key.d.ts.map

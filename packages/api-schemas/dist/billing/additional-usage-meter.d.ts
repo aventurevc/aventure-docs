@@ -22,7 +22,7 @@ type BillingAdditionalUsageMeterDefinition = z.infer<typeof BillingAdditionalUsa
  * @contractShape billing.additional-usage-meter
  * @contractRole canonical
  */
-export declare const BillingAdditionalUsageMeterSchema: z.ZodType<BillingAdditionalUsageMeterDefinition>;
+export declare const BillingAdditionalUsageMeterSchema: z.ZodType<BillingAdditionalUsageMeterDefinition, z.input<typeof BillingAdditionalUsageMeterSchemaDefinition>>;
 export type BillingAdditionalUsageMeter = z.infer<typeof BillingAdditionalUsageMeterSchema>;
 export {};
 //# sourceMappingURL=additional-usage-meter.d.ts.map

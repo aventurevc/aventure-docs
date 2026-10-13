@@ -20,7 +20,7 @@ type AgentHelpQuestionDefinition = z.infer<typeof AgentHelpQuestionSchemaDefinit
  * @contractShape agent.help-question
  * @contractRole canonical
  */
-export declare const AgentHelpQuestionSchema: z.ZodType<AgentHelpQuestionDefinition>;
+export declare const AgentHelpQuestionSchema: z.ZodType<AgentHelpQuestionDefinition, z.input<typeof AgentHelpQuestionSchemaDefinition>>;
 export type AgentHelpQuestion = z.infer<typeof AgentHelpQuestionSchema>;
 export {};
 //# sourceMappingURL=help-question.d.ts.map

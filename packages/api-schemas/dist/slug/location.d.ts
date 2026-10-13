@@ -22,7 +22,7 @@ type SlugLocationDefinition = z.infer<typeof SlugLocationSchemaDefinition>;
  * @contractShape slug.location
  * @contractRole canonical
  */
-export declare const SlugLocationSchema: z.ZodType<SlugLocationDefinition>;
+export declare const SlugLocationSchema: z.ZodType<SlugLocationDefinition, z.input<typeof SlugLocationSchemaDefinition>>;
 export type SlugLocation = z.infer<typeof SlugLocationSchema>;
 export {};
 //# sourceMappingURL=location.d.ts.map

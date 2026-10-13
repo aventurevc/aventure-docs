@@ -24,38 +24,68 @@ export declare const InvestorActivityFilterSchema: z.ZodObject<{
     averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
     largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
     smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
     totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
     totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
 }, z.core.$strip>;
 export type InvestorActivityFilter = z.infer<typeof InvestorActivityFilterSchema>;
 //# sourceMappingURL=activity-filter.d.ts.map

@@ -5,12 +5,22 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
         providerName?: string | null | undefined;
         searchQuery?: string | undefined;
         type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         name: string;
         providerName?: string | null | undefined;
         searchQuery?: string | undefined;
         type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        name: string;
+        providerName?: string | null | undefined;
+        searchQuery?: string | undefined;
+        type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
+    }, {
+        name: string;
+        providerName?: string | null | undefined;
+        searchQuery?: string | undefined;
+        type: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
+    }>>>>;
     sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -51,7 +61,7 @@ type LookupJobMutationDefinition = z.infer<typeof LookupJobMutationSchemaDefinit
  * @contractShape lookup.job-mutation
  * @contractRole canonical
  */
-export declare const LookupJobMutationSchema: z.ZodType<LookupJobMutationDefinition>;
+export declare const LookupJobMutationSchema: z.ZodType<LookupJobMutationDefinition, z.input<typeof LookupJobMutationSchemaDefinition>>;
 export type LookupJobMutation = z.infer<typeof LookupJobMutationSchema>;
 export {};
 //# sourceMappingURL=job-mutation.d.ts.map

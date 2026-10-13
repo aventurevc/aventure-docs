@@ -6,20 +6,34 @@ declare const PersonSchemaDefinition: z.ZodObject<{
     image: z.ZodType<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }, {
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }>>;
     lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     nameAlias: z.ZodArray<z.ZodType<{
         displayable?: boolean | null | undefined;
         name: string;
         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         displayable?: boolean | null | undefined;
         name: string;
         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        displayable?: boolean | null | undefined;
+        name: string;
+        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+    }, {
+        displayable?: boolean | null | undefined;
+        name: string;
+        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+    }>>>;
     nameFirst: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     nameFull: z.ZodString;
     nameLast: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -55,11 +69,19 @@ declare const PersonSchemaDefinition: z.ZodObject<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        expanded?: string | null | undefined;
+        generatedDescription?: string | null | undefined;
+        short?: string | null | undefined;
+    }, {
+        expanded?: string | null | undefined;
+        generatedDescription?: string | null | undefined;
+        short?: string | null | undefined;
+    }>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
@@ -97,7 +119,7 @@ type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
  * @contractShape person.person
  * @contractRole canonical
  */
-export declare const PersonSchema: z.ZodType<PersonDefinition>;
+export declare const PersonSchema: z.ZodType<PersonDefinition, z.input<typeof PersonSchemaDefinition>>;
 export type Person = z.infer<typeof PersonSchema>;
 export {};
 //# sourceMappingURL=person.d.ts.map

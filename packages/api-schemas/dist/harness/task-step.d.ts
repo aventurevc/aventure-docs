@@ -15,7 +15,7 @@ type HarnessTaskStepDefinition = z.infer<typeof HarnessTaskStepSchemaDefinition>
  * @contractShape harness.task-step
  * @contractRole canonical
  */
-export declare const HarnessTaskStepSchema: z.ZodType<HarnessTaskStepDefinition>;
+export declare const HarnessTaskStepSchema: z.ZodType<HarnessTaskStepDefinition, z.input<typeof HarnessTaskStepSchemaDefinition>>;
 export type HarnessTaskStep = z.infer<typeof HarnessTaskStepSchema>;
 export {};
 //# sourceMappingURL=task-step.d.ts.map

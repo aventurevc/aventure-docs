@@ -17,7 +17,7 @@ type SystemBuildDetailDefinition = z.infer<typeof SystemBuildDetailSchemaDefinit
  * @contractShape system.system-build-detail
  * @contractRole canonical
  */
-export declare const SystemBuildDetailSchema: z.ZodType<SystemBuildDetailDefinition>;
+export declare const SystemBuildDetailSchema: z.ZodType<SystemBuildDetailDefinition, z.input<typeof SystemBuildDetailSchemaDefinition>>;
 export type SystemBuildDetail = z.infer<typeof SystemBuildDetailSchema>;
 export {};
 //# sourceMappingURL=system-build-detail.d.ts.map

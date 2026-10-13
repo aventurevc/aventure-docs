@@ -5,12 +5,22 @@ declare const AuthOperationFilterSchemaDefinition: z.ZodObject<{
         method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
         operationId: string;
         path: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         authorizationPath: string;
         method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
         operationId: string;
         path: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        authorizationPath: string;
+        method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
+        operationId: string;
+        path: string;
+    }, {
+        authorizationPath: string;
+        method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
+        operationId: string;
+        path: string;
+    }>>>;
 }, z.core.$strip>;
 type AuthOperationFilterDefinition = z.infer<typeof AuthOperationFilterSchemaDefinition>;
 /**
@@ -21,7 +31,7 @@ type AuthOperationFilterDefinition = z.infer<typeof AuthOperationFilterSchemaDef
  * @contractShape auth.operation-filter
  * @contractRole canonical
  */
-export declare const AuthOperationFilterSchema: z.ZodType<AuthOperationFilterDefinition>;
+export declare const AuthOperationFilterSchema: z.ZodType<AuthOperationFilterDefinition, z.input<typeof AuthOperationFilterSchemaDefinition>>;
 export type AuthOperationFilter = z.infer<typeof AuthOperationFilterSchema>;
 export {};
 //# sourceMappingURL=operation-filter.d.ts.map

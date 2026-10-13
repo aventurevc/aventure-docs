@@ -36,7 +36,7 @@ type ClassificationDefinition = z.infer<typeof ClassificationSchemaDefinition>;
  * @contractShape classification.classification
  * @contractRole canonical
  */
-export declare const ClassificationSchema: z.ZodType<ClassificationDefinition>;
+export declare const ClassificationSchema: z.ZodType<ClassificationDefinition, z.input<typeof ClassificationSchemaDefinition>>;
 export type Classification = z.infer<typeof ClassificationSchema>;
 export {};
 //# sourceMappingURL=classification.d.ts.map

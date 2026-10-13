@@ -31,10 +31,16 @@ export declare const EntityFilterSchema: z.ZodObject<{
     employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
     entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
     entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
     featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -42,17 +48,29 @@ export declare const EntityFilterSchema: z.ZodObject<{
         amountInvestedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }>>>>;
         amountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }>>>>;
         dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -65,63 +83,111 @@ export declare const EntityFilterSchema: z.ZodObject<{
             averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, {
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }>>>>;
             largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, {
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }>>>>;
             smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, {
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }>>>>;
             totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, {
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }>>>>;
             totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, {
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }>>>>;
         }, z.core.$strip>>;
         investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }>>>>;
         rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         round: z.ZodOptional<z.ZodArray<z.ZodString>>;
         totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }>>>>;
         valuationRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }>>>>;
     }, z.core.$strip>>;
     hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -189,10 +255,16 @@ export declare const EntityFilterSchema: z.ZodObject<{
     yearFoundedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>;
 }, z.core.$strict>;
 export type EntityFilter = z.infer<typeof EntityFilterSchema>;
 //# sourceMappingURL=filter.d.ts.map

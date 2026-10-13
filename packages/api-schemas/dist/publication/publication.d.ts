@@ -40,7 +40,7 @@ type PublicationDefinition = z.infer<typeof PublicationSchemaDefinition>;
  * @contractShape publication.publication
  * @contractRole canonical
  */
-export declare const PublicationSchema: z.ZodType<PublicationDefinition>;
+export declare const PublicationSchema: z.ZodType<PublicationDefinition, z.input<typeof PublicationSchemaDefinition>>;
 export type Publication = z.infer<typeof PublicationSchema>;
 export {};
 //# sourceMappingURL=publication.d.ts.map

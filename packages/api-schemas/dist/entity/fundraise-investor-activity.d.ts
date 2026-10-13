@@ -9,10 +9,16 @@ declare const EntityFundraiseInvestorActivitySchemaDefinition: z.ZodObject<{
     topInvestmentStage: z.ZodArray<z.ZodType<{
         count: number;
         stage: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         count: number;
         stage: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        count: number;
+        stage: string;
+    }, {
+        count: number;
+        stage: string;
+    }>>>;
     totalAmountInvestedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     totalInvestment: z.ZodInt;
     totalPortfolioExit: z.ZodInt;
@@ -28,7 +34,7 @@ type EntityFundraiseInvestorActivityDefinition = z.infer<typeof EntityFundraiseI
  * @contractShape entity.fundraise-investor-activity
  * @contractRole canonical
  */
-export declare const EntityFundraiseInvestorActivitySchema: z.ZodType<EntityFundraiseInvestorActivityDefinition>;
+export declare const EntityFundraiseInvestorActivitySchema: z.ZodType<EntityFundraiseInvestorActivityDefinition, z.input<typeof EntityFundraiseInvestorActivitySchemaDefinition>>;
 export type EntityFundraiseInvestorActivity = z.infer<typeof EntityFundraiseInvestorActivitySchema>;
 export {};
 //# sourceMappingURL=fundraise-investor-activity.d.ts.map

@@ -20,7 +20,7 @@ type SystemGlobalMetricsDefinition = z.infer<typeof SystemGlobalMetricsSchemaDef
  * @contractShape system.global-metrics
  * @contractRole canonical
  */
-export declare const SystemGlobalMetricsSchema: z.ZodType<SystemGlobalMetricsDefinition>;
+export declare const SystemGlobalMetricsSchema: z.ZodType<SystemGlobalMetricsDefinition, z.input<typeof SystemGlobalMetricsSchemaDefinition>>;
 export type SystemGlobalMetrics = z.infer<typeof SystemGlobalMetricsSchema>;
 export {};
 //# sourceMappingURL=global-metrics.d.ts.map

@@ -15,7 +15,7 @@ type ResearchFindingDefinition = z.infer<typeof ResearchFindingSchemaDefinition>
  * @contractShape research.finding
  * @contractRole canonical
  */
-export declare const ResearchFindingSchema: z.ZodType<ResearchFindingDefinition>;
+export declare const ResearchFindingSchema: z.ZodType<ResearchFindingDefinition, z.input<typeof ResearchFindingSchemaDefinition>>;
 export type ResearchFinding = z.infer<typeof ResearchFindingSchema>;
 export {};
 //# sourceMappingURL=finding.d.ts.map

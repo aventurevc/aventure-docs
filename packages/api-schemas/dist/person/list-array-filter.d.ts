@@ -19,17 +19,29 @@ export declare const PersonListArrayFilterSchema: z.ZodObject<{
     amountInvestedRange: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>>;
     amountRaisedRange: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>>;
     entityName: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     investedCompany: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     personTitle: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
@@ -37,10 +49,16 @@ export declare const PersonListArrayFilterSchema: z.ZodObject<{
     totalInvestmentCount: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         max?: number | null | undefined;
         min?: number | null | undefined;
-    }, unknown>>>>>;
+    }, z.core.$ZodTypeInternals<{
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }, {
+        max?: number | null | undefined;
+        min?: number | null | undefined;
+    }>>>>>;
     typeRecord: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodEnum<{
         "Business Line": "Business Line";
         Company: "Company";

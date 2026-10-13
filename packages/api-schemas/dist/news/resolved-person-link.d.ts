@@ -24,7 +24,7 @@ type NewsResolvedPersonLinkDefinition = z.infer<typeof NewsResolvedPersonLinkSch
  * @contractShape news.resolved-person-link
  * @contractRole canonical
  */
-export declare const NewsResolvedPersonLinkSchema: z.ZodType<NewsResolvedPersonLinkDefinition>;
+export declare const NewsResolvedPersonLinkSchema: z.ZodType<NewsResolvedPersonLinkDefinition, z.input<typeof NewsResolvedPersonLinkSchemaDefinition>>;
 export type NewsResolvedPersonLink = z.infer<typeof NewsResolvedPersonLinkSchema>;
 export {};
 //# sourceMappingURL=resolved-person-link.d.ts.map

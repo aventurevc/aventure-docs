@@ -27,7 +27,7 @@ type ResearchSnippetTypeDefinition = z.infer<typeof ResearchSnippetTypeSchemaDef
  * @contractShape research.snippet-type
  * @contractRole canonical
  */
-export declare const ResearchSnippetTypeSchema: z.ZodType<ResearchSnippetTypeDefinition>;
+export declare const ResearchSnippetTypeSchema: z.ZodType<ResearchSnippetTypeDefinition, z.input<typeof ResearchSnippetTypeSchemaDefinition>>;
 export type ResearchSnippetType = z.infer<typeof ResearchSnippetTypeSchema>;
 export {};
 //# sourceMappingURL=snippet-type.d.ts.map

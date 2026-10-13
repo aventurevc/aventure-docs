@@ -25,7 +25,7 @@ type EntityRelationshipTypeOptionDefinition = z.infer<typeof EntityRelationshipT
  * @contractShape entity.relationship-type-option
  * @contractRole canonical
  */
-export declare const EntityRelationshipTypeOptionSchema: z.ZodType<EntityRelationshipTypeOptionDefinition>;
+export declare const EntityRelationshipTypeOptionSchema: z.ZodType<EntityRelationshipTypeOptionDefinition, z.input<typeof EntityRelationshipTypeOptionSchemaDefinition>>;
 export type EntityRelationshipTypeOption = z.infer<typeof EntityRelationshipTypeOptionSchema>;
 export {};
 //# sourceMappingURL=relationship-type-option.d.ts.map

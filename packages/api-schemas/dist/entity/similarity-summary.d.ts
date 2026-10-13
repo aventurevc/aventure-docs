@@ -8,21 +8,37 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -61,7 +77,7 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
         curatedAsOf?: string | null | undefined;
@@ -72,7 +88,29 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        compositeScore?: number | null | undefined;
+        cosineScore?: number | null | undefined;
+        curatedAsOf?: string | null | undefined;
+        curatedRelationshipType?: string | null | undefined;
+        curatedSource?: string | null | undefined;
+        derivedFromEntityId?: string | null | undefined;
+        matchedSectionWeight?: number | null | undefined;
+        origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
+        rank: number;
+        sharedSectionCount?: number | null | undefined;
+    }, {
+        compositeScore?: number | null | undefined;
+        cosineScore?: number | null | undefined;
+        curatedAsOf?: string | null | undefined;
+        curatedRelationshipType?: string | null | undefined;
+        curatedSource?: string | null | undefined;
+        derivedFromEntityId?: string | null | undefined;
+        matchedSectionWeight?: number | null | undefined;
+        origin: "computed" | "curated" | "derived" | "precomputed" | "semantic";
+        rank: number;
+        sharedSectionCount?: number | null | undefined;
+    }>>;
     urlLink: z.ZodArray<z.ZodType<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
@@ -90,7 +128,7 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -107,7 +145,41 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }, {
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }>>>;
 }, z.core.$strip>;
 type EntitySimilaritySummaryDefinition = z.infer<typeof EntitySimilaritySummarySchemaDefinition>;
 /**
@@ -119,7 +191,7 @@ type EntitySimilaritySummaryDefinition = z.infer<typeof EntitySimilaritySummaryS
  * @contractShape entity.similarity-summary
  * @contractRole canonical
  */
-export declare const EntitySimilaritySummarySchema: z.ZodType<EntitySimilaritySummaryDefinition>;
+export declare const EntitySimilaritySummarySchema: z.ZodType<EntitySimilaritySummaryDefinition, z.input<typeof EntitySimilaritySummarySchemaDefinition>>;
 export type EntitySimilaritySummary = z.infer<typeof EntitySimilaritySummarySchema>;
 export {};
 //# sourceMappingURL=similarity-summary.d.ts.map

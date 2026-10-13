@@ -9,21 +9,37 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, z.core.$ZodTypeInternals<{
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }, {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, z.core.$ZodTypeInternals<{
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }, {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -112,7 +128,7 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isCurrent?: boolean | null | undefined;
         personId: string;
         personImage: {
@@ -122,7 +138,27 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        isCurrent?: boolean | null | undefined;
+        personId: string;
+        personImage: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        personName: string;
+        personSlug: string;
+        titleName?: string | null | undefined;
+    }, {
+        isCurrent?: boolean | null | undefined;
+        personId: string;
+        personImage: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        personName: string;
+        personSlug: string;
+        titleName?: string | null | undefined;
+    }>>>;
 }, z.core.$strip>;
 type PersonGraphSimilarEntityDefinition = z.infer<typeof PersonGraphSimilarEntitySchemaDefinition>;
 /**
@@ -134,7 +170,7 @@ type PersonGraphSimilarEntityDefinition = z.infer<typeof PersonGraphSimilarEntit
  * @contractShape person.graph-similar-entity
  * @contractRole canonical
  */
-export declare const PersonGraphSimilarEntitySchema: z.ZodType<PersonGraphSimilarEntityDefinition>;
+export declare const PersonGraphSimilarEntitySchema: z.ZodType<PersonGraphSimilarEntityDefinition, z.input<typeof PersonGraphSimilarEntitySchemaDefinition>>;
 export type PersonGraphSimilarEntity = z.infer<typeof PersonGraphSimilarEntitySchema>;
 export {};
 //# sourceMappingURL=graph-similar-entity.d.ts.map

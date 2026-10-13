@@ -16,7 +16,7 @@ type ResearchAllowanceDefinition = z.infer<typeof ResearchAllowanceSchemaDefinit
  * @contractShape research.allowance
  * @contractRole canonical
  */
-export declare const ResearchAllowanceSchema: z.ZodType<ResearchAllowanceDefinition>;
+export declare const ResearchAllowanceSchema: z.ZodType<ResearchAllowanceDefinition, z.input<typeof ResearchAllowanceSchemaDefinition>>;
 export type ResearchAllowance = z.infer<typeof ResearchAllowanceSchema>;
 export {};
 //# sourceMappingURL=allowance.d.ts.map

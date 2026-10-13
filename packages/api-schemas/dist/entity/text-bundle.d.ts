@@ -39,7 +39,7 @@ type EntityTextBundleDefinition = z.infer<typeof EntityTextBundleSchemaDefinitio
  * @contractShape entity.text-bundle
  * @contractRole canonical
  */
-export declare const EntityTextBundleSchema: z.ZodType<EntityTextBundleDefinition>;
+export declare const EntityTextBundleSchema: z.ZodType<EntityTextBundleDefinition, z.input<typeof EntityTextBundleSchemaDefinition>>;
 export type EntityTextBundle = z.infer<typeof EntityTextBundleSchema>;
 export {};
 //# sourceMappingURL=text-bundle.d.ts.map

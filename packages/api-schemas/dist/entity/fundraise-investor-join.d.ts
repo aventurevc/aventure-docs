@@ -34,7 +34,7 @@ type EntityFundraiseInvestorJoinDefinition = z.infer<typeof EntityFundraiseInves
  * @contractShape entity.fundraise-investor-join
  * @contractRole canonical
  */
-export declare const EntityFundraiseInvestorJoinSchema: z.ZodType<EntityFundraiseInvestorJoinDefinition>;
+export declare const EntityFundraiseInvestorJoinSchema: z.ZodType<EntityFundraiseInvestorJoinDefinition, z.input<typeof EntityFundraiseInvestorJoinSchemaDefinition>>;
 export type EntityFundraiseInvestorJoin = z.infer<typeof EntityFundraiseInvestorJoinSchema>;
 export {};
 //# sourceMappingURL=fundraise-investor-join.d.ts.map

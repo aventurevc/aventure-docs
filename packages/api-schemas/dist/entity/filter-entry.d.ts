@@ -4,11 +4,19 @@ declare const EntityFilterEntrySchemaDefinition: z.ZodObject<{
         amount: number;
         end: number;
         start: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         amount: number;
         end: number;
         start: number;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        amount: number;
+        end: number;
+        start: number;
+    }, {
+        amount: number;
+        end: number;
+        start: number;
+    }>>>;
     choiceOption: z.ZodArray<z.ZodType<{
         label: string;
         scope?: {
@@ -16,14 +24,28 @@ declare const EntityFilterEntrySchemaDefinition: z.ZodObject<{
             min?: number | null | undefined;
         } | null | undefined;
         value: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         label: string;
         scope?: {
             max?: number | null | undefined;
             min?: number | null | undefined;
         } | null | undefined;
         value: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        label: string;
+        scope?: {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        } | null | undefined;
+        value: string;
+    }, {
+        label: string;
+        scope?: {
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        } | null | undefined;
+        value: string;
+    }>>>;
     choiceOptionTotal: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     choiceOptionTruncated: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     controlType: z.ZodEnum<{
@@ -42,13 +64,25 @@ declare const EntityFilterEntrySchemaDefinition: z.ZodObject<{
                         city: string[];
                         state: string;
                     }[];
-                }, unknown, z.core.$ZodTypeInternals<{
+                }, {
                     country: string;
                     state: {
                         city: string[];
                         state: string;
                     }[];
-                }, unknown>>>;
+                }, z.core.$ZodTypeInternals<{
+                    country: string;
+                    state: {
+                        city: string[];
+                        state: string;
+                    }[];
+                }, {
+                    country: string;
+                    state: {
+                        city: string[];
+                        state: string;
+                    }[];
+                }>>>;
             }, z.core.$strip>>>;
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
@@ -71,7 +105,7 @@ type EntityFilterEntryDefinition = z.infer<typeof EntityFilterEntrySchemaDefinit
  * @contractShape entity.filter-entry
  * @contractRole canonical
  */
-export declare const EntityFilterEntrySchema: z.ZodType<EntityFilterEntryDefinition>;
+export declare const EntityFilterEntrySchema: z.ZodType<EntityFilterEntryDefinition, z.input<typeof EntityFilterEntrySchemaDefinition>>;
 export type EntityFilterEntry = z.infer<typeof EntityFilterEntrySchema>;
 export {};
 //# sourceMappingURL=filter-entry.d.ts.map

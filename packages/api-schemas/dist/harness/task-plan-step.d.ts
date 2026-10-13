@@ -6,11 +6,19 @@ declare const HarnessTaskPlanStepSchemaDefinition: z.ZodObject<{
         instruction: string;
         operationId: string;
         stepKey: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         instruction: string;
         operationId: string;
         stepKey: string;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        instruction: string;
+        operationId: string;
+        stepKey: string;
+    }, {
+        instruction: string;
+        operationId: string;
+        stepKey: string;
+    }>>;
     writeGuidance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         body: z.ZodString;
         expectation: z.ZodString;
@@ -31,7 +39,7 @@ type HarnessTaskPlanStepDefinition = z.infer<typeof HarnessTaskPlanStepSchemaDef
  * @contractShape harness.task-plan-step
  * @contractRole canonical
  */
-export declare const HarnessTaskPlanStepSchema: z.ZodType<HarnessTaskPlanStepDefinition>;
+export declare const HarnessTaskPlanStepSchema: z.ZodType<HarnessTaskPlanStepDefinition, z.input<typeof HarnessTaskPlanStepSchemaDefinition>>;
 export type HarnessTaskPlanStep = z.infer<typeof HarnessTaskPlanStepSchema>;
 export {};
 //# sourceMappingURL=task-plan-step.d.ts.map

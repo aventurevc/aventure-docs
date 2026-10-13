@@ -162,6 +162,8 @@ const ProblemDetailSchemaDefinition = z.object({
     existingRedirect: RedirectSlugPathSchema.nullish(),
     feId: z.string().nullish(),
     field: z.string().nullish(),
+    /** Harness run ids a batch enrichment filed or reused for its other records before answering this refusal; absent for every other problem. */
+    filedRunId: z.array(z.uuid()).nullish(),
     hammingDistance: z.number().int().nullish(),
     hint: z.string().nullish(),
     instance: z.string().optional(),

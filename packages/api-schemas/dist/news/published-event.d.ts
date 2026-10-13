@@ -15,7 +15,7 @@ declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -29,7 +29,35 @@ declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }, {
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }>>;
     eventId: z.ZodString;
     name: z.ZodEnum<{
         "entity.news.published": "entity.news.published";
@@ -46,7 +74,7 @@ type NewsPublishedEventDefinition = z.infer<typeof NewsPublishedEventSchemaDefin
  * @contractShape news.published-event
  * @contractRole canonical
  */
-export declare const NewsPublishedEventSchema: z.ZodType<NewsPublishedEventDefinition>;
+export declare const NewsPublishedEventSchema: z.ZodType<NewsPublishedEventDefinition, z.input<typeof NewsPublishedEventSchemaDefinition>>;
 export type NewsPublishedEvent = z.infer<typeof NewsPublishedEventSchema>;
 export {};
 //# sourceMappingURL=published-event.d.ts.map

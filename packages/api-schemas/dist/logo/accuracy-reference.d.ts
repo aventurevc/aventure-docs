@@ -15,7 +15,7 @@ type LogoAccuracyReferenceDefinition = z.infer<typeof LogoAccuracyReferenceSchem
  * @contractShape logo.accuracy-reference
  * @contractRole canonical
  */
-export declare const LogoAccuracyReferenceSchema: z.ZodType<LogoAccuracyReferenceDefinition>;
+export declare const LogoAccuracyReferenceSchema: z.ZodType<LogoAccuracyReferenceDefinition, z.input<typeof LogoAccuracyReferenceSchemaDefinition>>;
 export type LogoAccuracyReference = z.infer<typeof LogoAccuracyReferenceSchema>;
 export {};
 //# sourceMappingURL=accuracy-reference.d.ts.map

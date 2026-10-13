@@ -15,7 +15,7 @@ type NewsSubscriptionArgumentsDefinition = z.infer<typeof NewsSubscriptionArgume
  * @contractShape news.subscription-arguments
  * @contractRole canonical
  */
-export declare const NewsSubscriptionArgumentsSchema: z.ZodType<NewsSubscriptionArgumentsDefinition>;
+export declare const NewsSubscriptionArgumentsSchema: z.ZodType<NewsSubscriptionArgumentsDefinition, z.input<typeof NewsSubscriptionArgumentsSchemaDefinition>>;
 export type NewsSubscriptionArguments = z.infer<typeof NewsSubscriptionArgumentsSchema>;
 export {};
 //# sourceMappingURL=subscription-arguments.d.ts.map

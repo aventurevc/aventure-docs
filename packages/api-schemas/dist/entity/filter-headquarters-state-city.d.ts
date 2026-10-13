@@ -15,7 +15,7 @@ type EntityFilterHeadquartersStateCityDefinition = z.infer<typeof EntityFilterHe
  * @contractShape entity.filter-headquarters-state-city
  * @contractRole canonical
  */
-export declare const EntityFilterHeadquartersStateCitySchema: z.ZodType<EntityFilterHeadquartersStateCityDefinition>;
+export declare const EntityFilterHeadquartersStateCitySchema: z.ZodType<EntityFilterHeadquartersStateCityDefinition, z.input<typeof EntityFilterHeadquartersStateCitySchemaDefinition>>;
 export type EntityFilterHeadquartersStateCity = z.infer<typeof EntityFilterHeadquartersStateCitySchema>;
 export {};
 //# sourceMappingURL=filter-headquarters-state-city.d.ts.map

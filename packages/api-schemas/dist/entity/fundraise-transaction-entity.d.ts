@@ -40,21 +40,37 @@ export declare const EntityFundraiseTransactionEntitySchema: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;

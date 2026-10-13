@@ -16,7 +16,7 @@ type UrlDuplicateJoinDefinition = z.infer<typeof UrlDuplicateJoinSchemaDefinitio
  * @contractShape url.duplicate-join
  * @contractRole canonical
  */
-export declare const UrlDuplicateJoinSchema: z.ZodType<UrlDuplicateJoinDefinition>;
+export declare const UrlDuplicateJoinSchema: z.ZodType<UrlDuplicateJoinDefinition, z.input<typeof UrlDuplicateJoinSchemaDefinition>>;
 export type UrlDuplicateJoin = z.infer<typeof UrlDuplicateJoinSchema>;
 export {};
 //# sourceMappingURL=duplicate-join.d.ts.map

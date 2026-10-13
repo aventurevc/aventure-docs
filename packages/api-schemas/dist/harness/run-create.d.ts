@@ -5,12 +5,22 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
         quote: string;
         sourceUrl: string;
         statement: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         gateId?: string | null | undefined;
         quote: string;
         sourceUrl: string;
         statement: string;
-    }, unknown>>>>>;
+    }, z.core.$ZodTypeInternals<{
+        gateId?: string | null | undefined;
+        quote: string;
+        sourceUrl: string;
+        statement: string;
+    }, {
+        gateId?: string | null | undefined;
+        quote: string;
+        sourceUrl: string;
+        statement: string;
+    }>>>>>;
     mode: z.ZodOptional<z.ZodEnum<{
         COMPREHENSIVE: "COMPREHENSIVE";
         INDIVIDUAL: "INDIVIDUAL";
@@ -30,7 +40,7 @@ type HarnessRunCreateDefinition = z.infer<typeof HarnessRunCreateSchemaDefinitio
  * @contractShape harness.run-create
  * @contractRole canonical
  */
-export declare const HarnessRunCreateSchema: z.ZodType<HarnessRunCreateDefinition>;
+export declare const HarnessRunCreateSchema: z.ZodType<HarnessRunCreateDefinition, z.input<typeof HarnessRunCreateSchemaDefinition>>;
 export type HarnessRunCreate = z.infer<typeof HarnessRunCreateSchema>;
 export {};
 //# sourceMappingURL=run-create.d.ts.map

@@ -43,13 +43,25 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }, {
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -86,11 +98,19 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        isMonogram: boolean;
+        logo?: string | null | undefined;
+        logoSquare?: string | null | undefined;
+    }, {
+        isMonogram: boolean;
+        logo?: string | null | undefined;
+        logoSquare?: string | null | undefined;
+    }>>;
     entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entitySlug: z.ZodString;
@@ -122,7 +142,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -139,7 +159,41 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }, {
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }>>>;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     personAddress: z.ZodArray<z.ZodObject<{
         address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -151,13 +205,25 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }, {
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -193,10 +259,16 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
     personImage: z.ZodType<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }, {
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }>>;
     personName: z.ZodString;
     personSlug: z.ZodString;
     personUrlLink: z.ZodArray<z.ZodType<{
@@ -216,7 +288,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -233,7 +305,41 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }, {
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }>>>;
     score: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     startDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     titleFunction: z.ZodOptional<z.ZodNullable<z.ZodString>>;

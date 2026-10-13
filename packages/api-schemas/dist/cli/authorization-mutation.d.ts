@@ -21,7 +21,7 @@ type CliAuthorizationMutationDefinition = z.infer<typeof CliAuthorizationMutatio
  * @contractShape cli.authorization-mutation
  * @contractRole canonical
  */
-export declare const CliAuthorizationMutationSchema: z.ZodType<CliAuthorizationMutationDefinition>;
+export declare const CliAuthorizationMutationSchema: z.ZodType<CliAuthorizationMutationDefinition, z.input<typeof CliAuthorizationMutationSchemaDefinition>>;
 export type CliAuthorizationMutation = z.infer<typeof CliAuthorizationMutationSchema>;
 export {};
 //# sourceMappingURL=authorization-mutation.d.ts.map

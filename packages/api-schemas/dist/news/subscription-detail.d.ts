@@ -21,7 +21,7 @@ declare const NewsSubscriptionDetailSchemaDefinition: z.ZodObject<{
             url: string;
         };
         name: "entity.news.published";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         arguments: {
             entityId: string;
         };
@@ -29,7 +29,23 @@ declare const NewsSubscriptionDetailSchemaDefinition: z.ZodObject<{
             url: string;
         };
         name: "entity.news.published";
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        arguments: {
+            entityId: string;
+        };
+        delivery: {
+            url: string;
+        };
+        name: "entity.news.published";
+    }, {
+        arguments: {
+            entityId: string;
+        };
+        delivery: {
+            url: string;
+        };
+        name: "entity.news.published";
+    }>>;
     updatedAt: z.ZodISODateTime;
     verifiedAt: z.ZodISODateTime;
 }, z.core.$strip>;
@@ -42,7 +58,7 @@ type NewsSubscriptionDetailDefinition = z.infer<typeof NewsSubscriptionDetailSch
  * @contractShape news.subscription-detail
  * @contractRole canonical
  */
-export declare const NewsSubscriptionDetailSchema: z.ZodType<NewsSubscriptionDetailDefinition>;
+export declare const NewsSubscriptionDetailSchema: z.ZodType<NewsSubscriptionDetailDefinition, z.input<typeof NewsSubscriptionDetailSchemaDefinition>>;
 export type NewsSubscriptionDetail = z.infer<typeof NewsSubscriptionDetailSchema>;
 export {};
 //# sourceMappingURL=subscription-detail.d.ts.map

@@ -19,7 +19,7 @@ type EnrichmentBatchDefinition = z.infer<typeof EnrichmentBatchSchemaDefinition>
  * @contractShape enrichment.batch
  * @contractRole canonical
  */
-export declare const EnrichmentBatchSchema: z.ZodType<EnrichmentBatchDefinition>;
+export declare const EnrichmentBatchSchema: z.ZodType<EnrichmentBatchDefinition, z.input<typeof EnrichmentBatchSchemaDefinition>>;
 export type EnrichmentBatch = z.infer<typeof EnrichmentBatchSchema>;
 export {};
 //# sourceMappingURL=batch.d.ts.map

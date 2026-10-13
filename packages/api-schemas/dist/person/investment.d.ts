@@ -38,7 +38,7 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         headquartersCountry?: string | null | undefined;
         headquartersRegion?: string | null | undefined;
         industry?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         entity: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -75,7 +75,81 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
         headquartersCountry?: string | null | undefined;
         headquartersRegion?: string | null | undefined;
         industry?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        entity: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        };
+        headquartersCity?: string | null | undefined;
+        headquartersCountry?: string | null | undefined;
+        headquartersRegion?: string | null | undefined;
+        industry?: string | null | undefined;
+    }, {
+        entity: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        };
+        headquartersCity?: string | null | undefined;
+        headquartersCountry?: string | null | undefined;
+        headquartersRegion?: string | null | undefined;
+        industry?: string | null | undefined;
+    }>>;
     date: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     fundraiseTransaction: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         amountRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -85,11 +159,19 @@ declare const PersonInvestmentSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         investorCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         nameBrand: z.ZodString;
         round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -144,7 +226,7 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
  * @contractShape person.investment
  * @contractRole canonical
  */
-export declare const PersonInvestmentSchema: z.ZodType<PersonInvestmentDefinition>;
+export declare const PersonInvestmentSchema: z.ZodType<PersonInvestmentDefinition, z.input<typeof PersonInvestmentSchemaDefinition>>;
 export type PersonInvestment = z.infer<typeof PersonInvestmentSchema>;
 export {};
 //# sourceMappingURL=investment.d.ts.map

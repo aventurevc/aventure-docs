@@ -10,13 +10,25 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }, {
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -65,7 +77,7 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -82,7 +94,41 @@ declare const PersonEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }, {
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }>>>;
 }, z.core.$strip>;
 type PersonEnrichmentDefinition = z.infer<typeof PersonEnrichmentSchemaDefinition>;
 /**
@@ -109,7 +155,7 @@ type PersonEnrichmentDefinition = z.infer<typeof PersonEnrichmentSchemaDefinitio
  * @contractShape person.enrichment
  * @contractRole canonical
  */
-export declare const PersonEnrichmentSchema: z.ZodType<PersonEnrichmentDefinition>;
+export declare const PersonEnrichmentSchema: z.ZodType<PersonEnrichmentDefinition, z.input<typeof PersonEnrichmentSchemaDefinition>>;
 export type PersonEnrichment = z.infer<typeof PersonEnrichmentSchema>;
 export {};
 //# sourceMappingURL=enrichment.d.ts.map

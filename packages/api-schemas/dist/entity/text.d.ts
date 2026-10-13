@@ -33,7 +33,7 @@ type EntityTextDefinition = z.infer<typeof EntityTextSchemaDefinition>;
  * @contractShape entity.text
  * @contractRole canonical
  */
-export declare const EntityTextSchema: z.ZodType<EntityTextDefinition>;
+export declare const EntityTextSchema: z.ZodType<EntityTextDefinition, z.input<typeof EntityTextSchemaDefinition>>;
 export type EntityText = z.infer<typeof EntityTextSchema>;
 export {};
 //# sourceMappingURL=text.d.ts.map

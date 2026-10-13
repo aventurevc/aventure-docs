@@ -21,21 +21,37 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
-            }, unknown>>;
+            }, z.core.$ZodTypeInternals<{
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }, {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            }>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodType<{
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 displayable?: boolean | null | undefined;
                 name: string;
                 type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, unknown>>>;
+            }, z.core.$ZodTypeInternals<{
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }, {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }>>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -186,7 +202,7 @@ type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransa
  * @contractShape entity.fundraise-transaction
  * @contractRole canonical
  */
-export declare const EntityFundraiseTransactionSchema: z.ZodType<EntityFundraiseTransactionDefinition>;
+export declare const EntityFundraiseTransactionSchema: z.ZodType<EntityFundraiseTransactionDefinition, z.input<typeof EntityFundraiseTransactionSchemaDefinition>>;
 export type EntityFundraiseTransaction = z.infer<typeof EntityFundraiseTransactionSchema>;
 export {};
 //# sourceMappingURL=fundraise-transaction.d.ts.map

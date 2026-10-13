@@ -15,7 +15,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         rawMediaType?: string | null | undefined;
         sourceKey: string;
         upstreamContentEncoding?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         cacheHitCount: number;
         createdAt: string;
         documentType: string;
@@ -30,18 +30,58 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         rawMediaType?: string | null | undefined;
         sourceKey: string;
         upstreamContentEncoding?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        cacheHitCount: number;
+        createdAt: string;
+        documentType: string;
+        expiresAt?: string | null | undefined;
+        httpStatus?: number | null | undefined;
+        id: string;
+        lastAccessedAt?: string | null | undefined;
+        provider: string;
+        providerRequestId?: string | null | undefined;
+        rawByteCount?: number | null | undefined;
+        rawCharset?: string | null | undefined;
+        rawMediaType?: string | null | undefined;
+        sourceKey: string;
+        upstreamContentEncoding?: string | null | undefined;
+    }, {
+        cacheHitCount: number;
+        createdAt: string;
+        documentType: string;
+        expiresAt?: string | null | undefined;
+        httpStatus?: number | null | undefined;
+        id: string;
+        lastAccessedAt?: string | null | undefined;
+        provider: string;
+        providerRequestId?: string | null | undefined;
+        rawByteCount?: number | null | undefined;
+        rawCharset?: string | null | undefined;
+        rawMediaType?: string | null | undefined;
+        sourceKey: string;
+        upstreamContentEncoding?: string | null | undefined;
+    }>>;
     result: z.ZodArray<z.ZodType<{
         relevanceScore: number;
         snippet: string;
         title: string;
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         relevanceScore: number;
         snippet: string;
         title: string;
         url: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        relevanceScore: number;
+        snippet: string;
+        title: string;
+        url: string;
+    }, {
+        relevanceScore: number;
+        snippet: string;
+        title: string;
+        url: string;
+    }>>>;
     search: z.ZodType<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
@@ -56,7 +96,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         search: string;
         source?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
@@ -70,7 +110,35 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         search: string;
         source?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        allowSuspectedShellStrip?: boolean | null | undefined;
+        bypassCache?: boolean | undefined;
+        cacheKey?: string | null | undefined;
+        deep?: boolean | undefined;
+        language?: string | null | undefined;
+        region?: string | null | undefined;
+        resultLimit?: number | null | undefined;
+        retrievedFor?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        search: string;
+        source?: string | null | undefined;
+    }, {
+        allowSuspectedShellStrip?: boolean | null | undefined;
+        bypassCache?: boolean | undefined;
+        cacheKey?: string | null | undefined;
+        deep?: boolean | undefined;
+        language?: string | null | undefined;
+        region?: string | null | undefined;
+        resultLimit?: number | null | undefined;
+        retrievedFor?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        search: string;
+        source?: string | null | undefined;
+    }>>;
 }, z.core.$strip>;
 type WebSearchDefinition = z.infer<typeof WebSearchSchemaDefinition>;
 /**
@@ -82,7 +150,7 @@ type WebSearchDefinition = z.infer<typeof WebSearchSchemaDefinition>;
  * @contractShape web.search
  * @contractRole canonical
  */
-export declare const WebSearchSchema: z.ZodType<WebSearchDefinition>;
+export declare const WebSearchSchema: z.ZodType<WebSearchDefinition, z.input<typeof WebSearchSchemaDefinition>>;
 export type WebSearch = z.infer<typeof WebSearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

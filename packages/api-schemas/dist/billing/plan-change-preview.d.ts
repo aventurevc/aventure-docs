@@ -23,7 +23,7 @@ type BillingPlanChangePreviewDefinition = z.infer<typeof BillingPlanChangePrevie
  * @contractShape billing.plan-change-preview
  * @contractRole canonical
  */
-export declare const BillingPlanChangePreviewSchema: z.ZodType<BillingPlanChangePreviewDefinition>;
+export declare const BillingPlanChangePreviewSchema: z.ZodType<BillingPlanChangePreviewDefinition, z.input<typeof BillingPlanChangePreviewSchemaDefinition>>;
 export type BillingPlanChangePreview = z.infer<typeof BillingPlanChangePreviewSchema>;
 export {};
 //# sourceMappingURL=plan-change-preview.d.ts.map

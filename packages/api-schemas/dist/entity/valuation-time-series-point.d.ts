@@ -39,7 +39,7 @@ type EntityValuationTimeSeriesPointDefinition = z.infer<typeof EntityValuationTi
  * @contractShape entity.valuation-time-series-point
  * @contractRole canonical
  */
-export declare const EntityValuationTimeSeriesPointSchema: z.ZodType<EntityValuationTimeSeriesPointDefinition>;
+export declare const EntityValuationTimeSeriesPointSchema: z.ZodType<EntityValuationTimeSeriesPointDefinition, z.input<typeof EntityValuationTimeSeriesPointSchemaDefinition>>;
 export type EntityValuationTimeSeriesPoint = z.infer<typeof EntityValuationTimeSeriesPointSchema>;
 export {};
 //# sourceMappingURL=valuation-time-series-point.d.ts.map

@@ -21,7 +21,7 @@ type BillingCatalogAdditionalUsageDefinition = z.infer<typeof BillingCatalogAddi
  * @contractShape billing.catalog-additional-usage
  * @contractRole canonical
  */
-export declare const BillingCatalogAdditionalUsageSchema: z.ZodType<BillingCatalogAdditionalUsageDefinition>;
+export declare const BillingCatalogAdditionalUsageSchema: z.ZodType<BillingCatalogAdditionalUsageDefinition, z.input<typeof BillingCatalogAdditionalUsageSchemaDefinition>>;
 export type BillingCatalogAdditionalUsage = z.infer<typeof BillingCatalogAdditionalUsageSchema>;
 export {};
 //# sourceMappingURL=catalog-additional-usage.d.ts.map

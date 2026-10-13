@@ -24,7 +24,7 @@ type TextTypeOptionDefinition = z.infer<typeof TextTypeOptionSchemaDefinition>;
  * @contractShape text.type-option
  * @contractRole canonical
  */
-export declare const TextTypeOptionSchema: z.ZodType<TextTypeOptionDefinition>;
+export declare const TextTypeOptionSchema: z.ZodType<TextTypeOptionDefinition, z.input<typeof TextTypeOptionSchemaDefinition>>;
 export type TextTypeOption = z.infer<typeof TextTypeOptionSchema>;
 export {};
 //# sourceMappingURL=type-option.d.ts.map

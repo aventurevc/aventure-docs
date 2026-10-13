@@ -19,7 +19,7 @@ type EntityFilterChoiceDefinition = z.infer<typeof EntityFilterChoiceSchemaDefin
  * @contractShape entity.filter-choice
  * @contractRole canonical
  */
-export declare const EntityFilterChoiceSchema: z.ZodType<EntityFilterChoiceDefinition>;
+export declare const EntityFilterChoiceSchema: z.ZodType<EntityFilterChoiceDefinition, z.input<typeof EntityFilterChoiceSchemaDefinition>>;
 export type EntityFilterChoice = z.infer<typeof EntityFilterChoiceSchema>;
 export {};
 //# sourceMappingURL=filter-choice.d.ts.map

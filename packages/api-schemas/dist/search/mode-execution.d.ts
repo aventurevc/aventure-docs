@@ -36,7 +36,7 @@ type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDef
  * @contractShape search.mode-execution
  * @contractRole canonical
  */
-export declare const SearchModeExecutionSchema: z.ZodType<SearchModeExecutionDefinition>;
+export declare const SearchModeExecutionSchema: z.ZodType<SearchModeExecutionDefinition, z.input<typeof SearchModeExecutionSchemaDefinition>>;
 export type SearchModeExecution = z.infer<typeof SearchModeExecutionSchema>;
 export {};
 //# sourceMappingURL=mode-execution.d.ts.map

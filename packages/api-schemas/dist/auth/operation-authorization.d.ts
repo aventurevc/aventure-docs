@@ -5,12 +5,22 @@ declare const AuthOperationAuthorizationSchemaDefinition: z.ZodObject<{
         method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
         operationId: string;
         path: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         authorizationPath: string;
         method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
         operationId: string;
         path: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        authorizationPath: string;
+        method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
+        operationId: string;
+        path: string;
+    }, {
+        authorizationPath: string;
+        method: "DELETE" | "GET" | "PATCH" | "POST" | "PUT";
+        operationId: string;
+        path: string;
+    }>>>;
     operationAccess: z.ZodEnum<{
         ADMIN: "ADMIN";
         PERMISSION: "PERMISSION";
@@ -19,10 +29,16 @@ declare const AuthOperationAuthorizationSchemaDefinition: z.ZodObject<{
     permissionGrant: z.ZodType<{
         permission: string[];
         role: string[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         permission: string[];
         role: string[];
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        permission: string[];
+        role: string[];
+    }, {
+        permission: string[];
+        role: string[];
+    }>>;
 }, z.core.$strip>;
 type AuthOperationAuthorizationDefinition = z.infer<typeof AuthOperationAuthorizationSchemaDefinition>;
 /**
@@ -33,7 +49,7 @@ type AuthOperationAuthorizationDefinition = z.infer<typeof AuthOperationAuthoriz
  * @contractShape auth.operation-authorization
  * @contractRole canonical
  */
-export declare const AuthOperationAuthorizationSchema: z.ZodType<AuthOperationAuthorizationDefinition>;
+export declare const AuthOperationAuthorizationSchema: z.ZodType<AuthOperationAuthorizationDefinition, z.input<typeof AuthOperationAuthorizationSchemaDefinition>>;
 export type AuthOperationAuthorization = z.infer<typeof AuthOperationAuthorizationSchema>;
 export {};
 //# sourceMappingURL=operation-authorization.d.ts.map

@@ -10,13 +10,25 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             endDate?: string | null | undefined;
             id: number;
             isCurrent: boolean;
             role?: "domicile" | "dominant" | "origin" | null | undefined;
             startDate?: string | null | undefined;
-        }, unknown>>>>;
+        }, z.core.$ZodTypeInternals<{
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }, {
+            endDate?: string | null | undefined;
+            id: number;
+            isCurrent: boolean;
+            role?: "domicile" | "dominant" | "origin" | null | undefined;
+            startDate?: string | null | undefined;
+        }>>>>;
         city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             name: z.ZodString;
@@ -249,7 +261,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             writable: boolean;
         })[] | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         geoLocationExposure?: ({
             creatable: boolean;
             isCurrent?: boolean | null | undefined;
@@ -450,7 +462,409 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             writable: boolean;
         })[] | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        geoLocationExposure?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        industry?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        mainProduct?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        standardizedClassification?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            category: string;
+            code?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            entityClassificationId?: number | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            level?: number | null | undefined;
+            name: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        tag?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeCustomer?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeModel?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeOwnership?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeRevenue?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeTechnologyUsed?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+    }, {
+        geoLocationExposure?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        industry?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        mainProduct?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        standardizedClassification?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            category: string;
+            code?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            entityClassificationId?: number | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            level?: number | null | undefined;
+            name: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        tag?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeCustomer?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeModel?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeOwnership?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeRevenue?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+        typeTechnologyUsed?: ({
+            creatable: boolean;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            writable: boolean;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            creatable: boolean;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+            writable: boolean;
+        })[] | undefined;
+    }>>;
     fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fundingRoundCount: z.ZodInt;
@@ -502,15 +916,24 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         unconvertedRoundCount: z.ZodInt;
     }, z.core.$strip>>>;
     headquartersAddressId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    headquartersRemoteAsOf: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     text: z.ZodType<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
         short?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        expanded?: string | null | undefined;
+        generatedDescription?: string | null | undefined;
+        short?: string | null | undefined;
+    }, {
+        expanded?: string | null | undefined;
+        generatedDescription?: string | null | undefined;
+        short?: string | null | undefined;
+    }>>;
     urlLink: z.ZodArray<z.ZodType<{
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
@@ -528,7 +951,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
         crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
         createdAt?: string | null | undefined;
@@ -545,7 +968,41 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
         url: string;
         urlType: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }, {
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        createdAt?: string | null | undefined;
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        owner?: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        } | null | undefined;
+        sourceId?: string | null | undefined;
+        status?: string | null | undefined;
+        statusChecked?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        url: string;
+        urlType: string;
+    }>>>;
     urlLinkSuppressedCount: z.ZodInt;
 }, z.core.$strip>;
 type EntityEnrichmentDefinition = z.infer<typeof EntityEnrichmentSchemaDefinition>;
@@ -575,7 +1032,7 @@ type EntityEnrichmentDefinition = z.infer<typeof EntityEnrichmentSchemaDefinitio
  * @contractShape entity.enrichment
  * @contractRole canonical
  */
-export declare const EntityEnrichmentSchema: z.ZodType<EntityEnrichmentDefinition>;
+export declare const EntityEnrichmentSchema: z.ZodType<EntityEnrichmentDefinition, z.input<typeof EntityEnrichmentSchemaDefinition>>;
 export type EntityEnrichment = z.infer<typeof EntityEnrichmentSchema>;
 export {};
 //# sourceMappingURL=enrichment.d.ts.map

@@ -4,11 +4,19 @@ declare const SearchAnswerParagraphSchemaDefinition: z.ZodObject<{
         entityId: string;
         source: string;
         sourceId: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         entityId: string;
         source: string;
         sourceId: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        entityId: string;
+        source: string;
+        sourceId: string;
+    }, {
+        entityId: string;
+        source: string;
+        sourceId: string;
+    }>>>;
     text: z.ZodString;
     topic: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
@@ -28,7 +36,7 @@ type SearchAnswerParagraphDefinition = z.infer<typeof SearchAnswerParagraphSchem
  * @contractShape search.answer-paragraph
  * @contractRole canonical
  */
-export declare const SearchAnswerParagraphSchema: z.ZodType<SearchAnswerParagraphDefinition>;
+export declare const SearchAnswerParagraphSchema: z.ZodType<SearchAnswerParagraphDefinition, z.input<typeof SearchAnswerParagraphSchemaDefinition>>;
 export type SearchAnswerParagraph = z.infer<typeof SearchAnswerParagraphSchema>;
 export {};
 //# sourceMappingURL=answer-paragraph.d.ts.map

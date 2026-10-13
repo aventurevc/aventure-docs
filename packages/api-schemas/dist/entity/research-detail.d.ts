@@ -66,7 +66,7 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
  * @contractShape entity.research-detail
  * @contractRole canonical
  */
-export declare const EntityResearchDetailSchema: z.ZodType<EntityResearchDetailDefinition>;
+export declare const EntityResearchDetailSchema: z.ZodType<EntityResearchDetailDefinition, z.input<typeof EntityResearchDetailSchemaDefinition>>;
 export type EntityResearchDetail = z.infer<typeof EntityResearchDetailSchema>;
 export {};
 //# sourceMappingURL=research-detail.d.ts.map

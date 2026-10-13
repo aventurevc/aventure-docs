@@ -39,7 +39,7 @@ type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
  * @contractShape natural.search
  * @contractRole canonical
  */
-export declare const NaturalSearchSchema: z.ZodType<NaturalSearchDefinition>;
+export declare const NaturalSearchSchema: z.ZodType<NaturalSearchDefinition, z.input<typeof NaturalSearchSchemaDefinition>>;
 export type NaturalSearch = z.infer<typeof NaturalSearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

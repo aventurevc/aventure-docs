@@ -16,7 +16,7 @@ type CliAuthorizationStartDefinition = z.infer<typeof CliAuthorizationStartSchem
  * @contractShape cli.authorization-start
  * @contractRole canonical
  */
-export declare const CliAuthorizationStartSchema: z.ZodType<CliAuthorizationStartDefinition>;
+export declare const CliAuthorizationStartSchema: z.ZodType<CliAuthorizationStartDefinition, z.input<typeof CliAuthorizationStartSchemaDefinition>>;
 export type CliAuthorizationStart = z.infer<typeof CliAuthorizationStartSchema>;
 export {};
 //# sourceMappingURL=authorization-start.d.ts.map

@@ -13,7 +13,7 @@ type NewsSubscriptionTestEventDefinition = z.infer<typeof NewsSubscriptionTestEv
  * @contractShape news.subscription-test-event
  * @contractRole canonical
  */
-export declare const NewsSubscriptionTestEventSchema: z.ZodType<NewsSubscriptionTestEventDefinition>;
+export declare const NewsSubscriptionTestEventSchema: z.ZodType<NewsSubscriptionTestEventDefinition, z.input<typeof NewsSubscriptionTestEventSchemaDefinition>>;
 export type NewsSubscriptionTestEvent = z.infer<typeof NewsSubscriptionTestEventSchema>;
 export {};
 //# sourceMappingURL=subscription-test-event.d.ts.map

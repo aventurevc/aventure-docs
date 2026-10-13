@@ -43,7 +43,7 @@ type ResearchDetailTypeDefinition = z.infer<typeof ResearchDetailTypeSchemaDefin
  * @contractShape research.detail-type
  * @contractRole canonical
  */
-export declare const ResearchDetailTypeSchema: z.ZodType<ResearchDetailTypeDefinition>;
+export declare const ResearchDetailTypeSchema: z.ZodType<ResearchDetailTypeDefinition, z.input<typeof ResearchDetailTypeSchemaDefinition>>;
 export type ResearchDetailType = z.infer<typeof ResearchDetailTypeSchema>;
 export {};
 //# sourceMappingURL=detail-type.d.ts.map

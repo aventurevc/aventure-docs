@@ -15,7 +15,7 @@ type UptimeDefinition = z.infer<typeof UptimeSchemaDefinition>;
  * @contractShape uptime.uptime
  * @contractRole canonical
  */
-export declare const UptimeSchema: z.ZodType<UptimeDefinition>;
+export declare const UptimeSchema: z.ZodType<UptimeDefinition, z.input<typeof UptimeSchemaDefinition>>;
 export type Uptime = z.infer<typeof UptimeSchema>;
 export {};
 //# sourceMappingURL=uptime.d.ts.map

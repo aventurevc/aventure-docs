@@ -13,7 +13,7 @@ type NewsSubscriptionEndpointDefinition = z.infer<typeof NewsSubscriptionEndpoin
  * @contractShape news.subscription-endpoint
  * @contractRole canonical
  */
-export declare const NewsSubscriptionEndpointSchema: z.ZodType<NewsSubscriptionEndpointDefinition>;
+export declare const NewsSubscriptionEndpointSchema: z.ZodType<NewsSubscriptionEndpointDefinition, z.input<typeof NewsSubscriptionEndpointSchemaDefinition>>;
 export type NewsSubscriptionEndpoint = z.infer<typeof NewsSubscriptionEndpointSchema>;
 export {};
 //# sourceMappingURL=subscription-endpoint.d.ts.map

@@ -17,7 +17,7 @@ type StrictUrlLookupConflictDefinition = z.infer<typeof StrictUrlLookupConflictS
  * @contractShape strict.url-lookup-conflict
  * @contractRole canonical
  */
-export declare const StrictUrlLookupConflictSchema: z.ZodType<StrictUrlLookupConflictDefinition>;
+export declare const StrictUrlLookupConflictSchema: z.ZodType<StrictUrlLookupConflictDefinition, z.input<typeof StrictUrlLookupConflictSchemaDefinition>>;
 export type StrictUrlLookupConflict = z.infer<typeof StrictUrlLookupConflictSchema>;
 export {};
 //# sourceMappingURL=url-lookup-conflict.d.ts.map

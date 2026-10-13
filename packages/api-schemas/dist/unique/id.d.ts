@@ -48,7 +48,7 @@ type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
  * @contractShape unique.id
  * @contractRole canonical
  */
-export declare const UniqueIdSchema: z.ZodType<UniqueIdDefinition>;
+export declare const UniqueIdSchema: z.ZodType<UniqueIdDefinition, z.input<typeof UniqueIdSchemaDefinition>>;
 export type UniqueId = z.infer<typeof UniqueIdSchema>;
 export {};
 //# sourceMappingURL=id.d.ts.map

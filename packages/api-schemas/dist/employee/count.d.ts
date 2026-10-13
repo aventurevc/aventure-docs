@@ -22,7 +22,7 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         textValue?: string | null | undefined;
         updatedAt?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         asOfDate?: string | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;
         dateValue?: string | null | undefined;
@@ -32,7 +32,27 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         textValue?: string | null | undefined;
         updatedAt?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        asOfDate?: string | null | undefined;
+        dataConfidence?: "high" | "low" | "medium" | null | undefined;
+        dateValue?: string | null | undefined;
+        numericValue?: number | null | undefined;
+        referenceValue?: string | null | undefined;
+        source?: string | null | undefined;
+        textValue?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+    }, {
+        asOfDate?: string | null | undefined;
+        dataConfidence?: "high" | "low" | "medium" | null | undefined;
+        dateValue?: string | null | undefined;
+        numericValue?: number | null | undefined;
+        referenceValue?: string | null | undefined;
+        source?: string | null | undefined;
+        textValue?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+        valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+    }>>;
     id: z.ZodString;
 }, z.core.$strip>;
 export type EmployeeCount = z.infer<typeof EmployeeCountSchema>;

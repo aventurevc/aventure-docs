@@ -12,7 +12,7 @@ type EnrichmentPromptDefinition = z.infer<typeof EnrichmentPromptSchemaDefinitio
  * @contractShape enrichment.prompt
  * @contractRole canonical
  */
-export declare const EnrichmentPromptSchema: z.ZodType<EnrichmentPromptDefinition>;
+export declare const EnrichmentPromptSchema: z.ZodType<EnrichmentPromptDefinition, z.input<typeof EnrichmentPromptSchemaDefinition>>;
 export type EnrichmentPrompt = z.infer<typeof EnrichmentPromptSchema>;
 export {};
 //# sourceMappingURL=prompt.d.ts.map

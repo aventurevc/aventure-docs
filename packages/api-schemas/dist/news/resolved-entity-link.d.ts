@@ -43,7 +43,7 @@ type NewsResolvedEntityLinkDefinition = z.infer<typeof NewsResolvedEntityLinkSch
  * @contractShape news.resolved-entity-link
  * @contractRole canonical
  */
-export declare const NewsResolvedEntityLinkSchema: z.ZodType<NewsResolvedEntityLinkDefinition>;
+export declare const NewsResolvedEntityLinkSchema: z.ZodType<NewsResolvedEntityLinkDefinition, z.input<typeof NewsResolvedEntityLinkSchemaDefinition>>;
 export type NewsResolvedEntityLink = z.infer<typeof NewsResolvedEntityLinkSchema>;
 export {};
 //# sourceMappingURL=resolved-entity-link.d.ts.map

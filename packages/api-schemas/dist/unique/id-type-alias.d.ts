@@ -18,7 +18,7 @@ type UniqueIdTypeAliasDefinition = z.infer<typeof UniqueIdTypeAliasSchemaDefinit
  * @contractShape unique.id-type-alias
  * @contractRole canonical
  */
-export declare const UniqueIdTypeAliasSchema: z.ZodType<UniqueIdTypeAliasDefinition>;
+export declare const UniqueIdTypeAliasSchema: z.ZodType<UniqueIdTypeAliasDefinition, z.input<typeof UniqueIdTypeAliasSchemaDefinition>>;
 export type UniqueIdTypeAlias = z.infer<typeof UniqueIdTypeAliasSchema>;
 export {};
 //# sourceMappingURL=id-type-alias.d.ts.map

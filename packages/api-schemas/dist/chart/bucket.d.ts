@@ -16,7 +16,7 @@ type ChartBucketDefinition = z.infer<typeof ChartBucketSchemaDefinition>;
  * @contractShape chart.bucket
  * @contractRole canonical
  */
-export declare const ChartBucketSchema: z.ZodType<ChartBucketDefinition>;
+export declare const ChartBucketSchema: z.ZodType<ChartBucketDefinition, z.input<typeof ChartBucketSchemaDefinition>>;
 export type ChartBucket = z.infer<typeof ChartBucketSchema>;
 export {};
 //# sourceMappingURL=bucket.d.ts.map

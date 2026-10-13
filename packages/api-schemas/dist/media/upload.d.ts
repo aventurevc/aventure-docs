@@ -21,10 +21,16 @@ declare const MediaUploadSchemaDefinition: z.ZodObject<{
         reference: z.ZodArray<z.ZodType<{
             hammingDistance: number;
             url: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             hammingDistance: number;
             url: string;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            hammingDistance: number;
+            url: string;
+        }, {
+            hammingDistance: number;
+            url: string;
+        }>>>;
         referenceObserved: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         sharedFeature: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
@@ -50,7 +56,7 @@ type MediaUploadDefinition = z.infer<typeof MediaUploadSchemaDefinition>;
  * @contractShape media.upload
  * @contractRole canonical
  */
-export declare const MediaUploadSchema: z.ZodType<MediaUploadDefinition>;
+export declare const MediaUploadSchema: z.ZodType<MediaUploadDefinition, z.input<typeof MediaUploadSchemaDefinition>>;
 export type MediaUpload = z.infer<typeof MediaUploadSchema>;
 export {};
 //# sourceMappingURL=upload.d.ts.map

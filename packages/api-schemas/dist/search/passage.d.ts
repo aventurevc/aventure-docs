@@ -31,7 +31,7 @@ type SearchPassageDefinition = z.infer<typeof SearchPassageSchemaDefinition>;
  * @contractShape search.passage
  * @contractRole canonical
  */
-export declare const SearchPassageSchema: z.ZodType<SearchPassageDefinition>;
+export declare const SearchPassageSchema: z.ZodType<SearchPassageDefinition, z.input<typeof SearchPassageSchemaDefinition>>;
 export type SearchPassage = z.infer<typeof SearchPassageSchema>;
 export {};
 //# sourceMappingURL=passage.d.ts.map

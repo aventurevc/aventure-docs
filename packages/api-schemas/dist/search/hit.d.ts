@@ -16,7 +16,7 @@ type SearchHitDefinition = z.infer<typeof SearchHitSchemaDefinition>;
  * @contractShape search.hit
  * @contractRole canonical
  */
-export declare const SearchHitSchema: z.ZodType<SearchHitDefinition>;
+export declare const SearchHitSchema: z.ZodType<SearchHitDefinition, z.input<typeof SearchHitSchemaDefinition>>;
 export type SearchHit = z.infer<typeof SearchHitSchema>;
 export {};
 //# sourceMappingURL=hit.d.ts.map

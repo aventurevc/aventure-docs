@@ -20,7 +20,7 @@ type BillingCatalogAllowanceDefinition = z.infer<typeof BillingCatalogAllowanceS
  * @contractShape billing.catalog-allowance
  * @contractRole canonical
  */
-export declare const BillingCatalogAllowanceSchema: z.ZodType<BillingCatalogAllowanceDefinition>;
+export declare const BillingCatalogAllowanceSchema: z.ZodType<BillingCatalogAllowanceDefinition, z.input<typeof BillingCatalogAllowanceSchemaDefinition>>;
 export type BillingCatalogAllowance = z.infer<typeof BillingCatalogAllowanceSchema>;
 export {};
 //# sourceMappingURL=catalog-allowance.d.ts.map

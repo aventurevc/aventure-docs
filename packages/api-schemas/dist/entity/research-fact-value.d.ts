@@ -31,7 +31,7 @@ type EntityResearchFactValueDefinition = z.infer<typeof EntityResearchFactValueS
  * @contractShape entity.research-fact-value
  * @contractRole canonical
  */
-export declare const EntityResearchFactValueSchema: z.ZodType<EntityResearchFactValueDefinition>;
+export declare const EntityResearchFactValueSchema: z.ZodType<EntityResearchFactValueDefinition, z.input<typeof EntityResearchFactValueSchemaDefinition>>;
 export type EntityResearchFactValue = z.infer<typeof EntityResearchFactValueSchema>;
 export {};
 //# sourceMappingURL=research-fact-value.d.ts.map

@@ -10,7 +10,7 @@ declare const NewsEntityMentionSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         createdAt: string;
         entityId: string;
         href?: string | null | undefined;
@@ -20,7 +20,27 @@ declare const NewsEntityMentionSchemaDefinition: z.ZodObject<{
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        createdAt: string;
+        entityId: string;
+        href?: string | null | undefined;
+        internal: boolean;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+        mention?: string | null | undefined;
+        slug?: string | null | undefined;
+        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        updatedAt: string;
+    }, {
+        createdAt: string;
+        entityId: string;
+        href?: string | null | undefined;
+        internal: boolean;
+        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+        mention?: string | null | undefined;
+        slug?: string | null | undefined;
+        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        updatedAt: string;
+    }>>>;
     newsId: z.ZodInt;
 }, z.core.$strip>;
 type NewsEntityMentionDefinition = z.infer<typeof NewsEntityMentionSchemaDefinition>;
@@ -38,7 +58,7 @@ type NewsEntityMentionDefinition = z.infer<typeof NewsEntityMentionSchemaDefinit
  * @contractShape news.entity-mention
  * @contractRole canonical
  */
-export declare const NewsEntityMentionSchema: z.ZodType<NewsEntityMentionDefinition>;
+export declare const NewsEntityMentionSchema: z.ZodType<NewsEntityMentionDefinition, z.input<typeof NewsEntityMentionSchemaDefinition>>;
 export type NewsEntityMention = z.infer<typeof NewsEntityMentionSchema>;
 export {};
 //# sourceMappingURL=entity-mention.d.ts.map

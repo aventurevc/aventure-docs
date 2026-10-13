@@ -11,7 +11,7 @@ declare const PersonGraphCoInvestorSchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isCurrent?: boolean | null | undefined;
         personId: string;
         personImage: {
@@ -21,7 +21,27 @@ declare const PersonGraphCoInvestorSchemaDefinition: z.ZodObject<{
         personName: string;
         personSlug: string;
         titleName?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        isCurrent?: boolean | null | undefined;
+        personId: string;
+        personImage: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        personName: string;
+        personSlug: string;
+        titleName?: string | null | undefined;
+    }, {
+        isCurrent?: boolean | null | undefined;
+        personId: string;
+        personImage: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        personName: string;
+        personSlug: string;
+        titleName?: string | null | undefined;
+    }>>;
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sharedEntity: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -31,21 +51,37 @@ declare const PersonGraphCoInvestorSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -85,7 +121,7 @@ type PersonGraphCoInvestorDefinition = z.infer<typeof PersonGraphCoInvestorSchem
  * @contractShape person.graph-co-investor
  * @contractRole canonical
  */
-export declare const PersonGraphCoInvestorSchema: z.ZodType<PersonGraphCoInvestorDefinition>;
+export declare const PersonGraphCoInvestorSchema: z.ZodType<PersonGraphCoInvestorDefinition, z.input<typeof PersonGraphCoInvestorSchemaDefinition>>;
 export type PersonGraphCoInvestor = z.infer<typeof PersonGraphCoInvestorSchema>;
 export {};
 //# sourceMappingURL=graph-co-investor.d.ts.map

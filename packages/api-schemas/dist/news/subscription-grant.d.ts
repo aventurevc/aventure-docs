@@ -14,7 +14,7 @@ type NewsSubscriptionGrantDefinition = z.infer<typeof NewsSubscriptionGrantSchem
  * @contractShape news.subscription-grant
  * @contractRole canonical
  */
-export declare const NewsSubscriptionGrantSchema: z.ZodType<NewsSubscriptionGrantDefinition>;
+export declare const NewsSubscriptionGrantSchema: z.ZodType<NewsSubscriptionGrantDefinition, z.input<typeof NewsSubscriptionGrantSchemaDefinition>>;
 export type NewsSubscriptionGrant = z.infer<typeof NewsSubscriptionGrantSchema>;
 export {};
 //# sourceMappingURL=subscription-grant.d.ts.map

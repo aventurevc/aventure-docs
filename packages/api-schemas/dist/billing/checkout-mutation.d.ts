@@ -21,7 +21,7 @@ type BillingCheckoutMutationDefinition = z.infer<typeof BillingCheckoutMutationS
  * @contractShape billing.checkout-mutation
  * @contractRole canonical
  */
-export declare const BillingCheckoutMutationSchema: z.ZodType<BillingCheckoutMutationDefinition>;
+export declare const BillingCheckoutMutationSchema: z.ZodType<BillingCheckoutMutationDefinition, z.input<typeof BillingCheckoutMutationSchemaDefinition>>;
 export type BillingCheckoutMutation = z.infer<typeof BillingCheckoutMutationSchema>;
 export {};
 //# sourceMappingURL=checkout-mutation.d.ts.map

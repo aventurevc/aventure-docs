@@ -21,7 +21,7 @@ type LookupMentionDefinition = z.infer<typeof LookupMentionSchemaDefinition>;
  * @contractShape lookup.mention
  * @contractRole canonical
  */
-export declare const LookupMentionSchema: z.ZodType<LookupMentionDefinition>;
+export declare const LookupMentionSchema: z.ZodType<LookupMentionDefinition, z.input<typeof LookupMentionSchemaDefinition>>;
 export type LookupMention = z.infer<typeof LookupMentionSchema>;
 export {};
 //# sourceMappingURL=mention.d.ts.map

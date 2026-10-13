@@ -27,7 +27,7 @@ type SearchAnswerCitationDefinition = z.infer<typeof SearchAnswerCitationSchemaD
  * @contractShape search.answer-citation
  * @contractRole canonical
  */
-export declare const SearchAnswerCitationSchema: z.ZodType<SearchAnswerCitationDefinition>;
+export declare const SearchAnswerCitationSchema: z.ZodType<SearchAnswerCitationDefinition, z.input<typeof SearchAnswerCitationSchemaDefinition>>;
 export type SearchAnswerCitation = z.infer<typeof SearchAnswerCitationSchema>;
 export {};
 //# sourceMappingURL=answer-citation.d.ts.map

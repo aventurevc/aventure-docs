@@ -20,7 +20,7 @@ type PersonSimilarityContextDefinition = z.infer<typeof PersonSimilarityContextS
  * @contractShape person.similarity-context
  * @contractRole canonical
  */
-export declare const PersonSimilarityContextSchema: z.ZodType<PersonSimilarityContextDefinition>;
+export declare const PersonSimilarityContextSchema: z.ZodType<PersonSimilarityContextDefinition, z.input<typeof PersonSimilarityContextSchemaDefinition>>;
 export type PersonSimilarityContext = z.infer<typeof PersonSimilarityContextSchema>;
 export {};
 //# sourceMappingURL=similarity-context.d.ts.map

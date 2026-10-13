@@ -52,7 +52,7 @@ type CliAuthorizationDefinition = z.infer<typeof CliAuthorizationSchemaDefinitio
  * @contractShape cli.authorization
  * @contractRole canonical
  */
-export declare const CliAuthorizationSchema: z.ZodType<CliAuthorizationDefinition>;
+export declare const CliAuthorizationSchema: z.ZodType<CliAuthorizationDefinition, z.input<typeof CliAuthorizationSchemaDefinition>>;
 export type CliAuthorization = z.infer<typeof CliAuthorizationSchema>;
 export {};
 //# sourceMappingURL=authorization.d.ts.map

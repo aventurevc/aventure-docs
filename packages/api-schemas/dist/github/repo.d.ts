@@ -30,7 +30,7 @@ type GithubRepoDefinition = z.infer<typeof GithubRepoSchemaDefinition>;
  * @contractShape github.repo
  * @contractRole canonical
  */
-export declare const GithubRepoSchema: z.ZodType<GithubRepoDefinition>;
+export declare const GithubRepoSchema: z.ZodType<GithubRepoDefinition, z.input<typeof GithubRepoSchemaDefinition>>;
 export type GithubRepo = z.infer<typeof GithubRepoSchema>;
 export {};
 //# sourceMappingURL=repo.d.ts.map

@@ -29,7 +29,7 @@ type BillingCatalogPlanDefinition = z.infer<typeof BillingCatalogPlanSchemaDefin
  * @contractShape billing.catalog-plan
  * @contractRole canonical
  */
-export declare const BillingCatalogPlanSchema: z.ZodType<BillingCatalogPlanDefinition>;
+export declare const BillingCatalogPlanSchema: z.ZodType<BillingCatalogPlanDefinition, z.input<typeof BillingCatalogPlanSchemaDefinition>>;
 export type BillingCatalogPlan = z.infer<typeof BillingCatalogPlanSchema>;
 export {};
 //# sourceMappingURL=catalog-plan.d.ts.map

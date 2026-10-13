@@ -52,7 +52,7 @@ type EntityNameAliasEntityAliasTypeDefinition = z.infer<typeof EntityNameAliasEn
  * @contractShape entity.name-alias-entity-alias-type
  * @contractRole canonical
  */
-export declare const EntityNameAliasEntityAliasTypeSchema: z.ZodType<EntityNameAliasEntityAliasTypeDefinition>;
+export declare const EntityNameAliasEntityAliasTypeSchema: z.ZodType<EntityNameAliasEntityAliasTypeDefinition, z.input<typeof EntityNameAliasEntityAliasTypeSchemaDefinition>>;
 export type EntityNameAliasEntityAliasType = z.infer<typeof EntityNameAliasEntityAliasTypeSchema>;
 export {};
 //# sourceMappingURL=name-alias-entity-alias-type.d.ts.map

@@ -23,7 +23,7 @@ type FederatedSearchRejectionDefinition = z.infer<typeof FederatedSearchRejectio
  * @contractShape federated.search-rejection
  * @contractRole canonical
  */
-export declare const FederatedSearchRejectionSchema: z.ZodType<FederatedSearchRejectionDefinition>;
+export declare const FederatedSearchRejectionSchema: z.ZodType<FederatedSearchRejectionDefinition, z.input<typeof FederatedSearchRejectionSchemaDefinition>>;
 export type FederatedSearchRejection = z.infer<typeof FederatedSearchRejectionSchema>;
 export {};
 //# sourceMappingURL=search-rejection.d.ts.map

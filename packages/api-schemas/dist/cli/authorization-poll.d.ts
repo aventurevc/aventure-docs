@@ -45,7 +45,7 @@ type CliAuthorizationPollDefinition = z.infer<typeof CliAuthorizationPollSchemaD
  * @contractShape cli.authorization-poll
  * @contractRole canonical
  */
-export declare const CliAuthorizationPollSchema: z.ZodType<CliAuthorizationPollDefinition>;
+export declare const CliAuthorizationPollSchema: z.ZodType<CliAuthorizationPollDefinition, z.input<typeof CliAuthorizationPollSchemaDefinition>>;
 export type CliAuthorizationPoll = z.infer<typeof CliAuthorizationPollSchema>;
 export {};
 //# sourceMappingURL=authorization-poll.d.ts.map

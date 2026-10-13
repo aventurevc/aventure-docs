@@ -19,13 +19,25 @@ export declare const EntityFilterMetaSchema: z.ZodObject<{
                     city: string[];
                     state: string;
                 }[];
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 country: string;
                 state: {
                     city: string[];
                     state: string;
                 }[];
-            }, unknown>>>;
+            }, z.core.$ZodTypeInternals<{
+                country: string;
+                state: {
+                    city: string[];
+                    state: string;
+                }[];
+            }, {
+                country: string;
+                state: {
+                    city: string[];
+                    state: string;
+                }[];
+            }>>>;
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;

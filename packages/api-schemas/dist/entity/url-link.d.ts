@@ -88,7 +88,7 @@ type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
  * @contractShape entity.url-link
  * @contractRole canonical
  */
-export declare const EntityUrlLinkSchema: z.ZodType<EntityUrlLinkDefinition>;
+export declare const EntityUrlLinkSchema: z.ZodType<EntityUrlLinkDefinition, z.input<typeof EntityUrlLinkSchemaDefinition>>;
 export type EntityUrlLink = z.infer<typeof EntityUrlLinkSchema>;
 export {};
 //# sourceMappingURL=url-link.d.ts.map

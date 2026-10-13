@@ -19,7 +19,7 @@ type SharedSearchListDefinition = z.infer<typeof SharedSearchListSchemaDefinitio
  * @contractShape shared.search-list
  * @contractRole canonical
  */
-export declare const SharedSearchListSchema: z.ZodType<SharedSearchListDefinition>;
+export declare const SharedSearchListSchema: z.ZodType<SharedSearchListDefinition, z.input<typeof SharedSearchListSchemaDefinition>>;
 export type SharedSearchList = z.infer<typeof SharedSearchListSchema>;
 export {};
 //# sourceMappingURL=search-list.d.ts.map

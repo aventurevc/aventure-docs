@@ -45,7 +45,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             externalId?: string | null | undefined;
             id: string;
             name?: string | null | undefined;
@@ -55,7 +55,27 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }, {
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }>>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>;
@@ -89,7 +109,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             externalId?: string | null | undefined;
             id: string;
             name?: string | null | undefined;
@@ -99,7 +119,27 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }, {
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }>>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
@@ -134,7 +174,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             externalId?: string | null | undefined;
             id: string;
             name?: string | null | undefined;
@@ -144,7 +184,27 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }, {
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }>>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>;
@@ -180,7 +240,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             externalId?: string | null | undefined;
             id: string;
             name?: string | null | undefined;
@@ -190,7 +250,27 @@ export declare const IdentificationSchema: z.ZodObject<{
             score: number;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }, {
+            externalId?: string | null | undefined;
+            id: string;
+            name?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicPath?: string | null | undefined;
+            reason: string[];
+            score: number;
+            slug?: string | null | undefined;
+            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+        }>>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;

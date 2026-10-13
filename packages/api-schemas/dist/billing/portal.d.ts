@@ -11,7 +11,7 @@ type BillingPortalDefinition = z.infer<typeof BillingPortalSchemaDefinition>;
  * @contractShape billing.portal
  * @contractRole canonical
  */
-export declare const BillingPortalSchema: z.ZodType<BillingPortalDefinition>;
+export declare const BillingPortalSchema: z.ZodType<BillingPortalDefinition, z.input<typeof BillingPortalSchemaDefinition>>;
 export type BillingPortal = z.infer<typeof BillingPortalSchema>;
 export {};
 //# sourceMappingURL=portal.d.ts.map

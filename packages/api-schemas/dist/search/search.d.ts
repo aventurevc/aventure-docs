@@ -25,7 +25,7 @@ type SearchDefinition = z.infer<typeof SearchSchemaDefinition>;
  * @contractShape search.search
  * @contractRole canonical
  */
-export declare const SearchSchema: z.ZodType<SearchDefinition>;
+export declare const SearchSchema: z.ZodType<SearchDefinition, z.input<typeof SearchSchemaDefinition>>;
 export type Search = z.infer<typeof SearchSchema>;
 export {};
 //# sourceMappingURL=search.d.ts.map

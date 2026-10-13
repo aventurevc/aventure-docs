@@ -2,19 +2,31 @@ import { z } from "zod/v4";
 declare const NewsSubscriptionSchemaDefinition: z.ZodObject<{
     arguments: z.ZodType<{
         entityId: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         entityId: string;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        entityId: string;
+    }, {
+        entityId: string;
+    }>>;
     cursor: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     delivery: z.ZodType<{
         mode: "webhook";
         secret: string;
         url: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         mode: "webhook";
         secret: string;
         url: string;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        mode: "webhook";
+        secret: string;
+        url: string;
+    }, {
+        mode: "webhook";
+        secret: string;
+        url: string;
+    }>>;
     name: z.ZodEnum<{
         "entity.news.published": "entity.news.published";
     }>;
@@ -29,7 +41,7 @@ type NewsSubscriptionDefinition = z.infer<typeof NewsSubscriptionSchemaDefinitio
  * @contractShape news.subscription
  * @contractRole canonical
  */
-export declare const NewsSubscriptionSchema: z.ZodType<NewsSubscriptionDefinition>;
+export declare const NewsSubscriptionSchema: z.ZodType<NewsSubscriptionDefinition, z.input<typeof NewsSubscriptionSchemaDefinition>>;
 export type NewsSubscription = z.infer<typeof NewsSubscriptionSchema>;
 export {};
 //# sourceMappingURL=subscription.d.ts.map

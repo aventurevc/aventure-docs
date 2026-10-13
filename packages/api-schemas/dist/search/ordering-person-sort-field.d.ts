@@ -4,11 +4,19 @@ declare const SearchOrderingPersonSortFieldSchemaDefinition: z.ZodObject<{
         descending: boolean;
         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
         sortKey?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         descending: boolean;
         field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
         sortKey?: string | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        descending: boolean;
+        field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+        sortKey?: string | null | undefined;
+    }, {
+        descending: boolean;
+        field: "AMOUNT_INVESTED" | "CREATED_AT" | "FIRST_NAME" | "FULL_NAME" | "GENDER" | "ID" | "LAST_NAME" | "SLUG" | "STATUS" | "TOTAL_INVESTMENTS" | "UPDATED_AT";
+        sortKey?: string | null | undefined;
+    }>>>;
     relevance: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         keyword: "keyword";
         semantic: "semantic";
@@ -30,7 +38,7 @@ type SearchOrderingPersonSortFieldDefinition = z.infer<typeof SearchOrderingPers
  * @contractShape search.ordering-person-sort-field
  * @contractRole canonical
  */
-export declare const SearchOrderingPersonSortFieldSchema: z.ZodType<SearchOrderingPersonSortFieldDefinition>;
+export declare const SearchOrderingPersonSortFieldSchema: z.ZodType<SearchOrderingPersonSortFieldDefinition, z.input<typeof SearchOrderingPersonSortFieldSchemaDefinition>>;
 export type SearchOrderingPersonSortField = z.infer<typeof SearchOrderingPersonSortFieldSchema>;
 export {};
 //# sourceMappingURL=ordering-person-sort-field.d.ts.map

@@ -56,7 +56,7 @@ type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
  * @contractShape entity.image
  * @contractRole canonical
  */
-export declare const EntityImageSchema: z.ZodType<EntityImageDefinition>;
+export declare const EntityImageSchema: z.ZodType<EntityImageDefinition, z.input<typeof EntityImageSchemaDefinition>>;
 export type EntityImage = z.infer<typeof EntityImageSchema>;
 export {};
 //# sourceMappingURL=image.d.ts.map

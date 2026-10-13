@@ -28,7 +28,7 @@ type DecimalRangeDefinition = z.infer<typeof DecimalRangeSchemaDefinition>;
  * @contractShape decimal.range
  * @contractRole canonical
  */
-export declare const DecimalRangeSchema: z.ZodType<DecimalRangeDefinition>;
+export declare const DecimalRangeSchema: z.ZodType<DecimalRangeDefinition, z.input<typeof DecimalRangeSchemaDefinition>>;
 export type DecimalRange = z.infer<typeof DecimalRangeSchema>;
 export {};
 //# sourceMappingURL=range.d.ts.map

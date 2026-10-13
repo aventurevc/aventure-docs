@@ -31,21 +31,37 @@ export declare const EntityDetailSchema: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodType<{
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             displayable?: boolean | null | undefined;
             name: string;
             type?: "alternativeDba" | "relatedLegal" | null | undefined;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }, {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+        }>>>;
         nameBrand: z.ZodString;
         nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -331,6 +347,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -355,7 +372,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             urlType: string;
         }[];
         urlLinkSuppressedCount: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         address: {
             address?: number | null | undefined;
             addressLine1?: string | null | undefined;
@@ -613,6 +630,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             unconvertedRoundCount: number;
         } | null | undefined;
         headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
         text: {
             expanded?: string | null | undefined;
             generatedDescription?: string | null | undefined;
@@ -637,7 +655,573 @@ export declare const EntityDetailSchema: z.ZodObject<{
             urlType: string;
         }[];
         urlLinkSuppressedCount: number;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        address: {
+            address?: number | null | undefined;
+            addressLine1?: string | null | undefined;
+            addressLine2?: string | null | undefined;
+            association?: {
+                endDate?: string | null | undefined;
+                id: number;
+                isCurrent: boolean;
+                role?: "domicile" | "dominant" | "origin" | null | undefined;
+                startDate?: string | null | undefined;
+            }[] | undefined;
+            city?: {
+                id?: number | null | undefined;
+                name: string;
+            } | null | undefined;
+            country?: {
+                countryCodeChar2?: string | null | undefined;
+                countryCodeChar3?: string | null | undefined;
+                id?: number | null | undefined;
+                name: string;
+                unRegion?: string | null | undefined;
+                unSubregion?: string | null | undefined;
+            } | null | undefined;
+            countryAbbrev?: string | null | undefined;
+            createdAt?: string | null | undefined;
+            fullAddress?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isHq?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            latitude?: number | null | undefined;
+            longitude?: number | null | undefined;
+            postalCode?: string | null | undefined;
+            state?: {
+                id?: number | null | undefined;
+                name: string;
+                stateAbbrev?: string | null | undefined;
+            } | null | undefined;
+            stateAbbrev?: string | null | undefined;
+            street?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+        }[];
+        classification: {
+            geoLocationExposure?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            industry?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            mainProduct?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            standardizedClassification?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                category: string;
+                code?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                entityClassificationId?: number | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                level?: number | null | undefined;
+                name: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            tag?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeCustomer?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeModel?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeOwnership?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeRevenue?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeTechnologyUsed?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+        };
+        fundingDetail?: {
+            currency?: string | null | undefined;
+            fundingRoundCount: number;
+            investorCount: number;
+            latestValuation?: number | null | undefined;
+            mostRecentAmount?: number | null | undefined;
+            mostRecentDate?: string | null | undefined;
+            stage?: string | null | undefined;
+            totalRaised: number;
+            totalRaisedUsd?: number | null | undefined;
+            unconvertedRoundCount: number;
+        } | null | undefined;
+        headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
+        text: {
+            expanded?: string | null | undefined;
+            generatedDescription?: string | null | undefined;
+            short?: string | null | undefined;
+        };
+        urlLink: {
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: string;
+        }[];
+        urlLinkSuppressedCount: number;
+    }, {
+        address: {
+            address?: number | null | undefined;
+            addressLine1?: string | null | undefined;
+            addressLine2?: string | null | undefined;
+            association?: {
+                endDate?: string | null | undefined;
+                id: number;
+                isCurrent: boolean;
+                role?: "domicile" | "dominant" | "origin" | null | undefined;
+                startDate?: string | null | undefined;
+            }[] | undefined;
+            city?: {
+                id?: number | null | undefined;
+                name: string;
+            } | null | undefined;
+            country?: {
+                countryCodeChar2?: string | null | undefined;
+                countryCodeChar3?: string | null | undefined;
+                id?: number | null | undefined;
+                name: string;
+                unRegion?: string | null | undefined;
+                unSubregion?: string | null | undefined;
+            } | null | undefined;
+            countryAbbrev?: string | null | undefined;
+            createdAt?: string | null | undefined;
+            fullAddress?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isHq?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            latitude?: number | null | undefined;
+            longitude?: number | null | undefined;
+            postalCode?: string | null | undefined;
+            state?: {
+                id?: number | null | undefined;
+                name: string;
+                stateAbbrev?: string | null | undefined;
+            } | null | undefined;
+            stateAbbrev?: string | null | undefined;
+            street?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+        }[];
+        classification: {
+            geoLocationExposure?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            industry?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            mainProduct?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            standardizedClassification?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                category: string;
+                code?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                entityClassificationId?: number | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                level?: number | null | undefined;
+                name: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            tag?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeCustomer?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeModel?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeOwnership?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeRevenue?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+            typeTechnologyUsed?: ({
+                creatable: boolean;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                writable: boolean;
+            } & {
+                bucket?: string | null | undefined;
+                classificationId?: number | null | undefined;
+                creatable: boolean;
+                createdAt?: string | null | undefined;
+                id: number;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                name: string;
+                slug?: string | null | undefined;
+                type: string;
+                updatedAt?: string | null | undefined;
+                writable: boolean;
+            })[] | undefined;
+        };
+        fundingDetail?: {
+            currency?: string | null | undefined;
+            fundingRoundCount: number;
+            investorCount: number;
+            latestValuation?: number | null | undefined;
+            mostRecentAmount?: number | null | undefined;
+            mostRecentDate?: string | null | undefined;
+            stage?: string | null | undefined;
+            totalRaised: number;
+            totalRaisedUsd?: number | null | undefined;
+            unconvertedRoundCount: number;
+        } | null | undefined;
+        headquartersAddressId?: number | null | undefined;
+        headquartersRemoteAsOf?: string | null | undefined;
+        text: {
+            expanded?: string | null | undefined;
+            generatedDescription?: string | null | undefined;
+            short?: string | null | undefined;
+        };
+        urlLink: {
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: string;
+        }[];
+        urlLinkSuppressedCount: number;
+    }>>;
     fundraiseRound: z.ZodArray<z.ZodType<{
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
@@ -724,7 +1308,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         amountRaised?: number | null | undefined;
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
@@ -810,7 +1394,179 @@ export declare const EntityDetailSchema: z.ZodObject<{
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        amountRaised?: number | null | undefined;
+        createdAt?: string | null | undefined;
+        currency?: string | null | undefined;
+        dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+        dateAnnounced?: string | null | undefined;
+        dateFundingComplete?: string | null | undefined;
+        dateInvestorExit?: string | null | undefined;
+        entity?: {
+            core: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            fundingDetail?: {
+                currency?: string | null | undefined;
+                fundingRoundCount: number;
+                investorCount: number;
+                latestValuation?: number | null | undefined;
+                mostRecentAmount?: number | null | undefined;
+                mostRecentDate?: string | null | undefined;
+                stage?: string | null | undefined;
+                totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
+            } | null | undefined;
+        } | null | undefined;
+        id: string;
+        investorAttribution?: {
+            amountInvested?: number | null | undefined;
+            attributionType: "direct" | "managedFund";
+            beneficialEntityId?: string | null | undefined;
+            fundManagerRelationshipId?: number | null | undefined;
+            joinId: string;
+            leadInvestor: boolean;
+            recordedEntityId?: string | null | undefined;
+            round?: {
+                round: string;
+            } | null | undefined;
+            transactionId: string;
+        } | null | undefined;
+        investorCount?: number | null | undefined;
+        round?: string | null | undefined;
+        sourceAttribution: {
+            amountInvested?: number | null | undefined;
+            attributionType: "direct" | "managedFund";
+            beneficialEntityId?: string | null | undefined;
+            fundManagerRelationshipId?: number | null | undefined;
+            joinId: string;
+            leadInvestor: boolean;
+            recordedEntityId?: string | null | undefined;
+            round?: {
+                round: string;
+            } | null | undefined;
+            transactionId: string;
+        }[];
+        updatedAt?: string | null | undefined;
+        valuationPostMoney?: number | null | undefined;
+        valuationPreMoney?: number | null | undefined;
+    }, {
+        amountRaised?: number | null | undefined;
+        createdAt?: string | null | undefined;
+        currency?: string | null | undefined;
+        dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+        dateAnnounced?: string | null | undefined;
+        dateFundingComplete?: string | null | undefined;
+        dateInvestorExit?: string | null | undefined;
+        entity?: {
+            core: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            fundingDetail?: {
+                currency?: string | null | undefined;
+                fundingRoundCount: number;
+                investorCount: number;
+                latestValuation?: number | null | undefined;
+                mostRecentAmount?: number | null | undefined;
+                mostRecentDate?: string | null | undefined;
+                stage?: string | null | undefined;
+                totalRaised: number;
+                totalRaisedUsd?: number | null | undefined;
+                unconvertedRoundCount: number;
+            } | null | undefined;
+        } | null | undefined;
+        id: string;
+        investorAttribution?: {
+            amountInvested?: number | null | undefined;
+            attributionType: "direct" | "managedFund";
+            beneficialEntityId?: string | null | undefined;
+            fundManagerRelationshipId?: number | null | undefined;
+            joinId: string;
+            leadInvestor: boolean;
+            recordedEntityId?: string | null | undefined;
+            round?: {
+                round: string;
+            } | null | undefined;
+            transactionId: string;
+        } | null | undefined;
+        investorCount?: number | null | undefined;
+        round?: string | null | undefined;
+        sourceAttribution: {
+            amountInvested?: number | null | undefined;
+            attributionType: "direct" | "managedFund";
+            beneficialEntityId?: string | null | undefined;
+            fundManagerRelationshipId?: number | null | undefined;
+            joinId: string;
+            leadInvestor: boolean;
+            recordedEntityId?: string | null | undefined;
+            round?: {
+                round: string;
+            } | null | undefined;
+            transactionId: string;
+        }[];
+        updatedAt?: string | null | undefined;
+        valuationPostMoney?: number | null | undefined;
+        valuationPreMoney?: number | null | undefined;
+    }>>>;
     newsArticle: z.ZodArray<z.ZodType<{
         author?: string | null | undefined;
         category?: string | null | undefined;
@@ -825,7 +1581,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         author?: string | null | undefined;
         category?: string | null | undefined;
         createdAt?: string | null | undefined;
@@ -839,7 +1595,35 @@ export declare const EntityDetailSchema: z.ZodObject<{
         slug?: string | null | undefined;
         title: string;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }, {
+        author?: string | null | undefined;
+        category?: string | null | undefined;
+        createdAt?: string | null | undefined;
+        excerpt?: string | null | undefined;
+        externalNewsArticle?: boolean | null | undefined;
+        id: number;
+        newsImageThumbnail?: string | null | undefined;
+        newsUrlOriginal?: string | null | undefined;
+        publication?: string | null | undefined;
+        publishedAt?: string | null | undefined;
+        slug?: string | null | undefined;
+        title: string;
+        updatedAt?: string | null | undefined;
+    }>>>;
     person: z.ZodArray<z.ZodType<{
         articleCount?: number | null | undefined;
         association: {
@@ -1170,7 +1954,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
@@ -1500,7 +2284,667 @@ export declare const EntityDetailSchema: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        articleCount?: number | null | undefined;
+        association: {
+            associationId: number;
+            endDate?: string | null | undefined;
+            entityAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            entityId: string;
+            entityLogo: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            entityName?: string | null | undefined;
+            entityOperatingStatus?: string | null | undefined;
+            entitySlug: string;
+            entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            entityUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            isCurrent?: boolean | null | undefined;
+            personAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            personId: string;
+            personImage: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+            };
+            personName: string;
+            personSlug: string;
+            personUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            score?: number | null | undefined;
+            startDate?: string | null | undefined;
+            titleFunction?: string | null | undefined;
+            titleId?: number | null | undefined;
+            titleLevel?: string | null | undefined;
+            titleName?: string | null | undefined;
+        }[];
+        core: {
+            createdAt?: string | null | undefined;
+            gender?: string | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            }[];
+            nameFirst?: string | null | undefined;
+            nameFull: string;
+            nameLast?: string | null | undefined;
+            nameMiddle?: string | null | undefined;
+            nickname?: string | null | undefined;
+            publicId?: string | null | undefined;
+            semanticMatch?: {
+                computedAt: string;
+                cosineDistance: number;
+                cosineScore: number;
+                modelVersion: string;
+                rank: number;
+                sourceHash: string;
+                sourceId: string;
+                sourceType: string;
+            } | null | undefined;
+            slug: string;
+            suffix?: string | null | undefined;
+            text: {
+                expanded?: string | null | undefined;
+                generatedDescription?: string | null | undefined;
+                short?: string | null | undefined;
+            };
+            updatedAt?: string | null | undefined;
+        };
+        enrichment: {
+            address: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            urlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+        };
+        investment: {
+            amount?: number | null | undefined;
+            company: {
+                entity: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                headquartersCity?: string | null | undefined;
+                headquartersCountry?: string | null | undefined;
+                headquartersRegion?: string | null | undefined;
+                industry?: string | null | undefined;
+            };
+            date?: string | null | undefined;
+            fundraiseTransaction?: {
+                amountRaised?: number | null | undefined;
+                dateAnnounced?: string | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                investorCount?: number | null | undefined;
+                nameBrand: string;
+                round?: string | null | undefined;
+                status?: string | null | undefined;
+                valuationPostMoney?: number | null | undefined;
+            } | null | undefined;
+            fundraiseTransactionId: string;
+            id: string;
+            investmentDate: string;
+            investorAttribution?: {
+                amountInvested?: number | null | undefined;
+                attributionType: "direct" | "managedFund";
+                beneficialEntityId?: string | null | undefined;
+                fundManagerRelationshipId?: number | null | undefined;
+                joinId: string;
+                leadInvestor: boolean;
+                recordedEntityId?: string | null | undefined;
+                round?: {
+                    round: string;
+                } | null | undefined;
+                transactionId: string;
+            } | null | undefined;
+            round?: string | null | undefined;
+        }[];
+        nameAlias: {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        }[];
+    }, {
+        articleCount?: number | null | undefined;
+        association: {
+            associationId: number;
+            endDate?: string | null | undefined;
+            entityAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            entityId: string;
+            entityLogo: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            entityName?: string | null | undefined;
+            entityOperatingStatus?: string | null | undefined;
+            entitySlug: string;
+            entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            entityUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            isCurrent?: boolean | null | undefined;
+            personAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            personId: string;
+            personImage: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+            };
+            personName: string;
+            personSlug: string;
+            personUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            score?: number | null | undefined;
+            startDate?: string | null | undefined;
+            titleFunction?: string | null | undefined;
+            titleId?: number | null | undefined;
+            titleLevel?: string | null | undefined;
+            titleName?: string | null | undefined;
+        }[];
+        core: {
+            createdAt?: string | null | undefined;
+            gender?: string | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            }[];
+            nameFirst?: string | null | undefined;
+            nameFull: string;
+            nameLast?: string | null | undefined;
+            nameMiddle?: string | null | undefined;
+            nickname?: string | null | undefined;
+            publicId?: string | null | undefined;
+            semanticMatch?: {
+                computedAt: string;
+                cosineDistance: number;
+                cosineScore: number;
+                modelVersion: string;
+                rank: number;
+                sourceHash: string;
+                sourceId: string;
+                sourceType: string;
+            } | null | undefined;
+            slug: string;
+            suffix?: string | null | undefined;
+            text: {
+                expanded?: string | null | undefined;
+                generatedDescription?: string | null | undefined;
+                short?: string | null | undefined;
+            };
+            updatedAt?: string | null | undefined;
+        };
+        enrichment: {
+            address: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            urlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+        };
+        investment: {
+            amount?: number | null | undefined;
+            company: {
+                entity: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                headquartersCity?: string | null | undefined;
+                headquartersCountry?: string | null | undefined;
+                headquartersRegion?: string | null | undefined;
+                industry?: string | null | undefined;
+            };
+            date?: string | null | undefined;
+            fundraiseTransaction?: {
+                amountRaised?: number | null | undefined;
+                dateAnnounced?: string | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                investorCount?: number | null | undefined;
+                nameBrand: string;
+                round?: string | null | undefined;
+                status?: string | null | undefined;
+                valuationPostMoney?: number | null | undefined;
+            } | null | undefined;
+            fundraiseTransactionId: string;
+            id: string;
+            investmentDate: string;
+            investorAttribution?: {
+                amountInvested?: number | null | undefined;
+                attributionType: "direct" | "managedFund";
+                beneficialEntityId?: string | null | undefined;
+                fundManagerRelationshipId?: number | null | undefined;
+                joinId: string;
+                leadInvestor: boolean;
+                recordedEntityId?: string | null | undefined;
+                round?: {
+                    round: string;
+                } | null | undefined;
+                transactionId: string;
+            } | null | undefined;
+            round?: string | null | undefined;
+        }[];
+        nameAlias: {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        }[];
+    }>>>;
     publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     relationship: z.ZodArray<z.ZodType<{
         asOf?: string | null | undefined;
@@ -1560,7 +3004,65 @@ export declare const EntityDetailSchema: z.ZodObject<{
         sourceEntityId?: string | null | undefined;
         targetEntityId?: string | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
+        asOf?: string | null | undefined;
+        comparisonSignals?: {
+            fundingStage?: string | null | undefined;
+            ownership: string[];
+            pricingModel: string[];
+            sellsTo: string[];
+            totalRaised?: number | null | undefined;
+            website?: string | null | undefined;
+        } | null | undefined;
+        createdAt?: string | null | undefined;
+        detail?: string | null | undefined;
+        entity: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        };
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        publicSource?: {
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
+            sourceDetail: string;
+        } | null | undefined;
+        relationship: /*elided*/ any[];
+        relationshipType: string;
+        sourceEntityId?: string | null | undefined;
+        targetEntityId?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+    }, z.core.$ZodTypeInternals<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
             fundingStage?: string | null | undefined;
@@ -1618,7 +3120,65 @@ export declare const EntityDetailSchema: z.ZodObject<{
         sourceEntityId?: string | null | undefined;
         targetEntityId?: string | null | undefined;
         updatedAt?: string | null | undefined;
-    }, unknown>>>;
+    }, {
+        asOf?: string | null | undefined;
+        comparisonSignals?: {
+            fundingStage?: string | null | undefined;
+            ownership: string[];
+            pricingModel: string[];
+            sellsTo: string[];
+            totalRaised?: number | null | undefined;
+            website?: string | null | undefined;
+        } | null | undefined;
+        createdAt?: string | null | undefined;
+        detail?: string | null | undefined;
+        entity: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        };
+        id?: number | null | undefined;
+        isCurrent?: boolean | null | undefined;
+        isPrimary?: boolean | null | undefined;
+        publicSource?: {
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
+            sourceDetail: string;
+        } | null | undefined;
+        relationship: any[];
+        relationshipType: string;
+        sourceEntityId?: string | null | undefined;
+        targetEntityId?: string | null | undefined;
+        updatedAt?: string | null | undefined;
+    }>>>;
     research: z.ZodType<{
         acceleratorParticipation: {
             accelerator: {
@@ -1702,7 +3262,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
             textType: string;
             updatedAt?: string | null | undefined;
         }[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         acceleratorParticipation: {
             accelerator: {
                 defaultCurrency?: string | null | undefined;
@@ -1785,7 +3345,173 @@ export declare const EntityDetailSchema: z.ZodObject<{
             textType: string;
             updatedAt?: string | null | undefined;
         }[];
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        acceleratorParticipation: {
+            accelerator: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            acceleratorName: string;
+            asOfDate: string;
+            batch?: string | null | undefined;
+            id: string;
+            program?: string | null | undefined;
+            status?: string | null | undefined;
+        }[];
+        detail: {
+            asOfDate?: string | null | undefined;
+            derivedRange?: {
+                asOfDate: string;
+                bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
+                monthsFromNow: number;
+                targetDate: string;
+            } | null | undefined;
+            discreteValue?: number | null | undefined;
+            entityId: string;
+            id: number;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
+            textValue?: string | null | undefined;
+            typeResearchDetail: string;
+            updatedAt?: string | null | undefined;
+            valueResearchDetail?: string | null | undefined;
+            valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+        }[];
+        snippet: {
+            compliance?: {
+                characterCount: number;
+                meetsRequirements: boolean;
+                violation: string[];
+                wordCount: number;
+            } | null | undefined;
+            entityId: string;
+            id: number;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
+            text: string;
+            textType: string;
+            updatedAt?: string | null | undefined;
+        }[];
+    }, {
+        acceleratorParticipation: {
+            accelerator: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            acceleratorName: string;
+            asOfDate: string;
+            batch?: string | null | undefined;
+            id: string;
+            program?: string | null | undefined;
+            status?: string | null | undefined;
+        }[];
+        detail: {
+            asOfDate?: string | null | undefined;
+            derivedRange?: {
+                asOfDate: string;
+                bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
+                monthsFromNow: number;
+                targetDate: string;
+            } | null | undefined;
+            discreteValue?: number | null | undefined;
+            entityId: string;
+            id: number;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
+            textValue?: string | null | undefined;
+            typeResearchDetail: string;
+            updatedAt?: string | null | undefined;
+            valueResearchDetail?: string | null | undefined;
+            valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
+        }[];
+        snippet: {
+            compliance?: {
+                characterCount: number;
+                meetsRequirements: boolean;
+                violation: string[];
+                wordCount: number;
+            } | null | undefined;
+            entityId: string;
+            id: number;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
+            text: string;
+            textType: string;
+            updatedAt?: string | null | undefined;
+        }[];
+    }>>;
     sitemap: z.ZodObject<{
         hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
         hasAnalysis: z.ZodBoolean;
@@ -1805,7 +3531,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         };
         source?: string | null | undefined;
         updatedAt: string;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         createdAt: string;
         id: number;
         identifier: string;
@@ -1816,7 +3542,29 @@ export declare const EntityDetailSchema: z.ZodObject<{
         };
         source?: string | null | undefined;
         updatedAt: string;
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        createdAt: string;
+        id: number;
+        identifier: string;
+        idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+        owner: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        source?: string | null | undefined;
+        updatedAt: string;
+    }, {
+        createdAt: string;
+        id: number;
+        identifier: string;
+        idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+        owner: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        source?: string | null | undefined;
+        updatedAt: string;
+    }>>>;
 }, z.core.$strip>;
 export type EntityDetail = z.infer<typeof EntityDetailSchema>;
 //# sourceMappingURL=detail.d.ts.map

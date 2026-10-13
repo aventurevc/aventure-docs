@@ -17,7 +17,7 @@ type ClassificationInactiveTagDetailsDefinition = z.infer<typeof ClassificationI
  * @contractShape classification.inactive-tag-details
  * @contractRole canonical
  */
-export declare const ClassificationInactiveTagDetailsSchema: z.ZodType<ClassificationInactiveTagDetailsDefinition>;
+export declare const ClassificationInactiveTagDetailsSchema: z.ZodType<ClassificationInactiveTagDetailsDefinition, z.input<typeof ClassificationInactiveTagDetailsSchemaDefinition>>;
 export type ClassificationInactiveTagDetails = z.infer<typeof ClassificationInactiveTagDetailsSchema>;
 export {};
 //# sourceMappingURL=inactive-tag-details.d.ts.map

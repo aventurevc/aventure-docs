@@ -13,13 +13,25 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 endDate?: string | null | undefined;
                 id: number;
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                endDate?: string | null | undefined;
+                id: number;
+                isCurrent: boolean;
+                role?: "domicile" | "dominant" | "origin" | null | undefined;
+                startDate?: string | null | undefined;
+            }, {
+                endDate?: string | null | undefined;
+                id: number;
+                isCurrent: boolean;
+                role?: "domicile" | "dominant" | "origin" | null | undefined;
+                startDate?: string | null | undefined;
+            }>>>>;
             city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                 id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
                 name: z.ZodString;
@@ -56,11 +68,19 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+        }>>;
         entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entitySlug: z.ZodString;
@@ -92,7 +112,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
             crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
             createdAt?: string | null | undefined;
@@ -109,7 +129,41 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: string;
+        }, {
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: string;
+        }>>>;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         personAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -121,13 +175,25 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown, z.core.$ZodTypeInternals<{
+            }, {
                 endDate?: string | null | undefined;
                 id: number;
                 isCurrent: boolean;
                 role?: "domicile" | "dominant" | "origin" | null | undefined;
                 startDate?: string | null | undefined;
-            }, unknown>>>>;
+            }, z.core.$ZodTypeInternals<{
+                endDate?: string | null | undefined;
+                id: number;
+                isCurrent: boolean;
+                role?: "domicile" | "dominant" | "origin" | null | undefined;
+                startDate?: string | null | undefined;
+            }, {
+                endDate?: string | null | undefined;
+                id: number;
+                isCurrent: boolean;
+                role?: "domicile" | "dominant" | "origin" | null | undefined;
+                startDate?: string | null | undefined;
+            }>>>>;
             city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                 id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
                 name: z.ZodString;
@@ -163,10 +229,16 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         personImage: z.ZodType<{
             isMonogram: boolean;
             picture?: string | null | undefined;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             isMonogram: boolean;
             picture?: string | null | undefined;
-        }, unknown>>;
+        }, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        }, {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        }>>;
         personName: z.ZodString;
         personSlug: z.ZodString;
         personUrlLink: z.ZodArray<z.ZodType<{
@@ -186,7 +258,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown, z.core.$ZodTypeInternals<{
+        }, {
             crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
             crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
             createdAt?: string | null | undefined;
@@ -203,7 +275,41 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
             url: string;
             urlType: string;
-        }, unknown>>>;
+        }, z.core.$ZodTypeInternals<{
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: string;
+        }, {
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            createdAt?: string | null | undefined;
+            id?: number | null | undefined;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            owner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
+            sourceId?: string | null | undefined;
+            status?: string | null | undefined;
+            statusChecked?: string | null | undefined;
+            updatedAt?: string | null | undefined;
+            url: string;
+            urlType: string;
+        }>>>;
         score: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         startDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleFunction: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -249,7 +355,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             short?: string | null | undefined;
         };
         updatedAt?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -287,7 +393,83 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             short?: string | null | undefined;
         };
         updatedAt?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        createdAt?: string | null | undefined;
+        gender?: string | null | undefined;
+        id: string;
+        image: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        lastModifiedAt?: string | null | undefined;
+        nameAlias: {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        }[];
+        nameFirst?: string | null | undefined;
+        nameFull: string;
+        nameLast?: string | null | undefined;
+        nameMiddle?: string | null | undefined;
+        nickname?: string | null | undefined;
+        publicId?: string | null | undefined;
+        semanticMatch?: {
+            computedAt: string;
+            cosineDistance: number;
+            cosineScore: number;
+            modelVersion: string;
+            rank: number;
+            sourceHash: string;
+            sourceId: string;
+            sourceType: string;
+        } | null | undefined;
+        slug: string;
+        suffix?: string | null | undefined;
+        text: {
+            expanded?: string | null | undefined;
+            generatedDescription?: string | null | undefined;
+            short?: string | null | undefined;
+        };
+        updatedAt?: string | null | undefined;
+    }, {
+        createdAt?: string | null | undefined;
+        gender?: string | null | undefined;
+        id: string;
+        image: {
+            isMonogram: boolean;
+            picture?: string | null | undefined;
+        };
+        lastModifiedAt?: string | null | undefined;
+        nameAlias: {
+            displayable?: boolean | null | undefined;
+            name: string;
+            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        }[];
+        nameFirst?: string | null | undefined;
+        nameFull: string;
+        nameLast?: string | null | undefined;
+        nameMiddle?: string | null | undefined;
+        nickname?: string | null | undefined;
+        publicId?: string | null | undefined;
+        semanticMatch?: {
+            computedAt: string;
+            cosineDistance: number;
+            cosineScore: number;
+            modelVersion: string;
+            rank: number;
+            sourceHash: string;
+            sourceId: string;
+            sourceType: string;
+        } | null | undefined;
+        slug: string;
+        suffix?: string | null | undefined;
+        text: {
+            expanded?: string | null | undefined;
+            generatedDescription?: string | null | undefined;
+            short?: string | null | undefined;
+        };
+        updatedAt?: string | null | undefined;
+    }>>;
     similarity: z.ZodType<{
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
@@ -295,14 +477,28 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         origin: "live" | "precomputed";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
         matchedSectionWeight?: number | null | undefined;
         origin: "live" | "precomputed";
         rank: number;
         sharedSectionCount?: number | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        compositeScore?: number | null | undefined;
+        cosineScore?: number | null | undefined;
+        matchedSectionWeight?: number | null | undefined;
+        origin: "live" | "precomputed";
+        rank: number;
+        sharedSectionCount?: number | null | undefined;
+    }, {
+        compositeScore?: number | null | undefined;
+        cosineScore?: number | null | undefined;
+        matchedSectionWeight?: number | null | undefined;
+        origin: "live" | "precomputed";
+        rank: number;
+        sharedSectionCount?: number | null | undefined;
+    }>>;
 }, z.core.$strip>;
 type PersonSimilarityResultDefinition = z.infer<typeof PersonSimilarityResultSchemaDefinition>;
 /**
@@ -314,7 +510,7 @@ type PersonSimilarityResultDefinition = z.infer<typeof PersonSimilarityResultSch
  * @contractShape person.similarity-result
  * @contractRole canonical
  */
-export declare const PersonSimilarityResultSchema: z.ZodType<PersonSimilarityResultDefinition>;
+export declare const PersonSimilarityResultSchema: z.ZodType<PersonSimilarityResultDefinition, z.input<typeof PersonSimilarityResultSchemaDefinition>>;
 export type PersonSimilarityResult = z.infer<typeof PersonSimilarityResultSchema>;
 export {};
 //# sourceMappingURL=similarity-result.d.ts.map

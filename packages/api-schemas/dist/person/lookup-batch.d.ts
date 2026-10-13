@@ -19,7 +19,7 @@ type PersonLookupBatchDefinition = z.infer<typeof PersonLookupBatchSchemaDefinit
  * @contractShape person.lookup-batch
  * @contractRole canonical
  */
-export declare const PersonLookupBatchSchema: z.ZodType<PersonLookupBatchDefinition>;
+export declare const PersonLookupBatchSchema: z.ZodType<PersonLookupBatchDefinition, z.input<typeof PersonLookupBatchSchemaDefinition>>;
 export type PersonLookupBatch = z.infer<typeof PersonLookupBatchSchema>;
 export {};
 //# sourceMappingURL=lookup-batch.d.ts.map

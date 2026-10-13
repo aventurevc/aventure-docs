@@ -12,11 +12,19 @@ declare const BillingAdditionalUsageSchemaDefinition: z.ZodObject<{
         amountCents: number;
         quantity: number;
         type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         amountCents: number;
         quantity: number;
         type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
-    }, unknown>>>;
+    }, z.core.$ZodTypeInternals<{
+        amountCents: number;
+        quantity: number;
+        type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+    }, {
+        amountCents: number;
+        quantity: number;
+        type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+    }>>>;
     resetAt: z.ZodISODateTime;
     spendCapCents: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     spentCents: z.ZodNumber;
@@ -32,7 +40,7 @@ type BillingAdditionalUsageDefinition = z.infer<typeof BillingAdditionalUsageSch
  * @contractShape billing.additional-usage
  * @contractRole canonical
  */
-export declare const BillingAdditionalUsageSchema: z.ZodType<BillingAdditionalUsageDefinition>;
+export declare const BillingAdditionalUsageSchema: z.ZodType<BillingAdditionalUsageDefinition, z.input<typeof BillingAdditionalUsageSchemaDefinition>>;
 export type BillingAdditionalUsage = z.infer<typeof BillingAdditionalUsageSchema>;
 export {};
 //# sourceMappingURL=additional-usage.d.ts.map

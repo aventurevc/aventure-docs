@@ -15,7 +15,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         spendCapCents?: number | null | undefined;
         spentCents: number;
         unbilledCents: number;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         availableCreditCents: number;
         blocked: boolean;
         enabled: boolean;
@@ -30,7 +30,37 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         spendCapCents?: number | null | undefined;
         spentCents: number;
         unbilledCents: number;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        availableCreditCents: number;
+        blocked: boolean;
+        enabled: boolean;
+        funding?: "PREPAID_CREDIT" | "USAGE_INVOICE" | null | undefined;
+        invoiceIncrementCents?: number | null | undefined;
+        meter: {
+            amountCents: number;
+            quantity: number;
+            type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+        }[];
+        resetAt: string;
+        spendCapCents?: number | null | undefined;
+        spentCents: number;
+        unbilledCents: number;
+    }, {
+        availableCreditCents: number;
+        blocked: boolean;
+        enabled: boolean;
+        funding?: "PREPAID_CREDIT" | "USAGE_INVOICE" | null | undefined;
+        invoiceIncrementCents?: number | null | undefined;
+        meter: {
+            amountCents: number;
+            quantity: number;
+            type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+        }[];
+        resetAt: string;
+        spendCapCents?: number | null | undefined;
+        spentCents: number;
+        unbilledCents: number;
+    }>>;
     allowance: z.ZodType<{
         company: {
             limit?: number | null | undefined;
@@ -92,7 +122,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         company: {
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
@@ -153,7 +183,129 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        company: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        entityBrand: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        entityView: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        newCompany: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        newPerson: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        person: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        personView: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        update: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        updatePerson: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        webSearch: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+    }, {
+        company: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        entityBrand: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        entityView: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        newCompany: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        newPerson: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        person: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        personView: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        update: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        updatePerson: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+        webSearch: {
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        };
+    }>>;
     cancelAtPeriodEnd: z.ZodBoolean;
     entitled: z.ZodBoolean;
     pendingPlan: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
@@ -209,7 +361,7 @@ type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDef
  * @contractShape billing.subscription
  * @contractRole canonical
  */
-export declare const BillingSubscriptionSchema: z.ZodType<BillingSubscriptionDefinition>;
+export declare const BillingSubscriptionSchema: z.ZodType<BillingSubscriptionDefinition, z.input<typeof BillingSubscriptionSchemaDefinition>>;
 export type BillingSubscription = z.infer<typeof BillingSubscriptionSchema>;
 export {};
 //# sourceMappingURL=subscription.d.ts.map

@@ -30,7 +30,7 @@ type IntRangeDefinition = z.infer<typeof IntRangeSchemaDefinition>;
  * @contractShape int.range
  * @contractRole canonical
  */
-export declare const IntRangeSchema: z.ZodType<IntRangeDefinition>;
+export declare const IntRangeSchema: z.ZodType<IntRangeDefinition, z.input<typeof IntRangeSchemaDefinition>>;
 export type IntRange = z.infer<typeof IntRangeSchema>;
 export {};
 //# sourceMappingURL=range.d.ts.map

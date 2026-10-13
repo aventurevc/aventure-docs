@@ -7,14 +7,28 @@ declare const SystemBuildSchemaDefinition: z.ZodObject<{
         revision?: string | null | undefined;
         time?: string | null | undefined;
         version?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         artifact?: string | null | undefined;
         group?: string | null | undefined;
         name?: string | null | undefined;
         revision?: string | null | undefined;
         time?: string | null | undefined;
         version?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        artifact?: string | null | undefined;
+        group?: string | null | undefined;
+        name?: string | null | undefined;
+        revision?: string | null | undefined;
+        time?: string | null | undefined;
+        version?: string | null | undefined;
+    }, {
+        artifact?: string | null | undefined;
+        group?: string | null | undefined;
+        name?: string | null | undefined;
+        revision?: string | null | undefined;
+        time?: string | null | undefined;
+        version?: string | null | undefined;
+    }>>;
 }, z.core.$strip>;
 type SystemBuildDefinition = z.infer<typeof SystemBuildSchemaDefinition>;
 /**
@@ -25,7 +39,7 @@ type SystemBuildDefinition = z.infer<typeof SystemBuildSchemaDefinition>;
  * @contractShape system.system-build
  * @contractRole canonical
  */
-export declare const SystemBuildSchema: z.ZodType<SystemBuildDefinition>;
+export declare const SystemBuildSchema: z.ZodType<SystemBuildDefinition, z.input<typeof SystemBuildSchemaDefinition>>;
 export type SystemBuild = z.infer<typeof SystemBuildSchema>;
 export {};
 //# sourceMappingURL=system-build.d.ts.map

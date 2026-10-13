@@ -26,7 +26,7 @@ type ProseViolationDefinition = z.infer<typeof ProseViolationSchemaDefinition>;
  * @contractShape prose.violation
  * @contractRole canonical
  */
-export declare const ProseViolationSchema: z.ZodType<ProseViolationDefinition>;
+export declare const ProseViolationSchema: z.ZodType<ProseViolationDefinition, z.input<typeof ProseViolationSchemaDefinition>>;
 export type ProseViolation = z.infer<typeof ProseViolationSchema>;
 export {};
 //# sourceMappingURL=violation.d.ts.map

@@ -16,7 +16,7 @@ type EntityAcquisitionEvidenceDefinition = z.infer<typeof EntityAcquisitionEvide
  * @contractShape entity.acquisition-evidence
  * @contractRole canonical
  */
-export declare const EntityAcquisitionEvidenceSchema: z.ZodType<EntityAcquisitionEvidenceDefinition>;
+export declare const EntityAcquisitionEvidenceSchema: z.ZodType<EntityAcquisitionEvidenceDefinition, z.input<typeof EntityAcquisitionEvidenceSchemaDefinition>>;
 export type EntityAcquisitionEvidence = z.infer<typeof EntityAcquisitionEvidenceSchema>;
 export {};
 //# sourceMappingURL=acquisition-evidence.d.ts.map

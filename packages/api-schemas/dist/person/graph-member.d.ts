@@ -5,10 +5,16 @@ declare const PersonGraphMemberSchemaDefinition: z.ZodObject<{
     personImage: z.ZodType<{
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         isMonogram: boolean;
         picture?: string | null | undefined;
-    }, unknown>>;
+    }, z.core.$ZodTypeInternals<{
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }, {
+        isMonogram: boolean;
+        picture?: string | null | undefined;
+    }>>;
     personName: z.ZodString;
     personSlug: z.ZodString;
     titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -25,7 +31,7 @@ type PersonGraphMemberDefinition = z.infer<typeof PersonGraphMemberSchemaDefinit
  * @contractShape person.graph-member
  * @contractRole canonical
  */
-export declare const PersonGraphMemberSchema: z.ZodType<PersonGraphMemberDefinition>;
+export declare const PersonGraphMemberSchema: z.ZodType<PersonGraphMemberDefinition, z.input<typeof PersonGraphMemberSchemaDefinition>>;
 export type PersonGraphMember = z.infer<typeof PersonGraphMemberSchema>;
 export {};
 //# sourceMappingURL=graph-member.d.ts.map

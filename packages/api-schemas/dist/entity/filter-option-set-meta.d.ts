@@ -28,10 +28,16 @@ export declare const EntityFilterOptionSetMetaSchema: z.ZodObject<{
     typeGroupMembership: z.ZodOptional<z.ZodArray<z.ZodType<{
         typeGroup: "Investor" | "Organization";
         typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
-    }, unknown, z.core.$ZodTypeInternals<{
+    }, {
         typeGroup: "Investor" | "Organization";
         typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
-    }, unknown>>>>;
+    }, z.core.$ZodTypeInternals<{
+        typeGroup: "Investor" | "Organization";
+        typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
+    }, {
+        typeGroup: "Investor" | "Organization";
+        typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
+    }>>>>;
 }, z.core.$strip>;
 export type EntityFilterOptionSetMeta = z.infer<typeof EntityFilterOptionSetMetaSchema>;
 //# sourceMappingURL=filter-option-set-meta.d.ts.map

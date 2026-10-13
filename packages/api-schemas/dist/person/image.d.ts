@@ -41,7 +41,7 @@ type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
  * @contractShape person.image
  * @contractRole canonical
  */
-export declare const PersonImageSchema: z.ZodType<PersonImageDefinition>;
+export declare const PersonImageSchema: z.ZodType<PersonImageDefinition, z.input<typeof PersonImageSchemaDefinition>>;
 export type PersonImage = z.infer<typeof PersonImageSchema>;
 export {};
 //# sourceMappingURL=image.d.ts.map

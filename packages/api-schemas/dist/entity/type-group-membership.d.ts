@@ -27,7 +27,7 @@ type EntityTypeGroupMembershipDefinition = z.infer<typeof EntityTypeGroupMembers
  * @contractShape entity.type-group-membership
  * @contractRole canonical
  */
-export declare const EntityTypeGroupMembershipSchema: z.ZodType<EntityTypeGroupMembershipDefinition>;
+export declare const EntityTypeGroupMembershipSchema: z.ZodType<EntityTypeGroupMembershipDefinition, z.input<typeof EntityTypeGroupMembershipSchemaDefinition>>;
 export type EntityTypeGroupMembership = z.infer<typeof EntityTypeGroupMembershipSchema>;
 export {};
 //# sourceMappingURL=type-group-membership.d.ts.map

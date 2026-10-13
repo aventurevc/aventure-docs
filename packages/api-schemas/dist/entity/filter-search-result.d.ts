@@ -13,7 +13,7 @@ type EntityFilterSearchResultDefinition = z.infer<typeof EntityFilterSearchResul
  * @contractShape entity.filter-search-result
  * @contractRole canonical
  */
-export declare const EntityFilterSearchResultSchema: z.ZodType<EntityFilterSearchResultDefinition>;
+export declare const EntityFilterSearchResultSchema: z.ZodType<EntityFilterSearchResultDefinition, z.input<typeof EntityFilterSearchResultSchemaDefinition>>;
 export type EntityFilterSearchResult = z.infer<typeof EntityFilterSearchResultSchema>;
 export {};
 //# sourceMappingURL=filter-search-result.d.ts.map

@@ -32,7 +32,7 @@ type SortOrderPersonSortFieldDefinition = z.infer<typeof SortOrderPersonSortFiel
  * @contractShape sort.order-person-sort-field
  * @contractRole canonical
  */
-export declare const SortOrderPersonSortFieldSchema: z.ZodType<SortOrderPersonSortFieldDefinition>;
+export declare const SortOrderPersonSortFieldSchema: z.ZodType<SortOrderPersonSortFieldDefinition, z.input<typeof SortOrderPersonSortFieldSchemaDefinition>>;
 export type SortOrderPersonSortField = z.infer<typeof SortOrderPersonSortFieldSchema>;
 export {};
 //# sourceMappingURL=order-person-sort-field.d.ts.map

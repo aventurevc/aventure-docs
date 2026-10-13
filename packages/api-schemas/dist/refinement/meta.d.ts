@@ -15,7 +15,7 @@ type RefinementMetaDefinition = z.infer<typeof RefinementMetaSchemaDefinition>;
  * @contractShape refinement.meta
  * @contractRole canonical
  */
-export declare const RefinementMetaSchema: z.ZodType<RefinementMetaDefinition>;
+export declare const RefinementMetaSchema: z.ZodType<RefinementMetaDefinition, z.input<typeof RefinementMetaSchemaDefinition>>;
 export type RefinementMeta = z.infer<typeof RefinementMetaSchema>;
 export {};
 //# sourceMappingURL=meta.d.ts.map

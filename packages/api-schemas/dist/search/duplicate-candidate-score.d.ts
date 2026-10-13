@@ -31,7 +31,7 @@ type SearchDuplicateCandidateScoreDefinition = z.infer<typeof SearchDuplicateCan
  * @contractShape search.duplicate-candidate-score
  * @contractRole canonical
  */
-export declare const SearchDuplicateCandidateScoreSchema: z.ZodType<SearchDuplicateCandidateScoreDefinition>;
+export declare const SearchDuplicateCandidateScoreSchema: z.ZodType<SearchDuplicateCandidateScoreDefinition, z.input<typeof SearchDuplicateCandidateScoreSchemaDefinition>>;
 export type SearchDuplicateCandidateScore = z.infer<typeof SearchDuplicateCandidateScoreSchema>;
 export {};
 //# sourceMappingURL=duplicate-candidate-score.d.ts.map

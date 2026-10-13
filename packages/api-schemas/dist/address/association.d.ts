@@ -50,7 +50,7 @@ type AddressAssociationDefinition = z.infer<typeof AddressAssociationSchemaDefin
  * @contractShape address.association
  * @contractRole canonical
  */
-export declare const AddressAssociationSchema: z.ZodType<AddressAssociationDefinition>;
+export declare const AddressAssociationSchema: z.ZodType<AddressAssociationDefinition, z.input<typeof AddressAssociationSchemaDefinition>>;
 export type AddressAssociation = z.infer<typeof AddressAssociationSchema>;
 export {};
 //# sourceMappingURL=association.d.ts.map

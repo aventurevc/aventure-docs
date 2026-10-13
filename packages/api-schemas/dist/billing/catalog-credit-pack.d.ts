@@ -18,7 +18,7 @@ type BillingCatalogCreditPackDefinition = z.infer<typeof BillingCatalogCreditPac
  * @contractShape billing.catalog-credit-pack
  * @contractRole canonical
  */
-export declare const BillingCatalogCreditPackSchema: z.ZodType<BillingCatalogCreditPackDefinition>;
+export declare const BillingCatalogCreditPackSchema: z.ZodType<BillingCatalogCreditPackDefinition, z.input<typeof BillingCatalogCreditPackSchemaDefinition>>;
 export type BillingCatalogCreditPack = z.infer<typeof BillingCatalogCreditPackSchema>;
 export {};
 //# sourceMappingURL=catalog-credit-pack.d.ts.map

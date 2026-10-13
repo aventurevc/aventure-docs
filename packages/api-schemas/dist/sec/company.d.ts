@@ -5,6 +5,7 @@ declare const SecCompanySchemaDefinition: z.ZodObject<{
     entityType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     exchange: z.ZodArray<z.ZodString>;
     filerCategory: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    filingHistoryStart: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
     fiscalYearEnd: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     headquartersCity: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     headquartersCountry: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -12,6 +13,12 @@ declare const SecCompanySchemaDefinition: z.ZodObject<{
     headquartersState: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     headquartersStreet: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     isOperating: z.ZodBoolean;
+    listingProspectus: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        accessionNumber: z.ZodString;
+        documentUrl: z.ZodString;
+        filingDate: z.ZodISODate;
+        form: z.ZodString;
+    }, z.core.$strip>>>;
     matchedVia: z.ZodEnum<{
         NAME: "NAME";
         TICKER: "TICKER";
@@ -34,7 +41,7 @@ type SecCompanyDefinition = z.infer<typeof SecCompanySchemaDefinition>;
  * @contractShape sec.company
  * @contractRole canonical
  */
-export declare const SecCompanySchema: z.ZodType<SecCompanyDefinition>;
+export declare const SecCompanySchema: z.ZodType<SecCompanyDefinition, z.input<typeof SecCompanySchemaDefinition>>;
 export type SecCompany = z.infer<typeof SecCompanySchema>;
 export {};
 //# sourceMappingURL=company.d.ts.map

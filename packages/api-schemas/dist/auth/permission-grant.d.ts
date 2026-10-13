@@ -14,7 +14,7 @@ type AuthPermissionGrantDefinition = z.infer<typeof AuthPermissionGrantSchemaDef
  * @contractShape auth.permission-grant
  * @contractRole canonical
  */
-export declare const AuthPermissionGrantSchema: z.ZodType<AuthPermissionGrantDefinition>;
+export declare const AuthPermissionGrantSchema: z.ZodType<AuthPermissionGrantDefinition, z.input<typeof AuthPermissionGrantSchemaDefinition>>;
 export type AuthPermissionGrant = z.infer<typeof AuthPermissionGrantSchema>;
 export {};
 //# sourceMappingURL=permission-grant.d.ts.map

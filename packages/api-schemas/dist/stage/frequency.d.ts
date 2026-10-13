@@ -14,7 +14,7 @@ type StageFrequencyDefinition = z.infer<typeof StageFrequencySchemaDefinition>;
  * @contractShape stage.frequency
  * @contractRole canonical
  */
-export declare const StageFrequencySchema: z.ZodType<StageFrequencyDefinition>;
+export declare const StageFrequencySchema: z.ZodType<StageFrequencyDefinition, z.input<typeof StageFrequencySchemaDefinition>>;
 export type StageFrequency = z.infer<typeof StageFrequencySchema>;
 export {};
 //# sourceMappingURL=frequency.d.ts.map

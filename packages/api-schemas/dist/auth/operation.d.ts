@@ -22,7 +22,7 @@ type AuthOperationDefinition = z.infer<typeof AuthOperationSchemaDefinition>;
  * @contractShape auth.operation
  * @contractRole canonical
  */
-export declare const AuthOperationSchema: z.ZodType<AuthOperationDefinition>;
+export declare const AuthOperationSchema: z.ZodType<AuthOperationDefinition, z.input<typeof AuthOperationSchemaDefinition>>;
 export type AuthOperation = z.infer<typeof AuthOperationSchema>;
 export {};
 //# sourceMappingURL=operation.d.ts.map
