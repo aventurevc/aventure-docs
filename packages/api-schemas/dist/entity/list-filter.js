@@ -74,7 +74,7 @@ const EntityListFilterSchemaDefinition = z.strictObject({
         .optional(),
     /** Investment stage classification values. */
     stage: z.array(z.string()).optional(),
-    /** Exclude public companies, companies at Series D or later, and acquired companies (including acquired subsidiaries); what startup means. Companies without a recorded stage or operating status stay. */
+    /** Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status. */
     suppressLateStage: z.boolean().nullish(),
     /** Suppress entities with terminal operating status. */
     suppressNonOperating: z.boolean().nullish(),
