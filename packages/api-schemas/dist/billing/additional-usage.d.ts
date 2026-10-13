@@ -30,6 +30,7 @@ export interface BillingAdditionalUsageSchemaInput extends z.input<typeof Billin
  *
  * @openapiSchema BillingAdditionalUsage
  * @endpoint GET /v1/billing/subscription
+ * @endpoint PATCH /v1/billing/additional-usage
  * @usedBySchema BillingSubscriptionSchema
  * @contractShape billing.additional-usage
  * @contractRole canonical

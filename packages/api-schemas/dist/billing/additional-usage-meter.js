@@ -12,6 +12,7 @@ const BillingAdditionalUsageMeterSchemaDefinition = z.object({
  *
  * @openapiSchema BillingAdditionalUsageMeter
  * @endpoint GET /v1/billing/subscription
+ * @endpoint PATCH /v1/billing/additional-usage
  * @usedBySchema BillingAdditionalUsageSchema
  * @contractShape billing.additional-usage-meter
  * @contractRole canonical

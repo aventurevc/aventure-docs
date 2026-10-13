@@ -34,6 +34,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "billing_allowance_exhausted",
             /** The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt. */
             "billing_additional_usage_cap_reached",
+            /** The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key. */
+            "billing_credit_checkout_closed",
             /** A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email. */
             "account_exists",
             /** Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle. */

@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { BillingAdditionalUsageFundingTypeSchema } from "./additional-usage-funding-type.js";
 import { BillingAdditionalUsageMeterSchema } from "./additional-usage-meter.js";
 const BillingAdditionalUsageSchemaDefinition = z.object({
-    /** Prepaid credit not yet consumed by priced usage, in cents. */
+    /** Spendable prepaid credit after pending usage and invoice-line rounding reserves, in cents. */
     availableCreditCents: z.number(),
     /** True while a failed threshold invoice blocks additional usage; paying it in Billing Portal clears the block. */
     blocked: z.boolean(),
@@ -27,6 +27,7 @@ const BillingAdditionalUsageSchemaDefinition = z.object({
  *
  * @openapiSchema BillingAdditionalUsage
  * @endpoint GET /v1/billing/subscription
+ * @endpoint PATCH /v1/billing/additional-usage
  * @usedBySchema BillingSubscriptionSchema
  * @contractShape billing.additional-usage
  * @contractRole canonical

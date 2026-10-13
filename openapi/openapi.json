@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.156"
+    "version": "0.8.157"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -1762,6 +1762,186 @@
         }
       }
     },
+    "/v1/billing/additional-usage": {
+      "patch": {
+        "description": "Turn metered usage past the monthly allowances on or off and choose how it is paid. Free accounts can enable PREPAID_CREDIT; USAGE_INVOICE requires an active AI Plus or AI Pro subscription. Send {\"enabled\":false} to stop recording it. Returns the settings with this UTC month's priced usage.",
+        "operationId": "updateAdditionalUsage",
+        "requestBody": {
+          "content": {
+            "application/merge-patch+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingAdditionalUsageMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingAdditionalUsage"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update Additional Usage Settings",
+        "tags": [
+          "Billing"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
     "/v1/billing/ai-credits": {
       "get": {
         "description": "AI credits are Researchly messages sent in Researchly's current billing period; the cap comes from the caller's tier and resetAt is Researchly's period end.",
@@ -2082,6 +2262,370 @@
           }
         ],
         "summary": "Create or Recover a Checkout Session",
+        "tags": [
+          "Billing"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/billing/credit-purchases": {
+      "post": {
+        "description": "Create or replay a hosted Checkout Session for one credit pack; the paid amount becomes prepaid credit for metered usage, including free accounts. Paid plan entitlements do not change. A repeated Idempotency-Key with the same pack returns the same Session.",
+        "operationId": "createBillingCreditPurchase",
+        "parameters": [
+          {
+            "description": "Caller-chosen key, 1 to 255 characters, that makes a retry return the same Checkout Session instead of a second purchase.",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "minLength": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BillingCreditPurchaseMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingCreditPurchase"
+                }
+              }
+            },
+            "description": "Created",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Buy a Prepaid Additional Usage Credit Pack",
+        "tags": [
+          "Billing"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/billing/credit-purchases/{purchaseId}": {
+      "get": {
+        "description": "Read the current account's purchase amount and confirmed grant or closure time.",
+        "operationId": "getBillingCreditPurchase",
+        "parameters": [
+          {
+            "description": "Purchase identity returned by prepaid credit checkout.",
+            "in": "path",
+            "name": "purchaseId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BillingCreditPurchaseConfirmation"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Read a Prepaid Credit Purchase Confirmation",
         "tags": [
           "Billing"
         ],
@@ -29169,6 +29713,18 @@
             }
           },
           {
+            "description": "Replay key for this account's exact search request, up to 255 characters",
+            "in": "header",
+            "name": "Idempotency-Key",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 255,
+              "minLength": 1,
+              "pattern": "(?U)(?!\\s*$)[^\\p{Cc}]+"
+            }
+          },
+          {
             "description": "Send respond-async to receive a pollable job when a live web search is still running; an Exa provider answers live.",
             "in": "header",
             "name": "Prefer",
@@ -29617,6 +30173,7 @@
               "Caller's subscription is paused, so it does not include this operation. Agent action: surface ProblemDetail.detail and stop; the account must resume the subscription through the resolution's Billing Portal endpoint.",
               "The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; resetAt is when the meter refills and is typically weeks away. Do not retry inside the period even though the status is 429.",
               "The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt.",
+              "The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key.",
               "A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email.",
               "Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle.",
               "Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation.",
@@ -29684,6 +30241,7 @@
               "subscription_paused",
               "billing_allowance_exhausted",
               "billing_additional_usage_cap_reached",
+              "billing_credit_checkout_closed",
               "account_exists",
               "origin_detail_capacity",
               "origin_detail_shutdown",
@@ -30533,6 +31091,117 @@
           }
         }
       },
+      "BillingAdditionalUsageMutation": {
+        "type": "object",
+        "description": "Merge patch of the additional-usage settings. Enabling requires funding; USAGE_INVOICE also requires spendCapCents and invoiceIncrementCents.",
+        "properties": {
+          "enabled": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "Turn recording of usage past the monthly caps on or off."
+          },
+          "funding": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BillingAdditionalUsageFundingType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "invoiceIncrementCents": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Unbilled cents that trigger a USAGE_INVOICE invoice; one of the plan catalog's invoiceIncrementCents."
+          },
+          "spendCapCents": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Monthly spend cap in cents; required for USAGE_INVOICE."
+          }
+        }
+      },
+      "BillingAdditionalUsage": {
+        "type": "object",
+        "description": "Opt-in metered usage past the monthly allowance: settings, spend this UTC month, prepaid credit, and unbilled usage.",
+        "properties": {
+          "availableCreditCents": {
+            "type": "number",
+            "description": "Spendable prepaid credit after pending usage and invoice-line rounding reserves, in cents."
+          },
+          "blocked": {
+            "type": "boolean",
+            "description": "True while a failed threshold invoice blocks additional usage; paying it in Billing Portal clears the block."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether usage past the monthly caps is recorded and billed."
+          },
+          "funding": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/BillingAdditionalUsageFundingType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "invoiceIncrementCents": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "USAGE_INVOICE bills an invoice once unbilled usage reaches this many cents; the invoice can exceed it by the usage recorded while it was being created."
+          },
+          "meter": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BillingAdditionalUsageMeter"
+            }
+          },
+          "resetAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When spentCents returns to zero: the next UTC month."
+          },
+          "spendCapCents": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64",
+            "description": "Monthly spend cap in cents. Required for USAGE_INVOICE; absent for PREPAID_CREDIT means only the prepaid credit bounds usage."
+          },
+          "spentCents": {
+            "type": "number",
+            "description": "Additional usage priced this UTC month, in cents."
+          },
+          "unbilledCents": {
+            "type": "number",
+            "description": "Priced usage not yet paid by credit or placed on an invoice, in cents; the next threshold or period invoice bills it."
+          }
+        },
+        "required": [
+          "availableCreditCents",
+          "blocked",
+          "enabled",
+          "meter",
+          "resetAt",
+          "spentCents",
+          "unbilledCents"
+        ]
+      },
       "ResearchAllowance": {
         "type": "object",
         "description": "Usage allowance for one meter in one billing period, the UTC month by default",
@@ -30628,6 +31297,80 @@
         "required": [
           "expiresAt",
           "plan"
+        ]
+      },
+      "BillingCreditPurchaseMutation": {
+        "type": "object",
+        "description": "Prepaid credit pack to buy through hosted Checkout.",
+        "properties": {
+          "pack": {
+            "$ref": "#/components/schemas/BillingCreditPackType",
+            "description": "Credit pack to buy; its amount becomes prepaid credit."
+          }
+        },
+        "required": [
+          "pack"
+        ]
+      },
+      "BillingCreditPurchase": {
+        "type": "object",
+        "description": "Hosted Checkout destination and expiry for a prepaid credit pack.",
+        "properties": {
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid"
+          },
+          "pack": {
+            "$ref": "#/components/schemas/BillingCreditPackType"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "required": [
+          "expiresAt",
+          "pack",
+          "url"
+        ]
+      },
+      "BillingCreditPurchaseConfirmation": {
+        "type": "object",
+        "description": "One account-owned purchase's confirmed credit grant or checkout closure.",
+        "properties": {
+          "amountCents": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "closedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "grantedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "amountCents",
+          "id"
         ]
       },
       "BillingPlanChangeMutation": {
@@ -43887,78 +44630,6 @@
           "SUBSCRIPTION_REQUIRED"
         ]
       },
-      "BillingAdditionalUsage": {
-        "type": "object",
-        "description": "Opt-in metered usage past the monthly allowance: settings, spend this UTC month, prepaid credit, and unbilled usage.",
-        "properties": {
-          "availableCreditCents": {
-            "type": "number",
-            "description": "Prepaid credit not yet consumed by priced usage, in cents."
-          },
-          "blocked": {
-            "type": "boolean",
-            "description": "True while a failed threshold invoice blocks additional usage; paying it in Billing Portal clears the block."
-          },
-          "enabled": {
-            "type": "boolean",
-            "description": "Whether usage past the monthly caps is recorded and billed."
-          },
-          "funding": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/BillingAdditionalUsageFundingType"
-              },
-              {
-                "type": "null"
-              }
-            ]
-          },
-          "invoiceIncrementCents": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64",
-            "description": "USAGE_INVOICE bills an invoice once unbilled usage reaches this many cents; the invoice can exceed it by the usage recorded while it was being created."
-          },
-          "meter": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BillingAdditionalUsageMeter"
-            }
-          },
-          "resetAt": {
-            "type": "string",
-            "format": "date-time",
-            "description": "When spentCents returns to zero: the next UTC month."
-          },
-          "spendCapCents": {
-            "type": [
-              "integer",
-              "null"
-            ],
-            "format": "int64",
-            "description": "Monthly spend cap in cents. Required for USAGE_INVOICE; absent for PREPAID_CREDIT means only the prepaid credit bounds usage."
-          },
-          "spentCents": {
-            "type": "number",
-            "description": "Additional usage priced this UTC month, in cents."
-          },
-          "unbilledCents": {
-            "type": "number",
-            "description": "Priced usage not yet paid by credit or placed on an invoice, in cents; the next threshold or period invoice bills it."
-          }
-        },
-        "required": [
-          "availableCreditCents",
-          "blocked",
-          "enabled",
-          "meter",
-          "resetAt",
-          "spentCents",
-          "unbilledCents"
-        ]
-      },
       "ResearchAllowanceUsage": {
         "type": "object",
         "properties": {
@@ -44051,49 +44722,6 @@
           "cadence",
           "currency",
           "unitAmount"
-        ]
-      },
-      "BillingAdditionalUsageFundingType": {
-        "type": "string",
-        "description": "PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, up to spendCapCents per month.",
-        "enum": [
-          "PREPAID_CREDIT",
-          "USAGE_INVOICE"
-        ]
-      },
-      "BillingAdditionalUsageMeter": {
-        "type": "object",
-        "description": "One meter's additional usage this UTC month.",
-        "properties": {
-          "amountCents": {
-            "type": "number",
-            "description": "Price of those units in cents."
-          },
-          "quantity": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "$ref": "#/components/schemas/BillingAdditionalUsageType"
-          }
-        },
-        "required": [
-          "amountCents",
-          "quantity",
-          "type"
-        ]
-      },
-      "BillingAdditionalUsageType": {
-        "type": "string",
-        "description": "One metered allowance a paid subscriber may use past its monthly cap.",
-        "enum": [
-          "COMPANY",
-          "PERSON",
-          "ENTITY_VIEW",
-          "ENTITY_BRAND",
-          "PERSON_VIEW",
-          "WEB_SEARCH",
-          "AI_CREDIT"
         ]
       },
       "BillingCatalogAdditionalUsage": {
@@ -44265,6 +44893,19 @@
           "USD_250"
         ]
       },
+      "BillingAdditionalUsageType": {
+        "type": "string",
+        "description": "One metered allowance a paid subscriber may use past its monthly cap.",
+        "enum": [
+          "COMPANY",
+          "PERSON",
+          "ENTITY_VIEW",
+          "ENTITY_BRAND",
+          "PERSON_VIEW",
+          "WEB_SEARCH",
+          "AI_CREDIT"
+        ]
+      },
       "BillingPaymentMethod": {
         "type": "object",
         "description": "Card on file that pays the subscription.",
@@ -44291,6 +44932,36 @@
         "enum": [
           "HOSTED_PAGE",
           "ELEMENTS"
+        ]
+      },
+      "BillingAdditionalUsageFundingType": {
+        "type": "string",
+        "description": "PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, up to spendCapCents per month.",
+        "enum": [
+          "PREPAID_CREDIT",
+          "USAGE_INVOICE"
+        ]
+      },
+      "BillingAdditionalUsageMeter": {
+        "type": "object",
+        "description": "One meter's additional usage this UTC month.",
+        "properties": {
+          "amountCents": {
+            "type": "number",
+            "description": "Price of those units in cents."
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "$ref": "#/components/schemas/BillingAdditionalUsageType"
+          }
+        },
+        "required": [
+          "amountCents",
+          "quantity",
+          "type"
         ]
       },
       "AuthClient": {

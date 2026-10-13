@@ -4,6 +4,8 @@ import { z } from "zod/v4";
  *
  * @openapiSchema BillingAdditionalUsageFundingType
  * @endpoint GET /v1/billing/subscription
+ * @endpoint PATCH /v1/billing/additional-usage
+ * @usedBySchema BillingAdditionalUsageMutationSchema
  * @usedBySchema BillingAdditionalUsageSchema
  * @contractShape billing.additional-usage-funding-type
  * @contractRole canonical

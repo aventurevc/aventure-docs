@@ -21,6 +21,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         account_exists: "account_exists";
         billing_additional_usage_cap_reached: "billing_additional_usage_cap_reached";
         billing_allowance_exhausted: "billing_allowance_exhausted";
+        billing_credit_checkout_closed: "billing_credit_checkout_closed";
         callback_challenge_failed: "callback_challenge_failed";
         callback_connection_refused: "callback_connection_refused";
         callback_http_4xx: "callback_http_4xx";

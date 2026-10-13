@@ -53,6 +53,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/additional-usage-meter",
         schemaName: "BillingAdditionalUsageMeterSchema",
     },
+    BillingAdditionalUsageMutation: {
+        modulePath: "billing/additional-usage-mutation",
+        schemaName: "BillingAdditionalUsageMutationSchema",
+    },
     BillingAdditionalUsageType: {
         modulePath: "billing/additional-usage-type",
         schemaName: "BillingAdditionalUsageTypeSchema",
@@ -90,6 +94,18 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     BillingCreditPackType: {
         modulePath: "billing/credit-pack-type",
         schemaName: "BillingCreditPackTypeSchema",
+    },
+    BillingCreditPurchase: {
+        modulePath: "billing/credit-purchase",
+        schemaName: "BillingCreditPurchaseSchema",
+    },
+    BillingCreditPurchaseConfirmation: {
+        modulePath: "billing/credit-purchase-confirmation",
+        schemaName: "BillingCreditPurchaseConfirmationSchema",
+    },
+    BillingCreditPurchaseMutation: {
+        modulePath: "billing/credit-purchase-mutation",
+        schemaName: "BillingCreditPurchaseMutationSchema",
     },
     BillingPaymentMethod: {
         modulePath: "billing/payment-method",
