@@ -3465,6 +3465,14 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
+        qualifier?: {
+            key: string;
+            option: {
+                label: string;
+                query: string;
+            }[];
+            prompt: string;
+        } | null | undefined;
     }, import("../federated/search.ts").FederatedSearchSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             answer?: {
@@ -6918,6 +6926,14 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
+        qualifier?: {
+            key: string;
+            option: {
+                label: string;
+                query: string;
+            }[];
+            prompt: string;
+        } | null | undefined;
     }, import("../federated/search.ts").FederatedSearchSchemaInput>>;
 }, z.core.$strip>;
 type SharedSearchDefinition = z.infer<typeof SharedSearchSchemaDefinition>;

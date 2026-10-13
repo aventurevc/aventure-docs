@@ -888,6 +888,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "SearchOrderingPersonSortFieldSchema",
     },
     SearchPassage: { modulePath: "search/passage", schemaName: "SearchPassageSchema" },
+    SearchQualifier: { modulePath: "search/qualifier", schemaName: "SearchQualifierSchema" },
+    SearchQualifierOption: {
+        modulePath: "search/qualifier-option",
+        schemaName: "SearchQualifierOptionSchema",
+    },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
     SecListingProspectus: {
