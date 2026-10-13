@@ -146,6 +146,7 @@ export declare const EntityFilterSchema: z.ZodObject<{
         Inactive: "Inactive";
         Operating: "Operating";
     }>>>;
+    originCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
     person: z.ZodOptional<z.ZodArray<z.ZodString>>;
     portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
     portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;

@@ -20,7 +20,7 @@ export const HelpResolutionSchema = z.object({
     operationId: z.string().nullish(),
     /** Which of the mutually exclusive resolve outcomes was reached. */
     outcome: HelpResolutionOutcomeSchema,
-    /** Probability the decision model gave its chosen option (an operation, a task, several, or none); informational, the choice alone decides the outcome. */
+    /** Probability the decision model gave its chosen option (an operation, a task, several, or none). A task or operation chosen with low probability escalates to CLARIFY, leading the candidates or naming the task. */
     probability: z.number().nullish(),
     /** The chosen catalog task for TASK_PLAN, or the task leading a CLARIFY. */
     taskKey: z.string().nullish(),

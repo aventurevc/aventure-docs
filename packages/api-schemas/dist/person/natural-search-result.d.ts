@@ -108,6 +108,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 } | undefined;
                 mainProduct?: string[] | undefined;
                 operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
+                originCountry?: string[] | undefined;
                 person?: string[] | undefined;
                 portfolioHeadquartersCity?: string[] | undefined;
                 portfolioHeadquartersCountry?: string[] | undefined;
@@ -291,6 +292,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 } | undefined;
                 mainProduct?: string[] | undefined;
                 operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
+                originCountry?: string[] | undefined;
                 person?: string[] | undefined;
                 portfolioHeadquartersCity?: string[] | undefined;
                 portfolioHeadquartersCountry?: string[] | undefined;
