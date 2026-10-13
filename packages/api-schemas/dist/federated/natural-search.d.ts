@@ -199,6 +199,7 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
         minimal: "minimal";
         xhigh: "xhigh";
     }>, z.ZodString]>>>;
+    searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
 export interface FederatedNaturalSearchSchemaInput extends z.input<typeof FederatedNaturalSearchSchemaDefinition> {

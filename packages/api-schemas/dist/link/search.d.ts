@@ -3454,6 +3454,14 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
+        qualifier?: {
+            key: string;
+            option: {
+                label: string;
+                query: string;
+            }[];
+            prompt: string;
+        } | null | undefined;
     }, import("../federated/search.ts").FederatedSearchSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             answer?: {
@@ -6907,6 +6915,14 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             unavailable: ("entity" | "news" | "person")[];
         };
+        qualifier?: {
+            key: string;
+            option: {
+                label: string;
+                query: string;
+            }[];
+            prompt: string;
+        } | null | undefined;
     }, import("../federated/search.ts").FederatedSearchSchemaInput>>;
     url: z.ZodString;
 }, z.core.$strip>;

@@ -7,6 +7,7 @@ import { NewsEntityMentionSchema } from "../news/entity-mention.js";
 import { PageResultNewsSchema } from "../pagination/schemas.js";
 import { PersonDetailSchema } from "../person/detail.js";
 import { PersonNaturalSearchResultSchema } from "../person/natural-search-result.js";
+import { SearchQualifierSchema } from "../search/qualifier.js";
 const FederatedSearchSchemaDefinition = z.object({
     /** Canonical entity natural-search result. */
     entity: NaturalSearchResultSchema,
@@ -22,6 +23,8 @@ const FederatedSearchSchemaDefinition = z.object({
     personDetail: z.array(PersonDetailSchema),
     /** Requested and executed strategy for each search scope. */
     provenance: FederatedSearchProvenanceSchema,
+    /** A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */
+    qualifier: SearchQualifierSchema.nullish(),
 });
 /**
  * Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.

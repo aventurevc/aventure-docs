@@ -6866,6 +6866,17 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }[];
         unavailable: ("entity" | "news" | "person")[];
     }, import("./search-provenance.ts").FederatedSearchProvenanceSchemaInput>>;
+    qualifier: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        key: z.ZodString;
+        option: z.ZodArray<z.ZodType<{
+            label: string;
+            query: string;
+        }, import("../search/qualifier-option.ts").SearchQualifierOptionSchemaInput, z.core.$ZodTypeInternals<{
+            label: string;
+            query: string;
+        }, import("../search/qualifier-option.ts").SearchQualifierOptionSchemaInput>>>;
+        prompt: z.ZodString;
+    }, z.core.$strip>>>;
 }, z.core.$strip>;
 type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>;
 export interface FederatedSearchSchemaInput extends z.input<typeof FederatedSearchSchemaDefinition> {
