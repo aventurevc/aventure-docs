@@ -5,9 +5,9 @@
       "email": "team@aventure.vc",
       "name": "aVenture"
     },
-    "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. Corpus writes exist only for credentialed curation callers, so do not offer to add, correct, or backfill records on a reader's behalf; report what the corpus holds and cite it. A signed-in caller's other writes act on their own account or request work: billing checkout, plan changes, and portal sessions, and entity or person enrichment runs. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
+    "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same corpus; the records describe third-party organizations and are not the caller's own data. Reads are the normal use. A connection whose aventure_status permission grant lists edit or delete permissions is a curation caller: make the corpus writes it asks for, with source-backed values and provenance in the sourceType and sourceDetail query parameters. For any other caller, do not offer corpus writes; report what the corpus holds and cite it. To have aVenture research or update a company or person, file an enrichment run with createHarnessRun (POST /v1/harness/runs) for its website or profile URL; the run executes the full research workflow and is attributed to the caller. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.97"
+    "version": "0.8.99"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3672,6 +3672,28 @@
             }
           },
           {
+            "description": "Inclusive earliest timestamp.",
+            "in": "query",
+            "name": "fundraiseActivity.dateAnnouncedRange.min",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Inclusive earliest timestamp."
+            }
+          },
+          {
+            "description": "Inclusive latest timestamp.",
+            "in": "query",
+            "name": "fundraiseActivity.dateAnnouncedRange.max",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Inclusive latest timestamp."
+            }
+          },
+          {
             "description": "Per-round amount-raised ranges in USD. Use plain JSON numbers.",
             "in": "query",
             "name": "fundraiseActivity.amountRaisedRange",
@@ -6732,7 +6754,7 @@
     },
     "/v1/entities/search": {
       "post": {
-        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. semanticQuery defines a bounded result set: the nearest rows at or above a relevance cutoff, capped in size and ordered by score; page numbers reach the whole set and totalElements counts it. A semantic set of 50 rows or fewer can emit a signed cursor; reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with cursor; count-only pages have no content; read totalElements.",
+        "description": "Run keyword, semantic, or explicit structured entity filtering with a structured filter body; Organization expands to the canonical organization type group; semanticQuery ranks by stored content embeddings. For plain-English queries, use POST /v1/search/natural/entities. semanticQuery defines a bounded result set: the nearest rows at or above a relevance cutoff, capped in size and ordered by score; page numbers reach the whole set and totalElements counts it. Page 0 of a semantic set of 50 rows or fewer can emit a signed cursor; other pages continue by page number. To follow the cursor, reuse the same filters, sort, size, and visibility scope. countOnly is unsupported with cursor; count-only pages have no content; read totalElements.",
         "operationId": "searchEntities",
         "parameters": [
           {
@@ -21499,7 +21521,7 @@
             "description": "OK",
             "headers": {
               "X-Next-Cursor": {
-                "description": "Opaque continuation token when another page is available: a semantic window with semanticQuery, otherwise a keyset over the default sort",
+                "description": "Opaque continuation token when another page is available: a semantic window from page 0 with semanticQuery, otherwise a keyset over the default sort",
                 "schema": {
                   "type": "string"
                 },
@@ -38061,6 +38083,14 @@
               "AMOUNT_INVESTED",
               "TOTAL_INVESTMENTS"
             ]
+          },
+          "sortKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Request sort key for this field: pass `sort=<sortKey>,<asc|desc>` to the matching directory list endpoint to reproduce this term. Absent when the field has no request key.",
+            "readOnly": true
           }
         },
         "required": [
@@ -38124,6 +38154,10 @@
               "type": "string"
             }
           },
+          "shareable": {
+            "type": "boolean",
+            "description": "True when the answer has grounded paragraphs and the answer model did not judge the question advertising or promotion; only a shareable answer can be published as a public search page."
+          },
           "text": {
             "type": "string",
             "description": "Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports."
@@ -38141,6 +38175,7 @@
           "confidence",
           "paragraph",
           "relatedQuery",
+          "shareable",
           "text"
         ]
       },
@@ -39003,6 +39038,14 @@
               "HEADQUARTERS_COUNTRY",
               "EMPLOYEE_COUNT"
             ]
+          },
+          "sortKey": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Request sort key for this field: pass `sort=<sortKey>,<asc|desc>` to the matching directory list endpoint to reproduce this term. Absent when the field has no request key.",
+            "readOnly": true
           }
         },
         "required": [
@@ -41740,6 +41783,17 @@
               "$ref": "#/components/schemas/DecimalRange"
             }
           },
+          "dateAnnouncedRange": {
+            "description": "Inclusive announcement timestamp bounds on the same fundraise transaction as round and amountRaisedRange. Announcement dates do not establish funding completion dates.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DateRange"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "investedCompanyName": {
             "type": "array",
             "description": "Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies.",
@@ -41828,6 +41882,28 @@
               "ANY_LOGO_FIRST",
               "REAL_LOGO_FIRST"
             ]
+          }
+        }
+      },
+      "DateRange": {
+        "type": "object",
+        "description": "ISO-8601 timestamp range for temporal filters.",
+        "properties": {
+          "max": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Inclusive latest timestamp."
+          },
+          "min": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time",
+            "description": "Inclusive earliest timestamp."
           }
         }
       },

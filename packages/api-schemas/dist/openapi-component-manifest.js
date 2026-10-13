@@ -193,6 +193,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "datasource/source-metadata",
         schemaName: "DatasourceSourceMetadataSchema",
     },
+    DateRange: { modulePath: "date/range", schemaName: "DateRangeSchema" },
     DecimalRange: { modulePath: "decimal/range", schemaName: "DecimalRangeSchema" },
     DomainConflictDetails: {
         modulePath: "domain/conflict-details",
