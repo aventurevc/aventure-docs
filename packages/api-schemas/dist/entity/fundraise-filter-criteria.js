@@ -9,11 +9,14 @@ import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
  * @openapiSchema EntityFundraiseFilterCriteria
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityListFilterSchema
  * @contractShape entity.fundraise-filter-criteria

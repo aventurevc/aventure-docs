@@ -10826,8 +10826,11 @@ type PageResultEntityListDefinition = z.infer<typeof PageResultEntityListSchemaD
  * @openapiSchema PageResultEntityList
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape pagination.page-result-entity-list
  * @contractRole canonical
@@ -10874,7 +10877,10 @@ type PageResultNewsDefinition = z.infer<typeof PageResultNewsSchemaDefinition>;
  * @openapiSchema PageResultNews
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema FederatedSearchSchema
  * @contractShape pagination.page-result-news
  * @contractRole canonical
@@ -10973,8 +10979,11 @@ type PageResultPersonDefinition = z.infer<typeof PageResultPersonSchemaDefinitio
  * @openapiSchema PageResultPerson
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema PersonNaturalSearchResultSchema
  * @contractShape pagination.page-result-person
  * @contractRole canonical

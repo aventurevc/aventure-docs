@@ -8,7 +8,10 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema NewsResolvedEntityLinkSchema
  * @usedBySchema NewsResolvedPersonLinkSchema
  * @contractShape news.match-status

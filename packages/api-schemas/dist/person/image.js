@@ -25,6 +25,8 @@ const PersonImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
@@ -33,6 +35,7 @@ const PersonImageSchemaDefinition = z.object({
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityPersonAssociationSchema
  * @usedBySchema PersonGraphMemberSchema
  * @usedBySchema PersonSchema

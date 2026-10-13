@@ -14,10 +14,13 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
  * @endpoint GET /v1/entities/{entityId}/research-snippets
  * @endpoint GET /v1/entities/{entityId}/research-snippets/{snippetId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema EntityResearchSchema
  * @usedBySchema PageEntityResearchSnippetSchema
  * @contractShape entity.research-snippet

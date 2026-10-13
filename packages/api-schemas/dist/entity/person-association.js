@@ -22,11 +22,14 @@ import { PersonImageSchema } from "../person/image.js";
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema PageEntityPersonAssociationSchema
  * @usedBySchema PersonDetailSchema
  * @usedBySchema PersonSimilarityResultSchema

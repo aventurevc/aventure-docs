@@ -26,8 +26,11 @@ const PersonSearchInterpretationSchemaDefinition = z.object({
  * @openapiSchema PersonSearchInterpretation
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/people
+ * @endpoint POST /v1/search/shared
  * @usedBySchema PersonNaturalSearchResultSchema
  * @contractShape person.search-interpretation
  * @contractRole canonical

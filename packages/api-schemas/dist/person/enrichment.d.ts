@@ -97,11 +97,14 @@ type PersonEnrichmentDefinition = z.infer<typeof PersonEnrichmentSchemaDefinitio
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema PersonDetailSchema
  * @contractShape person.enrichment
  * @contractRole canonical

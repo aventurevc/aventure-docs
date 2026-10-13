@@ -181,6 +181,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "redirect/current-slug-owner",
         schemaName: "CurrentSlugOwnerSchema",
     },
+    CursorSliceSharedSearchList: {
+        modulePath: "cursor/slice-shared-search-list",
+        schemaName: "CursorSliceSharedSearchListSchema",
+    },
     DatasourceProvenanceActorType: {
         modulePath: "datasource/provenance-actor-type",
         schemaName: "DatasourceProvenanceActorTypeSchema",
@@ -824,6 +828,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/answer-paragraph",
         schemaName: "SearchAnswerParagraphSchema",
     },
+    SearchCacheMode: { modulePath: "search/cache-mode", schemaName: "SearchCacheModeSchema" },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",
@@ -856,6 +861,12 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SearchPassage: { modulePath: "search/passage", schemaName: "SearchPassageSchema" },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
+    SharedSearch: { modulePath: "shared/search", schemaName: "SharedSearchSchema" },
+    SharedSearchList: { modulePath: "shared/search-list", schemaName: "SharedSearchListSchema" },
+    SharedSearchMutation: {
+        modulePath: "shared/search-mutation",
+        schemaName: "SharedSearchMutationSchema",
+    },
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },
     SlugResource: { modulePath: "redirect/slug-resource", schemaName: "SlugResourceSchema" },
     SortObject: { modulePath: "sort/object", schemaName: "SortObjectSchema" },
