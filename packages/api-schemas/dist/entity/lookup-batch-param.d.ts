@@ -10,7 +10,6 @@ export declare const ENTITY_LOOKUP_BATCH_ENDPOINT: "/v1/entities/lookup-batch";
  * @contractRole canonical
  */
 export declare const EntityLookupBatchParamSchema: z.ZodObject<{
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     page: z.ZodOptional<z.ZodInt>;
     size: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;

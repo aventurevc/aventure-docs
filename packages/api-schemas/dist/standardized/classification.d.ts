@@ -17,7 +17,7 @@ type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassific
 export interface StandardizedClassificationSchemaInput extends z.input<typeof StandardizedClassificationSchemaDefinition> {
 }
 /**
- * Canonical standardized classification projection backed by res_classification_ref. Rows are join-existing-only; creatable is false until a taxonomy writer exists.
+ * Industry or ownership classification from a standard taxonomy such as NAICS, SIC, or ISIC, with its category, code, and hierarchy level.
  *
  * @openapiSchema StandardizedClassification
  * @endpoint GET /v1/entities

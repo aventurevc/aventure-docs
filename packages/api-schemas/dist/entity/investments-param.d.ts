@@ -16,7 +16,6 @@ export declare const EntityInvestmentsParamSchema: z.ZodObject<{
     cursor: z.ZodOptional<z.ZodString>;
     dateFrom: z.ZodOptional<z.ZodISODate>;
     dateTo: z.ZodOptional<z.ZodISODate>;
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     latestPerEntity: z.ZodOptional<z.ZodBoolean>;
     maxAmount: z.ZodOptional<z.ZodNumber>;
     minAmount: z.ZodOptional<z.ZodNumber>;

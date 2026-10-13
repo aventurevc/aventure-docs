@@ -7,7 +7,7 @@ const MediaUploadSchemaDefinition = z.object({
     accuracy: LogoAccuracySchema.nullish(),
     /** Resolved API CDN URL */
     cdnUrl: z.string(),
-    /** Earliest recorded write timestamp for this media asset slot from res_provenance_event (when this entity/person/news first received any image in this slot). */
+    /** Earliest time this company, person, or news item received an image in this slot. */
     firstUploadedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Target media domain */
     mediaType: MediaObjectTypeSchema,

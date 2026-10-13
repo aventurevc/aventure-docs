@@ -8,14 +8,14 @@ import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
 import { HarnessRunTypeSchema } from "./run-type.js";
 /**
- * One harness enrichment run
+ * One research run on a company, Product, Service, or person
  *
  * @openapiSchema HarnessRun
- * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments
- * @endpoint POST /v1/harness/runs
  * @endpoint POST /v1/people/{personId}/enrichments
+ * @endpoint POST /v1/research-runs
  * @usedBySchema EnrichmentSchema
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run
@@ -30,11 +30,11 @@ export const HarnessRunSchema = z.object({
     chassisRouted: z.boolean(),
     /** Creation timestamp */
     createdAt: z.iso.datetime({ offset: true }),
-    /** Canonical slug of the entity the run produced */
+    /** Slug of the profile the run produced */
     entitySlug: z.string().nullish(),
     /** API environment */
     environment: HarnessRunEnvironmentSchema,
-    /** Terminal failure reason, when failed */
+    /** Why the run failed; null unless failed */
     error: z.string().nullish(),
     /** Typed terminal-failure class from the harness retry classifier (e.g. runtime_cap, escalated, provider_capacity, context_overflow); null unless failed */
     failureClass: z.string().nullish(),
@@ -58,7 +58,7 @@ export const HarnessRunSchema = z.object({
     maxScoutConcurrent: z.int(),
     /** Enrichment breadth selected for this run */
     mode: EnrichmentModeSchema,
-    /** Orchestrator model id */
+    /** Model the run uses */
     model: z.string(),
     /** Earliest re-claim time when waiting on retry backoff */
     nextAttemptAt: z.iso.datetime({ offset: true }).nullish(),
@@ -70,15 +70,15 @@ export const HarnessRunSchema = z.object({
     status: HarnessRunStatusSchema,
     /** Read-only research, cohort, and completion sub-agent model id */
     subagentModel: z.string(),
-    /** Selected task preset keys filed with the run */
+    /** Research presets filed with the run */
     taskPresetKey: z.array(z.string()).nullish(),
-    /** Run kind derived from task-key presence: ENRICHMENT for a client-submitted comprehensive or preset-scoped run, TASK for a platform-scheduled micro-task execution */
+    /** Run kind: ENRICHMENT for a research request a caller filed, TASK for a narrower run aVenture scheduled */
     type: HarnessRunTypeSchema,
     /** Last update timestamp */
     updatedAt: z.iso.datetime({ offset: true }),
-    /** Company URL under enrichment */
+    /** URL of the company, Product, Service, or person under research */
     url: z.string(),
-    /** Optional steering prompt filed with the run */
+    /** Optional instructions filed with the run */
     userPrompt: z.string().nullish(),
 });
 //# sourceMappingURL=run.js.map

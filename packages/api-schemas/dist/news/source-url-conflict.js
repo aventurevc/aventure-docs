@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DomainConflictTypeSchema } from "../domain/conflict-type.js";
 const NewsSourceUrlConflictSchemaDefinition = z.object({
     /** Existing article id (NewsId.value) that already owns this publication + URL pair. */
     conflictingArticleId: z.int(),
@@ -7,6 +8,8 @@ const NewsSourceUrlConflictSchemaDefinition = z.object({
     conflictingArticleSlug: z.string(),
     /** Existing article title for human-readable diagnostics. */
     conflictingArticleTitle: z.string(),
+    /** Conflict kind that identifies this details shape. */
+    conflictType: DomainConflictTypeSchema.optional(),
 });
 /**
  * Typed extension on ProblemDetail.details for HTTP 409 when a news mutation's publication + newsUrlOriginal pair already belongs to another article. The returned fields identify the existing article so the caller can read/update it instead of creating a duplicate.

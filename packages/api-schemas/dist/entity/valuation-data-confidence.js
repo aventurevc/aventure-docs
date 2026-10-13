@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Confidence tier stored verbatim in res_entity_detail.data_confidence.
+ * Confidence tier for this data point.
  *
  * @openapiSchema EntityValuationDataConfidence
  * @endpoint GET /v1/entities/{entityId}/employee-counts

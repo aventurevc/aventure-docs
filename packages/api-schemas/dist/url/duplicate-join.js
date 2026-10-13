@@ -4,11 +4,11 @@ import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 const UrlDuplicateJoinSchemaDefinition = z.object({
     /** Owner of the URL: either entityId or personId is populated depending on the owner kind. Use the populated id to read or update the owner's URL. */
     owner: EntityPersonOwnerSchema,
-    /** Internal URL row id (res_weburl.id) — opaque to API clients. */
+    /** Identifier of the existing URL record that already holds this address. */
     urlId: z.int(),
 });
 /**
- * URL ownership join row identifying which entity or person currently owns a normalized URL.
+ * Entity or person that currently owns a normalized URL.
  *
  * @openapiSchema UrlDuplicateJoin
  * @standardProblemResponse

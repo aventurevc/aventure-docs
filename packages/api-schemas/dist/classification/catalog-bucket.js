@@ -4,7 +4,7 @@ import { EntityTagSchema } from "../entity/tag.js";
 const ClassificationCatalogBucketSchemaDefinition = z.object({
     /** Other accepted spellings for this bucket (JSON key plus storage form, deduplicated against `type`). The /tags ?type= and /catalog ?bucketType= parameters accept any of `[type, ...alias]`. Empty when the bucket has only one canonical spelling. */
     alias: z.array(z.string()),
-    /** Canonical entity-classification bucket key. Use as EntityClassificationMutation.type when creating by type plus name. */
+    /** Canonical classification bucket key. */
     bucket: z.string().nullish(),
     /** Whether missing values in this bucket can be created by name. */
     creatable: z.boolean(),
@@ -12,7 +12,7 @@ const ClassificationCatalogBucketSchemaDefinition = z.object({
     hierarchical: z.boolean(),
     /** Human-readable bucket label (e.g. 'Revenue Model'). */
     label: z.string(),
-    /** Active registry tags only. Empty when includeTags=false; dormant tags are omitted and require write-time inactiveTagOverride recovery when type + name matches. */
+    /** Active tags only. Empty when includeTags=false. */
     tag: z.array(EntityTagSchema),
     /** Total active tags in this bucket. Populated regardless of `includeTags` so callers can decide whether to fetch detail without a follow-up count query. */
     tagCount: z.int(),

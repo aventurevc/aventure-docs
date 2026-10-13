@@ -18,8 +18,6 @@ export const EntityInvestmentsParamSchema = PageParamSchema.extend({
     dateFrom: z.iso.date().optional(),
     /** Inclusive maximum announced date */
     dateTo: z.iso.date().optional(),
-    /** Includes private fundraise data when the caller has private-visibility authority. Omit to use the caller's default visibility. */
-    includePrivate: z.boolean().optional(),
     /** Return latest transaction per entity */
     latestPerEntity: z.boolean().optional(),
     /** Inclusive maximum amount raised. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings. */

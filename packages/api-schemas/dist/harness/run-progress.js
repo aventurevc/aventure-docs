@@ -4,7 +4,7 @@ import { z } from "zod/v4";
  * Current public progress of a harness run
  *
  * @openapiSchema HarnessRunProgress
- * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run-progress
  * @contractRole canonical
@@ -18,7 +18,7 @@ export const HarnessRunProgressSchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .nullable(),
-    /** Concrete completion gates that remain unmet */
+    /** Profile sections the run has not finished yet */
     gateRemaining: z.array(z.string()),
     /** Optional progress note from the loop */
     note: z.string().nullish(),

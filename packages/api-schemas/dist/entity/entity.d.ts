@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Returned directly by GET /v1/sitemap/entities and the alphabetical (?letter=X) list. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
+ * Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
  *
  * @openapiSchema Entity
  * @endpoint GET /v1/entities
@@ -21,12 +21,12 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
- * @endpoint GET /v1/harness/runs/{runId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/investments
+ * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}

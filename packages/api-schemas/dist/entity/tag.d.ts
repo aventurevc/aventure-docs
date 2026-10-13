@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Canonical classification tag projection. Catalog/search responses describe registry tags; entity-classification responses include classificationId plus join state.
+ * Classification tag. Catalog and search responses describe the tag itself; entity classification responses also carry classificationId and the entity's current and primary flags.
  *
  * @openapiSchema EntityTag
  * @endpoint GET /v1/entities

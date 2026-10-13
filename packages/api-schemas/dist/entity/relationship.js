@@ -18,9 +18,9 @@ const EntityRelationshipSchemaDefinition = z.object({
     entity: EntitySchema,
     /** Integer entity_relationship.id row id, not an entity UUID */
     id: z.int().nullish(),
-    /** Current-state curation flag for this relationship row. Default relationship reads return only rows where isCurrent=true and isPrimary=true. */
+    /** Whether this relationship is current. Default relationship reads return only rows where isCurrent=true and isPrimary=true. */
     isCurrent: z.boolean().nullish(),
-    /** Primary/renderable curation flag for this relationship row. isCurrent=false or isPrimary=false hides the row from default relationship reads. */
+    /** Whether this relationship is the primary one shown. isCurrent=false or isPrimary=false hides the row from default relationship reads. */
     isPrimary: z.boolean().nullish(),
     /** Published page behind this relationship, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
@@ -28,7 +28,7 @@ const EntityRelationshipSchemaDefinition = z.object({
     get relationship() {
         return z.array(EntityRelationshipSchemaDefinition);
     },
-    /** Canonical relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Similarity endpoint rows use stored relationship types when a curation row exists and calculated when the row comes from semantic/vector similarity. */
+    /** Canonical relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Similarity endpoint rows use the stored relationship type when one exists and calculated when the row comes from similarity alone. */
     relationshipType: z.string(),
     /** Canonical source entity UUID stored on the relationship row. Compare with the requested entity id and `/v1/entities/relationships/types` sourceRole/targetRole to orient directional relationships such as parent. */
     sourceEntityId: z.uuid().nullish(),

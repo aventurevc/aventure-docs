@@ -1,5 +1,12 @@
 import { z } from "zod/v4";
 declare const UrlDuplicateConflictSchemaDefinition: z.ZodObject<{
+    conflictType: z.ZodOptional<z.ZodUnion<readonly [z.ZodEnum<{
+        CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
+        DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
+        NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
+        STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
+        URL_DUPLICATE: "URL_DUPLICATE";
+    }>, z.ZodString]>>;
     existingJoin: z.ZodArray<z.ZodType<{
         owner: {
             entityId?: string | null | undefined;

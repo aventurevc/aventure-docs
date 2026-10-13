@@ -18,8 +18,6 @@ export const PersonSearchParamSchema = PageParamSchema.extend({
     cursor: z.string().optional(),
     /** When true, sort people who have a photo before those who do not. */
     hasImageFirst: z.boolean().optional(),
-    /** Includes hidden, unverified, and not-yet-published records when the caller has private-visibility authority. Omit to use the caller's default visibility. */
-    includePrivate: z.boolean().optional(),
     /** When false, monogram fallback logos are stripped from the response. Defaults to true. */
     permitMonogram: z.boolean().optional(),
 });

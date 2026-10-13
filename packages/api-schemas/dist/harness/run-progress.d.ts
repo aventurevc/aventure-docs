@@ -3,7 +3,7 @@ import { z } from "zod/v4";
  * Current public progress of a harness run
  *
  * @openapiSchema HarnessRunProgress
- * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run-progress
  * @contractRole canonical

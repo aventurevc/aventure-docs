@@ -31,7 +31,6 @@ export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchema
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
- * @endpoint GET /v1/harness/runs/{runId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
@@ -40,6 +39,7 @@ export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchema
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/similar
+ * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}

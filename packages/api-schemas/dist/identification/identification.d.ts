@@ -194,14 +194,12 @@ export declare const IdentificationSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
-    matchConfidence: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    matchEvidenceProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     officialUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    stage: z.ZodEnum<{
+    stage: z.ZodOptional<z.ZodEnum<{
         DETERMINISTIC: "DETERMINISTIC";
         JUDGMENT: "JUDGMENT";
         WEB_EVIDENCE: "WEB_EVIDENCE";
-    }>;
+    }>>;
     status: z.ZodEnum<{
         MATCHED: "MATCHED";
         NEEDS_REVIEW: "NEEDS_REVIEW";

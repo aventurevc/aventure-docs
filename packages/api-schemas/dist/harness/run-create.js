@@ -22,7 +22,7 @@ const HarnessRunCreateSchemaDefinition = z.object({
  * Create one harness enrichment run
  *
  * @openapiSchema HarnessRunCreate
- * @endpoint POST /v1/harness/runs
+ * @endpoint POST /v1/research-runs
  * @contractShape harness.run-create
  * @contractRole canonical
  */

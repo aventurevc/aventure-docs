@@ -18,7 +18,7 @@ const SystemStatusSchemaDefinition = z.object({
     minimumMacosBuild: z.int().nullish(),
     /** Minimum supported App Store macOS marketing version; empty disables update enforcement */
     minimumMacosVersion: z.string().nullish(),
-    /** Short hash identifying the exact set of operations this deployment serves. A generated client stamps the same value from the OpenAPI document it was built from; an unequal value means the client catalog is stale. `vc.aventure.application.usecase.system.status.OperationInventory` owns how it is computed. */
+    /** Short hash identifying the exact set of operations this deployment serves. A generated client stamps the same value from the OpenAPI document it was built from; an unequal value means the client catalog is stale. */
     operationFingerprint: z.string(),
     /** Uptime SLA data from external uptime monitoring */
     uptime: UptimeSchema,

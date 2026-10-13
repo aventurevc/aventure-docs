@@ -15,7 +15,6 @@ export declare const EntityPeopleParamSchema: z.ZodObject<{
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     countOnly: z.ZodOptional<z.ZodBoolean>;
     includeAddress: z.ZodOptional<z.ZodBoolean>;
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     includeUrl: z.ZodOptional<z.ZodBoolean>;
     isCurrent: z.ZodOptional<z.ZodBoolean>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;

@@ -17,8 +17,6 @@ export const EntityLookupExactParamSchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .optional(),
-    /** Includes hidden or off-sitemap entities and hidden research snippets when the caller has private-visibility authority. */
-    includePrivate: z.boolean().optional(),
     /** Location candidate: city, state, or country. */
     location: z.string().optional(),
     /** Primary entity name candidate. */

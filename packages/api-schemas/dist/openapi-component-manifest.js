@@ -215,14 +215,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cursor/slice-shared-search-list",
         schemaName: "CursorSliceSharedSearchListSchema",
     },
-    DatasourceDataSourceType: {
-        modulePath: "datasource/data-source-type",
-        schemaName: "DatasourceDataSourceTypeSchema",
-    },
-    DatasourceProvenanceActorType: {
-        modulePath: "datasource/provenance-actor-type",
-        schemaName: "DatasourceProvenanceActorTypeSchema",
-    },
     DatasourceSourceMetadata: {
         modulePath: "datasource/source-metadata",
         schemaName: "DatasourceSourceMetadataSchema",
@@ -232,6 +224,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     DomainConflictDetails: {
         modulePath: "domain/conflict-details",
         schemaName: "DomainConflictDetailsSchema",
+    },
+    DomainConflictType: {
+        modulePath: "domain/conflict-type",
+        schemaName: "DomainConflictTypeSchema",
     },
     DuplicateCreateReview: {
         modulePath: "duplicate/create-review",
@@ -982,7 +978,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "strict/url-lookup-conflict",
         schemaName: "StrictUrlLookupConflictSchema",
     },
-    SuppressionReason: { modulePath: "suppression/reason", schemaName: "SuppressionReasonSchema" },
     SystemBuild: { modulePath: "system/system-build", schemaName: "SystemBuildSchema" },
     SystemBuildDetail: {
         modulePath: "system/system-build-detail",

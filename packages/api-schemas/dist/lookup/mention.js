@@ -7,7 +7,7 @@ const LookupMentionSchemaDefinition = z.object({
     providerName: z.string().nullish(),
     /** Ignored: the lookup searches by name. Still accepted so callers that send it keep working; omit it. */
     searchQuery: z.string().optional(),
-    /** Whether the source names a company, a Product or Service (PRODUCT_SERVICE), or a person. A Product or Service resolves like a company first, then among Product and Service records when that finds no match, and never files a shell. */
+    /** Whether the source names a company, a Product or Service (PRODUCT_SERVICE), or a person. A Product or Service resolves like a company first, then among Product and Service records when that finds no match, and never creates a new record. */
     type: z.enum(["COMPANY", "PERSON", "PRODUCT_SERVICE"]),
 });
 /**

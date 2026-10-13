@@ -14,8 +14,6 @@ export const ENTITY_INVESTORS_ENDPOINT = "/v1/entities/{entityId}/investors";
 export const EntityInvestorsParamSchema = PageParamSchema.extend({
     /** Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort. */
     cursor: z.string().optional(),
-    /** Includes private fundraise data when the caller has private-visibility authority. Omit to use the caller's default visibility. */
-    includePrivate: z.boolean().optional(),
     /** Permit generated monogram fallback */
     permitMonogram: z.boolean().optional(),
 });

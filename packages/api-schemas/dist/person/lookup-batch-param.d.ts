@@ -10,7 +10,6 @@ export declare const PERSON_LOOKUP_BATCH_ENDPOINT: "/v1/people/lookup-batch";
  * @contractRole canonical
  */
 export declare const PersonLookupBatchParamSchema: z.ZodObject<{
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     page: z.ZodOptional<z.ZodInt>;
     size: z.ZodOptional<z.ZodInt>;
 }, z.core.$strip>;

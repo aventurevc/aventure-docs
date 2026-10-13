@@ -1,10 +1,13 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DomainConflictTypeSchema } from "../domain/conflict-type.js";
 const StrictUrlLookupConflictSchemaDefinition = z.object({
     /** Every entity id that currently owns the normalized URL. May be empty when the conflict is between persons; combined with candidatePersonId always > 1. */
     candidateEntityId: z.array(z.uuid()),
     /** Every person id that currently owns the normalized URL. May be empty when the conflict is between entities; combined with candidateEntityId always > 1. */
     candidatePersonId: z.array(z.uuid()),
+    /** Conflict kind that identifies this details shape. */
+    conflictType: DomainConflictTypeSchema.optional(),
     /** Human-readable hint describing which disambiguating query parameters to add. */
     hint: z.string(),
     /** Normalized URL match key the lookup resolved against. Null when normalization could not produce a stable key. */

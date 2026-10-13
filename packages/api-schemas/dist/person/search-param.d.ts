@@ -16,7 +16,6 @@ export declare const PersonSearchParamSchema: z.ZodObject<{
     countOnly: z.ZodOptional<z.ZodBoolean>;
     cursor: z.ZodOptional<z.ZodString>;
     hasImageFirst: z.ZodOptional<z.ZodBoolean>;
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 export type PersonSearchParam = z.infer<typeof PersonSearchParamSchema>;

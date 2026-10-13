@@ -12,7 +12,7 @@ export interface ResearchFindingSchemaInput extends z.input<typeof ResearchFindi
  * One fact you researched, with the page and exact text that support it. The run checks the quote against the page before it writes the fact.
  *
  * @openapiSchema ResearchFinding
- * @endpoint POST /v1/harness/runs
+ * @endpoint POST /v1/research-runs
  * @usedBySchema HarnessRunCreateSchema
  * @contractShape research.finding
  * @contractRole canonical

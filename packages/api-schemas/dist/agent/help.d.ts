@@ -91,7 +91,7 @@ type AgentHelpDefinition = z.infer<typeof AgentHelpSchemaDefinition>;
 export interface AgentHelpSchemaInput extends z.input<typeof AgentHelpSchemaDefinition> {
 }
 /**
- * Grounded natural-language help answer with citations to specific operations, skills, or completion gates. Unsupported questions abstain (LOW confidence) rather than guess.
+ * Help answer with citations to the operations it draws on. Unsupported questions abstain (LOW confidence) rather than guess.
  *
  * @openapiSchema AgentHelp
  * @endpoint POST /v1/agents/help

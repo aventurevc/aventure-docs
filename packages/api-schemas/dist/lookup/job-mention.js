@@ -5,7 +5,7 @@ import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationSchema } from "../identification/identification.js";
 import { PersonSchema } from "../person/person.js";
 const LookupJobMentionSchemaDefinition = z.object({
-    /** The background harness run filed to graduate or merge shell; absent when none was filed, such as when the shell is already public. */
+    /** Research request filed for this mention, if any. */
     enrichmentRunId: z.uuid().nullish(),
     /** POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by decision-model probability and duplicate-check score. */
     entity: z.array(EntityListSchema),
@@ -19,13 +19,13 @@ const LookupJobMentionSchemaDefinition = z.object({
     name: z.string(),
     /** POST /v1/lookup-mentions only: the candidate people as search results show them, ranked like entity. */
     person: z.array(PersonSchema),
-    /** The hidden record filed for a NO_MATCH name when web search finds its own site and the live page names it, or the stored hidden record already holding that site. An article job also requires its article as an independent source. A background enrichment run graduates or merges it (enrichmentRunId). Absent for bulk lookups. */
+    /** New unpublished record aVenture created for a NO_MATCH name that the article and another live page both name. enrichmentRunId names the research already filed for it; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
     shell: EntityPersonOwnerSchema.nullish(),
-    /** One sentence on why no shell was filed for a NO_MATCH name; absent otherwise. */
+    /** Why no new record was created for this NO_MATCH name. */
     shellDetail: z.string().nullish(),
 });
 /**
- * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the hidden shell record filed when it is new. Bulk lookup only identifies names and files no shells.
+ * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new unpublished record created when it is new. Bulk lookup only identifies names and creates no records.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

@@ -592,10 +592,8 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
                 website?: string | null | undefined;
             } | null | undefined;
-            matchConfidence?: number | null | undefined;
-            matchEvidenceProbability?: number | null | undefined;
             officialUrl?: string | null | undefined;
-            stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
+            stage?: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE" | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
@@ -1236,10 +1234,8 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
                 website?: string | null | undefined;
             } | null | undefined;
-            matchConfidence?: number | null | undefined;
-            matchEvidenceProbability?: number | null | undefined;
             officialUrl?: string | null | undefined;
-            stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
+            stage?: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE" | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";

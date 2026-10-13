@@ -3,15 +3,12 @@ import { z } from "zod/v4";
  * Owning API environment
  *
  * @openapiSchema HarnessRunEnvironment
- * @endpoint GET /v1/harness/runs/{runId}
- * @endpoint GET /v1/web/searches/jobs/{jobId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments
- * @endpoint POST /v1/harness/runs
  * @endpoint POST /v1/people/{personId}/enrichments
- * @endpoint POST /v1/web/search
+ * @endpoint POST /v1/research-runs
  * @usedBySchema HarnessRunSchema
- * @usedBySchema SearchSchema
  * @contractShape harness.run-environment
  * @contractRole canonical
  */

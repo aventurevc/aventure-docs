@@ -1,8 +1,11 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DomainConflictTypeSchema } from "../domain/conflict-type.js";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { UrlDuplicateJoinSchema } from "./duplicate-join.js";
 const UrlDuplicateConflictSchemaDefinition = z.object({
+    /** Conflict kind that identifies this details shape. */
+    conflictType: DomainConflictTypeSchema.optional(),
     /** Every current owner that already holds the normalized URL with this urlType. Non-empty when this conflict is emitted. */
     existingJoin: z.array(UrlDuplicateJoinSchema),
     /** True when URL fragment differences were ignored during duplicate matching (i.e., the conflict ignores everything after '#'). */

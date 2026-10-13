@@ -12,7 +12,7 @@ const ClassificationCatalogSchemaDefinition = z.object({
     totalTag: z.int(),
 });
 /**
- * Full active entity classification taxonomy in one payload. Dormant registry tags are omitted from the catalog and surface through write-time 409 recovery instead.
+ * Full active entity classification taxonomy in one payload. Inactive tags are omitted.
  *
  * @openapiSchema ClassificationCatalog
  * @endpoint GET /v1/entities/classifications/catalog

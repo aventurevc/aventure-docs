@@ -10,7 +10,7 @@ const PersonNaturalSearchResultSchemaDefinition = z.object({
     investment: z.array(SearchInvestmentSchema),
     /** Person page returned by the canonical person list engine. */
     result: PageResultPersonSchema,
-    /** Id of this search's stored record; send it with createSearchInteraction to record which results the user selected or opened. Null when the search was not recorded. */
+    /** Id of this search's stored record. Null when the search was not recorded. */
     searchRequestId: z.uuid().nullish(),
 });
 /**

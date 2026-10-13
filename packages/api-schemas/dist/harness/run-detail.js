@@ -4,22 +4,22 @@ import { EntitySchema } from "../entity/entity.js";
 import { HarnessRunProgressSchema } from "./run-progress.js";
 import { HarnessRunSchema } from "./run.js";
 const HarnessRunDetailSchemaDefinition = z.object({
-    /** Current public entity resolved from the run slug */
+    /** Current public profile the run resolved to */
     entity: EntitySchema.nullish(),
-    /** Parsed principal-facing loop progress; null when the raw run status is absent or invalid */
+    /** Latest research progress; null when none is available */
     latestStatus: HarnessRunProgressSchema.nullish(),
     /** Parent organization's core record when the resolved entity is a Product/Service; null for every other entity type */
     provider: EntitySchema.nullish(),
     /** Exact renderable public profile URL for the resolved entity */
     publicUrl: z.string().nullish(),
-    /** Canonical harness run */
+    /** The research run */
     run: HarnessRunSchema,
 });
 /**
- * Harness run with its resolved public entity
+ * Research run with the profile it resolved to
  *
  * @openapiSchema HarnessRunDetail
- * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @contractShape harness.run-detail
  * @contractRole canonical
  */

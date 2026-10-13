@@ -12,7 +12,6 @@ export declare const PERSON_LOOKUP_EXACT_ENDPOINT: "/v1/people/lookup-exact";
 export declare const PersonLookupExactParamSchema: z.ZodObject<{
     includeAddress: z.ZodOptional<z.ZodBoolean>;
     includeAssociation: z.ZodOptional<z.ZodBoolean>;
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     includeUrl: z.ZodOptional<z.ZodBoolean>;
     location: z.ZodOptional<z.ZodString>;
     maxAssociations: z.ZodOptional<z.ZodInt>;

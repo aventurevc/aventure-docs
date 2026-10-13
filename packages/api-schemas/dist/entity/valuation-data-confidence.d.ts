@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Confidence tier stored verbatim in res_entity_detail.data_confidence.
+ * Confidence tier for this data point.
  *
  * @openapiSchema EntityValuationDataConfidence
  * @endpoint GET /v1/entities/{entityId}/employee-counts

@@ -4,17 +4,17 @@ import { ReasoningEffortSchema } from "../reasoning/effort.js";
 import { SearchCacheModeSchema } from "../search/cache-mode.js";
 import { SearchModeSchema } from "../search/mode.js";
 const NaturalSearchSchemaDefinition = z.object({
-    /** Optional chat model for the synthesis answer; null uses the catalog's search answer model. The same allowlist as `model` applies. The answer writes the page heading, title, and description, so this compares answer models without changing the catalog. */
+    /** Optional supported model for the written answer, which also supplies the page heading, title, and description. Omit it to use the default; an unsupported model answers 422. */
     answerModel: z.string().nullish(),
-    /** Search-stage cache policy. use reuses cached search work; bypass computes fresh without retaining outputs; refresh computes fresh and replaces normal entries. Record and immutable query-vector caches retain their own policy. Callers without private-data access always run use. */
+    /** Cache policy. use reuses earlier search work; bypass and refresh compute fresh results and are honored only for accounts with private-data access. */
     cacheMode: SearchCacheModeSchema.default("use").optional(),
     /** Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword`, `semantic`, and `hybrid` (`semantic` and `hybrid` only for one entity's or person's content). */
     mode: SearchModeSchema.default("auto").optional(),
-    /** Optional chat model for planning; null uses the configured natural-search default. A caller without admin authority may only choose an allowlisted model; admin callers are unrestricted. */
+    /** Optional supported model for planning the search. Omit it to use the default; an unsupported model answers 422. */
     model: z.string().nullish(),
     /** Plain-English search request. */
     query: z.string().min(1),
-    /** Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Callers without private-data access are capped at `medium`: an explicit value above it is lowered, and when it is null the resolved effort — the per-model default, the tier default, or, absent an app default, the gateway's own — is still bounded at `medium`. */
+    /** Optional reasoning effort for every model call this search makes: the query planner and the synthesis answer. Each call sends the nearest level its model supports, the lower one on a tie. Accounts without private-data access are capped at `medium`; higher values are lowered. */
     reasoningEffort: ReasoningEffortSchema.nullish(),
     /** Search catalog revision this search reads its qualifier prompts and startup vocabulary from, to compare catalog edits; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404. */
     searchCatalogRevision: z.int().nullish(),

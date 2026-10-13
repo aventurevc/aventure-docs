@@ -182,14 +182,12 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>>;
-        matchConfidence: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-        matchEvidenceProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         officialUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        stage: z.ZodEnum<{
+        stage: z.ZodOptional<z.ZodEnum<{
             DETERMINISTIC: "DETERMINISTIC";
             JUDGMENT: "JUDGMENT";
             WEB_EVIDENCE: "WEB_EVIDENCE";
-        }>;
+        }>>;
         status: z.ZodEnum<{
             MATCHED: "MATCHED";
             NEEDS_REVIEW: "NEEDS_REVIEW";
@@ -791,10 +789,8 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
                 website?: string | null | undefined;
             } | null | undefined;
-            matchConfidence?: number | null | undefined;
-            matchEvidenceProbability?: number | null | undefined;
             officialUrl?: string | null | undefined;
-            stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
+            stage?: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE" | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
@@ -1435,10 +1431,8 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
                 website?: string | null | undefined;
             } | null | undefined;
-            matchConfidence?: number | null | undefined;
-            matchEvidenceProbability?: number | null | undefined;
             officialUrl?: string | null | undefined;
-            stage: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE";
+            stage?: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE" | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";

@@ -12,7 +12,7 @@ const ProblemDetailSchemaDefinition = z.object({
         .enum(["COMPANY", "PERSON", "ENTITY_VIEW", "ENTITY_BRAND", "PERSON_VIEW", "WEB_SEARCH"])
         .nullish(),
     circuitBreaker: z.string().nullish(),
-    /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes indicate infra/admin-only conditions where the correct agent action is to surface the error and stop, not retry. */
+    /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes describe server-side conditions a caller cannot fix: surface the error and stop rather than retry. */
     code: z
         .union([
         z.enum([
@@ -162,7 +162,7 @@ const ProblemDetailSchemaDefinition = z.object({
         .nullish(),
     conflictingRecord: CurrentSlugOwnerSchema.nullish(),
     detail: z.string().optional(),
-    /** Structured conflict details. Create duplicate reviews and deterministic lookup ambiguity return DuplicateCreateReview; the returned candidates are the decision surface for update, create-with-override, or block. score/threshold rank review priority and are not proof that the requested record is absent. */
+    /** Structured conflict details. A possible duplicate or an ambiguous lookup returns its candidate records; score and threshold rank the candidates and do not prove that the requested record is absent. */
     details: DomainConflictDetailsSchema.nullish(),
     error: z.record(z.string(), z.string()).nullish(),
     /** On a duplicate 409, the id of the stored record the request collided with; read or update that record instead of creating it again. Absent when the conflict names no single stored record. */
@@ -170,7 +170,7 @@ const ProblemDetailSchemaDefinition = z.object({
     existingRedirect: RedirectSlugPathSchema.nullish(),
     feId: z.string().nullish(),
     field: z.string().nullish(),
-    /** Harness run ids a batch enrichment filed or reused for its other records before answering this refusal; absent for every other problem. */
+    /** Research request ids a batch filed or reused for its other records before returning this error; absent for every other error. */
     filedRunId: z.array(z.uuid()).nullish(),
     hammingDistance: z.number().int().nullish(),
     hint: z.string().nullish(),
@@ -180,20 +180,35 @@ const ProblemDetailSchemaDefinition = z.object({
     /** Which meter refused the request; names what limit/used/remaining count. */
     limitType: z
         .enum([
+        /** Too many form submissions from this client; retry after retryAfterSeconds. */
         "FORM",
+        /** The service-wide request rate is exhausted; retry after retryAfterSeconds. */
         "GLOBAL",
+        /** Too many requests from this client's network; retry after retryAfterSeconds. */
         "SUBNET",
+        /** Too many requests from this client's address; retry after retryAfterSeconds. */
         "IP",
+        /** A request-rate limit refused the request; retry after retryAfterSeconds. */
         "UNKNOWN",
+        /** The service is handling too many requests at once; retry after a short backoff. */
         "RESILIENCE4J",
+        /** Too many live web searches; retry after retryAfterSeconds. */
         "WEB_SEARCH",
+        /** Too many help questions; retry after retryAfterSeconds. */
         "AGENT_HELP",
+        /** Too many natural-language searches; retry after retryAfterSeconds. */
         "NATURAL_SEARCH",
+        /** The plan's monthly research allowance is used up. It refills at resetAt, often weeks away: stop rather than retry. */
         "BILLING_ALLOWANCE",
+        /** The additional-usage spend cap or prepaid credit is used up, counted in cents: stop rather than retry until the cap is raised or credit is added. */
         "BILLING_ADDITIONAL_USAGE",
+        /** Too many command-line sign-in requests; retry after retryAfterSeconds. */
         "CLERK_PUBLIC_ADMISSION",
+        /** Too many sign-in page load reports; retry after retryAfterSeconds. */
         "CLERK_SCRIPT_LOAD",
+        /** Not currently sent. If seen, retry after retryAfterSeconds. */
         "ORIGIN_DETAIL",
+        /** A model service this request depends on is at capacity; retry after retryAfterSeconds. */
         "INFERENCE_PROVIDER",
     ])
         .nullish(),

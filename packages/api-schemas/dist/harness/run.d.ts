@@ -1,13 +1,13 @@
 import { z } from "zod/v4";
 /**
- * One harness enrichment run
+ * One research run on a company, Product, Service, or person
  *
  * @openapiSchema HarnessRun
- * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments
- * @endpoint POST /v1/harness/runs
  * @endpoint POST /v1/people/{personId}/enrichments
+ * @endpoint POST /v1/research-runs
  * @usedBySchema EnrichmentSchema
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run

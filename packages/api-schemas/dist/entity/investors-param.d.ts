@@ -14,7 +14,6 @@ export declare const EntityInvestorsParamSchema: z.ZodObject<{
     size: z.ZodOptional<z.ZodInt>;
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     cursor: z.ZodOptional<z.ZodString>;
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 export type EntityInvestorsParam = z.infer<typeof EntityInvestorsParamSchema>;

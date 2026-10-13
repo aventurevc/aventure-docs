@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { ClassificationSchema } from "../classification/classification.js";
 /**
- * Canonical classification tag projection. Catalog/search responses describe registry tags; entity-classification responses include classificationId plus join state.
+ * Classification tag. Catalog and search responses describe the tag itself; entity classification responses also carry classificationId and the entity's current and primary flags.
  *
  * @openapiSchema EntityTag
  * @endpoint GET /v1/entities
@@ -35,19 +35,19 @@ import { ClassificationSchema } from "../classification/classification.js";
  * @contractRole canonical
  */
 export const EntityTagSchema = z.intersection(ClassificationSchema, z.object({
-    /** Canonical entity-classification bucket key. Use this as EntityClassificationMutation.type when creating by type plus name; `type` remains the registry wire value for tag search and catalog round-trips. */
+    /** Canonical classification bucket key; `type` is the value tag search and the catalog accept. */
     bucket: z.string().nullish(),
-    /** Entity classification join row id for update/delete; present on entity classification responses and null on discovery responses. */
+    /** Id of this classification on the entity; null in catalog and search results. */
     classificationId: z.int().nullish(),
     /** Whether this bucket permits creating missing values by type plus name. */
     creatable: z.boolean(),
-    /** Registry tag creation timestamp, not the entity join timestamp. */
+    /** Tag creation timestamp, not the time the entity received this tag. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Classification tag registry id from res_type_ref; use as EntityClassificationMutation.tagId. */
+    /** Classification tag id. */
     id: z.int(),
-    /** Current-state flag for this context: registry active flag in discovery, entity join current flag in entity-classification responses. */
+    /** In catalog and search results, whether the tag is active; in entity classification responses, whether the classification is current for the entity. */
     isCurrent: z.boolean().nullish(),
-    /** Entity join primary flag within its bucket; null on catalog/tag discovery. */
+    /** Whether this is the entity's primary classification in its bucket; null in catalog and search results. */
     isPrimary: z.boolean().nullish(),
     /** Name */
     name: z.string().max(255),
@@ -59,7 +59,7 @@ export const EntityTagSchema = z.intersection(ClassificationSchema, z.object({
         .nullish(),
     /** Canonical tag classification type */
     type: z.string(),
-    /** Registry tag update timestamp; join updates return isCurrent/isPrimary but no join updatedAt. */
+    /** Tag update timestamp, not the time the entity's classification changed. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Whether this existing tag can be joined through tagId. */
     writable: z.boolean(),

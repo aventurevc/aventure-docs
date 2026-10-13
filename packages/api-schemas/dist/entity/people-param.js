@@ -16,8 +16,6 @@ export const EntityPeopleParamSchema = PageParamSchema.extend({
     countOnly: z.boolean().optional(),
     /** Include person address records */
     includeAddress: z.boolean().optional(),
-    /** Includes associations on hidden entities when the caller has private-visibility authority. Omit to use the caller's default visibility. */
-    includePrivate: z.boolean().optional(),
     /** Include person URL records */
     includeUrl: z.boolean().optional(),
     /** Current association filter */

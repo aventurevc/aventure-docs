@@ -9,7 +9,7 @@ const EntityClassificationSchemaDefinition = z.object({
     industry: z.array(EntityTagSchema).default([]).optional(),
     /** Main product filter values */
     mainProduct: z.array(EntityTagSchema).default([]).optional(),
-    /** Standardized classification joins from res_classification_ref. Rows are join-existing-only and carry category/code metadata. */
+    /** Standardized taxonomy classifications such as NAICS, SIC, or ISIC codes, with category and code metadata. */
     standardizedClassification: z.array(StandardizedClassificationSchema).default([]).optional(),
     /** Tag filter values */
     tag: z.array(EntityTagSchema).default([]).optional(),
@@ -25,7 +25,7 @@ const EntityClassificationSchemaDefinition = z.object({
     typeTechnologyUsed: z.array(EntityTagSchema).default([]).optional(),
 });
 /**
- * Entity classification join rows grouped by bucket; default reads include only current joins, and includeInactive=true adds inactive/historical joins.
+ * Entity classifications grouped by bucket. Reads return current classifications by default; includeInactive=true adds inactive and historical ones.
  *
  * @openapiSchema EntityClassification
  * @endpoint GET /v1/entities

@@ -15,8 +15,6 @@ export const PersonLookupExactParamSchema = z.object({
     includeAddress: z.boolean().optional(),
     /** Projection qualifier — include association values (default: true). Set false to omit association array. */
     includeAssociation: z.boolean().optional(),
-    /** Includes hidden or off-sitemap people and private fields when the caller has private-visibility authority. */
-    includePrivate: z.boolean().optional(),
     /** Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array. */
     includeUrl: z.boolean().optional(),
     /** Group C — candidate lookup signal: person location (city, state, country). Combine with other group-C signals for bounded search. Mutually exclusive with id and slug; may be combined with url for fallback. */

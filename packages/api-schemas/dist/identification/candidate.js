@@ -17,9 +17,9 @@ import { SearchDuplicateCandidateScoreSchema } from "../search/duplicate-candida
  * @contractRole canonical
  */
 export const IdentificationCandidateSchema = z.object({
-    /** When the record was created. A hidden record created moments before the lookup is a freshly filed shell, not established coverage. */
+    /** When the record was created. A record created moments before the lookup is newly added and not yet researched. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Percentage, 0 to 100, of the entity's required completion-floor slots that pass, as last computed by the background coverage sweep; GET /v1/entities/{entityId}/coverage returns the live per-slot detail. Absent for people, who have no completion floor, and for entities not yet computed. */
+    /** Percentage, 0 to 100, of this company's core profile facts that aVenture holds, as last computed. It measures how complete the record is, not how likely it is the subject. Absent for people and for companies not yet computed. */
     dataCompletionCoverage: z.int().min(0).max(100).nullish(),
     /** Whether this record's stored website agrees with a url the subject supplied; see IdentificationDomainAgreement. */
     domainAgreement: z.enum(["MATCH", "CONFLICT", "UNKNOWN"]).nullish(),
@@ -31,7 +31,7 @@ export const IdentificationCandidateSchema = z.object({
     foundedYear: z.int().nullish(),
     /** Entity identity (entityId) or person identity (personId). record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}. */
     owner: EntityPersonOwnerSchema,
-    /** Decision-model probability, 0 to 1, that this record is the subject; absent when the answer came from URL proof or the model did not judge this record. */
+    /** Confidence, 0 to 1, that this record is the subject: the one confidence to act on. Absent when an exact id, URL, slug, or registry-id match settled the answer, which needs no confidence, or when this record was not compared. */
     probability: z.number().nullish(),
     /** The record with its duplicate-check score and reasons; score 0 with no reason means only vector similarity proposed it. */
     record: SearchDuplicateCandidateScoreSchema,

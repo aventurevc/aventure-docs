@@ -16,10 +16,8 @@ export const EntitySearchParamSchema = PageParamSchema.extend({
     countOnly: z.boolean().optional(),
     /** Opaque entity cursor; reuse filters and sort. Cursor is unsupported with countOnly; semanticQuery depends on the endpoint. */
     cursor: z.string().optional(),
-    /** Privileged read flag. Must be true to return the /v1/entities/detail payload. */
+    /** Set true to return each match as its full company detail record instead of the list row; responses are much larger. */
     includeFullDetail: z.boolean().optional(),
-    /** Includes hidden or off-sitemap entities when the caller has private-visibility authority. Omit to use the caller's default visibility. */
-    includePrivate: z.boolean().optional(),
     /** Allow generated monogram logos in results. */
     permitMonogram: z.boolean().optional(),
 });

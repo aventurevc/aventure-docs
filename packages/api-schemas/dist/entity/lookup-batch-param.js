@@ -11,8 +11,6 @@ export const ENTITY_LOOKUP_BATCH_ENDPOINT = "/v1/entities/lookup-batch";
  * @contractRole canonical
  */
 export const EntityLookupBatchParamSchema = z.object({
-    /** Includes hidden, unverified, and not-yet-published entities when the caller has private-visibility authority. Omit to use the caller's default visibility. */
-    includePrivate: z.boolean().optional(),
     /** Zero-based page index (0..N); omit page and size for the full batch. */
     page: z.int().optional(),
     /** The size of the page to be returned; omit page and size for the full batch. */

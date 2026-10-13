@@ -14,7 +14,7 @@ type AgentHelpQuestionDefinition = z.infer<typeof AgentHelpQuestionSchemaDefinit
 export interface AgentHelpQuestionSchemaInput extends z.input<typeof AgentHelpQuestionSchemaDefinition> {
 }
 /**
- * A natural-language question about how to operate the platform, answered from the operation catalog, agent skills, and completion gates.
+ * A plain-English question about how to use aVenture, answered with references to the operations that do it.
  *
  * @openapiSchema AgentHelpQuestion
  * @endpoint POST /v1/agents/help

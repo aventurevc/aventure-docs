@@ -9,13 +9,13 @@ const StandardizedClassificationSchemaDefinition = z.object({
     creatable: z.boolean(),
     /** Registry row creation timestamp. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Entity classification join row id for update/delete; present on entity classification responses and null on discovery responses. */
+    /** Id of this classification on the entity; null in catalog and search results. */
     entityClassificationId: z.int().nullish(),
-    /** Standardized classification registry id from res_classification_ref; use as EntityClassificationMutation.classificationId. */
+    /** Standardized classification id. */
     id: z.int(),
     /** Standardized reference rows are current by definition. */
     isCurrent: z.boolean().nullish(),
-    /** Entity join primary flag within this standardized category. */
+    /** Whether this is the entity's primary classification in this category. */
     isPrimary: z.boolean().nullish(),
     /** Hierarchy level when present. */
     level: z.int().nullish(),
@@ -27,7 +27,7 @@ const StandardizedClassificationSchemaDefinition = z.object({
     writable: z.boolean(),
 });
 /**
- * Canonical standardized classification projection backed by res_classification_ref. Rows are join-existing-only; creatable is false until a taxonomy writer exists.
+ * Industry or ownership classification from a standard taxonomy such as NAICS, SIC, or ISIC, with its category, code, and hierarchy level.
  *
  * @openapiSchema StandardizedClassification
  * @endpoint GET /v1/entities

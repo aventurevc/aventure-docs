@@ -16,7 +16,6 @@ export declare const EntitySearchParamSchema: z.ZodObject<{
     countOnly: z.ZodOptional<z.ZodBoolean>;
     cursor: z.ZodOptional<z.ZodString>;
     includeFullDetail: z.ZodOptional<z.ZodBoolean>;
-    includePrivate: z.ZodOptional<z.ZodBoolean>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 export type EntitySearchParam = z.infer<typeof EntitySearchParamSchema>;

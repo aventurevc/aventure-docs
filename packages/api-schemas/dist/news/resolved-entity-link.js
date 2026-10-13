@@ -7,6 +7,7 @@ const NewsResolvedEntityLinkSchemaDefinition = z.object({
     /** Canonical entity UUID */
     entityId: z.uuid(),
     href: z.string().nullish(),
+    /** True when href links to this entity's aVenture page; false when the entity has no page to link to. */
     internal: z.boolean(),
     matchStatus: NewsMatchStatusSchema.nullish(),
     mention: z.string().nullish(),

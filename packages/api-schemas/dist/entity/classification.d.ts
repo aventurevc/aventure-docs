@@ -266,7 +266,7 @@ type EntityClassificationDefinition = z.infer<typeof EntityClassificationSchemaD
 export interface EntityClassificationSchemaInput extends z.input<typeof EntityClassificationSchemaDefinition> {
 }
 /**
- * Entity classification join rows grouped by bucket; default reads include only current joins, and includeInactive=true adds inactive/historical joins.
+ * Entity classifications grouped by bucket. Reads return current classifications by default; includeInactive=true adds inactive and historical ones.
  *
  * @openapiSchema EntityClassification
  * @endpoint GET /v1/entities

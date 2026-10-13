@@ -62,7 +62,7 @@ type EntityClassificationSuggestionDefinition = z.infer<typeof EntityClassificat
 export interface EntityClassificationSuggestionSchemaInput extends z.input<typeof EntityClassificationSuggestionSchemaDefinition> {
 }
 /**
- * Ranked classification suggestion derived from the enriched entity profile and classification centroid embeddings. Returned by the default classification discovery endpoint before callers create source-backed classification joins.
+ * Ranked classification suggestion derived from the entity profile and classification embeddings.
  *
  * @openapiSchema EntityClassificationSuggestion
  * @endpoint GET /v1/entities/{entityId}/classifications/suggestions

@@ -1143,14 +1143,12 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>>;
-        matchConfidence: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-        matchEvidenceProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         officialUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        stage: z.ZodEnum<{
+        stage: z.ZodOptional<z.ZodEnum<{
             DETERMINISTIC: "DETERMINISTIC";
             JUDGMENT: "JUDGMENT";
             WEB_EVIDENCE: "WEB_EVIDENCE";
-        }>;
+        }>>;
         status: z.ZodEnum<{
             MATCHED: "MATCHED";
             NEEDS_REVIEW: "NEEDS_REVIEW";
@@ -1250,7 +1248,7 @@ type LookupJobMentionDefinition = z.infer<typeof LookupJobMentionSchemaDefinitio
 export interface LookupJobMentionSchemaInput extends z.input<typeof LookupJobMentionSchemaDefinition> {
 }
 /**
- * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the hidden shell record filed when it is new. Bulk lookup only identifies names and files no shells.
+ * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new unpublished record created when it is new. Bulk lookup only identifies names and creates no records.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

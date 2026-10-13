@@ -98,6 +98,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     detail: z.ZodOptional<z.ZodString>;
     details: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodType<{
+        conflictType?: string | undefined;
         existingJoin: {
             owner: {
                 entityId?: string | null | undefined;
@@ -115,6 +116,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         url: string;
         urlType: string;
     }, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput, z.core.$ZodTypeInternals<{
+        conflictType?: string | undefined;
         existingJoin: {
             owner: {
                 entityId?: string | null | undefined;
@@ -134,6 +136,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     }, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput>>, z.ZodType<{
         candidateEntityId: string[];
         candidatePersonId: string[];
+        conflictType?: string | undefined;
         hint: string;
         normalizedUrl?: string | null | undefined;
         url: string;
@@ -141,6 +144,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     }, import("../strict/url-lookup-conflict.ts").StrictUrlLookupConflictSchemaInput, z.core.$ZodTypeInternals<{
         candidateEntityId: string[];
         candidatePersonId: string[];
+        conflictType?: string | undefined;
         hint: string;
         normalizedUrl?: string | null | undefined;
         url: string;
@@ -157,6 +161,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }[] | null | undefined;
+        conflictType?: string | undefined;
         newsCandidate?: {
             externalId?: string | null | undefined;
             id: number;
@@ -178,6 +183,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }[] | null | undefined;
+        conflictType?: string | undefined;
         newsCandidate?: {
             externalId?: string | null | undefined;
             id: number;
@@ -189,20 +195,24 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         threshold: number;
     }, import("../duplicate/create-review.ts").DuplicateCreateReviewSchemaInput>>, z.ZodType<{
         availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
+        conflictType?: string | undefined;
         slug: string;
         tagId: number;
     }, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput, z.core.$ZodTypeInternals<{
         availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
+        conflictType?: string | undefined;
         slug: string;
         tagId: number;
     }, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput>>, z.ZodType<{
         conflictingArticleId: number;
         conflictingArticleSlug: string;
         conflictingArticleTitle: string;
+        conflictType?: string | undefined;
     }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput, z.core.$ZodTypeInternals<{
         conflictingArticleId: number;
         conflictingArticleSlug: string;
         conflictingArticleTitle: string;
+        conflictType?: string | undefined;
     }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput>>]>>>;
     error: z.ZodOptional<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>>;
     existingRecordId: z.ZodOptional<z.ZodNullable<z.ZodString>>;

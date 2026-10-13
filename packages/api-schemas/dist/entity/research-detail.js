@@ -26,7 +26,7 @@ const EntityResearchDetailSchemaDefinition = z.object({
     valueType: EntityResearchValueTypeSchema,
 });
 /**
- * Canonical research detail row for research.res_entity_detail
+ * Research detail record for an entity.
  *
  * @openapiSchema EntityResearchDetail
  * @endpoint GET /v1/entities

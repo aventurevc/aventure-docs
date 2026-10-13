@@ -40,7 +40,7 @@ type EntityResearchDetailDefinition = z.infer<typeof EntityResearchDetailSchemaD
 export interface EntityResearchDetailSchemaInput extends z.input<typeof EntityResearchDetailSchemaDefinition> {
 }
 /**
- * Canonical research detail row for research.res_entity_detail
+ * Research detail record for an entity.
  *
  * @openapiSchema EntityResearchDetail
  * @endpoint GET /v1/entities

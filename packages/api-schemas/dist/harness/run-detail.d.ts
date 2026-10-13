@@ -172,10 +172,10 @@ type HarnessRunDetailDefinition = z.infer<typeof HarnessRunDetailSchemaDefinitio
 export interface HarnessRunDetailSchemaInput extends z.input<typeof HarnessRunDetailSchemaDefinition> {
 }
 /**
- * Harness run with its resolved public entity
+ * Research run with the profile it resolved to
  *
  * @openapiSchema HarnessRunDetail
- * @endpoint GET /v1/harness/runs/{runId}
+ * @endpoint GET /v1/research-runs/{runId}
  * @contractShape harness.run-detail
  * @contractRole canonical
  */
