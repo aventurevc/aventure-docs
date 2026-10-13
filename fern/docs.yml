@@ -147,7 +147,7 @@ navigation:
             skip-slug: true
             contents:
               - agents
-              - harness
+              - researchRuns
               - system
 
 navbar-links:
@@ -457,8 +457,10 @@ redirects:
     destination: "/api-reference/auth/:slug*"
   - source: "/api-reference/cli-authorizations/:slug*"
     destination: "/api-reference/auth/:slug*"
+  - source: "/api-reference/harness/:slug*"
+    destination: "/api-reference/research-runs/:slug*"
   - source: "/api-reference/harness-runs/:slug*"
-    destination: "/api-reference/harness/:slug*"
+    destination: "/api-reference/research-runs/:slug*"
   - source: "/api-reference/person-batch/:slug*"
     destination: "/api-reference/people/:slug*"
   - source: "/api-reference/personal-api-key/:slug*"

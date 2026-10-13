@@ -34,8 +34,9 @@ company and \$0.65 per person research. Otherwise a single-record call answers
 remaining records `ALLOWANCE_EXHAUSTED`. The free plan answers `402`.
 [Plans and usage](/plans-and-usage) explains allowances and additional usage.
 
-Check a run's progress with `GET /v1/harness/runs/{runId}`, using the `id` of
-the returned run. Its `run.status` moves through `queued` and `running` to
+Check a run's progress with `GET /v1/research-runs/{runId}` (CLI:
+`aventure research-runs get --run-id "$RUN_ID"`), using the `id` of the
+returned run. Its `run.status` moves through `queued` and `running` to
 `completed`, `failed`, or `stopped`. When it is `completed`, read the updated
 record with `GET /v1/entities/{entityId}` or `GET /v1/people/{personId}`
 (CLI: `aventure entities get` or `aventure people get`).
@@ -74,7 +75,13 @@ aventure enrichments enrich --entity-id "$ENTITY_ID" --person-id "$PERSON_ID"
 
 Check each returned run:
 
-```bash
-curl "https://api.aventure.vc/v1/harness/runs/$RUN_ID" \
+<CodeBlocks>
+```bash title="curl"
+curl "https://api.aventure.vc/v1/research-runs/$RUN_ID" \
   -H "Authorization: Bearer $AUTH_TOKEN"
 ```
+
+```bash title="CLI"
+aventure research-runs get --run-id "$RUN_ID"
+```
+</CodeBlocks>
