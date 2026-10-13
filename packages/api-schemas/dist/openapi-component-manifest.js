@@ -886,6 +886,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SearchPassage: { modulePath: "search/passage", schemaName: "SearchPassageSchema" },
     SearchRelevance: { modulePath: "search/relevance", schemaName: "SearchRelevanceSchema" },
     SecCompany: { modulePath: "sec/company", schemaName: "SecCompanySchema" },
+    SecListingProspectus: {
+        modulePath: "sec/listing-prospectus",
+        schemaName: "SecListingProspectusSchema",
+    },
     SharedSearch: { modulePath: "shared/search", schemaName: "SharedSearchSchema" },
     SharedSearchList: { modulePath: "shared/search-list", schemaName: "SharedSearchListSchema" },
     SharedSearchMutation: {

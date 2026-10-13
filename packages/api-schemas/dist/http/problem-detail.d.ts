@@ -217,6 +217,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     feId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     field: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    filedRunId: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodUUID>>>;
     hammingDistance: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     hint: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     instance: z.ZodOptional<z.ZodString>;

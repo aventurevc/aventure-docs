@@ -209,6 +209,7 @@ declare const SharedSearchMutationSchemaDefinition: z.ZodObject<{
             xhigh: "xhigh";
         }>, z.ZodString]>>>;
     }, z.core.$strip>>>;
+    searchRequestId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     size: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type SharedSearchMutationDefinition = z.infer<typeof SharedSearchMutationSchemaDefinition>;
