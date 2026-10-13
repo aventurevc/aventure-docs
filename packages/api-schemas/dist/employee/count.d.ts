@@ -11,7 +11,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EmployeeCountSchema: z.ZodObject<{
-    asOfDate: z.ZodISODateTime;
+    asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     fact: z.ZodType<{
         asOfDate?: string | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;

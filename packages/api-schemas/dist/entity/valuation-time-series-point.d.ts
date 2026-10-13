@@ -1,7 +1,7 @@
 import { z } from "zod/v4";
 declare const EntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
     amountRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    asOfDate: z.ZodISODateTime;
+    asOfDate: z.ZodString;
     confidence: z.ZodEnum<{
         high: "high";
         low: "low";

@@ -26,7 +26,7 @@ import { z } from "zod/v4";
  */
 export declare const EntityFundraiseSchema: z.ZodObject<{
     amountRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
-    dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    dateAnnounced: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodUUID;
     image: z.ZodType<{
         isMonogram: boolean;
