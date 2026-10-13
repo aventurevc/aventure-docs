@@ -30,14 +30,15 @@ identifications and will continue the article yourself.
 2. Read the job with `GET /v1/lookup-jobs/{jobId}` until `state` is
    `COMPLETED` or `FAILED`. Only the caller that started the job can read it.
 3. Act on each entry in `mention`. Every entry has the `name` as the article
-   writes it and a `mentionType` of `COMPANY` or `PERSON`:
+   writes it and a `mentionType` of `COMPANY`, `PRODUCT_SERVICE`, or `PERSON`:
    - `identification` is the lookup answer, read exactly as in
      [Act on the answer](/lookup#act-on-the-answer).
    - `shell` is set when the answer is `NO_MATCH` and the job filed a new
-     record for the name. The job files one only when the article and the
-     subject's own live website both name it. `shell` holds the new record's
-     `entityId` or `personId`, and `enrichmentRunId` names the research run
-     that fills in its profile. Filing it costs nothing.
+     record for the name, or found a record aVenture already holds for the
+     subject's website. The job files one only when the article and the
+     subject's own live website both name it. `shell` holds the record's
+     `entityId` or `personId`; when `enrichmentRunId` is present, it names the
+     research run that fills in the profile. Filing it costs nothing.
    - `shellDetail` says, in one sentence, why no new record was filed for a
      `NO_MATCH` name.
    - `failureReason` replaces `identification` when a name could not be
@@ -79,6 +80,6 @@ aventure lookup-jobs get --job-id "$JOB_ID"
 ```
 </CodeBlocks>
 
-Collect the ids from each matched mention's `match.owner`, then
-[queue research](/research-updates) on the ones worth updating. New records in
-`shell` already have a research run.
+Collect the ids from each matched mention's `match.owner` and from each `shell`
+without an `enrichmentRunId`, then [queue research](/research-updates) on the
+ones worth updating.
