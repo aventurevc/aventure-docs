@@ -7,6 +7,7 @@ declare const ResearchDetailTypeSchemaDefinition: z.ZodObject<{
         max: z.ZodNumber;
         min: z.ZodNumber;
     }, z.core.$strip>>>;
+    signed: z.ZodOptional<z.ZodBoolean>;
     targetPath: z.ZodString;
     timeSeries: z.ZodBoolean;
     typeValue: z.ZodString;

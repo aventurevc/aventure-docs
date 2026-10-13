@@ -81,24 +81,11 @@ type PageBlogPostDefinition = z.infer<typeof PageBlogPostSchemaDefinition>;
 export declare const PageBlogPostSchema: z.ZodType<PageBlogPostDefinition>;
 export type PageBlogPost = z.infer<typeof PageBlogPostSchema>;
 declare const PageClassificationSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodType<{
+    content: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodIntersection<z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
-        writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
         writable: boolean;
     }, unknown, z.core.$ZodTypeInternals<{
         creatable: boolean;
@@ -106,20 +93,20 @@ declare const PageClassificationSchemaDefinition: z.ZodObject<{
         isPrimary?: boolean | null | undefined;
         name: string;
         writable: boolean;
-    } & {
-        bucket?: string | null | undefined;
-        classificationId?: number | null | undefined;
-        creatable: boolean;
-        createdAt?: string | null | undefined;
-        id: number;
-        isCurrent?: boolean | null | undefined;
-        isPrimary?: boolean | null | undefined;
-        name: string;
-        slug?: string | null | undefined;
-        type: string;
-        updatedAt?: string | null | undefined;
-        writable: boolean;
-    }, unknown>>, z.ZodType<{
+    }, unknown>>, z.ZodObject<{
+        bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        creatable: z.ZodBoolean;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        name: z.ZodString;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        type: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        writable: z.ZodBoolean;
+    }, z.core.$strip>>, z.ZodType<{
         creatable: boolean;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -871,6 +858,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -1153,6 +1141,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -2961,6 +2950,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3893,6 +3883,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -4862,6 +4853,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -5340,6 +5332,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -6399,6 +6392,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -6891,6 +6885,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -10178,6 +10173,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -10656,6 +10652,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;

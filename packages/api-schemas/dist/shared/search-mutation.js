@@ -11,6 +11,8 @@ const SharedSearchMutationSchemaDefinition = z.object({
     query: z.string().max(2000).nullish(),
     /** The federated search body the sharing page ran, as on POST /v1/search; its query must equal query. The share then publishes the answer that page showed when it is still cached, else runs this search. answerModel is not accepted; cacheMode is always use. Omitted runs query alone. */
     search: FederatedNaturalSearchSchema.nullish(),
+    /** entity.searchRequestId of the federated search response the sharing page showed. When that search was signed in, asked this query (ignoring case), and its shareable answer is still kept, the share publishes exactly that answer without searching again; otherwise search, size, and layer apply. */
+    searchRequestId: z.uuid().nullish(),
     /** Page size the sharing page searched with, under the same page-size cap; omitted uses the default page size. */
     size: z.int().min(1).nullish(),
 });

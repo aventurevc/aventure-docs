@@ -10,6 +10,8 @@ const ResearchDetailTypeSchemaDefinition = z.object({
     label: z.string(),
     /** Inclusive numeric bounds for numericRatio, numericScore, and numericGrowthRate. numericGrowthRate values use percentage points: 80 means 80%, not 0.8. */
     range: ResearchValueRangeSchema.nullish(),
+    /** Whether a monetary discreteValue may be negative (losses, net cash); absent or false means amounts must be >= 0. */
+    signed: z.boolean().optional(),
     targetPath: z.string(),
     /** Whether rows are dated history; true means add current observations and keep believable old rows. */
     timeSeries: z.boolean(),
