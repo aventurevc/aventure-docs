@@ -871,6 +871,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -1153,6 +1154,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -2961,6 +2963,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -3893,6 +3896,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -4862,6 +4866,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -5340,6 +5345,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -6399,6 +6405,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -6891,6 +6898,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
+                headquartersRemoteAsOf?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -10178,6 +10186,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -10656,6 +10665,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
+            headquartersRemoteAsOf?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
