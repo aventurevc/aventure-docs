@@ -7,7 +7,7 @@ import { PersonSchema } from "../person/person.js";
 const LookupJobMentionSchemaDefinition = z.object({
     /** Research request filed for this mention, if any. */
     enrichmentRunId: z.uuid().nullish(),
-    /** POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by decision-model probability and duplicate-check score. */
+    /** POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by match probability and duplicate-check score. */
     entity: z.array(EntityListSchema),
     /** One sentence on why this name could not be identified; absent otherwise. */
     failureReason: z.string().nullish(),

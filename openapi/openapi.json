@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a shared research database covering privately held companies — their teams, products and services, fundraising rounds, investors, and related news. Every caller reads the same records; they describe third-party organizations and are not the caller's own data. Answer from what the database holds and cite the records you use. To have aVenture research a company or person it does not cover yet, or refresh one, request research with POST /v1/research-runs for its website or profile URL. A signed-in caller's other writes act on their own account: billing checkout, plan changes, and portal sessions. When a call answers 429 with code billing_allowance_exhausted, tell the caller which limit they reached, list plans with monthly and annual prices, and change the plan only after they confirm.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.175"
+    "version": "0.8.176"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -12341,7 +12341,7 @@
     },
     "/v1/entities/{entityId}/investors": {
       "get": {
-        "description": "Lists entity investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "description": "Lists entity investors with per-round investorAttribution rows. Use entityId for the fundraising/portfolio company being invested in, whose investors to list — always a company, never an investor fund or firm. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amountRaised. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values. For more than a few investors, send compact=true: each row keeps the investor's own profile and returns its people, news, rounds, relationships, and research as empty lists.",
         "operationId": "listEntityInvestors",
         "parameters": [
           {
@@ -12370,6 +12370,15 @@
             "description": "Permit generated monogram fallback",
             "in": "query",
             "name": "permitMonogram",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Set true to return each investor's own profile with its people, news, funding rounds, relationships, and research as empty lists, not absent fields; the profile's sitemap flags still show which of them exist. Responses are much smaller.",
+            "in": "query",
+            "name": "compact",
             "required": false,
             "schema": {
               "type": "boolean"
@@ -17154,13 +17163,13 @@
             }
           },
           {
-            "description": "Kind of record to identify when you know it; the lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
+            "description": "Kind of record to identify when you know it; only that kind is looked up. typeRecord or providerId implies ENTITY.",
             "in": "query",
             "name": "kind",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Which kind of record a lookup identifies: ENTITY (a company, product, or service) or PERSON. Only that kind's ladder runs; omit it to compare both kinds.",
+              "description": "Which kind of record a lookup identifies: ENTITY (a company, product, or service) or PERSON. Only that kind is looked up; omit it to compare both kinds.",
               "enum": [
                 "ENTITY",
                 "PERSON"
@@ -21053,7 +21062,7 @@
     "/v1/people/lookup": {
       "post": {
         "deprecated": true,
-        "description": "Deprecated: send the same body to lookup-from-file (POST /v1/lookup) with kind PERSON. Identifies which person a name refers to among the records you can see, and returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} or queue research on them with POST /v1/people/{personId}/enrichments. NO_MATCH: no record you can see is this person. NEEDS_REVIEW: several candidates fit; resend with the person's LinkedIn or personal URL, and employer and title as context, to settle it. stage names the step that settled the answer: DETERMINISTIC (URL proof, no model call), JUDGMENT (decision model), or WEB_EVIDENCE (added a web search). The same name at a different employer is a different person. For full detail by exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
+        "description": "Deprecated: send the same body to lookup-from-file (POST /v1/lookup) with kind PERSON. Identifies which person a name refers to among the records you can see, and returns status MATCHED, NO_MATCH, or NEEDS_REVIEW. MATCHED: match.owner.personId is the person; read them with GET /v1/people/{personId} or queue research on them with POST /v1/people/{personId}/enrichments. NO_MATCH: no record you can see is this person. NEEDS_REVIEW: several candidates fit; resend with the person's LinkedIn or personal URL, and employer and title as context, to settle it. stage names the step that settled the answer: DETERMINISTIC (URL proof, no model call), JUDGMENT (a model review), or WEB_EVIDENCE (added a web search). The same name at a different employer is a different person. For full detail by exact slug or URL use GET /v1/people/lookup-exact. Example body: {\"name\":\"Jane Doe\",\"context\":\"CEO at Acme AI\"}.",
         "operationId": "lookupPerson",
         "parameters": [
           {
@@ -32417,7 +32426,7 @@
               "string",
               "null"
             ],
-            "description": "Kind of record to identify when you know it; the lookup then runs only that kind's ladder. typeRecord or providerId implies ENTITY.",
+            "description": "Kind of record to identify when you know it; only that kind is looked up. typeRecord or providerId implies ENTITY.",
             "enum": [
               "ENTITY",
               "PERSON"
@@ -42335,7 +42344,7 @@
           },
           "entity": {
             "type": "array",
-            "description": "POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by decision-model probability and duplicate-check score.",
+            "description": "POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by match probability and duplicate-check score.",
             "items": {
               "$ref": "#/components/schemas/EntityList"
             }
@@ -44084,7 +44093,7 @@
               "null"
             ],
             "format": "double",
-            "description": "Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED."
+            "description": "Probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED."
           },
           "foundedYear": {
             "type": [
@@ -45358,7 +45367,7 @@
               "null"
             ],
             "format": "double",
-            "description": "Probability the decision model gave its chosen option (an operation, a task, several, or none). A task or operation chosen with low probability escalates to CLARIFY, leading the candidates or naming the task."
+            "description": "Confidence, 0 to 1, in the chosen option (an operation, a catalog task, several, or none). A low-confidence choice becomes CLARIFY, listing the candidates."
           },
           "taskKey": {
             "type": [

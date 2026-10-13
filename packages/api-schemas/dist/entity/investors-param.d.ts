@@ -13,6 +13,7 @@ export declare const EntityInvestorsParamSchema: z.ZodObject<{
     page: z.ZodOptional<z.ZodInt>;
     size: z.ZodOptional<z.ZodInt>;
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
+    compact: z.ZodOptional<z.ZodBoolean>;
     cursor: z.ZodOptional<z.ZodString>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;

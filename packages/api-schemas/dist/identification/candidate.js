@@ -25,7 +25,7 @@ export const IdentificationCandidateSchema = z.object({
     domainAgreement: z.enum(["MATCH", "CONFLICT", "UNKNOWN"]).nullish(),
     /** How this record was checked as the picked record stored again; absent when it was not checked. */
     duplicateBasis: z.enum(["STUB", "SHARED_FACT", "JUDGED"]).nullish(),
-    /** Decision-model probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED. */
+    /** Probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED. */
     duplicateProbability: z.number().nullish(),
     /** The year the entity was founded, when stored; absent for people and records without one. */
     foundedYear: z.int().nullish(),
