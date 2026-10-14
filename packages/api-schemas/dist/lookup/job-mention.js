@@ -19,7 +19,7 @@ const LookupJobMentionSchemaDefinition = z.object({
     name: z.string(),
     /** POST /v1/lookup-mentions only: the candidate people as search results show them, ranked like entity. */
     person: z.array(PersonSchema),
-    /** New unpublished record aVenture created for a NO_MATCH name that the article and another live page both name. enrichmentRunId names the research already filed for it; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
+    /** New unpublished record aVenture created, at no charge, for a NO_MATCH name whose own live site names it. enrichmentRunId names research filed for it, if any; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
     shell: EntityPersonOwnerSchema.nullish(),
     /** Why no new record was created for this NO_MATCH name. */
     shellDetail: z.string().nullish(),

@@ -24,6 +24,11 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
         location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        sourceIdentifier: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            identifier: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            idType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>>>;
         sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{

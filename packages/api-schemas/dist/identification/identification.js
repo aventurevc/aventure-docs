@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { IdentificationCandidateSchema } from "./candidate.js";
+import { UrlHostFormResolutionSchema } from "../url/host-form-resolution.js";
 /**
  * Which existing entity or person satisfies the requested identity, type, and provider scope, how that was settled, and the candidates considered, most probable first.
  *
@@ -19,13 +20,13 @@ import { IdentificationCandidateSchema } from "./candidate.js";
 export const IdentificationSchema = z.object({
     /** Records considered, most probable first. */
     candidate: z.array(IdentificationCandidateSchema),
-    /** With fileOnMiss=true, the new record this NO_MATCH created, or the existing one that already held its website. Absent otherwise. */
+    /** The new unpublished record a NO_MATCH subject with a proven own site was added as, or the existing one that already held its website. Absent otherwise. */
     created: IdentificationCandidateSchema.nullish(),
     /** One sentence naming what settled the answer or what the user must decide. */
     detail: z.string(),
     /** Other records that appear to describe the same subject as match. Empty when none were found. */
     duplicate: z.array(IdentificationCandidateSchema),
-    /** Research request filed for the created record; absent without created, and when the record is already public. */
+    /** Research request filed for the created record; absent without created, when the lookup did not request research on it, and when the record is already public. */
     enrichmentRunId: z.uuid().nullish(),
     /** true when the match was settled on a second, slower review; confirm it before relying on it. Absent otherwise. */
     languageModelSettled: z.boolean().nullish(),
@@ -35,5 +36,7 @@ export const IdentificationSchema = z.object({
     officialUrl: z.string().nullish(),
     /** Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
+    /** Fresh backend URL evidence gathered when verifyUrl=true; empty otherwise. */
+    urlHostForm: z.array(UrlHostFormResolutionSchema),
 });
 //# sourceMappingURL=identification.js.map

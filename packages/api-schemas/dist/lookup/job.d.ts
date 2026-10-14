@@ -188,6 +188,25 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             NEEDS_REVIEW: "NEEDS_REVIEW";
             NO_MATCH: "NO_MATCH";
         }>;
+        urlHostForm: z.ZodArray<z.ZodType<{
+            concluded: boolean;
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            landingHost?: string | null | undefined;
+            outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+            status?: string | null | undefined;
+            submittedUrl: string;
+            url: string;
+        }, import("../url/host-form-resolution.ts").UrlHostFormResolutionSchemaInput, z.core.$ZodTypeInternals<{
+            concluded: boolean;
+            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+            landingHost?: string | null | undefined;
+            outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+            status?: string | null | undefined;
+            submittedUrl: string;
+            url: string;
+        }, import("../url/host-form-resolution.ts").UrlHostFormResolutionSchemaInput>>>;
     }, z.core.$strip>>>;
     jobId: z.ZodUUID;
     limitReached: z.ZodBoolean;
@@ -757,6 +776,16 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             officialUrl?: string | null | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
+            urlHostForm: {
+                concluded: boolean;
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                landingHost?: string | null | undefined;
+                outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+                status?: string | null | undefined;
+                submittedUrl: string;
+                url: string;
+            }[];
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
@@ -1369,6 +1398,16 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             officialUrl?: string | null | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
+            urlHostForm: {
+                concluded: boolean;
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                landingHost?: string | null | undefined;
+                outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+                status?: string | null | undefined;
+                submittedUrl: string;
+                url: string;
+            }[];
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
@@ -1436,6 +1475,11 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             location?: string | null | undefined;
             name?: string | null | undefined;
             providerId?: string | null | undefined;
+            sourceIdentifier?: {
+                identifier?: string | null | undefined;
+                idType?: string | null | undefined;
+                source?: string | null | undefined;
+            } | null | undefined;
             sourceNewsId?: number | null | undefined;
             sourceUrl?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
@@ -1458,6 +1502,11 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             location?: string | null | undefined;
             name?: string | null | undefined;
             providerId?: string | null | undefined;
+            sourceIdentifier?: {
+                identifier?: string | null | undefined;
+                idType?: string | null | undefined;
+                source?: string | null | undefined;
+            } | null | undefined;
             sourceNewsId?: number | null | undefined;
             sourceUrl?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;

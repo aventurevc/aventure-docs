@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityTypeSchema } from "../entity/type.js";
+import { UniqueIdMutationSchema } from "../unique/id-mutation.js";
 /**
  * The company, Product, Service, or person to identify. Send the name, a URL it owns, or both, plus every location and source you have; a website or profile URL usually settles the answer without any model call.
  *
@@ -26,6 +27,8 @@ export const IdentificationSubjectSchema = z.object({
     name: z.string().max(200).nullish(),
     /** Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup. */
     providerId: z.uuid().nullish(),
+    /** Internal permanent Folk source identity. Requires private visibility and resolves before names or URLs. */
+    sourceIdentifier: UniqueIdMutationSchema.nullish(),
     /** aVenture news id of the article that mentions the subject; an unknown id is a 400. */
     sourceNewsId: z.int().nullish(),
     /** URL of the article that mentions the subject; read from aVenture news when stored there, otherwise fetched. */

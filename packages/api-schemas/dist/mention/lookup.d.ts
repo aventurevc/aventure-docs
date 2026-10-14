@@ -565,6 +565,16 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             officialUrl?: string | null | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
+            urlHostForm: {
+                concluded: boolean;
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                landingHost?: string | null | undefined;
+                outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+                status?: string | null | undefined;
+                submittedUrl: string;
+                url: string;
+            }[];
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
@@ -1177,6 +1187,16 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             officialUrl?: string | null | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
+            urlHostForm: {
+                concluded: boolean;
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                landingHost?: string | null | undefined;
+                outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+                status?: string | null | undefined;
+                submittedUrl: string;
+                url: string;
+            }[];
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;

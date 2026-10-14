@@ -10,6 +10,7 @@ const ProblemTypeSchemaKnownMembers = z.enum({
     INVALID_TOKEN: "https://api.aventure.vc/errors/invalid-token",
     TOKEN_EXPIRED: "https://api.aventure.vc/errors/token-expired",
     INVALID_AUTHENTICATION: "https://api.aventure.vc/errors/invalid-authentication",
+    MALFORMED_TOKEN: "https://api.aventure.vc/errors/malformed-token",
     CLIENT_CLOSED_REQUEST: "https://api.aventure.vc/errors/client-closed-request",
     INVALID_JSON: "https://api.aventure.vc/errors/invalid-json",
     METHOD_NOT_ALLOWED: "https://api.aventure.vc/errors/method-not-allowed",

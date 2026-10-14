@@ -8,6 +8,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         cusip: "cusip";
         duns: "duns";
         ein: "ein";
+        folk: "folk";
         isin: "isin";
         lei: "lei";
         orcid: "orcid";
@@ -19,6 +20,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             cusip: "cusip";
             duns: "duns";
             ein: "ein";
+            folk: "folk";
             isin: "isin";
             lei: "lei";
             orcid: "orcid";

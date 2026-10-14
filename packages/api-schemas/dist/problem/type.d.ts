@@ -18,6 +18,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     readonly INVALID_TOKEN: "https://api.aventure.vc/errors/invalid-token";
     readonly TOKEN_EXPIRED: "https://api.aventure.vc/errors/token-expired";
     readonly INVALID_AUTHENTICATION: "https://api.aventure.vc/errors/invalid-authentication";
+    readonly MALFORMED_TOKEN: "https://api.aventure.vc/errors/malformed-token";
     readonly CLIENT_CLOSED_REQUEST: "https://api.aventure.vc/errors/client-closed-request";
     readonly INVALID_JSON: "https://api.aventure.vc/errors/invalid-json";
     readonly METHOD_NOT_ALLOWED: "https://api.aventure.vc/errors/method-not-allowed";
@@ -77,6 +78,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         readonly INVALID_TOKEN: "https://api.aventure.vc/errors/invalid-token";
         readonly TOKEN_EXPIRED: "https://api.aventure.vc/errors/token-expired";
         readonly INVALID_AUTHENTICATION: "https://api.aventure.vc/errors/invalid-authentication";
+        readonly MALFORMED_TOKEN: "https://api.aventure.vc/errors/malformed-token";
         readonly CLIENT_CLOSED_REQUEST: "https://api.aventure.vc/errors/client-closed-request";
         readonly INVALID_JSON: "https://api.aventure.vc/errors/invalid-json";
         readonly METHOD_NOT_ALLOWED: "https://api.aventure.vc/errors/method-not-allowed";

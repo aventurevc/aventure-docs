@@ -200,6 +200,25 @@ export declare const IdentificationSchema: z.ZodObject<{
         NEEDS_REVIEW: "NEEDS_REVIEW";
         NO_MATCH: "NO_MATCH";
     }>;
+    urlHostForm: z.ZodArray<z.ZodType<{
+        concluded: boolean;
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        landingHost?: string | null | undefined;
+        outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+        status?: string | null | undefined;
+        submittedUrl: string;
+        url: string;
+    }, import("../url/host-form-resolution.ts").UrlHostFormResolutionSchemaInput, z.core.$ZodTypeInternals<{
+        concluded: boolean;
+        crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+        crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+        landingHost?: string | null | undefined;
+        outcome?: "noResponse" | "refusal" | "rejection" | "success" | "transient" | null | undefined;
+        status?: string | null | undefined;
+        submittedUrl: string;
+        url: string;
+    }, import("../url/host-form-resolution.ts").UrlHostFormResolutionSchemaInput>>>;
 }, z.core.$strip>;
 export type Identification = z.infer<typeof IdentificationSchema>;
 //# sourceMappingURL=identification.d.ts.map

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * External identifier type that maps an owner to a registry id: ein, secCik, ticker, lei, duns, isin, cusip, crd, or orcid.
+ * External identifier type that maps an owner to a registry id: ein, secCik, ticker, lei, duns, isin, cusip, crd, orcid, or folk.
  *
  * @openapiSchema UniqueIdType
  * @endpoint GET /v1/entities/lookup-exact
@@ -29,6 +29,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     cusip: "cusip";
     duns: "duns";
     ein: "ein";
+    folk: "folk";
     isin: "isin";
     lei: "lei";
     orcid: "orcid";
@@ -40,6 +41,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         cusip: "cusip";
         duns: "duns";
         ein: "ein";
+        folk: "folk";
         isin: "isin";
         lei: "lei";
         orcid: "orcid";

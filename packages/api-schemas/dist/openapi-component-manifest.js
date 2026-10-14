@@ -1003,6 +1003,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SystemStatus: { modulePath: "system/status", schemaName: "SystemStatusSchema" },
     TextTypeOption: { modulePath: "text/type-option", schemaName: "TextTypeOptionSchema" },
     UniqueId: { modulePath: "unique/id", schemaName: "UniqueIdSchema" },
+    UniqueIdMutation: { modulePath: "unique/id-mutation", schemaName: "UniqueIdMutationSchema" },
     UniqueIdOwnerScope: {
         modulePath: "unique/id-owner-scope",
         schemaName: "UniqueIdOwnerScopeSchema",
@@ -1017,6 +1018,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "UrlDuplicateConflictSchema",
     },
     UrlDuplicateJoin: { modulePath: "url/duplicate-join", schemaName: "UrlDuplicateJoinSchema" },
+    UrlHostFormResolution: {
+        modulePath: "url/host-form-resolution",
+        schemaName: "UrlHostFormResolutionSchema",
+    },
     UrlMatchMode: { modulePath: "url/match-mode", schemaName: "UrlMatchModeSchema" },
     UrlTypeAlias: { modulePath: "url/type-alias", schemaName: "UrlTypeAliasSchema" },
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
