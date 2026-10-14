@@ -179,37 +179,40 @@ const ProblemDetailSchemaDefinition = z.object({
     limit: z.number().int().nullish(),
     /** Which meter refused the request; names what limit/used/remaining count. */
     limitType: z
-        .enum([
-        /** Too many form submissions from this client; retry after retryAfterSeconds. */
-        "FORM",
-        /** The service-wide request rate is exhausted; retry after retryAfterSeconds. */
-        "GLOBAL",
-        /** Too many requests from this client's network; retry after retryAfterSeconds. */
-        "SUBNET",
-        /** Too many requests from this client's address; retry after retryAfterSeconds. */
-        "IP",
-        /** A request-rate limit refused the request; retry after retryAfterSeconds. */
-        "UNKNOWN",
-        /** The service is handling too many requests at once; retry after a short backoff. */
-        "RESILIENCE4J",
-        /** Too many live web searches; retry after retryAfterSeconds. */
-        "WEB_SEARCH",
-        /** Too many help questions; retry after retryAfterSeconds. */
-        "AGENT_HELP",
-        /** Too many natural-language searches; retry after retryAfterSeconds. */
-        "NATURAL_SEARCH",
-        /** The plan's monthly research allowance is used up. It refills at resetAt, often weeks away: stop rather than retry. */
-        "BILLING_ALLOWANCE",
-        /** The additional-usage spend cap or prepaid credit is used up, counted in cents: stop rather than retry until the cap is raised or credit is added. */
-        "BILLING_ADDITIONAL_USAGE",
-        /** Too many command-line sign-in requests; retry after retryAfterSeconds. */
-        "CLERK_PUBLIC_ADMISSION",
-        /** Too many sign-in page load reports; retry after retryAfterSeconds. */
-        "CLERK_SCRIPT_LOAD",
-        /** Not currently sent. If seen, retry after retryAfterSeconds. */
-        "ORIGIN_DETAIL",
-        /** A model service this request depends on is at capacity; retry after retryAfterSeconds. */
-        "INFERENCE_PROVIDER",
+        .union([
+        z.enum([
+            /** Too many form submissions from this client; retry after retryAfterSeconds. */
+            "FORM",
+            /** The service-wide request rate is exhausted; retry after retryAfterSeconds. */
+            "GLOBAL",
+            /** Too many requests from this client's network; retry after retryAfterSeconds. */
+            "SUBNET",
+            /** Too many requests from this client's address; retry after retryAfterSeconds. */
+            "IP",
+            /** A request-rate limit refused the request; retry after retryAfterSeconds. */
+            "UNKNOWN",
+            /** The service is handling too many requests at once; retry after a short backoff. */
+            "RESILIENCE4J",
+            /** Too many live web searches; retry after retryAfterSeconds. */
+            "WEB_SEARCH",
+            /** Too many help questions; retry after retryAfterSeconds. */
+            "AGENT_HELP",
+            /** Too many natural-language searches; retry after retryAfterSeconds. */
+            "NATURAL_SEARCH",
+            /** The plan's monthly research allowance is used up. It refills at resetAt, often weeks away: stop rather than retry. */
+            "BILLING_ALLOWANCE",
+            /** The additional-usage spend cap or prepaid credit is used up, counted in cents: stop rather than retry until the cap is raised or credit is added. */
+            "BILLING_ADDITIONAL_USAGE",
+            /** Too many command-line sign-in requests; retry after retryAfterSeconds. */
+            "CLERK_PUBLIC_ADMISSION",
+            /** Too many sign-in page load reports; retry after retryAfterSeconds. */
+            "CLERK_SCRIPT_LOAD",
+            /** Not currently sent. If seen, retry after retryAfterSeconds. */
+            "ORIGIN_DETAIL",
+            /** A model service this request depends on is at capacity; retry after retryAfterSeconds. */
+            "INFERENCE_PROVIDER",
+        ]),
+        z.string(),
     ])
         .nullish(),
     matchedBlocklistKey: z.string().nullish(),

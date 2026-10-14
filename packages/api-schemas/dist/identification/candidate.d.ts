@@ -40,7 +40,7 @@ export declare const IdentificationCandidateSchema: z.ZodObject<{
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
-        score: number;
+        score?: number | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
@@ -50,7 +50,7 @@ export declare const IdentificationCandidateSchema: z.ZodObject<{
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
-        score: number;
+        score?: number | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;

@@ -4,13 +4,13 @@ declare const ClassificationInactiveTagDetailsSchemaDefinition: z.ZodObject<{
         ATTACH_INACTIVE: "ATTACH_INACTIVE";
         REACTIVATE: "REACTIVATE";
     }>>;
-    conflictType: z.ZodOptional<z.ZodUnion<readonly [z.ZodEnum<{
+    conflictType: z.ZodUnion<readonly [z.ZodEnum<{
         CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
         DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
         NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
         STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
         URL_DUPLICATE: "URL_DUPLICATE";
-    }>, z.ZodString]>>;
+    }>, z.ZodString]>;
     slug: z.ZodString;
     tagId: z.ZodInt;
 }, z.core.$strip>;

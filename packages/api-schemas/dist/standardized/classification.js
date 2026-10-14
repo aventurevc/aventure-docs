@@ -1,16 +1,17 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ClassificationJoinRegistrySchema } from "../classification/join-registry.js";
 const StandardizedClassificationSchemaDefinition = z.object({
     /** Standardized category token. */
     category: z.string(),
+    /** Id of this classification on the entity; null in catalog and search results. */
+    classificationId: z.int().nullish(),
     /** Standardized classification code when present. */
     code: z.int().nullish(),
     /** Standardized taxonomy rows are join-existing-only. */
-    creatable: z.boolean(),
+    creatable: z.boolean().optional(),
     /** Registry row creation timestamp. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Id of this classification on the entity; null in catalog and search results. */
-    entityClassificationId: z.int().nullish(),
     /** Standardized classification id. */
     id: z.int(),
     /** Standardized reference rows are current by definition. */
@@ -21,10 +22,12 @@ const StandardizedClassificationSchemaDefinition = z.object({
     level: z.int().nullish(),
     /** Name */
     name: z.string().max(255),
+    /** Join registry this classification belongs to; pass it as registry when reading or changing the join by classificationId. */
+    registry: ClassificationJoinRegistrySchema,
     /** Registry row update timestamp. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Existing standardized rows can be joined through classificationId. */
-    writable: z.boolean(),
+    /** Existing standardized rows can be joined through standardizedClassificationId. */
+    writable: z.boolean().optional(),
 });
 /**
  * Industry or ownership classification from a standard taxonomy such as NAICS, SIC, or ISIC, with its category, code, and hierarchy level.

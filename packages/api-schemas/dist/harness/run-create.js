@@ -3,15 +3,15 @@ import { z } from "zod/v4";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
 import { ResearchFindingSchema } from "../research/finding.js";
 const HarnessRunCreateSchemaDefinition = z.object({
-    /** Facts you already researched, each citing the page and exact text that support it. Send them with a taskPresetKey whose task accepts findings; the run checks each quote against its page and writes only the facts it confirms. Any other run refuses findings with 400. */
+    /** Facts you already researched, each citing the page and exact text that support it. Send them with a taskPresetKey that accepts findings; the run checks each quote against its page and writes only the facts it confirms. Any other run refuses findings with 400. */
     finding: z.array(ResearchFindingSchema).nullish(),
-    /** Enrichment breadth. Omitted by older clients to request the comprehensive default. */
+    /** How broadly the run researches the subject; omit it for COMPREHENSIVE */
     mode: EnrichmentModeSchema.optional(),
-    /** Optional orchestrator model override; omitted uses the configured role default */
+    /** Model id the run uses; omit it to use the default model */
     model: z.string().nullish(),
     /** Name of the subject at url, such as Clarity Health; the run verifies it and uses it to pick the right subject when the site names several */
     name: z.string().max(200).nullish(),
-    /** Selected task preset keys that scoped or emphasized this run */
+    /** Research presets that focus the run, listed by GET /v1/research-runs/presets; omit them for a full run */
     taskPresetKey: z.array(z.string()).nullish(),
     /** Official website or profile URL of the company, Product, Service, or person to research; a URL no current record owns researches a new one */
     url: z.string(),
@@ -19,7 +19,7 @@ const HarnessRunCreateSchemaDefinition = z.object({
     userPrompt: z.string().nullish(),
 });
 /**
- * Create one harness enrichment run
+ * Request one research run
  *
  * @openapiSchema HarnessRunCreate
  * @endpoint POST /v1/research-runs

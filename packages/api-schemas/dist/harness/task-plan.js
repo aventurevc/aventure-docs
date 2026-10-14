@@ -14,14 +14,14 @@ import { HarnessTaskSchema } from "./task.js";
  */
 export const HarnessTaskPlanSchema = z.object({
     /** Stored catalog revision this plan was read from. */
-    catalogRevision: z.int(),
+    catalogRevision: z.int().optional(),
     /** Canonical completion gate ids this task is responsible for; the ids resolve through the completion contract catalog. */
-    gateId: z.array(z.string()),
+    gateId: z.array(z.string()).optional(),
     /** Typed inputs the task needs before it runs. */
     input: z.array(HarnessTaskSchema),
     /** Steps in run order; an empty list means this catalog task is unplanned. */
     step: z.array(HarnessTaskPlanStepSchema),
     /** Agent-task catalog key. */
-    taskKey: z.string(),
+    taskKey: z.string().optional(),
 });
 //# sourceMappingURL=task-plan.js.map

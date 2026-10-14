@@ -15,7 +15,7 @@ const SearchDuplicateCandidateScoreSchemaDefinition = z.object({
     /** Match reasons such as name-exact, slug-exact, url-match, url-current, url-type, or precomputed-similarity. url-match proves the supplied URL/domain matched; url-current additionally proves the candidate still holds that address today, so a candidate with url-match but no url-current matched only through a URL it no longer uses, such as an acquisition redirect. url-type only means the candidate has the same URL category and is review context, not URL identity evidence. */
     reason: z.array(z.string()),
     /** Ranking score for duplicate review. It is not an absence proof; a low score can still be the intended record when reason/name/slug/typeRecord match. */
-    score: z.int(),
+    score: z.int().optional(),
     /** Candidate slug from the existing record. */
     slug: z
         .string()

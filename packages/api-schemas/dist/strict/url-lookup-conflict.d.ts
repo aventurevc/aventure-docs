@@ -2,13 +2,13 @@ import { z } from "zod/v4";
 declare const StrictUrlLookupConflictSchemaDefinition: z.ZodObject<{
     candidateEntityId: z.ZodArray<z.ZodUUID>;
     candidatePersonId: z.ZodArray<z.ZodUUID>;
-    conflictType: z.ZodOptional<z.ZodUnion<readonly [z.ZodEnum<{
+    conflictType: z.ZodUnion<readonly [z.ZodEnum<{
         CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
         DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
         NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
         STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
         URL_DUPLICATE: "URL_DUPLICATE";
-    }>, z.ZodString]>>;
+    }>, z.ZodString]>;
     hint: z.ZodString;
     normalizedUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     url: z.ZodString;

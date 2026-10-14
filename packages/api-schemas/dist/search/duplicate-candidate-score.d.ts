@@ -6,7 +6,7 @@ declare const SearchDuplicateCandidateScoreSchemaDefinition: z.ZodObject<{
     operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     publicPath: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     reason: z.ZodArray<z.ZodString>;
-    score: z.ZodInt;
+    score: z.ZodOptional<z.ZodInt>;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     typeRecord: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         "Business Line": "Business Line";

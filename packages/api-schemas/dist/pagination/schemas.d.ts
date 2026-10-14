@@ -84,21 +84,23 @@ export declare const PageBlogPostSchema: z.ZodType<PageBlogPostDefinition, PageB
 export type PageBlogPost = z.infer<typeof PageBlogPostSchema>;
 declare const PageClassificationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodIntersection<z.ZodType<{
-        creatable: boolean;
+        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
-        writable: boolean;
+        registry: string;
+        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable: boolean;
+        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
-        writable: boolean;
+        registry: string;
+        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodBoolean;
+        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -107,33 +109,35 @@ declare const PageClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodBoolean;
+        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>, z.ZodType<{
         category: string;
+        classificationId?: number | null | undefined;
         code?: number | null | undefined;
-        creatable: boolean;
+        creatable?: boolean | undefined;
         createdAt?: string | null | undefined;
-        entityClassificationId?: number | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         level?: number | null | undefined;
         name: string;
+        registry: string;
         updatedAt?: string | null | undefined;
-        writable: boolean;
+        writable?: boolean | undefined;
     }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput, z.core.$ZodTypeInternals<{
         category: string;
+        classificationId?: number | null | undefined;
         code?: number | null | undefined;
-        creatable: boolean;
+        creatable?: boolean | undefined;
         createdAt?: string | null | undefined;
-        entityClassificationId?: number | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         level?: number | null | undefined;
         name: string;
+        registry: string;
         updatedAt?: string | null | undefined;
-        writable: boolean;
+        writable?: boolean | undefined;
     }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput>>]>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
@@ -647,15 +651,16 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }[];
             classification: {
                 geoLocationExposure?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -664,18 +669,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 industry?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -684,18 +690,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 mainProduct?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -704,32 +711,34 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 standardizedClassification?: {
                     category: string;
+                    classificationId?: number | null | undefined;
                     code?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
-                    entityClassificationId?: number | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     level?: number | null | undefined;
                     name: string;
+                    registry: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 }[] | undefined;
                 tag?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -738,18 +747,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeCustomer?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -758,18 +768,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeModel?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -778,18 +789,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -798,18 +810,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeRevenue?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -818,18 +831,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeTechnologyUsed?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -838,7 +852,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
             };
             fundingDetail?: {
@@ -878,7 +892,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
-            urlLinkSuppressedCount: number;
+            urlLinkSuppressedCount?: number | undefined;
         }, import("../entity/enrichment.ts").EntityEnrichmentSchemaInput, z.core.$ZodTypeInternals<{
             address: {
                 address?: number | null | undefined;
@@ -924,15 +938,16 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }[];
             classification: {
                 geoLocationExposure?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -941,18 +956,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 industry?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -961,18 +977,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 mainProduct?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -981,32 +998,34 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 standardizedClassification?: {
                     category: string;
+                    classificationId?: number | null | undefined;
                     code?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
-                    entityClassificationId?: number | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     level?: number | null | undefined;
                     name: string;
+                    registry: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 }[] | undefined;
                 tag?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -1015,18 +1034,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeCustomer?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -1035,18 +1055,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeModel?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -1055,18 +1076,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -1075,18 +1097,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeRevenue?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -1095,18 +1118,19 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeTechnologyUsed?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -1115,7 +1139,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
             };
             fundingDetail?: {
@@ -1155,7 +1179,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
-            urlLinkSuppressedCount: number;
+            urlLinkSuppressedCount?: number | undefined;
         }, import("../entity/enrichment.ts").EntityEnrichmentSchemaInput>>;
         fundraiseRound: z.ZodArray<z.ZodType<{
             amountRaised?: number | null | undefined;
@@ -2759,15 +2783,16 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2776,18 +2801,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2796,18 +2822,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2816,32 +2843,34 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2850,18 +2879,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2870,18 +2900,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2890,18 +2921,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2910,18 +2942,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2930,18 +2963,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2950,7 +2984,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -2990,7 +3024,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -3693,15 +3727,16 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3710,18 +3745,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3730,18 +3766,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3750,32 +3787,34 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3784,18 +3823,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3804,18 +3844,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3824,18 +3865,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3844,18 +3886,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3864,18 +3907,19 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -3884,7 +3928,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -3924,7 +3968,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -4666,15 +4710,16 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             }[];
             classification: {
                 geoLocationExposure?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4683,18 +4728,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 industry?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4703,18 +4749,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 mainProduct?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4723,32 +4770,34 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 standardizedClassification?: {
                     category: string;
+                    classificationId?: number | null | undefined;
                     code?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
-                    entityClassificationId?: number | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     level?: number | null | undefined;
                     name: string;
+                    registry: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 }[] | undefined;
                 tag?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4757,18 +4806,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeCustomer?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4777,18 +4827,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeModel?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4797,18 +4848,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4817,18 +4869,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeRevenue?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4837,18 +4890,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeTechnologyUsed?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -4857,7 +4911,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
             };
             fundingDetail?: {
@@ -4897,7 +4951,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
-            urlLinkSuppressedCount: number;
+            urlLinkSuppressedCount?: number | undefined;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -5146,15 +5200,16 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             }[];
             classification: {
                 geoLocationExposure?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5163,18 +5218,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 industry?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5183,18 +5239,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 mainProduct?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5203,32 +5260,34 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 standardizedClassification?: {
                     category: string;
+                    classificationId?: number | null | undefined;
                     code?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
-                    entityClassificationId?: number | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     level?: number | null | undefined;
                     name: string;
+                    registry: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 }[] | undefined;
                 tag?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5237,18 +5296,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeCustomer?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5257,18 +5317,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeModel?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5277,18 +5338,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5297,18 +5359,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeRevenue?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5317,18 +5380,19 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeTechnologyUsed?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -5337,7 +5401,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
             };
             fundingDetail?: {
@@ -5377,7 +5441,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
-            urlLinkSuppressedCount: number;
+            urlLinkSuppressedCount?: number | undefined;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -6219,15 +6283,16 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6236,18 +6301,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6256,18 +6322,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6276,32 +6343,34 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6310,18 +6379,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6330,18 +6400,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6350,18 +6421,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6370,18 +6442,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6390,18 +6463,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6410,7 +6484,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -6450,7 +6524,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -6713,15 +6787,16 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6730,18 +6805,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6750,18 +6826,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6770,32 +6847,34 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6804,18 +6883,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6824,18 +6904,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6844,18 +6925,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6864,18 +6946,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6884,18 +6967,19 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -6904,7 +6988,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -6944,7 +7028,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -10028,15 +10112,16 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             }[];
             classification: {
                 geoLocationExposure?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10045,18 +10130,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 industry?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10065,18 +10151,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 mainProduct?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10085,32 +10172,34 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 standardizedClassification?: {
                     category: string;
+                    classificationId?: number | null | undefined;
                     code?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
-                    entityClassificationId?: number | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     level?: number | null | undefined;
                     name: string;
+                    registry: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 }[] | undefined;
                 tag?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10119,18 +10208,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeCustomer?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10139,18 +10229,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeModel?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10159,18 +10250,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10179,18 +10271,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeRevenue?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10199,18 +10292,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeTechnologyUsed?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10219,7 +10313,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
             };
             fundingDetail?: {
@@ -10259,7 +10353,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
-            urlLinkSuppressedCount: number;
+            urlLinkSuppressedCount?: number | undefined;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;
@@ -10508,15 +10602,16 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             }[];
             classification: {
                 geoLocationExposure?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10525,18 +10620,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 industry?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10545,18 +10641,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 mainProduct?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10565,32 +10662,34 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 standardizedClassification?: {
                     category: string;
+                    classificationId?: number | null | undefined;
                     code?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
-                    entityClassificationId?: number | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     level?: number | null | undefined;
                     name: string;
+                    registry: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 }[] | undefined;
                 tag?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10599,18 +10698,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeCustomer?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10619,18 +10719,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeModel?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10639,18 +10740,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10659,18 +10761,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeRevenue?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10679,18 +10782,19 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
                 typeTechnologyUsed?: ({
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
-                    writable: boolean;
+                    registry: string;
+                    writable?: boolean | undefined;
                 } & {
                     bucket?: string | null | undefined;
                     classificationId?: number | null | undefined;
-                    creatable: boolean;
+                    creatable?: boolean | undefined;
                     createdAt?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
@@ -10699,7 +10803,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     slug?: string | null | undefined;
                     type: string;
                     updatedAt?: string | null | undefined;
-                    writable: boolean;
+                    writable?: boolean | undefined;
                 })[] | undefined;
             };
             fundingDetail?: {
@@ -10739,7 +10843,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 url: string;
                 urlType: string;
             }[];
-            urlLinkSuppressedCount: number;
+            urlLinkSuppressedCount?: number | undefined;
         };
         fundraiseRound: {
             amountRaised?: number | null | undefined;

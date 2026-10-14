@@ -25,7 +25,7 @@ type HarnessRunCreateDefinition = z.infer<typeof HarnessRunCreateSchemaDefinitio
 export interface HarnessRunCreateSchemaInput extends z.input<typeof HarnessRunCreateSchemaDefinition> {
 }
 /**
- * Create one harness enrichment run
+ * Request one research run
  *
  * @openapiSchema HarnessRunCreate
  * @endpoint POST /v1/research-runs

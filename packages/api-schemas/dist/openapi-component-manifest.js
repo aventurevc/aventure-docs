@@ -14,6 +14,15 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     AddressState: { modulePath: "address/state", schemaName: "AddressStateSchema" },
     AgentHelp: { modulePath: "agent/help", schemaName: "AgentHelpSchema" },
     AgentHelpQuestion: { modulePath: "agent/help-question", schemaName: "AgentHelpQuestionSchema" },
+    AgentTaskPreset: { modulePath: "agent/task-preset", schemaName: "AgentTaskPresetSchema" },
+    AgentTaskPresetCatalog: {
+        modulePath: "agent/task-preset-catalog",
+        schemaName: "AgentTaskPresetCatalogSchema",
+    },
+    AgentTaskPresetPhase: {
+        modulePath: "agent/task-preset-phase",
+        schemaName: "AgentTaskPresetPhaseSchema",
+    },
     ApiKey: { modulePath: "api/key", schemaName: "ApiKeySchema" },
     AuthClient: { modulePath: "auth/client", schemaName: "AuthClientSchema" },
     AuthOperation: { modulePath: "auth/operation", schemaName: "AuthOperationSchema" },
@@ -166,6 +175,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ClassificationInactiveTagDetails: {
         modulePath: "classification/inactive-tag-details",
         schemaName: "ClassificationInactiveTagDetailsSchema",
+    },
+    ClassificationJoinRegistry: {
+        modulePath: "classification/join-registry",
+        schemaName: "ClassificationJoinRegistrySchema",
     },
     CliAuthorization: { modulePath: "cli/authorization", schemaName: "CliAuthorizationSchema" },
     CliAuthorizationClientPlatform: {
@@ -999,7 +1012,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "unique/id-type-alias",
         schemaName: "UniqueIdTypeAliasSchema",
     },
-    Uptime: { modulePath: "uptime/uptime", schemaName: "UptimeSchema" },
     UrlDuplicateConflict: {
         modulePath: "url/duplicate-conflict",
         schemaName: "UrlDuplicateConflictSchema",

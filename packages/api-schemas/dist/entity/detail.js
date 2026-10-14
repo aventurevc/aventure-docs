@@ -39,9 +39,9 @@ export const EntityDetailSchema = z.object({
     enrichment: EntityEnrichmentSchema,
     /** Fundraise rounds associated with this entity. */
     fundraiseRound: z.array(EntityFundraiseTransactionSchema),
-    /** News articles associated with this entity. */
+    /** News articles associated with this entity; full-detail search carries the first few, and GET /v1/news?owner.entityId={entityId} lists them all. */
     newsArticle: z.array(NewsSchema),
-    /** People associated with this entity. */
+    /** People associated with this entity; full-detail search carries the first few, and GET /v1/entities/{entityId}/people lists them all. */
     person: z.array(PersonDetailSchema),
     /** Absolute canonical public URL when this detail has a renderable public route. */
     publicUrl: z.string().nullish(),

@@ -426,15 +426,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         classification: {
                             geoLocationExposure?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -443,18 +444,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             industry?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -463,18 +465,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             mainProduct?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -483,32 +486,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             standardizedClassification?: {
                                 category: string;
+                                classificationId?: number | null | undefined;
                                 code?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
-                                entityClassificationId?: number | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 level?: number | null | undefined;
                                 name: string;
+                                registry: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             }[] | undefined;
                             tag?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -517,18 +522,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeCustomer?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -537,18 +543,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeModel?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -557,18 +564,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeOwnership?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -577,18 +585,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeRevenue?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -597,18 +606,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeTechnologyUsed?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -617,7 +627,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                         };
                         fundingDetail?: {
@@ -657,7 +667,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             url: string;
                             urlType: string;
                         }[];
-                        urlLinkSuppressedCount: number;
+                        urlLinkSuppressedCount?: number | undefined;
                     };
                     fundraiseRound: {
                         amountRaised?: number | null | undefined;
@@ -922,15 +932,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         classification: {
                             geoLocationExposure?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -939,18 +950,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             industry?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -959,18 +971,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             mainProduct?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -979,32 +992,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             standardizedClassification?: {
                                 category: string;
+                                classificationId?: number | null | undefined;
                                 code?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
-                                entityClassificationId?: number | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 level?: number | null | undefined;
                                 name: string;
+                                registry: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             }[] | undefined;
                             tag?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -1013,18 +1028,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeCustomer?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -1033,18 +1049,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeModel?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -1053,18 +1070,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeOwnership?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -1073,18 +1091,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeRevenue?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -1093,18 +1112,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeTechnologyUsed?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -1113,7 +1133,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                         };
                         fundingDetail?: {
@@ -1153,7 +1173,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             url: string;
                             urlType: string;
                         }[];
-                        urlLinkSuppressedCount: number;
+                        urlLinkSuppressedCount?: number | undefined;
                     };
                     fundraiseRound: {
                         amountRaised?: number | null | undefined;
@@ -1409,15 +1429,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     classification: {
                         geoLocationExposure?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1426,18 +1447,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         industry?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1446,18 +1468,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         mainProduct?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1466,32 +1489,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         standardizedClassification?: {
                             category: string;
+                            classificationId?: number | null | undefined;
                             code?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
-                            entityClassificationId?: number | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             level?: number | null | undefined;
                             name: string;
+                            registry: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         }[] | undefined;
                         tag?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1500,18 +1525,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeCustomer?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1520,18 +1546,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeModel?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1540,18 +1567,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeOwnership?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1560,18 +1588,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeRevenue?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1580,18 +1609,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeTechnologyUsed?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -1600,7 +1630,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                     };
                     fundingDetail?: {
@@ -1640,7 +1670,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
-                    urlLinkSuppressedCount: number;
+                    urlLinkSuppressedCount?: number | undefined;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -1891,15 +1921,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -1908,18 +1939,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -1928,18 +1960,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -1948,32 +1981,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -1982,18 +2017,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2002,18 +2038,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2022,18 +2059,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2042,18 +2080,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2062,18 +2101,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -2082,7 +2122,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -2122,7 +2162,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -3903,15 +3943,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         classification: {
                             geoLocationExposure?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -3920,18 +3961,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             industry?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -3940,18 +3982,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             mainProduct?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -3960,32 +4003,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             standardizedClassification?: {
                                 category: string;
+                                classificationId?: number | null | undefined;
                                 code?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
-                                entityClassificationId?: number | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 level?: number | null | undefined;
                                 name: string;
+                                registry: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             }[] | undefined;
                             tag?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -3994,18 +4039,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeCustomer?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4014,18 +4060,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeModel?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4034,18 +4081,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeOwnership?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4054,18 +4102,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeRevenue?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4074,18 +4123,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeTechnologyUsed?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4094,7 +4144,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                         };
                         fundingDetail?: {
@@ -4134,7 +4184,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             url: string;
                             urlType: string;
                         }[];
-                        urlLinkSuppressedCount: number;
+                        urlLinkSuppressedCount?: number | undefined;
                     };
                     fundraiseRound: {
                         amountRaised?: number | null | undefined;
@@ -4399,15 +4449,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         classification: {
                             geoLocationExposure?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4416,18 +4467,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             industry?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4436,18 +4488,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             mainProduct?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4456,32 +4509,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             standardizedClassification?: {
                                 category: string;
+                                classificationId?: number | null | undefined;
                                 code?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
-                                entityClassificationId?: number | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 level?: number | null | undefined;
                                 name: string;
+                                registry: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             }[] | undefined;
                             tag?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4490,18 +4545,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeCustomer?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4510,18 +4566,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeModel?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4530,18 +4587,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeOwnership?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4550,18 +4608,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeRevenue?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4570,18 +4629,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                             typeTechnologyUsed?: ({
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 isCurrent?: boolean | null | undefined;
                                 isPrimary?: boolean | null | undefined;
                                 name: string;
-                                writable: boolean;
+                                registry: string;
+                                writable?: boolean | undefined;
                             } & {
                                 bucket?: string | null | undefined;
                                 classificationId?: number | null | undefined;
-                                creatable: boolean;
+                                creatable?: boolean | undefined;
                                 createdAt?: string | null | undefined;
                                 id: number;
                                 isCurrent?: boolean | null | undefined;
@@ -4590,7 +4650,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                                 slug?: string | null | undefined;
                                 type: string;
                                 updatedAt?: string | null | undefined;
-                                writable: boolean;
+                                writable?: boolean | undefined;
                             })[] | undefined;
                         };
                         fundingDetail?: {
@@ -4630,7 +4690,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             url: string;
                             urlType: string;
                         }[];
-                        urlLinkSuppressedCount: number;
+                        urlLinkSuppressedCount?: number | undefined;
                     };
                     fundraiseRound: {
                         amountRaised?: number | null | undefined;
@@ -4886,15 +4946,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     classification: {
                         geoLocationExposure?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -4903,18 +4964,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         industry?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -4923,18 +4985,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         mainProduct?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -4943,32 +5006,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         standardizedClassification?: {
                             category: string;
+                            classificationId?: number | null | undefined;
                             code?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
-                            entityClassificationId?: number | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             level?: number | null | undefined;
                             name: string;
+                            registry: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         }[] | undefined;
                         tag?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -4977,18 +5042,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeCustomer?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -4997,18 +5063,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeModel?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -5017,18 +5084,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeOwnership?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -5037,18 +5105,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeRevenue?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -5057,18 +5126,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                         typeTechnologyUsed?: ({
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
-                            writable: boolean;
+                            registry: string;
+                            writable?: boolean | undefined;
                         } & {
                             bucket?: string | null | undefined;
                             classificationId?: number | null | undefined;
-                            creatable: boolean;
+                            creatable?: boolean | undefined;
                             createdAt?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
@@ -5077,7 +5147,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             slug?: string | null | undefined;
                             type: string;
                             updatedAt?: string | null | undefined;
-                            writable: boolean;
+                            writable?: boolean | undefined;
                         })[] | undefined;
                     };
                     fundingDetail?: {
@@ -5117,7 +5187,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         url: string;
                         urlType: string;
                     }[];
-                    urlLinkSuppressedCount: number;
+                    urlLinkSuppressedCount?: number | undefined;
                 };
                 fundraiseRound: {
                     amountRaised?: number | null | undefined;
@@ -5368,15 +5438,16 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5385,18 +5456,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5405,18 +5477,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5425,32 +5498,34 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5459,18 +5534,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5479,18 +5555,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5499,18 +5576,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5519,18 +5597,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5539,18 +5618,19 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -5559,7 +5639,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -5599,7 +5679,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;

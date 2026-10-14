@@ -2,7 +2,7 @@ import { z } from "zod/v4";
 declare const HarnessTaskStepSchemaDefinition: z.ZodObject<{
     instruction: z.ZodString;
     operationId: z.ZodString;
-    stepKey: z.ZodString;
+    stepKey: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 type HarnessTaskStepDefinition = z.infer<typeof HarnessTaskStepSchemaDefinition>;
 export interface HarnessTaskStepSchemaInput extends z.input<typeof HarnessTaskStepSchemaDefinition> {

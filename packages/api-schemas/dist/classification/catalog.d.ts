@@ -3,19 +3,20 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
     bucket: z.ZodArray<z.ZodType<{
         alias: string[];
         bucket?: string | null | undefined;
-        creatable: boolean;
+        creatable?: boolean | undefined;
         hierarchical: boolean;
         label: string;
         tag: ({
-            creatable: boolean;
+            creatable?: boolean | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             name: string;
-            writable: boolean;
+            registry: string;
+            writable?: boolean | undefined;
         } & {
             bucket?: string | null | undefined;
             classificationId?: number | null | undefined;
-            creatable: boolean;
+            creatable?: boolean | undefined;
             createdAt?: string | null | undefined;
             id: number;
             isCurrent?: boolean | null | undefined;
@@ -24,27 +25,28 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             type: string;
             updatedAt?: string | null | undefined;
-            writable: boolean;
+            writable?: boolean | undefined;
         })[];
         tagCount: number;
         type: string;
-        writable: boolean;
+        writable?: boolean | undefined;
     }, import("./catalog-bucket.ts").ClassificationCatalogBucketSchemaInput, z.core.$ZodTypeInternals<{
         alias: string[];
         bucket?: string | null | undefined;
-        creatable: boolean;
+        creatable?: boolean | undefined;
         hierarchical: boolean;
         label: string;
         tag: ({
-            creatable: boolean;
+            creatable?: boolean | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             name: string;
-            writable: boolean;
+            registry: string;
+            writable?: boolean | undefined;
         } & {
             bucket?: string | null | undefined;
             classificationId?: number | null | undefined;
-            creatable: boolean;
+            creatable?: boolean | undefined;
             createdAt?: string | null | undefined;
             id: number;
             isCurrent?: boolean | null | undefined;
@@ -53,56 +55,58 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
             slug?: string | null | undefined;
             type: string;
             updatedAt?: string | null | undefined;
-            writable: boolean;
+            writable?: boolean | undefined;
         })[];
         tagCount: number;
         type: string;
-        writable: boolean;
+        writable?: boolean | undefined;
     }, import("./catalog-bucket.ts").ClassificationCatalogBucketSchemaInput>>>;
     category: z.ZodArray<z.ZodType<{
         alias: string[];
         category: string;
         classification: {
             category: string;
+            classificationId?: number | null | undefined;
             code?: number | null | undefined;
-            creatable: boolean;
+            creatable?: boolean | undefined;
             createdAt?: string | null | undefined;
-            entityClassificationId?: number | null | undefined;
             id: number;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             level?: number | null | undefined;
             name: string;
+            registry: string;
             updatedAt?: string | null | undefined;
-            writable: boolean;
+            writable?: boolean | undefined;
         }[];
         classificationCount: number;
-        creatable: boolean;
+        creatable?: boolean | undefined;
         hierarchical: boolean;
         label: string;
-        writable: boolean;
+        writable?: boolean | undefined;
     }, import("./catalog-category.ts").ClassificationCatalogCategorySchemaInput, z.core.$ZodTypeInternals<{
         alias: string[];
         category: string;
         classification: {
             category: string;
+            classificationId?: number | null | undefined;
             code?: number | null | undefined;
-            creatable: boolean;
+            creatable?: boolean | undefined;
             createdAt?: string | null | undefined;
-            entityClassificationId?: number | null | undefined;
             id: number;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
             level?: number | null | undefined;
             name: string;
+            registry: string;
             updatedAt?: string | null | undefined;
-            writable: boolean;
+            writable?: boolean | undefined;
         }[];
         classificationCount: number;
-        creatable: boolean;
+        creatable?: boolean | undefined;
         hierarchical: boolean;
         label: string;
-        writable: boolean;
+        writable?: boolean | undefined;
     }, import("./catalog-category.ts").ClassificationCatalogCategorySchemaInput>>>;
     generatedAt: z.ZodISODateTime;
     totalBucket: z.ZodInt;

@@ -7,7 +7,7 @@ const DuplicateCreateReviewSchemaDefinition = z.object({
     /** Entity/person candidates returned by lookup or create duplicate review. If a candidate is the requested record, read/update that candidate by id. Create with duplicate override only after every candidate is reviewed as distinct. */
     candidate: z.array(SearchDuplicateCandidateScoreSchema).nullish(),
     /** Conflict kind that identifies this details shape. */
-    conflictType: DomainConflictTypeSchema.optional(),
+    conflictType: DomainConflictTypeSchema,
     /** News candidates returned by lookup or create duplicate review. If a candidate is the requested article, read/update that article by id. Otherwise block until source evidence proves a distinct article. */
     newsCandidate: z.array(NewsCandidateScoreSchema).nullish(),
     /** Create endpoint to retry only after reviewing the returned candidates and supplying overrideGate=duplicate and overrideReason as query parameters. Null for detail lookup ambiguity, where the next action is review/update/block. */

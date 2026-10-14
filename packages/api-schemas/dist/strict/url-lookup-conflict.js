@@ -7,7 +7,7 @@ const StrictUrlLookupConflictSchemaDefinition = z.object({
     /** Every person id that currently owns the normalized URL. May be empty when the conflict is between entities; combined with candidateEntityId always > 1. */
     candidatePersonId: z.array(z.uuid()),
     /** Conflict kind that identifies this details shape. */
-    conflictType: DomainConflictTypeSchema.optional(),
+    conflictType: DomainConflictTypeSchema,
     /** Human-readable hint describing which disambiguating query parameters to add. */
     hint: z.string(),
     /** Normalized URL match key the lookup resolved against. Null when normalization could not produce a stable key. */

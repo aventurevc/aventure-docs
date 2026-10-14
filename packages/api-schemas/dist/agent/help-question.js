@@ -2,8 +2,6 @@
 import { z } from "zod/v4";
 import { HelpScopeSchema } from "../help/scope.js";
 const AgentHelpQuestionSchemaDefinition = z.object({
-    /** False limits answers to operations every account can run; omit it to match your account's access. */
-    includePrivate: z.boolean().nullish(),
     /** Optional supported model for the answer. Omit it to use the default; an unsupported model answers 422. */
     model: z.string().nullish(),
     /** The question to answer, in natural language. */

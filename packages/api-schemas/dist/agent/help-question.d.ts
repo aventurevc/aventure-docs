@@ -1,6 +1,5 @@
 import { z } from "zod/v4";
 declare const AgentHelpQuestionSchemaDefinition: z.ZodObject<{
-    includePrivate: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     question: z.ZodString;
     resolve: z.ZodOptional<z.ZodBoolean>;

@@ -9,7 +9,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType<{
-    conflictType?: string | undefined;
+    conflictType: string;
     existingJoin: {
         owner: {
             entityId?: string | null | undefined;
@@ -27,7 +27,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     url: string;
     urlType: string;
 }, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput, z.core.$ZodTypeInternals<{
-    conflictType?: string | undefined;
+    conflictType: string;
     existingJoin: {
         owner: {
             entityId?: string | null | undefined;
@@ -47,7 +47,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
 }, import("../url/duplicate-conflict.ts").UrlDuplicateConflictSchemaInput>>, z.ZodType<{
     candidateEntityId: string[];
     candidatePersonId: string[];
-    conflictType?: string | undefined;
+    conflictType: string;
     hint: string;
     normalizedUrl?: string | null | undefined;
     url: string;
@@ -55,7 +55,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
 }, import("../strict/url-lookup-conflict.ts").StrictUrlLookupConflictSchemaInput, z.core.$ZodTypeInternals<{
     candidateEntityId: string[];
     candidatePersonId: string[];
-    conflictType?: string | undefined;
+    conflictType: string;
     hint: string;
     normalizedUrl?: string | null | undefined;
     url: string;
@@ -68,11 +68,11 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
-        score: number;
+        score?: number | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }[] | null | undefined;
-    conflictType?: string | undefined;
+    conflictType: string;
     newsCandidate?: {
         externalId?: string | null | undefined;
         id: number;
@@ -90,11 +90,11 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
-        score: number;
+        score?: number | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }[] | null | undefined;
-    conflictType?: string | undefined;
+    conflictType: string;
     newsCandidate?: {
         externalId?: string | null | undefined;
         id: number;
@@ -106,24 +106,24 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     threshold: number;
 }, import("../duplicate/create-review.ts").DuplicateCreateReviewSchemaInput>>, z.ZodType<{
     availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
-    conflictType?: string | undefined;
+    conflictType: string;
     slug: string;
     tagId: number;
 }, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput, z.core.$ZodTypeInternals<{
     availableOverrides: ("ATTACH_INACTIVE" | "REACTIVATE")[];
-    conflictType?: string | undefined;
+    conflictType: string;
     slug: string;
     tagId: number;
 }, import("../classification/inactive-tag-details.ts").ClassificationInactiveTagDetailsSchemaInput>>, z.ZodType<{
     conflictingArticleId: number;
     conflictingArticleSlug: string;
     conflictingArticleTitle: string;
-    conflictType?: string | undefined;
+    conflictType: string;
 }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput, z.core.$ZodTypeInternals<{
     conflictingArticleId: number;
     conflictingArticleSlug: string;
     conflictingArticleTitle: string;
-    conflictType?: string | undefined;
+    conflictType: string;
 }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput>>]>;
 export type DomainConflictDetails = z.infer<typeof DomainConflictDetailsSchema>;
 //# sourceMappingURL=conflict-details.d.ts.map

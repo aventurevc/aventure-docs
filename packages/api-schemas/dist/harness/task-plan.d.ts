@@ -10,8 +10,8 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const HarnessTaskPlanSchema: z.ZodObject<{
-    catalogRevision: z.ZodInt;
-    gateId: z.ZodArray<z.ZodString>;
+    catalogRevision: z.ZodOptional<z.ZodInt>;
+    gateId: z.ZodOptional<z.ZodArray<z.ZodString>>;
     input: z.ZodArray<z.ZodType<{
         description: string;
         key: string;
@@ -27,7 +27,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
         step: {
             instruction: string;
             operationId: string;
-            stepKey: string;
+            stepKey?: string | undefined;
         };
         writeGuidance?: {
             body: string;
@@ -43,7 +43,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
         step: {
             instruction: string;
             operationId: string;
-            stepKey: string;
+            stepKey?: string | undefined;
         };
         writeGuidance?: {
             body: string;
@@ -54,7 +54,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             typeCatalog: string;
         } | null | undefined;
     }, import("./task-plan-step.ts").HarnessTaskPlanStepSchemaInput>>>;
-    taskKey: z.ZodString;
+    taskKey: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 export type HarnessTaskPlan = z.infer<typeof HarnessTaskPlanSchema>;
 //# sourceMappingURL=task-plan.d.ts.map

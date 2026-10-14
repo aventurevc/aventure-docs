@@ -80,15 +80,16 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -97,18 +98,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -117,18 +119,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -137,32 +140,34 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -171,18 +176,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -191,18 +197,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -211,18 +218,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -231,18 +239,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -251,18 +260,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -271,7 +281,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -311,7 +321,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -504,7 +514,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -530,7 +540,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -557,7 +567,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -585,7 +595,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -593,7 +603,6 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             } | null | undefined;
             officialUrl?: string | null | undefined;
-            stage?: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE" | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
@@ -722,15 +731,16 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 }[];
                 classification: {
                     geoLocationExposure?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -739,18 +749,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     industry?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -759,18 +770,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     mainProduct?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -779,32 +791,34 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     standardizedClassification?: {
                         category: string;
+                        classificationId?: number | null | undefined;
                         code?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
-                        entityClassificationId?: number | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         level?: number | null | undefined;
                         name: string;
+                        registry: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     }[] | undefined;
                     tag?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -813,18 +827,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeCustomer?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -833,18 +848,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeModel?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -853,18 +869,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -873,18 +890,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeRevenue?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -893,18 +911,19 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                     typeTechnologyUsed?: ({
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
-                        writable: boolean;
+                        registry: string;
+                        writable?: boolean | undefined;
                     } & {
                         bucket?: string | null | undefined;
                         classificationId?: number | null | undefined;
-                        creatable: boolean;
+                        creatable?: boolean | undefined;
                         createdAt?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
@@ -913,7 +932,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         slug?: string | null | undefined;
                         type: string;
                         updatedAt?: string | null | undefined;
-                        writable: boolean;
+                        writable?: boolean | undefined;
                     })[] | undefined;
                 };
                 fundingDetail?: {
@@ -953,7 +972,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     url: string;
                     urlType: string;
                 }[];
-                urlLinkSuppressedCount: number;
+                urlLinkSuppressedCount?: number | undefined;
             };
             fundraiseRound: {
                 amountRaised?: number | null | undefined;
@@ -1146,7 +1165,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -1172,7 +1191,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -1199,7 +1218,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -1227,7 +1246,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     operatingStatus?: string | null | undefined;
                     publicPath?: string | null | undefined;
                     reason: string[];
-                    score: number;
+                    score?: number | undefined;
                     slug?: string | null | undefined;
                     typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
                 };
@@ -1235,7 +1254,6 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             } | null | undefined;
             officialUrl?: string | null | undefined;
-            stage?: "DETERMINISTIC" | "JUDGMENT" | "WEB_EVIDENCE" | undefined;
             status: "MATCHED" | "NEEDS_REVIEW" | "NO_MATCH";
         } | null | undefined;
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";

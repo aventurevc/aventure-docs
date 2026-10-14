@@ -1,12 +1,17 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ClassificationJoinRegistrySchema } from "./join-registry.js";
 const ClassificationSchemaDefinition = z.object({
-    creatable: z.boolean(),
+    /** Whether a missing value can be created by name. */
+    creatable: z.boolean().optional(),
     isCurrent: z.boolean().nullish(),
     isPrimary: z.boolean().nullish(),
     /** Display name. Capped to the standardized taxonomy storage limit because this shared read contract covers NAICS/SIC/ISIC-style classification labels as well as editorial tags. */
     name: z.string().max(255),
-    writable: z.boolean(),
+    /** Join registry this classification belongs to; pass it as registry when reading or changing the join by classificationId. */
+    registry: ClassificationJoinRegistrySchema,
+    /** Whether this existing classification can be joined. */
+    writable: z.boolean().optional(),
 });
 /**
  * @openapiSchema Classification

@@ -1,10 +1,14 @@
 import { z } from "zod/v4";
 declare const ClassificationSchemaDefinition: z.ZodObject<{
-    creatable: z.ZodBoolean;
+    creatable: z.ZodOptional<z.ZodBoolean>;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     name: z.ZodString;
-    writable: z.ZodBoolean;
+    registry: z.ZodUnion<readonly [z.ZodEnum<{
+        editorial: "editorial";
+        standardized: "standardized";
+    }>, z.ZodString]>;
+    writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type ClassificationDefinition = z.infer<typeof ClassificationSchemaDefinition>;
 export interface ClassificationSchemaInput extends z.input<typeof ClassificationSchemaDefinition> {

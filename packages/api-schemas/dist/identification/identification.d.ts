@@ -42,7 +42,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
@@ -52,7 +52,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
@@ -86,7 +86,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
@@ -96,7 +96,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
@@ -131,7 +131,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
@@ -141,7 +141,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
@@ -177,7 +177,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
@@ -187,7 +187,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             operatingStatus?: string | null | undefined;
             publicPath?: string | null | undefined;
             reason: string[];
-            score: number;
+            score?: number | undefined;
             slug?: string | null | undefined;
             typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
         }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>;
@@ -195,11 +195,6 @@ export declare const IdentificationSchema: z.ZodObject<{
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
     officialUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    stage: z.ZodOptional<z.ZodEnum<{
-        DETERMINISTIC: "DETERMINISTIC";
-        JUDGMENT: "JUDGMENT";
-        WEB_EVIDENCE: "WEB_EVIDENCE";
-    }>>;
     status: z.ZodEnum<{
         MATCHED: "MATCHED";
         NEEDS_REVIEW: "NEEDS_REVIEW";

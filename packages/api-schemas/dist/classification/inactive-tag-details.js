@@ -6,7 +6,7 @@ const ClassificationInactiveTagDetailsSchemaDefinition = z.object({
     /** Allowed inactiveTagOverride values for this conflict */
     availableOverrides: z.array(EntityClassificationInactiveTagOverrideSchema),
     /** Conflict kind that identifies this details shape. */
-    conflictType: DomainConflictTypeSchema.optional(),
+    conflictType: DomainConflictTypeSchema,
     /** Existing dormant value slug or lookup key */
     slug: z.string(),
     /** Existing tag id */

@@ -5,7 +5,7 @@ import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { UrlDuplicateJoinSchema } from "./duplicate-join.js";
 const UrlDuplicateConflictSchemaDefinition = z.object({
     /** Conflict kind that identifies this details shape. */
-    conflictType: DomainConflictTypeSchema.optional(),
+    conflictType: DomainConflictTypeSchema,
     /** Every current owner that already holds the normalized URL with this urlType. Non-empty when this conflict is emitted. */
     existingJoin: z.array(UrlDuplicateJoinSchema),
     /** True when URL fragment differences were ignored during duplicate matching (i.e., the conflict ignores everything after '#'). */

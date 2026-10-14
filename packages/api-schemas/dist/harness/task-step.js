@@ -6,7 +6,7 @@ const HarnessTaskStepSchemaDefinition = z.object({
     /** OpenAPI operationId this step calls; it must be in the task's operation list. */
     operationId: z.string(),
     /** Step key, unique within its task. */
-    stepKey: z.string(),
+    stepKey: z.string().optional(),
 });
 /**
  * One ordered task step: its key, instruction, and the operation that runs it.

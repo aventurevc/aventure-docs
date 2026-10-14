@@ -1,17 +1,21 @@
 import { z } from "zod/v4";
 declare const StandardizedClassificationSchemaDefinition: z.ZodObject<{
     category: z.ZodString;
+    classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    creatable: z.ZodBoolean;
+    creatable: z.ZodOptional<z.ZodBoolean>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    entityClassificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     id: z.ZodInt;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     level: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     name: z.ZodString;
+    registry: z.ZodUnion<readonly [z.ZodEnum<{
+        editorial: "editorial";
+        standardized: "standardized";
+    }>, z.ZodString]>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    writable: z.ZodBoolean;
+    writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassificationSchemaDefinition>;
 export interface StandardizedClassificationSchemaInput extends z.input<typeof StandardizedClassificationSchemaDefinition> {

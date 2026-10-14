@@ -40,7 +40,7 @@ export const EntityTagSchema = z.intersection(ClassificationSchema, z.object({
     /** Id of this classification on the entity; null in catalog and search results. */
     classificationId: z.int().nullish(),
     /** Whether this bucket permits creating missing values by type plus name. */
-    creatable: z.boolean(),
+    creatable: z.boolean().optional(),
     /** Tag creation timestamp, not the time the entity received this tag. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Classification tag id. */
@@ -62,6 +62,6 @@ export const EntityTagSchema = z.intersection(ClassificationSchema, z.object({
     /** Tag update timestamp, not the time the entity's classification changed. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Whether this existing tag can be joined through tagId. */
-    writable: z.boolean(),
+    writable: z.boolean().optional(),
 }));
 //# sourceMappingURL=tag.js.map

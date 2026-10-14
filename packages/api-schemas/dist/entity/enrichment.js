@@ -6,6 +6,7 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
 import { EntityTextBundleSchema } from "./text-bundle.js";
 import { EntityUrlLinkSchema } from "./url-link.js";
 const EntityEnrichmentSchemaDefinition = z.object({
+    /** Current addresses. Full-detail search carries only the headquarters row (headquartersAddressId); GET /v1/entities/{entityId}/addresses lists every row. */
     address: z.array(AddressSchema),
     /** Entity classifications. Single-detail and full-detail batch reads include history; list, default batch, and similar-entity reads may return only current classifications. Use GET /v1/entities/{entityId}/classifications?includeInactive=true for the full history. */
     classification: EntityClassificationSchema,
@@ -18,7 +19,7 @@ const EntityEnrichmentSchemaDefinition = z.object({
     /** URL link filter values */
     urlLink: z.array(EntityUrlLinkSchema),
     /** Persisted URL link rows omitted from urlLink because they are not both isCurrent=true and isPrimary=true. Read the full list via GET /v1/entities/{entityId}/urls?includeInactive=true. */
-    urlLinkSuppressedCount: z.int(),
+    urlLinkSuppressedCount: z.int().optional(),
 });
 /**
  * Supplemental entity data — addresses, classification tags, funding, text content, and URL links

@@ -8,13 +8,13 @@ const EntityClassificationSuggestionSchemaDefinition = z.object({
     /** Suggested classification tag or standardized classification code. */
     classification: z.union([EntityTagSchema, StandardizedClassificationSchema]),
     /** Whether a missing editorial tag value may be created with type plus name instead of tagId. */
-    creatable: z.boolean(),
+    creatable: z.boolean().optional(),
     /** One-based rank within this suggestion response. */
     rank: z.int(),
     /** Composite embedding similarity score; larger values rank higher. */
     score: z.number(),
     /** Whether this suggestion can be joined through the classification mutation endpoint. */
-    writable: z.boolean(),
+    writable: z.boolean().optional(),
 });
 /**
  * Ranked classification suggestion derived from the entity profile and classification embeddings.

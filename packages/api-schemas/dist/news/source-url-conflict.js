@@ -9,7 +9,7 @@ const NewsSourceUrlConflictSchemaDefinition = z.object({
     /** Existing article title for human-readable diagnostics. */
     conflictingArticleTitle: z.string(),
     /** Conflict kind that identifies this details shape. */
-    conflictType: DomainConflictTypeSchema.optional(),
+    conflictType: DomainConflictTypeSchema,
 });
 /**
  * Typed extension on ProblemDetail.details for HTTP 409 when a news mutation's publication + newsUrlOriginal pair already belongs to another article. The returned fields identify the existing article so the caller can read/update it instead of creating a duplicate.

@@ -33,8 +33,6 @@ export const IdentificationSchema = z.object({
     match: IdentificationCandidateSchema.nullish(),
     /** The subject's own website or profile page found in web search; it may be a profile page on another site rather than the subject's own domain. */
     officialUrl: z.string().nullish(),
-    /** How the answer was settled; informational, so act on status instead. */
-    stage: z.enum(["DETERMINISTIC", "JUDGMENT", "WEB_EVIDENCE"]).optional(),
     /** Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
 });

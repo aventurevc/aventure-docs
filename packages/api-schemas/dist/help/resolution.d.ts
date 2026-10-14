@@ -31,8 +31,8 @@ export declare const HelpResolutionSchema: z.ZodObject<{
     probability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     taskKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     taskPlan: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        catalogRevision: z.ZodInt;
-        gateId: z.ZodArray<z.ZodString>;
+        catalogRevision: z.ZodOptional<z.ZodInt>;
+        gateId: z.ZodOptional<z.ZodArray<z.ZodString>>;
         input: z.ZodArray<z.ZodType<{
             description: string;
             key: string;
@@ -48,7 +48,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
             step: {
                 instruction: string;
                 operationId: string;
-                stepKey: string;
+                stepKey?: string | undefined;
             };
             writeGuidance?: {
                 body: string;
@@ -64,7 +64,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
             step: {
                 instruction: string;
                 operationId: string;
-                stepKey: string;
+                stepKey?: string | undefined;
             };
             writeGuidance?: {
                 body: string;
@@ -75,7 +75,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
                 typeCatalog: string;
             } | null | undefined;
         }, import("../harness/task-plan-step.ts").HarnessTaskPlanStepSchemaInput>>>;
-        taskKey: z.ZodString;
+        taskKey: z.ZodOptional<z.ZodString>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 export type HelpResolution = z.infer<typeof HelpResolutionSchema>;

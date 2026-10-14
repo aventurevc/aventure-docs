@@ -7,7 +7,7 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
-        score: number;
+        score?: number | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput, z.core.$ZodTypeInternals<{
@@ -17,17 +17,17 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         operatingStatus?: string | null | undefined;
         publicPath?: string | null | undefined;
         reason: string[];
-        score: number;
+        score?: number | undefined;
         slug?: string | null | undefined;
         typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
     }, import("../search/duplicate-candidate-score.ts").SearchDuplicateCandidateScoreSchemaInput>>>>>;
-    conflictType: z.ZodOptional<z.ZodUnion<readonly [z.ZodEnum<{
+    conflictType: z.ZodUnion<readonly [z.ZodEnum<{
         CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
         DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
         NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
         STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
         URL_DUPLICATE: "URL_DUPLICATE";
-    }>, z.ZodString]>>;
+    }>, z.ZodString]>;
     newsCandidate: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
         externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         id: z.ZodInt;
