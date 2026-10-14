@@ -90,7 +90,7 @@ does not run through `aventure_search` merely because it has filters.
 
 MCP results include a structured envelope with `ok`, `summary`, and `data`.
 For an API operation, the returned API body is normally in `data.response`;
-status and help have their own data shapes. Prefer `structuredContent` when
+`aventure_help` returns its own data shape. Prefer `structuredContent` when
 available: the text content can be a readable projection of the response.
 Empty optional envelope fields may be absent. An operation that offers both JSON and
 text can choose text in `auto` mode: check `format`, because `data` is then a

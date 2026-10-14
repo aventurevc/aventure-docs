@@ -4,7 +4,7 @@ subtitle: Ask Claude, ChatGPT, or any AI app about companies and people
 slug: mcp
 ---
 
-Connect ChatGPT, Claude, Gemini, or any MCP client to aVenture's hosted
+Connect ChatGPT, Claude, Grok, Gemini, or any MCP client to aVenture's hosted
 server, then ask in plain English. You need an
 [aVenture account](https://aventure.vc/sign-up); free and paid plans both work.
 Working in a terminal or a coding agent with a shell? Use the [CLI](/cli). In
@@ -47,10 +47,10 @@ mobile app before using it there.
 Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
 (Streamable HTTP, OAuth with automatic client registration). If you cannot
 add it yourself, walk me through ChatGPT Plugins > + > Add custom MCP server,
-then create and install it as a plugin. After I sign in to aVenture, call
-aventure_status to confirm my account, then look up https://stripe.com on
-aVenture and summarize what it returns. If a step fails, tell me which step
-and the exact error.
+then create and install it as a plugin. After I sign in to aVenture, look
+up https://stripe.com on aVenture to confirm the connection works, then
+summarize what it returns. If a step fails, tell me which step and the exact
+error.
 ```
 
 [ChatGPT's current setup instructions](https://developers.openai.com/api/docs/guides/custom-mcp-server)
@@ -77,13 +77,35 @@ need to enable the connector first.
 Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
 (Streamable HTTP, OAuth with automatic client registration). If you cannot
 add it yourself, walk me through Customize > Connectors > Add > Custom > Web,
-then enable aVenture for this chat. After I sign in to aVenture, call
-aventure_status to confirm my account, then look up https://stripe.com on
-aVenture and summarize what it returns. If a step fails, tell me which step
-and the exact error.
+then enable aVenture for this chat. After I sign in to aVenture, look up
+https://stripe.com on aVenture to confirm the connection works, then
+summarize what it returns. If a step fails, tell me which step and the exact
+error.
 ```
 
 [Claude's current connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities)
+
+</Tab>
+<Tab title="Grok">
+
+1. Open [Grok Connectors](https://grok.com/connectors) on the web.
+2. Select **New Connector**, then **Custom**.
+3. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp`.
+4. Sign in to aVenture and approve the access it asks for.
+5. In a new chat, ask Grok to use aVenture.
+
+**One-shot prompt**
+
+```text
+Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth). If you cannot add it yourself, walk me through
+Connectors > New Connector > Custom on grok.com. After I sign in to aVenture,
+look up https://stripe.com on aVenture to confirm the connection works, then
+summarize what it returns. If a step fails, tell me which step and the exact
+error.
+```
+
+[Grok's current connector instructions](https://docs.x.ai/grok/connectors)
 
 </Tab>
 <Tab title="Gemini">
@@ -111,10 +133,9 @@ it then works on web and mobile.
 Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
 (Streamable HTTP, OAuth). If you cannot add it yourself, walk me through
 Settings > Connected Apps > Custom apps > Add a custom app on the web.
-After I sign in to aVenture, call aventure_status through @aVenture to
-confirm my account, then look up https://stripe.com on aVenture and
-summarize what it returns. If a step fails, tell me which step and the
-exact error.
+After I sign in to aVenture, look up https://stripe.com through @aVenture
+to confirm the connection works, then summarize what it returns. If a step
+fails, tell me which step and the exact error.
 ```
 
 [Gemini's current custom app instructions](https://support.google.com/gemini/answer/17209137?hl=en-12)
@@ -139,9 +160,9 @@ aVenture's tools are connected. If your Claude Code version does not provide
 Add the aVenture MCP server at user scope, reusing it if it already exists:
 claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
 Then run claude mcp login aventure (or send me to /mcp to sign in). After I
-sign in to aVenture, call aventure_status to confirm my account, then look up
-https://stripe.com on aVenture and summarize what it returns. If a step
-fails, tell me which step and the exact error.
+sign in to aVenture, look up https://stripe.com on aVenture to confirm the
+connection works, then summarize what it returns. If a step fails, tell me
+which step and the exact error.
 ```
 
 [Claude Code's current MCP instructions](https://code.claude.com/docs/en/mcp)
@@ -210,7 +231,7 @@ Then sign in through `/mcp`.
 
 | What you see | Fix |
 |---|---|
-| Connected app exists but tools are unavailable | Install/enable it in the current conversation and verify with `aventure_status` |
+| Connected app exists but tools are unavailable | Install/enable it in the current conversation, then ask it to look up `https://stripe.com` on aVenture |
 | OAuth client registration fails | Check the client's discovery/registration choice; use the fixed client only for its supported redirect URIs |
 | Redirect URI mismatch | Check the actual callback against the OAuth client used; a different callback path needs a compatible registration |
 | Sign-in succeeds but connector remains disconnected | Check whether token exchange and tools discovery finished; provide the exact client error to [support](/support) |
@@ -218,9 +239,10 @@ Then sign in through `/mcp`.
 | `402` with `subscription_required` | On the free plan, read by website or [upgrade](/plans-and-usage) |
 | `429` with `billing_allowance_exhausted` | [Upgrade](/plans-and-usage) or wait for the allowance reset |
 
-`aventure_status` verifies the live connection and shows the signed-in account.
-Use a website such as `https://stripe.com` for the first read so the check works
-on free as well as paid plans.
+A lookup by website such as `https://stripe.com` verifies the live connection
+and works on free as well as paid plans. To see which account and plan the
+connection uses, ask the assistant to read your aVenture subscription
+(`aventure_read` with operation `getBillingSubscription`).
 
 ## Ask Your First Question
 
@@ -246,7 +268,6 @@ The assistant picks the tools itself:
 | `aventure_search` | Runs the search operation that `aventure_help` names; pass the search text in its `query` or `body` |
 | `aventure_read` | Reads a profile and its funding rounds, people, and news |
 | `aventure_help` | Finds the operation for a task described in plain English |
-| `aventure_status` | Confirms the connection and your sign-in |
 | `aventure_write` | Queues research and changes your plan; accounts with editing access can also update records |
 | `aventure_delete` | Appears only for accounts allowed to remove aVenture records |
 
