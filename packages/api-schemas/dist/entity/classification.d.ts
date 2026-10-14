@@ -1,23 +1,18 @@
 import { z } from "zod/v4";
 declare const EntityClassificationSchemaDefinition: z.ZodObject<{
     geoLocationExposure: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -26,26 +21,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     industry: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -54,26 +43,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     mainProduct: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -82,13 +65,11 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     standardizedClassification: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodType<{
         category: string;
         classificationId?: number | null | undefined;
         code?: number | null | undefined;
-        creatable?: boolean | undefined;
         createdAt?: string | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
@@ -97,12 +78,10 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         name: string;
         registry: string;
         updatedAt?: string | null | undefined;
-        writable?: boolean | undefined;
     }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput, z.core.$ZodTypeInternals<{
         category: string;
         classificationId?: number | null | undefined;
         code?: number | null | undefined;
-        creatable?: boolean | undefined;
         createdAt?: string | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
@@ -111,26 +90,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         name: string;
         registry: string;
         updatedAt?: string | null | undefined;
-        writable?: boolean | undefined;
     }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput>>>>>;
     tag: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -139,26 +112,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     typeCustomer: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -167,26 +134,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     typeModel: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -195,26 +156,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     typeOwnership: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -223,26 +178,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     typeRevenue: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -251,26 +200,20 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
     typeTechnologyUsed: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodIntersection<z.ZodType<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-        creatable?: boolean | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
         name: string;
         registry: string;
-        writable?: boolean | undefined;
     }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
         bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        creatable: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         id: z.ZodInt;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -279,7 +222,6 @@ declare const EntityClassificationSchemaDefinition: z.ZodObject<{
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         type: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-        writable: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>>>;
 }, z.core.$strip>;
 type EntityClassificationDefinition = z.infer<typeof EntityClassificationSchemaDefinition>;

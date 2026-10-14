@@ -33,23 +33,18 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EntityTagSchema: z.ZodIntersection<z.ZodType<{
-    creatable?: boolean | undefined;
     isCurrent?: boolean | null | undefined;
     isPrimary?: boolean | null | undefined;
     name: string;
     registry: string;
-    writable?: boolean | undefined;
 }, import("../classification/classification.ts").ClassificationSchemaInput, z.core.$ZodTypeInternals<{
-    creatable?: boolean | undefined;
     isCurrent?: boolean | null | undefined;
     isPrimary?: boolean | null | undefined;
     name: string;
     registry: string;
-    writable?: boolean | undefined;
 }, import("../classification/classification.ts").ClassificationSchemaInput>>, z.ZodObject<{
     bucket: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    creatable: z.ZodOptional<z.ZodBoolean>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     id: z.ZodInt;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -58,7 +53,6 @@ export declare const EntityTagSchema: z.ZodIntersection<z.ZodType<{
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     type: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>>;
 export type EntityTag = z.infer<typeof EntityTagSchema>;
 //# sourceMappingURL=tag.d.ts.map

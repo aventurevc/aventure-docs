@@ -6,7 +6,6 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         category: string;
         classificationId?: number | null | undefined;
         code?: number | null | undefined;
-        creatable?: boolean | undefined;
         createdAt?: string | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
@@ -15,12 +14,10 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         name: string;
         registry: string;
         updatedAt?: string | null | undefined;
-        writable?: boolean | undefined;
     }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput, z.core.$ZodTypeInternals<{
         category: string;
         classificationId?: number | null | undefined;
         code?: number | null | undefined;
-        creatable?: boolean | undefined;
         createdAt?: string | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
@@ -29,13 +26,10 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         name: string;
         registry: string;
         updatedAt?: string | null | undefined;
-        writable?: boolean | undefined;
     }, import("../standardized/classification.ts").StandardizedClassificationSchemaInput>>>;
     classificationCount: z.ZodInt;
-    creatable: z.ZodOptional<z.ZodBoolean>;
     hierarchical: z.ZodBoolean;
     label: z.ZodString;
-    writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type ClassificationCatalogCategoryDefinition = z.infer<typeof ClassificationCatalogCategorySchemaDefinition>;
 export interface ClassificationCatalogCategorySchemaInput extends z.input<typeof ClassificationCatalogCategorySchemaDefinition> {

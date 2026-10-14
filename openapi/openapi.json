@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. To research or refresh a company or person, request a research run for its website or profile URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.178"
+    "version": "0.8.179"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -34576,10 +34576,6 @@
               }
             ]
           },
-          "creatable": {
-            "type": "boolean",
-            "description": "Whether a missing editorial tag value may be created with type plus name instead of tagId."
-          },
           "rank": {
             "type": "integer",
             "format": "int32",
@@ -34589,10 +34585,6 @@
             "type": "number",
             "format": "double",
             "description": "Composite embedding similarity score; larger values rank higher."
-          },
-          "writable": {
-            "type": "boolean",
-            "description": "Whether this suggestion can be joined through the classification mutation endpoint."
           }
         },
         "required": [
@@ -40458,11 +40450,6 @@
             "items": {
               "$ref": "#/components/schemas/EntityUrlLink"
             }
-          },
-          "urlLinkSuppressedCount": {
-            "type": "integer",
-            "format": "int32",
-            "description": "Persisted URL link rows omitted from urlLink because they are not both isCurrent=true and isPrimary=true. Read the full list via GET /v1/entities/{entityId}/urls?includeInactive=true."
           }
         },
         "required": [
@@ -43402,10 +43389,6 @@
                 "format": "int32",
                 "description": "Id of this classification on the entity; null in catalog and search results."
               },
-              "creatable": {
-                "type": "boolean",
-                "description": "Whether this bucket permits creating missing values by type plus name."
-              },
               "createdAt": {
                 "type": [
                   "string",
@@ -43497,10 +43480,6 @@
                 ],
                 "format": "date-time",
                 "description": "Tag update timestamp, not the time the entity's classification changed."
-              },
-              "writable": {
-                "type": "boolean",
-                "description": "Whether this existing tag can be joined through tagId."
               }
             }
           }
@@ -43540,10 +43519,6 @@
             ],
             "format": "int32",
             "description": "Standardized classification code when present."
-          },
-          "creatable": {
-            "type": "boolean",
-            "description": "Standardized taxonomy rows are join-existing-only."
           },
           "createdAt": {
             "type": [
@@ -43597,10 +43572,6 @@
             ],
             "format": "date-time",
             "description": "Registry row update timestamp."
-          },
-          "writable": {
-            "type": "boolean",
-            "description": "Existing standardized rows can be joined through standardizedClassificationId."
           }
         },
         "required": [
@@ -43625,10 +43596,6 @@
       "Classification": {
         "type": "object",
         "properties": {
-          "creatable": {
-            "type": "boolean",
-            "description": "Whether a missing value can be created by name."
-          },
           "isCurrent": {
             "type": [
               "boolean",
@@ -43650,10 +43617,6 @@
           "registry": {
             "$ref": "#/components/schemas/ClassificationJoinRegistry",
             "description": "Join registry this classification belongs to; pass it as registry when reading or changing the join by classificationId."
-          },
-          "writable": {
-            "type": "boolean",
-            "description": "Whether this existing classification can be joined."
           }
         },
         "required": [
@@ -44779,10 +44742,6 @@
             ],
             "description": "Canonical classification bucket key."
           },
-          "creatable": {
-            "type": "boolean",
-            "description": "Whether missing values in this bucket can be created by name."
-          },
           "hierarchical": {
             "type": "boolean",
             "description": "Whether the bucket has hierarchy semantics."
@@ -44806,10 +44765,6 @@
           "type": {
             "type": "string",
             "description": "Canonical wire value — use as ?type= for /tags, as ?bucketType= for /catalog, and as Tag.type when round-tripping. Matches Tag.type returned in this bucket's tag[]."
-          },
-          "writable": {
-            "type": "boolean",
-            "description": "Whether existing rows in this bucket can be joined."
           }
         },
         "required": [
@@ -44848,10 +44803,6 @@
             "format": "int32",
             "description": "Total standardized classifications in this category."
           },
-          "creatable": {
-            "type": "boolean",
-            "description": "Whether missing values in this category can be created by name."
-          },
           "hierarchical": {
             "type": "boolean",
             "description": "Whether the category has hierarchy semantics."
@@ -44859,10 +44810,6 @@
           "label": {
             "type": "string",
             "description": "Human-readable category label."
-          },
-          "writable": {
-            "type": "boolean",
-            "description": "Whether existing rows in this category can be joined."
           }
         },
         "required": [

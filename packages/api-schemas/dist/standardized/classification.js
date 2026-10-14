@@ -8,8 +8,6 @@ const StandardizedClassificationSchemaDefinition = z.object({
     classificationId: z.int().nullish(),
     /** Standardized classification code when present. */
     code: z.int().nullish(),
-    /** Standardized taxonomy rows are join-existing-only. */
-    creatable: z.boolean().optional(),
     /** Registry row creation timestamp. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Standardized classification id. */
@@ -26,8 +24,6 @@ const StandardizedClassificationSchemaDefinition = z.object({
     registry: ClassificationJoinRegistrySchema,
     /** Registry row update timestamp. */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Existing standardized rows can be joined through standardizedClassificationId. */
-    writable: z.boolean().optional(),
 });
 /**
  * Industry or ownership classification from a standard taxonomy such as NAICS, SIC, or ISIC, with its category, code, and hierarchy level.

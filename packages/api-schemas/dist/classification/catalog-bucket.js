@@ -6,8 +6,6 @@ const ClassificationCatalogBucketSchemaDefinition = z.object({
     alias: z.array(z.string()),
     /** Canonical classification bucket key. */
     bucket: z.string().nullish(),
-    /** Whether missing values in this bucket can be created by name. */
-    creatable: z.boolean().optional(),
     /** Whether the bucket has hierarchy semantics. */
     hierarchical: z.boolean(),
     /** Human-readable bucket label (e.g. 'Revenue Model'). */
@@ -18,8 +16,6 @@ const ClassificationCatalogBucketSchemaDefinition = z.object({
     tagCount: z.int(),
     /** Canonical wire value — use as ?type= for /tags, as ?bucketType= for /catalog, and as Tag.type when round-tripping. Matches Tag.type returned in this bucket's tag[]. */
     type: z.string(),
-    /** Whether existing rows in this bucket can be joined. */
-    writable: z.boolean().optional(),
 });
 /**
  * Classification bucket with active registry tags and accepted-spelling aliases.

@@ -3,7 +3,6 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodObject<{
     category: z.ZodString;
     classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    creatable: z.ZodOptional<z.ZodBoolean>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     id: z.ZodInt;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -20,7 +19,6 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodObject<{
         };
     };
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type StandardizedClassificationDefinition = z.infer<typeof StandardizedClassificationSchemaDefinition>;
 export interface StandardizedClassificationSchemaInput extends z.input<typeof StandardizedClassificationSchemaDefinition> {

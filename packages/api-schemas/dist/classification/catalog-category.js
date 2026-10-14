@@ -10,14 +10,10 @@ const ClassificationCatalogCategorySchemaDefinition = z.object({
     classification: z.array(StandardizedClassificationSchema),
     /** Total standardized classifications in this category. */
     classificationCount: z.int(),
-    /** Whether missing values in this category can be created by name. */
-    creatable: z.boolean().optional(),
     /** Whether the category has hierarchy semantics. */
     hierarchical: z.boolean(),
     /** Human-readable category label. */
     label: z.string(),
-    /** Whether existing rows in this category can be joined. */
-    writable: z.boolean().optional(),
 });
 /**
  * Standardized classification category with accepted spellings and registry rows.
