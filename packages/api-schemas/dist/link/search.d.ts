@@ -2749,7 +2749,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 createdAt: string;
                 id: number;
                 identifier: string;
-                idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+                idType: string;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -6266,7 +6266,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 createdAt: string;
                 id: number;
                 identifier: string;
-                idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+                idType: string;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;

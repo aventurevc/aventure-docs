@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. To research or refresh a company or person, request a research run for its website or profile URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.177"
+    "version": "0.8.178"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -6861,7 +6861,7 @@
                 }
               }
             },
-            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with POST /v1/lookup (CLI lookup --kind ENTITY). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (the record exists but is not published), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
+            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with the read-only GET /v1/lookup (CLI lookup --kind ENTITY). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (the record exists but is not published), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
           "406": {
             "content": {
@@ -8379,7 +8379,7 @@
     },
     "/v1/entities/{entityId}": {
       "get": {
-        "description": "Returns entity detail by exact UUID. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "description": "Returns one company's full profile by exact UUID, the read for a company brief: identity, funding history with each round's lead investors, key people, news, and relationships. Use lookup for a slug, URL, or candidate signals. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getEntity",
         "parameters": [
           {
@@ -9290,16 +9290,6 @@
               "type": "string",
               "format": "uuid",
               "description": "Canonical entity UUID"
-            }
-          },
-          {
-            "description": "Include inactive research blog post rows",
-            "in": "query",
-            "name": "includeInactive",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
             }
           },
           {
@@ -11109,7 +11099,7 @@
     },
     "/v1/entities/{entityId}/fundraise-investor-joins": {
       "get": {
-        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. Investor entity/person selectors reference existing records only. Create a referenced investor entity first with POST /v1/entities/detail or a referenced investor person first with POST /v1/people, then create the join.",
+        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. To list one investor's joins, find its entityId or personId by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY or --kind PERSON) and pass it as investorEntityId or investorPersonId.",
         "operationId": "listEntityFundraiseInvestorJoins",
         "parameters": [
           {
@@ -11166,45 +11156,45 @@
             }
           },
           {
-            "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail.",
+            "description": "Investor entity identifier. Find an investor's entityId by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY).",
             "in": "query",
             "name": "investorEntityId",
             "required": false,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "Existing investor entity identifier. The entity must already exist; create a referenced investor entity first with POST /v1/entities/detail."
+              "description": "Investor entity identifier. Find an investor's entityId by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY)."
             }
           },
           {
-            "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail.",
+            "description": "Investor entity slug when investorEntityId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY).",
             "in": "query",
             "name": "investorEntitySlug",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Existing investor entity slug when investorEntityId is omitted. The entity must already exist; create it first with POST /v1/entities/detail."
+              "description": "Investor entity slug when investorEntityId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY)."
             }
           },
           {
-            "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people.",
+            "description": "Investor person identifier. Find an investor's personId by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON).",
             "in": "query",
             "name": "investorPersonId",
             "required": false,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "Existing investor person identifier. The person must already exist; create a referenced investor person first with POST /v1/people."
+              "description": "Investor person identifier. Find an investor's personId by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON)."
             }
           },
           {
-            "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people.",
+            "description": "Investor person slug when investorPersonId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON).",
             "in": "query",
             "name": "investorPersonSlug",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Existing investor person slug when investorPersonId is omitted. The person must already exist; create it first with POST /v1/people."
+              "description": "Investor person slug when investorPersonId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON)."
             }
           },
           {
@@ -12732,7 +12722,7 @@
             }
           },
           {
-            "description": "Match the complete titleName, ignoring case (for example, Co-Founder & CEO). Omit to include all titles; this does not filter titleFunction or titleLevel.",
+            "description": "Match titleName containing this text as a whole-word phrase, ignoring case: founder matches Co-Founder, Founder & CEO, and CEO and Co-Founder, but not Founding Partner. Omit to include all titles; this does not filter titleFunction or titleLevel.",
             "in": "query",
             "name": "role",
             "required": false,
@@ -12768,7 +12758,7 @@
             }
           },
           {
-            "description": "Person slug fallback for entity-keyed writes",
+            "description": "Writes only: the person's slug when the body omits personId. List reads ignore it; use search to narrow listed people.",
             "in": "query",
             "name": "personSlug",
             "required": false,
@@ -12817,7 +12807,7 @@
             }
           },
           {
-            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "description": "Sorting criteria in the format property,(asc|desc), where property is one of: id, nameFirst, nameLast, nameFull, slug, createdAt, updatedAt, status, gender, amountInvested, totalInvestments. Default order is ascending; repeat sort for multiple criteria.",
             "in": "query",
             "name": "sort",
             "required": false,
@@ -12993,7 +12983,7 @@
             }
           },
           {
-            "description": "Match the complete titleName, ignoring case (for example, Co-Founder & CEO). Omit to include all titles; this does not filter titleFunction or titleLevel.",
+            "description": "Match titleName containing this text as a whole-word phrase, ignoring case: founder matches Co-Founder, Founder & CEO, and CEO and Co-Founder, but not Founding Partner. Omit to include all titles; this does not filter titleFunction or titleLevel.",
             "in": "query",
             "name": "role",
             "required": false,
@@ -13029,7 +13019,7 @@
             }
           },
           {
-            "description": "Person slug fallback for entity-keyed writes",
+            "description": "Writes only: the person's slug when the body omits personId. List reads ignore it; use search to narrow listed people.",
             "in": "query",
             "name": "personSlug",
             "required": false,
@@ -15407,16 +15397,6 @@
             }
           },
           {
-            "description": "Include inactive text rows",
-            "in": "query",
-            "name": "includeInactive",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
             "description": "Zero-based page index (0..N)",
             "in": "query",
             "name": "page",
@@ -17163,13 +17143,13 @@
             }
           },
           {
-            "description": "Kind of record to identify when you know it; only that kind is looked up. typeRecord or providerId implies ENTITY.",
+            "description": "Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or providerId implies ENTITY.",
             "in": "query",
             "name": "kind",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Which kind of record a lookup identifies: ENTITY (a company, product, or service) or PERSON. Only that kind is looked up; omit it to compare both kinds.",
+              "description": "Which kind of record a lookup identifies: ENTITY for companies, funds, investment firms, products, and services; PERSON for people. No other value is accepted (send ENTITY, not company). Only that kind is looked up; omit it to compare both kinds.",
               "enum": [
                 "ENTITY",
                 "PERSON"
@@ -21477,7 +21457,7 @@
     },
     "/v1/people/lookup-exact": {
       "get": {
-        "description": "Start here for any aventure.vc person profile URL, slug, or personal profile URL. Exact read: returns the full PersonDetail (names, profile, company roles, and investments) of the one person a slug, URL, or candidate signals prove, so do not re-read it with getPerson or listPeople; it answers 404 or 409 instead of guessing. To identify a person by name and clues, use the POST lookup (CLI lookup-from-file --kind PERSON). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "description": "Start here for any aventure.vc person profile URL, slug, or personal profile URL. Exact read: returns the full PersonDetail (names, profile, company roles, and investments) of the one person a slug, URL, or candidate signals prove, so do not re-read it with getPerson or listPeople; it answers 404 or 409 instead of guessing. To identify a person by name and clues, use the read-only GET /v1/lookup (CLI lookup --kind PERSON). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getPersonLookup",
         "parameters": [
           {
@@ -22721,16 +22701,6 @@
               "type": "string",
               "format": "uuid",
               "description": "Canonical person UUID"
-            }
-          },
-          {
-            "description": "Include inactive research blog post rows",
-            "in": "query",
-            "name": "includeInactive",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
             }
           },
           {
@@ -25474,16 +25444,6 @@
               "type": "string",
               "format": "uuid",
               "description": "Canonical person UUID"
-            }
-          },
-          {
-            "description": "Include inactive text rows",
-            "in": "query",
-            "name": "includeInactive",
-            "required": false,
-            "schema": {
-              "type": "boolean",
-              "default": false
             }
           },
           {
@@ -30558,8 +30518,7 @@
             "type": "string",
             "description": "The question to answer, in natural language.",
             "example": "how do I attach a product URL?",
-            "maxLength": 2000,
-            "minLength": 0
+            "minLength": 1
           },
           "resolve": {
             "type": "boolean",
@@ -32571,7 +32530,7 @@
               "string",
               "null"
             ],
-            "description": "Kind of record to identify when you know it; only that kind is looked up. typeRecord or providerId implies ENTITY.",
+            "description": "Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or providerId implies ENTITY.",
             "enum": [
               "ENTITY",
               "PERSON"
@@ -33333,7 +33292,7 @@
       "EntityListFilter": {
         "type": "object",
         "additionalProperties": false,
-        "description": "Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.",
+        "description": "Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.",
         "properties": {
           "acceleratorBrand": {
             "type": "array",
@@ -33526,7 +33485,7 @@
               "string",
               "null"
             ],
-            "description": "Semantic entity search phrase. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity."
+            "description": "Free-text semantic search phrase, this body's query text (there is no query field), such as \"AI tools for dental clinics\". To find one company by name, send entityName instead. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity."
           },
           "slug": {
             "type": "array",
@@ -34773,6 +34732,15 @@
             ],
             "description": "Optional supported model for planning the search. Omit it to use the default; an unsupported model answers 422."
           },
+          "modelCatalogRevision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Model catalog revision this search uses for its model defaults and inference policy; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "example": 1
+          },
           "query": {
             "type": "string",
             "description": "Plain-English search request.",
@@ -34796,7 +34764,16 @@
               "null"
             ],
             "format": "int32",
-            "description": "Search catalog revision this search reads its qualifier prompts and startup vocabulary from, to compare catalog edits; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "description": "Search catalog revision this search uses for its global search policy and vocabulary; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "example": 1
+          },
+          "tenantPolicyRevision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Runtime policy revision this search uses for the serving deployment's execution budgets; null reads that deployment's current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
             "example": 1
           }
         },
@@ -38105,6 +38082,15 @@
             ],
             "description": "Optional supported model for planning the search. Omit it to use the default; an unsupported model answers 422."
           },
+          "modelCatalogRevision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Model catalog revision this search uses for its model defaults and inference policy; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "example": 1
+          },
           "newsSize": {
             "type": [
               "integer",
@@ -38144,7 +38130,16 @@
               "null"
             ],
             "format": "int32",
-            "description": "Search catalog revision this search reads its qualifier prompts and startup vocabulary from, to compare catalog edits; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "description": "Search catalog revision this search uses for its global search policy and vocabulary; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
+            "example": 1
+          },
+          "tenantPolicyRevision": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int32",
+            "description": "Runtime policy revision this search uses for the serving deployment's execution budgets; null reads that deployment's current revision. Callers without private-data access always read the current revision. An unknown revision returns 404.",
             "example": 1
           }
         },
@@ -42709,7 +42704,7 @@
       "UniqueIdType": {
         "type": "string",
         "description": "External identifier type that maps an owner to a registry id: ein, secCik, ticker, lei, duns, isin, cusip, crd, or orcid.",
-        "enum": [
+        "x-extensible-enum": [
           "ein",
           "secCik",
           "ticker",
@@ -42767,10 +42762,21 @@
       },
       "EntitySimilaritySummary": {
         "type": "object",
-        "description": "Lean similar-entity rail row: core identity, current URL links, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.",
+        "description": "Lean similar-entity rail row: core identity, current URL links, funding totals, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.",
         "properties": {
           "core": {
             "$ref": "#/components/schemas/Entity"
+          },
+          "fundingDetail": {
+            "description": "Funding totals, so similar companies compare without one read each",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityFundingDetail"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "similarity": {
             "$ref": "#/components/schemas/EntitySimilarityContext"
@@ -45966,58 +45972,6 @@
         "type": "string",
         "format": "uri",
         "description": "Known RFC 9457 error type URIs.",
-        "enum": [
-          "https://api.aventure.vc/errors/validation-failed",
-          "https://api.aventure.vc/errors/missing-parameter",
-          "https://api.aventure.vc/errors/invalid-parameter-type",
-          "https://api.aventure.vc/errors/unknown-parameter",
-          "https://api.aventure.vc/errors/invalid-argument",
-          "https://api.aventure.vc/errors/invalid-request",
-          "https://api.aventure.vc/errors/invalid-token",
-          "https://api.aventure.vc/errors/token-expired",
-          "https://api.aventure.vc/errors/invalid-authentication",
-          "https://api.aventure.vc/errors/client-closed-request",
-          "https://api.aventure.vc/errors/invalid-json",
-          "https://api.aventure.vc/errors/method-not-allowed",
-          "https://api.aventure.vc/errors/not-acceptable",
-          "https://api.aventure.vc/errors/unsupported-media-type",
-          "https://api.aventure.vc/errors/internal-error",
-          "https://api.aventure.vc/errors/unexpected-error",
-          "https://api.aventure.vc/errors/not-implemented",
-          "https://api.aventure.vc/errors/authentication-required",
-          "https://api.aventure.vc/errors/access-denied",
-          "https://api.aventure.vc/errors/not-found",
-          "https://api.aventure.vc/errors/gone",
-          "https://api.aventure.vc/errors/rate-limited",
-          "https://api.aventure.vc/errors/precondition-failed",
-          "https://api.aventure.vc/errors/precondition-required",
-          "https://api.aventure.vc/errors/billing-allowance-exhausted",
-          "https://api.aventure.vc/errors/billing-additional-usage-cap-reached",
-          "https://api.aventure.vc/errors/subscription-required",
-          "https://api.aventure.vc/errors/service-unavailable",
-          "https://api.aventure.vc/errors/malformed-form-body",
-          "https://api.aventure.vc/errors/state-conflict",
-          "https://api.aventure.vc/errors/slug-held-by-record",
-          "https://api.aventure.vc/errors/slug-held-by-redirect",
-          "https://api.aventure.vc/errors/slug-ambiguous",
-          "https://api.aventure.vc/errors/target-ambiguous",
-          "https://api.aventure.vc/errors/duplicate",
-          "https://api.aventure.vc/errors/duplicate-key",
-          "https://api.aventure.vc/errors/integrity-violation",
-          "https://api.aventure.vc/errors/circuit-breaker-open",
-          "https://api.aventure.vc/errors/bulkhead-full",
-          "https://api.aventure.vc/errors/write-lane-busy",
-          "https://api.aventure.vc/errors/database-unavailable",
-          "https://api.aventure.vc/errors/database-error",
-          "https://api.aventure.vc/errors/file-too-large",
-          "https://api.aventure.vc/errors/missing-file-part",
-          "https://api.aventure.vc/errors/invalid-multipart-boundary",
-          "https://api.aventure.vc/errors/multipart-parse-error",
-          "https://api.aventure.vc/errors/non-english-article",
-          "https://api.aventure.vc/errors/invalid-image",
-          "https://api.aventure.vc/errors/upstream-edge-challenged",
-          "https://api.aventure.vc/errors/accelerator-detail-restates-target"
-        ],
         "x-enum-varnames": [
           "VALIDATION_FAILED",
           "MISSING_PARAMETER",
@@ -46069,6 +46023,58 @@
           "INVALID_IMAGE",
           "UPSTREAM_EDGE_CHALLENGED",
           "ACCELERATOR_DETAIL_RESTATES_TARGET"
+        ],
+        "x-extensible-enum": [
+          "https://api.aventure.vc/errors/validation-failed",
+          "https://api.aventure.vc/errors/missing-parameter",
+          "https://api.aventure.vc/errors/invalid-parameter-type",
+          "https://api.aventure.vc/errors/unknown-parameter",
+          "https://api.aventure.vc/errors/invalid-argument",
+          "https://api.aventure.vc/errors/invalid-request",
+          "https://api.aventure.vc/errors/invalid-token",
+          "https://api.aventure.vc/errors/token-expired",
+          "https://api.aventure.vc/errors/invalid-authentication",
+          "https://api.aventure.vc/errors/client-closed-request",
+          "https://api.aventure.vc/errors/invalid-json",
+          "https://api.aventure.vc/errors/method-not-allowed",
+          "https://api.aventure.vc/errors/not-acceptable",
+          "https://api.aventure.vc/errors/unsupported-media-type",
+          "https://api.aventure.vc/errors/internal-error",
+          "https://api.aventure.vc/errors/unexpected-error",
+          "https://api.aventure.vc/errors/not-implemented",
+          "https://api.aventure.vc/errors/authentication-required",
+          "https://api.aventure.vc/errors/access-denied",
+          "https://api.aventure.vc/errors/not-found",
+          "https://api.aventure.vc/errors/gone",
+          "https://api.aventure.vc/errors/rate-limited",
+          "https://api.aventure.vc/errors/precondition-failed",
+          "https://api.aventure.vc/errors/precondition-required",
+          "https://api.aventure.vc/errors/billing-allowance-exhausted",
+          "https://api.aventure.vc/errors/billing-additional-usage-cap-reached",
+          "https://api.aventure.vc/errors/subscription-required",
+          "https://api.aventure.vc/errors/service-unavailable",
+          "https://api.aventure.vc/errors/malformed-form-body",
+          "https://api.aventure.vc/errors/state-conflict",
+          "https://api.aventure.vc/errors/slug-held-by-record",
+          "https://api.aventure.vc/errors/slug-held-by-redirect",
+          "https://api.aventure.vc/errors/slug-ambiguous",
+          "https://api.aventure.vc/errors/target-ambiguous",
+          "https://api.aventure.vc/errors/duplicate",
+          "https://api.aventure.vc/errors/duplicate-key",
+          "https://api.aventure.vc/errors/integrity-violation",
+          "https://api.aventure.vc/errors/circuit-breaker-open",
+          "https://api.aventure.vc/errors/bulkhead-full",
+          "https://api.aventure.vc/errors/write-lane-busy",
+          "https://api.aventure.vc/errors/database-unavailable",
+          "https://api.aventure.vc/errors/database-error",
+          "https://api.aventure.vc/errors/file-too-large",
+          "https://api.aventure.vc/errors/missing-file-part",
+          "https://api.aventure.vc/errors/invalid-multipart-boundary",
+          "https://api.aventure.vc/errors/multipart-parse-error",
+          "https://api.aventure.vc/errors/non-english-article",
+          "https://api.aventure.vc/errors/invalid-image",
+          "https://api.aventure.vc/errors/upstream-edge-challenged",
+          "https://api.aventure.vc/errors/accelerator-detail-restates-target"
         ]
       },
       "ProseProblem": {

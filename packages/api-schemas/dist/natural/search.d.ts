@@ -13,8 +13,18 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
         keyword: "keyword";
         natural: "natural";
         semantic: "semantic";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            auto: "auto";
+            exact: "exact";
+            hybrid: "hybrid";
+            keyword: "keyword";
+            natural: "natural";
+            semantic: "semantic";
+        };
+    }>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    modelCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     query: z.ZodString;
     reasoningEffort: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         high: "high";
@@ -23,8 +33,18 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
         medium: "medium";
         minimal: "minimal";
         xhigh: "xhigh";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            high: "high";
+            low: "low";
+            max: "max";
+            medium: "medium";
+            minimal: "minimal";
+            xhigh: "xhigh";
+        };
+    }>>;
     searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    tenantPolicyRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
 export interface NaturalSearchSchemaInput extends z.input<typeof NaturalSearchSchemaDefinition> {

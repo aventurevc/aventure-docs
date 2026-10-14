@@ -10,7 +10,15 @@ declare const SearchPassageSchemaDefinition: z.ZodObject<{
         newsArticle: "newsArticle";
         personRecord: "personRecord";
         researchSnippet: "researchSnippet";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            entityRecord: "entityRecord";
+            fundraiseTransaction: "fundraiseTransaction";
+            newsArticle: "newsArticle";
+            personRecord: "personRecord";
+            researchSnippet: "researchSnippet";
+        };
+    };
     sourceId: z.ZodString;
     text: z.ZodString;
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;

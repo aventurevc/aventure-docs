@@ -3,7 +3,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodISODateTime;
     id: z.ZodInt;
     identifier: z.ZodString;
-    idType: z.ZodEnum<{
+    idType: z.ZodUnion<readonly [z.ZodEnum<{
         crd: "crd";
         cusip: "cusip";
         duns: "duns";
@@ -13,7 +13,19 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         orcid: "orcid";
         secCik: "secCik";
         ticker: "ticker";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            crd: "crd";
+            cusip: "cusip";
+            duns: "duns";
+            ein: "ein";
+            isin: "isin";
+            lei: "lei";
+            orcid: "orcid";
+            secCik: "secCik";
+            ticker: "ticker";
+        };
+    };
     owner: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

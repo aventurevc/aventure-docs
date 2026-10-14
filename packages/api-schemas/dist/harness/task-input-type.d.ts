@@ -12,6 +12,11 @@ import { z } from "zod/v4";
 export declare const HarnessTaskInputTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     ENTITY: "ENTITY";
     TEXT: "TEXT";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        ENTITY: "ENTITY";
+        TEXT: "TEXT";
+    };
+};
 export type HarnessTaskInputType = z.infer<typeof HarnessTaskInputTypeSchema>;
 //# sourceMappingURL=task-input-type.d.ts.map

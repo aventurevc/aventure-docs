@@ -17,6 +17,16 @@ export declare const HelpSourceTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     RESEARCH_SNIPPET_TYPE: "RESEARCH_SNIPPET_TYPE";
     SKILL: "SKILL";
     TEXT_TYPE: "TEXT_TYPE";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        COMPLETION_GATE: "COMPLETION_GATE";
+        OPERATION: "OPERATION";
+        PROMPT: "PROMPT";
+        RESEARCH_DETAIL_TYPE: "RESEARCH_DETAIL_TYPE";
+        RESEARCH_SNIPPET_TYPE: "RESEARCH_SNIPPET_TYPE";
+        SKILL: "SKILL";
+        TEXT_TYPE: "TEXT_TYPE";
+    };
+};
 export type HelpSourceType = z.infer<typeof HelpSourceTypeSchema>;
 //# sourceMappingURL=source-type.d.ts.map

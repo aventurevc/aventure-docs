@@ -6,7 +6,15 @@ declare const UrlDuplicateConflictSchemaDefinition: z.ZodObject<{
         NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
         STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
         URL_DUPLICATE: "URL_DUPLICATE";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
+            DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
+            NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
+            STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
+            URL_DUPLICATE: "URL_DUPLICATE";
+        };
+    };
     existingJoin: z.ZodArray<z.ZodType<{
         owner: {
             entityId?: string | null | undefined;

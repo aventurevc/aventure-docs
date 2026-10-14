@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const ClassificationJoinRegistrySchemaKnownMembers = z.enum(["editorial", "standardized"]);
 /**
  * Entity classification join registry discriminator for paths where editorial and standardized join row ids may collide.
  *
@@ -31,8 +32,5 @@ import { z } from "zod/v4";
  * @contractShape classification.join-registry
  * @contractRole canonical
  */
-export const ClassificationJoinRegistrySchema = z.union([
-    z.enum(["editorial", "standardized"]),
-    z.string(),
-]);
+export const ClassificationJoinRegistrySchema = Object.assign(z.union([ClassificationJoinRegistrySchemaKnownMembers, z.string()]), { enum: ClassificationJoinRegistrySchemaKnownMembers.enum });
 //# sourceMappingURL=join-registry.js.map

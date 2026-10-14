@@ -1,5 +1,13 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const ReasoningEffortSchemaKnownMembers = z.enum([
+    "minimal",
+    "low",
+    "medium",
+    "high",
+    "xhigh",
+    "max",
+]);
 /**
  * Reasoning effort level, lowest to highest: `minimal`, `low`, `medium`, `high`, `xhigh`, `max`. A model receives the nearest level it supports.
  *
@@ -14,8 +22,5 @@ import { z } from "zod/v4";
  * @contractShape reasoning.effort
  * @contractRole canonical
  */
-export const ReasoningEffortSchema = z.union([
-    z.enum(["minimal", "low", "medium", "high", "xhigh", "max"]),
-    z.string(),
-]);
+export const ReasoningEffortSchema = Object.assign(z.union([ReasoningEffortSchemaKnownMembers, z.string()]), { enum: ReasoningEffortSchemaKnownMembers.enum });
 //# sourceMappingURL=effort.js.map

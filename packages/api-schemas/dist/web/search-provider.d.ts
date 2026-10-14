@@ -13,6 +13,12 @@ export declare const WebSearchProviderSchema: z.ZodUnion<readonly [z.ZodEnum<{
     EXA: "EXA";
     EXA_DEEP: "EXA_DEEP";
     SERPAPI: "SERPAPI";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        EXA: "EXA";
+        EXA_DEEP: "EXA_DEEP";
+        SERPAPI: "SERPAPI";
+    };
+};
 export type WebSearchProvider = z.infer<typeof WebSearchProviderSchema>;
 //# sourceMappingURL=search-provider.d.ts.map

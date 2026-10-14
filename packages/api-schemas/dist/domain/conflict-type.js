@@ -1,5 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const DomainConflictTypeSchemaKnownMembers = z.enum([
+    "URL_DUPLICATE",
+    "STRICT_URL_LOOKUP",
+    "DUPLICATE_CREATE_REVIEW",
+    "CLASSIFICATION_INACTIVE_TAG",
+    "NEWS_SOURCE_URL",
+]);
 /**
  * Conflict kind that identifies which details shape a 409 response carries.
  *
@@ -14,14 +21,5 @@ import { z } from "zod/v4";
  * @contractShape domain.conflict-type
  * @contractRole canonical
  */
-export const DomainConflictTypeSchema = z.union([
-    z.enum([
-        "URL_DUPLICATE",
-        "STRICT_URL_LOOKUP",
-        "DUPLICATE_CREATE_REVIEW",
-        "CLASSIFICATION_INACTIVE_TAG",
-        "NEWS_SOURCE_URL",
-    ]),
-    z.string(),
-]);
+export const DomainConflictTypeSchema = Object.assign(z.union([DomainConflictTypeSchemaKnownMembers, z.string()]), { enum: DomainConflictTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=conflict-type.js.map

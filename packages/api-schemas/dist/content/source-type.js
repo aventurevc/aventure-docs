@@ -1,5 +1,19 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const ContentSourceTypeSchemaKnownMembers = z.enum([
+    "entity",
+    "person",
+    "newsArticle",
+    "blogPost",
+    "text",
+    "classificationTag",
+    "classificationCode",
+    "product",
+    "service",
+    "agentHelpDoc",
+    "researchSnippet",
+    "sourceDocument",
+]);
 /**
  * Discriminator for unified content embedding source partitions
  *
@@ -33,21 +47,5 @@ import { z } from "zod/v4";
  * @contractShape content.source-type
  * @contractRole canonical
  */
-export const ContentSourceTypeSchema = z.union([
-    z.enum([
-        "entity",
-        "person",
-        "newsArticle",
-        "blogPost",
-        "text",
-        "classificationTag",
-        "classificationCode",
-        "product",
-        "service",
-        "agentHelpDoc",
-        "researchSnippet",
-        "sourceDocument",
-    ]),
-    z.string(),
-]);
+export const ContentSourceTypeSchema = Object.assign(z.union([ContentSourceTypeSchemaKnownMembers, z.string()]), { enum: ContentSourceTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=source-type.js.map

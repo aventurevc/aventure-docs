@@ -177,7 +177,7 @@ type EntityListFilterDefinition = z.infer<typeof EntityListFilterSchemaDefinitio
 export interface EntityListFilterSchemaInput extends z.input<typeof EntityListFilterSchemaDefinition> {
 }
 /**
- * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link

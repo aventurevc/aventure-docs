@@ -24,7 +24,7 @@ import { z } from "zod/v4";
  * @contractShape unique.id-type
  * @contractRole canonical
  */
-export declare const UniqueIdTypeSchema: z.ZodEnum<{
+export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     crd: "crd";
     cusip: "cusip";
     duns: "duns";
@@ -34,6 +34,18 @@ export declare const UniqueIdTypeSchema: z.ZodEnum<{
     orcid: "orcid";
     secCik: "secCik";
     ticker: "ticker";
-}>;
+}>, z.ZodString]> & {
+    enum: {
+        crd: "crd";
+        cusip: "cusip";
+        duns: "duns";
+        ein: "ein";
+        isin: "isin";
+        lei: "lei";
+        orcid: "orcid";
+        secCik: "secCik";
+        ticker: "ticker";
+    };
+};
 export type UniqueIdType = z.infer<typeof UniqueIdTypeSchema>;
 //# sourceMappingURL=id-type.d.ts.map

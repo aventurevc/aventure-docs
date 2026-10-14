@@ -2355,7 +2355,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             createdAt: string;
             id: number;
             identifier: string;
-            idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+            idType: string;
             owner: {
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
@@ -2366,7 +2366,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             createdAt: string;
             id: number;
             identifier: string;
-            idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+            idType: string;
             owner: {
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
@@ -3622,7 +3622,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 createdAt: string;
                 id: number;
                 identifier: string;
-                idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+                idType: string;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -4566,7 +4566,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 createdAt: string;
                 id: number;
                 identifier: string;
-                idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+                idType: string;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -7285,6 +7285,18 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        fundingDetail?: {
+            currency?: string | null | undefined;
+            fundingRoundCount: number;
+            investorCount: number;
+            latestValuation?: number | null | undefined;
+            mostRecentAmount?: number | null | undefined;
+            mostRecentDate?: string | null | undefined;
+            stage?: string | null | undefined;
+            totalRaised: number;
+            totalRaisedUsd?: number | null | undefined;
+            unconvertedRoundCount: number;
+        } | null | undefined;
         similarity: {
             compositeScore?: number | null | undefined;
             cosineScore?: number | null | undefined;
@@ -7348,6 +7360,18 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        fundingDetail?: {
+            currency?: string | null | undefined;
+            fundingRoundCount: number;
+            investorCount: number;
+            latestValuation?: number | null | undefined;
+            mostRecentAmount?: number | null | undefined;
+            mostRecentDate?: string | null | undefined;
+            stage?: string | null | undefined;
+            totalRaised: number;
+            totalRaisedUsd?: number | null | undefined;
+            unconvertedRoundCount: number;
+        } | null | undefined;
         similarity: {
             compositeScore?: number | null | undefined;
             cosineScore?: number | null | undefined;
@@ -11196,7 +11220,7 @@ declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
         createdAt: string;
         id: number;
         identifier: string;
-        idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+        idType: string;
         owner: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;
@@ -11207,7 +11231,7 @@ declare const PageUniqueIdSchemaDefinition: z.ZodObject<{
         createdAt: string;
         id: number;
         identifier: string;
-        idType: "crd" | "cusip" | "duns" | "ein" | "isin" | "lei" | "orcid" | "secCik" | "ticker";
+        idType: string;
         owner: {
             entityId?: string | null | undefined;
             personId?: string | null | undefined;

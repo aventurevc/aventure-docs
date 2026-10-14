@@ -22,9 +22,9 @@ export const EntityPeopleParamSchema = PageParamSchema.extend({
     isCurrent: z.boolean().optional(),
     /** Permit generated monogram fallback */
     permitMonogram: z.boolean().optional(),
-    /** Person slug fallback for entity-keyed writes */
+    /** Writes only: the person's slug when the body omits personId. List reads ignore it; use search to narrow listed people. */
     personSlug: z.string().optional(),
-    /** Match the complete titleName, ignoring case (for example, Co-Founder & CEO). Omit to include all titles; this does not filter titleFunction or titleLevel. */
+    /** Match titleName containing this text as a whole-word phrase, ignoring case: founder matches Co-Founder, Founder & CEO, and CEO and Co-Founder, but not Founding Partner. Omit to include all titles; this does not filter titleFunction or titleLevel. */
     role: z.string().optional(),
     /** Search term filter */
     search: z.string().optional(),

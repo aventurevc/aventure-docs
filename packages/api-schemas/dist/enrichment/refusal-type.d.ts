@@ -13,6 +13,13 @@ export declare const EnrichmentRefusalTypeSchema: z.ZodUnion<readonly [z.ZodEnum
     AMBIGUOUS: "AMBIGUOUS";
     NOT_FOUND: "NOT_FOUND";
     SUBSCRIPTION_REQUIRED: "SUBSCRIPTION_REQUIRED";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        ALLOWANCE_EXHAUSTED: "ALLOWANCE_EXHAUSTED";
+        AMBIGUOUS: "AMBIGUOUS";
+        NOT_FOUND: "NOT_FOUND";
+        SUBSCRIPTION_REQUIRED: "SUBSCRIPTION_REQUIRED";
+    };
+};
 export type EnrichmentRefusalType = z.infer<typeof EnrichmentRefusalTypeSchema>;
 //# sourceMappingURL=refusal-type.d.ts.map

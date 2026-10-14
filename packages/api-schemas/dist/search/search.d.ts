@@ -10,7 +10,13 @@ declare const SearchSchemaDefinition: z.ZodObject<{
         EXA: "EXA";
         EXA_DEEP: "EXA_DEEP";
         SERPAPI: "SERPAPI";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            EXA: "EXA";
+            EXA_DEEP: "EXA_DEEP";
+            SERPAPI: "SERPAPI";
+        };
+    }>>;
     region: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resultLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     retrievedFor: z.ZodOptional<z.ZodNullable<z.ZodObject<{

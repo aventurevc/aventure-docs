@@ -13,6 +13,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -70,6 +71,46 @@ export declare const FundingStageSchema: z.ZodUnion<readonly [z.ZodEnum<{
     "Series X": "Series X";
     "Series Y": "Series Y";
     "Series Z": "Series Z";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        Acquired: "Acquired";
+        "Acquired Subsidiary": "Acquired Subsidiary";
+        Angel: "Angel";
+        Fund: "Fund";
+        Government: "Government";
+        "Investment Firm": "Investment Firm";
+        "Late Stage Private": "Late Stage Private";
+        Nonprofit: "Nonprofit";
+        "Pre-Seed": "Pre-Seed";
+        Public: "Public";
+        Seed: "Seed";
+        "Series A": "Series A";
+        "Series B": "Series B";
+        "Series C": "Series C";
+        "Series D": "Series D";
+        "Series E": "Series E";
+        "Series F": "Series F";
+        "Series G": "Series G";
+        "Series H": "Series H";
+        "Series I": "Series I";
+        "Series J": "Series J";
+        "Series K": "Series K";
+        "Series L": "Series L";
+        "Series M": "Series M";
+        "Series N": "Series N";
+        "Series O": "Series O";
+        "Series P": "Series P";
+        "Series Q": "Series Q";
+        "Series R": "Series R";
+        "Series S": "Series S";
+        "Series T": "Series T";
+        "Series U": "Series U";
+        "Series V": "Series V";
+        "Series W": "Series W";
+        "Series X": "Series X";
+        "Series Y": "Series Y";
+        "Series Z": "Series Z";
+    };
+};
 export type FundingStage = z.infer<typeof FundingStageSchema>;
 //# sourceMappingURL=stage.d.ts.map

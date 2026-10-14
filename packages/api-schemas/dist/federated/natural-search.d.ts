@@ -186,8 +186,18 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
         keyword: "keyword";
         natural: "natural";
         semantic: "semantic";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            auto: "auto";
+            exact: "exact";
+            hybrid: "hybrid";
+            keyword: "keyword";
+            natural: "natural";
+            semantic: "semantic";
+        };
+    }>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    modelCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     newsSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     personSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     query: z.ZodString;
@@ -198,8 +208,18 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
         medium: "medium";
         minimal: "minimal";
         xhigh: "xhigh";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            high: "high";
+            low: "low";
+            max: "max";
+            medium: "medium";
+            minimal: "minimal";
+            xhigh: "xhigh";
+        };
+    }>>;
     searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    tenantPolicyRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
 export interface FederatedNaturalSearchSchemaInput extends z.input<typeof FederatedNaturalSearchSchemaDefinition> {

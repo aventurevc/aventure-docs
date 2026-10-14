@@ -45,6 +45,21 @@ export declare const ContentSourceTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     service: "service";
     sourceDocument: "sourceDocument";
     text: "text";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        agentHelpDoc: "agentHelpDoc";
+        blogPost: "blogPost";
+        classificationCode: "classificationCode";
+        classificationTag: "classificationTag";
+        entity: "entity";
+        newsArticle: "newsArticle";
+        person: "person";
+        product: "product";
+        researchSnippet: "researchSnippet";
+        service: "service";
+        sourceDocument: "sourceDocument";
+        text: "text";
+    };
+};
 export type ContentSourceType = z.infer<typeof ContentSourceTypeSchema>;
 //# sourceMappingURL=source-type.d.ts.map

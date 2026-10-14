@@ -33,6 +33,11 @@ import { z } from "zod/v4";
 export declare const ClassificationJoinRegistrySchema: z.ZodUnion<readonly [z.ZodEnum<{
     editorial: "editorial";
     standardized: "standardized";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        editorial: "editorial";
+        standardized: "standardized";
+    };
+};
 export type ClassificationJoinRegistry = z.infer<typeof ClassificationJoinRegistrySchema>;
 //# sourceMappingURL=join-registry.d.ts.map

@@ -7,7 +7,16 @@ declare const SearchModeExecutionSchemaDefinition: z.ZodObject<{
         keyword: "keyword";
         natural: "natural";
         semantic: "semantic";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            auto: "auto";
+            exact: "exact";
+            hybrid: "hybrid";
+            keyword: "keyword";
+            natural: "natural";
+            semantic: "semantic";
+        };
+    };
     modeUsed: z.ZodUnion<readonly [z.ZodEnum<{
         auto: "auto";
         exact: "exact";
@@ -15,7 +24,16 @@ declare const SearchModeExecutionSchemaDefinition: z.ZodObject<{
         keyword: "keyword";
         natural: "natural";
         semantic: "semantic";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            auto: "auto";
+            exact: "exact";
+            hybrid: "hybrid";
+            keyword: "keyword";
+            natural: "natural";
+            semantic: "semantic";
+        };
+    };
 }, z.core.$strip>;
 type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDefinition>;
 export interface SearchModeExecutionSchemaInput extends z.input<typeof SearchModeExecutionSchemaDefinition> {

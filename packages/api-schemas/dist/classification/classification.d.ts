@@ -7,7 +7,12 @@ declare const ClassificationSchemaDefinition: z.ZodObject<{
     registry: z.ZodUnion<readonly [z.ZodEnum<{
         editorial: "editorial";
         standardized: "standardized";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            editorial: "editorial";
+            standardized: "standardized";
+        };
+    };
     writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type ClassificationDefinition = z.infer<typeof ClassificationSchemaDefinition>;

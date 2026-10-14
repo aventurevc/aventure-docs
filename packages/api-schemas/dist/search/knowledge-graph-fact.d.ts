@@ -13,6 +13,12 @@ export declare const SearchKnowledgeGraphFactSchema: z.ZodUnion<readonly [z.ZodE
     ceo: "ceo";
     founded: "founded";
     headquarters: "headquarters";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        ceo: "ceo";
+        founded: "founded";
+        headquarters: "headquarters";
+    };
+};
 export type SearchKnowledgeGraphFact = z.infer<typeof SearchKnowledgeGraphFactSchema>;
 //# sourceMappingURL=knowledge-graph-fact.d.ts.map

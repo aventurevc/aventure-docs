@@ -1,5 +1,16 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const UniqueIdTypeSchemaKnownMembers = z.enum([
+    "ein",
+    "secCik",
+    "ticker",
+    "lei",
+    "duns",
+    "isin",
+    "cusip",
+    "crd",
+    "orcid",
+]);
 /**
  * External identifier type that maps an owner to a registry id: ein, secCik, ticker, lei, duns, isin, cusip, crd, or orcid.
  *
@@ -25,15 +36,5 @@ import { z } from "zod/v4";
  * @contractShape unique.id-type
  * @contractRole canonical
  */
-export const UniqueIdTypeSchema = z.enum([
-    "ein",
-    "secCik",
-    "ticker",
-    "lei",
-    "duns",
-    "isin",
-    "cusip",
-    "crd",
-    "orcid",
-]);
+export const UniqueIdTypeSchema = Object.assign(z.union([UniqueIdTypeSchemaKnownMembers, z.string()]), { enum: UniqueIdTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=id-type.js.map

@@ -10,7 +10,17 @@ declare const HelpCitationSchemaDefinition: z.ZodObject<{
         RESEARCH_SNIPPET_TYPE: "RESEARCH_SNIPPET_TYPE";
         SKILL: "SKILL";
         TEXT_TYPE: "TEXT_TYPE";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            COMPLETION_GATE: "COMPLETION_GATE";
+            OPERATION: "OPERATION";
+            PROMPT: "PROMPT";
+            RESEARCH_DETAIL_TYPE: "RESEARCH_DETAIL_TYPE";
+            RESEARCH_SNIPPET_TYPE: "RESEARCH_SNIPPET_TYPE";
+            SKILL: "SKILL";
+            TEXT_TYPE: "TEXT_TYPE";
+        };
+    };
     sourceVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type HelpCitationDefinition = z.infer<typeof HelpCitationSchemaDefinition>;

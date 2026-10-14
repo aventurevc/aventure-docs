@@ -21,6 +21,14 @@ export declare const SearchEvidenceSourceSchema: z.ZodUnion<readonly [z.ZodEnum<
     newsArticle: "newsArticle";
     personRecord: "personRecord";
     researchSnippet: "researchSnippet";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        entityRecord: "entityRecord";
+        fundraiseTransaction: "fundraiseTransaction";
+        newsArticle: "newsArticle";
+        personRecord: "personRecord";
+        researchSnippet: "researchSnippet";
+    };
+};
 export type SearchEvidenceSource = z.infer<typeof SearchEvidenceSourceSchema>;
 //# sourceMappingURL=evidence-source.d.ts.map

@@ -1,5 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const HelpSourceTypeSchemaKnownMembers = z.enum([
+    "OPERATION",
+    "SKILL",
+    "PROMPT",
+    "COMPLETION_GATE",
+    "RESEARCH_DETAIL_TYPE",
+    "RESEARCH_SNIPPET_TYPE",
+    "TEXT_TYPE",
+]);
 /**
  * Corpus partition a help citation is drawn from.
  *
@@ -10,16 +19,5 @@ import { z } from "zod/v4";
  * @contractShape help.source-type
  * @contractRole canonical
  */
-export const HelpSourceTypeSchema = z.union([
-    z.enum([
-        "OPERATION",
-        "SKILL",
-        "PROMPT",
-        "COMPLETION_GATE",
-        "RESEARCH_DETAIL_TYPE",
-        "RESEARCH_SNIPPET_TYPE",
-        "TEXT_TYPE",
-    ]),
-    z.string(),
-]);
+export const HelpSourceTypeSchema = Object.assign(z.union([HelpSourceTypeSchemaKnownMembers, z.string()]), { enum: HelpSourceTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=source-type.js.map

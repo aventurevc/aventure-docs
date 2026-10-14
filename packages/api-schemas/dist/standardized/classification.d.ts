@@ -13,7 +13,12 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodObject<{
     registry: z.ZodUnion<readonly [z.ZodEnum<{
         editorial: "editorial";
         standardized: "standardized";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            editorial: "editorial";
+            standardized: "standardized";
+        };
+    };
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     writable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;

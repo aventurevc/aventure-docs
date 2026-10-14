@@ -55,7 +55,22 @@ export declare const ContentEmbeddingMatchSchema: z.ZodObject<{
         service: "service";
         sourceDocument: "sourceDocument";
         text: "text";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            agentHelpDoc: "agentHelpDoc";
+            blogPost: "blogPost";
+            classificationCode: "classificationCode";
+            classificationTag: "classificationTag";
+            entity: "entity";
+            newsArticle: "newsArticle";
+            person: "person";
+            product: "product";
+            researchSnippet: "researchSnippet";
+            service: "service";
+            sourceDocument: "sourceDocument";
+            text: "text";
+        };
+    };
 }, z.core.$strip>;
 export type ContentEmbeddingMatch = z.infer<typeof ContentEmbeddingMatchSchema>;
 //# sourceMappingURL=embedding-match.d.ts.map

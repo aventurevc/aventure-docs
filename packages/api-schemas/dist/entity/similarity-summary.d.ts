@@ -50,6 +50,96 @@ declare const EntitySimilaritySummarySchemaDefinition: z.ZodObject<{
         }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
+    fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        fundingRoundCount: z.ZodInt;
+        investorCount: z.ZodInt;
+        latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        mostRecentAmount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        mostRecentDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
+        stage: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            Angel: "Angel";
+            Fund: "Fund";
+            Government: "Government";
+            "Investment Firm": "Investment Firm";
+            "Late Stage Private": "Late Stage Private";
+            Nonprofit: "Nonprofit";
+            "Pre-Seed": "Pre-Seed";
+            Public: "Public";
+            Seed: "Seed";
+            "Series A": "Series A";
+            "Series B": "Series B";
+            "Series C": "Series C";
+            "Series D": "Series D";
+            "Series E": "Series E";
+            "Series F": "Series F";
+            "Series G": "Series G";
+            "Series H": "Series H";
+            "Series I": "Series I";
+            "Series J": "Series J";
+            "Series K": "Series K";
+            "Series L": "Series L";
+            "Series M": "Series M";
+            "Series N": "Series N";
+            "Series O": "Series O";
+            "Series P": "Series P";
+            "Series Q": "Series Q";
+            "Series R": "Series R";
+            "Series S": "Series S";
+            "Series T": "Series T";
+            "Series U": "Series U";
+            "Series V": "Series V";
+            "Series W": "Series W";
+            "Series X": "Series X";
+            "Series Y": "Series Y";
+            "Series Z": "Series Z";
+        }>, z.ZodString]> & {
+            enum: {
+                Acquired: "Acquired";
+                "Acquired Subsidiary": "Acquired Subsidiary";
+                Angel: "Angel";
+                Fund: "Fund";
+                Government: "Government";
+                "Investment Firm": "Investment Firm";
+                "Late Stage Private": "Late Stage Private";
+                Nonprofit: "Nonprofit";
+                "Pre-Seed": "Pre-Seed";
+                Public: "Public";
+                Seed: "Seed";
+                "Series A": "Series A";
+                "Series B": "Series B";
+                "Series C": "Series C";
+                "Series D": "Series D";
+                "Series E": "Series E";
+                "Series F": "Series F";
+                "Series G": "Series G";
+                "Series H": "Series H";
+                "Series I": "Series I";
+                "Series J": "Series J";
+                "Series K": "Series K";
+                "Series L": "Series L";
+                "Series M": "Series M";
+                "Series N": "Series N";
+                "Series O": "Series O";
+                "Series P": "Series P";
+                "Series Q": "Series Q";
+                "Series R": "Series R";
+                "Series S": "Series S";
+                "Series T": "Series T";
+                "Series U": "Series U";
+                "Series V": "Series V";
+                "Series W": "Series W";
+                "Series X": "Series X";
+                "Series Y": "Series Y";
+                "Series Z": "Series Z";
+            };
+        }>>;
+        totalRaised: z.ZodNumber;
+        totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        unconvertedRoundCount: z.ZodInt;
+    }, z.core.$strip>>>;
     similarity: z.ZodType<{
         compositeScore?: number | null | undefined;
         cosineScore?: number | null | undefined;
@@ -113,7 +203,7 @@ type EntitySimilaritySummaryDefinition = z.infer<typeof EntitySimilaritySummaryS
 export interface EntitySimilaritySummarySchemaInput extends z.input<typeof EntitySimilaritySummarySchemaDefinition> {
 }
 /**
- * Lean similar-entity rail row: core identity, current URL links, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.
+ * Lean similar-entity rail row: core identity, current URL links, funding totals, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.
  *
  * @openapiSchema EntitySimilaritySummary
  * @endpoint GET /v1/entities/{entityId}/similar/summary

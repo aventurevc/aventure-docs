@@ -5,7 +5,12 @@ declare const HarnessTaskSchemaDefinition: z.ZodObject<{
     type: z.ZodUnion<readonly [z.ZodEnum<{
         ENTITY: "ENTITY";
         TEXT: "TEXT";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            ENTITY: "ENTITY";
+            TEXT: "TEXT";
+        };
+    };
 }, z.core.$strip>;
 type HarnessTaskDefinition = z.infer<typeof HarnessTaskSchemaDefinition>;
 export interface HarnessTaskSchemaInput extends z.input<typeof HarnessTaskSchemaDefinition> {

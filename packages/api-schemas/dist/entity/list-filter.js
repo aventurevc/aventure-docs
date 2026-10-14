@@ -65,7 +65,7 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
-    /** Semantic entity search phrase. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity. */
+    /** Free-text semantic search phrase, this body's query text (there is no query field), such as "AI tools for dental clinics". To find one company by name, send entityName instead. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity. */
     semanticQuery: z.string().nullish(),
     /** Restrict results to entity slugs. */
     slug: z
@@ -110,7 +110,7 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     yearFoundedRange: z.array(IntRangeSchema).optional(),
 });
 /**
- * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery.
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link

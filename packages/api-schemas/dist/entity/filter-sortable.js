@@ -1,5 +1,26 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const EntityFilterSortableSchemaKnownMembers = z.enum([
+    "ID",
+    "NAME_BRAND",
+    "YEAR_FOUNDED",
+    "STATUS_OPERATING",
+    "UPDATED_AT",
+    "CREATED_AT",
+    "NEXT_DUE_AT",
+    "DATA_COMPLETION_COVERAGE",
+    "TOTAL_RAISED",
+    "AMOUNT_INVESTED",
+    "RECENT_INVESTMENT_AT",
+    "STAGE",
+    "MOST_RECENT_AMOUNT",
+    "LATEST_VALUATION",
+    "MOST_RECENT_DATE",
+    "ACCELERATOR_BRAND",
+    "ACCELERATOR_COHORT",
+    "HEADQUARTERS_COUNTRY",
+    "EMPLOYEE_COUNT",
+]);
 /**
  * Entity filter sortable
  *
@@ -15,28 +36,5 @@ import { z } from "zod/v4";
  * @contractShape entity.filter-sortable
  * @contractRole canonical
  */
-export const EntityFilterSortableSchema = z.union([
-    z.enum([
-        "ID",
-        "NAME_BRAND",
-        "YEAR_FOUNDED",
-        "STATUS_OPERATING",
-        "UPDATED_AT",
-        "CREATED_AT",
-        "NEXT_DUE_AT",
-        "DATA_COMPLETION_COVERAGE",
-        "TOTAL_RAISED",
-        "AMOUNT_INVESTED",
-        "RECENT_INVESTMENT_AT",
-        "STAGE",
-        "MOST_RECENT_AMOUNT",
-        "LATEST_VALUATION",
-        "MOST_RECENT_DATE",
-        "ACCELERATOR_BRAND",
-        "ACCELERATOR_COHORT",
-        "HEADQUARTERS_COUNTRY",
-        "EMPLOYEE_COUNT",
-    ]),
-    z.string(),
-]);
+export const EntityFilterSortableSchema = Object.assign(z.union([EntityFilterSortableSchemaKnownMembers, z.string()]), { enum: EntityFilterSortableSchemaKnownMembers.enum });
 //# sourceMappingURL=filter-sortable.js.map

@@ -4,7 +4,13 @@ declare const SearchKnowledgeGraphAttributeSchemaDefinition: z.ZodObject<{
         ceo: "ceo";
         founded: "founded";
         headquarters: "headquarters";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            ceo: "ceo";
+            founded: "founded";
+            headquarters: "headquarters";
+        };
+    };
     value: z.ZodString;
 }, z.core.$strip>;
 type SearchKnowledgeGraphAttributeDefinition = z.infer<typeof SearchKnowledgeGraphAttributeSchemaDefinition>;

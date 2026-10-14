@@ -7,7 +7,16 @@ declare const BillingCheckoutMutationSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            PLUS_MONTHLY: "PLUS_MONTHLY";
+            PLUS_YEARLY: "PLUS_YEARLY";
+            PRO_MONTHLY: "PRO_MONTHLY";
+            PRO_YEARLY: "PRO_YEARLY";
+            PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+        };
+    };
     uiMode: z.ZodOptional<z.ZodEnum<{
         ELEMENTS: "ELEMENTS";
         HOSTED_PAGE: "HOSTED_PAGE";

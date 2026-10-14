@@ -165,7 +165,16 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            PLUS_MONTHLY: "PLUS_MONTHLY";
+            PLUS_YEARLY: "PLUS_YEARLY";
+            PRO_MONTHLY: "PRO_MONTHLY";
+            PRO_YEARLY: "PRO_YEARLY";
+            PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+        };
+    }>>;
     pendingPlanAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     periodEnd: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     periodStart: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -176,7 +185,16 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
-    }>, z.ZodString]>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            PLUS_MONTHLY: "PLUS_MONTHLY";
+            PLUS_YEARLY: "PLUS_YEARLY";
+            PRO_MONTHLY: "PRO_MONTHLY";
+            PRO_YEARLY: "PRO_YEARLY";
+            PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+        };
+    }>>;
     provider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         APP_STORE: "APP_STORE";
         STRIPE: "STRIPE";

@@ -47,7 +47,22 @@ declare const PersonSchemaDefinition: z.ZodObject<{
             service: "service";
             sourceDocument: "sourceDocument";
             text: "text";
-        }>, z.ZodString]>;
+        }>, z.ZodString]> & {
+            enum: {
+                agentHelpDoc: "agentHelpDoc";
+                blogPost: "blogPost";
+                classificationCode: "classificationCode";
+                classificationTag: "classificationTag";
+                entity: "entity";
+                newsArticle: "newsArticle";
+                person: "person";
+                product: "product";
+                researchSnippet: "researchSnippet";
+                service: "service";
+                sourceDocument: "sourceDocument";
+                text: "text";
+            };
+        };
     }, z.core.$strip>>>;
     slug: z.ZodString;
     suffix: z.ZodOptional<z.ZodNullable<z.ZodString>>;

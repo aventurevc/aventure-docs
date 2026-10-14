@@ -26,6 +26,15 @@ export declare const SearchModeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     keyword: "keyword";
     natural: "natural";
     semantic: "semantic";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        auto: "auto";
+        exact: "exact";
+        hybrid: "hybrid";
+        keyword: "keyword";
+        natural: "natural";
+        semantic: "semantic";
+    };
+};
 export type SearchMode = z.infer<typeof SearchModeSchema>;
 //# sourceMappingURL=mode.d.ts.map

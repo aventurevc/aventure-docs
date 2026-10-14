@@ -1,5 +1,13 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const BillingPlanTypeSchemaKnownMembers = z.enum([
+    "PLUS_MONTHLY",
+    "PLUS_YEARLY",
+    "PRO_MONTHLY",
+    "PRO_YEARLY",
+    "PRO_YEARLY_PROMOTION",
+    "UNLIMITED_MONTHLY",
+]);
 /**
  * Canonical paid billing plan offered by aVenture.
  *
@@ -18,15 +26,5 @@ import { z } from "zod/v4";
  * @contractShape billing.plan-type
  * @contractRole canonical
  */
-export const BillingPlanTypeSchema = z.union([
-    z.enum([
-        "PLUS_MONTHLY",
-        "PLUS_YEARLY",
-        "PRO_MONTHLY",
-        "PRO_YEARLY",
-        "PRO_YEARLY_PROMOTION",
-        "UNLIMITED_MONTHLY",
-    ]),
-    z.string(),
-]);
+export const BillingPlanTypeSchema = Object.assign(z.union([BillingPlanTypeSchemaKnownMembers, z.string()]), { enum: BillingPlanTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=plan-type.js.map

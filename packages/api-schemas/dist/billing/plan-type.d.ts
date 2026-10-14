@@ -24,6 +24,15 @@ export declare const BillingPlanTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     PRO_YEARLY: "PRO_YEARLY";
     PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
     UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        PLUS_MONTHLY: "PLUS_MONTHLY";
+        PLUS_YEARLY: "PLUS_YEARLY";
+        PRO_MONTHLY: "PRO_MONTHLY";
+        PRO_YEARLY: "PRO_YEARLY";
+        PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+    };
+};
 export type BillingPlanType = z.infer<typeof BillingPlanTypeSchema>;
 //# sourceMappingURL=plan-type.d.ts.map

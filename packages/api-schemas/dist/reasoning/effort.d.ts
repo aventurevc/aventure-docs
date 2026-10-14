@@ -20,6 +20,15 @@ export declare const ReasoningEffortSchema: z.ZodUnion<readonly [z.ZodEnum<{
     medium: "medium";
     minimal: "minimal";
     xhigh: "xhigh";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        high: "high";
+        low: "low";
+        max: "max";
+        medium: "medium";
+        minimal: "minimal";
+        xhigh: "xhigh";
+    };
+};
 export type ReasoningEffort = z.infer<typeof ReasoningEffortSchema>;
 //# sourceMappingURL=effort.d.ts.map

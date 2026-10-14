@@ -10,7 +10,16 @@ declare const BillingPlanChangeSchemaDefinition: z.ZodObject<{
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            PLUS_MONTHLY: "PLUS_MONTHLY";
+            PLUS_YEARLY: "PLUS_YEARLY";
+            PRO_MONTHLY: "PRO_MONTHLY";
+            PRO_YEARLY: "PRO_YEARLY";
+            PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+        };
+    };
     publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingPlanChangeDefinition = z.infer<typeof BillingPlanChangeSchemaDefinition>;

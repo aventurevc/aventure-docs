@@ -1,5 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const SearchEvidenceSourceSchemaKnownMembers = z.enum([
+    "entityRecord",
+    "researchSnippet",
+    "newsArticle",
+    "personRecord",
+    "fundraiseTransaction",
+]);
 /**
  * Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `personRecord` a person linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.
  *
@@ -16,14 +23,5 @@ import { z } from "zod/v4";
  * @contractShape search.evidence-source
  * @contractRole canonical
  */
-export const SearchEvidenceSourceSchema = z.union([
-    z.enum([
-        "entityRecord",
-        "researchSnippet",
-        "newsArticle",
-        "personRecord",
-        "fundraiseTransaction",
-    ]),
-    z.string(),
-]);
+export const SearchEvidenceSourceSchema = Object.assign(z.union([SearchEvidenceSourceSchemaKnownMembers, z.string()]), { enum: SearchEvidenceSourceSchemaKnownMembers.enum });
 //# sourceMappingURL=evidence-source.js.map

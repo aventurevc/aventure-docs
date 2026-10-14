@@ -20,6 +20,20 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     textContract: "textContract";
     unsupported: "unsupported";
     voice: "voice";
-}>, z.ZodString]>;
+}>, z.ZodString]> & {
+    enum: {
+        disclaimer: "disclaimer";
+        factList: "factList";
+        legalSource: "legalSource";
+        mojibake: "mojibake";
+        record: "record";
+        source: "source";
+        structured: "structured";
+        temporal: "temporal";
+        textContract: "textContract";
+        unsupported: "unsupported";
+        voice: "voice";
+    };
+};
 export type ProseProblem = z.infer<typeof ProseProblemSchema>;
 //# sourceMappingURL=problem.d.ts.map

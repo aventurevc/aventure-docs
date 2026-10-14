@@ -14,6 +14,7 @@ import { FundingStageSchema } from "../funding/stage.js";
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -29,6 +30,7 @@ import { FundingStageSchema } from "../funding/stage.js";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityFundraiseTransactionEntitySchema
+ * @usedBySchema EntitySimilaritySummarySchema
  * @contractShape entity.funding-detail
  * @contractRole canonical
  */

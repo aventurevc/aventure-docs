@@ -27,7 +27,15 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
         NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
         STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
         URL_DUPLICATE: "URL_DUPLICATE";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
+            DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
+            NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
+            STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
+            URL_DUPLICATE: "URL_DUPLICATE";
+        };
+    };
     newsCandidate: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
         externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         id: z.ZodInt;

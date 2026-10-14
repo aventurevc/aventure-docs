@@ -1,15 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-/**
- * Known RFC 9457 error type URIs.
- *
- * @openapiSchema ProblemType
- * @standardProblemResponse
- * @usedBySchema ProblemDetailSchema
- * @contractShape problem.type
- * @contractRole canonical
- */
-export const ProblemTypeSchema = z.enum({
+const ProblemTypeSchemaKnownMembers = z.enum({
     VALIDATION_FAILED: "https://api.aventure.vc/errors/validation-failed",
     MISSING_PARAMETER: "https://api.aventure.vc/errors/missing-parameter",
     INVALID_PARAMETER_TYPE: "https://api.aventure.vc/errors/invalid-parameter-type",
@@ -68,4 +59,14 @@ export const ProblemTypeSchema = z.enum({
     UPSTREAM_EDGE_CHALLENGED: "https://api.aventure.vc/errors/upstream-edge-challenged",
     ACCELERATOR_DETAIL_RESTATES_TARGET: "https://api.aventure.vc/errors/accelerator-detail-restates-target",
 });
+/**
+ * Known RFC 9457 error type URIs.
+ *
+ * @openapiSchema ProblemType
+ * @standardProblemResponse
+ * @usedBySchema ProblemDetailSchema
+ * @contractShape problem.type
+ * @contractRole canonical
+ */
+export const ProblemTypeSchema = Object.assign(z.union([ProblemTypeSchemaKnownMembers, z.string()]), { enum: ProblemTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=type.js.map

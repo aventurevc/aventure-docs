@@ -1,5 +1,44 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const FundingStageSchemaKnownMembers = z.enum([
+    "Angel",
+    "Pre-Seed",
+    "Seed",
+    "Series A",
+    "Series B",
+    "Series C",
+    "Series D",
+    "Series E",
+    "Series F",
+    "Series G",
+    "Series H",
+    "Series I",
+    "Series J",
+    "Series K",
+    "Series L",
+    "Series M",
+    "Series N",
+    "Series O",
+    "Series P",
+    "Series Q",
+    "Series R",
+    "Series S",
+    "Series T",
+    "Series U",
+    "Series V",
+    "Series W",
+    "Series X",
+    "Series Y",
+    "Series Z",
+    "Late Stage Private",
+    "Investment Firm",
+    "Fund",
+    "Nonprofit",
+    "Government",
+    "Public",
+    "Acquired",
+    "Acquired Subsidiary",
+]);
 /**
  * Canonical inferred equity, entity-type, or Company operating-status stage emitted by the entity fundraise rollup. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.
  *
@@ -14,6 +53,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -33,46 +73,5 @@ import { z } from "zod/v4";
  * @contractShape funding.stage
  * @contractRole canonical
  */
-export const FundingStageSchema = z.union([
-    z.enum([
-        "Angel",
-        "Pre-Seed",
-        "Seed",
-        "Series A",
-        "Series B",
-        "Series C",
-        "Series D",
-        "Series E",
-        "Series F",
-        "Series G",
-        "Series H",
-        "Series I",
-        "Series J",
-        "Series K",
-        "Series L",
-        "Series M",
-        "Series N",
-        "Series O",
-        "Series P",
-        "Series Q",
-        "Series R",
-        "Series S",
-        "Series T",
-        "Series U",
-        "Series V",
-        "Series W",
-        "Series X",
-        "Series Y",
-        "Series Z",
-        "Late Stage Private",
-        "Investment Firm",
-        "Fund",
-        "Nonprofit",
-        "Government",
-        "Public",
-        "Acquired",
-        "Acquired Subsidiary",
-    ]),
-    z.string(),
-]);
+export const FundingStageSchema = Object.assign(z.union([FundingStageSchemaKnownMembers, z.string()]), { enum: FundingStageSchemaKnownMembers.enum });
 //# sourceMappingURL=stage.js.map

@@ -14,7 +14,21 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         textContract: "textContract";
         unsupported: "unsupported";
         voice: "voice";
-    }>, z.ZodString]>;
+    }>, z.ZodString]> & {
+        enum: {
+            disclaimer: "disclaimer";
+            factList: "factList";
+            legalSource: "legalSource";
+            mojibake: "mojibake";
+            record: "record";
+            source: "source";
+            structured: "structured";
+            temporal: "temporal";
+            textContract: "textContract";
+            unsupported: "unsupported";
+            voice: "voice";
+        };
+    };
     reason: z.ZodString;
 }, z.core.$strip>;
 type ProseViolationDefinition = z.infer<typeof ProseViolationSchemaDefinition>;
