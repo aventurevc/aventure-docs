@@ -10,6 +10,8 @@ const BillingNextChargeSchemaDefinition = z.object({
     currency: z.string(),
     /** Discounts applied to the next invoice; empty when none apply */
     discount: z.array(BillingDiscountSchema),
+    /** Next invoice total in the currency's minor unit after discounts, before tax and account credit; compare it, not amountDue, with the plan's price */
+    totalExcludingTax: z.number().int(),
 });
 /**
  * Next invoice of the caller's renewing Stripe subscription as Stripe previews it, after discounts and credits.

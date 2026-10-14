@@ -16,6 +16,7 @@ declare const BillingNextChargeSchemaDefinition: z.ZodObject<{
         name?: string | null | undefined;
         percentOff?: number | null | undefined;
     }, import("./discount.ts").BillingDiscountSchemaInput>>>;
+    totalExcludingTax: z.ZodNumber;
 }, z.core.$strip>;
 type BillingNextChargeDefinition = z.infer<typeof BillingNextChargeSchemaDefinition>;
 export interface BillingNextChargeSchemaInput extends z.input<typeof BillingNextChargeSchemaDefinition> {

@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. To research or refresh a company or person, request a research run for its website or profile URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.179"
+    "version": "0.8.180"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -31643,13 +31643,19 @@
             "items": {
               "$ref": "#/components/schemas/BillingDiscount"
             }
+          },
+          "totalExcludingTax": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Next invoice total in the currency's minor unit after discounts, before tax and account credit; compare it, not amountDue, with the plan's price"
           }
         },
         "required": [
           "amountDue",
           "chargeAt",
           "currency",
-          "discount"
+          "discount",
+          "totalExcludingTax"
         ]
       },
       "BillingPaymentProfile": {
