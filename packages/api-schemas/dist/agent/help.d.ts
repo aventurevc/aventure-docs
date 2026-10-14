@@ -42,10 +42,12 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
             catalogRevision: z.ZodOptional<z.ZodInt>;
             gateId: z.ZodOptional<z.ZodArray<z.ZodString>>;
             input: z.ZodArray<z.ZodType<{
+                allowedValue?: string | null | undefined;
                 description: string;
                 key: string;
                 type: string;
             }, import("../harness/task.ts").HarnessTaskSchemaInput, z.core.$ZodTypeInternals<{
+                allowedValue?: string | null | undefined;
                 description: string;
                 key: string;
                 type: string;

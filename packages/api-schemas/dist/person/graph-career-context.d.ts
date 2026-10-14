@@ -392,7 +392,23 @@ export interface PersonGraphCareerContextSchemaInput extends z.input<typeof Pers
  * Entity facts, recent news, colleagues, and similar entities for one associated entity
  *
  * @openapiSchema PersonGraphCareerContext
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
+ * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema PersonGraphSchema
  * @contractShape person.graph-career-context
  * @contractRole canonical

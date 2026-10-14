@@ -164,6 +164,8 @@ const ProblemDetailSchemaDefinition = z.object({
     detail: z.string().optional(),
     /** Structured conflict details. A possible duplicate or an ambiguous lookup returns its candidate records; score and threshold rank the candidates and do not prove that the requested record is absent. */
     details: DomainConflictDetailsSchema.nullish(),
+    /** Whether a service-unavailable failure can be retried. */
+    disposition: z.enum(["TRANSIENT", "TERMINAL"]).nullish(),
     error: z.record(z.string(), z.string()).nullish(),
     /** On a duplicate 409, the id of the stored record the request collided with; read or update that record instead of creating it again. Absent when the conflict names no single stored record. */
     existingRecordId: z.string().nullish(),

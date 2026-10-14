@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. To research or refresh a company or person, request a research run for its website or profile URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.181"
+    "version": "0.8.182"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3978,7 +3978,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription tier does not include research runs."
+            "description": "Needs a plan that includes research runs; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -6295,7 +6295,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -6861,7 +6861,7 @@
                 }
               }
             },
-            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with the read-only GET /v1/lookup (CLI lookup --kind ENTITY). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (the record exists but is not published), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
+            "description": "No entity resolved: fuzzy candidate signals below the review threshold without identity proof are exhausted, which does not prove the record is absent or safe to create — identify it by name and clues with GET /v1/lookup (CLI lookup --kind ENTITY). Retry this exact read only with a slug or URL copied from an aVenture page. An existing but filtered row instead reports its reason as the ProblemDetail title: Entity Exists but Is Not Public (the record exists but is not published), Product Not Public: Missing Provider Relationship, or Fund Not Public: No Public Manager Firm."
           },
           "406": {
             "content": {
@@ -10962,7 +10962,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription tier does not include research runs."
+            "description": "Needs a plan that includes research runs; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -11099,7 +11099,7 @@
     },
     "/v1/entities/{entityId}/fundraise-investor-joins": {
       "get": {
-        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. To list one investor's joins, find its entityId or personId by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY or --kind PERSON) and pass it as investorEntityId or investorPersonId.",
+        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. To list one investor's joins, find its entityId or personId by name with GET /v1/lookup (CLI lookup --kind ENTITY or --kind PERSON) and pass it as investorEntityId or investorPersonId.",
         "operationId": "listEntityFundraiseInvestorJoins",
         "parameters": [
           {
@@ -11156,45 +11156,45 @@
             }
           },
           {
-            "description": "Investor entity identifier. Find an investor's entityId by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY).",
+            "description": "Investor entity identifier. Find an investor's entityId by name with GET /v1/lookup (CLI lookup --kind ENTITY).",
             "in": "query",
             "name": "investorEntityId",
             "required": false,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "Investor entity identifier. Find an investor's entityId by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY)."
+              "description": "Investor entity identifier. Find an investor's entityId by name with GET /v1/lookup (CLI lookup --kind ENTITY)."
             }
           },
           {
-            "description": "Investor entity slug when investorEntityId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY).",
+            "description": "Investor entity slug when investorEntityId is omitted. Find it by name with GET /v1/lookup (CLI lookup --kind ENTITY).",
             "in": "query",
             "name": "investorEntitySlug",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Investor entity slug when investorEntityId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind ENTITY)."
+              "description": "Investor entity slug when investorEntityId is omitted. Find it by name with GET /v1/lookup (CLI lookup --kind ENTITY)."
             }
           },
           {
-            "description": "Investor person identifier. Find an investor's personId by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON).",
+            "description": "Investor person identifier. Find an investor's personId by name with GET /v1/lookup (CLI lookup --kind PERSON).",
             "in": "query",
             "name": "investorPersonId",
             "required": false,
             "schema": {
               "type": "string",
               "format": "uuid",
-              "description": "Investor person identifier. Find an investor's personId by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON)."
+              "description": "Investor person identifier. Find an investor's personId by name with GET /v1/lookup (CLI lookup --kind PERSON)."
             }
           },
           {
-            "description": "Investor person slug when investorPersonId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON).",
+            "description": "Investor person slug when investorPersonId is omitted. Find it by name with GET /v1/lookup (CLI lookup --kind PERSON).",
             "in": "query",
             "name": "investorPersonSlug",
             "required": false,
             "schema": {
               "type": "string",
-              "description": "Investor person slug when investorPersonId is omitted. Find it by name with the read-only GET /v1/lookup (CLI lookup --kind PERSON)."
+              "description": "Investor person slug when investorPersonId is omitted. Find it by name with GET /v1/lookup (CLI lookup --kind PERSON)."
             }
           },
           {
@@ -17025,7 +17025,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Returns what aVenture knows about a subject: MATCHED, NO_MATCH, or NEEDS_REVIEW among the records you can see, honoring the requested type and provider. To identify a subject with every lookup option, use POST /v1/lookup. Send name, url, or both; neither answers 422. This read never starts research or changes any record. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Returns what aVenture knows about a subject: MATCHED, NO_MATCH, or NEEDS_REVIEW among the records you can see, honoring the requested type and provider. To identify a subject with every lookup option, use POST /v1/lookup. Send name, url, or both; neither answers 422. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record automatically and returned in created; adding it starts no research and charges nothing. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -17204,7 +17204,7 @@
                 }
               }
             },
-            "description": "The identification.",
+            "description": "The identification; a NO_MATCH subject this lookup added as a new record is in created.",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -17544,7 +17544,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -17673,7 +17673,7 @@
     },
     "/v1/lookup-jobs": {
       "post": {
-        "description": "Without maxNames, reads one article (sourceUrl or sourceNewsId), identifies up to the article limit, and adds a new name to aVenture as an unpublished record with its logo, without research, only when a second live page also names it. With maxNames, identifies up to that bound from an article or mention names alone, without creating records or requesting research. An article read spends one natural-search slot; accepting a new job spends name-identification slots for its limit. Poll GET /v1/lookup-jobs/{jobId}; the same request sent again soon reuses its paid job.",
+        "description": "Without maxNames, reads one article (sourceUrl or sourceNewsId), identifies up to the article limit, and creates a new unpublished record (with its logo and a research request) for a new name only when a second live page also names it. With maxNames, identifies up to that bound from an article or mention names alone, without creating records or requesting research. An article read spends one natural-search slot; accepting a new job spends name-identification slots for its limit. Poll GET /v1/lookup-jobs/{jobId}; the same request sent again soon reuses its paid job.",
         "operationId": "createLookupJob",
         "parameters": [
           {
@@ -17757,7 +17757,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -17884,7 +17884,7 @@
     },
     "/v1/lookup-jobs/{jobId}": {
       "get": {
-        "description": "Returns the job state: 202 with Retry-After while PENDING or RUNNING, 200 once terminal. Once COMPLETED, it returns each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include shell or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. A single-subject job, filed by Prefer: respond-async on GET or POST /v1/lookup or POST /v1/entities/lookup, or by a signed-in live lookup on those routes that rolled over to a job, carries source.subject and, once COMPLETED, identification: the answer that route returns. Only the requesting caller can read the job.",
+        "description": "Returns the job state: 202 with Retry-After while PENDING or RUNNING, 200 once terminal. Once COMPLETED, it returns each identified name: MATCHED names the stored record, NEEDS_REVIEW lists candidates, and a failed name carries failureReason. Ordinary article jobs may include shell, enrichmentRunId, or shellDetail on NO_MATCH. Bulk jobs return maxNames and limitReached; reaching the bound means more names may remain. A single-subject job, filed by Prefer: respond-async on GET or POST /v1/lookup or POST /v1/entities/lookup, or by a signed-in live lookup on those routes that rolled over to a job, carries source.subject and, once COMPLETED, identification: the answer that route returns. Only the requesting caller can read the job.",
         "operationId": "getLookupJob",
         "parameters": [
           {
@@ -18196,7 +18196,7 @@
                 }
               }
             },
-            "description": "The signed-in caller's subscription does not include reading a page or screenshot; sending mention needs no plan."
+            "description": "Reading a page or screenshot needs a paid aVenture plan; a caller without one gets 402 with code subscription_required. Sending mention needs no plan."
           },
           "403": {
             "content": {
@@ -21152,7 +21152,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan and the signed-in caller has none (code subscription_required; subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -21487,7 +21487,7 @@
     },
     "/v1/people/lookup-exact": {
       "get": {
-        "description": "Start here for any aventure.vc person profile URL, slug, or personal profile URL. Exact read: returns the full PersonDetail (names, profile, company roles, and investments) of the one person a slug, URL, or candidate signals prove, so do not re-read it with getPerson or listPeople; it answers 404 or 409 instead of guessing. To identify a person by name and clues, use the read-only GET /v1/lookup (CLI lookup --kind PERSON). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
+        "description": "Start here for any aventure.vc person profile URL, slug, or personal profile URL. Exact read: returns the full PersonDetail (names, profile, company roles, and investments) of the one person a slug, URL, or candidate signals prove, so do not re-read it with getPerson or listPeople; it answers 404 or 409 instead of guessing. To identify a person by name and clues, use GET /v1/lookup (CLI lookup --kind PERSON). Use the UUID item route for an id; any id query is rejected. Canonical redirects are preserved. A signed-in user's read charges one view per distinct returned record against the monthly entity or person view allowance; a repeat read of the same record in the month is free, and an exhausted cap answers 429 with Retry-After.",
         "operationId": "getPersonLookup",
         "parameters": [
           {
@@ -21621,6 +21621,18 @@
             "schema": {
               "type": "boolean",
               "description": "Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response."
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Projection qualifier — profile panels to embed in this one read (repeat or comma-separate). Each named panel answers the same rows as its own endpoint's first page; omitted panels stay absent.",
+              "items": {
+                "$ref": "#/components/schemas/PersonDetailInclude"
+              }
             }
           }
         ],
@@ -22251,6 +22263,18 @@
             "schema": {
               "type": "boolean",
               "description": "Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response."
+            }
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "description": "Projection qualifier — profile panels to embed in this one read (repeat or comma-separate). Each named panel answers the same rows as its own endpoint's first page; omitted panels stay absent.",
+              "items": {
+                "$ref": "#/components/schemas/PersonDetailInclude"
+              }
             }
           }
         ],
@@ -23869,7 +23893,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription tier does not include research runs."
+            "description": "Needs a plan that includes research runs; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -26649,7 +26673,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription tier does not include research runs."
+            "description": "Needs a plan that includes research runs; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
           },
           "403": {
             "content": {
@@ -27265,7 +27289,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Finds companies, people, and news for a plain-English query. auto blends exact name, full-text, entity query planning, and semantic similarity. People are ranked from the entity scope's judged answers, subjects, or result rows; no entity means no people. provenance.modeUsed and scope interpretation report execution. keyword forces full-text; other modes are rejected. entityFilter constrains entities; single-scope hard-filter routes are /v1/search/natural/entities and /v1/search/natural/people. Page and size apply to every scope unless personSize or newsSize overrides it. sort is unsupported. An unsearchable person or news scope returns an empty page with provenance.rejection. layer=synthesis adds a cited answer and relatedQuery suggestions. Accept: text/event-stream opens with admitted after metering, before entity, news, and person scope events; settled contains all scopes before synthesis. revised adds pendingWebQuery results and synthesis without moving settled rows; complete contains the latest snapshot. JSON does not wait for pending web searches. admitted, settled, revised, and complete carry SSE id revision:request-uuid, starting at 0. Re-send the identical request with Last-Event-ID: for ten minutes the same caller replays durable state without new quota or records. A failed synthesis retries only its already-paid answer. Disconnects do not cancel admitted work. Unfinished snapshots replay as settled, then error; only terminal snapshots emit complete. Running searches or failures before retaining rows return error with the resume id preserved, never rerun paid search. Any failure after the stream starts arrives as error with its reason.",
+        "description": "Search companies, people, and news. auto blends exact names, full-text, planning, and similarity; keyword forces full-text. Other modes are rejected. Entity results supply ranked people; without entities, people are empty. provenance.modeUsed and scope interpretation report execution; unsearchable scopes carry provenance.rejection. entityFilter constrains entities; single-scope hard filters use /v1/search/natural/entities or /v1/search/natural/people. Page/size apply across scopes except personSize/newsSize; sort is unsupported. layer=synthesis adds a cited answer and relatedQuery. SSE opens with admitted after metering. settled contains all scopes; revised adds pendingWebQuery results and synthesis without moving settled rows; complete is terminal. Snapshot and admitted SSE ids use revision:request-uuid, starting at 0. For ten minutes, identical Last-Event-ID requests from the same caller replay durable state without new quota or records. Failed synthesis retries only its paid answer; disconnects never cancel admitted work. Incomplete snapshots replay as settled, then error. Terminal failures carry ProblemDetail.disposition=TERMINAL; resume ids never restart paid search. JSON does not wait for pending web searches.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -27291,7 +27315,7 @@
             }
           },
           {
-            "description": "Optional answer layers, as on POST /v1/search/natural/entities; repeat to add more. Synthesis produces one cited answer and related queries from the public entity records, passages, and linked news on this response. Other layers enrich the entity scope while people and news run alongside.",
+            "description": "Repeat to add layers. Synthesis cites this response's public entity records, passages, and news; other layers enrich entities while people and news run alongside.",
             "in": "query",
             "name": "layer",
             "required": false,
@@ -27373,7 +27397,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription does not include this search."
+            "description": "This search needs a paid aVenture plan; a caller without one gets 402 with code subscription_required."
           },
           "403": {
             "content": {
@@ -27619,7 +27643,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription does not include this search."
+            "description": "This search needs a paid aVenture plan; a caller without one gets 402 with code subscription_required."
           },
           "403": {
             "content": {
@@ -27832,7 +27856,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription does not include this search."
+            "description": "This search needs a paid aVenture plan; a caller without one gets 402 with code subscription_required."
           },
           "403": {
             "content": {
@@ -28076,7 +28100,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription does not include this search."
+            "description": "This search needs a paid aVenture plan; a caller without one gets 402 with code subscription_required."
           },
           "403": {
             "content": {
@@ -28321,7 +28345,7 @@
                 }
               }
             },
-            "description": "The authenticated caller's subscription does not include this search."
+            "description": "This search needs a paid aVenture plan; a caller without one gets 402 with code subscription_required."
           },
           "403": {
             "content": {
@@ -30247,6 +30271,17 @@
               {
                 "type": "null"
               }
+            ]
+          },
+          "disposition": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Whether a service-unavailable failure can be retried.",
+            "enum": [
+              "TRANSIENT",
+              "TERMINAL"
             ]
           },
           "error": {
@@ -37607,6 +37642,17 @@
           }
         }
       },
+      "PersonDetailInclude": {
+        "type": "string",
+        "description": "Profile panel to embed in a person detail read: graph, investorActivity, similar, blogPost, or investment.",
+        "enum": [
+          "graph",
+          "investorActivity",
+          "similar",
+          "blogPost",
+          "investment"
+        ]
+      },
       "PersonDetail": {
         "type": "object",
         "description": "Composed person wrapper: core identity + enrichment + associations + investments. Access core fields via .core (for example .core.slug or .core.nameFull).",
@@ -37625,24 +37671,66 @@
               "$ref": "#/components/schemas/EntityPersonAssociation"
             }
           },
+          "blogPost": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Newest active blog posts first; present only when include names blogPost",
+            "items": {
+              "$ref": "#/components/schemas/BlogPost"
+            }
+          },
           "core": {
             "$ref": "#/components/schemas/Person"
           },
           "enrichment": {
             "$ref": "#/components/schemas/PersonEnrichment"
           },
+          "graph": {
+            "description": "Precomputed person graph; present only when include names graph",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PersonGraph"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "investment": {
             "type": "array",
-            "description": "Investments associated with this person",
+            "description": "Investments associated with this person. When include names investment, this is the investments endpoint's newest-first page 0 at its maximum page size, 200: fewer than 200 rows is the whole list, otherwise continue at page=1&size=200.",
             "items": {
               "$ref": "#/components/schemas/PersonInvestment"
             }
+          },
+          "investorActivity": {
+            "description": "Investor activity rollup; present only when include names investorActivity",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityFundraiseInvestorActivity"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "nameAlias": {
             "type": "array",
             "description": "Display and search aliases for this person",
             "items": {
               "$ref": "#/components/schemas/EntityNameAliasPersonAliasType"
+            }
+          },
+          "similar": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Most similar people, highest score first; present only when include names similar",
+            "items": {
+              "$ref": "#/components/schemas/PersonSimilarityResult"
             }
           }
         },
@@ -45713,6 +45801,13 @@
         "type": "object",
         "description": "One typed task input that must be bound before a run starts.",
         "properties": {
+          "allowedValue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Optional exact literal accepted for a TEXT input; when present, the run and its mutation guard require this value instead of accepting an arbitrary string."
+          },
           "description": {
             "type": "string",
             "description": "What the value is, written for the caller that supplies it."
@@ -45839,10 +45934,11 @@
       },
       "HarnessTaskInputType": {
         "type": "string",
-        "description": "ENTITY binds a target entity to its canonical id through entity identification; TEXT is a literal value the request states.",
+        "description": "ENTITY binds a target entity to its canonical id through entity identification; TEXT is a literal value the request states; WRITER_BRIEF is the typed research analysis a prose writer composes from (claim ledger, positioning frame, paragraph plan).",
         "x-extensible-enum": [
           "ENTITY",
-          "TEXT"
+          "TEXT",
+          "WRITER_BRIEF"
         ]
       },
       "HelpSourceType": {

@@ -768,6 +768,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     Person: { modulePath: "person/person", schemaName: "PersonSchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
     PersonDetail: { modulePath: "person/detail", schemaName: "PersonDetailSchema" },
+    PersonDetailInclude: {
+        modulePath: "person/detail-include",
+        schemaName: "PersonDetailIncludeSchema",
+    },
     PersonEnrichment: { modulePath: "person/enrichment", schemaName: "PersonEnrichmentSchema" },
     PersonFilter: { modulePath: "person/filter", schemaName: "PersonFilterSchema" },
     PersonGraph: { modulePath: "person/graph", schemaName: "PersonGraphSchema" },

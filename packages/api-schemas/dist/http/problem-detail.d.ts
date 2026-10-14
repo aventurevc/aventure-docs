@@ -214,6 +214,10 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         conflictingArticleTitle: string;
         conflictType: string;
     }, import("../news/source-url-conflict.ts").NewsSourceUrlConflictSchemaInput>>]>>>;
+    disposition: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        TERMINAL: "TERMINAL";
+        TRANSIENT: "TRANSIENT";
+    }>>>;
     error: z.ZodOptional<z.ZodNullable<z.ZodRecord<z.ZodString, z.ZodString>>>;
     existingRecordId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     existingRedirect: z.ZodOptional<z.ZodNullable<z.ZodObject<{

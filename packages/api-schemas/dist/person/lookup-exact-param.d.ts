@@ -10,6 +10,13 @@ export declare const PERSON_LOOKUP_EXACT_ENDPOINT: "/v1/people/lookup-exact";
  * @contractRole canonical
  */
 export declare const PersonLookupExactParamSchema: z.ZodObject<{
+    include: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+        blogPost: "blogPost";
+        graph: "graph";
+        investment: "investment";
+        investorActivity: "investorActivity";
+        similar: "similar";
+    }>>>;
     includeAddress: z.ZodOptional<z.ZodBoolean>;
     includeAssociation: z.ZodOptional<z.ZodBoolean>;
     includeUrl: z.ZodOptional<z.ZodBoolean>;

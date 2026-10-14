@@ -1,20 +1,32 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BlogPostSchema } from "../blog/post.js";
+import { EntityFundraiseInvestorActivitySchema } from "../entity/fundraise-investor-activity.js";
 import { EntityNameAliasPersonAliasTypeSchema } from "../entity/name-alias-person-alias-type.js";
 import { EntityPersonAssociationSchema } from "../entity/person-association.js";
 import { PersonEnrichmentSchema } from "./enrichment.js";
+import { PersonGraphSchema } from "./graph.js";
 import { PersonInvestmentSchema } from "./investment.js";
 import { PersonSchema } from "./person.js";
+import { PersonSimilarityResultSchema } from "./similarity-result.js";
 const PersonDetailSchemaDefinition = z.object({
     articleCount: z.int().nullish(),
     /** Entity associations for this person */
     association: z.array(EntityPersonAssociationSchema),
+    /** Newest active blog posts first; present only when include names blogPost */
+    blogPost: z.array(BlogPostSchema).nullish(),
     core: PersonSchema,
     enrichment: PersonEnrichmentSchema,
-    /** Investments associated with this person */
+    /** Precomputed person graph; present only when include names graph */
+    graph: PersonGraphSchema.nullish(),
+    /** Investments associated with this person. When include names investment, this is the investments endpoint's newest-first page 0 at its maximum page size, 200: fewer than 200 rows is the whole list, otherwise continue at page=1&size=200. */
     investment: z.array(PersonInvestmentSchema),
+    /** Investor activity rollup; present only when include names investorActivity */
+    investorActivity: EntityFundraiseInvestorActivitySchema.nullish(),
     /** Display and search aliases for this person */
     nameAlias: z.array(EntityNameAliasPersonAliasTypeSchema),
+    /** Most similar people, highest score first; present only when include names similar */
+    similar: z.array(PersonSimilarityResultSchema).nullish(),
 });
 /**
  * Composed person wrapper: core identity + enrichment + associations + investments. Access core fields via .core (for example .core.slug or .core.nameFull).

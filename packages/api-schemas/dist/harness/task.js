@@ -2,6 +2,8 @@
 import { z } from "zod/v4";
 import { HarnessTaskInputTypeSchema } from "./task-input-type.js";
 const HarnessTaskSchemaDefinition = z.object({
+    /** Optional exact literal accepted for a TEXT input; when present, the run and its mutation guard require this value instead of accepting an arbitrary string. */
+    allowedValue: z.string().nullish(),
     /** What the value is, written for the caller that supplies it. */
     description: z.string(),
     /** Input key, unique within its task. */

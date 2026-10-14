@@ -1,14 +1,17 @@
 import { z } from "zod/v4";
 declare const HarnessTaskSchemaDefinition: z.ZodObject<{
+    allowedValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     description: z.ZodString;
     key: z.ZodString;
     type: z.ZodUnion<readonly [z.ZodEnum<{
         ENTITY: "ENTITY";
         TEXT: "TEXT";
+        WRITER_BRIEF: "WRITER_BRIEF";
     }>, z.ZodString]> & {
         enum: {
             ENTITY: "ENTITY";
             TEXT: "TEXT";
+            WRITER_BRIEF: "WRITER_BRIEF";
         };
     };
 }, z.core.$strip>;

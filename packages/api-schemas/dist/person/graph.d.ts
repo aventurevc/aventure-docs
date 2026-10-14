@@ -1,5 +1,30 @@
 import { z } from "zod/v4";
-declare const PersonGraphSchemaDefinition: z.ZodObject<{
+/**
+ * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors. Lists are capped and pre-ranked server-side; the response is the display order. Served from a precomputed store with member names, images, and slugs hydrated from live person records at read time; computedAt is null only when the document has not been materialized yet.
+ *
+ * @openapiSchema PersonGraph
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/person-investors
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/graph
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema PersonDetailSchema
+ * @contractShape person.graph
+ * @contractRole canonical
+ */
+export declare const PersonGraphSchema: z.ZodObject<{
     careerContext: z.ZodArray<z.ZodType<{
         colleague: {
             isCurrent?: boolean | null | undefined;
@@ -478,18 +503,5 @@ declare const PersonGraphSchemaDefinition: z.ZodObject<{
     }, import("./graph-co-investor.ts").PersonGraphCoInvestorSchemaInput>>>;
     computedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
-type PersonGraphDefinition = z.infer<typeof PersonGraphSchemaDefinition>;
-export interface PersonGraphSchemaInput extends z.input<typeof PersonGraphSchemaDefinition> {
-}
-/**
- * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors. Lists are capped and pre-ranked server-side; the response is the display order. Served from a precomputed store with member names, images, and slugs hydrated from live person records at read time; computedAt is null only when the document has not been materialized yet.
- *
- * @openapiSchema PersonGraph
- * @endpoint GET /v1/people/{personId}/graph
- * @contractShape person.graph
- * @contractRole canonical
- */
-export declare const PersonGraphSchema: z.ZodType<PersonGraphDefinition, PersonGraphSchemaInput>;
 export type PersonGraph = z.infer<typeof PersonGraphSchema>;
-export {};
 //# sourceMappingURL=graph.d.ts.map

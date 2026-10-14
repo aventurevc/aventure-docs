@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { PersonDetailIncludeSchema } from "./detail-include.js";
 export const PERSON_LOOKUP_EXACT_ENDPOINT = "/v1/people/lookup-exact";
 /**
  * Request-side query params for `GET /v1/people/lookup-exact`.
@@ -11,6 +12,7 @@ export const PERSON_LOOKUP_EXACT_ENDPOINT = "/v1/people/lookup-exact";
  * @contractRole canonical
  */
 export const PersonLookupExactParamSchema = z.object({
+    include: z.array(PersonDetailIncludeSchema).optional(),
     /** Projection qualifier — include address values (default: true). Set false to omit address array. */
     includeAddress: z.boolean().optional(),
     /** Projection qualifier — include association values (default: true). Set false to omit association array. */
