@@ -7,6 +7,7 @@ import { HarnessRunEnvironmentSchema } from "./run-environment.js";
 import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
 import { HarnessRunTypeSchema } from "./run-type.js";
+import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 /**
  * One research run on a company, Product, Service, or person
  *
@@ -62,6 +63,8 @@ export const HarnessRunSchema = z.object({
     model: z.string(),
     /** Earliest re-claim time when waiting on retry backoff */
     nextAttemptAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Research allowance this run reserved when it was filed: COMPANY or PERSON; null for a run filed without one */
+    researchAllowanceType: ResearchAllowanceTypeSchema.nullish(),
     /** Instant past which a warm resume is no longer guaranteed; the harness writes it with session_resume from the model's cache window. Warm-resumable now iff failed/stopped and this is in the future. Null when there is no resume window. */
     resumeSafeUntil: z.iso.datetime({ offset: true }).nullish(),
     /** Run start timestamp */

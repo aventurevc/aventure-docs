@@ -16,7 +16,7 @@ import { HelpResolutionOutcomeSchema } from "./resolution-outcome.js";
 export const HelpResolutionSchema = z.object({
     /** Candidate operations best first; the options to choose between when the outcome is CLARIFY. */
     candidate: z.array(HelpCitationSchema),
-    /** The advised operation; present only for OPERATION_ADVICE. */
+    /** The advised operation for OPERATION_ADVICE, or the write whose missing inputs a CLARIFY asks for. */
     operationId: z.string().nullish(),
     /** Which of the mutually exclusive resolve outcomes was reached. */
     outcome: HelpResolutionOutcomeSchema,

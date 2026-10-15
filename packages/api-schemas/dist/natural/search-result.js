@@ -4,6 +4,7 @@ import { EntityListSchema } from "../entity/list.js";
 import { EntitySimilarityResultSchema } from "../entity/similarity-result.js";
 import { PageResultEntityListSchema } from "../pagination/schemas.js";
 import { SearchAnswerSchema } from "../search/answer.js";
+import { SearchDiscoveryFilingSchema } from "../search/discovery-filing.js";
 import { SearchInterpretationSchema } from "../search/interpretation.js";
 import { SearchInvestmentSchema } from "../search/investment.js";
 import { SearchJudgmentSchema } from "../search/judgment.js";
@@ -11,6 +12,8 @@ import { SearchPassageSchema } from "../search/passage.js";
 const NaturalSearchResultSchemaDefinition = z.object({
     /** Written answer grounded in the subject, peer, and result records and the passages; null unless the request asks for the `synthesis` layer. */
     answer: SearchAnswerSchema.nullish(),
+    /** Discovered companies this caller filed and their research runs. */
+    filing: z.array(SearchDiscoveryFilingSchema).nullish(),
     /** Structured interpretation used to run the entity list query. */
     interpretation: SearchInterpretationSchema,
     /** Recorded investment participation supporting investor discovery. Each row keeps its entity or personal investor, portfolio company, transaction attribution, and query-matched offering evidence. Empty for other question intents. */

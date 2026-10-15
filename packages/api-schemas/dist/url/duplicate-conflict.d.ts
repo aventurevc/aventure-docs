@@ -42,7 +42,7 @@ type UrlDuplicateConflictDefinition = z.infer<typeof UrlDuplicateConflictSchemaD
 export interface UrlDuplicateConflictSchemaInput extends z.input<typeof UrlDuplicateConflictSchemaDefinition> {
 }
 /**
- * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; resolve by demoting the existing owner (isCurrent=false, isPrimary=false) before promoting the new owner.
+ * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; inspect its identity before changing ownership. An offering sharing its provider's homepage uses the provider relationship without a duplicate URL row.
  *
  * @openapiSchema UrlDuplicateConflict
  * @standardProblemResponse

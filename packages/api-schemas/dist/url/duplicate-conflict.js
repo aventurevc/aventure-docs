@@ -10,7 +10,7 @@ const UrlDuplicateConflictSchemaDefinition = z.object({
     existingJoin: z.array(UrlDuplicateJoinSchema),
     /** True when URL fragment differences were ignored during duplicate matching (i.e., the conflict ignores everything after '#'). */
     fragmentIgnored: z.boolean(),
-    /** Human-readable guidance on how to resolve the conflict. Defaults to the standard inspect-then-demote/promote sequence. */
+    /** Human-readable guidance on how to resolve the conflict. Defaults to the standard identity and URL ownership checks. */
     guidance: z.string(),
     /** Normalized URL match key used for duplicate detection. Null when normalization could not produce a stable key (e.g., malformed input). */
     normalizedUrl: z.string().nullish(),
@@ -22,7 +22,7 @@ const UrlDuplicateConflictSchemaDefinition = z.object({
     urlType: z.string(),
 });
 /**
- * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; resolve by demoting the existing owner (isCurrent=false, isPrimary=false) before promoting the new owner.
+ * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; inspect its identity before changing ownership. An offering sharing its provider's homepage uses the provider relationship without a duplicate URL row.
  *
  * @openapiSchema UrlDuplicateConflict
  * @standardProblemResponse

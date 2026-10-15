@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityPersonOwner
  * @standardProblemResponse
+ * @usedBySchema AddressLinkSchema
  * @usedBySchema BlogPostSchema
  * @usedBySchema EnrichmentSchema
  * @usedBySchema EntityFundraiseInvestorJoinSchema

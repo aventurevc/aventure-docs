@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.184"
+    "version": "0.8.185"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -157,6 +157,13 @@
       "name": "Natural Search"
     },
     {
+      "description": "Address validation and location directories",
+      "name": "Addresses",
+      "x-aventure-cli": {
+        "section": "administration"
+      }
+    },
+    {
       "description": "Sign-in, session, API key, and CLI authorization endpoints",
       "name": "Auth"
     },
@@ -281,6 +288,206 @@
         "summary": "Get Build Metadata",
         "tags": [
           "System"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/addresses/{addressId}/links": {
+      "get": {
+        "description": "Returns entity and person association ids, owner ids, and nullable roles for a physical address, including historical associations. Only publicly visible owners are returned unless private visibility is authorized. Entity links precede person links; each group is ordered by join id. Bounded keyset pagination avoids counting or loading every owner. Follow nextCursor, also returned as X-Next-Cursor. An absent or unlinked address returns empty content. Page must be zero and sort is unsupported.",
+        "operationId": "listAddressLinks",
+        "parameters": [
+          {
+            "description": "Offset paging is not supported; omit page. Any value other than 0 returns 400. Send the previous response's nextCursor as cursor to read the next page.",
+            "in": "query",
+            "name": "page",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Physical address row id, not an association join id.",
+            "in": "path",
+            "name": "addressId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "description": "Opaque continuation from this address's previous response.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CursorSliceAddressLink"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "List Address Links",
+        "tags": [
+          "Addresses"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -6663,7 +6870,7 @@
         "operationId": "lookupEntity",
         "parameters": [
           {
-            "description": "For an existing match, set true to queue research on it; omitted or false does not. A record this lookup adds is not researched; request research on it with POST /v1/research-runs.",
+            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds for a signed-in caller queues research by default; set false to opt out.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -6783,7 +6990,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Without a paid aVenture plan a caller gets a free daily allowance of name identifications per UTC day; past it the lookup answers 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed), carrying limit, used, remaining, resetAt, and a Retry-After header."
           },
           "403": {
             "content": {
@@ -13032,7 +13239,7 @@
     },
     "/v1/entities/{entityId}/logo": {
       "get": {
-        "description": "Returns the selected square or standard logo with its stored provenance; an empty slot returns 404. A Product or Service's assembled `core.image` can show its provider's logo; this slot and `entity.logo` coverage grade the entity's own asset. This is the asset fetch, not the verification proof: the accuracy check against reference marks is the logo check operation.",
+        "description": "Returns the selected square or standard logo with its stored provenance; an empty slot returns 404. A Product or Service's assembled `core.image` can show its provider's logo; this slot is the entity's own asset, and an offering with no own mark grades `entity.logo` by that displayed provider logo. This is the asset fetch, not the verification proof: the accuracy check against reference marks is the logo check operation.",
         "operationId": "getEntityLogo",
         "parameters": [
           {
@@ -17513,7 +17720,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Returns what aVenture knows about a subject: MATCHED, NO_MATCH, or NEEDS_REVIEW among the records you can see, honoring the requested type and provider. To identify a subject with every lookup option, use POST /v1/lookup. Send name, url, or both; neither answers 422. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record automatically and returned in created; adding it starts no research and charges nothing. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Returns what aVenture knows about a subject: MATCHED, NO_MATCH, or NEEDS_REVIEW among the records you can see, honoring the requested type and provider. To identify a subject with every lookup option, use POST /v1/lookup. Send name, url, or both; neither answers 422. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record automatically and returned in created; a signed-in caller's record is also queued for research, and POST /v1/lookup with scheduleEnrichment=false files one without research. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -17854,7 +18061,7 @@
             "bearerAuth": []
           }
         ],
-        "summary": "Read a Company, Product, Service, or Person Identity Without Enrichment",
+        "summary": "Read a Company, Product, Service, or Person Identity",
         "tags": [
           "Search"
         ],
@@ -17863,7 +18070,7 @@
         }
       },
       "post": {
-        "description": "Identifies the company, Product, Service, or person that a name, URL, or id refers to among the records you can see. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. Optional clues narrow the answer: kind (ENTITY or PERSON) when you know which kind the subject is, typeRecord or providerId for a Product or Service from a known provider, and context such as an employer or title. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug answers at once. status is MATCHED, NEEDS_REVIEW, or NO_MATCH. MATCHED: match.owner names one record, by entityId (match.record.typeRecord tells a company from a Product or Service; read it with GET /v1/entities/{entityId}) or by personId (read it with GET /v1/people/{personId}). NEEDS_REVIEW: more than one record fits, such as a company and a person sharing a name; candidate lists them, and resending with a URL the subject owns or its kind usually settles it. NO_MATCH: no record you can see was confirmed as this subject; a former, alternate, or legal name may still match through the entityName filter of GET /v1/entities. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record with its name, website, and logo, and the answer returns it as created; adding it spends nothing and starts no research. To have aVenture research a subject, request research with POST /v1/research-runs and its url and name, which spends one research unit. Set scheduleEnrichment=true to also queue research on a matched record. Accept: text/event-stream streams the same answer as server-sent events. With legacy=true, name is read only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Identifies the company, Product, Service, or person that a name, URL, or id refers to among the records you can see. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. Optional clues narrow the answer: kind (ENTITY or PERSON) when you know which kind the subject is, typeRecord or providerId for a Product or Service from a known provider, and context such as an employer or title. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug answers at once. status is MATCHED, NEEDS_REVIEW, or NO_MATCH. MATCHED: match.owner names one record, by entityId (match.record.typeRecord tells a company from a Product or Service; read it with GET /v1/entities/{entityId}) or by personId (read it with GET /v1/people/{personId}). NEEDS_REVIEW: more than one record fits, such as a company and a person sharing a name; candidate lists them, and resending with a URL the subject owns or its kind usually settles it. NO_MATCH: no record you can see was confirmed as this subject; a former, alternate, or legal name may still match through the entityName filter of GET /v1/entities. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record with its name, website, and logo, returned as created, and queued for research by default; adding it spends no research unit. Set scheduleEnrichment=false to opt out of research for a filed record, or true to queue research on an existing match. Accept: text/event-stream streams the same answer as server-sent events. With legacy=true, name is read only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -17876,7 +18083,7 @@
             }
           },
           {
-            "description": "For an existing match, set true to queue research on it; omitted or false does not. A record this lookup adds is not researched; request research on it with POST /v1/research-runs.",
+            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds for a signed-in caller queues research by default; set false to opt out.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -18032,7 +18239,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Without a paid aVenture plan a caller gets a free daily allowance of name identifications per UTC day; past it the lookup answers 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed), carrying limit, used, remaining, resetAt, and a Retry-After header."
           },
           "403": {
             "content": {
@@ -18245,7 +18452,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Without a paid aVenture plan a caller gets a free daily allowance of name identifications per UTC day; past it the lookup answers 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed), carrying limit, used, remaining, resetAt, and a Retry-After header."
           },
           "403": {
             "content": {
@@ -18594,7 +18801,7 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Each NO_MATCH name whose own site a web search finds, and whose live page names it, is added as a new unpublished record and returned as shell; adding it spends nothing and starts no research, and a name not added carries shellDetail saying why. Needs a signed-in user. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A page fetched from sourceUrl first lists its own site's company, looked up by that site's URL, unless the site is a news outlet, a shared platform such as LinkedIn, or aVenture; when no record holds that site, it is added from the name the site declares, as POST /v1/lookup adds a URL. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Each NO_MATCH name whose own site a web search finds, and whose live page names it, is added as a new unpublished record, queued for research, and returned as shell; adding it spends no research unit, and a name not added carries shellDetail saying why. Needs a signed-in user. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
         "parameters": [],
         "requestBody": {
@@ -21564,7 +21771,7 @@
         "operationId": "lookupPerson",
         "parameters": [
           {
-            "description": "For an existing match, set true to queue research on it; omitted or false does not. A record this lookup adds is not researched; request research on it with POST /v1/research-runs.",
+            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds for a signed-in caller queues research by default; set false to opt out.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -21640,7 +21847,7 @@
                 }
               }
             },
-            "description": "Name identification needs a paid aVenture plan; a caller without one gets 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed)."
+            "description": "Without a paid aVenture plan a caller gets a free daily allowance of name identifications per UTC day; past it the lookup answers 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed), carrying limit, used, remaining, resetAt, and a Retry-After header."
           },
           "403": {
             "content": {
@@ -27097,7 +27304,7 @@
     },
     "/v1/research-runs": {
       "post": {
-        "description": "Files a research request for the company, Product, Service, or person at url and returns the run, owned by you. Send name when known. A url an existing profile owns refreshes that profile; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH. To update an existing entity with facts read verbatim from an external source page, pass finding (taskPresetKey defaults to apply-cited-findings); when an observed update comes from an indexed news article (newsArticle or GET /v1/news) or a page not read verbatim, pass userPrompt naming the observed detail and source URL (newsUrlOriginal or web URL). A new run reserves one `company` or `person` research unit, spent only once the run saves research and returned when it ends without any. Sending the same url again, with the same mode and presets, while your run for it is queued or running returns that run, uncharged. A record is researched at most once per rolling 24 hours across all callers: a different spelling of a subject already being researched, or of one whose research completed inside that window, files and charges nothing and answers 429 whose detail says when to retry. A url that matches more than one record answers 409, and a spent allowance answers 429. A url that names someone other than the subject (a platform or publisher page, a parked or for-sale host, or an article) answers 422 before anything is filed or charged. You may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. Follow progress with GET /v1/research-runs/{runId}; you are notified when the run completes.",
+        "description": "Files a research request for the company, Product, Service, or person at url and returns the run, owned by you. Send name when known. A url an existing profile owns refreshes that profile; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH. To update an existing entity with facts read verbatim from an external source page, pass finding (taskPresetKey defaults to apply-cited-findings); when an observed update comes from an indexed news article (newsArticle or GET /v1/news) or a page not read verbatim, pass userPrompt naming the observed detail and source URL (newsUrlOriginal or web URL). A new run reserves one `company` or `person` research unit, named by the run's researchAllowanceType and spent only once the run saves research and returned when it ends without any. Sending the same url again, with the same mode and presets, while your run for it is queued or running returns that run, uncharged. A record is researched at most once per rolling 24 hours across all callers: a different spelling of a subject already being researched, or of one whose research completed inside that window, files and charges nothing and answers 429 whose detail says when to retry. A url that matches more than one record answers 409, and a spent allowance answers 429. A url that names someone other than the subject (a platform or publisher page, a parked or for-sale host, or an article) answers 422 before anything is filed or charged. You may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. Follow progress with GET /v1/research-runs/{runId}; you are notified when the run completes.",
         "operationId": "createResearchRun",
         "requestBody": {
           "content": {
@@ -27776,7 +27983,7 @@
     },
     "/v1/search": {
       "post": {
-        "description": "Search companies, people, and news. auto blends exact names, full-text, planning, and similarity; keyword forces full-text. Other modes are rejected. Entity results supply ranked people; without entities, people are empty. provenance.modeUsed and scope interpretation report execution; unsearchable scopes carry provenance.rejection. entityFilter constrains entities; single-scope hard filters use /v1/search/natural/entities or /v1/search/natural/people. Page/size apply across scopes except personSize/newsSize; sort is unsupported. layer=synthesis adds a cited answer and relatedQuery. SSE opens with admitted after metering. settled contains all scopes; revised adds pendingWebQuery results and synthesis without moving settled rows; complete is terminal. Snapshot and admitted SSE ids use revision:request-uuid, starting at 0. For ten minutes, identical Last-Event-ID requests from the same caller replay durable state without new quota or records. Failed synthesis retries only its paid answer; disconnects never cancel admitted work. Incomplete snapshots replay as settled, then error. Terminal failures carry ProblemDetail.disposition=TERMINAL; resume ids never restart paid search. JSON does not wait for pending web searches.",
+        "description": "Search companies, people, and news. auto blends exact names, full-text, planning, and similarity; keyword forces full-text. Other modes are rejected. Entity results supply ranked people; without entities, people are empty. provenance.modeUsed and scope interpretation report execution; unsearchable scopes carry provenance.rejection. entityFilter constrains entities; single-scope hard filters use /v1/search/natural/entities or /v1/search/natural/people. Page/size apply across scopes except personSize/newsSize; sort is unsupported. layer=synthesis adds a cited answer and relatedQuery. SSE opens with admitted after metering. settled contains all scopes; revised adds pendingWebQuery results and synthesis without moving settled rows; complete is terminal. Snapshot and admitted SSE ids use revision:request-uuid, starting at 0. For ten minutes, identical Last-Event-ID requests from the same caller replay durable state without new quota or records. Failed synthesis retries only its paid answer; disconnects never cancel admitted work. Incomplete snapshots replay as settled, then error. Terminal failures carry ProblemDetail.disposition=TERMINAL; resume ids never restart paid search. JSON with the web layer and a signed-in user waits within the search deadline for discovery, files newly found companies, and returns their queued enrichment runs.",
         "operationId": "searchFederated",
         "parameters": [
           {
@@ -30568,18 +30775,14 @@
         "description": "RFC 9457 problem response with aVenture extensions.",
         "properties": {
           "allowanceType": {
-            "type": [
-              "string",
-              "null"
-            ],
             "description": "Which monthly allowance a BILLING_ALLOWANCE refusal exhausted.",
-            "enum": [
-              "COMPANY",
-              "PERSON",
-              "ENTITY_VIEW",
-              "ENTITY_BRAND",
-              "PERSON_VIEW",
-              "WEB_SEARCH"
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ResearchAllowanceType"
+              },
+              {
+                "type": "null"
+              }
             ]
           },
           "circuitBreaker": {
@@ -31054,6 +31257,26 @@
             "description": "Length of a rolling throttle window; absent for period meters."
           }
         }
+      },
+      "CursorSliceAddressLink": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AddressLink"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "content"
+        ]
       },
       "AgentHelpQuestion": {
         "type": "object",
@@ -35691,6 +35914,18 @@
             "description": "Earliest re-claim time when waiting on retry backoff",
             "x-aventure-detail": true
           },
+          "researchAllowanceType": {
+            "description": "Research allowance this run reserved when it was filed: COMPANY or PERSON; null for a run filed without one",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ResearchAllowanceType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "x-aventure-detail": true
+          },
           "resumeSafeUntil": {
             "type": [
               "string",
@@ -39064,6 +39299,16 @@
               }
             ]
           },
+          "filing": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Discovered companies this caller filed and their research runs.",
+            "items": {
+              "$ref": "#/components/schemas/SearchDiscoveryFiling"
+            }
+          },
           "interpretation": {
             "$ref": "#/components/schemas/SearchInterpretation",
             "description": "Structured interpretation used to run the entity list query."
@@ -40818,6 +41063,28 @@
           "relatedQuery",
           "shareable",
           "text"
+        ]
+      },
+      "SearchDiscoveryFiling": {
+        "type": "object",
+        "description": "Company record filed from one search discovery result and its queued research.",
+        "properties": {
+          "enrichmentRunId": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Research run queued for that company by this filing; null when the record already existed or no run was available within the response deadline."
+          },
+          "entityId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Company record filed for the discovered site."
+          }
+        },
+        "required": [
+          "entityId"
         ]
       },
       "SearchInterpretation": {
@@ -44034,6 +44301,18 @@
         ],
         "x-aventure-parsed-enum": true
       },
+      "ResearchAllowanceType": {
+        "type": "string",
+        "description": "Metered allowance. `COMPANY` and `PERSON` meter research runs on company and person-profile targets; `ENTITY_VIEW`, `ENTITY_BRAND`, and `PERSON_VIEW` meter profile and brand reads; `WEB_SEARCH` meters web searches.",
+        "x-extensible-enum": [
+          "COMPANY",
+          "PERSON",
+          "ENTITY_VIEW",
+          "ENTITY_BRAND",
+          "PERSON_VIEW",
+          "WEB_SEARCH"
+        ]
+      },
       "HarnessRunStatus": {
         "type": "string",
         "description": "Research run lifecycle state",
@@ -46098,15 +46377,7 @@
             "description": "Monthly cap; 0 withholds the allowance and absent means uncapped."
           },
           "type": {
-            "type": "string",
-            "enum": [
-              "COMPANY",
-              "PERSON",
-              "ENTITY_VIEW",
-              "ENTITY_BRAND",
-              "PERSON_VIEW",
-              "WEB_SEARCH"
-            ]
+            "$ref": "#/components/schemas/ResearchAllowanceType"
           }
         },
         "required": [
@@ -46415,7 +46686,7 @@
               "string",
               "null"
             ],
-            "description": "The advised operation; present only for OPERATION_ADVICE.",
+            "description": "The advised operation for OPERATION_ADVICE, or the write whose missing inputs a CLARIFY asks for.",
             "example": "getEntityLookup"
           },
           "outcome": {
@@ -46671,6 +46942,35 @@
           "READ",
           "WRITE",
           "ALL"
+        ]
+      },
+      "AddressLink": {
+        "type": "object",
+        "description": "One current or historical owner association to an address",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Association join id, scoped to the entity or person owner kind"
+          },
+          "owner": {
+            "$ref": "#/components/schemas/EntityPersonOwner"
+          },
+          "role": {
+            "description": "Association role; null means unclassified",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/AddressAssociationRole"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "owner"
         ]
       },
       "CurrentSlugOwner": {
@@ -46997,7 +47297,10 @@
           "record",
           "disclaimer",
           "voice",
+          "marketing",
+          "chained",
           "structured",
+          "tense",
           "temporal",
           "factList",
           "mojibake",
@@ -47008,7 +47311,7 @@
       },
       "UrlDuplicateConflict": {
         "type": "object",
-        "description": "Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; resolve by demoting the existing owner (isCurrent=false, isPrimary=false) before promoting the new owner.",
+        "description": "Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; inspect its identity before changing ownership. An offering sharing its provider's homepage uses the provider relationship without a duplicate URL row.",
         "properties": {
           "conflictType": {
             "$ref": "#/components/schemas/DomainConflictType",
@@ -47030,7 +47333,7 @@
           },
           "guidance": {
             "type": "string",
-            "description": "Human-readable guidance on how to resolve the conflict. Defaults to the standard inspect-then-demote/promote sequence."
+            "description": "Human-readable guidance on how to resolve the conflict. Defaults to the standard identity and URL ownership checks."
           },
           "normalizedUrl": {
             "type": [

@@ -56,6 +56,23 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
         }>;
         model: z.ZodString;
         nextAttemptAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        researchAllowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            COMPANY: "COMPANY";
+            ENTITY_BRAND: "ENTITY_BRAND";
+            ENTITY_VIEW: "ENTITY_VIEW";
+            PERSON: "PERSON";
+            PERSON_VIEW: "PERSON_VIEW";
+            WEB_SEARCH: "WEB_SEARCH";
+        }>, z.ZodString]> & {
+            enum: {
+                COMPANY: "COMPANY";
+                ENTITY_BRAND: "ENTITY_BRAND";
+                ENTITY_VIEW: "ENTITY_VIEW";
+                PERSON: "PERSON";
+                PERSON_VIEW: "PERSON_VIEW";
+                WEB_SEARCH: "WEB_SEARCH";
+            };
+        }>>;
         resumeSafeUntil: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         startedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         status: z.ZodEnum<{

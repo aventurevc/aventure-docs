@@ -9,27 +9,33 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
+    chained: "chained";
     disclaimer: "disclaimer";
     factList: "factList";
     legalSource: "legalSource";
+    marketing: "marketing";
     mojibake: "mojibake";
     record: "record";
     source: "source";
     structured: "structured";
     temporal: "temporal";
+    tense: "tense";
     textContract: "textContract";
     unsupported: "unsupported";
     voice: "voice";
 }>, z.ZodString]> & {
     enum: {
+        chained: "chained";
         disclaimer: "disclaimer";
         factList: "factList";
         legalSource: "legalSource";
+        marketing: "marketing";
         mojibake: "mojibake";
         record: "record";
         source: "source";
         structured: "structured";
         temporal: "temporal";
+        tense: "tense";
         textContract: "textContract";
         unsupported: "unsupported";
         voice: "voice";

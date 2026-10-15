@@ -7,6 +7,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/addresses/{addressId}/links
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/addresses
  * @endpoint GET /v1/entities/{entityId}/addresses/{addressJoinId}
@@ -35,6 +36,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared
  * @usedBySchema AddressAssociationSchema
+ * @usedBySchema AddressLinkSchema
  * @contractShape address.association-role
  * @contractRole canonical
  */

@@ -1,13 +1,22 @@
 import { z } from "zod/v4";
 declare const ProblemDetailSchemaDefinition: z.ZodObject<{
-    allowanceType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    allowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         COMPANY: "COMPANY";
         ENTITY_BRAND: "ENTITY_BRAND";
         ENTITY_VIEW: "ENTITY_VIEW";
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";
         WEB_SEARCH: "WEB_SEARCH";
-    }>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            COMPANY: "COMPANY";
+            ENTITY_BRAND: "ENTITY_BRAND";
+            ENTITY_VIEW: "ENTITY_VIEW";
+            PERSON: "PERSON";
+            PERSON_VIEW: "PERSON_VIEW";
+            WEB_SEARCH: "WEB_SEARCH";
+        };
+    }>>;
     circuitBreaker: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         GEOCODE_PROVIDER_ERROR: "GEOCODE_PROVIDER_ERROR";

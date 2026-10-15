@@ -1,14 +1,23 @@
 import { z } from "zod/v4";
 declare const BillingCatalogAllowanceSchemaDefinition: z.ZodObject<{
     limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    type: z.ZodEnum<{
+    type: z.ZodUnion<readonly [z.ZodEnum<{
         COMPANY: "COMPANY";
         ENTITY_BRAND: "ENTITY_BRAND";
         ENTITY_VIEW: "ENTITY_VIEW";
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";
         WEB_SEARCH: "WEB_SEARCH";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            COMPANY: "COMPANY";
+            ENTITY_BRAND: "ENTITY_BRAND";
+            ENTITY_VIEW: "ENTITY_VIEW";
+            PERSON: "PERSON";
+            PERSON_VIEW: "PERSON_VIEW";
+            WEB_SEARCH: "WEB_SEARCH";
+        };
+    };
 }, z.core.$strip>;
 type BillingCatalogAllowanceDefinition = z.infer<typeof BillingCatalogAllowanceSchemaDefinition>;
 export interface BillingCatalogAllowanceSchemaInput extends z.input<typeof BillingCatalogAllowanceSchemaDefinition> {

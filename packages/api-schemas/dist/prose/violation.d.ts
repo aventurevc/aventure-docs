@@ -3,27 +3,33 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
     overridable: z.ZodBoolean;
     passage: z.ZodString;
     problem: z.ZodUnion<readonly [z.ZodEnum<{
+        chained: "chained";
         disclaimer: "disclaimer";
         factList: "factList";
         legalSource: "legalSource";
+        marketing: "marketing";
         mojibake: "mojibake";
         record: "record";
         source: "source";
         structured: "structured";
         temporal: "temporal";
+        tense: "tense";
         textContract: "textContract";
         unsupported: "unsupported";
         voice: "voice";
     }>, z.ZodString]> & {
         enum: {
+            chained: "chained";
             disclaimer: "disclaimer";
             factList: "factList";
             legalSource: "legalSource";
+            marketing: "marketing";
             mojibake: "mojibake";
             record: "record";
             source: "source";
             structured: "structured";
             temporal: "temporal";
+            tense: "tense";
             textContract: "textContract";
             unsupported: "unsupported";
             voice: "voice";

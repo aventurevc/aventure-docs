@@ -11,6 +11,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     AddressCity: { modulePath: "address/city", schemaName: "AddressCitySchema" },
     AddressCountry: { modulePath: "address/country", schemaName: "AddressCountrySchema" },
+    AddressLink: { modulePath: "address/link", schemaName: "AddressLinkSchema" },
     AddressState: { modulePath: "address/state", schemaName: "AddressStateSchema" },
     AgentHelp: { modulePath: "agent/help", schemaName: "AgentHelpSchema" },
     AgentHelpQuestion: { modulePath: "agent/help-question", schemaName: "AgentHelpQuestionSchema" },
@@ -223,6 +224,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     CurrentSlugOwner: {
         modulePath: "redirect/current-slug-owner",
         schemaName: "CurrentSlugOwnerSchema",
+    },
+    CursorSliceAddressLink: {
+        modulePath: "cursor/slice-address-link",
+        schemaName: "CursorSliceAddressLinkSchema",
     },
     CursorSliceSharedDirectoryList: {
         modulePath: "cursor/slice-shared-directory-list",
@@ -862,6 +867,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "ResearchAccessTypeSchema",
     },
     ResearchAllowance: { modulePath: "research/allowance", schemaName: "ResearchAllowanceSchema" },
+    ResearchAllowanceType: {
+        modulePath: "research/allowance-type",
+        schemaName: "ResearchAllowanceTypeSchema",
+    },
     ResearchAllowanceUsage: {
         modulePath: "research/allowance-usage",
         schemaName: "ResearchAllowanceUsageSchema",
@@ -914,6 +923,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "SearchAnswerParagraphSchema",
     },
     SearchCacheMode: { modulePath: "search/cache-mode", schemaName: "SearchCacheModeSchema" },
+    SearchDiscoveryFiling: {
+        modulePath: "search/discovery-filing",
+        schemaName: "SearchDiscoveryFilingSchema",
+    },
     SearchDuplicateCandidateScore: {
         modulePath: "search/duplicate-candidate-score",
         schemaName: "SearchDuplicateCandidateScoreSchema",

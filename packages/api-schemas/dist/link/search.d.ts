@@ -26,6 +26,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 text: string;
                 title?: string | null | undefined;
             } | null | undefined;
+            filing?: {
+                enrichmentRunId?: string | null | undefined;
+                entityId: string;
+            }[] | null | undefined;
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 execution: {
@@ -4341,6 +4345,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 text: string;
                 title?: string | null | undefined;
             } | null | undefined;
+            filing?: {
+                enrichmentRunId?: string | null | undefined;
+                entityId: string;
+            }[] | null | undefined;
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
                 execution: {

@@ -38,7 +38,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
-            type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: string;
         }[];
         description: string;
         displayName: string;
@@ -47,7 +47,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
             limit?: number | null | undefined;
-            type: "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: string;
         }[];
         description: string;
         displayName: string;

@@ -39,6 +39,13 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         text: z.ZodString;
         title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
+    filing: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        enrichmentRunId?: string | null | undefined;
+        entityId: string;
+    }, import("../search/discovery-filing.ts").SearchDiscoveryFilingSchemaInput, z.core.$ZodTypeInternals<{
+        enrichmentRunId?: string | null | undefined;
+        entityId: string;
+    }, import("../search/discovery-filing.ts").SearchDiscoveryFilingSchemaInput>>>>>;
     interpretation: z.ZodType<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
         execution: {

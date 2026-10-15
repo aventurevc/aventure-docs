@@ -6,11 +6,10 @@ import { ProblemResolutionSchema } from "../problem/resolution.js";
 import { ProseViolationSchema } from "../prose/violation.js";
 import { CurrentSlugOwnerSchema } from "../redirect/current-slug-owner.js";
 import { RedirectSlugPathSchema } from "../redirect/redirect-slug-path.js";
+import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 const ProblemDetailSchemaDefinition = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
-    allowanceType: z
-        .enum(["COMPANY", "PERSON", "ENTITY_VIEW", "ENTITY_BRAND", "PERSON_VIEW", "WEB_SEARCH"])
-        .nullish(),
+    allowanceType: ResearchAllowanceTypeSchema.nullish(),
     circuitBreaker: z.string().nullish(),
     /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes describe server-side conditions a caller cannot fix: surface the error and stop rather than retry. */
     code: z
