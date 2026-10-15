@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. To research or refresh a company or person, request a research run for its website or profile URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.182"
+    "version": "0.8.183"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -24588,7 +24588,7 @@
     },
     "/v1/people/{personId}/investments": {
       "get": {
-        "description": "Returns a paginated investment portfolio for a person with investorAttribution. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amount. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values.",
+        "description": "Returns a paginated investment portfolio for a person with investorAttribution. amountInvested appears only inside investorAttribution, is a plain decimal number in the fundraise transaction currency, and is not added to amount. Valid sort syntax is sort=amountInvested,desc; do not use investorAttribution.amountInvested, amount_invested, currency signs, currency codes, comma grouping, or abbreviated values. joinId (the investor join id) is always the final tiebreak sort key, so rows tied on every requested key keep one order across pages.",
         "operationId": "listPersonInvestments",
         "parameters": [
           {
@@ -37700,7 +37700,7 @@
           },
           "investment": {
             "type": "array",
-            "description": "Investments associated with this person. When include names investment, this is the investments endpoint's newest-first page 0 at its maximum page size, 200: fewer than 200 rows is the whole list, otherwise continue at page=1&size=200.",
+            "description": "Investments associated with this person. When include names investment, these are newest first, the same rows as GET /v1/people/{personId}/investments?sort=date,desc&size=200 page 0: fewer than 200 rows is the whole list, otherwise continue at page=1 with the same sort and size.",
             "items": {
               "$ref": "#/components/schemas/PersonInvestment"
             }

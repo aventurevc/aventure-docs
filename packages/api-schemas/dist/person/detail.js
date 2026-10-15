@@ -19,7 +19,7 @@ const PersonDetailSchemaDefinition = z.object({
     enrichment: PersonEnrichmentSchema,
     /** Precomputed person graph; present only when include names graph */
     graph: PersonGraphSchema.nullish(),
-    /** Investments associated with this person. When include names investment, this is the investments endpoint's newest-first page 0 at its maximum page size, 200: fewer than 200 rows is the whole list, otherwise continue at page=1&size=200. */
+    /** Investments associated with this person. When include names investment, these are newest first, the same rows as GET /v1/people/{personId}/investments?sort=date,desc&size=200 page 0: fewer than 200 rows is the whole list, otherwise continue at page=1 with the same sort and size. */
     investment: z.array(PersonInvestmentSchema),
     /** Investor activity rollup; present only when include names investorActivity */
     investorActivity: EntityFundraiseInvestorActivitySchema.nullish(),
