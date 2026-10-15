@@ -8,7 +8,7 @@ Assistants pick tools and inputs on their own. This page is for code or prompts
 that call the aVenture MCP tools directly. Connect first with the
 [MCP quickstart](/mcp).
 
-The read, lookup, search, write, and delete tools each run one operation from
+The read, lookup, search, and job tools each run one operation from
 the [API reference](/api-reference). Every call must name that operation with
 `operationId`, or with `method` and `path` together. A call that carries only a
 query is rejected with `Pass operationId or method+path.`
@@ -147,7 +147,7 @@ response. Setting it to `text` on a JSON-only operation fails with `does not
 offer text/plain`, so leave it unset unless the operation offers both. If a
 response is truncated, inspect `truncated`, `omitted`, `warnings`, and the
 recovery guidance. Reduce `size` and page through the relevant sub-resource
-instead of changing the format. A compact receipt for a successful write
-means the write already took effect; do not repeat it to recover its body.
+instead of changing the format. A compact receipt for a queued job means the
+job already started; do not resubmit it to recover its body.
 </Note>
 

@@ -91,7 +91,7 @@ curl -X POST "https://api.aventure.vc/v1/lookup-jobs?maxNames=3" \
 aventure lookup-jobs create --max-names 3 --from-file names.json
 ```
 
-```json title="MCP (aventure_write)"
+```json title="MCP (aventure_job)"
 {
   "operationId": "createLookupJob",
   "query": { "maxNames": 3 },
@@ -114,7 +114,7 @@ curl -X POST "https://api.aventure.vc/v1/lookup-jobs?maxNames=500" \
 aventure lookup-jobs create --max-names 500 --source-url "$PAGE_URL"
 ```
 
-```json title="MCP (aventure_write)"
+```json title="MCP (aventure_job)"
 { "operationId": "createLookupJob", "query": { "maxNames": 500 }, "body": { "sourceUrl": "https://example.com/portfolio" } }
 ```
 </CodeBlocks>

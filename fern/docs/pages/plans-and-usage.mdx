@@ -30,7 +30,7 @@ Allowances reset at the start of each calendar month (UTC).
 
 When an allowance runs out, the API answers `429` with `code`
 `billing_allowance_exhausted`. The message names the limit you reached and how
-to upgrade. Upgrade in any of three places:
+to upgrade. Upgrade in either of two places:
 
 - **Website**: [subscription settings](https://aventure.vc/settings/subscription)
   shows your plan, your usage, and every plan you can move to.
@@ -39,8 +39,9 @@ to upgrade. Upgrade in any of three places:
   plan using the card already on file. From the free plan,
   `aventure billing checkout-sessions create --plan <plan>` returns a checkout
   link where you enter a card.
-- **MCP**: ask your assistant to list aVenture plans and upgrade you. It uses
-  the same plan list and checkout.
+
+Over MCP, your assistant can list aVenture plans, but it cannot change your
+plan; upgrade on the website or with the CLI.
 
 If an upgrade needs a payment you have not made yet, the response includes a
 payment link to finish it. On plans that offer additional usage, you can turn it

@@ -268,16 +268,17 @@ The assistant picks the tools itself:
 | `aventure_search` | Runs the search operation that `aventure_help` names; pass the search text in its `query` or `body` |
 | `aventure_read` | Reads a profile and its funding rounds, people, and news |
 | `aventure_help` | Finds the operation for a task described in plain English |
-| `aventure_write` | Queues research and changes your plan; accounts with editing access can also update records |
-| `aventure_delete` | Appears only for accounts allowed to remove aVenture records |
+| `aventure_job` | Queues research on a company or person, or a bulk lookup job |
+
+No tool edits or deletes aVenture records on your behalf.
 
 A long profile can come back shortened. When a result reports `truncated` or
 `omitted`, ask for the missing funding rounds, people, or news by name; the
 assistant reads them page by page.
 
 Calls draw on your plan's monthly allowances. When one runs out, the answer
-names the limit and how to upgrade; you can also ask the assistant to list plans
-or upgrade you. [Plans and usage](/plans-and-usage) has the details. To call the
+names the limit and how to upgrade; the assistant can list plans, and
+[Plans and usage](/plans-and-usage) shows where to upgrade. To call the
 tools from your own code or prompts, read
 [Call MCP tools directly](/mcp-tools).
 
