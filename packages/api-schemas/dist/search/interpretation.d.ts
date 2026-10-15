@@ -13,227 +13,180 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
         modeUsed: string;
     }, import("./mode-execution.ts").SearchModeExecutionSchemaInput>>;
     fallbackUsed: z.ZodBoolean;
-    filter: z.ZodType<{
-        acceleratorBrand?: string[] | undefined;
-        acceleratorCohort?: string[] | undefined;
-        acceleratorName?: string[] | undefined;
-        acceleratorStatus?: string[] | undefined;
-        affinity?: string[] | undefined;
-        closedLast?: boolean | undefined;
-        employeeCountRange?: {
+    filter: z.ZodObject<{
+        acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        acceleratorStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        closedLast: z.ZodOptional<z.ZodBoolean>;
+        employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }[] | undefined;
-        entityId?: string[] | undefined;
-        entityName?: string[] | undefined;
-        featured?: boolean | null | undefined;
-        fundraiseActivity?: {
-            amountInvestedRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            amountRaisedRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            dateAnnouncedRange?: {
-                max?: string | null | undefined;
-                min?: string | null | undefined;
-            } | null | undefined;
-            investedCompanyName?: string[] | undefined;
-            investedCountry?: string[] | undefined;
-            investedIndustry?: string[] | undefined;
-            investedRound?: string[] | undefined;
-            investorActivity?: {
-                averageAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                largestAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                smallestAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                totalAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                totalInvestmentRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-            } | undefined;
-            investorName?: string[] | undefined;
-            lastRoundYearRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            rankByInvestmentActivity?: boolean | null | undefined;
-            round?: string[] | undefined;
-            totalRaisedRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            valuationRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-        } | undefined;
-        hasFundraising?: boolean | null | undefined;
-        headquartersCity?: string[] | undefined;
-        headquartersCountry?: string[] | undefined;
-        headquartersState?: string[] | undefined;
-        industry?: string[] | undefined;
-        letter?: string | null | undefined;
-        location?: string[] | undefined;
-        logoOption?: {
-            sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
-        } | undefined;
-        mainProduct?: string[] | undefined;
-        operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
-        originCountry?: string[] | undefined;
-        person?: string[] | undefined;
-        portfolioHeadquartersCity?: string[] | undefined;
-        portfolioHeadquartersCountry?: string[] | undefined;
-        portfolioHeadquartersState?: string[] | undefined;
-        qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
-        rankByProminence?: boolean | null | undefined;
-        semanticQuery?: string | null | undefined;
-        slug?: string[] | undefined;
-        stage?: string[] | undefined;
-        suppressLateStage?: boolean | null | undefined;
-        suppressNonOperating?: boolean | null | undefined;
-        suppressZeroTotalRaised?: boolean | null | undefined;
-        tag?: string[] | undefined;
-        textSearch?: string | null | undefined;
-        typeCustomer?: string[] | undefined;
-        typeModel?: string[] | undefined;
-        typeOwnership?: string[] | undefined;
-        typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
-        typeRevenue?: string[] | undefined;
-        typeTechnologyUsed?: string[] | undefined;
-        url?: string | null | undefined;
-        urlDomain?: string | null | undefined;
-        urlMatchMode?: "domain" | "hostPath" | null | undefined;
-        urlType?: string | null | undefined;
-        yearFoundedRange?: {
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }[] | undefined;
-    }, import("../entity/list-filter.ts").EntityListFilterSchemaInput, z.core.$ZodTypeInternals<{
-        acceleratorBrand?: string[] | undefined;
-        acceleratorCohort?: string[] | undefined;
-        acceleratorName?: string[] | undefined;
-        acceleratorStatus?: string[] | undefined;
-        affinity?: string[] | undefined;
-        closedLast?: boolean | undefined;
-        employeeCountRange?: {
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+        entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
+        entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        fundraiseActivity: z.ZodOptional<z.ZodObject<{
+            amountInvestedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            amountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            }, z.core.$strip>>>;
+            investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedRound: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investorActivity: z.ZodOptional<z.ZodObject<{
+                averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+            }, z.core.$strip>>;
+            investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+            rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            round: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            valuationRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+        }, z.core.$strip>>;
+        hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        headquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        headquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        industry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        location: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        logoOption: z.ZodOptional<z.ZodObject<{
+            sortPriority: z.ZodOptional<z.ZodEnum<{
+                ANY_LOGO_FIRST: "ANY_LOGO_FIRST";
+                NONE: "NONE";
+                REAL_LOGO_FIRST: "REAL_LOGO_FIRST";
+            }>>;
+        }, z.core.$strip>>;
+        mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            Closed: "Closed";
+            "Closed (Acquihire)": "Closed (Acquihire)";
+            Inactive: "Inactive";
+            Operating: "Operating";
+        }>>>;
+        originCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        person: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        portfolioHeadquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        qualityGate: z.ZodOptional<z.ZodEnum<{
+            COMPANY_LISTING_READY: "COMPANY_LISTING_READY";
+            NONE: "NONE";
+        }>>;
+        rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        suppressLateStage: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        suppressZeroTotalRaised: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        tag: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        textSearch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        typeCustomer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeModel: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeOwnership: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeRecord: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+            "Business Line": "Business Line";
+            Company: "Company";
+            Fund: "Fund";
+            Government: "Government";
+            "Investment Firm": "Investment Firm";
+            Nonprofit: "Nonprofit";
+            Organization: "Organization";
+            Product: "Product";
+            Service: "Service";
+        }>>>;
+        typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        urlDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        urlMatchMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            domain: "domain";
+            hostPath: "hostPath";
+        }>>>;
+        urlType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        yearFoundedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }[] | undefined;
-        entityId?: string[] | undefined;
-        entityName?: string[] | undefined;
-        featured?: boolean | null | undefined;
-        fundraiseActivity?: {
-            amountInvestedRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            amountRaisedRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            dateAnnouncedRange?: {
-                max?: string | null | undefined;
-                min?: string | null | undefined;
-            } | null | undefined;
-            investedCompanyName?: string[] | undefined;
-            investedCountry?: string[] | undefined;
-            investedIndustry?: string[] | undefined;
-            investedRound?: string[] | undefined;
-            investorActivity?: {
-                averageAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                largestAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                smallestAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                totalAmountInvestedUsdRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-                totalInvestmentRange?: {
-                    max?: number | null | undefined;
-                    min?: number | null | undefined;
-                }[] | undefined;
-            } | undefined;
-            investorName?: string[] | undefined;
-            lastRoundYearRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            rankByInvestmentActivity?: boolean | null | undefined;
-            round?: string[] | undefined;
-            totalRaisedRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-            valuationRange?: {
-                max?: number | null | undefined;
-                min?: number | null | undefined;
-            }[] | undefined;
-        } | undefined;
-        hasFundraising?: boolean | null | undefined;
-        headquartersCity?: string[] | undefined;
-        headquartersCountry?: string[] | undefined;
-        headquartersState?: string[] | undefined;
-        industry?: string[] | undefined;
-        letter?: string | null | undefined;
-        location?: string[] | undefined;
-        logoOption?: {
-            sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
-        } | undefined;
-        mainProduct?: string[] | undefined;
-        operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
-        originCountry?: string[] | undefined;
-        person?: string[] | undefined;
-        portfolioHeadquartersCity?: string[] | undefined;
-        portfolioHeadquartersCountry?: string[] | undefined;
-        portfolioHeadquartersState?: string[] | undefined;
-        qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
-        rankByProminence?: boolean | null | undefined;
-        semanticQuery?: string | null | undefined;
-        slug?: string[] | undefined;
-        stage?: string[] | undefined;
-        suppressLateStage?: boolean | null | undefined;
-        suppressNonOperating?: boolean | null | undefined;
-        suppressZeroTotalRaised?: boolean | null | undefined;
-        tag?: string[] | undefined;
-        textSearch?: string | null | undefined;
-        typeCustomer?: string[] | undefined;
-        typeModel?: string[] | undefined;
-        typeOwnership?: string[] | undefined;
-        typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
-        typeRevenue?: string[] | undefined;
-        typeTechnologyUsed?: string[] | undefined;
-        url?: string | null | undefined;
-        urlDomain?: string | null | undefined;
-        urlMatchMode?: "domain" | "hostPath" | null | undefined;
-        urlType?: string | null | undefined;
-        yearFoundedRange?: {
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }[] | undefined;
-    }, import("../entity/list-filter.ts").EntityListFilterSchemaInput>>;
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+    }, z.core.$strict>;
     intent: z.ZodEnum<{
         comparison: "comparison";
         discovery: "discovery";

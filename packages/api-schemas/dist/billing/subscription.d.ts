@@ -33,60 +33,70 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
     }, import("./additional-usage.ts").BillingAdditionalUsageSchemaInput>>;
     allowance: z.ZodType<{
         company: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         entityBrand: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         entityView: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         newCompany: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         newPerson: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         person: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         personView: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         update: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         updatePerson: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         webSearch: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
@@ -94,60 +104,70 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         };
     }, import("../research/allowance-usage.ts").ResearchAllowanceUsageSchemaInput, z.core.$ZodTypeInternals<{
         company: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         entityBrand: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         entityView: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         newCompany: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         newPerson: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         person: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         personView: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         update: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         updatePerson: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;
             used: number;
         };
         webSearch: {
+            access?: string | null | undefined;
             limit?: number | null | undefined;
             remaining?: number | null | undefined;
             resetAt: string;

@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
 import { ResearchFindingSchema } from "../research/finding.js";
 const HarnessRunCreateSchemaDefinition = z.object({
-    /** Facts you already researched, each citing the page and exact text that support it. Send them with a taskPresetKey that accepts findings; the run checks each quote against its page and writes only the facts it confirms. Any other run refuses findings with 400. */
+    /** Facts you already read verbatim on an external source page for an entity, each citing the page and exact text that support it. Omit taskPresetKey to default to apply-cited-findings, or send a preset from GET /v1/research-runs/presets; the run checks each quote against its page and writes only the facts it confirms. When the detail comes from an indexed news article or a page not read verbatim, send userPrompt instead. */
     finding: z.array(ResearchFindingSchema).nullish(),
     /** How broadly the run researches the subject; omit it for COMPREHENSIVE */
     mode: EnrichmentModeSchema.optional(),
@@ -15,7 +15,7 @@ const HarnessRunCreateSchemaDefinition = z.object({
     taskPresetKey: z.array(z.string()).nullish(),
     /** Official website or profile URL of the company, Product, Service, or person to research; a URL no current record owns researches a new one */
     url: z.string(),
-    /** Optional steering prompt */
+    /** Optional steering prompt, such as an observed update and its source URL (newsUrlOriginal or web URL) or which facts to check first */
     userPrompt: z.string().nullish(),
 });
 /**

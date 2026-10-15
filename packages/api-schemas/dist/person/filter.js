@@ -8,15 +8,19 @@ import { PersonListArrayFilterSchema } from "./list-array-filter.js";
  *
  * @openapiSchema PersonFilter
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/directory/shared
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema PersonNaturalSearchSchema
  * @usedBySchema PersonSearchInterpretationSchema
+ * @usedBySchema SharedDirectoryMutationSchema
+ * @usedBySchema SharedDirectorySchema
  * @contractShape person.filter
  * @contractRole canonical
  */

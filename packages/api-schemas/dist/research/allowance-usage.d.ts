@@ -1,110 +1,130 @@
 import { z } from "zod/v4";
 declare const ResearchAllowanceUsageSchemaDefinition: z.ZodObject<{
     company: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     entityBrand: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     entityView: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     newCompany: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     newPerson: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     person: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     personView: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     update: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     updatePerson: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput>>;
     webSearch: z.ZodType<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;
         used: number;
     }, import("./allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
         limit?: number | null | undefined;
         remaining?: number | null | undefined;
         resetAt: string;

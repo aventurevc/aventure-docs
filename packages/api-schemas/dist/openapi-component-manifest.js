@@ -224,6 +224,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "redirect/current-slug-owner",
         schemaName: "CurrentSlugOwnerSchema",
     },
+    CursorSliceSharedDirectoryList: {
+        modulePath: "cursor/slice-shared-directory-list",
+        schemaName: "CursorSliceSharedDirectoryListSchema",
+    },
     CursorSliceSharedSearchList: {
         modulePath: "cursor/slice-shared-search-list",
         schemaName: "CursorSliceSharedSearchListSchema",
@@ -773,6 +777,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PersonDetailIncludeSchema",
     },
     PersonEnrichment: { modulePath: "person/enrichment", schemaName: "PersonEnrichmentSchema" },
+    PersonEnrichmentPrompt: {
+        modulePath: "person/enrichment-prompt",
+        schemaName: "PersonEnrichmentPromptSchema",
+    },
     PersonFilter: { modulePath: "person/filter", schemaName: "PersonFilterSchema" },
     PersonGraph: { modulePath: "person/graph", schemaName: "PersonGraphSchema" },
     PersonGraphCareerContext: {
@@ -848,6 +856,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     RelationshipDirection: {
         modulePath: "relationship/direction",
         schemaName: "RelationshipDirectionSchema",
+    },
+    ResearchAccessType: {
+        modulePath: "research/access-type",
+        schemaName: "ResearchAccessTypeSchema",
     },
     ResearchAllowance: { modulePath: "research/allowance", schemaName: "ResearchAllowanceSchema" },
     ResearchAllowanceUsage: {
@@ -964,6 +976,19 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     SecListingProspectus: {
         modulePath: "sec/listing-prospectus",
         schemaName: "SecListingProspectusSchema",
+    },
+    SharedDirectory: { modulePath: "shared/directory", schemaName: "SharedDirectorySchema" },
+    SharedDirectoryList: {
+        modulePath: "shared/directory-list",
+        schemaName: "SharedDirectoryListSchema",
+    },
+    SharedDirectoryMutation: {
+        modulePath: "shared/directory-mutation",
+        schemaName: "SharedDirectoryMutationSchema",
+    },
+    SharedDirectoryType: {
+        modulePath: "shared/directory-type",
+        schemaName: "SharedDirectoryTypeSchema",
     },
     SharedSearch: { modulePath: "shared/search", schemaName: "SharedSearchSchema" },
     SharedSearchList: { modulePath: "shared/search-list", schemaName: "SharedSearchListSchema" },

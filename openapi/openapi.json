@@ -5,9 +5,9 @@
       "email": "team@aventure.vc",
       "name": "aVenture"
     },
-    "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. To research or refresh a company or person, request a research run for its website or profile URL.",
+    "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.183"
+    "version": "0.8.184"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -3903,6 +3903,494 @@
         "summary": "Read Your Card on File and Introductory Offer",
         "tags": [
           "Billing"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/directory/shared": {
+      "get": {
+        "description": "Returns publication metadata in UUID order with a bounded keyset cursor. Filters and a total count are omitted. Page must be zero; follow nextCursor.",
+        "operationId": "listSharedDirectory",
+        "parameters": [
+          {
+            "description": "Offset paging is not supported; omit page. Any value other than 0 returns 400. Send the previous response's nextCursor as cursor to read the next page.",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 0
+            }
+          },
+          {
+            "description": "The size of the page to be returned",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 40,
+              "minimum": 1
+            }
+          },
+          {
+            "description": "Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "description": "The previous page's nextCursor.",
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CursorSliceSharedDirectoryList"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "summary": "List Shared Directory Views",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      },
+      "post": {
+        "description": "Publishes the exact filter and sort a /companies, /investors, or /people page shows under the supplied UUID, with a model-written heading, title, and description. The view must match at least one public record and may set only public filter fields. Reusing the UUID with the same view, or sharing a view already published, returns that publication; a different view under a used UUID is rejected. The publication is readable without authentication.",
+        "operationId": "createSharedDirectory",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SharedDirectoryMutation"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedDirectory"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "409": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Conflict",
+            "x-aventure-standard-response": true
+          },
+          "415": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unsupported Media Type",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Share a Directory View",
+        "tags": [
+          "Search"
+        ],
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/directory/shared/slug/{slug}": {
+      "get": {
+        "description": "Resolves the slug of a public /companies/shared, /investors/shared, or /people/shared page to its stored filter, sort, and page copy.",
+        "operationId": "getSharedDirectoryBySlug",
+        "parameters": [
+          {
+            "description": "Shared directory view slug.",
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedDirectory"
+                }
+              }
+            },
+            "description": "OK",
+            "headers": {
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "summary": "Read a Shared Directory View by Slug",
+        "tags": [
+          "Search"
         ],
         "x-aventure-visibility": {
           "scope": "public"
@@ -10847,7 +11335,7 @@
     },
     "/v1/entities/{entityId}/enrichments": {
       "post": {
-        "description": "Queues a run that researches the addressed entity and updates its aVenture profile, owned by the authenticated caller. Take entityId from match.owner when POST /v1/lookup or POST /v1/entities/lookup returns MATCHED (CLI: lookup, entities lookup). When a run for this entity is already queued or running, returns that run instead of queuing and charging another; a new run reserves one `company` research unit from the plan's research allowance, spent only once the run saves a research write and returned when it ends without one. After the run completes, read the updated profile with GET /v1/entities/{entityId} (CLI: entities get). Check the run's progress with GET /v1/research-runs/{runId} (CLI: research-runs get).",
+        "description": "Queues a run that researches the addressed entity and updates its aVenture profile, owned by the authenticated caller. Take entityId from match.owner when POST /v1/lookup or POST /v1/entities/lookup returns MATCHED (CLI: lookup, entities lookup). To update an entity with facts read verbatim from an external source page (founding year, website or social URL, address, or funding round and investors), pass finding in the body (each with statement, sourceUrl, and verbatim quote; taskPresetKey defaults to apply-cited-findings). When an observed update comes from an indexed news article (newsArticle or GET /v1/news), a page not read verbatim, or covers other profile sections (team, products, descriptions), pass userPrompt in the body naming the observed detail and source URL (newsUrlOriginal or web URL). When a run for this entity is already queued or running, returns that run instead of queuing and charging another; a new run reserves one `company` research unit from the plan's research allowance, spent only once the run saves a research write and returned when it ends without one. After the run completes, read the updated profile with GET /v1/entities/{entityId} (CLI: entities get). Check the run's progress with GET /v1/research-runs/{runId} (CLI: research-runs get).",
         "operationId": "enrichEntity",
         "parameters": [
           {
@@ -10880,7 +11368,7 @@
           },
           {
             "deprecated": true,
-            "description": "Deprecated: send userPrompt in the EnrichmentPrompt body. Used only when the body carries no userPrompt; longer than 2000 characters is refused with 400.",
+            "description": "Deprecated: send userPrompt in the JSON body. Used only when the body carries no userPrompt; longer than 2000 characters is refused with 400.",
             "in": "query",
             "name": "userPrompt",
             "required": false,
@@ -23778,7 +24266,7 @@
     },
     "/v1/people/{personId}/enrichments": {
       "post": {
-        "description": "Queues a run that researches the addressed person and updates their aVenture profile, owned by the authenticated caller. Take personId from match.owner when POST /v1/lookup or POST /v1/people/lookup returns MATCHED (CLI: lookup, people lookup). When a run for this person is already queued or running, returns that run instead of queuing and charging another; a new run reserves one `person` research unit from the plan's research allowance, spent only once the run saves a research write and returned when it ends without one. After the run completes, read the updated profile with GET /v1/people/{personId} (CLI: people get). Check the run's progress with GET /v1/research-runs/{runId} (CLI: research-runs get).",
+        "description": "Queues a run that researches the addressed person and updates their aVenture profile, owned by the authenticated caller. Take personId from match.owner when POST /v1/lookup or POST /v1/people/lookup returns MATCHED (CLI: lookup, people lookup). To request an update from an indexed news article or web source, pass userPrompt in the body naming the observed detail and source URL (newsUrlOriginal or web URL). When a run for this person is already queued or running, returns that run instead of queuing and charging another; a new run reserves one `person` research unit from the plan's research allowance, spent only once the run saves a research write and returned when it ends without one. After the run completes, read the updated profile with GET /v1/people/{personId} (CLI: people get). Check the run's progress with GET /v1/research-runs/{runId} (CLI: research-runs get).",
         "operationId": "enrichPerson",
         "parameters": [
           {
@@ -23811,7 +24299,7 @@
           },
           {
             "deprecated": true,
-            "description": "Deprecated: send userPrompt in the EnrichmentPrompt body. Used only when the body carries no userPrompt; longer than 2000 characters is refused with 400.",
+            "description": "Deprecated: send userPrompt in the JSON body. Used only when the body carries no userPrompt; longer than 2000 characters is refused with 400.",
             "in": "query",
             "name": "userPrompt",
             "required": false,
@@ -23836,7 +24324,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EnrichmentPrompt"
+                "$ref": "#/components/schemas/PersonEnrichmentPrompt"
               }
             }
           }
@@ -26609,7 +27097,7 @@
     },
     "/v1/research-runs": {
       "post": {
-        "description": "Files a research request for the company, Product, Service, or person at url and returns the run, owned by you. Send name when known. A url an existing profile owns refreshes that profile; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH. A new run reserves one `company` or `person` research unit, spent only once the run saves research and returned when it ends without any. Your own queued or running run for the same subject, mode, and presets is returned instead, uncharged. A record is researched at most once per rolling 24 hours across all callers: while it is already being researched, or when research on it completed inside that window, nothing is filed or charged and the request answers 429 whose detail says when to retry. A url that matches more than one record answers 409, and a spent allowance answers 429. You may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. Follow progress with GET /v1/research-runs/{runId}; you are notified when the run completes.",
+        "description": "Files a research request for the company, Product, Service, or person at url and returns the run, owned by you. Send name when known. A url an existing profile owns refreshes that profile; any other url researches a new one, so this is how to add a subject that POST /v1/lookup answers NO_MATCH. To update an existing entity with facts read verbatim from an external source page, pass finding (taskPresetKey defaults to apply-cited-findings); when an observed update comes from an indexed news article (newsArticle or GET /v1/news) or a page not read verbatim, pass userPrompt naming the observed detail and source URL (newsUrlOriginal or web URL). A new run reserves one `company` or `person` research unit, spent only once the run saves research and returned when it ends without any. Sending the same url again, with the same mode and presets, while your run for it is queued or running returns that run, uncharged. A record is researched at most once per rolling 24 hours across all callers: a different spelling of a subject already being researched, or of one whose research completed inside that window, files and charges nothing and answers 429 whose detail says when to retry. A url that matches more than one record answers 409, and a spent allowance answers 429. A url that names someone other than the subject (a platform or publisher page, a parked or for-sale host, or an article) answers 422 before anything is filed or charged. You may set only url, name, model, mode, userPrompt, taskPresetKey, and finding; any other field is refused with 403, and a userPrompt longer than 2000 characters is refused with 400. Follow progress with GET /v1/research-runs/{runId}; you are notified when the run completes.",
         "operationId": "createResearchRun",
         "requestBody": {
           "content": {
@@ -26727,8 +27215,7 @@
                 }
               }
             },
-            "description": "Unprocessable Content",
-            "x-aventure-standard-response": true
+            "description": "The url is a platform, publisher, parking-host, or article page rather than the subject's own site or LinkedIn profile; nothing is filed or charged, and the problem detail names what to send instead."
           },
           "429": {
             "content": {
@@ -31172,6 +31659,17 @@
         "type": "object",
         "description": "Usage allowance for one meter in one billing period, the UTC month by default",
         "properties": {
+          "access": {
+            "description": "What filing one more research run on this meter does now, decided exactly as filing decides it; present only on the company and person research meters",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/ResearchAccessType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "limit": {
             "type": [
               "integer",
@@ -31746,6 +32244,137 @@
         "required": [
           "introductoryOfferEligible"
         ]
+      },
+      "CursorSliceSharedDirectoryList": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedDirectoryList"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "content"
+        ]
+      },
+      "SharedDirectoryMutation": {
+        "type": "object",
+        "description": "Publish a directory view under a stable client UUID; retries and identical views return the same publication.",
+        "properties": {
+          "directory": {
+            "description": "Directory page the view filters.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/SharedDirectoryType"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entityFilter": {
+            "description": "Body the companies or investors page sends to entity search.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityListFilter"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "uuid",
+            "description": "Stable sharing UUID generated once and reused across retries."
+          },
+          "personFilter": {
+            "description": "Body the people page sends to person search.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PersonFilter"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sort": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Sort the page sends, as property,asc or property,desc.",
+            "maxLength": 100,
+            "minLength": 0
+          }
+        }
+      },
+      "SharedDirectory": {
+        "type": "object",
+        "description": "A saved public directory view and its page copy.",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Search-result description, at most 155 characters."
+          },
+          "entityFilter": {
+            "description": "Entity filter of a companies or investors view.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityListFilter"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "personFilter": {
+            "description": "Person filter of a people view.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PersonFilter"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "publication": {
+            "$ref": "#/components/schemas/SharedDirectoryList"
+          },
+          "sort": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Sort as property,direction; absent uses the directory default."
+          },
+          "title": {
+            "type": "string",
+            "description": "Search-result title, at most 60 characters."
+          }
+        },
+        "required": [
+          "description",
+          "publication",
+          "title"
+        ],
+        "x-aventure-noun": {
+          "one": "shared directory view",
+          "other": "shared directory views"
+        }
       },
       "EnrichmentBatch": {
         "type": "object",
@@ -32913,14 +33542,14 @@
           },
           "fundraiseRound": {
             "type": "array",
-            "description": "Fundraise rounds associated with this entity.",
+            "description": "Fundraise rounds associated with this entity. When newsArticle or an external source reports a newer round not yet listed here, report both and ask the user whether to request a record update via POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich; MCP: aventure_job enrichEntity).",
             "items": {
               "$ref": "#/components/schemas/EntityFundraiseTransaction"
             }
           },
           "newsArticle": {
             "type": "array",
-            "description": "News articles associated with this entity; full-detail search carries the first few, and GET /v1/news?owner.entityId={entityId} lists them all.",
+            "description": "News articles associated with this entity; full-detail search carries the first few, and GET /v1/news?owner.entityId={entityId} lists them all. When an indexed article reports a newer funding round, role, or milestone not yet reflected in structured fields, report both and offer to request an update on the record.",
             "items": {
               "$ref": "#/components/schemas/News"
             }
@@ -34921,14 +35550,24 @@
       },
       "EnrichmentPrompt": {
         "type": "object",
-        "description": "Optional steering for one company or person enrichment run",
+        "description": "Optional steering prompt or cited findings for one company, product, or service enrichment run",
         "properties": {
+          "finding": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "description": "Facts you already read verbatim on an external source page for an entity, each with statement, sourceUrl, and exact quote; omit taskPresetKey to default to apply-cited-findings",
+            "items": {
+              "$ref": "#/components/schemas/ResearchFinding"
+            }
+          },
           "userPrompt": {
             "type": [
               "string",
               "null"
             ],
-            "description": "Plain-language instruction for this run, such as which facts or sources to check first",
+            "description": "Plain-language instruction for this run, such as an observed update and its source URL (newsUrlOriginal or web URL) or which facts to check first",
             "maxLength": 2000,
             "minLength": 0
           }
@@ -37869,6 +38508,21 @@
           }
         }
       },
+      "PersonEnrichmentPrompt": {
+        "type": "object",
+        "description": "Optional steering prompt for one person enrichment run",
+        "properties": {
+          "userPrompt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Plain-language instruction for this run, such as an observed update and its source URL (newsUrlOriginal or web URL) or which facts to check first",
+            "maxLength": 2000,
+            "minLength": 0
+          }
+        }
+      },
       "PersonGraph": {
         "type": "object",
         "description": "\n        Precomputed professional-graph document for one person: career context per associated\n        entity (entity facts, recent news, colleagues, similar entities with key people), plus\n        co-investors. Lists are capped and pre-ranked server-side; the response is the display\n        order. Served from a precomputed store with member names, images, and slugs hydrated from\n        live person records at read time; computedAt is null only when the document has not been\n        materialized yet.\n        ",
@@ -38006,7 +38660,7 @@
               "array",
               "null"
             ],
-            "description": "Facts you already researched, each citing the page and exact text that support it. Send them with a taskPresetKey that accepts findings; the run checks each quote against its page and writes only the facts it confirms. Any other run refuses findings with 400.",
+            "description": "Facts you already read verbatim on an external source page for an entity, each citing the page and exact text that support it. Omit taskPresetKey to default to apply-cited-findings, or send a preset from GET /v1/research-runs/presets; the run checks each quote against its page and writes only the facts it confirms. When the detail comes from an indexed news article or a page not read verbatim, send userPrompt instead.",
             "items": {
               "$ref": "#/components/schemas/ResearchFinding"
             }
@@ -38050,7 +38704,7 @@
               "string",
               "null"
             ],
-            "description": "Optional steering prompt"
+            "description": "Optional steering prompt, such as an observed update and its source URL (newsUrlOriginal or web URL) or which facts to check first"
           }
         },
         "required": [
@@ -45076,6 +45730,51 @@
           "SUBSCRIPTION_REQUIRED"
         ]
       },
+      "SharedDirectoryList": {
+        "type": "object",
+        "description": "Public directory publication metadata.",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "directory": {
+            "$ref": "#/components/schemas/SharedDirectoryType"
+          },
+          "heading": {
+            "type": "string",
+            "description": "Page heading the model wrote for the view."
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Stable shared-directory UUID"
+          },
+          "slug": {
+            "type": "string",
+            "description": "Canonical lowercase URL slug for the resource",
+            "example": "aventure-vc",
+            "maxLength": 255,
+            "pattern": "^[a-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "createdAt",
+          "directory",
+          "heading",
+          "id",
+          "slug"
+        ]
+      },
+      "SharedDirectoryType": {
+        "type": "string",
+        "description": "Public directory page whose filtered view is shared.",
+        "enum": [
+          "companies",
+          "investors",
+          "people"
+        ]
+      },
       "BillingPaymentMethod": {
         "type": "object",
         "description": "Card on file that pays the subscription.",
@@ -45443,6 +46142,17 @@
         "enum": [
           "HOSTED_PAGE",
           "ELEMENTS"
+        ]
+      },
+      "ResearchAccessType": {
+        "type": "string",
+        "description": "What filing one more research run does now. `INCLUDED`: the plan's monthly allowance covers it. `ADDITIONAL_USAGE`: the allowance is spent or withheld, and the run is billed as additional usage (prepaid credit or invoice). `EXHAUSTED`: the plan's allowance is spent and no additional usage can pay for it (off, spend cap reached, or prepaid credit below the unit price); filing answers 429. `PLAN_REQUIRED`: the plan includes no research and no additional usage can pay for it; filing answers 402 or 429. `BILLING_BLOCKED`: a paid plan is past due, unpaid, incomplete, or paused, or an additional-usage invoice is unpaid; filing answers 402.",
+        "x-extensible-enum": [
+          "INCLUDED",
+          "ADDITIONAL_USAGE",
+          "EXHAUSTED",
+          "PLAN_REQUIRED",
+          "BILLING_BLOCKED"
         ]
       },
       "BillingAdditionalUsageFundingType": {

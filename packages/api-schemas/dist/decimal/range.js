@@ -13,9 +13,11 @@ const DecimalRangeSchemaDefinition = z.object({
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/directory/shared
  * @endpoint POST /v1/entities/filters/refine
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/search

@@ -8,7 +8,27 @@ import { EntityTypeSchema } from "./type.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
 import { UrlMatchModeSchema } from "../url/match-mode.js";
-const EntityListFilterSchemaDefinition = z.strictObject({
+/**
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
+ *
+ * @openapiSchema EntityListFilter
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/directory/shared/slug/{slug}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/directory/shared
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema SearchInterpretationSchema
+ * @usedBySchema SharedDirectoryMutationSchema
+ * @usedBySchema SharedDirectorySchema
+ * @contractShape entity.list-filter
+ * @contractRole canonical
+ */
+export const EntityListFilterSchema = z.strictObject({
     /** Accelerator brand or operator name. */
     acceleratorBrand: z.array(z.string()).optional(),
     /** Accelerator batch or cohort label. */
@@ -109,21 +129,4 @@ const EntityListFilterSchemaDefinition = z.strictObject({
     /** Inclusive founding-year ranges, in calendar years. */
     yearFoundedRange: z.array(IntRangeSchema).optional(),
 });
-/**
- * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
- *
- * @openapiSchema EntityListFilter
- * @endpoint GET /v1/search/link
- * @endpoint GET /v1/search/link/jobs/{jobId}
- * @endpoint GET /v1/search/shared/{id}
- * @endpoint GET /v1/search/shared/slug/{slug}
- * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/search
- * @endpoint POST /v1/search/natural/entities
- * @endpoint POST /v1/search/shared
- * @usedBySchema SearchInterpretationSchema
- * @contractShape entity.list-filter
- * @contractRole canonical
- */
-export const EntityListFilterSchema = EntityListFilterSchemaDefinition;
 //# sourceMappingURL=list-filter.js.map

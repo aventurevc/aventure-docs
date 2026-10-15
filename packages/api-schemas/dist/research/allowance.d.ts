@@ -1,5 +1,20 @@
 import { z } from "zod/v4";
 declare const ResearchAllowanceSchemaDefinition: z.ZodObject<{
+    access: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        ADDITIONAL_USAGE: "ADDITIONAL_USAGE";
+        BILLING_BLOCKED: "BILLING_BLOCKED";
+        EXHAUSTED: "EXHAUSTED";
+        INCLUDED: "INCLUDED";
+        PLAN_REQUIRED: "PLAN_REQUIRED";
+    }>, z.ZodString]> & {
+        enum: {
+            ADDITIONAL_USAGE: "ADDITIONAL_USAGE";
+            BILLING_BLOCKED: "BILLING_BLOCKED";
+            EXHAUSTED: "EXHAUSTED";
+            INCLUDED: "INCLUDED";
+            PLAN_REQUIRED: "PLAN_REQUIRED";
+        };
+    }>>;
     limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     resetAt: z.ZodISODateTime;

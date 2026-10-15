@@ -1,5 +1,25 @@
 import { z } from "zod/v4";
-declare const EntityListFilterSchemaDefinition: z.ZodObject<{
+/**
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
+ *
+ * @openapiSchema EntityListFilter
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/directory/shared/slug/{slug}
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/directory/shared
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/natural/entities
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema SearchInterpretationSchema
+ * @usedBySchema SharedDirectoryMutationSchema
+ * @usedBySchema SharedDirectorySchema
+ * @contractShape entity.list-filter
+ * @contractRole canonical
+ */
+export declare const EntityListFilterSchema: z.ZodObject<{
     acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -173,26 +193,5 @@ declare const EntityListFilterSchemaDefinition: z.ZodObject<{
         min?: number | null | undefined;
     }, import("../int/range.ts").IntRangeSchemaInput>>>>;
 }, z.core.$strict>;
-type EntityListFilterDefinition = z.infer<typeof EntityListFilterSchemaDefinition>;
-export interface EntityListFilterSchemaInput extends z.input<typeof EntityListFilterSchemaDefinition> {
-}
-/**
- * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
- *
- * @openapiSchema EntityListFilter
- * @endpoint GET /v1/search/link
- * @endpoint GET /v1/search/link/jobs/{jobId}
- * @endpoint GET /v1/search/shared/{id}
- * @endpoint GET /v1/search/shared/slug/{slug}
- * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/search
- * @endpoint POST /v1/search/natural/entities
- * @endpoint POST /v1/search/shared
- * @usedBySchema SearchInterpretationSchema
- * @contractShape entity.list-filter
- * @contractRole canonical
- */
-export declare const EntityListFilterSchema: z.ZodType<EntityListFilterDefinition, EntityListFilterSchemaInput>;
 export type EntityListFilter = z.infer<typeof EntityListFilterSchema>;
-export {};
 //# sourceMappingURL=list-filter.d.ts.map

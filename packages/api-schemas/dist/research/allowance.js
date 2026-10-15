@@ -1,6 +1,9 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ResearchAccessTypeSchema } from "./access-type.js";
 const ResearchAllowanceSchemaDefinition = z.object({
+    /** What filing one more research run on this meter does now, decided exactly as filing decides it; present only on the company and person research meters */
+    access: ResearchAccessTypeSchema.nullish(),
     /** Cap for the period; absent when the tier meters without a cap */
     limit: z.int().nullish(),
     /** Cap minus used, never negative; absent when there is no cap */
