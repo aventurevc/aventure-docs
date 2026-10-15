@@ -15,6 +15,7 @@ const EntityListResearchSchemaDefinition = z.object({
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}

@@ -28,6 +28,7 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/entities/{entityId}/unique-ids
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/valuations
+ * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/content

@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.187"
+    "version": "0.8.188"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -8459,6 +8459,15 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "description": "Send respond-async to receive a durable semantic-search job and poll its Location.",
+            "in": "header",
+            "name": "Prefer",
+            "schema": {
+              "type": "string",
+              "example": "respond-async"
+            }
           }
         ],
         "requestBody": {
@@ -8492,6 +8501,43 @@
                 "description": "Opaque continuation token, present when another page exists; send it as cursor to read that page. The body's number, first, and totalPages describe offset paging only; they do not advance while you follow cursors.",
                 "schema": {
                   "type": "string"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "Semantic search accepted when Prefer: respond-async is sent; poll Location.",
+            "headers": {
+              "Location": {
+                "description": "Endpoint to poll for the asynchronous search result.",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
+              "Retry-After": {
+                "description": "Minimum delay before polling the Location.",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
                 },
                 "style": "simple"
               },
@@ -8648,6 +8694,221 @@
         "x-aventure-tool": {
           "auth": "read"
         },
+        "x-aventure-visibility": {
+          "scope": "public"
+        }
+      }
+    },
+    "/v1/entities/search/jobs/{jobId}": {
+      "get": {
+        "description": "Returns the page accepted by `Prefer: respond-async` on POST /v1/entities/search. Answers 202 with Location and Retry-After while the search is queued or running, 200 with the canonical entity page once complete, and 404 for an unknown job.",
+        "operationId": "getEntitySemanticSearchJob",
+        "parameters": [
+          {
+            "description": "Entity semantic search job UUID",
+            "in": "path",
+            "name": "jobId",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PageEntityList"
+                }
+              }
+            },
+            "description": "Search completed; the canonical entity page is returned.",
+            "headers": {
+              "X-Next-Cursor": {
+                "description": "Opaque continuation token, present when another page exists; send it as cursor to read that page. The body's number, first, and totalPages describe offset paging only; they do not advance while you follow cursors.",
+                "schema": {
+                  "type": "string"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobEnqueue"
+                }
+              }
+            },
+            "description": "Search is queued or running; poll after Retry-After.",
+            "headers": {
+              "Location": {
+                "description": "Endpoint to poll for the asynchronous search result.",
+                "schema": {
+                  "type": "string",
+                  "format": "uri-reference"
+                },
+                "style": "simple"
+              },
+              "Retry-After": {
+                "description": "Minimum delay before polling the Location.",
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                },
+                "style": "simple"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            }
+          },
+          "400": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Bad Request",
+            "x-aventure-standard-response": true
+          },
+          "401": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unauthorized",
+            "x-aventure-standard-response": true
+          },
+          "403": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Forbidden",
+            "x-aventure-standard-response": true
+          },
+          "404": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Found",
+            "x-aventure-standard-response": true
+          },
+          "406": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Not Acceptable",
+            "x-aventure-standard-response": true
+          },
+          "422": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Unprocessable Content",
+            "x-aventure-standard-response": true
+          },
+          "429": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              },
+              "X-RateLimit-Limit": {
+                "$ref": "#/components/headers/X-RateLimit-Limit"
+              },
+              "X-RateLimit-Remaining": {
+                "$ref": "#/components/headers/X-RateLimit-Remaining"
+              },
+              "X-RateLimit-Reset": {
+                "$ref": "#/components/headers/X-RateLimit-Reset"
+              }
+            },
+            "x-aventure-standard-response": true
+          },
+          "500": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Internal Server Error",
+            "x-aventure-standard-response": true
+          },
+          "503": {
+            "content": {
+              "application/problem+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            },
+            "description": "Service Unavailable",
+            "headers": {
+              "Retry-After": {
+                "$ref": "#/components/headers/Retry-After"
+              }
+            },
+            "x-aventure-standard-response": true
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Get an Async Semantic Entity Search",
+        "tags": [
+          "Entities"
+        ],
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -13393,7 +13654,7 @@
     },
     "/v1/entities/{entityId}/people": {
       "get": {
-        "description": "Returns the people associated with one company.",
+        "description": "Lists who works at a company: its founders, executives, employees, and other associated people, with each person's title and whether the role is current.",
         "operationId": "listEntityPersonAssociations",
         "parameters": [
           {
@@ -19141,7 +19402,7 @@
     },
     "/v1/news": {
       "get": {
-        "description": "Browse news articles in the canonical news domain, with optional filtering. A company's news is this list filtered by owner.entityId (CLI --owner-entity-id); a person's by owner.personId (CLI --owner-person-id). This is the article list: the entities an article is about come from the semantic-similarity read, not here.",
+        "description": "Browse recent news articles, newest published first unless sort says otherwise, with optional filtering. A company's news is this list filtered by owner.entityId (CLI --owner-entity-id); a person's by owner.personId (CLI --owner-person-id). This is the article list: the entities an article is about come from the semantic-similarity read, not here.",
         "operationId": "listNews",
         "parameters": [
           {
@@ -46823,7 +47084,7 @@
               "null"
             ],
             "description": "MCP tool that runs the step's operation; null for CLI-only operations. Supply arguments matching the tool's schema.",
-            "example": "aventure_write"
+            "example": "aventure_job"
           },
           "step": {
             "$ref": "#/components/schemas/HarnessTaskStep",

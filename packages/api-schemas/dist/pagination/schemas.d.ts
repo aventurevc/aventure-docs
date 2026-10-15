@@ -7309,6 +7309,7 @@ export interface PageEntityListSchemaInput extends z.input<typeof PageEntityList
 /**
  * @openapiSchema PageEntityList
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical

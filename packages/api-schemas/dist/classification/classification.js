@@ -22,6 +22,7 @@ const ClassificationSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/classifications/suggestions
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/similar
+ * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}

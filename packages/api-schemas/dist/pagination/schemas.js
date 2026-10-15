@@ -239,6 +239,7 @@ const PageEntityListSchemaDefinition = z.object({
 /**
  * @openapiSchema PageEntityList
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
  * @contractRole canonical
