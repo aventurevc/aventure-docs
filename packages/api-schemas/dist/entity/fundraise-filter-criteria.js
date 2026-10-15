@@ -44,7 +44,7 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     investedRound: z.array(z.string()).optional(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
-    /** Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined. */
+    /** Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words ("Sequoia") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined. */
     investorName: z.array(z.string()).optional(),
     /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),

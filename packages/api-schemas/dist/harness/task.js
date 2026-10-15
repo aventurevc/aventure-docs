@@ -8,11 +8,13 @@ const HarnessTaskSchemaDefinition = z.object({
     description: z.string(),
     /** Input key, unique within its task. */
     key: z.string(),
+    /** Whether this input must be bound before admission. Defaults to true; an omitted optional input stays unbound and is never inferred from the prompt. */
+    required: z.boolean().default(true).optional(),
     /** How the value is bound. */
     type: HarnessTaskInputTypeSchema,
 });
 /**
- * One typed task input that must be bound before a run starts.
+ * One typed task input, required unless explicitly marked optional.
  *
  * @openapiSchema HarnessTaskInput
  * @endpoint POST /v1/agents/help

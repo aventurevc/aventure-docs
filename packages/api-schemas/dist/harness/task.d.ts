@@ -3,6 +3,7 @@ declare const HarnessTaskSchemaDefinition: z.ZodObject<{
     allowedValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     description: z.ZodString;
     key: z.ZodString;
+    required: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     type: z.ZodUnion<readonly [z.ZodEnum<{
         ENTITY: "ENTITY";
         TEXT: "TEXT";
@@ -19,7 +20,7 @@ type HarnessTaskDefinition = z.infer<typeof HarnessTaskSchemaDefinition>;
 export interface HarnessTaskSchemaInput extends z.input<typeof HarnessTaskSchemaDefinition> {
 }
 /**
- * One typed task input that must be bound before a run starts.
+ * One typed task input, required unless explicitly marked optional.
  *
  * @openapiSchema HarnessTaskInput
  * @endpoint POST /v1/agents/help

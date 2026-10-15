@@ -16,11 +16,13 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
         allowedValue?: string | null | undefined;
         description: string;
         key: string;
+        required?: boolean | undefined;
         type: string;
     }, import("./task.ts").HarnessTaskSchemaInput, z.core.$ZodTypeInternals<{
         allowedValue?: string | null | undefined;
         description: string;
         key: string;
+        required?: boolean | undefined;
         type: string;
     }, import("./task.ts").HarnessTaskSchemaInput>>>;
     step: z.ZodArray<z.ZodType<{

@@ -37,11 +37,13 @@ export declare const HelpResolutionSchema: z.ZodObject<{
             allowedValue?: string | null | undefined;
             description: string;
             key: string;
+            required?: boolean | undefined;
             type: string;
         }, import("../harness/task.ts").HarnessTaskSchemaInput, z.core.$ZodTypeInternals<{
             allowedValue?: string | null | undefined;
             description: string;
             key: string;
+            required?: boolean | undefined;
             type: string;
         }, import("../harness/task.ts").HarnessTaskSchemaInput>>>;
         step: z.ZodArray<z.ZodType<{

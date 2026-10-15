@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.190"
+    "version": "0.8.191"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -5501,16 +5501,16 @@
             }
           },
           {
-            "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined.",
+            "description": "Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words (\"Sequoia\") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined.",
             "in": "query",
             "name": "fundraiseActivity.investorName",
             "required": false,
             "schema": {
               "type": "array",
-              "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined.",
+              "description": "Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words (\"Sequoia\") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined.",
               "items": {
                 "type": "string",
-                "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined."
+                "description": "Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words (\"Sequoia\") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined."
               }
             }
           },
@@ -45326,7 +45326,7 @@
           },
           "investorName": {
             "type": "array",
-            "description": "Investor names. Exact, case-sensitive match on an investor entity's brand or legal name or an individual investor's full name; restricts returned entities to companies with a fundraise that investor joined.",
+            "description": "Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words (\"Sequoia\") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined.",
             "items": {
               "type": "string"
             }
@@ -47043,7 +47043,7 @@
       },
       "HarnessTaskInput": {
         "type": "object",
-        "description": "One typed task input that must be bound before a run starts.",
+        "description": "One typed task input, required unless explicitly marked optional.",
         "properties": {
           "allowedValue": {
             "type": [
@@ -47060,6 +47060,11 @@
             "type": "string",
             "description": "Input key, unique within its task.",
             "example": "newSlug"
+          },
+          "required": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether this input must be bound before admission. Defaults to true; an omitted optional input stays unbound and is never inferred from the prompt."
           },
           "type": {
             "$ref": "#/components/schemas/HarnessTaskInputType",
