@@ -80,7 +80,6 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         source_document_body_unavailable: "source_document_body_unavailable";
         source_document_capture_limit_exceeded: "source_document_capture_limit_exceeded";
         source_document_fetch_busy: "source_document_fetch_busy";
-        source_grounding_at_capacity: "source_grounding_at_capacity";
         subscription_canceled: "subscription_canceled";
         subscription_past_due: "subscription_past_due";
         subscription_paused: "subscription_paused";
