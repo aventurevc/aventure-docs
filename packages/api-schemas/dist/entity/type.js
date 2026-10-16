@@ -13,6 +13,7 @@ import { z } from "zod/v4";
  * @usedBySchema IdentificationSubjectSchema
  * @usedBySchema NewsResolvedEntityLinkSchema
  * @usedBySchema PersonListArrayFilterSchema
+ * @usedBySchema ResearchSnippetTypeSchema
  * @usedBySchema SearchDuplicateCandidateScoreSchema
  * @contractShape entity.type
  * @contractRole canonical

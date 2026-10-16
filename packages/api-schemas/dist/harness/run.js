@@ -4,6 +4,7 @@ import { EnrichmentModeSchema } from "../enrichment/mode.js";
 import { HarnessChassisSchema } from "./chassis.js";
 import { HarnessLlmApiSchema } from "./llm-api.js";
 import { HarnessRunEnvironmentSchema } from "./run-environment.js";
+import { HarnessRunFollowUpAdmissionSchema } from "./run-follow-up-admission.js";
 import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
 import { HarnessRunTypeSchema } from "./run-type.js";
@@ -41,6 +42,8 @@ export const HarnessRunSchema = z.object({
     failureClass: z.string().nullish(),
     /** Run completion timestamp */
     finishedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Follow-up admission for the exact current terminal generation; old engine terminals remain PENDING */
+    followUpAdmission: HarnessRunFollowUpAdmissionSchema.optional(),
     /** Whether this run consumes an immutable private source document */
     hasSourceDocument: z.boolean(),
     /** Run id */

@@ -2,6 +2,17 @@ import { z } from "zod/v4";
 declare const ResearchSnippetTypeSchemaDefinition: z.ZodObject<{
     analysisRenderable: z.ZodBoolean;
     analysisSectionLabel: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    appliesToType: z.ZodArray<z.ZodEnum<{
+        "Business Line": "Business Line";
+        Company: "Company";
+        Fund: "Fund";
+        Government: "Government";
+        "Investment Firm": "Investment Firm";
+        Nonprofit: "Nonprofit";
+        Organization: "Organization";
+        Product: "Product";
+        Service: "Service";
+    }>>;
     curated: z.ZodBoolean;
     defaultVisible: z.ZodBoolean;
     label: z.ZodString;

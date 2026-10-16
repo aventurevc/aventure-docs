@@ -50,6 +50,16 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
         }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
+    followUp: z.ZodOptional<z.ZodObject<{
+        admission: z.ZodEnum<{
+            PENDING: "PENDING";
+            REJECTED: "REJECTED";
+            SETTLED: "SETTLED";
+            UNTRACKED: "UNTRACKED";
+        }>;
+        hasMore: z.ZodBoolean;
+        runId: z.ZodArray<z.ZodUUID>;
+    }, z.core.$strip>>;
     latestStatus: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         complete: z.ZodBoolean;
         entitySlug: z.ZodNullable<z.ZodString>;
@@ -127,6 +137,12 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
         error: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         failureClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        followUpAdmission: z.ZodOptional<z.ZodEnum<{
+            PENDING: "PENDING";
+            REJECTED: "REJECTED";
+            SETTLED: "SETTLED";
+            UNTRACKED: "UNTRACKED";
+        }>>;
         hasSourceDocument: z.ZodBoolean;
         id: z.ZodUUID;
         iteration: z.ZodInt;

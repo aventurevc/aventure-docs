@@ -37,6 +37,7 @@ declare const MediaUploadSchemaDefinition: z.ZodObject<{
         PERSON: "PERSON";
     }>;
     path: z.ZodString;
+    squareOriginalValidated: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     targetId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type MediaUploadDefinition = z.infer<typeof MediaUploadSchemaDefinition>;

@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.196"
+    "version": "0.8.198"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -13522,6 +13522,16 @@
             "schema": {
               "$ref": "#/components/schemas/EntityLogoType"
             }
+          },
+          {
+            "description": "Validate the entity SQUARE logo's stored original before returning metadata.",
+            "in": "query",
+            "name": "validateSquareOriginal",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
           }
         ],
         "responses": {
@@ -18160,7 +18170,7 @@
                 }
               }
             },
-            "description": "The identification; a NO_MATCH subject this lookup added as a new record is in created.",
+            "description": "OK",
             "headers": {
               "X-RateLimit-Limit": {
                 "$ref": "#/components/headers/X-RateLimit-Limit"
@@ -18365,6 +18375,14 @@
             "description": "Send respond-async to request a pollable lookup job, which adds no record; verifyUrl=true answers live.",
             "in": "header",
             "name": "Prefer",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Stable intake identity for requested status verification; reuse it to recover the accepted job.",
+            "in": "header",
+            "name": "Idempotency-Key",
             "schema": {
               "type": "string"
             }
@@ -34432,6 +34450,13 @@
               "type": "string"
             }
           },
+          "appliesToType": {
+            "type": "array",
+            "description": "Entity types for which this snippet is meaningful; empty means every type.",
+            "items": {
+              "$ref": "#/components/schemas/EntityType"
+            }
+          },
           "curated": {
             "type": "boolean",
             "description": "Whether the type is curated; with analysisRenderable this gates public Analysis-page eligibility. It does not gate snippet display — every type listed here is recognized and defaults to visible, and the row-level visible flag controls display."
@@ -34482,6 +34507,7 @@
         },
         "required": [
           "analysisRenderable",
+          "appliesToType",
           "curated",
           "defaultVisible",
           "label",
@@ -35354,13 +35380,21 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Canonical street address line.",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/addressLine1"
+            }
           },
           "addressLine2": {
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Canonical suite, floor, or secondary address line.",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/addressLine2"
+            }
           },
           "association": {
             "type": "array",
@@ -35466,7 +35500,11 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Canonical postal or ZIP code.",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/postalCode"
+            }
           },
           "state": {
             "description": "State or region reference",
@@ -35483,7 +35521,11 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Canonical state or region abbreviation.",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/stateAbbrev"
+            }
           },
           "street": {
             "type": [
@@ -36116,6 +36158,10 @@
             "format": "date-time",
             "description": "Run completion timestamp"
           },
+          "followUpAdmission": {
+            "$ref": "#/components/schemas/HarnessRunFollowUpAdmission",
+            "description": "Follow-up admission for the exact current terminal generation; old engine terminals remain PENDING"
+          },
           "hasSourceDocument": {
             "type": "boolean",
             "description": "Whether this run consumes an immutable private source document",
@@ -36745,6 +36791,13 @@
           "path": {
             "type": "string",
             "description": "Attached managed storage path; never an external image URL"
+          },
+          "squareOriginalValidated": {
+            "type": [
+              "boolean",
+              "null"
+            ],
+            "description": "True only when this read fetched and validated the stored entity SQUARE original; absent on ordinary metadata reads and other media slots."
           },
           "targetId": {
             "type": [
@@ -39239,6 +39292,10 @@
                 "type": "null"
               }
             ]
+          },
+          "followUp": {
+            "$ref": "#/components/schemas/HarnessRunFollowUp",
+            "description": "Follow-up admission and direct child run ids for this terminal generation"
           },
           "latestStatus": {
             "description": "Latest research progress; null when none is available",
@@ -42614,6 +42671,33 @@
           "max"
         ]
       },
+      "HarnessRunFollowUp": {
+        "type": "object",
+        "description": "Durable completion barrier and direct child run ids",
+        "properties": {
+          "admission": {
+            "$ref": "#/components/schemas/HarnessRunFollowUpAdmission",
+            "description": "PENDING until every follow-up admission is durable; REJECTED when the bounded redo is exhausted"
+          },
+          "hasMore": {
+            "type": "boolean",
+            "description": "More than the bounded child count exists; completion is unproven"
+          },
+          "runId": {
+            "type": "array",
+            "description": "Direct appointed run ids; read each run's detail recursively",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        },
+        "required": [
+          "admission",
+          "hasMore",
+          "runId"
+        ]
+      },
       "HarnessRunProgress": {
         "type": "object",
         "description": "Current public progress of a harness run",
@@ -42667,6 +42751,16 @@
           "gateRemaining",
           "whatElseRemaining",
           "writeThisIteration"
+        ]
+      },
+      "HarnessRunFollowUpAdmission": {
+        "type": "string",
+        "description": "Durable admission state for one terminal run generation's follow-up work",
+        "enum": [
+          "UNTRACKED",
+          "PENDING",
+          "SETTLED",
+          "REJECTED"
         ]
       },
       "AgentTaskPreset": {
@@ -45042,7 +45136,10 @@
           "name": {
             "type": "string",
             "description": "City name",
-            "example": "Boston"
+            "example": "Boston",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/name"
+            }
           }
         },
         "required": [
@@ -45079,7 +45176,10 @@
           "name": {
             "type": "string",
             "description": "Country name",
-            "example": "United States"
+            "example": "United States",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/name"
+            }
           },
           "unRegion": {
             "type": [
@@ -45112,7 +45212,10 @@
           "name": {
             "type": "string",
             "description": "State or region name",
-            "example": "Massachusetts"
+            "example": "Massachusetts",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/name"
+            }
           },
           "stateAbbrev": {
             "type": [
@@ -47018,7 +47121,7 @@
           },
           "input": {
             "type": "array",
-            "description": "Typed inputs the task needs before it runs.",
+            "description": "Typed task inputs; required inputs must be bound before it runs.",
             "items": {
               "$ref": "#/components/schemas/HarnessTaskInput"
             }

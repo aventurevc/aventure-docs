@@ -13,6 +13,8 @@ const MediaUploadSchemaDefinition = z.object({
     mediaType: MediaObjectTypeSchema,
     /** Attached managed storage path; never an external image URL */
     path: z.string(),
+    /** True only when this read fetched and validated the stored entity SQUARE original; absent on ordinary metadata reads and other media slots. */
+    squareOriginalValidated: z.boolean().nullish(),
     /** Attached entity/person/news target id, when known */
     targetId: z.string().nullish(),
 });

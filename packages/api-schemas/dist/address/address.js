@@ -50,7 +50,9 @@ import { AddressStateSchema } from "./state.js";
 export const AddressSchema = z.object({
     /** Legacy address row identifier */
     address: z.int().nullish(),
+    /** Canonical street address line. */
     addressLine1: z.string().nullish(),
+    /** Canonical suite, floor, or secondary address line. */
     addressLine2: z.string().nullish(),
     /** Role-period associations for this physical address */
     association: z.array(AddressAssociationSchema).optional(),
@@ -72,9 +74,11 @@ export const AddressSchema = z.object({
     isPrimary: z.boolean().nullish(),
     latitude: z.number().nullish(),
     longitude: z.number().nullish(),
+    /** Canonical postal or ZIP code. */
     postalCode: z.string().nullish(),
     /** State or region reference */
     state: AddressStateSchema.nullish(),
+    /** Canonical state or region abbreviation. */
     stateAbbrev: z.string().nullish(),
     street: z.string().nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

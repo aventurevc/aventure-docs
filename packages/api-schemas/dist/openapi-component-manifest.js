@@ -556,6 +556,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "harness/run-environment",
         schemaName: "HarnessRunEnvironmentSchema",
     },
+    HarnessRunFollowUp: {
+        modulePath: "harness/run-follow-up",
+        schemaName: "HarnessRunFollowUpSchema",
+    },
+    HarnessRunFollowUpAdmission: {
+        modulePath: "harness/run-follow-up-admission",
+        schemaName: "HarnessRunFollowUpAdmissionSchema",
+    },
     HarnessRunLane: { modulePath: "harness/run-lane", schemaName: "HarnessRunLaneSchema" },
     HarnessRunProgress: {
         modulePath: "harness/run-progress",

@@ -31,6 +31,12 @@ export declare const HarnessRunSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     failureClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    followUpAdmission: z.ZodOptional<z.ZodEnum<{
+        PENDING: "PENDING";
+        REJECTED: "REJECTED";
+        SETTLED: "SETTLED";
+        UNTRACKED: "UNTRACKED";
+    }>>;
     hasSourceDocument: z.ZodBoolean;
     id: z.ZodUUID;
     iteration: z.ZodInt;
