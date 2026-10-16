@@ -29,6 +29,7 @@ const ProblemTypeSchemaKnownMembers = z.enum({
     AUTH_METRICS_UNAUTHORIZED: "https://api.aventure.vc/errors/auth.metrics-unauthorized",
     ACCESS_DENIED: "https://api.aventure.vc/errors/access-denied",
     NOT_FOUND: "https://api.aventure.vc/errors/not-found",
+    ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found",
     GONE: "https://api.aventure.vc/errors/gone",
     RATE_LIMITED: "https://api.aventure.vc/errors/rate-limited",
     PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed",

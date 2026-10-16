@@ -37,6 +37,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     readonly AUTH_METRICS_UNAUTHORIZED: "https://api.aventure.vc/errors/auth.metrics-unauthorized";
     readonly ACCESS_DENIED: "https://api.aventure.vc/errors/access-denied";
     readonly NOT_FOUND: "https://api.aventure.vc/errors/not-found";
+    readonly ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found";
     readonly GONE: "https://api.aventure.vc/errors/gone";
     readonly RATE_LIMITED: "https://api.aventure.vc/errors/rate-limited";
     readonly PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed";
@@ -97,6 +98,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         readonly AUTH_METRICS_UNAUTHORIZED: "https://api.aventure.vc/errors/auth.metrics-unauthorized";
         readonly ACCESS_DENIED: "https://api.aventure.vc/errors/access-denied";
         readonly NOT_FOUND: "https://api.aventure.vc/errors/not-found";
+        readonly ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found";
         readonly GONE: "https://api.aventure.vc/errors/gone";
         readonly RATE_LIMITED: "https://api.aventure.vc/errors/rate-limited";
         readonly PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed";
