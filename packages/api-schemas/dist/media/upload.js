@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { LogoAccuracySchema } from "../logo/accuracy.js";
 import { MediaObjectTypeSchema } from "./object-type.js";
 const MediaUploadSchemaDefinition = z.object({
-    /** Entity logo writes only: the brand-match verdict the write's gate computed on these bytes; absent on reads, photos, thumbnails, and brand-match overrides. */
+    /** Entity logo writes only: the brand-match verdict the write's gate computed on these bytes, including the VISION MISMATCH a brand-match override admits; absent on reads, photos, and thumbnails. */
     accuracy: LogoAccuracySchema.nullish(),
     /** Resolved API CDN URL */
     cdnUrl: z.string(),

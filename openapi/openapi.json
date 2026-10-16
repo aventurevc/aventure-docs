@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.192"
+    "version": "0.8.193"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -6870,7 +6870,7 @@
         "operationId": "lookupEntity",
         "parameters": [
           {
-            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds for a signed-in caller queues research by default; set false to opt out.",
+            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds is not queued for research; queue it with the record's enrichments route.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -17981,7 +17981,7 @@
     },
     "/v1/lookup": {
       "get": {
-        "description": "Returns what aVenture knows about a subject: MATCHED, NO_MATCH, or NEEDS_REVIEW among the records you can see, honoring the requested type and provider. To identify a subject with every lookup option, use POST /v1/lookup. Send name, url, or both; neither answers 422. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record automatically and returned in created; a signed-in caller's record is also queued for research, and POST /v1/lookup with scheduleEnrichment=false files one without research. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Returns what aVenture knows about a subject: MATCHED, NO_MATCH, or NEEDS_REVIEW among the records you can see, honoring the requested type and provider. To identify a subject with every lookup option, use POST /v1/lookup. Send name, url, or both; neither answers 422. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record automatically and returned in created; that record is not queued for research. An exact id, handle, or slug answers without spending quota; past it, name-identification quota and live deadlines apply. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "getIdentification",
         "parameters": [
           {
@@ -18331,7 +18331,7 @@
         }
       },
       "post": {
-        "description": "Identifies the company, Product, Service, or person that a name, URL, or id refers to among the records you can see. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. Optional clues narrow the answer: kind (ENTITY or PERSON) when you know which kind the subject is, typeRecord or providerId for a Product or Service from a known provider, and context such as an employer or title. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug answers at once. status is MATCHED, NEEDS_REVIEW, or NO_MATCH. MATCHED: match.owner names one record, by entityId (match.record.typeRecord tells a company from a Product or Service; read it with GET /v1/entities/{entityId}) or by personId (read it with GET /v1/people/{personId}). NEEDS_REVIEW: more than one record fits, such as a company and a person sharing a name; candidate lists them, and resending with a URL the subject owns or its kind usually settles it. NO_MATCH: no record you can see was confirmed as this subject; a former, alternate, or legal name may still match through the entityName filter of GET /v1/entities. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record with its name, website, and logo, returned as created, and queued for research by default; adding it spends no research unit. Set scheduleEnrichment=false to opt out of research for a filed record, or true to queue research on an existing match. Accept: text/event-stream streams the same answer as server-sent events. With legacy=true, name is read only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
+        "description": "Identifies the company, Product, Service, or person that a name, URL, or id refers to among the records you can see. Send name, at least one url, or both; neither answers 422, and a name that is a URL is read as url. Optional clues narrow the answer: kind (ENTITY or PERSON) when you know which kind the subject is, typeRecord or providerId for a Product or Service from a known provider, and context such as an employer or title. A name that is exactly a record's id, public handle, registry id (ticker, LEI, EIN), or slug answers at once. status is MATCHED, NEEDS_REVIEW, or NO_MATCH. MATCHED: match.owner names one record, by entityId (match.record.typeRecord tells a company from a Product or Service; read it with GET /v1/entities/{entityId}) or by personId (read it with GET /v1/people/{personId}). NEEDS_REVIEW: more than one record fits, such as a company and a person sharing a name; candidate lists them, and resending with a URL the subject owns or its kind usually settles it. NO_MATCH: no record you can see was confirmed as this subject; a former, alternate, or legal name may still match through the entityName filter of GET /v1/entities. A NO_MATCH subject whose own site a web search finds, and whose live page names it, is added as a new unpublished record with its name, website, and logo, returned as created, and not queued for research; adding it spends no research unit. Queue research on an added record with POST /v1/entities/{entityId}/enrichments or POST /v1/people/{personId}/enrichments. Set scheduleEnrichment=true to queue research on an existing match. Accept: text/event-stream streams the same answer as server-sent events. With legacy=true, name is read only as an exact id, public handle, registry id, or slug: no model call, no web search, and 404 when nothing matches. Example body: {\"name\":\"Acme AI\",\"url\":[\"https://acme.ai\"]}. A signed-in caller that sends Prefer: respond-async gets 202 with a Location status URL instead: a lookup job runs this same identification without the live deadline, and GET /v1/lookup-jobs/{jobId} returns it as identification once COMPLETED. A repeat of the same request returns the same job while it is still PENDING or RUNNING.",
         "operationId": "lookupRecord",
         "parameters": [
           {
@@ -18344,7 +18344,7 @@
             }
           },
           {
-            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds for a signed-in caller queues research by default; set false to opt out.",
+            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds is not queued for research; queue it with the record's enrichments route.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -19062,7 +19062,7 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A page fetched from sourceUrl first lists its own site's company, looked up by that site's URL, unless the site is a news outlet, a shared platform such as LinkedIn, or aVenture; when no record holds that site, it is added from the name the site declares, as POST /v1/lookup adds a URL. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Each NO_MATCH name whose own site a web search finds, and whose live page names it, is added as a new unpublished record, queued for research, and returned as shell; adding it spends no research unit, and a name not added carries shellDetail saying why. Needs a signed-in user. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A page fetched from sourceUrl first lists its own site's company, looked up by that site's URL, unless the site is a news outlet, a shared platform such as LinkedIn, or aVenture; when no record holds that site, it is added from the name the site declares, as POST /v1/lookup adds a URL. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Each NO_MATCH name whose own site a web search finds, and whose live page names it, is added as a new unpublished record, not queued for research, and returned as shell; adding it spends no research unit, and a name not added carries shellDetail saying why. Needs a signed-in user. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
         "parameters": [],
         "requestBody": {
@@ -22032,7 +22032,7 @@
         "operationId": "lookupPerson",
         "parameters": [
           {
-            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds for a signed-in caller queues research by default; set false to opt out.",
+            "description": "For an existing match, true queues research; omitted or false does not. A record this lookup adds is not queued for research; queue it with the record's enrichments route.",
             "in": "query",
             "name": "scheduleEnrichment",
             "required": false,
@@ -31076,6 +31076,7 @@
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
               "Entity text or a research snippet was rejected by its prose judge or text contract. Agent action: rewrite every passage in ProblemDetail.proseViolation at once and resend the whole text; ProblemDetail.hint names the override only when every violation is overridable.",
+              "Every source-grounding slot is held by other text writes, so this write was refused before it judged or wrote anything. Agent action: replay the identical request after retryAfterSeconds (also in the Retry-After header).",
               "A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal.",
               "JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error).",
               "JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error).",
@@ -31146,6 +31147,7 @@
               "suspectedShellStrip",
               "suspected_shell_strip",
               "prose_rejected",
+              "source_grounding_at_capacity",
               "url_surface_misclassification",
               "JOBRUNR_DISABLED",
               "jobrunr_disabled",
@@ -36714,7 +36716,7 @@
         "description": "Managed media asset reference with resolved CDN URL and target metadata",
         "properties": {
           "accuracy": {
-            "description": "Entity logo writes only: the brand-match verdict the write's gate computed on these bytes; absent on reads, photos, thumbnails, and brand-match overrides.",
+            "description": "Entity logo writes only: the brand-match verdict the write's gate computed on these bytes, including the VISION MISMATCH a brand-match override admits; absent on reads, photos, and thumbnails.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/LogoAccuracy"

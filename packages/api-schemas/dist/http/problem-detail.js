@@ -47,6 +47,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "suspected_shell_strip",
             /** Entity text or a research snippet was rejected by its prose judge or text contract. Agent action: rewrite every passage in ProblemDetail.proseViolation at once and resend the whole text; ProblemDetail.hint names the override only when every violation is overridable. */
             "prose_rejected",
+            /** Every source-grounding slot is held by other text writes, so this write was refused before it judged or wrote anything. Agent action: replay the identical request after retryAfterSeconds (also in the Retry-After header). */
+            "source_grounding_at_capacity",
             /** A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal. */
             "url_surface_misclassification",
             /** JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error). */
