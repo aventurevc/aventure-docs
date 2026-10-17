@@ -1,7 +1,7 @@
 import { z } from "zod/v4";
 declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
     filterKey: z.ZodString;
-    limit: z.ZodInt;
+    limit: z.ZodOptional<z.ZodDefault<z.ZodInt>>;
     query: z.ZodString;
     scopeFilter: z.ZodOptional<z.ZodObject<{
         acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;

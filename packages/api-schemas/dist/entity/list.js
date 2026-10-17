@@ -5,6 +5,7 @@ import { EntityEnrichmentSchema } from "./enrichment.js";
 import { EntitySchema } from "./entity.js";
 import { EntityFundraiseTransactionSchema } from "./fundraise-transaction.js";
 import { EntityListResearchSchema } from "./list-research.js";
+import { EntityProviderSchema } from "./provider.js";
 const EntityListSchemaDefinition = z.object({
     /** Flat entity core — identity, naming, status, image, and source metadata */
     core: EntitySchema,
@@ -12,6 +13,8 @@ const EntityListSchemaDefinition = z.object({
     enrichment: EntityEnrichmentSchema,
     /** Fundraise rounds associated with this entity */
     fundraiseRound: z.array(EntityFundraiseTransactionSchema),
+    /** Fund manager firm or product/service provider; null otherwise. */
+    provider: EntityProviderSchema.nullish(),
     /** List-safe research disclosure without text snippets */
     research: EntityListResearchSchema,
     /** Semantic embedding match evidence populated only for semantic list reads. */

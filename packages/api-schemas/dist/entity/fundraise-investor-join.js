@@ -11,7 +11,7 @@ const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
     financialInstrumentType: FundraiseFinancialInstrumentTypeSchema.nullish(),
     /** Fundraise investor join identifier */
     id: z.uuid(),
-    /** Investor identity, nested: investor.entityId for a firm/fund investor or investor.personId for an angel — exactly one is set. Read responses carry ids only, never flat investor* fields or names; resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}. */
+    /** Investor identity, nested: investor.entityId for a firm/fund investor or investor.personId for an angel — exactly one is set. Read responses carry ids only, never flat investor* fields or names. To name every investor in a round, read GET /v1/entities/{entityId}/investors?compact=true (firms) and GET /v1/entities/{entityId}/person-investors (angels) once each and match investorAttribution[].transactionId; never read each id separately. */
     investor: EntityPersonOwnerSchema,
     /** Whether this investor is the lead investor for the round — the lead/anchor investor that set the round terms or made the primary commitment. */
     leadInvestor: z.boolean(),

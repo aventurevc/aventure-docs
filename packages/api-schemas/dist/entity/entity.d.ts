@@ -46,6 +46,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @usedBySchema EntityListSchema
+ * @usedBySchema EntityProviderSchema
  * @usedBySchema EntityRelationshipSchema
  * @usedBySchema EntitySimilaritySummarySchema
  * @usedBySchema HarnessRunDetailSchema

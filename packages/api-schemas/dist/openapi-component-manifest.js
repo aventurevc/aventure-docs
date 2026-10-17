@@ -425,6 +425,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityPersonAssociationSchema",
     },
     EntityPersonOwner: { modulePath: "entity/person-owner", schemaName: "EntityPersonOwnerSchema" },
+    EntityProvider: { modulePath: "entity/provider", schemaName: "EntityProviderSchema" },
     EntityRelationship: {
         modulePath: "entity/relationship",
         schemaName: "EntityRelationshipSchema",

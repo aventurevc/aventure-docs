@@ -10,6 +10,7 @@ const NewsSchemaDefinition = z.object({
     /** Type-safe identifier for news articles */
     id: z.int(),
     newsImageThumbnail: z.string().nullish(),
+    /** Canonical article URL after host and tracking-parameter normalization. */
     newsUrlOriginal: z.string().nullish(),
     publication: z.string().nullish(),
     publishedAt: z.iso.datetime({ offset: true }).nullish(),

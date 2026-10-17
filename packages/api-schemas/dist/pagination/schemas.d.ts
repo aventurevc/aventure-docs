@@ -2922,6 +2922,110 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 };
             }[] | null | undefined;
         }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
+        provider: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            entity: z.ZodObject<{
+                defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+                id: z.ZodUUID;
+                image: z.ZodType<{
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                }, import("../entity/image.ts").EntityImageSchemaInput>>;
+                lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                nameAlias: z.ZodArray<z.ZodType<{
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }, import("../entity/name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
+                nameBrand: z.ZodString;
+                nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                publicId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                sitemap: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                    hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+                    hasAnalysis: z.ZodBoolean;
+                    hasEmployees: z.ZodBoolean;
+                    hasFundraising: z.ZodBoolean;
+                    hasNews: z.ZodBoolean;
+                    productServiceSlug: z.ZodArray<z.ZodString>;
+                }, z.core.$strip>>>;
+                slug: z.ZodString;
+                typeRecord: z.ZodEnum<{
+                    "Business Line": "Business Line";
+                    Company: "Company";
+                    Fund: "Fund";
+                    Government: "Government";
+                    "Investment Firm": "Investment Firm";
+                    Nonprofit: "Nonprofit";
+                    Organization: "Organization";
+                    Product: "Product";
+                    Service: "Service";
+                }>;
+                updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            }, z.core.$strip>;
+            headquarters: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+                addressLine1: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                addressLine2: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                association: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }, import("../address/association.ts").AddressAssociationSchemaInput, z.core.$ZodTypeInternals<{
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }, import("../address/association.ts").AddressAssociationSchemaInput>>>>;
+                city: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                    id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+                    name: z.ZodString;
+                }, z.core.$strip>>>;
+                country: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                    countryCodeChar2: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                    countryCodeChar3: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                    id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+                    name: z.ZodString;
+                    unRegion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                    unSubregion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                }, z.core.$strip>>>;
+                countryAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                fullAddress: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+                isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                isHq: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                latitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+                longitude: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+                postalCode: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                state: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                    id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+                    name: z.ZodString;
+                    stateAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                }, z.core.$strip>>>;
+                stateAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                street: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            }, z.core.$strip>>>;
+            relationshipType: z.ZodEnum<{
+                fundManagerFirm: "fundManagerFirm";
+                productService: "productService";
+            }>;
+        }, z.core.$strip>>>;
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
@@ -4769,6 +4873,83 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                 }[] | null | undefined;
             }[];
+            provider?: {
+                entity: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                headquarters?: {
+                    address?: number | null | undefined;
+                    addressLine1?: string | null | undefined;
+                    addressLine2?: string | null | undefined;
+                    association?: {
+                        endDate?: string | null | undefined;
+                        id: number;
+                        isCurrent: boolean;
+                        role?: "domicile" | "dominant" | "origin" | null | undefined;
+                        startDate?: string | null | undefined;
+                    }[] | undefined;
+                    city?: {
+                        id?: number | null | undefined;
+                        name: string;
+                    } | null | undefined;
+                    country?: {
+                        countryCodeChar2?: string | null | undefined;
+                        countryCodeChar3?: string | null | undefined;
+                        id?: number | null | undefined;
+                        name: string;
+                        unRegion?: string | null | undefined;
+                        unSubregion?: string | null | undefined;
+                    } | null | undefined;
+                    countryAbbrev?: string | null | undefined;
+                    createdAt?: string | null | undefined;
+                    fullAddress?: string | null | undefined;
+                    id?: number | null | undefined;
+                    isCurrent?: boolean | null | undefined;
+                    isHq?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    latitude?: number | null | undefined;
+                    longitude?: number | null | undefined;
+                    postalCode?: string | null | undefined;
+                    state?: {
+                        id?: number | null | undefined;
+                        name: string;
+                        stateAbbrev?: string | null | undefined;
+                    } | null | undefined;
+                    stateAbbrev?: string | null | undefined;
+                    street?: string | null | undefined;
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
+                relationshipType: "fundManagerFirm" | "productService";
+            } | null | undefined;
             publicUrl?: string | null | undefined;
             relationship: {
                 asOf?: string | null | undefined;
@@ -6151,6 +6332,83 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                 }[] | null | undefined;
             }[];
+            provider?: {
+                entity: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                headquarters?: {
+                    address?: number | null | undefined;
+                    addressLine1?: string | null | undefined;
+                    addressLine2?: string | null | undefined;
+                    association?: {
+                        endDate?: string | null | undefined;
+                        id: number;
+                        isCurrent: boolean;
+                        role?: "domicile" | "dominant" | "origin" | null | undefined;
+                        startDate?: string | null | undefined;
+                    }[] | undefined;
+                    city?: {
+                        id?: number | null | undefined;
+                        name: string;
+                    } | null | undefined;
+                    country?: {
+                        countryCodeChar2?: string | null | undefined;
+                        countryCodeChar3?: string | null | undefined;
+                        id?: number | null | undefined;
+                        name: string;
+                        unRegion?: string | null | undefined;
+                        unSubregion?: string | null | undefined;
+                    } | null | undefined;
+                    countryAbbrev?: string | null | undefined;
+                    createdAt?: string | null | undefined;
+                    fullAddress?: string | null | undefined;
+                    id?: number | null | undefined;
+                    isCurrent?: boolean | null | undefined;
+                    isHq?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    latitude?: number | null | undefined;
+                    longitude?: number | null | undefined;
+                    postalCode?: string | null | undefined;
+                    state?: {
+                        id?: number | null | undefined;
+                        name: string;
+                        stateAbbrev?: string | null | undefined;
+                    } | null | undefined;
+                    stateAbbrev?: string | null | undefined;
+                    street?: string | null | undefined;
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
+                relationshipType: "fundManagerFirm" | "productService";
+            } | null | undefined;
             publicUrl?: string | null | undefined;
             relationship: {
                 asOf?: string | null | undefined;
@@ -6749,6 +7007,83 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        provider?: {
+            entity: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            headquarters?: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
+            relationshipType: "fundManagerFirm" | "productService";
+        } | null | undefined;
         research: {
             acceleratorParticipation: {
                 accelerator: {
@@ -7200,6 +7535,83 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        provider?: {
+            entity: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            headquarters?: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
+            relationshipType: "fundManagerFirm" | "productService";
+        } | null | undefined;
         research: {
             acceleratorParticipation: {
                 accelerator: {
@@ -8245,6 +8657,83 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
             }[];
+            provider?: {
+                entity: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                headquarters?: {
+                    address?: number | null | undefined;
+                    addressLine1?: string | null | undefined;
+                    addressLine2?: string | null | undefined;
+                    association?: {
+                        endDate?: string | null | undefined;
+                        id: number;
+                        isCurrent: boolean;
+                        role?: "domicile" | "dominant" | "origin" | null | undefined;
+                        startDate?: string | null | undefined;
+                    }[] | undefined;
+                    city?: {
+                        id?: number | null | undefined;
+                        name: string;
+                    } | null | undefined;
+                    country?: {
+                        countryCodeChar2?: string | null | undefined;
+                        countryCodeChar3?: string | null | undefined;
+                        id?: number | null | undefined;
+                        name: string;
+                        unRegion?: string | null | undefined;
+                        unSubregion?: string | null | undefined;
+                    } | null | undefined;
+                    countryAbbrev?: string | null | undefined;
+                    createdAt?: string | null | undefined;
+                    fullAddress?: string | null | undefined;
+                    id?: number | null | undefined;
+                    isCurrent?: boolean | null | undefined;
+                    isHq?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    latitude?: number | null | undefined;
+                    longitude?: number | null | undefined;
+                    postalCode?: string | null | undefined;
+                    state?: {
+                        id?: number | null | undefined;
+                        name: string;
+                        stateAbbrev?: string | null | undefined;
+                    } | null | undefined;
+                    stateAbbrev?: string | null | undefined;
+                    street?: string | null | undefined;
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
+                relationshipType: "fundManagerFirm" | "productService";
+            } | null | undefined;
             research: {
                 acceleratorParticipation: {
                     accelerator: {
@@ -8710,6 +9199,83 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
             }[];
+            provider?: {
+                entity: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                };
+                headquarters?: {
+                    address?: number | null | undefined;
+                    addressLine1?: string | null | undefined;
+                    addressLine2?: string | null | undefined;
+                    association?: {
+                        endDate?: string | null | undefined;
+                        id: number;
+                        isCurrent: boolean;
+                        role?: "domicile" | "dominant" | "origin" | null | undefined;
+                        startDate?: string | null | undefined;
+                    }[] | undefined;
+                    city?: {
+                        id?: number | null | undefined;
+                        name: string;
+                    } | null | undefined;
+                    country?: {
+                        countryCodeChar2?: string | null | undefined;
+                        countryCodeChar3?: string | null | undefined;
+                        id?: number | null | undefined;
+                        name: string;
+                        unRegion?: string | null | undefined;
+                        unSubregion?: string | null | undefined;
+                    } | null | undefined;
+                    countryAbbrev?: string | null | undefined;
+                    createdAt?: string | null | undefined;
+                    fullAddress?: string | null | undefined;
+                    id?: number | null | undefined;
+                    isCurrent?: boolean | null | undefined;
+                    isHq?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    latitude?: number | null | undefined;
+                    longitude?: number | null | undefined;
+                    postalCode?: string | null | undefined;
+                    state?: {
+                        id?: number | null | undefined;
+                        name: string;
+                        stateAbbrev?: string | null | undefined;
+                    } | null | undefined;
+                    stateAbbrev?: string | null | undefined;
+                    street?: string | null | undefined;
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
+                relationshipType: "fundManagerFirm" | "productService";
+            } | null | undefined;
             research: {
                 acceleratorParticipation: {
                     accelerator: {
@@ -13928,6 +14494,83 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        provider?: {
+            entity: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            headquarters?: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
+            relationshipType: "fundManagerFirm" | "productService";
+        } | null | undefined;
         research: {
             acceleratorParticipation: {
                 accelerator: {
@@ -14379,6 +15022,83 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        provider?: {
+            entity: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            };
+            headquarters?: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
+            relationshipType: "fundManagerFirm" | "productService";
+        } | null | undefined;
         research: {
             acceleratorParticipation: {
                 accelerator: {

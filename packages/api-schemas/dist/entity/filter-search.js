@@ -4,8 +4,8 @@ import { EntityFilterSchema } from "./filter.js";
 const EntityFilterSearchSchemaDefinition = z.strictObject({
     /** Filter key */
     filterKey: z.string().min(1),
-    /** Maximum number of search results */
-    limit: z.int(),
+    /** Maximum number of search results; omit for 20, or the filter's own limit when that is smaller. A larger value returns the filter's limit. */
+    limit: z.int().min(1).default(20).optional(),
     /** Query */
     query: z.string().min(1),
     /** Entity filter scope applied to the option search. Omit to search every eligible entity. */

@@ -5,9 +5,9 @@
       "email": "team@aventure.vc",
       "name": "aVenture"
     },
-    "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL.",
+    "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL. Plan and usage rules vary by operation: a signed-in exact full-detail profile read consumes one monthly entity or person view for each distinct returned record, while repeating that record in the same month is free; an exhausted allowance can answer 429. Without a paid plan, name identification has a free daily allowance and then answers 402 subscription_required; natural, federated, and link search or page reads may require a paid plan; web search consumes its monthly allowance and can answer 429 when that allowance is exhausted. Call aventure_help for the selected operation's exact 402 or 429 details before choosing a paid or metered operation.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.199"
+    "version": "0.8.200"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -12055,7 +12055,7 @@
     },
     "/v1/entities/{entityId}/fundraise-investor-joins": {
       "get": {
-        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. To list one investor's joins, find its entityId or personId by name with GET /v1/lookup (CLI lookup --kind ENTITY or --kind PERSON) and pass it as investorEntityId or investorPersonId.",
+        "description": "Lists entity or person investors joined to a fundraise round, including join-level amountInvested attribution. Rows carry investor ids only. To name a round's investors and its lead in two reads, list GET /v1/entities/{entityId}/investors?compact=true for firms and GET /v1/entities/{entityId}/person-investors for angels, then keep the rows whose investorAttribution[].transactionId is the round id; leadInvestor is on that attribution. Public reads omit joins whose investor profile is hidden, and the round's investorCount is source-reported, so it can exceed the joins listed here. amountInvested is a plain decimal number in the fundraise transaction currency. Send a JSON number such as 220000 or 123456.78. Do not send currency signs, currency codes, comma grouping, quoted numeric strings, or abbreviations such as 220k or 0.22M. PATCH with amountInvested:null clears the value. Use entityId for the fundraising/portfolio company that raised the round — always a company, never the fund or investment firm that supplied the capital. For an Investment Firm's outgoing investment, pass the portfolio company that received the money here and identify the firm with investorEntityId or investorEntitySlug. Use transactionId for the round id, or round plus dateAnnounced when transactionId is unknown. To list one investor's joins, find its entityId or personId by name with GET /v1/lookup (CLI lookup --kind ENTITY or --kind PERSON) and pass it as investorEntityId or investorPersonId.",
         "operationId": "listEntityFundraiseInvestorJoins",
         "parameters": [
           {
@@ -18336,6 +18336,9 @@
         "tags": [
           "Search"
         ],
+        "x-aventure-tool": {
+          "mutates": true
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -18638,7 +18641,8 @@
           "Search"
         ],
         "x-aventure-tool": {
-          "auth": "read"
+          "auth": "read",
+          "mutates": true
         },
         "x-aventure-visibility": {
           "scope": "public"
@@ -19080,9 +19084,19 @@
     },
     "/v1/lookup-mentions": {
       "post": {
-        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A page fetched from sourceUrl first lists its own site's company, looked up by that site's URL, unless the site is a news outlet, a shared platform such as LinkedIn, or aVenture; when no record holds that site, it is added from the name the site declares, as POST /v1/lookup adds a URL. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Each NO_MATCH name whose own site a web search finds, and whose live page names it, is added as a new unpublished record, not queued for research, and returned as shell; adding it spends no research unit, and a name not added carries shellDetail saying why. Needs a signed-in user. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and needs a plan, sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
+        "description": "Reads a page (sourceUrl or sourceNewsId), a recorded document such as an email (sourceDocumentId, sent alone), a screenshot (multipart file part), or a page and screenshot, lists every company, organization, investor, and person it names, and identifies each one as POST /v1/lookup would, with the page as its source. A page fetched from sourceUrl first lists its own site's company, looked up by that site's URL, unless the site is a news outlet, a shared platform such as LinkedIn, or aVenture; when no record holds that site, it is added from the name the site declares, as POST /v1/lookup adds a URL. A caller that read the names itself sends them as mention instead, alone, so neither page nor screenshot leaves it. Answers within seconds: a name still identifying when the time is up carries failureReason instead of identification; send it alone to POST /v1/lookup. Each NO_MATCH name whose own site a web search finds, and whose live page names it, is added as a new unpublished record, queued for research unless scheduleEnrichment=false, and returned as shell; adding it spends no research unit, and a name not added carries shellDetail saying why. Needs a signed-in user. Each name spends one name-identification quota slot, as POST /v1/lookup does; reading a page or screenshot also spends one natural-search slot and the free daily lookup allowance (20 name lookups per UTC day), sending mention does neither. JSON body: {\"sourceUrl\":\"https://techcrunch.com/2024/01/01/example\"} or {\"mention\":[{\"name\":\"Visa\",\"type\":\"COMPANY\"}]}; multipart: a file part plus an optional JSON body part.",
         "operationId": "lookupMentions",
-        "parameters": [],
+        "parameters": [
+          {
+            "description": "Omitted or true queues research on each record this lookup adds; false adds it without queueing research. Its logo import starts either way, and a matched record is never queued here.",
+            "in": "query",
+            "name": "scheduleEnrichment",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -19170,7 +19184,7 @@
                 }
               }
             },
-            "description": "Reading a page or screenshot needs a paid aVenture plan; a caller without one gets 402 with code subscription_required. Sending mention needs no plan."
+            "description": "Without a paid aVenture plan a caller gets a free daily allowance of name identifications per UTC day; past it the lookup answers 402 with code subscription_required (subscription_canceled, subscription_past_due, or subscription_paused when a plan lapsed), carrying limit, used, remaining, resetAt, and a Retry-After header."
           },
           "403": {
             "content": {
@@ -19289,6 +19303,9 @@
         "tags": [
           "Search"
         ],
+        "x-aventure-tool": {
+          "mutates": true
+        },
         "x-aventure-visibility": {
           "scope": "public"
         }
@@ -33672,7 +33689,9 @@
           "limit": {
             "type": "integer",
             "format": "int32",
-            "description": "Maximum number of search results"
+            "default": 20,
+            "description": "Maximum number of search results; omit for 20, or the filter's own limit when that is smaller. A larger value returns the filter's limit.",
+            "minimum": 1
           },
           "query": {
             "type": "string",
@@ -33686,7 +33705,6 @@
         },
         "required": [
           "filterKey",
-          "limit",
           "query"
         ]
       },
@@ -34064,6 +34082,17 @@
             "items": {
               "$ref": "#/components/schemas/PersonDetail"
             }
+          },
+          "provider": {
+            "description": "Fund manager firm or product/service provider; null otherwise.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityProvider"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "publicUrl": {
             "type": [
@@ -36399,7 +36428,7 @@
           },
           "investor": {
             "$ref": "#/components/schemas/EntityPersonOwner",
-            "description": "Investor identity, nested: investor.entityId for a firm/fund investor or investor.personId for an angel — exactly one is set. Read responses carry ids only, never flat investor* fields or names; resolve display names with GET /v1/entities/detail or GET /v1/people/{personId}."
+            "description": "Investor identity, nested: investor.entityId for a firm/fund investor or investor.personId for an angel — exactly one is set. Read responses carry ids only, never flat investor* fields or names. To name every investor in a round, read GET /v1/entities/{entityId}/investors?compact=true (firms) and GET /v1/entities/{entityId}/person-investors (angels) once each and match investorAttribution[].transactionId; never read each id separately."
           },
           "leadInvestor": {
             "type": "boolean",
@@ -37920,6 +37949,7 @@
         "description": "Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.",
         "properties": {
           "crawlCdnProvider": {
+            "description": "CDN provider from the latest URL probe.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityUrlCrawlCdnProvider"
@@ -37927,9 +37957,14 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "x-aventure-observation-supersession": {
+              "readPointer": "/statusChecked",
+              "writePointer": "/updatedAt"
+            }
           },
           "crawlRenderMode": {
+            "description": "Render mode from the latest URL probe.",
             "oneOf": [
               {
                 "$ref": "#/components/schemas/EntityUrlCrawlRenderMode"
@@ -37937,7 +37972,11 @@
               {
                 "type": "null"
               }
-            ]
+            ],
+            "x-aventure-observation-supersession": {
+              "readPointer": "/statusChecked",
+              "writePointer": "/updatedAt"
+            }
           },
           "createdAt": {
             "type": [
@@ -37988,14 +38027,24 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Latest URL status observation; a later probe may replace the submitted status.",
+            "x-aventure-observation-supersession": {
+              "readPointer": "/statusChecked",
+              "writePointer": "/updatedAt"
+            }
           },
           "statusChecked": {
             "type": [
               "string",
               "null"
             ],
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Time of the latest URL status observation.",
+            "x-aventure-observation-supersession": {
+              "readPointer": "/statusChecked",
+              "writePointer": "/updatedAt"
+            }
           },
           "updatedAt": {
             "type": [
@@ -40215,7 +40264,11 @@
             "type": [
               "string",
               "null"
-            ]
+            ],
+            "description": "Canonical article URL after host and tracking-parameter normalization.",
+            "x-aventure-mutation-readback": {
+              "writePointer": "/newsUrlOriginal"
+            }
           },
           "publication": {
             "type": [
@@ -41633,6 +41686,17 @@
               "$ref": "#/components/schemas/EntityFundraiseTransaction"
             }
           },
+          "provider": {
+            "description": "Fund manager firm or product/service provider; null otherwise.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/EntityProvider"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "research": {
             "$ref": "#/components/schemas/EntityListResearch",
             "description": "List-safe research disclosure without text snippets"
@@ -41842,6 +41906,39 @@
           "classification",
           "text",
           "urlLink"
+        ]
+      },
+      "EntityProvider": {
+        "type": "object",
+        "description": "\n        The current entity a fund or product/service is offered by: a fund's manager firm, a\n        product/service's provider, through its current primary edge to a live, listed provider.\n        Null on every other entity type.\n        ",
+        "properties": {
+          "entity": {
+            "$ref": "#/components/schemas/Entity",
+            "description": "Provider core. Its image is the provider's own logo, else the logo of the provider's current parent entity."
+          },
+          "headquarters": {
+            "description": "The provider's current headquarters address.",
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Address"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "relationshipType": {
+            "type": "string",
+            "description": "Relationship linking the subject to this provider.",
+            "enum": [
+              "fundManagerFirm",
+              "productService"
+            ]
+          }
+        },
+        "required": [
+          "entity",
+          "relationshipType"
         ]
       },
       "EntityListResearch": {

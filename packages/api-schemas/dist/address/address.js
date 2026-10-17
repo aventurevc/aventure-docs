@@ -42,6 +42,7 @@ import { AddressStateSchema } from "./state.js";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityPersonAssociationSchema
+ * @usedBySchema EntityProviderSchema
  * @usedBySchema PersonEnrichmentSchema
  * @usedBySchema PersonGraphCareerContextSchema
  * @contractShape address.address

@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityEnrichmentSchema } from "./enrichment.js";
 import { EntitySchema } from "./entity.js";
 import { EntityFundraiseTransactionSchema } from "./fundraise-transaction.js";
+import { EntityProviderSchema } from "./provider.js";
 import { EntityRelationshipSchema } from "./relationship.js";
 import { EntityResearchSchema } from "./research.js";
 import { EntitySitemapSchema } from "./sitemap.js";
@@ -43,6 +44,8 @@ export const EntityDetailSchema = z.object({
     newsArticle: z.array(NewsSchema),
     /** People associated with this entity; full-detail search carries the first few, and GET /v1/entities/{entityId}/people lists them all. */
     person: z.array(PersonDetailSchema),
+    /** Fund manager firm or product/service provider; null otherwise. */
+    provider: EntityProviderSchema.nullish(),
     /** Absolute canonical public URL when this detail has a renderable public route. */
     publicUrl: z.string().nullish(),
     /** Entity relationships. */

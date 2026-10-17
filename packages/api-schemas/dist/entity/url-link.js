@@ -5,7 +5,9 @@ import { EntityUrlCrawlCdnProviderSchema } from "./url-crawl-cdn-provider.js";
 import { EntityUrlCrawlRenderModeSchema } from "./url-crawl-render-mode.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 const EntityUrlLinkSchemaDefinition = z.object({
+    /** CDN provider from the latest URL probe. */
     crawlCdnProvider: EntityUrlCrawlCdnProviderSchema.nullish(),
+    /** Render mode from the latest URL probe. */
     crawlRenderMode: EntityUrlCrawlRenderModeSchema.nullish(),
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     id: z.int().nullish(),
@@ -16,7 +18,9 @@ const EntityUrlLinkSchemaDefinition = z.object({
     /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
     owner: EntityPersonOwnerSchema.nullish(),
     sourceId: z.string().nullish(),
+    /** Latest URL status observation; a later probe may replace the submitted status. */
     status: z.string().nullish(),
+    /** Time of the latest URL status observation. */
     statusChecked: z.iso.datetime({ offset: true }).nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Canonical absolute HTTP URL value - validates scheme + host at construction */

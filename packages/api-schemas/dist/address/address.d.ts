@@ -37,6 +37,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityEnrichmentSchema
  * @usedBySchema EntityPersonAssociationSchema
+ * @usedBySchema EntityProviderSchema
  * @usedBySchema PersonEnrichmentSchema
  * @usedBySchema PersonGraphCareerContextSchema
  * @contractShape address.address

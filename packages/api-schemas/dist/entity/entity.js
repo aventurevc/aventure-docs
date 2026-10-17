@@ -51,6 +51,7 @@ import { EntityTypeSchema } from "./type.js";
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @usedBySchema EntityListSchema
+ * @usedBySchema EntityProviderSchema
  * @usedBySchema EntityRelationshipSchema
  * @usedBySchema EntitySimilaritySummarySchema
  * @usedBySchema HarnessRunDetailSchema
