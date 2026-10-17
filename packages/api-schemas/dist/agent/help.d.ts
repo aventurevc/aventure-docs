@@ -60,6 +60,7 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
                 step: {
                     instruction: string;
                     operationId: string;
+                    planTaskKey?: string[] | undefined;
                     stepKey?: string | undefined;
                 };
                 writeGuidance?: {
@@ -76,6 +77,7 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
                 step: {
                     instruction: string;
                     operationId: string;
+                    planTaskKey?: string[] | undefined;
                     stepKey?: string | undefined;
                 };
                 writeGuidance?: {

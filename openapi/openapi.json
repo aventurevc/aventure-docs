@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL. Plan and usage rules vary by operation: a signed-in exact full-detail profile read consumes one monthly entity or person view for each distinct returned record, while repeating that record in the same month is free; an exhausted allowance can answer 429. Without a paid plan, name identification has a free daily allowance and then answers 402 subscription_required; natural, federated, and link search or page reads may require a paid plan; web search consumes its monthly allowance and can answer 429 when that allowance is exhausted. Call aventure_help for the selected operation's exact 402 or 429 details before choosing a paid or metered operation.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.203"
+    "version": "0.8.204"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -31108,6 +31108,7 @@
               "A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email.",
               "Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle.",
               "Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation.",
+              "A read overran its database query budget and was shed before it could answer, so nothing was read and the identical request can be replayed. Agent action: retry after a short backoff; this service records the shed WARN-only without an incident, so a consumer that reports it files the only incident for an expected condition.",
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
               "Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional.",
               "Entity text or a research snippet was rejected by its prose judge or text contract. Agent action: rewrite every passage in ProblemDetail.proseViolation at once and resend the whole text; ProblemDetail.hint names the override only when every violation is overridable.",
@@ -31179,6 +31180,7 @@
               "account_exists",
               "origin_detail_capacity",
               "origin_detail_shutdown",
+              "query_deadline_shed",
               "suspectedShellStrip",
               "suspected_shell_strip",
               "prose_rejected",
@@ -47336,7 +47338,7 @@
       },
       "HarnessTaskStep": {
         "type": "object",
-        "description": "One ordered task step: its key, instruction, and the operation that runs it.",
+        "description": "One ordered task step: its key, instruction, the operation that runs it, and the delegated plans it follows.",
         "properties": {
           "instruction": {
             "type": "string",
@@ -47345,6 +47347,13 @@
           "operationId": {
             "type": "string",
             "description": "OpenAPI operationId this step calls; it must be in the task's operation list."
+          },
+          "planTaskKey": {
+            "type": "array",
+            "description": "Agent-task keys whose plans this step follows instead of restating their steps: the task then owns each named plan's steps, so a write one of them commits counts for this task too. Each must name another planned task; a key may appear once per task and delegations must not loop.",
+            "items": {
+              "type": "string"
+            }
           },
           "stepKey": {
             "type": "string",

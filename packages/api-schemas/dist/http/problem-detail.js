@@ -41,6 +41,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "origin_detail_capacity",
             /** Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation. */
             "origin_detail_shutdown",
+            /** A read overran its database query budget and was shed before it could answer, so nothing was read and the identical request can be replayed. Agent action: retry after a short backoff; this service records the shed WARN-only without an incident, so a consumer that reports it files the only incident for an expected condition. */
+            "query_deadline_shed",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
             "suspectedShellStrip",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */

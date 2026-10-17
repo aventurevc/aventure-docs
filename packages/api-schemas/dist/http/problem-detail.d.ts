@@ -66,6 +66,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         origin_detail_shutdown: "origin_detail_shutdown";
         primary_website_missing: "primary_website_missing";
         prose_rejected: "prose_rejected";
+        query_deadline_shed: "query_deadline_shed";
         r2_delete_failed: "r2_delete_failed";
         r2_fetch_failed: "r2_fetch_failed";
         r2_upload_failed: "r2_upload_failed";

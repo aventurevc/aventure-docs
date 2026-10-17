@@ -52,6 +52,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
             step: {
                 instruction: string;
                 operationId: string;
+                planTaskKey?: string[] | undefined;
                 stepKey?: string | undefined;
             };
             writeGuidance?: {
@@ -68,6 +69,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
             step: {
                 instruction: string;
                 operationId: string;
+                planTaskKey?: string[] | undefined;
                 stepKey?: string | undefined;
             };
             writeGuidance?: {
