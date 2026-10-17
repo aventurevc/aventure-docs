@@ -1078,5 +1078,9 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
     WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },
     WebSearchProvider: { modulePath: "web/search-provider", schemaName: "WebSearchProviderSchema" },
+    WriterClaimSurface: {
+        modulePath: "writer/claim-surface",
+        schemaName: "WriterClaimSurfaceSchema",
+    },
 });
 //# sourceMappingURL=openapi-component-manifest.js.map

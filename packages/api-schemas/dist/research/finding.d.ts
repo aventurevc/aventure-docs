@@ -4,6 +4,17 @@ declare const ResearchFindingSchemaDefinition: z.ZodObject<{
     quote: z.ZodString;
     sourceUrl: z.ZodString;
     statement: z.ZodString;
+    writerSurface: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        BOTH: "BOTH";
+        ENTITY_TEXT: "ENTITY_TEXT";
+        RESEARCH_SNIPPET: "RESEARCH_SNIPPET";
+    }>, z.ZodString]> & {
+        enum: {
+            BOTH: "BOTH";
+            ENTITY_TEXT: "ENTITY_TEXT";
+            RESEARCH_SNIPPET: "RESEARCH_SNIPPET";
+        };
+    }>>;
 }, z.core.$strip>;
 type ResearchFindingDefinition = z.infer<typeof ResearchFindingSchemaDefinition>;
 export interface ResearchFindingSchemaInput extends z.input<typeof ResearchFindingSchemaDefinition> {

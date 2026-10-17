@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { WriterClaimSurfaceSchema } from "../writer/claim-surface.js";
 const ResearchFindingSchemaDefinition = z.object({
     /** Profile field the fact fills, when known; omit it and the run picks the field the fact belongs to. */
     gateId: z.string().nullish(),
@@ -9,6 +10,8 @@ const ResearchFindingSchemaDefinition = z.object({
     sourceUrl: z.string(),
     /** The fact to write, in plain words. */
     statement: z.string(),
+    /** Surface this sourced claim may enter: durable entity text, point-in-time research snippets, or both. New writer briefs must declare it. */
+    writerSurface: WriterClaimSurfaceSchema.nullish(),
 });
 /**
  * One fact you researched, with the page and exact text that support it. The run checks the quote against the page before it writes the fact.

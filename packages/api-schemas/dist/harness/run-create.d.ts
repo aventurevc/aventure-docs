@@ -5,11 +5,13 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
         quote: string;
         sourceUrl: string;
         statement: string;
+        writerSurface?: string | null | undefined;
     }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
         gateId?: string | null | undefined;
         quote: string;
         sourceUrl: string;
         statement: string;
+        writerSurface?: string | null | undefined;
     }, import("../research/finding.ts").ResearchFindingSchemaInput>>>>>;
     mode: z.ZodOptional<z.ZodEnum<{
         COMPREHENSIVE: "COMPREHENSIVE";
