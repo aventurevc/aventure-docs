@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL. Plan and usage rules vary by operation: a signed-in exact full-detail profile read consumes one monthly entity or person view for each distinct returned record, while repeating that record in the same month is free; an exhausted allowance can answer 429. Without a paid plan, name identification has a free daily allowance and then answers 402 subscription_required; natural, federated, and link search or page reads may require a paid plan; web search consumes its monthly allowance and can answer 429 when that allowance is exhausted. Call aventure_help for the selected operation's exact 402 or 429 details before choosing a paid or metered operation.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.207"
+    "version": "0.8.208"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -8916,7 +8916,7 @@
     },
     "/v1/entities/sec": {
       "get": {
-        "description": "Resolves a publicly traded US company by ticker (preferred) or company-name query. Returns the SEC EDGAR identity facts: legal name, former names, ticker, exchange, SIC industry, state of incorporation, headquarters, and whether it is an operating company, plus the earliest EDGAR filing date and, when EDGAR holds it, the IPO prospectus (listingProspectus). SEC supplies no brand name, website, or summary text — those stay enrichment-owned and are absent here. A name query binds only the one registrant whose title equals it ignoring case and legal suffix, or the only registrant whose title contains it; several without one exact title return 409 with their tickers in resolution.acceptedValue to retry by ticker. A 404 means the query matched no SEC registrant (e.g. a private company). Read live and never persisted.",
+        "description": "Resolves a US SEC registrant by ticker (preferred) or company-name query. Returns the SEC EDGAR identity facts: legal name, former names, ticker, exchange, SIC industry, state of incorporation, headquarters, and whether it is an operating company, plus the earliest EDGAR filing date and, when EDGAR holds it, the IPO prospectus (listingProspectus). SEC supplies no brand name, website, or summary text — those stay enrichment-owned and are absent here. A name query binds only the one registrant whose title equals it ignoring case and legal suffix, or the only registrant whose title contains it; several without one exact title return 409 with their tickers in resolution.acceptedValue to retry by ticker. A ticker missing from SEC's current listings binds the one registrant whose past filings carried it (a delisted filer, whose ticker list is then empty); several such registrants return 409. A 404 means this lookup matched no SEC registrant; it does not show the company is private. Read live and never persisted.",
         "operationId": "lookupSecCompany",
         "parameters": [
           {
@@ -35010,7 +35010,7 @@
           },
           "matchedVia": {
             "type": "string",
-            "description": "How the query resolved to this registrant.",
+            "description": "How the query resolved to this registrant. TICKER includes a delisted ticker that only the registrant's past filings carry.",
             "enum": [
               "TICKER",
               "NAME"

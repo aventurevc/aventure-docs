@@ -30,7 +30,7 @@ const SecCompanySchemaDefinition = z.object({
     isOperating: z.boolean(),
     /** The registrant's IPO prospectus: its first final prospectus (Form 424B4 or 424B1), reported only when an offering registration statement (S-1, F-1, SB-2, S-11) precedes it and no annual or quarterly report does. Null when EDGAR shows no such prospectus, including every company that listed before its EDGAR history starts and every follow-on offering. */
     listingProspectus: SecListingProspectusSchema.nullish(),
-    /** How the query resolved to this registrant. */
+    /** How the query resolved to this registrant. TICKER includes a delisted ticker that only the registrant's past filings carry. */
     matchedVia: z.enum(["TICKER", "NAME"]),
     /** Former registered legal names from SEC `formerNames`, most recent first. */
     nameAlias: z.array(z.string()),
