@@ -1480,6 +1480,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 url: string;
             }[] | null | undefined;
             core: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -2067,6 +2068,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     titleName?: string | null | undefined;
                 } | null | undefined;
                 person: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -2287,6 +2289,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 url: string;
             }[] | null | undefined;
             core: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -2874,6 +2877,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     titleName?: string | null | undefined;
                 } | null | undefined;
                 person: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -4238,6 +4242,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     url: string;
                 }[] | null | undefined;
                 core: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -4825,6 +4830,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         titleName?: string | null | undefined;
                     } | null | undefined;
                     person: {
+                        bioUpdatedAt?: string | null | undefined;
                         createdAt?: string | null | undefined;
                         gender?: string | null | undefined;
                         id: string;
@@ -5697,6 +5703,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     url: string;
                 }[] | null | undefined;
                 core: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -6284,6 +6291,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         titleName?: string | null | undefined;
                     } | null | undefined;
                     person: {
+                        bioUpdatedAt?: string | null | undefined;
                         createdAt?: string | null | undefined;
                         gender?: string | null | undefined;
                         id: string;
@@ -9966,6 +9974,7 @@ export declare const PageNewsSchema: z.ZodType<PageNewsDefinition, PageNewsSchem
 export type PageNews = z.infer<typeof PageNewsSchema>;
 declare const PagePersonSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -10004,6 +10013,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
         };
         updatedAt?: string | null | undefined;
     }, import("../person/person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -10255,6 +10265,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             url: string;
         }[] | null | undefined;
         core: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -10842,6 +10853,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 titleName?: string | null | undefined;
             } | null | undefined;
             person: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -11062,6 +11074,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             url: string;
         }[] | null | undefined;
         core: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -11649,6 +11662,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 titleName?: string | null | undefined;
             } | null | undefined;
             person: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -12109,6 +12123,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 url: string;
             }[] | null | undefined;
             core: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -12696,6 +12711,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     titleName?: string | null | undefined;
                 } | null | undefined;
                 person: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -12935,6 +12951,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 url: string;
             }[] | null | undefined;
             core: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -13522,6 +13539,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     titleName?: string | null | undefined;
                 } | null | undefined;
                 person: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -13764,6 +13782,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             titleName?: string | null | undefined;
         } | null | undefined;
         person: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -13960,6 +13979,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             titleName?: string | null | undefined;
         } | null | undefined;
         person: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -15253,6 +15273,7 @@ export declare const PageResultNewsSchema: z.ZodType<PageResultNewsDefinition, P
 export type PageResultNews = z.infer<typeof PageResultNewsSchema>;
 declare const PageResultPersonSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -15291,6 +15312,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
         };
         updatedAt?: string | null | undefined;
     }, import("../person/person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;

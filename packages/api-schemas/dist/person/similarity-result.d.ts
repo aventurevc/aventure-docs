@@ -212,6 +212,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
     person: z.ZodType<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -250,6 +251,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         };
         updatedAt?: string | null | undefined;
     }, import("./person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;

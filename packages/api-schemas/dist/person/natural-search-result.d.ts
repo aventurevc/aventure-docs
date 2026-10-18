@@ -634,6 +634,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
     }, import("../search/investment.ts").SearchInvestmentSchemaInput>>>;
     result: z.ZodType<{
         content: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -678,6 +679,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
         totalPages: number;
     }, import("../pagination/schemas.ts").PageResultPersonSchemaInput, z.core.$ZodTypeInternals<{
         content: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;

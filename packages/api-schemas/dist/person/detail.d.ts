@@ -256,6 +256,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         url: string;
     }, import("../blog/post.ts").BlogPostSchemaInput>>>>>;
     core: z.ZodType<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -294,6 +295,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         };
         updatedAt?: string | null | undefined;
     }, import("./person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
+        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -1259,6 +1261,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             titleName?: string | null | undefined;
         } | null | undefined;
         person: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -1455,6 +1458,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             titleName?: string | null | undefined;
         } | null | undefined;
         person: {
+            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;

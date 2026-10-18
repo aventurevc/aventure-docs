@@ -2513,6 +2513,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     url: string;
                 }[] | null | undefined;
                 core: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -3100,6 +3101,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         titleName?: string | null | undefined;
                     } | null | undefined;
                     person: {
+                        bioUpdatedAt?: string | null | undefined;
                         createdAt?: string | null | undefined;
                         gender?: string | null | undefined;
                         id: string;
@@ -3746,6 +3748,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             result: {
                 content: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -3964,6 +3967,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 url: string;
             }[] | null | undefined;
             core: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -4551,6 +4555,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     titleName?: string | null | undefined;
                 } | null | undefined;
                 person: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -7140,6 +7145,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     url: string;
                 }[] | null | undefined;
                 core: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -7727,6 +7733,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         titleName?: string | null | undefined;
                     } | null | undefined;
                     person: {
+                        bioUpdatedAt?: string | null | undefined;
                         createdAt?: string | null | undefined;
                         gender?: string | null | undefined;
                         id: string;
@@ -8373,6 +8380,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             result: {
                 content: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
@@ -8591,6 +8599,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 url: string;
             }[] | null | undefined;
             core: {
+                bioUpdatedAt?: string | null | undefined;
                 createdAt?: string | null | undefined;
                 gender?: string | null | undefined;
                 id: string;
@@ -9178,6 +9187,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     titleName?: string | null | undefined;
                 } | null | undefined;
                 person: {
+                    bioUpdatedAt?: string | null | undefined;
                     createdAt?: string | null | undefined;
                     gender?: string | null | undefined;
                     id: string;
