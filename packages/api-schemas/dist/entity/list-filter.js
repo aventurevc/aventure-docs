@@ -112,7 +112,7 @@ export const EntityListFilterSchema = z.strictObject({
     typeModel: z.array(z.string()).optional(),
     /** Ownership-model classification values. */
     typeOwnership: z.array(z.string()).optional(),
-    /** Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type. */
+    /** Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type. */
     typeRecord: z.array(EntityTypeSchema).optional(),
     /** Revenue-model classification values. */
     typeRevenue: z.array(z.string()).optional(),

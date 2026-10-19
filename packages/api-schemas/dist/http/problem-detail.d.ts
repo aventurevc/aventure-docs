@@ -176,6 +176,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         newsCandidate?: {
             externalId?: string | null | undefined;
             id: number;
+            publicationScore: number;
             reason: string[];
             score: number;
             slug?: string | null | undefined;
@@ -198,6 +199,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         newsCandidate?: {
             externalId?: string | null | undefined;
             id: number;
+            publicationScore: number;
             reason: string[];
             score: number;
             slug?: string | null | undefined;

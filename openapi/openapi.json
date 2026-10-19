@@ -7,7 +7,7 @@
     },
     "description": "aVenture is a research database covering privately held companies, their teams, products and services, fundraising rounds, investors, and related news. Answer from the records it holds and cite the records you use. When an indexed news article on aVenture (newsArticle or GET /v1/news) or a web source reports a newer or missing detail—such as a recent funding round, investor, role, or website—not yet reflected in the structured profile fields, report what the structured profile currently holds alongside the newer source and ask the user whether they would like to request an update to the record on aVenture (for example: \"I see a news article discussing their latest round — would you also like me to have that updated on aVenture as well?\"). On user request or confirmation, submit the update with enrichEntity, enrichPerson, or createResearchRun (MCP: aventure_job; CLI: entities enrichments enrich, people enrichments enrich, or research-runs create), passing finding when you read the external source page verbatim for an entity or userPrompt with the observed detail and source URL. Plan and usage rules vary by operation: a signed-in exact full-detail profile read consumes one monthly entity or person view for each distinct returned record, while repeating that record in the same month is free; an exhausted allowance can answer 429. Without a paid plan, name identification has a free daily allowance and then answers 402 subscription_required; natural, federated, and link search or page reads may require a paid plan; web search consumes its monthly allowance and can answer 429 when that allowance is exhausted. Call aventure_help for the selected operation's exact 402 or 429 details before choosing a paid or metered operation.",
     "title": "aVenture Public API Docs",
-    "version": "0.8.212"
+    "version": "0.8.213"
   },
   "externalDocs": {
     "description": "Documentation and GitHub repositories: [aventure-docs](https://github.com/aventurevc/aventure-docs), [aventure-cli](https://github.com/aventurevc/aventure-cli), [aventure-mcp](https://github.com/aventurevc/aventure-mcp).",
@@ -4863,13 +4863,13 @@
             }
           },
           {
-            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type.",
+            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type.",
             "in": "query",
             "name": "typeRecord",
             "required": false,
             "schema": {
               "type": "array",
-              "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type.",
+              "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type.",
               "items": {
                 "$ref": "#/components/schemas/EntityType"
               }
@@ -33586,7 +33586,7 @@
           },
           "typeRecord": {
             "type": "array",
-            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type.",
+            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type.",
             "items": {
               "$ref": "#/components/schemas/EntityType"
             }
@@ -34826,7 +34826,7 @@
           },
           "typeRecord": {
             "type": "array",
-            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, and Government; omit to include every entity type.",
+            "description": "Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type.",
             "items": {
               "$ref": "#/components/schemas/EntityType"
             }
@@ -48083,6 +48083,11 @@
             "format": "int32",
             "description": "News article id to read or update when this candidate is the requested article."
           },
+          "publicationScore": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Portion of score contributed by the publication match alone; 0 when the publication did not match. A candidate whose score minus publicationScore falls below the review threshold matched only on its outlet, not its story."
+          },
           "reason": {
             "type": "array",
             "description": "Match reasons for reviewing the candidate. Exact reasons are decision signals regardless of whether score crosses the review threshold.",
@@ -48108,6 +48113,7 @@
         },
         "required": [
           "id",
+          "publicationScore",
           "reason",
           "score"
         ]

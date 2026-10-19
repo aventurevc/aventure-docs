@@ -76,6 +76,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     newsCandidate?: {
         externalId?: string | null | undefined;
         id: number;
+        publicationScore: number;
         reason: string[];
         score: number;
         slug?: string | null | undefined;
@@ -98,6 +99,7 @@ export declare const DomainConflictDetailsSchema: z.ZodUnion<readonly [z.ZodType
     newsCandidate?: {
         externalId?: string | null | undefined;
         id: number;
+        publicationScore: number;
         reason: string[];
         score: number;
         slug?: string | null | undefined;

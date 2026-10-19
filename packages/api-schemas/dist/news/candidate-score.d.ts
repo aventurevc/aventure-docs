@@ -11,6 +11,7 @@ import { z } from "zod/v4";
 export declare const NewsCandidateScoreSchema: z.ZodObject<{
     externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodInt;
+    publicationScore: z.ZodInt;
     reason: z.ZodArray<z.ZodString>;
     score: z.ZodInt;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;

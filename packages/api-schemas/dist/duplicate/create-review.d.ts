@@ -39,6 +39,7 @@ declare const DuplicateCreateReviewSchemaDefinition: z.ZodObject<{
     newsCandidate: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
         externalId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         id: z.ZodInt;
+        publicationScore: z.ZodInt;
         reason: z.ZodArray<z.ZodString>;
         score: z.ZodInt;
         slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
