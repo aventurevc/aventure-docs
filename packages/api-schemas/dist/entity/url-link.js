@@ -13,7 +13,7 @@ const EntityUrlLinkSchemaDefinition = z.object({
     id: z.int().nullish(),
     /** `true` = owner currently uses this URL; `false` = historical/former (rebrand source domain, deprecated platform handle). The lifecycle state lives here, NEVER in the `urlType` discriminator. */
     isCurrent: z.boolean().nullish(),
-    /** `true` = canonical/primary URL of this `urlType` for this owner. Only one row per (owner, urlType) may be `isCurrent=true` AND `isPrimary=true`. */
+    /** `true` = canonical/primary URL of this `urlType` for this owner. Only one row per (owner, urlType) may be `isCurrent=true` AND `isPrimary=true`. Retired rows are always non-primary, including when a write requests otherwise. */
     isPrimary: z.boolean().nullish(),
     /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
     owner: EntityPersonOwnerSchema.nullish(),
@@ -23,7 +23,7 @@ const EntityUrlLinkSchemaDefinition = z.object({
     /** Time of the latest URL status observation. */
     statusChecked: z.iso.datetime({ offset: true }).nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Canonical absolute HTTP URL value - validates scheme + host at construction */
+    /** Canonical absolute URL after storage and live same-site host normalization. */
     url: z.string(),
     urlType: EntityUrlTypeSchema,
 });
