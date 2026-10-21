@@ -233,6 +233,11 @@ redirects:
   # skip-slug on the API entry removed the title-derived a-venture-api segment.
   - source: "/api-reference/a-venture-api"
     destination: "/api-reference"
+  # The quickstart files are named *-quickstart; readers and agents guess those slugs.
+  - source: "/mcp-quickstart"
+    destination: "/mcp"
+  - source: "/cli-quickstart"
+    destination: "/cli"
   - source: "/api-reference/a-venture-api/:slug*"
     destination: "/api-reference/:slug*"
   # The identicon endpoint is private (x-aventure-visibility scope private) and
