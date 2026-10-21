@@ -979,6 +979,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "SearchOrderingPersonSortFieldSchema",
     },
     SearchPassage: { modulePath: "search/passage", schemaName: "SearchPassageSchema" },
+    SearchPersonProfile: {
+        modulePath: "search/person-profile",
+        schemaName: "SearchPersonProfileSchema",
+    },
     SearchQualifier: { modulePath: "search/qualifier", schemaName: "SearchQualifierSchema" },
     SearchQualifierOption: {
         modulePath: "search/qualifier-option",

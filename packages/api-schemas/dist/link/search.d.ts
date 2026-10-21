@@ -3746,6 +3746,16 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceType: string;
                 } | null | undefined;
             }[];
+            profile: {
+                currentCompany?: string | null | undefined;
+                headline?: string | null | undefined;
+                location?: string | null | undefined;
+                name: string;
+                named: string;
+                organizationEvidence?: "headline" | "none" | "profile" | null | undefined;
+                photoUrl?: string | null | undefined;
+                profileUrl: string;
+            }[];
             result: {
                 content: {
                     bioUpdatedAt?: string | null | undefined;
@@ -8377,6 +8387,16 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     sourceId: string;
                     sourceType: string;
                 } | null | undefined;
+            }[];
+            profile: {
+                currentCompany?: string | null | undefined;
+                headline?: string | null | undefined;
+                location?: string | null | undefined;
+                name: string;
+                named: string;
+                organizationEvidence?: "headline" | "none" | "profile" | null | undefined;
+                photoUrl?: string | null | undefined;
+                profileUrl: string;
             }[];
             result: {
                 content: {

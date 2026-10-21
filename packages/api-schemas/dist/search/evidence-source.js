@@ -6,6 +6,7 @@ const SearchEvidenceSourceSchemaKnownMembers = z.enum([
     "newsArticle",
     "personRecord",
     "fundraiseTransaction",
+    "webProfile",
 ]);
 /**
  * Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `personRecord` a person linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.

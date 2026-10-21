@@ -632,6 +632,25 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceType: string;
         } | null | undefined;
     }, import("../search/investment.ts").SearchInvestmentSchemaInput>>>;
+    profile: z.ZodArray<z.ZodType<{
+        currentCompany?: string | null | undefined;
+        headline?: string | null | undefined;
+        location?: string | null | undefined;
+        name: string;
+        named: string;
+        organizationEvidence?: "headline" | "none" | "profile" | null | undefined;
+        photoUrl?: string | null | undefined;
+        profileUrl: string;
+    }, import("../search/person-profile.ts").SearchPersonProfileSchemaInput, z.core.$ZodTypeInternals<{
+        currentCompany?: string | null | undefined;
+        headline?: string | null | undefined;
+        location?: string | null | undefined;
+        name: string;
+        named: string;
+        organizationEvidence?: "headline" | "none" | "profile" | null | undefined;
+        photoUrl?: string | null | undefined;
+        profileUrl: string;
+    }, import("../search/person-profile.ts").SearchPersonProfileSchemaInput>>>;
     result: z.ZodType<{
         content: {
             bioUpdatedAt?: string | null | undefined;

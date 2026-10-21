@@ -7,6 +7,7 @@ declare const SearchAnswerCitationSchemaDefinition: z.ZodObject<{
         newsArticle: "newsArticle";
         personRecord: "personRecord";
         researchSnippet: "researchSnippet";
+        webProfile: "webProfile";
     }>, z.ZodString]> & {
         enum: {
             entityRecord: "entityRecord";
@@ -14,6 +15,7 @@ declare const SearchAnswerCitationSchemaDefinition: z.ZodObject<{
             newsArticle: "newsArticle";
             personRecord: "personRecord";
             researchSnippet: "researchSnippet";
+            webProfile: "webProfile";
         };
     };
     sourceId: z.ZodString;
