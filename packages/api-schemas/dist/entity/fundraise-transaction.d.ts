@@ -167,6 +167,35 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         Token: "Token";
     }>>>;
     id: z.ZodUUID;
+    investor: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        amountInvested?: number | null | undefined;
+        createdAt: string;
+        financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
+        id: string;
+        investor: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        investorName?: string | null | undefined;
+        investorSlug?: string | null | undefined;
+        leadInvestor: boolean;
+        transactionId: string;
+        updatedAt: string;
+    }, import("./fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput, z.core.$ZodTypeInternals<{
+        amountInvested?: number | null | undefined;
+        createdAt: string;
+        financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
+        id: string;
+        investor: {
+            entityId?: string | null | undefined;
+            personId?: string | null | undefined;
+        };
+        investorName?: string | null | undefined;
+        investorSlug?: string | null | undefined;
+        leadInvestor: boolean;
+        transactionId: string;
+        updatedAt: string;
+    }, import("./fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput>>>>>;
     investorAttribution: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         amountInvested: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         attributionType: z.ZodEnum<{

@@ -40,7 +40,7 @@ export const EntityDetailSchema = z.object({
     enrichment: EntityEnrichmentSchema,
     /** Fundraise rounds associated with this entity. When newsArticle or an external source reports a newer round not yet listed here, report both and ask the user whether to request a record update via POST /v1/entities/{entityId}/enrichments (CLI: entities enrichments enrich; MCP: aventure_job enrichEntity). */
     fundraiseRound: z.array(EntityFundraiseTransactionSchema),
-    /** News articles associated with this entity; full-detail search carries the first few, and GET /v1/news?owner.entityId={entityId} lists them all. When an indexed article reports a newer funding round, role, or milestone not yet reflected in structured fields, report both and offer to request an update on the record. */
+    /** News articles associated with this entity; full-detail search carries the first few, and GET /v1/news?owner.entityId={entityId} lists them all. Articles whose headline names the entity (brand or alias) and were published within a recent window lead, then newest first; explicit sorts and text search on the list are unchanged. When an indexed article reports a newer funding round, role, or milestone not yet reflected in structured fields, report both and offer to request an update on the record. */
     newsArticle: z.array(NewsSchema),
     /** People associated with this entity; full-detail search carries the first few, and GET /v1/entities/{entityId}/people lists them all. */
     person: z.array(PersonDetailSchema),

@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityFundraiseInvestorJoinSchema } from "./fundraise-investor-join.js";
 import { EntityFundraiseTransactionEntitySchema } from "./fundraise-transaction-entity.js";
 import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseDataConfidenceSchema } from "../fundraise/data-confidence.js";
@@ -27,6 +28,7 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     financialInstrumentType: FundraiseFinancialInstrumentTypeSchema.nullish(),
     /** Canonical fundraise transaction UUID */
     id: z.uuid(),
+    investor: z.array(EntityFundraiseInvestorJoinSchema).nullish(),
     /** Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's attributed participation amount for this round. */
     investorAttribution: FundraiseInvestmentAttributionSchema.nullish(),
     /** Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor. */

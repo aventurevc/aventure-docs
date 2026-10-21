@@ -603,6 +603,21 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
         id: string;
+        investor?: {
+            amountInvested?: number | null | undefined;
+            createdAt: string;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
+            id: string;
+            investor: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            };
+            investorName?: string | null | undefined;
+            investorSlug?: string | null | undefined;
+            leadInvestor: boolean;
+            transactionId: string;
+            updatedAt: string;
+        }[] | null | undefined;
         investorAttribution?: {
             amountInvested?: number | null | undefined;
             attributionType: "direct" | "managedFund";
@@ -697,6 +712,21 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
         id: string;
+        investor?: {
+            amountInvested?: number | null | undefined;
+            createdAt: string;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
+            id: string;
+            investor: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            };
+            investorName?: string | null | undefined;
+            investorSlug?: string | null | undefined;
+            leadInvestor: boolean;
+            transactionId: string;
+            updatedAt: string;
+        }[] | null | undefined;
         investorAttribution?: {
             amountInvested?: number | null | undefined;
             attributionType: "direct" | "managedFund";
