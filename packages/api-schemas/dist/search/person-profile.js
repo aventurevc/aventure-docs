@@ -5,6 +5,8 @@ const SearchPersonProfileSchemaDefinition = z.object({
     currentCompany: z.string().nullish(),
     /** Profile headline as the web search index holds it; null when it has none. */
     headline: z.string().nullish(),
+    /** Canonical aVenture person id. */
+    id: z.uuid(),
     /** Profile location as the web search index holds it. */
     location: z.string().nullish(),
     /** Name on the profile. */
@@ -15,11 +17,16 @@ const SearchPersonProfileSchemaDefinition = z.object({
     organizationEvidence: z.enum(["headline", "profile", "none"]).nullish(),
     /** Headshot URL from aVenture's stored LinkedIn capture; null until one is stored or when the capture holds no usable headshot. */
     photoUrl: z.string().nullish(),
-    /** Canonical public LinkedIn profile URL. */
+    /** Canonical aVenture person page URL; never an external profile URL. */
     profileUrl: z.string(),
+    /** Canonical aVenture person slug. */
+    slug: z
+        .string()
+        .regex(/^[a-z0-9_-]+$/)
+        .max(255),
 });
 /**
- * Public LinkedIn profile a search found for a person the query names who has no directory record. It shows the profile's own header; it does not assert current employment.
+ * A person resolved or filed from a web-discovered LinkedIn profile. Every row links to its aVenture person page; the web header does not assert current employment.
  *
  * @openapiSchema SearchPersonProfile
  * @endpoint GET /v1/search/link

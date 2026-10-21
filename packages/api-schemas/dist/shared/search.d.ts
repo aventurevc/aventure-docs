@@ -3772,12 +3772,14 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             profile: {
                 currentCompany?: string | null | undefined;
                 headline?: string | null | undefined;
+                id: string;
                 location?: string | null | undefined;
                 name: string;
                 named: string;
                 organizationEvidence?: "headline" | "none" | "profile" | null | undefined;
                 photoUrl?: string | null | undefined;
                 profileUrl: string;
+                slug: string;
             }[];
             result: {
                 content: {
@@ -8426,12 +8428,14 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             profile: {
                 currentCompany?: string | null | undefined;
                 headline?: string | null | undefined;
+                id: string;
                 location?: string | null | undefined;
                 name: string;
                 named: string;
                 organizationEvidence?: "headline" | "none" | "profile" | null | undefined;
                 photoUrl?: string | null | undefined;
                 profileUrl: string;
+                slug: string;
             }[];
             result: {
                 content: {

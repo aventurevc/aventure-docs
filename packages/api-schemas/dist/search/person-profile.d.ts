@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 declare const SearchPersonProfileSchemaDefinition: z.ZodObject<{
     currentCompany: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     headline: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    id: z.ZodUUID;
     location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     name: z.ZodString;
     named: z.ZodString;
@@ -12,12 +13,13 @@ declare const SearchPersonProfileSchemaDefinition: z.ZodObject<{
     }>>>;
     photoUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     profileUrl: z.ZodString;
+    slug: z.ZodString;
 }, z.core.$strip>;
 type SearchPersonProfileDefinition = z.infer<typeof SearchPersonProfileSchemaDefinition>;
 export interface SearchPersonProfileSchemaInput extends z.input<typeof SearchPersonProfileSchemaDefinition> {
 }
 /**
- * Public LinkedIn profile a search found for a person the query names who has no directory record. It shows the profile's own header; it does not assert current employment.
+ * A person resolved or filed from a web-discovered LinkedIn profile. Every row links to its aVenture person page; the web header does not assert current employment.
  *
  * @openapiSchema SearchPersonProfile
  * @endpoint GET /v1/search/link

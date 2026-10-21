@@ -1,7 +1,10 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BillingAccessTypeSchema } from "../billing/access-type.js";
 import { HelpSourceTypeSchema } from "./source-type.js";
 const HelpCitationSchemaDefinition = z.object({
+    /** What a caller without a paid plan gets from the cited operation; absent when the operation needs no plan. A resolve for such a caller ranks PAID_PLAN candidates after the others. */
+    billingAccess: BillingAccessTypeSchema.nullish(),
     /** Verbatim excerpt from the cited document supporting the answer. */
     excerpt: z.string(),
     /** Stable id within the source type: an operationId, a skill/prompt name, a completion gate id, or a research detail type targetPath. */

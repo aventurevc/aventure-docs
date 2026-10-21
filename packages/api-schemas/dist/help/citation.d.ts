@@ -1,5 +1,9 @@
 import { z } from "zod/v4";
 declare const HelpCitationSchemaDefinition: z.ZodObject<{
+    billingAccess: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        DAILY_ALLOWANCE: "DAILY_ALLOWANCE";
+        PAID_PLAN: "PAID_PLAN";
+    }>>>;
     excerpt: z.ZodString;
     sourceId: z.ZodString;
     sourceType: z.ZodUnion<readonly [z.ZodEnum<{

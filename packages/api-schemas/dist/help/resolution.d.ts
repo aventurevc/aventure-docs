@@ -11,11 +11,13 @@ import { z } from "zod/v4";
  */
 export declare const HelpResolutionSchema: z.ZodObject<{
     candidate: z.ZodArray<z.ZodType<{
+        billingAccess?: "DAILY_ALLOWANCE" | "PAID_PLAN" | null | undefined;
         excerpt: string;
         sourceId: string;
         sourceType: string;
         sourceVersion?: string | null | undefined;
     }, import("./citation.ts").HelpCitationSchemaInput, z.core.$ZodTypeInternals<{
+        billingAccess?: "DAILY_ALLOWANCE" | "PAID_PLAN" | null | undefined;
         excerpt: string;
         sourceId: string;
         sourceType: string;

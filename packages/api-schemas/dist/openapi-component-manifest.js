@@ -51,6 +51,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "auth/provider-catalog",
         schemaName: "AuthProviderCatalogSchema",
     },
+    BillingAccessType: { modulePath: "billing/access-type", schemaName: "BillingAccessTypeSchema" },
     BillingAdditionalUsage: {
         modulePath: "billing/additional-usage",
         schemaName: "BillingAdditionalUsageSchema",

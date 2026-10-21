@@ -2,11 +2,13 @@ import { z } from "zod/v4";
 declare const AgentHelpSchemaDefinition: z.ZodObject<{
     answer: z.ZodString;
     citation: z.ZodArray<z.ZodType<{
+        billingAccess?: "DAILY_ALLOWANCE" | "PAID_PLAN" | null | undefined;
         excerpt: string;
         sourceId: string;
         sourceType: string;
         sourceVersion?: string | null | undefined;
     }, import("../help/citation.ts").HelpCitationSchemaInput, z.core.$ZodTypeInternals<{
+        billingAccess?: "DAILY_ALLOWANCE" | "PAID_PLAN" | null | undefined;
         excerpt: string;
         sourceId: string;
         sourceType: string;
@@ -19,11 +21,13 @@ declare const AgentHelpSchemaDefinition: z.ZodObject<{
     }>;
     resolution: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         candidate: z.ZodArray<z.ZodType<{
+            billingAccess?: "DAILY_ALLOWANCE" | "PAID_PLAN" | null | undefined;
             excerpt: string;
             sourceId: string;
             sourceType: string;
             sourceVersion?: string | null | undefined;
         }, import("../help/citation.ts").HelpCitationSchemaInput, z.core.$ZodTypeInternals<{
+            billingAccess?: "DAILY_ALLOWANCE" | "PAID_PLAN" | null | undefined;
             excerpt: string;
             sourceId: string;
             sourceType: string;
