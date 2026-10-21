@@ -36,9 +36,10 @@ The response is the full company profile: identity in `core`, including the
 
 ## 3. Find a Company by Name
 
-Steps 3 to 5 need a paid plan ([AI Plus or AI Pro](https://aventure.vc/pricing)); on the free plan they answer
-`402` with `code` `subscription_required`. Step 2's website lookup and step 6 work
-on every plan.
+The free plan includes 20 name lookups a day (steps 3 and 5); past those, and for
+any search by description (steps 4 and 5), the API answers `402` with `code`
+`subscription_required` until you move to [AI Plus or AI Pro](https://aventure.vc/pricing). Step 2's
+website lookup and step 6 work on every plan.
 
 `POST /v1/lookup` decides which company or person a name refers to. Add a
 website, a location, or a few words of context to tell namesakes apart:

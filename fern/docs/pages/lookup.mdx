@@ -30,7 +30,7 @@ The two `/v1/lookup` operations return the same identification shape. The GET
 operation takes query parameters; the POST operation takes the body shown below.
 
 A name that is exactly a record's id, handle, registry id, or slug settles on every
-plan. Any other name needs a paid plan ([AI Plus or AI Pro](https://aventure.vc/pricing)); on the free plan it answers `402` with `code` `subscription_required`. On every plan, `GET /v1/entities/lookup-exact`
+plan. Any other name counts against the free plan's 20 lookups a day; past those it answers `402` with `code` `subscription_required` until the next UTC day, and [AI Plus or AI Pro](https://aventure.vc/pricing) lifts the limit. On every plan, `GET /v1/entities/lookup-exact`
 (CLI: `aventure entities lookup-exact get`) returns the record for an exact website,
 domain, or slug.
 
