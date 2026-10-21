@@ -12,7 +12,7 @@ type BillingPaymentProfileDefinition = z.infer<typeof BillingPaymentProfileSchem
 export interface BillingPaymentProfileSchemaInput extends z.input<typeof BillingPaymentProfileSchemaDefinition> {
 }
 /**
- * The caller's card on file and whether Checkout would charge each plan's introductoryAmount on the first payment, read live from Stripe.
+ * The caller's card on file and whether its next purchase of, or upgrade to, a plan with an introductoryAmount is charged that amount, read live from Stripe.
  *
  * @openapiSchema BillingPaymentProfile
  * @endpoint GET /v1/billing/subscription/payment-profile

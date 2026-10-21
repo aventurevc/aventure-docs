@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityFundraiseTransactionEntitySchema } from "./fundraise-transaction-entity.js";
 import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseDataConfidenceSchema } from "../fundraise/data-confidence.js";
+import { FundraiseFinancialInstrumentTypeSchema } from "../fundraise/financial-instrument-type.js";
 import { FundraiseInvestmentAttributionSchema } from "../fundraise/investment-attribution.js";
 const EntityFundraiseTransactionSchemaDefinition = z.object({
     amountRaised: z.number().int().nullish(),
@@ -22,6 +23,8 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
         .nullish(),
     dateInvestorExit: z.iso.datetime({ offset: true }).nullish(),
     entity: EntityFundraiseTransactionEntitySchema.nullish(),
+    /** Source-reported financial instrument persisted for this round. */
+    financialInstrumentType: FundraiseFinancialInstrumentTypeSchema.nullish(),
     /** Canonical fundraise transaction UUID */
     id: z.uuid(),
     /** Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's attributed participation amount for this round. */
@@ -32,6 +35,8 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     /** Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written. */
     round: z.string().nullish(),
+    /** Source-reported classification persisted for this round (e.g. Public for a SPAC Merger); it is not derived from the round label. */
+    roundType: z.string().nullish(),
     sourceAttribution: z.array(FundraiseInvestmentAttributionSchema),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     valuationPostMoney: z.number().int().nullish(),

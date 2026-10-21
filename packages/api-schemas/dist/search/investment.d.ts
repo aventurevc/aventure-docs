@@ -62,6 +62,7 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -84,6 +85,7 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";
@@ -177,6 +179,7 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -199,6 +202,7 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";

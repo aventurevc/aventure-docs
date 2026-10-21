@@ -42,16 +42,18 @@ import { FundingStageSchema } from "../funding/stage.js";
 export const EntityFundingDetailSchema = z.object({
     /** ISO 4217 currency of totalRaised, latestValuation, and mostRecentAmount: the one currency every round uses, else the entity's own currency when rounds carry none. Null when rounds use more than one currency or no fundraise rollup exists, so these amounts have no single currency. */
     currency: z.string().nullish(),
+    /** Recorded round count, including rounds with no recorded amount. */
     fundingRoundCount: z.int(),
     investorCount: z.int(),
     latestValuation: z.number().nullish(),
     mostRecentAmount: z.number().nullish(),
     mostRecentDate: z.iso.date().nullish(),
     stage: FundingStageSchema.nullish(),
+    /** Sum of recorded round amounts in their original currencies, excluding rounds with no amount; not a complete lifetime total when amounts are missing. Use totalRaisedUsd for a USD aggregate; totalRaised has no single currency when currency is null. */
     totalRaised: z.number(),
-    /** Sum of round amounts converted to USD at each round's announcement-date ECB/World Bank rate, excluding rounds with no amount or no rate (see unconvertedRoundCount); zero when no round converts. Null when no fundraise rollup exists. Use this, not totalRaised, to compare or rank entities whose rounds use different currencies. */
+    /** USD aggregate at enrichment.fundingDetail.totalRaisedUsd: sums only recorded round amounts with an announcement-date ECB/World Bank rate. Excludes rounds with no amount or no rate, so do not report it as a complete lifetime total when either is missing. Zero when no round converts; null when no rollup exists. Use instead of totalRaised across currencies; see unconvertedRoundCount for missing rates only. */
     totalRaisedUsd: z.number().nullish(),
-    /** Rounds with an amount but no USD rate for their announcement date, so totalRaisedUsd excludes them. */
+    /** Rounds with an amount but no announcement-date USD rate, excluded from totalRaisedUsd. Does not count rounds with no recorded amount; zero does not prove the total is complete. */
     unconvertedRoundCount: z.int(),
 });
 //# sourceMappingURL=funding-detail.js.map

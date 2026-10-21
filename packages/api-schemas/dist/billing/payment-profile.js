@@ -2,13 +2,13 @@
 import { z } from "zod/v4";
 import { BillingPaymentMethodSchema } from "./payment-method.js";
 const BillingPaymentProfileSchemaDefinition = z.object({
-    /** True when the catalog offers introductoryAmount, the App Store does not bill the account, and it has no earlier subscription, payment, or unvoided invoice; false otherwise */
+    /** Whether the caller's next purchase or upgrade to a plan with an introductoryAmount is charged that amount: true when the catalog offers introductoryAmount, the App Store does not bill the account, and either it has no earlier subscription, payment, or unvoided invoice, or it pays an active subscription on a cheaper sold plan and has never redeemed the introductory discount; false otherwise */
     introductoryOfferEligible: z.boolean(),
     /** Card that pays the continuing Stripe subscription; absent without one or when it is paid by something other than a card */
     paymentMethod: BillingPaymentMethodSchema.nullish(),
 });
 /**
- * The caller's card on file and whether Checkout would charge each plan's introductoryAmount on the first payment, read live from Stripe.
+ * The caller's card on file and whether its next purchase of, or upgrade to, a plan with an introductoryAmount is charged that amount, read live from Stripe.
  *
  * @openapiSchema BillingPaymentProfile
  * @endpoint GET /v1/billing/subscription/payment-profile

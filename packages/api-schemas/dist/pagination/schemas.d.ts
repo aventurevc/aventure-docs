@@ -1147,6 +1147,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -1169,6 +1170,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";
@@ -1239,6 +1241,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -1261,6 +1264,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";
@@ -3507,6 +3511,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
         } | null | undefined;
+        financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
         id: string;
         investorAttribution?: {
             amountInvested?: number | null | undefined;
@@ -3529,6 +3534,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             sourceDetail: string;
         } | null | undefined;
         round?: string | null | undefined;
+        roundType?: string | null | undefined;
         sourceAttribution: {
             amountInvested?: number | null | undefined;
             attributionType: "direct" | "managedFund";
@@ -3599,6 +3605,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 unconvertedRoundCount: number;
             } | null | undefined;
         } | null | undefined;
+        financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
         id: string;
         investorAttribution?: {
             amountInvested?: number | null | undefined;
@@ -3621,6 +3628,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             sourceDetail: string;
         } | null | undefined;
         round?: string | null | undefined;
+        roundType?: string | null | undefined;
         sourceAttribution: {
             amountInvested?: number | null | undefined;
             attributionType: "direct" | "managedFund";
@@ -4015,6 +4023,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
+                financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
                 id: string;
                 investorAttribution?: {
                     amountInvested?: number | null | undefined;
@@ -4037,6 +4046,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceDetail: string;
                 } | null | undefined;
                 round?: string | null | undefined;
+                roundType?: string | null | undefined;
                 sourceAttribution: {
                     amountInvested?: number | null | undefined;
                     attributionType: "direct" | "managedFund";
@@ -5476,6 +5486,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
+                financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
                 id: string;
                 investorAttribution?: {
                     amountInvested?: number | null | undefined;
@@ -5498,6 +5509,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     sourceDetail: string;
                 } | null | undefined;
                 round?: string | null | undefined;
+                roundType?: string | null | undefined;
                 sourceAttribution: {
                     amountInvested?: number | null | undefined;
                     attributionType: "direct" | "managedFund";
@@ -6976,6 +6988,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -6998,6 +7011,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";
@@ -7504,6 +7518,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -7526,6 +7541,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";
@@ -8626,6 +8642,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
+                financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
                 id: string;
                 investorAttribution?: {
                     amountInvested?: number | null | undefined;
@@ -8648,6 +8665,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     sourceDetail: string;
                 } | null | undefined;
                 round?: string | null | undefined;
+                roundType?: string | null | undefined;
                 sourceAttribution: {
                     amountInvested?: number | null | undefined;
                     attributionType: "direct" | "managedFund";
@@ -9168,6 +9186,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
+                financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
                 id: string;
                 investorAttribution?: {
                     amountInvested?: number | null | undefined;
@@ -9190,6 +9209,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     sourceDetail: string;
                 } | null | undefined;
                 round?: string | null | undefined;
+                roundType?: string | null | undefined;
                 sourceAttribution: {
                     amountInvested?: number | null | undefined;
                     attributionType: "direct" | "managedFund";
@@ -14475,6 +14495,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -14497,6 +14518,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";
@@ -15003,6 +15025,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
+            financialInstrumentType?: "Bond" | "Common Stock" | "Convertible Note" | "Grant" | "Loan" | "Other Debt" | "Other Equity" | "Preferred Stock" | "SAFE" | "Token" | null | undefined;
             id: string;
             investorAttribution?: {
                 amountInvested?: number | null | undefined;
@@ -15025,6 +15048,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 sourceDetail: string;
             } | null | undefined;
             round?: string | null | undefined;
+            roundType?: string | null | undefined;
             sourceAttribution: {
                 amountInvested?: number | null | undefined;
                 attributionType: "direct" | "managedFund";

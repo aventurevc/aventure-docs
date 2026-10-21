@@ -47,8 +47,10 @@ const ProblemDetailSchemaDefinition = z.object({
             "suspectedShellStrip",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
             "suspected_shell_strip",
-            /** Entity text or a research snippet was rejected by its prose judge or text contract. Agent action: rewrite every passage in ProblemDetail.proseViolation at once and resend the whole text; ProblemDetail.hint names the override only when every violation is overridable. */
+            /** Entity text or a research snippet failed its prose judge or contract. Rewrite every ProblemDetail.proseViolation passage and resend the whole text. ProblemDetail.hint names an override only when every violation is overridable. */
             "prose_rejected",
+            /** CVC headcount inherited from its parent; follow ProblemDetail.hint. */
+            "cvc_inherited_headcount",
             /** Every source-grounding slot is held by other text writes, so this write was refused before it judged or wrote anything. Agent action: replay the identical request after retryAfterSeconds (also in the Retry-After header). */
             "source_grounding_at_capacity",
             /** A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal. */

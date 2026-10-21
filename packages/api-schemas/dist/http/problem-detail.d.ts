@@ -37,6 +37,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         callback_http_5xx: "callback_http_5xx";
         callback_timeout: "callback_timeout";
         callback_tls_error: "callback_tls_error";
+        cvc_inherited_headcount: "cvc_inherited_headcount";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
         geocode_provider_error: "geocode_provider_error";
         github_fetch_failed: "github_fetch_failed";

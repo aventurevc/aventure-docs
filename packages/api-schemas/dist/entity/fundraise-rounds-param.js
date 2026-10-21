@@ -18,9 +18,9 @@ export const EntityFundraiseRoundsParamSchema = PageParamSchema.extend({
     dateFrom: z.iso.date().optional(),
     /** Inclusive maximum announced date */
     dateTo: z.iso.date().optional(),
-    /** Inclusive maximum amount raised. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings. */
+    /** Inclusive maximum amount raised in USD, using each round's USD-converted amount. Rounds with no recorded amount or no available USD conversion do not match. Use a plain whole-number amount such as 50000000; do not include currency signs, codes, comma grouping, decimals, or strings. */
     maxAmount: z.number().int().optional(),
-    /** Inclusive minimum amount raised. Use a plain whole-number amount such as 500000; do not include currency signs, codes, comma grouping, decimals, or strings. */
+    /** Inclusive minimum amount raised in USD, using each round's USD-converted amount. Rounds with no recorded amount or no available USD conversion do not match. Use a plain whole-number amount such as 500000; do not include currency signs, codes, comma grouping, decimals, or strings. */
     minAmount: z.number().int().optional(),
     /** Permit monogram fallback */
     permitMonogram: z.boolean().optional(),

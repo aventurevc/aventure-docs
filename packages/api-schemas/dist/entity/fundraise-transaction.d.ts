@@ -154,6 +154,18 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             unconvertedRoundCount: z.ZodInt;
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
+    financialInstrumentType: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        Bond: "Bond";
+        "Common Stock": "Common Stock";
+        "Convertible Note": "Convertible Note";
+        Grant: "Grant";
+        Loan: "Loan";
+        "Other Debt": "Other Debt";
+        "Other Equity": "Other Equity";
+        "Preferred Stock": "Preferred Stock";
+        SAFE: "SAFE";
+        Token: "Token";
+    }>>>;
     id: z.ZodUUID;
     investorAttribution: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         amountInvested: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -179,6 +191,7 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         sourceDetail: z.ZodString;
     }, z.core.$strip>>>;
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    roundType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceAttribution: z.ZodArray<z.ZodObject<{
         amountInvested: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         attributionType: z.ZodEnum<{

@@ -10,8 +10,9 @@ const EntityEnrichmentSchemaDefinition = z.object({
     address: z.array(AddressSchema),
     /** Entity classifications. Single-detail and full-detail batch reads include history; list, default batch, and similar-entity reads may return only current classifications. Use GET /v1/entities/{entityId}/classifications?includeInactive=true for the full history. */
     classification: EntityClassificationSchema,
+    /** Funding aggregate: enrichment.fundingDetail.totalRaisedUsd is the USD sum of recorded round amounts with available FX rates, not a complete lifetime total when round amounts or rates are missing. */
     fundingDetail: EntityFundingDetailSchema.nullish(),
-    /** Address id of the current headquarters: the current dominant (operating) address; absent when none is on record, even when a domicile (legal seat) exists. Read this instead of the deprecated isHq flag, which marks the legal seat. */
+    /** Operating headquarters address id: match enrichment.headquartersAddressId to enrichment.address[].id. Absent when no current dominant (operating) address is on record, even when a domicile (legal seat) exists. Deprecated isHq marks the legal seat, not the operating HQ. */
     headquartersAddressId: z.int().nullish(),
     /** When aVenture last verified that this entity runs no operating headquarters (a remote company); absent while a current operating headquarters is on record or no unexpired verification exists. */
     headquartersRemoteAsOf: z.iso.datetime({ offset: true }).nullish(),
