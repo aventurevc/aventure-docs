@@ -15,6 +15,7 @@ export declare const NewsParamSchema: z.ZodObject<{
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     category: z.ZodOptional<z.ZodString>;
     excludeId: z.ZodOptional<z.ZodInt>;
+    newsId: z.ZodOptional<z.ZodArray<z.ZodInt>>;
     "owner.entityId": z.ZodOptional<z.ZodUUID>;
     "owner.personId": z.ZodOptional<z.ZodUUID>;
     publishedAfter: z.ZodOptional<z.ZodISODate>;

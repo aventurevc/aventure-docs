@@ -16,6 +16,8 @@ export const NewsParamSchema = PageParamSchema.extend({
     category: z.string().optional(),
     /** Exclude one news article by id. */
     excludeId: z.int().optional(),
+    /** Return only these news article ids. */
+    newsId: z.array(z.int()).max(200).optional(),
     /** Owning entity id; set only when personId is absent. */
     "owner.entityId": z.uuid().optional(),
     /** Owning person id; set only when entityId is absent. */

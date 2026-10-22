@@ -21,12 +21,14 @@ const FederatedSearchSchemaDefinition = z.object({
     person: PersonNaturalSearchResultSchema,
     /** Public detail for people on the person result page, in search rank order, with at most two public entity associations per person; person address and URL enrichment is omitted. */
     personDetail: z.array(PersonDetailSchema),
-    /** Whether people lead this page: the query names a person, a web-found person's profile shows, or the query asks for people by a search catalog people term. */
+    /** Whether people lead this page: `section` starts with `person`. */
     personLead: z.boolean(),
     /** Requested and executed strategy for each search scope. */
     provenance: FederatedSearchProvenanceSchema,
     /** A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */
     qualifier: SearchQualifierSchema.nullish(),
+    /** Result sections from most to least relevant. People lead when the query names a person, a web-found person's profile shows, or the query asks for people by a search catalog people term, and come last otherwise. Companies, products and services, and investors follow the rank of each section's best entity row, so a name whose best match is an investment firm leads with investors; sections with no entity row follow in that same fixed order. */
+    section: z.array(z.enum(["person", "company", "productService", "investor"])).optional(),
 });
 /**
  * Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.

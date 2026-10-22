@@ -6,6 +6,7 @@ declare const EnrichmentBatchSchemaDefinition: z.ZodObject<{
         INDIVIDUAL: "INDIVIDUAL";
     }>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    newsId: z.ZodOptional<z.ZodArray<z.ZodInt>>;
     personId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
     taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;

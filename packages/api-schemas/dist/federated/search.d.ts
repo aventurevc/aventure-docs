@@ -9398,6 +9398,12 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }, import("../search/qualifier-option.ts").SearchQualifierOptionSchemaInput>>>;
         prompt: z.ZodString;
     }, z.core.$strip>>>;
+    section: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+        company: "company";
+        investor: "investor";
+        person: "person";
+        productService: "productService";
+    }>>>;
 }, z.core.$strip>;
 type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>;
 export interface FederatedSearchSchemaInput extends z.input<typeof FederatedSearchSchemaDefinition> {

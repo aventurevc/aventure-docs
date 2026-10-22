@@ -8,6 +8,8 @@ const EnrichmentBatchSchemaDefinition = z.object({
     mode: EnrichmentModeSchema.optional(),
     /** Model id for each run's lead agent; omit to use aVenture's default model */
     model: z.string().nullish(),
+    /** News article ids. The server identifies every company and person each article names, as POST /v1/lookup-mentions does with sourceNewsId, adds the article's linked companies and people, and files one enrichment per distinct record. */
+    newsId: z.array(z.int()).optional(),
     /** Canonical person UUIDs to enrich, filed in order after every entity */
     personId: z.array(z.uuid()).optional(),
     /** Task preset keys that scope or emphasize every run; at least one is required when mode is INDIVIDUAL, and an unknown key is a 400 */
