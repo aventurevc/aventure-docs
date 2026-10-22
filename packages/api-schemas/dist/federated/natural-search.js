@@ -27,6 +27,8 @@ const FederatedNaturalSearchSchemaDefinition = z.object({
     reasoningEffort: ReasoningEffortSchema.nullish(),
     /** Search catalog revision this search uses for its global search policy and vocabulary; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404. */
     searchCatalogRevision: z.int().nullish(),
+    /** News article whose public entity mentions join the entity candidates and are judged with them against the question */
+    sourceNewsId: z.int().nullish(),
     /** Runtime policy revision this search uses for the serving deployment's execution budgets; null reads that deployment's current revision. Callers without private-data access always read the current revision. An unknown revision returns 404. */
     tenantPolicyRevision: z.int().nullish(),
 });

@@ -194,6 +194,7 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
         searchCatalogRevision?: number | null | undefined;
         tenantPolicyRevision?: number | null | undefined;
     }, import("../natural/search.ts").NaturalSearchSchemaInput>>;
+    sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type EntityNaturalSearchDefinition = z.infer<typeof EntityNaturalSearchSchemaDefinition>;
 export interface EntityNaturalSearchSchemaInput extends z.input<typeof EntityNaturalSearchSchemaDefinition> {

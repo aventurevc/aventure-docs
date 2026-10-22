@@ -219,6 +219,7 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
         };
     }>>;
     searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     tenantPolicyRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
