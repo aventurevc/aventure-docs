@@ -36,10 +36,12 @@ The response is the full company profile: identity in `core`, including the
 
 ## 3. Find a Company by Name
 
-The free plan includes 20 name lookups a day (steps 3 and 5); past those, and for
-any search by description (steps 4 and 5), the API answers `402` with `code`
-`subscription_required` until you move to [AI Plus or AI Pro](https://aventure.vc/pricing). Step 2's
-website lookup and step 6 work on every plan.
+The free plan includes daily allowances for name lookups (steps 3 and 5) and
+searches by description (steps 4 and 5). Past either allowance, the API answers
+`402` with `code` `subscription_required` until the next UTC day or an upgrade to
+AI Plus or AI Pro. [Plans and usage](/plans-and-usage) explains the allowances
+and paid-only features, including link search and page reads. Step 2's website
+lookup and step 6 work on every plan.
 
 `POST /v1/lookup` decides which company or person a name refers to. Add a
 website, a location, or a few words of context to tell namesakes apart:
@@ -98,7 +100,7 @@ curl -H "Authorization: Bearer $AUTH_TOKEN" \
 
 ## Plans and Usage
 
-Calls draw on your plan's monthly allowances. When one runs out, the API answers
+Metered calls draw on your plan's monthly allowances. When one runs out, the API answers
 `429` with `code` `billing_allowance_exhausted`.
 [Plans and usage](/plans-and-usage) explains what counts and how to upgrade.
 
