@@ -7,15 +7,20 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install Playwright
-      shell: bash
-      run: |
-        npm install --prefix "$RUNNER_TEMP/mobile-nav" --no-save --no-audit --no-fund playwright@1.64.0
-        "$RUNNER_TEMP/mobile-nav/node_modules/.bin/playwright" install --with-deps webkit chromium
-        cp "$GITHUB_WORKSPACE/scripts/check-mobile-nav.mjs" "$RUNNER_TEMP/mobile-nav/"
-
     - name: Check phone navigation
       shell: bash
       env:
         SITE_URL: ${{ inputs.site-url }}
-      run: node "$RUNNER_TEMP/mobile-nav/check-mobile-nav.mjs" "$SITE_URL"
+        PLAYWRIGHT_VERSION: "1.64.0"
+      # The image supplies browsers and OS dependencies; only the matching npm
+      # package is installed at runtime. Keep both versions on this single pin.
+      run: |
+        docker run --rm --init --ipc=host \
+          -e SITE_URL -e PLAYWRIGHT_VERSION \
+          -v "$GITHUB_WORKSPACE/scripts/check-mobile-nav.mjs:/check-mobile-nav.mjs:ro" \
+          "mcr.microsoft.com/playwright:v${PLAYWRIGHT_VERSION}-noble" \
+          bash -euc '
+            npm install --prefix /tmp/mobile-nav --no-save --no-audit --no-fund "playwright@$PLAYWRIGHT_VERSION"
+            cp /check-mobile-nav.mjs /tmp/mobile-nav/
+            node /tmp/mobile-nav/check-mobile-nav.mjs "$SITE_URL"
+          '

@@ -6,6 +6,7 @@ on:
       - main
     # Only docs release inputs select a publication.
     paths:
+      - ".github/actions/**"
       - ".github/workflows/**"
       - "fern/**"
       - "openapi/**"

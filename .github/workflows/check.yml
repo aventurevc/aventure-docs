@@ -3,6 +3,7 @@ name: fern-check
 on:
   pull_request:
     paths:
+      - ".github/actions/**"
       - ".github/workflows/**"
       - "fern/**"
       - "openapi/**"
@@ -12,6 +13,7 @@ on:
     branches:
       - main
     paths:
+      - ".github/actions/**"
       - ".github/workflows/**"
       - "fern/**"
       - "openapi/**"
