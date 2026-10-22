@@ -4,7 +4,7 @@ subtitle: Ask Claude, ChatGPT, or any AI app about companies and people
 slug: mcp
 ---
 
-Connect ChatGPT, Claude, Grok, Gemini, Cursor, or any MCP client to aVenture's
+Connect ChatGPT, Claude, Grok, Gemini, Perplexity, Cursor, or any MCP client to aVenture's
 hosted server, then ask about private companies, their people, funding rounds,
 investors, and news. You need an
 [aVenture account](https://aventure.vc/sign-up); the free plan works. For a
@@ -45,9 +45,9 @@ mobile app before using it there.
 **One-shot prompt**
 
 ```text
-Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
-(Streamable HTTP, OAuth with automatic client registration). If you cannot
-add it yourself, walk me through ChatGPT Plugins > + > Add custom MCP server,
+I'll add the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth with automatic client registration) myself; give me the exact clicks:
+ChatGPT Plugins > + > Add custom MCP server,
 then create and install it as a plugin. After I sign in to aVenture, look
 up https://stripe.com on aVenture to confirm the connection works, then
 summarize what it returns. If a step fails, tell me which step and the exact
@@ -60,7 +60,7 @@ error.
 <Tab title="Claude">
 
 1. Open [Customize > Connectors](https://claude.ai/customize/connectors).
-2. Select **Add > Custom > Web**.
+2. Select **Add connector**, then **Add custom connector**.
 3. Name it **aVenture**, enter `https://mcp.aventure.vc/mcp`, and continue.
 4. Keep the detected OAuth settings. Choose **Sign in now** and
    **Register automatically**.
@@ -75,9 +75,10 @@ need to enable the connector first.
 **One-shot prompt**
 
 ```text
-Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
-(Streamable HTTP, OAuth with automatic client registration). If you cannot
-add it yourself, walk me through Customize > Connectors > Add > Custom > Web,
+I'll add the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth with automatic client registration) myself; give me the exact clicks:
+Customize > Connectors > Add connector >
+Add custom connector,
 then enable aVenture for this chat. After I sign in to aVenture, look up
 https://stripe.com on aVenture to confirm the connection works, then
 summarize what it returns. If a step fails, tell me which step and the exact
@@ -98,8 +99,8 @@ error.
 **One-shot prompt**
 
 ```text
-Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
-(Streamable HTTP, OAuth). If you cannot add it yourself, walk me through
+I'll add the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth) myself; give me the exact clicks:
 Connectors > New Connector > Custom on grok.com. After I sign in to aVenture,
 look up https://stripe.com on aVenture to confirm the connection works, then
 summarize what it returns. If a step fails, tell me which step and the exact
@@ -107,6 +108,37 @@ error.
 ```
 
 [Grok's current connector instructions](https://docs.x.ai/grok/connectors)
+
+</Tab>
+<Tab title="Perplexity">
+
+1. Open [Plugins](https://www.perplexity.ai/computer/plugins) in Perplexity's
+   sidebar, or **Customize > Connectors** if you don't see Plugins yet.
+2. Select **Add custom > Connector > Add MCP connector**, then **Remote**.
+3. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp` as the MCP
+   Server URL.
+4. Choose **OAuth** authentication and **Streamable HTTP** transport. Leave the
+   client ID and secret empty.
+5. Check the acknowledgement box and select **Add**.
+6. Select the aVenture connector card, sign in to aVenture, and approve the
+   access it asks for.
+
+Custom connectors need Perplexity Pro, Max, or Enterprise. In an Enterprise
+organization, an admin must first turn on **Allow members to add custom
+connectors**.
+
+**One-shot prompt**
+
+```text
+I'll add the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth) myself; give me the exact clicks:
+Plugins > Add custom > Connector > Add MCP connector > Remote. After I sign in
+to aVenture, look up https://stripe.com on aVenture to confirm the connection
+works, then summarize what it returns. If a step fails, tell me which step and
+the exact error.
+```
+
+[Perplexity's current connector instructions](https://www.perplexity.ai/help-center/en/articles/13915507-adding-custom-remote-connectors)
 
 </Tab>
 <Tab title="Gemini">
@@ -131,8 +163,8 @@ it then works on web and mobile.
 **One-shot prompt**
 
 ```text
-Connect the aVenture MCP server at https://mcp.aventure.vc/mcp
-(Streamable HTTP, OAuth). If you cannot add it yourself, walk me through
+I'll add the aVenture MCP server at https://mcp.aventure.vc/mcp
+(Streamable HTTP, OAuth) myself; give me the exact clicks:
 Settings > Connected Apps > Custom apps > Add a custom app on the web.
 After I sign in to aVenture, look up https://stripe.com through @aVenture
 to confirm the connection works, then summarize what it returns. If a step
@@ -256,9 +288,11 @@ Once connected, ask things like:
 - "Find fintech founders who previously worked at PayPal."
 
 <Note>
-The free plan finds 20 companies or people by name a day; finding them by
-description needs a paid plan ([AI Plus or AI Pro](https://aventure.vc/pricing)). Past the daily 20,
-ask by website:
+The free plan finds 20 companies or people by name a day and includes a daily
+allowance of plain-English company and people searches, such as "Who founded
+Ramp?" Link search, page reads, and research runs need a paid plan
+([AI Plus or AI Pro](https://aventure.vc/pricing)). Past a daily allowance, ask
+by website:
 "Read aVenture's profile for ramp.com."
 </Note>
 
@@ -322,8 +356,9 @@ configure a URL, not a command.
 
 ## Next Steps
 
-- [Get AI Plus for $49/mo](https://aventure.vc/pricing) to ask plain-English
-  questions by name or description.
+- [Get AI Plus for $49/mo](https://aventure.vc/pricing) to look up and search
+  past the free daily allowances, search by link, read pages, and request
+  research.
 - [Answer a real question](/first-answer) chains these tools into one result.
 - [Use cases and examples](/use-cases) has an MCP tool call for each common job.
 - [API reference](/api-reference) lists the operations behind every tool.

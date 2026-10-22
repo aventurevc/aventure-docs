@@ -18,10 +18,11 @@ API, CLI, and MCP calls all draw on the same account. [Sign up free](https://ave
 Expert adds custom reports, a CRM integration, and a dedicated analyst;
 [contact sales](https://aventure.vc/forms/contact) for its price.
 
-- The free plan includes 20 name identifications (lookups) per day; more
-  need AI Plus or AI Pro.
-- AI Plus adds plain-English questions and name lookup in the API, CLI, and MCP
-  server, competitor, provider, and investor-activity questions, saved lists,
+- The free plan includes 20 name identifications (lookups) per day and a daily
+  allowance of plain-English company and people searches; more need AI Plus or
+  AI Pro.
+- AI Plus removes the daily caps on plain-English questions and name lookup in
+  the API, CLI, and MCP server, and adds link search, page reads, competitor, provider, and investor-activity questions, saved lists,
   unlimited search results, and industry briefs. Its research requests fill or
   refresh a company or person profile, including its Analysis tab.
 - Pay-as-you-go top-ups: credit packs of \$25, \$50, \$100, and \$250. Overage
@@ -39,13 +40,15 @@ Expert adds custom reports, a CRM integration, and a dedicated analyst;
   month (UTC), on a separate allowance from profile views; the
   [company brand lookup](/company-brand-lookup) lists each plan's amount.
 - **Web searches** count one each.
-- **Plain-English searches** have no monthly allowance. They are rate-limited
-  per account instead: a `429` with `limitType` `NATURAL_SEARCH` means wait the
-  `Retry-After` seconds, not upgrade.
+- **Plain-English searches** have no monthly allowance. The free plan includes
+  a daily allowance of them; past it, they answer `402` with `code`
+  `subscription_required`. Every plan is also rate-limited per account: a `429`
+  with `limitType` `NATURAL_SEARCH` means wait the `Retry-After` seconds, not
+  upgrade.
 - **Research requests** count against the allowance for adding or updating a
   company or person.
-- **Features outside your plan**, such as plain-English search on a plan that
-  does not include it, answer `402` with `code` `subscription_required`.
+- **Features outside your plan**, such as link search or page reads on the
+  free plan, answer `402` with `code` `subscription_required`.
 
 Allowances reset at the start of each calendar month (UTC).
 
