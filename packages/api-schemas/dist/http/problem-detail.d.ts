@@ -275,7 +275,6 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     matchedBlocklistKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     mediaType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     moderationReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    parseError: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     path: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     properties: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<import("./json-value.ts").JsonValue, import("./json-value.ts").JsonValue, z.core.$ZodTypeInternals<import("./json-value.ts").JsonValue, import("./json-value.ts").JsonValue>>>>;
     proseViolation: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{

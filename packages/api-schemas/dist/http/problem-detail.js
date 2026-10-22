@@ -227,7 +227,6 @@ const ProblemDetailSchemaDefinition = z.object({
     matchedBlocklistKey: z.string().nullish(),
     mediaType: z.string().nullish(),
     moderationReason: z.string().nullish(),
-    parseError: z.string().nullish(),
     path: z.string().nullish(),
     properties: z.record(z.string(), JsonValueSchema).optional(),
     /** Every rejected passage of a PROSE_REJECTED write, once per problem it shows; absent for every other problem. */
