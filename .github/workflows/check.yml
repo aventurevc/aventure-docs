@@ -40,8 +40,11 @@ jobs:
       - name: Check documented Bash examples
         run: scripts/check-docs-site.sh
 
-      - name: Setup Fern CLI
-        uses: fern-api/setup-fern-cli@v1
+      # publish-docs validates this same commit on pushes before publication.
+      - name: Install the configured Fern CLI
+        if: github.event_name == 'pull_request'
+        run: npm install -g "fern-api@$(node -p 'require("./fern/fern.config.json").version')"
 
       - name: Check API is valid
+        if: github.event_name == 'pull_request'
         run: fern check

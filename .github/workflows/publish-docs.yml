@@ -29,8 +29,8 @@ jobs:
         with:
           node-version: "24"
 
-      - name: Setup Fern CLI
-        uses: fern-api/setup-fern-cli@v1
+      - name: Install the configured Fern CLI
+        run: npm install -g "fern-api@$(node -p 'require("./fern/fern.config.json").version')"
 
       - name: Validate the same commit before publishing
         run: fern check
