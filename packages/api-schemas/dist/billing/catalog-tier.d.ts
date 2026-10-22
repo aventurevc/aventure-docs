@@ -10,6 +10,8 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
     }, import("./catalog-allowance.ts").BillingCatalogAllowanceSchemaInput>>>;
     description: z.ZodString;
     displayName: z.ZodString;
+    lookupDailyLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    searchDailyLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     tier: z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
@@ -21,7 +23,7 @@ type BillingCatalogTierDefinition = z.infer<typeof BillingCatalogTierSchemaDefin
 export interface BillingCatalogTierSchemaInput extends z.input<typeof BillingCatalogTierSchemaDefinition> {
 }
 /**
- * One subscription tier and its monthly caps.
+ * One subscription tier, its monthly caps, and its free daily allowances.
  *
  * @openapiSchema BillingCatalogTier
  * @endpoint GET /v1/billing/plans

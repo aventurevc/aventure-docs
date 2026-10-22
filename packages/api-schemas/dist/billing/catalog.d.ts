@@ -42,6 +42,8 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         }[];
         description: string;
         displayName: string;
+        lookupDailyLimit?: number | null | undefined;
+        searchDailyLimit?: number | null | undefined;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
     }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput, z.core.$ZodTypeInternals<{
         aiCreditLimit?: number | null | undefined;
@@ -51,6 +53,8 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         }[];
         description: string;
         displayName: string;
+        lookupDailyLimit?: number | null | undefined;
+        searchDailyLimit?: number | null | undefined;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
     }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput>>>;
 }, z.core.$strip>;
@@ -58,7 +62,7 @@ type BillingCatalogDefinition = z.infer<typeof BillingCatalogSchemaDefinition>;
 export interface BillingCatalogSchemaInput extends z.input<typeof BillingCatalogSchemaDefinition> {
 }
 /**
- * Every self-serve subscription tier with its monthly allowance caps, every plan Checkout sells, and the prices of usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.
+ * Every self-serve subscription tier with its monthly allowance caps and free daily allowances, every plan Checkout sells, and the prices of usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.
  *
  * @openapiSchema BillingCatalog
  * @endpoint GET /v1/billing/plans

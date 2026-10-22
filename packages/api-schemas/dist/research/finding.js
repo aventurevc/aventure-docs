@@ -6,7 +6,7 @@ const ResearchFindingSchemaDefinition = z.object({
     gateId: z.string().nullish(),
     /** The exact text on sourceUrl that states the fact, copied verbatim; a fragment short enough to appear on any page is refused. */
     quote: z.string(),
-    /** Absolute http or https URL of the page that supports the fact; aVenture pages are refused. */
+    /** Absolute http or https URL of the page that supports the fact; aVenture pages are refused. Each sourceUrl must already be stored evidence for this write: the page cited as sourceDetail, a page the authorizing harness run read, or a stored page associated with the subject. Fetch the exact page through aVenture before citing it; each quote must occur in that page's stored text. */
     sourceUrl: z.string(),
     /** The fact to write, in plain words. */
     statement: z.string(),

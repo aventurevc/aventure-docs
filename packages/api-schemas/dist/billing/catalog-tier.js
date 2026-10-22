@@ -8,10 +8,14 @@ const BillingCatalogTierSchemaDefinition = z.object({
     /** Who the tier is for, in one or two sentences; it states no caps or prices, which allowance and plan carry. */
     description: z.string(),
     displayName: z.string(),
+    /** Name lookups per UTC day without a paid plan; past it a lookup answers 402 subscription_required until the next UTC day. Absent on a paid tier, which has no daily lookup gate. */
+    lookupDailyLimit: z.int().nullish(),
+    /** Searches per UTC day without a paid plan: plain-English company, people, and federated search, one per request; link search always needs a paid plan. Past it a search answers 402 subscription_required until the next UTC day. Absent on a paid tier, which has no daily search gate. */
+    searchDailyLimit: z.int().nullish(),
     tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
 });
 /**
- * One subscription tier and its monthly caps.
+ * One subscription tier, its monthly caps, and its free daily allowances.
  *
  * @openapiSchema BillingCatalogTier
  * @endpoint GET /v1/billing/plans
