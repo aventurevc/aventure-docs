@@ -42,6 +42,7 @@ export declare const FundingStageSchema: z.ZodUnion<readonly [z.ZodEnum<{
     Acquired: "Acquired";
     "Acquired Subsidiary": "Acquired Subsidiary";
     Angel: "Angel";
+    Bankrupt: "Bankrupt";
     Fund: "Fund";
     Government: "Government";
     "Investment Firm": "Investment Firm";
@@ -81,6 +82,7 @@ export declare const FundingStageSchema: z.ZodUnion<readonly [z.ZodEnum<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";
         Angel: "Angel";
+        Bankrupt: "Bankrupt";
         Fund: "Fund";
         Government: "Government";
         "Investment Firm": "Investment Firm";

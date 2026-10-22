@@ -26,6 +26,7 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
         Acquired: "Acquired";
         "Acquired Subsidiary": "Acquired Subsidiary";
         Angel: "Angel";
+        Bankrupt: "Bankrupt";
         Fund: "Fund";
         Government: "Government";
         "Investment Firm": "Investment Firm";
@@ -65,6 +66,7 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
             Acquired: "Acquired";
             "Acquired Subsidiary": "Acquired Subsidiary";
             Angel: "Angel";
+            Bankrupt: "Bankrupt";
             Fund: "Fund";
             Government: "Government";
             "Investment Firm": "Investment Firm";

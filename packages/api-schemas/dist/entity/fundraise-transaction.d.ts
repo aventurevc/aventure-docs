@@ -74,6 +74,7 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 Acquired: "Acquired";
                 "Acquired Subsidiary": "Acquired Subsidiary";
                 Angel: "Angel";
+                Bankrupt: "Bankrupt";
                 Fund: "Fund";
                 Government: "Government";
                 "Investment Firm": "Investment Firm";
@@ -113,6 +114,7 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                     Acquired: "Acquired";
                     "Acquired Subsidiary": "Acquired Subsidiary";
                     Angel: "Angel";
+                    Bankrupt: "Bankrupt";
                     Fund: "Fund";
                     Government: "Government";
                     "Investment Firm": "Investment Firm";

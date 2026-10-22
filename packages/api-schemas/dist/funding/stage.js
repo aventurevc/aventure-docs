@@ -38,6 +38,7 @@ const FundingStageSchemaKnownMembers = z.enum([
     "Public",
     "Acquired",
     "Acquired Subsidiary",
+    "Bankrupt",
 ]);
 /**
  * Canonical inferred equity, entity-type, or Company operating-status stage emitted by the entity fundraise rollup. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.
