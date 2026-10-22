@@ -1,6 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 const SearchHitSchemaDefinition = z.object({
+    /** Image the provider attached to this result (a LinkedIn profile's headshot); null when it attached none. */
+    image: z.string().nullish(),
     relevanceScore: z.number(),
     snippet: z.string(),
     title: z.string(),

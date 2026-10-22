@@ -9,6 +9,8 @@ const HarnessRunDetailSchemaDefinition = z.object({
     entity: EntitySchema.nullish(),
     /** Follow-up admission and direct child run ids for this terminal generation */
     followUp: HarnessRunFollowUpSchema.optional(),
+    /** Time the run's newest stream event was recorded; null when the run has no events. A running run whose value stops advancing has stalled */
+    lastEventAt: z.iso.datetime({ offset: true }).nullish(),
     /** Latest research progress; null when none is available */
     latestStatus: HarnessRunProgressSchema.nullish(),
     /** Parent organization's core record when the resolved entity is a Product/Service; null for every other entity type */

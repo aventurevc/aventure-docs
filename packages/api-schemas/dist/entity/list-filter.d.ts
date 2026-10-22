@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a word of a company's name, legal name, slug, or alias as textSearch, or a known company name as entityName.
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link

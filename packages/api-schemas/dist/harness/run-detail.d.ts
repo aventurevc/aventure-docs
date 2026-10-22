@@ -60,6 +60,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
         hasMore: z.ZodBoolean;
         runId: z.ZodArray<z.ZodUUID>;
     }, z.core.$strip>>;
+    lastEventAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     latestStatus: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         complete: z.ZodBoolean;
         entitySlug: z.ZodNullable<z.ZodString>;

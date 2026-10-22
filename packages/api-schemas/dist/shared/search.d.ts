@@ -4729,6 +4729,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 };
             }[] | null | undefined;
         }[];
+        personLead: boolean;
         provenance: {
             answerUnavailable: boolean;
             entity: {
@@ -9475,6 +9476,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 };
             }[] | null | undefined;
         }[];
+        personLead: boolean;
         provenance: {
             answerUnavailable: boolean;
             entity: {

@@ -15,7 +15,7 @@ const SearchPersonProfileSchemaDefinition = z.object({
     named: z.string(),
     /** Where the profile names the organization the query paired with the person: in its headline, elsewhere in the profile text, or not at all; null when the query named no organization. */
     organizationEvidence: z.enum(["headline", "profile", "none"]).nullish(),
-    /** Headshot URL from aVenture's stored LinkedIn capture; null until one is stored or when the capture holds no usable headshot. */
+    /** Headshot URL: the web search index's LinkedIn headshot until aVenture's stored LinkedIn capture supplies one; null when neither holds a usable headshot. */
     photoUrl: z.string().nullish(),
     /** Canonical aVenture person page URL; never an external profile URL. */
     profileUrl: z.string(),

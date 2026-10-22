@@ -21,6 +21,8 @@ const FederatedSearchSchemaDefinition = z.object({
     person: PersonNaturalSearchResultSchema,
     /** Public detail for people on the person result page, in search rank order, with at most two public entity associations per person; person address and URL enrichment is omitted. */
     personDetail: z.array(PersonDetailSchema),
+    /** Whether people lead this page: the query names a person, a web-found person's profile shows, or the query asks for people by a search catalog people term. */
+    personLead: z.boolean(),
     /** Requested and executed strategy for each search scope. */
     provenance: FederatedSearchProvenanceSchema,
     /** A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */

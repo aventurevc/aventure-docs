@@ -9,7 +9,7 @@ import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
 import { UrlMatchModeSchema } from "../url/match-mode.js";
 /**
- * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a keyword as textSearch, or a known company name as entityName.
+ * Entity list filters and saved-view query state including semantic entity search. semanticQuery executes on GET /v1/entities and POST /v1/entities/search; saved views persist it for replay. Every other reused EntityFilter surface accepts the base EntityFilter, which omits semanticQuery. There is no query field: send free text describing the companies as semanticQuery, a word of a company's name, legal name, slug, or alias as textSearch, or a known company name as entityName.
  *
  * @openapiSchema EntityListFilter
  * @endpoint GET /v1/search/link
@@ -104,7 +104,7 @@ export const EntityListFilterSchema = z.strictObject({
     suppressZeroTotalRaised: z.boolean().nullish(),
     /** General classification tag values. */
     tag: z.array(z.string()).optional(),
-    /** Non-blank keyword/full-text search term. Use natural-search for plain-English or multi-constraint company requests. */
+    /** Non-blank company-identity search term: it matches only brand names, legal names, slugs, and name aliases (including near spellings of them), never descriptions, products, or topics. A topic, sector, or market word such as "climate" or "corporate card" returns no rows or name lookalikes here: filter by the industry, tag, mainProduct, or other classification fields, send the phrase as semanticQuery on POST /v1/entities/search, or ask natural search for plain-English or multi-constraint company requests. */
     textSearch: z.string().nullish(),
     /** Customer-type classification values. */
     typeCustomer: z.array(z.string()).optional(),

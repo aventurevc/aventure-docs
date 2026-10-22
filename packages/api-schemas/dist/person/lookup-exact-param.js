@@ -23,9 +23,9 @@ export const PersonLookupExactParamSchema = z.object({
     location: z.string().optional(),
     /** Projection qualifier — max association values to return; bounded internally to the association limit. Default: 40. */
     maxAssociations: z.int().optional(),
-    /** Group C — candidate lookup signal: loose name match (any of given/family/full). Combine with other group-C signals for disambiguation. Mutually exclusive with id and slug; may be combined with url for fallback. */
+    /** Group C — candidate lookup signal: loose name match (any of given/family/full). A name alone never resolves; combine it with other group-C signals or url. Mutually exclusive with id and slug. */
     nameAny: z.string().optional(),
-    /** Group C — candidate lookup signal: person full name. Combine with other group-C signals (nameAny, location, urlDomain) for bounded candidate search. Mutually exclusive with id and slug; may be combined with url for fallback. */
+    /** Group C — candidate lookup signal: person full name. A name alone never resolves (404): pair it with other group-C signals (location, urlDomain) or url. To find a person by name, use lookupRecord with kind PERSON; for the people at a company, use listEntityPersonAssociations. Mutually exclusive with id and slug. */
     nameFull: z.string().optional(),
     /** Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response. */
     permitMonogram: z.boolean().optional(),

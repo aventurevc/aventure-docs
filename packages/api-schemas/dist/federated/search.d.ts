@@ -9345,6 +9345,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             };
         }[] | null | undefined;
     }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
+    personLead: z.ZodBoolean;
     provenance: z.ZodType<{
         answerUnavailable: boolean;
         entity: {

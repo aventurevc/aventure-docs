@@ -4718,6 +4718,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
             }[] | null | undefined;
         }[];
+        personLead: boolean;
         provenance: {
             answerUnavailable: boolean;
             entity: {
@@ -9464,6 +9465,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
             }[] | null | undefined;
         }[];
+        personLead: boolean;
         provenance: {
             answerUnavailable: boolean;
             entity: {

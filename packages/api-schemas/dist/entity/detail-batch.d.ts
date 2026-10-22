@@ -9,7 +9,7 @@ type EntityDetailBatchDefinition = z.infer<typeof EntityDetailBatchSchemaDefinit
 export interface EntityDetailBatchSchemaInput extends z.input<typeof EntityDetailBatchSchemaDefinition> {
 }
 /**
- * Batch request for entity detail retrieval by id, slug, or current joined URL. Each identifier array accepts at most 200 values, and at most 200 identifiers may be submitted across entityId, slug, and url.
+ * Batch request for entity detail retrieval by id, slug, or current joined URL. Each identifier array accepts at most 200 values, and at most 200 identifiers may be submitted across entityId, slug, and url. It takes no names: identify a company by name with lookupRecord and its name field.
  *
  * @openapiSchema EntityDetailBatch
  * @endpoint POST /v1/entities/lookup-batch
