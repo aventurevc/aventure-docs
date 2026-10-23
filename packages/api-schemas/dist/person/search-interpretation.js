@@ -5,8 +5,10 @@ import { PersonFilterSchema } from "./filter.js";
 import { SearchModeExecutionSchema } from "../search/mode-execution.js";
 import { SearchOrderingPersonSortFieldSchema } from "../search/ordering-person-sort-field.js";
 const PersonSearchInterpretationSchemaDefinition = z.object({
-    /** Planner confidence in the structured interpretation. */
+    /** Confidence in interpreting the request as this structured people query. */
     confidence: ConfidenceSchema,
+    /** Employer-business topic resolved through entity similarity before people paging. Matching employer IDs narrow filter.entityFilter.entityId; an empty selection returns no people without removing hard constraints. Employer kinds exclude Product and Service records, which are offerings rather than employers. Personal expertise stays in filter.semanticQuery. Null when employer selection is entirely structured. */
+    employerSemanticQuery: z.string().nullish(),
     /** Requested and executed search strategy. */
     execution: SearchModeExecutionSchema,
     /** True when the semantic fallback replaced an unconstrained planner result with a semantic search over the original query. */

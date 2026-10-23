@@ -9,7 +9,7 @@ const PersonNaturalSearchResultSchemaDefinition = z.object({
     interpretation: PersonSearchInterpretationSchema,
     /** Personal investment participation supporting the returned people. Firm portfolio activity is never attributed to employees. Empty for other question intents. */
     investment: z.array(SearchInvestmentSchema),
-    /** Whether people lead this search, stamped only on person stream events. */
+    /** Whether people are the confirmed requested focus of this search. */
     personLead: z.boolean(),
     /** aVenture people resolved or filed from web-discovered LinkedIn profiles whom no returned person matches, grouped by `named` in query order. A search that has not run yet runs only for a signed-in subscriber with `layer=web`. */
     profile: z.array(SearchPersonProfileSchema),

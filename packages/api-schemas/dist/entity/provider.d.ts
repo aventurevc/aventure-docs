@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * The current entity a fund or product/service is offered by: a fund's manager firm, a product/service's provider, through its current primary edge to a live, listed provider. Null on every other entity type.
+ * The current entity a fund or product/service is offered by: a fund's manager organization, a product/service's provider, through its current primary edge to a live, listed provider. Null on every other entity type.
  *
  * @openapiSchema EntityProvider
  * @endpoint GET /v1/entities

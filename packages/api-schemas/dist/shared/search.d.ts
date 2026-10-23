@@ -3528,6 +3528,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
         person: {
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                employerSemanticQuery?: string | null | undefined;
                 execution: {
                     modeRequested: string;
                     modeUsed: string;
@@ -8278,6 +8279,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
         person: {
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                employerSemanticQuery?: string | null | undefined;
                 execution: {
                     modeRequested: string;
                     modeUsed: string;

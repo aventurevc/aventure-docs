@@ -5,6 +5,7 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
         LOW: "LOW";
         MEDIUM: "MEDIUM";
     }>;
+    employerSemanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     execution: z.ZodType<{
         modeRequested: string;
         modeUsed: string;

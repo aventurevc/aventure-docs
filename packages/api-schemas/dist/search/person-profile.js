@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 const SearchPersonProfileSchemaDefinition = z.object({
     /** Current company named by aVenture's stored LinkedIn capture; null until one is stored. */
     currentCompany: z.string().nullish(),
-    /** Profile headline as the web search index holds it; null when it has none. */
+    /** Profile headline from aVenture's stored LinkedIn capture, or the web search index until a capture is stored; null when that source has no headline. */
     headline: z.string().nullish(),
     /** Canonical aVenture person id. */
     id: z.uuid(),

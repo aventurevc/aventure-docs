@@ -6942,6 +6942,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
     person: z.ZodType<{
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
+            employerSemanticQuery?: string | null | undefined;
             execution: {
                 modeRequested: string;
                 modeUsed: string;
@@ -7337,6 +7338,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
     }, import("../person/natural-search-result.ts").PersonNaturalSearchResultSchemaInput, z.core.$ZodTypeInternals<{
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
+            employerSemanticQuery?: string | null | undefined;
             execution: {
                 modeRequested: string;
                 modeUsed: string;

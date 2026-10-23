@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
     interpretation: z.ZodType<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
+        employerSemanticQuery?: string | null | undefined;
         execution: {
             modeRequested: string;
             modeUsed: string;
@@ -186,6 +187,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
         unsupported?: string | null | undefined;
     }, import("./search-interpretation.ts").PersonSearchInterpretationSchemaInput, z.core.$ZodTypeInternals<{
         confidence: "HIGH" | "LOW" | "MEDIUM";
+        employerSemanticQuery?: string | null | undefined;
         execution: {
             modeRequested: string;
             modeUsed: string;

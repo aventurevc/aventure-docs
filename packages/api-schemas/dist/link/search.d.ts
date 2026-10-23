@@ -3517,6 +3517,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
         person: {
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                employerSemanticQuery?: string | null | undefined;
                 execution: {
                     modeRequested: string;
                     modeUsed: string;
@@ -8267,6 +8268,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
         person: {
             interpretation: {
                 confidence: "HIGH" | "LOW" | "MEDIUM";
+                employerSemanticQuery?: string | null | undefined;
                 execution: {
                     modeRequested: string;
                     modeUsed: string;
