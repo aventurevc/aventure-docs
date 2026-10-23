@@ -238,6 +238,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cursor/slice-shared-search-list",
         schemaName: "CursorSliceSharedSearchListSchema",
     },
+    DatasourceDataSourceType: {
+        modulePath: "datasource/data-source-type",
+        schemaName: "DatasourceDataSourceTypeSchema",
+    },
     DatasourceSourceMetadata: {
         modulePath: "datasource/source-metadata",
         schemaName: "DatasourceSourceMetadataSchema",
@@ -424,6 +428,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityPersonAssociation: {
         modulePath: "entity/person-association",
         schemaName: "EntityPersonAssociationSchema",
+    },
+    EntityPersonAssociationFilter: {
+        modulePath: "entity/person-association-filter",
+        schemaName: "EntityPersonAssociationFilterSchema",
     },
     EntityPersonOwner: { modulePath: "entity/person-owner", schemaName: "EntityPersonOwnerSchema" },
     EntityProvider: { modulePath: "entity/provider", schemaName: "EntityProviderSchema" },
@@ -612,6 +620,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     InvestorActivityFilter: {
         modulePath: "investor/activity-filter",
         schemaName: "InvestorActivityFilterSchema",
+    },
+    InvestorNameMatchMode: {
+        modulePath: "investor/name-match-mode",
+        schemaName: "InvestorNameMatchModeSchema",
     },
     JobEnqueue: { modulePath: "job/enqueue", schemaName: "JobEnqueueSchema" },
     JobState: { modulePath: "job/state", schemaName: "JobStateSchema" },
@@ -1047,6 +1059,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "strict/url-lookup-conflict",
         schemaName: "StrictUrlLookupConflictSchema",
     },
+    SuppressionReason: { modulePath: "suppression/reason", schemaName: "SuppressionReasonSchema" },
     SystemBuild: { modulePath: "system/system-build", schemaName: "SystemBuildSchema" },
     SystemBuildDetail: {
         modulePath: "system/system-build-detail",
@@ -1083,6 +1096,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
     WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },
     WebSearchProvider: { modulePath: "web/search-provider", schemaName: "WebSearchProviderSchema" },
+    WebSearchRecency: { modulePath: "web/search-recency", schemaName: "WebSearchRecencySchema" },
     WriterClaimSurface: {
         modulePath: "writer/claim-surface",
         schemaName: "WriterClaimSurfaceSchema",

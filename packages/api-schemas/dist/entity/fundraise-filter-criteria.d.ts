@@ -83,6 +83,10 @@ export declare const EntityFundraiseFilterCriteriaSchema: z.ZodObject<{
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
     }, z.core.$strip>>;
     investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        any: "any";
+        every: "every";
+    }>>>;
     lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
         max?: number | null | undefined;
         min?: number | null | undefined;

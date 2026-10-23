@@ -107,6 +107,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 investorName?: string[] | undefined;
+                investorNameMatch?: "any" | "every" | null | undefined;
                 lastRoundYearRange?: {
                     max?: number | null | undefined;
                     min?: number | null | undefined;
@@ -237,6 +238,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     }[] | undefined;
                 } | undefined;
                 investorName?: string[] | undefined;
+                investorNameMatch?: "any" | "every" | null | undefined;
                 lastRoundYearRange?: {
                     max?: number | null | undefined;
                     min?: number | null | undefined;

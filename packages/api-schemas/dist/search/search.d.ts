@@ -7,16 +7,24 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     deferredAiOverview: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     provider: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        BRIGHT_DATA: "BRIGHT_DATA";
         EXA: "EXA";
         EXA_DEEP: "EXA_DEEP";
         SERPAPI: "SERPAPI";
     }>, z.ZodString]> & {
         enum: {
+            BRIGHT_DATA: "BRIGHT_DATA";
             EXA: "EXA";
             EXA_DEEP: "EXA_DEEP";
             SERPAPI: "SERPAPI";
         };
     }>>;
+    recency: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        DAY: "DAY";
+        MONTH: "MONTH";
+        WEEK: "WEEK";
+        YEAR: "YEAR";
+    }>>>;
     region: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     resultLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     retrievedFor: z.ZodOptional<z.ZodNullable<z.ZodObject<{

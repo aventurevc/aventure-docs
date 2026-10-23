@@ -27,6 +27,7 @@ import { UrlMatchModeSchema } from "../url/match-mode.js";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
+ * @usedBySchema EntityPersonAssociationFilterSchema
  * @usedBySchema FederatedNaturalSearchSchema
  * @usedBySchema PersonFilterSchema
  * @contractShape entity.filter

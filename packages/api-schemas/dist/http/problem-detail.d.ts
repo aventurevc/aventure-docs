@@ -28,6 +28,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         JOBRUNR_DISABLED: "JOBRUNR_DISABLED";
         JOBRUNR_STORAGE_UNAVAILABLE: "JOBRUNR_STORAGE_UNAVAILABLE";
         account_exists: "account_exists";
+        async_lookup_sign_in_required: "async_lookup_sign_in_required";
         billing_additional_usage_cap_reached: "billing_additional_usage_cap_reached";
         billing_allowance_exhausted: "billing_allowance_exhausted";
         billing_credit_checkout_closed: "billing_credit_checkout_closed";

@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityListQualityGate
  * @endpoint GET /v1/entities
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}

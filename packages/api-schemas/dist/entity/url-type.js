@@ -7,6 +7,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}

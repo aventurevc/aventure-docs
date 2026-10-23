@@ -100,6 +100,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         deferredAiOverview?: boolean | undefined;
         language?: string | null | undefined;
         provider?: string | null | undefined;
+        recency?: "DAY" | "MONTH" | "WEEK" | "YEAR" | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
         retrievedFor?: {
@@ -116,6 +117,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         deferredAiOverview?: boolean | undefined;
         language?: string | null | undefined;
         provider?: string | null | undefined;
+        recency?: "DAY" | "MONTH" | "WEEK" | "YEAR" | null | undefined;
         region?: string | null | undefined;
         resultLimit?: number | null | undefined;
         retrievedFor?: {

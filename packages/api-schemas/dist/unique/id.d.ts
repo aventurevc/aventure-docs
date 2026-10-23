@@ -8,10 +8,12 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         cusip: "cusip";
         duns: "duns";
         ein: "ein";
+        fdicCert: "fdicCert";
         folk: "folk";
         isin: "isin";
         lei: "lei";
         orcid: "orcid";
+        rssd: "rssd";
         secCik: "secCik";
         ticker: "ticker";
     }>, z.ZodString]> & {
@@ -20,10 +22,12 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             cusip: "cusip";
             duns: "duns";
             ein: "ein";
+            fdicCert: "fdicCert";
             folk: "folk";
             isin: "isin";
             lei: "lei";
             orcid: "orcid";
+            rssd: "rssd";
             secCik: "secCik";
             ticker: "ticker";
         };

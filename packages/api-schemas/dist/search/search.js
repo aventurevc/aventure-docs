@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { WebSearchProviderSchema } from "../web/search-provider.js";
+import { WebSearchRecencySchema } from "../web/search-recency.js";
 const SearchSchemaDefinition = z.object({
     /** Set true only when an unmarked amount in the search text is intentional. */
     allowSuspectedShellStrip: z.boolean().nullish(),
@@ -17,6 +18,8 @@ const SearchSchemaDefinition = z.object({
     language: z.string().nullish(),
     /** Provider to search; omitted keeps the default, SerpAPI. EXA runs Exa's instant search with highlights and never falls back to SerpAPI: an Exa failure answers 503. EXA_DEEP runs Exa's slower, broader deep search (higher recall for market and provider questions, about 3-6 s) and falls back to SerpAPI on an Exa failure. Both Exa providers answer synchronously (`Prefer: respond-async` does not apply), are stored apart from SerpAPI results, and are charged like any search. */
     provider: WebSearchProviderSchema.nullish(),
+    /** Return only results Google dates within this window; BRIGHT_DATA only, refused with 400 for other providers. Omitted searches every date. */
+    recency: WebSearchRecencySchema.nullish(),
     /** Search region code */
     region: z.string().nullish(),
     /** Maximum number of normalized results to keep */

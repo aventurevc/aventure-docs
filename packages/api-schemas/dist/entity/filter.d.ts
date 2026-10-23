@@ -18,6 +18,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityFilterSearchSchema
  * @usedBySchema EntityNaturalSearchSchema
+ * @usedBySchema EntityPersonAssociationFilterSchema
  * @usedBySchema FederatedNaturalSearchSchema
  * @usedBySchema PersonFilterSchema
  * @contractShape entity.filter
@@ -101,6 +102,10 @@ export declare const EntityFilterSchema: z.ZodObject<{
             }, import("../int/range.ts").IntRangeSchemaInput>>>>;
         }, z.core.$strip>>;
         investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            any: "any";
+            every: "every";
+        }>>>;
         lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
             max?: number | null | undefined;
             min?: number | null | undefined;

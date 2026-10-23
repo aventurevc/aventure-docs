@@ -4,6 +4,7 @@ import { DateRangeSchema } from "../date/range.js";
 import { DecimalRangeSchema } from "../decimal/range.js";
 import { IntRangeSchema } from "../int/range.js";
 import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
+import { InvestorNameMatchModeSchema } from "../investor/name-match-mode.js";
 /**
  * Fundraise and investment filters for entity search
  *
@@ -34,21 +35,23 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     amountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Inclusive announcement timestamp bounds on the same fundraise transaction as round and amountRaisedRange. Announcement dates do not establish funding completion dates. */
     dateAnnouncedRange: DateRangeSchema.nullish(),
-    /** Portfolio company names. Exact, case-sensitive match on the portfolio company's brand or legal name; restricts returned entities to investors in those companies. */
+    /** Portfolio company names matched by brand, legal name, or canonical identity; returns their investors with investedRound, when supplied, bound to the same company transaction regardless of its age. */
     investedCompanyName: z.array(z.string()).optional(),
-    /** Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound or investedIndustry, the same deal must match each. */
+    /** Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; the same deal must match investedIndustry and, when investedCompanyName is empty, investedRound. */
     investedCountry: z.array(z.string()).optional(),
-    /** Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound, the same deal must match both. */
+    /** Industry terms for the companies an investor backed, such as Software, Artificial Intelligence, or Fintech; a term matches a portfolio company whose industry or industry classification name contains it as whole words, case-insensitively. Restricts returned entities to investors with such a deal inside the investment-activity horizon; with investedRound and no investedCompanyName, the same deal must match both. */
     investedIndustry: z.array(z.string()).optional(),
-    /** Round labels of the deals an investor joined, such as Seed, Pre-Seed, or Series A; restricts returned entities to investors with such a deal inside the investment-activity horizon. */
+    /** Round labels of deals an investor joined, such as Seed or Series A; with investedCompanyName matches those companies' transactions regardless of age, otherwise matches deals inside the investment-activity horizon. */
     investedRound: z.array(z.string()).optional(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
     /** Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words ("Sequoia") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined. */
     investorName: z.array(z.string()).optional(),
+    /** How investorName names combine: any (default) returns companies one named investor backed; every returns companies every named investor backed, each in any of the company's fundraises. */
+    investorNameMatch: InvestorNameMatchModeSchema.nullish(),
     /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),
-    /** True ranks returned investors by recent deal activity ahead of any sort: each deal inside investedRound, investedIndustry, and investedCountry (every deal when all are empty) adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal. */
+    /** True ranks returned investors by recent deal activity ahead of any sort: each deal matching investedIndustry, investedCountry, and (when investedCompanyName is empty) investedRound adds a weight that decays to zero over the investment-activity horizon, nudged by the investor's known USD check. Restricts returned entities to investors with such a deal. */
     rankByInvestmentActivity: z.boolean().nullish(),
     /** Fundraise round labels, such as Seed or Series A. */
     round: z.array(z.string()).optional(),

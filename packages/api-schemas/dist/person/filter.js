@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityFilterSchema } from "../entity/filter.js";
+import { EntityPersonAssociationFilterSchema } from "../entity/person-association-filter.js";
 import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
 import { PersonListArrayFilterSchema } from "./list-array-filter.js";
 /**
@@ -25,6 +26,8 @@ import { PersonListArrayFilterSchema } from "./list-array-filter.js";
  * @contractRole canonical
  */
 export const PersonFilterSchema = z.object({
+    /** Require a second, independent association of the same person, AND-ed with the primary association constraints, e.g. a past employer. */
+    additionalAssociation: EntityPersonAssociationFilterSchema.nullish(),
     /** Array and range filters */
     arrayFilter: PersonListArrayFilterSchema.optional(),
     /** Constraints on the associated entity, as on POST /v1/search/natural/entities: a person matches when an association (current unless isCurrent=false) points at an entity matching every field and visible in entity listings, such as yearFoundedRange, hasFundraising, or fundraiseActivity.totalRaisedRange. Omit for no associated-entity constraint. */
@@ -51,6 +54,8 @@ export const PersonFilterSchema = z.object({
     personId: z.array(z.uuid()).max(200).optional(),
     /** Exact normalized match against a person's full name or slug. */
     personName: z.array(z.string()).optional(),
+    /** Rank people who run the most prominent matching employers first, ahead of sort (founders and management, then other operators, then board seats). */
+    rankByEmployer: z.boolean().nullish(),
     /** Associated entity role or title. */
     role: z.string().nullish(),
     /** Search keyword or phrase. Single characters valid; stop words rejected. */

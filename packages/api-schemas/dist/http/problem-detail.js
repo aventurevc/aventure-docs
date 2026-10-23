@@ -15,6 +15,8 @@ const ProblemDetailSchemaDefinition = z.object({
     code: z
         .union([
         z.enum([
+            /** An anonymous caller cannot own a lookup job. Sign in to request async. */
+            "async_lookup_sign_in_required",
             /** Caller is authenticated but lacks the required role for this operation. Agent action: surface the requiredRole field on the ProblemDetail and stop; do not retry without role escalation. */
             "not_authorized",
             /** Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance. */
