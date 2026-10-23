@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { LookupJobMentionSchema } from "../lookup/job-mention.js";
 const MentionLookupSchemaDefinition = z.object({
-    /** Each distinct name, in the order the source shows it. */
+    /** Each distinct name: the page's own company first, then the order the source shows them, with news outlets and the page's bylined authors last. */
     mention: z.array(LookupJobMentionSchema),
     /** True when the page names more than this answer holds: more names than one live lookup reads, or a body longer than the read limit. A lookup job with maxNames reads every name. */
     truncated: z.boolean().optional(),
