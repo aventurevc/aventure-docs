@@ -26,6 +26,8 @@ const NaturalSearchResultSchemaDefinition = z.object({
     peer: z.array(EntitySimilarityResultSchema),
     /** Web searches for this question not yet stored; their evidence joins a later request. Empty without the `web` layer. */
     pendingWebQuery: z.array(z.string()),
+    /** Whether people lead this search, stamped only on entity stream events. */
+    personLead: z.boolean(),
     /** Entity list page returned by the canonical entity list engine. */
     result: PageResultEntityListSchema,
     /** Id of this search's stored record. Null when the search was not recorded. */

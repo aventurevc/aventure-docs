@@ -929,6 +929,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 };
             }[];
             pendingWebQuery: string[];
+            personLead: boolean;
             result: {
                 content: {
                     core: {
@@ -3859,6 +3860,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     sourceType: string;
                 } | null | undefined;
             }[];
+            personLead: boolean;
             profile: {
                 currentCompany?: string | null | undefined;
                 headline?: string | null | undefined;
@@ -5677,6 +5679,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 };
             }[];
             pendingWebQuery: string[];
+            personLead: boolean;
             result: {
                 content: {
                     core: {
@@ -8607,6 +8610,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     sourceType: string;
                 } | null | undefined;
             }[];
+            personLead: boolean;
             profile: {
                 currentCompany?: string | null | undefined;
                 headline?: string | null | undefined;

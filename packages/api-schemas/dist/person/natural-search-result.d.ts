@@ -666,6 +666,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceType: string;
         } | null | undefined;
     }, import("../search/investment.ts").SearchInvestmentSchemaInput>>>;
+    personLead: z.ZodBoolean;
     profile: z.ZodArray<z.ZodType<{
         currentCompany?: string | null | undefined;
         headline?: string | null | undefined;

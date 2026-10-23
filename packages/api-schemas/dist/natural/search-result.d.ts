@@ -1816,6 +1816,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
         };
     }, import("../entity/similarity-result.ts").EntitySimilarityResultSchemaInput>>>;
     pendingWebQuery: z.ZodArray<z.ZodString>;
+    personLead: z.ZodBoolean;
     result: z.ZodType<{
         content: {
             core: {
