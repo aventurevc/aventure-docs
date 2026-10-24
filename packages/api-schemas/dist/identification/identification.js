@@ -32,7 +32,7 @@ export const IdentificationSchema = z.object({
     languageModelSettled: z.boolean().nullish(),
     /** The matched record when status is MATCHED. */
     match: IdentificationCandidateSchema.nullish(),
-    /** The subject's own website or profile page found in web search; it may be a profile page on another site rather than the subject's own domain. */
+    /** The subject's own website or profile page found in web search, or a supplied LinkedIn person profile verified against the subject's name and employer for a deterministic match. It may be a profile page on another site rather than the subject's own domain. Only the verified supplied profile may be attached to an existing person matched by name and employer. */
     officialUrl: z.string().nullish(),
     /** Use the scoped match, record scoped absence, or refine an ambiguous identity with evidence. */
     status: z.enum(["MATCHED", "NO_MATCH", "NEEDS_REVIEW"]),
