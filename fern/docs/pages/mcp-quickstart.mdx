@@ -21,7 +21,7 @@ Every app connects to the same hosted server:
 |---------|-------|
 | Server URL | `https://mcp.aventure.vc/mcp` |
 | Transport | Streamable HTTP |
-| Authentication | OAuth with automatic client registration; leave client ID and secret empty |
+| Authentication | OAuth sign-in in your browser |
 
 When the app opens aVenture's sign-in page, sign in to your aVenture account and
 approve the access it asks for. Most tabs end with a one-shot prompt to paste
@@ -143,12 +143,6 @@ the exact error.
 </Tab>
 <Tab title="Gemini">
 
-<Note>
-Gemini Apps cannot finish aVenture's sign-in yet: aVenture's sign-in page does
-not yet accept Gemini's custom app callback. The steps below apply once it
-does. The Gemini CLI tab has its own setup.
-</Note>
-
 1. Open [Gemini on the web](https://gemini.google.com).
 2. Go to **Settings > Connected Apps > Custom apps**.
 3. Select **Add a custom app**, enter `https://mcp.aventure.vc/mcp`, and select
@@ -184,15 +178,14 @@ claude mcp login aventure
 ```
 
 Complete the browser sign-in, then open `/mcp` in Claude Code and verify that
-aVenture's tools are connected. If your Claude Code version does not provide
-`mcp login`, use `/mcp`, select `aventure`, and sign in there.
+aVenture's tools are connected.
 
 **One-shot prompt**
 
 ```text
 Add the aVenture MCP server at user scope, reusing it if it already exists:
 claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp
-Then run claude mcp login aventure (or send me to /mcp to sign in). After I
+Then run claude mcp login aventure. After I
 sign in to aVenture, look up https://stripe.com on aVenture to confirm the
 connection works, then summarize what it returns. If a step fails, tell me
 which step and the exact error.
@@ -214,59 +207,16 @@ Use `/mcp list` to confirm the connection. OAuth requires a browser and a
 reachable loopback callback on the same machine; a headless remote session
 needs its own compatible authentication route.
 
-Gemini CLI's default OAuth callback path is `/oauth/callback`. Use discovery
-and automatic registration. The fallback OAuth client below registers the
-different path `/callback`; it is not a universal Gemini CLI fallback.
-
 [Gemini CLI's current MCP instructions](https://geminicli.com/docs/tools/mcp-server/)
 
 </Tab>
 </Tabs>
-
-<Accordion title="Fallback for Clients That Need a Fixed OAuth Client">
-
-Use aVenture's existing public client only when automatic OAuth client
-registration is unavailable:
-
-| Setting | Value |
-|---------|-------|
-| Server URL | `https://mcp.aventure.vc/mcp` |
-| Transport | Streamable HTTP |
-| OAuth client ID | `KL7mINzGk0le0QiD` |
-| OAuth client secret | Leave empty |
-
-The fixed client has these registered redirect URIs:
-
-- `http://127.0.0.1/callback`
-- `http://localhost/callback`
-- `https://chatgpt.com/connector_platform_oauth_redirect`
-- `https://claude.ai/api/mcp/auth_callback`
-
-A loopback redirect may use any available port while keeping its `/callback`
-path. These restrictions belong to the fixed client, not all discovered or
-automatically registered clients. A client with a different callback needs a
-compatible registration; [contact support](/support) if its automatic
-registration fails.
-
-For a Claude Code version that needs the fixed client:
-
-```bash
-claude mcp add --scope user --transport http \
-  --client-id KL7mINzGk0le0QiD --callback-port 6276 \
-  aventure https://mcp.aventure.vc/mcp
-```
-
-Then sign in through `/mcp`.
-
-</Accordion>
 
 ## Troubleshooting
 
 | What you see | Fix |
 |---|---|
 | Connected app exists but tools are unavailable | Install/enable it in the current conversation, then ask it to look up `https://stripe.com` on aVenture |
-| OAuth client registration fails | Check the client's discovery/registration choice; use the fixed client only for its supported redirect URIs |
-| Redirect URI mismatch | Check the actual callback against the OAuth client used; a different callback path needs a compatible registration |
 | Sign-in succeeds but connector remains disconnected | Check whether token exchange and tools discovery finished; provide the exact client error to [support](/support) |
 | `401` on a previously working connection | Reconnect in your client's account settings; in Claude Code, use `/mcp` and sign in again |
 | `402` with `subscription_required` | On the free plan, read by website or [upgrade](/plans-and-usage) |
