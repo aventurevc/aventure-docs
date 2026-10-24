@@ -1,5 +1,13 @@
 import { z } from "zod/v4";
-declare const EntityResolutionSchemaDefinition: z.ZodObject<{
+/**
+ * Resolution of one queried identifier (id, slug, or current joined URL) to its current entity. Echoes the raw input; matched rows carry the full detail, ambiguous rows carry the conflicting candidate ids, missing rows carry neither.
+ *
+ * @openapiSchema EntityResolution
+ * @endpoint POST /v1/entities/lookup-matches
+ * @contractShape entity.resolution
+ * @contractRole canonical
+ */
+export declare const EntityResolutionSchema: z.ZodObject<{
     candidateEntityId: z.ZodArray<z.ZodUUID>;
     detail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         core: z.ZodObject<{
@@ -2849,18 +2857,5 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
         MISSING: "MISSING";
     }>;
 }, z.core.$strip>;
-type EntityResolutionDefinition = z.infer<typeof EntityResolutionSchemaDefinition>;
-export interface EntityResolutionSchemaInput extends z.input<typeof EntityResolutionSchemaDefinition> {
-}
-/**
- * Resolution of one queried identifier (id, slug, or current joined URL) to its current entity. Echoes the raw input; matched rows carry the full detail, ambiguous rows carry the conflicting candidate ids, missing rows carry neither.
- *
- * @openapiSchema EntityResolution
- * @endpoint POST /v1/entities/lookup-matches
- * @contractShape entity.resolution
- * @contractRole canonical
- */
-export declare const EntityResolutionSchema: z.ZodType<EntityResolutionDefinition, EntityResolutionSchemaInput>;
 export type EntityResolution = z.infer<typeof EntityResolutionSchema>;
-export {};
 //# sourceMappingURL=resolution.d.ts.map
