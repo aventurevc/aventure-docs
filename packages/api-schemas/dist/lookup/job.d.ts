@@ -1661,6 +1661,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         sourceUrl?: string | null | undefined;
         subject?: {
             context?: string | null | undefined;
+            employer?: string[] | undefined;
             kind?: "ENTITY" | "PERSON" | null | undefined;
             location?: string | null | undefined;
             name?: string | null | undefined;
@@ -1688,6 +1689,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         sourceUrl?: string | null | undefined;
         subject?: {
             context?: string | null | undefined;
+            employer?: string[] | undefined;
             kind?: "ENTITY" | "PERSON" | null | undefined;
             location?: string | null | undefined;
             name?: string | null | undefined;

@@ -2,10 +2,12 @@ import { z } from "zod/v4";
 declare const AgentTaskPresetSchemaDefinition: z.ZodObject<{
     execution: z.ZodUnion<readonly [z.ZodEnum<{
         FULL: "FULL";
+        INTERACTIVE: "INTERACTIVE";
         MICRO: "MICRO";
     }>, z.ZodString]> & {
         enum: {
             FULL: "FULL";
+            INTERACTIVE: "INTERACTIVE";
             MICRO: "MICRO";
         };
     };

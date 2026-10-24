@@ -17,6 +17,7 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
     sourceUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     subject: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         context: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        employer: z.ZodOptional<z.ZodArray<z.ZodString>>;
         kind: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             ENTITY: "ENTITY";
             PERSON: "PERSON";

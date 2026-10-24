@@ -19,6 +19,8 @@ import { UniqueIdMutationSchema } from "../unique/id-mutation.js";
 export const IdentificationSubjectSchema = z.object({
     /** Specific facts in plain words: product, industry, employer and title, or founder names. Generic words like startup add nothing. */
     context: z.string().max(2000).nullish(),
+    /** Companies the subject is known to work at; a person filing accepts a LinkedIn profile only when one of them appears in the profile's employer fields. */
+    employer: z.array(z.string()).max(10).optional(),
     /** Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or providerId implies ENTITY. */
     kind: z.enum(["ENTITY", "PERSON"]).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */

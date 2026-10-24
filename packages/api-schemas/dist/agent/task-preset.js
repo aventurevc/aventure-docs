@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { AgentTaskPresetExecutionSchema } from "./task-preset-execution.js";
 import { AgentTaskPresetPhaseSchema } from "./task-preset-phase.js";
 const AgentTaskPresetSchemaDefinition = z.object({
-    /** How the preset runs: FULL focuses a full research run on its topic; MICRO runs it as one bounded research task. */
+    /** How the preset runs: FULL focuses a full research run on its topic; MICRO runs it as one bounded research task; INTERACTIVE runs a subscriber-selectable session that accepts no findings and stays open for user turns. */
     execution: AgentTaskPresetExecutionSchema,
     /** Stable key to send in taskPresetKey. */
     key: z.string(),
