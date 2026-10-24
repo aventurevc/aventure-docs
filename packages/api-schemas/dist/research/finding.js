@@ -6,7 +6,7 @@ const ResearchFindingSchemaDefinition = z.object({
     gateId: z.string().nullish(),
     /** The exact text on sourceUrl that states the fact, copied verbatim; a fragment short enough to appear on any page is refused. */
     quote: z.string(),
-    /** Absolute http or https URL of the page that supports the fact; aVenture pages are refused. Direct writes require a resolved sourceDetail page and may supplement it with eligible pages associated with the subject; harness-run writes use the sourceDetail page or eligible pages read through aVenture by the authorizing run. Each quote must occur in its page's stored text. */
+    /** Absolute http or https URL of the page that supports the fact; aVenture pages are refused. Direct writes require a resolved sourceDetail page and may supplement it with eligible pages associated with the subject or explicitly bound through sourceDocumentId on a pending full create; harness-run writes use the sourceDetail page or eligible pages read through aVenture by the authorizing run. Each quote must occur in its page's stored text. */
     sourceUrl: z.string(),
     /** The fact to write, in plain words. */
     statement: z.string(),

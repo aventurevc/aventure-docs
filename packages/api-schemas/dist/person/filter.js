@@ -54,7 +54,7 @@ export const PersonFilterSchema = z.object({
     personId: z.array(z.uuid()).max(200).optional(),
     /** Exact normalized match against a person's full name or slug. */
     personName: z.array(z.string()).optional(),
-    /** Rank people who run the most prominent matching employers first, ahead of sort (founders and management, then other operators, then board seats). */
+    /** Rank people who run the most prominent matching employers first, ahead of sort (founders and management, then other operators, then board seats). Applies only when entityId, entitySlug, arrayFilter.entityName, or the entityId, slug, entityName, or fundraiseActivity.investorName of entityFilter or additionalAssociation.entityFilter names the employers. */
     rankByEmployer: z.boolean().nullish(),
     /** Associated entity role or title. */
     role: z.string().nullish(),
