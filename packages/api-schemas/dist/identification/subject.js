@@ -27,7 +27,7 @@ export const IdentificationSubjectSchema = z.object({
     name: z.string().max(200).nullish(),
     /** Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup. */
     providerId: z.uuid().nullish(),
-    /** Internal permanent Folk source identity. Requires private visibility and resolves before names or URLs. */
+    /** Permanent source identity for a catalog source-binding type. Requires private visibility and resolves before names or URLs. */
     sourceIdentifier: UniqueIdMutationSchema.nullish(),
     /** aVenture news id of the article that mentions the subject; an unknown id is a 400. */
     sourceNewsId: z.int().nullish(),

@@ -13,6 +13,7 @@ import { EntityFilterSchema } from "./filter.js";
  * @endpoint POST /v1/directory/shared
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema PersonFilterSchema

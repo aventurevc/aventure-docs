@@ -1,50 +1,4 @@
 import { z } from "zod/v4";
-declare const EntityUrlLinkSchemaDefinition: z.ZodObject<{
-    crawlCdnProvider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-        akamai: "akamai";
-        awsCloudfront: "awsCloudfront";
-        azureCdn: "azureCdn";
-        bunny: "bunny";
-        cdn77: "cdn77";
-        cdnetworks: "cdnetworks";
-        cloudflare: "cloudflare";
-        digitalocean: "digitalocean";
-        fastly: "fastly";
-        gcore: "gcore";
-        googlecloudCdn: "googlecloudCdn";
-        incapsula: "incapsula";
-        keycdn: "keycdn";
-        leaseweb: "leaseweb";
-        netlify: "netlify";
-        none: "none";
-        stackpath: "stackpath";
-        sucuri: "sucuri";
-        unknown: "unknown";
-        vercel: "vercel";
-    }>>>;
-    crawlRenderMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-        jsEnhanced: "jsEnhanced";
-        jsRequired: "jsRequired";
-        static: "static";
-    }>>>;
-    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    owner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
-        entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
-        personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
-    }, z.core.$strip>>>;
-    sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-    url: z.ZodString;
-    urlType: z.ZodString;
-}, z.core.$strip>;
-type EntityUrlLinkDefinition = z.infer<typeof EntityUrlLinkSchemaDefinition>;
-export interface EntityUrlLinkSchemaInput extends z.input<typeof EntityUrlLinkSchemaDefinition> {
-}
 /**
  * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.
  *
@@ -91,7 +45,48 @@ export interface EntityUrlLinkSchemaInput extends z.input<typeof EntityUrlLinkSc
  * @contractShape entity.url-link
  * @contractRole canonical
  */
-export declare const EntityUrlLinkSchema: z.ZodType<EntityUrlLinkDefinition, EntityUrlLinkSchemaInput>;
+export declare const EntityUrlLinkSchema: z.ZodObject<{
+    crawlCdnProvider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        akamai: "akamai";
+        awsCloudfront: "awsCloudfront";
+        azureCdn: "azureCdn";
+        bunny: "bunny";
+        cdn77: "cdn77";
+        cdnetworks: "cdnetworks";
+        cloudflare: "cloudflare";
+        digitalocean: "digitalocean";
+        fastly: "fastly";
+        gcore: "gcore";
+        googlecloudCdn: "googlecloudCdn";
+        incapsula: "incapsula";
+        keycdn: "keycdn";
+        leaseweb: "leaseweb";
+        netlify: "netlify";
+        none: "none";
+        stackpath: "stackpath";
+        sucuri: "sucuri";
+        unknown: "unknown";
+        vercel: "vercel";
+    }>>>;
+    crawlRenderMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        jsEnhanced: "jsEnhanced";
+        jsRequired: "jsRequired";
+        static: "static";
+    }>>>;
+    createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    owner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    }, z.core.$strip>>>;
+    sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    url: z.ZodString;
+    urlType: z.ZodString;
+}, z.core.$strip>;
 export type EntityUrlLink = z.infer<typeof EntityUrlLinkSchema>;
-export {};
 //# sourceMappingURL=url-link.d.ts.map

@@ -44,7 +44,7 @@ type UrlHostFormResolutionDefinition = z.infer<typeof UrlHostFormResolutionSchem
 export interface UrlHostFormResolutionSchemaInput extends z.input<typeof UrlHostFormResolutionSchemaDefinition> {
 }
 /**
- * Fresh HTTP evidence and the preferred same-site host form of a submitted URL.
+ * Verified preferred host form of a submitted URL and any fresh HTTP evidence.
  *
  * @openapiSchema UrlHostFormResolution
  * @endpoint GET /v1/lookup

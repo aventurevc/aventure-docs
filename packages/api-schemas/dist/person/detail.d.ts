@@ -76,41 +76,49 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             Product: "Product";
             Service: "Service";
         }>>>;
-        entityUrlLink: z.ZodArray<z.ZodType<{
-            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-            createdAt?: string | null | undefined;
-            id?: number | null | undefined;
-            isCurrent?: boolean | null | undefined;
-            isPrimary?: boolean | null | undefined;
-            owner?: {
-                entityId?: string | null | undefined;
-                personId?: string | null | undefined;
-            } | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-            statusChecked?: string | null | undefined;
-            updatedAt?: string | null | undefined;
-            url: string;
-            urlType: string;
-        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
-            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-            createdAt?: string | null | undefined;
-            id?: number | null | undefined;
-            isCurrent?: boolean | null | undefined;
-            isPrimary?: boolean | null | undefined;
-            owner?: {
-                entityId?: string | null | undefined;
-                personId?: string | null | undefined;
-            } | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-            statusChecked?: string | null | undefined;
-            updatedAt?: string | null | undefined;
-            url: string;
-            urlType: string;
-        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput>>>;
+        entityUrlLink: z.ZodArray<z.ZodObject<{
+            crawlCdnProvider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                akamai: "akamai";
+                awsCloudfront: "awsCloudfront";
+                azureCdn: "azureCdn";
+                bunny: "bunny";
+                cdn77: "cdn77";
+                cdnetworks: "cdnetworks";
+                cloudflare: "cloudflare";
+                digitalocean: "digitalocean";
+                fastly: "fastly";
+                gcore: "gcore";
+                googlecloudCdn: "googlecloudCdn";
+                incapsula: "incapsula";
+                keycdn: "keycdn";
+                leaseweb: "leaseweb";
+                netlify: "netlify";
+                none: "none";
+                stackpath: "stackpath";
+                sucuri: "sucuri";
+                unknown: "unknown";
+                vercel: "vercel";
+            }>>>;
+            crawlRenderMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                jsEnhanced: "jsEnhanced";
+                jsRequired: "jsRequired";
+                static: "static";
+            }>>>;
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            owner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+                personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            }, z.core.$strip>>>;
+            sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            url: z.ZodString;
+            urlType: z.ZodString;
+        }, z.core.$strip>>;
         isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         personAddress: z.ZodArray<z.ZodObject<{
             address: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -170,41 +178,49 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         }, import("./image.ts").PersonImageSchemaInput>>;
         personName: z.ZodString;
         personSlug: z.ZodString;
-        personUrlLink: z.ZodArray<z.ZodType<{
-            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-            createdAt?: string | null | undefined;
-            id?: number | null | undefined;
-            isCurrent?: boolean | null | undefined;
-            isPrimary?: boolean | null | undefined;
-            owner?: {
-                entityId?: string | null | undefined;
-                personId?: string | null | undefined;
-            } | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-            statusChecked?: string | null | undefined;
-            updatedAt?: string | null | undefined;
-            url: string;
-            urlType: string;
-        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput, z.core.$ZodTypeInternals<{
-            crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
-            crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
-            createdAt?: string | null | undefined;
-            id?: number | null | undefined;
-            isCurrent?: boolean | null | undefined;
-            isPrimary?: boolean | null | undefined;
-            owner?: {
-                entityId?: string | null | undefined;
-                personId?: string | null | undefined;
-            } | null | undefined;
-            sourceId?: string | null | undefined;
-            status?: string | null | undefined;
-            statusChecked?: string | null | undefined;
-            updatedAt?: string | null | undefined;
-            url: string;
-            urlType: string;
-        }, import("../entity/url-link.ts").EntityUrlLinkSchemaInput>>>;
+        personUrlLink: z.ZodArray<z.ZodObject<{
+            crawlCdnProvider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                akamai: "akamai";
+                awsCloudfront: "awsCloudfront";
+                azureCdn: "azureCdn";
+                bunny: "bunny";
+                cdn77: "cdn77";
+                cdnetworks: "cdnetworks";
+                cloudflare: "cloudflare";
+                digitalocean: "digitalocean";
+                fastly: "fastly";
+                gcore: "gcore";
+                googlecloudCdn: "googlecloudCdn";
+                incapsula: "incapsula";
+                keycdn: "keycdn";
+                leaseweb: "leaseweb";
+                netlify: "netlify";
+                none: "none";
+                stackpath: "stackpath";
+                sucuri: "sucuri";
+                unknown: "unknown";
+                vercel: "vercel";
+            }>>>;
+            crawlRenderMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                jsEnhanced: "jsEnhanced";
+                jsRequired: "jsRequired";
+                static: "static";
+            }>>>;
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            owner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+                personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            }, z.core.$strip>>>;
+            sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            url: z.ZodString;
+            urlType: z.ZodString;
+        }, z.core.$strip>>;
         score: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         startDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         titleFunction: z.ZodOptional<z.ZodNullable<z.ZodString>>;

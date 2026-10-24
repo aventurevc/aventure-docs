@@ -12,6 +12,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         folk: "folk";
         isin: "isin";
         lei: "lei";
+        ncuaCharter: "ncuaCharter";
         orcid: "orcid";
         rssd: "rssd";
         secCik: "secCik";
@@ -26,6 +27,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             folk: "folk";
             isin: "isin";
             lei: "lei";
+            ncuaCharter: "ncuaCharter";
             orcid: "orcid";
             rssd: "rssd";
             secCik: "secCik";

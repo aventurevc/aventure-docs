@@ -1,9 +1,14 @@
 import { z } from "zod/v4";
 declare const AgentTaskPresetSchemaDefinition: z.ZodObject<{
-    execution: z.ZodEnum<{
+    execution: z.ZodUnion<readonly [z.ZodEnum<{
         FULL: "FULL";
         MICRO: "MICRO";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            FULL: "FULL";
+            MICRO: "MICRO";
+        };
+    };
     key: z.ZodString;
     name: z.ZodString;
     phase: z.ZodEnum<{

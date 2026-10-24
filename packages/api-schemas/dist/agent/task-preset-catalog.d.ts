@@ -1,12 +1,12 @@
 import { z } from "zod/v4";
 declare const AgentTaskPresetCatalogSchemaDefinition: z.ZodObject<{
     taskPreset: z.ZodArray<z.ZodType<{
-        execution: "FULL" | "MICRO";
+        execution: string;
         key: string;
         name: string;
         phase: "FINAL" | "PRIMARY";
     }, import("./task-preset.ts").AgentTaskPresetSchemaInput, z.core.$ZodTypeInternals<{
-        execution: "FULL" | "MICRO";
+        execution: string;
         key: string;
         name: string;
         phase: "FINAL" | "PRIMARY";

@@ -16,15 +16,14 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                 logoSquare?: string | null | undefined;
             }, import("./image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-            nameAlias: z.ZodArray<z.ZodType<{
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
-                displayable?: boolean | null | undefined;
-                name: string;
-                type?: "alternativeDba" | "relatedLegal" | null | undefined;
-            }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
+            nameAlias: z.ZodArray<z.ZodObject<{
+                displayable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                name: z.ZodString;
+                type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                    alternativeDba: "alternativeDba";
+                    relatedLegal: "relatedLegal";
+                }>>>;
+            }, z.core.$strip>>;
             nameBrand: z.ZodString;
             nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -2431,15 +2430,14 @@ declare const EntityResolutionSchemaDefinition: z.ZodObject<{
                     logoSquare?: string | null | undefined;
                 }, import("./image.ts").EntityImageSchemaInput>>;
                 lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
-                nameAlias: z.ZodArray<z.ZodType<{
-                    displayable?: boolean | null | undefined;
-                    name: string;
-                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
-                    displayable?: boolean | null | undefined;
-                    name: string;
-                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
-                }, import("./name-alias-entity-alias-type.ts").EntityNameAliasEntityAliasTypeSchemaInput>>>;
+                nameAlias: z.ZodArray<z.ZodObject<{
+                    displayable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                    name: z.ZodString;
+                    type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                        alternativeDba: "alternativeDba";
+                        relatedLegal: "relatedLegal";
+                    }>>>;
+                }, z.core.$strip>>;
                 nameBrand: z.ZodString;
                 nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
                 operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;

@@ -1,9 +1,10 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AgentTaskPresetExecutionSchema } from "./task-preset-execution.js";
 import { AgentTaskPresetPhaseSchema } from "./task-preset-phase.js";
 const AgentTaskPresetSchemaDefinition = z.object({
     /** How the preset runs: FULL focuses a full research run on its topic; MICRO runs it as one bounded research task. */
-    execution: z.enum(["FULL", "MICRO"]),
+    execution: AgentTaskPresetExecutionSchema,
     /** Stable key to send in taskPresetKey. */
     key: z.string(),
     /** Display name of the topic the preset researches. */

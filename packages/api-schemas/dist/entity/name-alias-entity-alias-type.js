@@ -1,14 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityAliasTypeSchema } from "./alias-type.js";
-const EntityNameAliasEntityAliasTypeSchemaDefinition = z.object({
-    /** Show this alias in public name displays. */
-    displayable: z.boolean().nullish(),
-    /** Alternate name text */
-    name: z.string(),
-    /** Alias type classification */
-    type: EntityAliasTypeSchema.nullish(),
-});
 /**
  * Alternate name used for search and display
  *
@@ -54,5 +46,12 @@ const EntityNameAliasEntityAliasTypeSchemaDefinition = z.object({
  * @contractShape entity.name-alias-entity-alias-type
  * @contractRole canonical
  */
-export const EntityNameAliasEntityAliasTypeSchema = EntityNameAliasEntityAliasTypeSchemaDefinition;
+export const EntityNameAliasEntityAliasTypeSchema = z.object({
+    /** Show this alias in public name displays. */
+    displayable: z.boolean().nullish(),
+    /** Alternate name text */
+    name: z.string(),
+    /** Alias type classification */
+    type: EntityAliasTypeSchema.nullish(),
+});
 //# sourceMappingURL=name-alias-entity-alias-type.js.map

@@ -1,15 +1,4 @@
 import { z } from "zod/v4";
-declare const EntityNameAliasEntityAliasTypeSchemaDefinition: z.ZodObject<{
-    displayable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    name: z.ZodString;
-    type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
-        alternativeDba: "alternativeDba";
-        relatedLegal: "relatedLegal";
-    }>>>;
-}, z.core.$strip>;
-type EntityNameAliasEntityAliasTypeDefinition = z.infer<typeof EntityNameAliasEntityAliasTypeSchemaDefinition>;
-export interface EntityNameAliasEntityAliasTypeSchemaInput extends z.input<typeof EntityNameAliasEntityAliasTypeSchemaDefinition> {
-}
 /**
  * Alternate name used for search and display
  *
@@ -55,7 +44,13 @@ export interface EntityNameAliasEntityAliasTypeSchemaInput extends z.input<typeo
  * @contractShape entity.name-alias-entity-alias-type
  * @contractRole canonical
  */
-export declare const EntityNameAliasEntityAliasTypeSchema: z.ZodType<EntityNameAliasEntityAliasTypeDefinition, EntityNameAliasEntityAliasTypeSchemaInput>;
+export declare const EntityNameAliasEntityAliasTypeSchema: z.ZodObject<{
+    displayable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    name: z.ZodString;
+    type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        alternativeDba: "alternativeDba";
+        relatedLegal: "relatedLegal";
+    }>>>;
+}, z.core.$strip>;
 export type EntityNameAliasEntityAliasType = z.infer<typeof EntityNameAliasEntityAliasTypeSchema>;
-export {};
 //# sourceMappingURL=name-alias-entity-alias-type.d.ts.map

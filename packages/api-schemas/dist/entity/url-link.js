@@ -4,29 +4,6 @@ import { EntityPersonOwnerSchema } from "./person-owner.js";
 import { EntityUrlCrawlCdnProviderSchema } from "./url-crawl-cdn-provider.js";
 import { EntityUrlCrawlRenderModeSchema } from "./url-crawl-render-mode.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
-const EntityUrlLinkSchemaDefinition = z.object({
-    /** CDN provider from the latest URL probe. */
-    crawlCdnProvider: EntityUrlCrawlCdnProviderSchema.nullish(),
-    /** Render mode from the latest URL probe. */
-    crawlRenderMode: EntityUrlCrawlRenderModeSchema.nullish(),
-    createdAt: z.iso.datetime({ offset: true }).nullish(),
-    id: z.int().nullish(),
-    /** `true` = owner currently uses this URL; `false` = historical/former (rebrand source domain, deprecated platform handle). The lifecycle state lives here, NEVER in the `urlType` discriminator. */
-    isCurrent: z.boolean().nullish(),
-    /** `true` = canonical/primary URL of this `urlType` for this owner. Only one row per (owner, urlType) may be `isCurrent=true` AND `isPrimary=true`. Retired rows are always non-primary, including when a write requests otherwise. */
-    isPrimary: z.boolean().nullish(),
-    /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
-    owner: EntityPersonOwnerSchema.nullish(),
-    sourceId: z.string().nullish(),
-    /** Latest URL status observation; a later probe may replace the submitted status. */
-    status: z.string().nullish(),
-    /** Time of the latest URL status observation. */
-    statusChecked: z.iso.datetime({ offset: true }).nullish(),
-    updatedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Canonical absolute URL after storage and live same-site host normalization. */
-    url: z.string(),
-    urlType: EntityUrlTypeSchema,
-});
 /**
  * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.
  *
@@ -73,5 +50,27 @@ const EntityUrlLinkSchemaDefinition = z.object({
  * @contractShape entity.url-link
  * @contractRole canonical
  */
-export const EntityUrlLinkSchema = EntityUrlLinkSchemaDefinition;
+export const EntityUrlLinkSchema = z.object({
+    /** CDN provider from the latest URL probe. */
+    crawlCdnProvider: EntityUrlCrawlCdnProviderSchema.nullish(),
+    /** Render mode from the latest URL probe. */
+    crawlRenderMode: EntityUrlCrawlRenderModeSchema.nullish(),
+    createdAt: z.iso.datetime({ offset: true }).nullish(),
+    id: z.int().nullish(),
+    /** `true` = owner currently uses this URL; `false` = historical/former (rebrand source domain, deprecated platform handle). The lifecycle state lives here, NEVER in the `urlType` discriminator. */
+    isCurrent: z.boolean().nullish(),
+    /** `true` = canonical/primary URL of this `urlType` for this owner. Only one row per (owner, urlType) may be `isCurrent=true` AND `isPrimary=true`. Retired rows are always non-primary, including when a write requests otherwise. */
+    isPrimary: z.boolean().nullish(),
+    /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set, and no name fields. Writes are scoped by the owning entity/person route; owner is never a write field. */
+    owner: EntityPersonOwnerSchema.nullish(),
+    sourceId: z.string().nullish(),
+    /** Latest URL status observation; a later probe may replace the submitted status. */
+    status: z.string().nullish(),
+    /** Time of the latest URL status observation. */
+    statusChecked: z.iso.datetime({ offset: true }).nullish(),
+    updatedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Canonical absolute URL after storage and live same-site host normalization. */
+    url: z.string(),
+    urlType: EntityUrlTypeSchema,
+});
 //# sourceMappingURL=url-link.js.map

@@ -20,6 +20,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "agent/task-preset-catalog",
         schemaName: "AgentTaskPresetCatalogSchema",
     },
+    AgentTaskPresetExecution: {
+        modulePath: "agent/task-preset-execution",
+        schemaName: "AgentTaskPresetExecutionSchema",
+    },
     AgentTaskPresetPhase: {
         modulePath: "agent/task-preset-phase",
         schemaName: "AgentTaskPresetPhaseSchema",

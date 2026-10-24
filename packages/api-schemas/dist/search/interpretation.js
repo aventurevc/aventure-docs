@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
 import { EntityListFilterSchema } from "../entity/list-filter.js";
+import { PersonFilterSchema } from "../person/filter.js";
 import { SearchIntentSchema } from "./intent.js";
 import { SearchModeExecutionSchema } from "./mode-execution.js";
 import { SearchOrderingEntityFilterSortableSchema } from "./ordering-entity-filter-sortable.js";
@@ -18,6 +19,8 @@ const SearchInterpretationSchemaDefinition = z.object({
     intent: SearchIntentSchema,
     /** Human-readable summary of how the query was interpreted. */
     interpretation: z.string(),
+    /** Return only the companies through which a person matching this people filter holds its primary association, such as startups founded by former Revolut executives. */
+    personAssociation: PersonFilterSchema.nullish(),
     /** Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms. */
     sort: SearchOrderingEntityFilterSortableSchema,
     /** Brand or legal names of the entities the question is about, as written in the query; empty for discovery questions. */

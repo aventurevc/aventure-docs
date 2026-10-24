@@ -16,6 +16,13 @@
       "digest": "sha256:8335d40b589b2b37a332f13731631dcd8777488309663181213c130ad14d6c34"
     },
     {
+      "name": "business-cycle-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked where a company's specific sub-sector sits in its business cycle: demand, capacity, pricing, capital, and regulation phases, dated evidence, and the implications for the company against named alternatives.",
+      "url": "/.well-known/agent-skills/business-cycle-analysis/SKILL.md",
+      "digest": "sha256:a2b5411a95e5cc82376fd948daa721bd1557255cf21d9e32ae7a22b0edfa522a"
+    },
+    {
       "name": "competitive-landscape",
       "type": "skill-md",
       "description": "Use only when asked for a competitive landscape report on a company, product, or investment firm: the field within a stated boundary, player classes, the axes buyers trade off, a sourced player table, recent funding and M&A, unmet needs, and the subject's position.",
@@ -28,6 +35,13 @@
       "description": "Use only when asked for a competitor analysis of a company or product: head-to-head comparison with its closest rivals on product, total cost, customers, distribution, traction, economics, and team, with the subject's relative strength judged on evidence.",
       "url": "/.well-known/agent-skills/competitor-analysis/SKILL.md",
       "digest": "sha256:f64206a8a0502eebd4e25d53603034cbea074463151e72460b6229a52a95a24a"
+    },
+    {
+      "name": "fundraising-environment",
+      "type": "skill-md",
+      "description": "Use only when asked about the venture and growth capital environment for a company's specific sub-sector: round counts and sizes, valuation direction, active and retreating investors, exits, and implications for its next raise.",
+      "url": "/.well-known/agent-skills/fundraising-environment/SKILL.md",
+      "digest": "sha256:c3fb603b7612dd53defa11fd6fcc9b0caf4bf64f66fd7466edfa47ce15a7e14b"
     },
     {
       "name": "investor-portfolio-analysis",

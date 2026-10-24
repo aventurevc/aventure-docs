@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { EntityUrlCrawlCdnProviderSchema } from "../entity/url-crawl-cdn-provider.js";
 import { EntityUrlCrawlRenderModeSchema } from "../entity/url-crawl-render-mode.js";
 const UrlHostFormResolutionSchemaDefinition = z.object({
-    /** True only when live evidence landed on the submitted apex/www host pair, or the exact submitted host for URLs without that pair. */
+    /** True when the profile platform owns the canonical URL form, or live evidence landed on the submitted apex/www host pair or exact submitted host. */
     concluded: z.boolean(),
     /** Edge provider observed by this probe. */
     crawlCdnProvider: EntityUrlCrawlCdnProviderSchema.nullish(),
@@ -13,7 +13,7 @@ const UrlHostFormResolutionSchemaDefinition = z.object({
     landingHost: z.string().nullish(),
     /** Typed outcome from the fresh probe; absent when no probe ran. */
     outcome: z.enum(["success", "refusal", "rejection", "noResponse", "transient"]).nullish(),
-    /** Fresh HTTP status or classified probe result; absent for cached write normalization. */
+    /** Fresh HTTP status or classified probe result; absent when no probe ran. */
     status: z.string().nullish(),
     /** The URL submitted for this probe. */
     submittedUrl: z.string(),
@@ -21,7 +21,7 @@ const UrlHostFormResolutionSchemaDefinition = z.object({
     url: z.string(),
 });
 /**
- * Fresh HTTP evidence and the preferred same-site host form of a submitted URL.
+ * Verified preferred host form of a submitted URL and any fresh HTTP evidence.
  *
  * @openapiSchema UrlHostFormResolution
  * @endpoint GET /v1/lookup
