@@ -19,6 +19,8 @@ const ResearchSnippetTypeSchemaDefinition = z.object({
     minLength: z.int().nullish(),
     /** Per-paragraph shape rule that write requests must satisfy; null = no paragraph rule. */
     paragraphShape: ResearchParagraphShapeSchema.nullish(),
+    /** One reader-facing question the analysis answers, shown where readers choose an analysis. */
+    readerQuestion: z.string(),
     /** Whether this textType is recognized by the research contract catalog; true for every row returned by this endpoint. */
     recognized: z.boolean(),
     /** Dotted research section path the snippet attaches to. */
