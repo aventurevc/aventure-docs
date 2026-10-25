@@ -49,6 +49,13 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             }, z.core.$strip>>>;
+            investedAmountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
             investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -236,6 +243,13 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                         max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                         min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                     }, z.core.$strip>>>;
+                    investedAmountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                        max?: number | null | undefined;
+                        min?: number | null | undefined;
+                    }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                     investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
                     investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
                     investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
@@ -454,6 +468,13 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                     max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                     min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 }, z.core.$strip>>>;
+                investedAmountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;

@@ -64,6 +64,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
+                        investedAmountRaisedRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
                         investedCompanyName?: string[] | undefined;
                         investedCountry?: string[] | undefined;
                         investedIndustry?: string[] | undefined;
@@ -180,6 +184,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     max?: string | null | undefined;
                                     min?: string | null | undefined;
                                 } | null | undefined;
+                                investedAmountRaisedRange?: {
+                                    max?: number | null | undefined;
+                                    min?: number | null | undefined;
+                                }[] | undefined;
                                 investedCompanyName?: string[] | undefined;
                                 investedCountry?: string[] | undefined;
                                 investedIndustry?: string[] | undefined;
@@ -313,6 +321,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
+                            investedAmountRaisedRange?: {
+                                max?: number | null | undefined;
+                                min?: number | null | undefined;
+                            }[] | undefined;
                             investedCompanyName?: string[] | undefined;
                             investedCountry?: string[] | undefined;
                             investedIndustry?: string[] | undefined;
@@ -3837,6 +3849,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     max?: string | null | undefined;
                                     min?: string | null | undefined;
                                 } | null | undefined;
+                                investedAmountRaisedRange?: {
+                                    max?: number | null | undefined;
+                                    min?: number | null | undefined;
+                                }[] | undefined;
                                 investedCompanyName?: string[] | undefined;
                                 investedCountry?: string[] | undefined;
                                 investedIndustry?: string[] | undefined;
@@ -3970,6 +3986,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
+                            investedAmountRaisedRange?: {
+                                max?: number | null | undefined;
+                                min?: number | null | undefined;
+                            }[] | undefined;
                             investedCompanyName?: string[] | undefined;
                             investedCountry?: string[] | undefined;
                             investedIndustry?: string[] | undefined;
@@ -5217,6 +5237,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
+                        investedAmountRaisedRange?: {
+                            max?: number | null | undefined;
+                            min?: number | null | undefined;
+                        }[] | undefined;
                         investedCompanyName?: string[] | undefined;
                         investedCountry?: string[] | undefined;
                         investedIndustry?: string[] | undefined;
@@ -5333,6 +5357,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     max?: string | null | undefined;
                                     min?: string | null | undefined;
                                 } | null | undefined;
+                                investedAmountRaisedRange?: {
+                                    max?: number | null | undefined;
+                                    min?: number | null | undefined;
+                                }[] | undefined;
                                 investedCompanyName?: string[] | undefined;
                                 investedCountry?: string[] | undefined;
                                 investedIndustry?: string[] | undefined;
@@ -5466,6 +5494,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
+                            investedAmountRaisedRange?: {
+                                max?: number | null | undefined;
+                                min?: number | null | undefined;
+                            }[] | undefined;
                             investedCompanyName?: string[] | undefined;
                             investedCountry?: string[] | undefined;
                             investedIndustry?: string[] | undefined;
@@ -8990,6 +9022,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     max?: string | null | undefined;
                                     min?: string | null | undefined;
                                 } | null | undefined;
+                                investedAmountRaisedRange?: {
+                                    max?: number | null | undefined;
+                                    min?: number | null | undefined;
+                                }[] | undefined;
                                 investedCompanyName?: string[] | undefined;
                                 investedCountry?: string[] | undefined;
                                 investedIndustry?: string[] | undefined;
@@ -9123,6 +9159,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
+                            investedAmountRaisedRange?: {
+                                max?: number | null | undefined;
+                                min?: number | null | undefined;
+                            }[] | undefined;
                             investedCompanyName?: string[] | undefined;
                             investedCountry?: string[] | undefined;
                             investedIndustry?: string[] | undefined;

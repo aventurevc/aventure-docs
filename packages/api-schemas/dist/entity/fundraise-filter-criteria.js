@@ -29,12 +29,14 @@ import { InvestorNameMatchModeSchema } from "../investor/name-match-mode.js";
  * @contractRole canonical
  */
 export const EntityFundraiseFilterCriteriaSchema = z.object({
-    /** Investor-level amount-invested ranges in the transaction currency. Use plain JSON numbers. */
+    /** Investor-level check amounts in the transaction currency, not the round's total raise. Use investedAmountRaisedRange for a named portfolio company's round total. Use plain JSON numbers. */
     amountInvestedRange: z.array(DecimalRangeSchema).optional(),
-    /** Per-round amount-raised ranges in USD. Use plain JSON numbers. */
+    /** Per-round amounts raised by the returned entity itself in USD, not a portfolio company's round total. Use investedAmountRaisedRange for the latter. Use plain JSON numbers. */
     amountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Inclusive announcement timestamp bounds on the same fundraise transaction as round and amountRaisedRange. Announcement dates do not establish funding completion dates. */
     dateAnnouncedRange: DateRangeSchema.nullish(),
+    /** Total amounts raised in USD by a named portfolio company's rounds, not an investor's individual check or its own fundraising. Requires nonblank investedCompanyName. Company, investedRound, and this amount match the same portfolio-company transaction. */
+    investedAmountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Portfolio company names matched by brand, legal name, or canonical identity; returns their investors with investedRound, when supplied, bound to the same company transaction regardless of its age. */
     investedCompanyName: z.array(z.string()).optional(),
     /** Countries of the companies an investor backed, as country names or ids; a deal matches when its company's current headquarters is in one of them. Restricts returned entities to investors with such a deal inside the investment-activity horizon; the same deal must match investedIndustry and, when investedCompanyName is empty, investedRound. */
