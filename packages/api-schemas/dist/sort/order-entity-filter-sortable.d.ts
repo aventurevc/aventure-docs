@@ -15,6 +15,7 @@ declare const SortOrderEntityFilterSortableSchemaDefinition: z.ZodObject<{
         MOST_RECENT_DATE: "MOST_RECENT_DATE";
         NAME_BRAND: "NAME_BRAND";
         NEXT_DUE_AT: "NEXT_DUE_AT";
+        NOTABLE_ACTIVITY_AT: "NOTABLE_ACTIVITY_AT";
         RECENT_INVESTMENT_AT: "RECENT_INVESTMENT_AT";
         STAGE: "STAGE";
         STATUS_OPERATING: "STATUS_OPERATING";
@@ -36,6 +37,7 @@ declare const SortOrderEntityFilterSortableSchemaDefinition: z.ZodObject<{
             MOST_RECENT_DATE: "MOST_RECENT_DATE";
             NAME_BRAND: "NAME_BRAND";
             NEXT_DUE_AT: "NEXT_DUE_AT";
+            NOTABLE_ACTIVITY_AT: "NOTABLE_ACTIVITY_AT";
             RECENT_INVESTMENT_AT: "RECENT_INVESTMENT_AT";
             STAGE: "STAGE";
             STATUS_OPERATING: "STATUS_OPERATING";

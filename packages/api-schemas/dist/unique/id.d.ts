@@ -10,6 +10,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         ein: "ein";
         fdicCert: "fdicCert";
         folk: "folk";
+        holdingCompanyRssd: "holdingCompanyRssd";
         isin: "isin";
         lei: "lei";
         ncuaCharter: "ncuaCharter";
@@ -25,6 +26,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             ein: "ein";
             fdicCert: "fdicCert";
             folk: "folk";
+            holdingCompanyRssd: "holdingCompanyRssd";
             isin: "isin";
             lei: "lei";
             ncuaCharter: "ncuaCharter";

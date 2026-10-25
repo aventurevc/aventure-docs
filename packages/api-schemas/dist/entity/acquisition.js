@@ -35,7 +35,7 @@ const EntityAcquisitionSchemaDefinition = z.object({
     fundraiseTransactionId: z.uuid().nullish(),
     /** Type-safe identifier for fundraise investor joins */
     investorJoinId: z.uuid().nullish(),
-    /** Whether this acquisition relationship still represents current ownership. */
+    /** Whether the buyer still owns the acquired company, not whether the company is operating. False retains the prior ownership event on this relationship. */
     isCurrent: z.boolean().nullish(),
     /** Published page behind this acquisition, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),

@@ -16,6 +16,7 @@ const EntityFilterSortableSchemaKnownMembers = z.enum([
     "MOST_RECENT_AMOUNT",
     "LATEST_VALUATION",
     "MOST_RECENT_DATE",
+    "NOTABLE_ACTIVITY_AT",
     "ACCELERATOR_BRAND",
     "ACCELERATOR_COHORT",
     "HEADQUARTERS_COUNTRY",
