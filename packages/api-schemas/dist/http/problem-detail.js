@@ -95,6 +95,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "image_brand_mismatch",
             /** Logo brand comparison could not run because no independent reference mark resolved. Supply a first-party website row with a usable logo or a proven LinkedIn company URL row with the target's own mark, independent of the candidate image. */
             "image_reference_unavailable",
+            /** No usable first-party logo found. Set a direct image; do not retry. */
+            "logo_first_party_missing",
             /** Image upload was a photograph or scene image rather than a standalone logo/mark graphic (a homepage hero, product photo, ad, or screenshot carrying an embedded wordmark). Agent action: supply the entity's standalone mark — a favicon, app icon, wordmark, or lockup — not page imagery; retrying the same bytes will not pass. */
             "image_photographic",
             /** An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately. */

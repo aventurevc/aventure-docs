@@ -17,6 +17,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         orcid: "orcid";
         rssd: "rssd";
         secCik: "secCik";
+        signalNfxCompany: "signalNfxCompany";
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
         ticker: "ticker";
@@ -35,6 +36,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             orcid: "orcid";
             rssd: "rssd";
             secCik: "secCik";
+            signalNfxCompany: "signalNfxCompany";
             signalNfxFirm: "signalNfxFirm";
             signalNfxPerson: "signalNfxPerson";
             ticker: "ticker";
