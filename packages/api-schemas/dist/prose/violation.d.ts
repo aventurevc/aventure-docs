@@ -8,6 +8,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         factList: "factList";
         legalSource: "legalSource";
         marketing: "marketing";
+        markup: "markup";
         mojibake: "mojibake";
         record: "record";
         source: "source";
@@ -24,6 +25,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
             factList: "factList";
             legalSource: "legalSource";
             marketing: "marketing";
+            markup: "markup";
             mojibake: "mojibake";
             record: "record";
             source: "source";

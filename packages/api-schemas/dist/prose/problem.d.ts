@@ -14,6 +14,7 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     factList: "factList";
     legalSource: "legalSource";
     marketing: "marketing";
+    markup: "markup";
     mojibake: "mojibake";
     record: "record";
     source: "source";
@@ -30,6 +31,7 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
         factList: "factList";
         legalSource: "legalSource";
         marketing: "marketing";
+        markup: "markup";
         mojibake: "mojibake";
         record: "record";
         source: "source";

@@ -12,6 +12,7 @@ const ProseProblemSchemaKnownMembers = z.enum([
     "temporal",
     "factList",
     "mojibake",
+    "markup",
     "unsupported",
     "legalSource",
     "textContract",
