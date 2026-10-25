@@ -17,6 +17,8 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         orcid: "orcid";
         rssd: "rssd";
         secCik: "secCik";
+        signalNfxFirm: "signalNfxFirm";
+        signalNfxPerson: "signalNfxPerson";
         ticker: "ticker";
     }>, z.ZodString]> & {
         enum: {
@@ -33,6 +35,8 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             orcid: "orcid";
             rssd: "rssd";
             secCik: "secCik";
+            signalNfxFirm: "signalNfxFirm";
+            signalNfxPerson: "signalNfxPerson";
             ticker: "ticker";
         };
     };
