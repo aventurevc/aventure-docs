@@ -292,6 +292,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityAcquisitionStageSchema",
     },
     EntityAliasType: { modulePath: "entity/alias-type", schemaName: "EntityAliasTypeSchema" },
+    EntityAnalysisReplay: {
+        modulePath: "entity/analysis-replay",
+        schemaName: "EntityAnalysisReplaySchema",
+    },
     EntityBrand: { modulePath: "entity/brand", schemaName: "EntityBrandSchema" },
     EntityClassification: {
         modulePath: "entity/classification",
@@ -570,6 +574,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "harness/run-environment",
         schemaName: "HarnessRunEnvironmentSchema",
     },
+    HarnessRunEvent: { modulePath: "harness/run-event", schemaName: "HarnessRunEventSchema" },
     HarnessRunFollowUp: {
         modulePath: "harness/run-follow-up",
         schemaName: "HarnessRunFollowUpSchema",
