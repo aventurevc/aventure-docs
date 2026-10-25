@@ -148,6 +148,7 @@ navigation:
             contents:
               - agents
               - researchRuns
+              - harness
               - system
 
 navbar-links:
@@ -470,15 +471,11 @@ redirects:
     destination: "/api-reference/auth"
   - source: "/api-reference/cli-authorizations/:slug*"
     destination: "/api-reference/auth/:slug*"
-  # The harness operations were renamed with the tag, so their page slugs changed too.
+  # The run operations moved to research-runs; analysis replay still uses harness.
   - source: "/api-reference/harness/create-harness-run"
     destination: "/api-reference/research-runs/create-research-run"
   - source: "/api-reference/harness/get-harness-run"
     destination: "/api-reference/research-runs/get-research-run"
-  - source: "/api-reference/harness"
-    destination: "/api-reference/research-runs"
-  - source: "/api-reference/harness/:slug*"
-    destination: "/api-reference/research-runs/:slug*"
   - source: "/api-reference/harness-runs"
     destination: "/api-reference/research-runs"
   - source: "/api-reference/harness-runs/:slug*"
