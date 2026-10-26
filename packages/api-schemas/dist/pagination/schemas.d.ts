@@ -10098,6 +10098,126 @@ export interface PageGithubRepoSchemaInput extends z.input<typeof PageGithubRepo
  */
 export declare const PageGithubRepoSchema: z.ZodType<PageGithubRepoDefinition, PageGithubRepoSchemaInput>;
 export type PageGithubRepo = z.infer<typeof PageGithubRepoSchema>;
+declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        attempt: z.ZodInt;
+        chassis: z.ZodEnum<{
+            "claude-agent-sdk": "claude-agent-sdk";
+            "pi-agent-sdk": "pi-agent-sdk";
+        }>;
+        chassisRouted: z.ZodBoolean;
+        createdAt: z.ZodISODateTime;
+        entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        environment: z.ZodEnum<{
+            development: "development";
+            production: "production";
+            staging: "staging";
+            unassigned: "unassigned";
+        }>;
+        error: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        failureClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        followUpAdmission: z.ZodOptional<z.ZodEnum<{
+            PENDING: "PENDING";
+            REJECTED: "REJECTED";
+            SETTLED: "SETTLED";
+            UNTRACKED: "UNTRACKED";
+        }>>;
+        hasSourceDocument: z.ZodBoolean;
+        id: z.ZodUUID;
+        iteration: z.ZodInt;
+        lane: z.ZodEnum<{
+            background: "background";
+            interactive: "interactive";
+        }>;
+        latestStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        llmApi: z.ZodEnum<{
+            anthropic: "anthropic";
+            "openai-chat": "openai-chat";
+            "openai-responses": "openai-responses";
+        }>;
+        maxIteration: z.ZodInt;
+        maxScoutConcurrent: z.ZodInt;
+        mode: z.ZodEnum<{
+            COMPREHENSIVE: "COMPREHENSIVE";
+            INDIVIDUAL: "INDIVIDUAL";
+        }>;
+        model: z.ZodString;
+        nextAttemptAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        researchAllowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            COMPANY: "COMPANY";
+            ENTITY_BRAND: "ENTITY_BRAND";
+            ENTITY_VIEW: "ENTITY_VIEW";
+            PERSON: "PERSON";
+            PERSON_VIEW: "PERSON_VIEW";
+            WEB_SEARCH: "WEB_SEARCH";
+        }>, z.ZodString]> & {
+            enum: {
+                COMPANY: "COMPANY";
+                ENTITY_BRAND: "ENTITY_BRAND";
+                ENTITY_VIEW: "ENTITY_VIEW";
+                PERSON: "PERSON";
+                PERSON_VIEW: "PERSON_VIEW";
+                WEB_SEARCH: "WEB_SEARCH";
+            };
+        }>>;
+        resumeSafeUntil: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        startedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        status: z.ZodEnum<{
+            completed: "completed";
+            failed: "failed";
+            queued: "queued";
+            running: "running";
+            stopped: "stopped";
+        }>;
+        subagentModel: z.ZodString;
+        taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+        type: z.ZodEnum<{
+            ENRICHMENT: "ENRICHMENT";
+            TASK: "TASK";
+        }>;
+        updatedAt: z.ZodISODateTime;
+        url: z.ZodString;
+        userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    }, z.core.$strip>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
+}, z.core.$strip>;
+type PageHarnessRunDefinition = z.infer<typeof PageHarnessRunSchemaDefinition>;
+export interface PageHarnessRunSchemaInput extends z.input<typeof PageHarnessRunSchemaDefinition> {
+}
+/**
+ * @openapiSchema PageHarnessRun
+ * @endpoint GET /v1/research-runs
+ * @contractShape pagination.page-harness-run
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export declare const PageHarnessRunSchema: z.ZodType<PageHarnessRunDefinition, PageHarnessRunSchemaInput>;
+export type PageHarnessRun = z.infer<typeof PageHarnessRunSchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         author?: string | null | undefined;

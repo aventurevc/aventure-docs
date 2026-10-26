@@ -14,6 +14,11 @@ export const ENTITY_INVESTMENTS_ENDPOINT = "/v1/entities/{entityId}/investments"
 export const EntityInvestmentsParamSchema = PageParamSchema.extend({
     /** Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort. */
     cursor: z.string().optional(),
+    /** Funding rounds only; requires roundExact. ResearchDate announcement-period overlap uses the canonical participation write selector: ISO year, year-month, day or offset timestamp, preserving supplied precision. Omission imposes no date constraint. Two timestamps match only at the same instant; calendar periods overlap and timestamp/calendar comparisons use the timestamp's UTC day. */
+    dateAnnounced: z
+        .string()
+        .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
+        .optional(),
     /** Inclusive minimum announced date */
     dateFrom: z.iso.date().optional(),
     /** Inclusive maximum announced date */
@@ -28,5 +33,7 @@ export const EntityInvestmentsParamSchema = PageParamSchema.extend({
     permitMonogram: z.boolean().optional(),
     /** Round label contains filter */
     round: z.string().optional(),
+    /** Funding rounds only, not outgoing investments: match the canonical participation write selector's exact stored round label, ignoring case and surrounding spaces. Cannot combine with round, dateFrom, dateTo, minAmount or maxAmount. Returns one bounded page of at most two raw ambiguity witnesses, without display deduplication: totalElements=2 means at least two matches, not an exhaustive count. Requires page=0, size>=2 and no cursor; no stable subset or export traversal is promised across requests. Omit dateAnnounced for no date constraint. */
+    roundExact: z.string().optional(),
 });
 //# sourceMappingURL=investments-param.js.map

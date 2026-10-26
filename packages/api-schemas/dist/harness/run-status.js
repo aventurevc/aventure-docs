@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  * Research run lifecycle state
  *
  * @openapiSchema HarnessRunStatus
+ * @endpoint GET /v1/research-runs
  * @endpoint GET /v1/research-runs/{runId}
  * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments

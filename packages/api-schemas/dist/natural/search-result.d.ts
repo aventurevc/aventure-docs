@@ -138,6 +138,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
             } | undefined;
             mainProduct?: string[] | undefined;
+            noteworthyOnly?: boolean | undefined;
             operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
             originCountry?: string[] | undefined;
             person?: string[] | undefined;
@@ -258,6 +259,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                         sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
                     } | undefined;
                     mainProduct?: string[] | undefined;
+                    noteworthyOnly?: boolean | undefined;
                     operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
                     originCountry?: string[] | undefined;
                     person?: string[] | undefined;
@@ -395,6 +397,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
                 } | undefined;
                 mainProduct?: string[] | undefined;
+                noteworthyOnly?: boolean | undefined;
                 operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
                 originCountry?: string[] | undefined;
                 person?: string[] | undefined;
@@ -565,6 +568,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
             } | undefined;
             mainProduct?: string[] | undefined;
+            noteworthyOnly?: boolean | undefined;
             operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
             originCountry?: string[] | undefined;
             person?: string[] | undefined;
@@ -685,6 +689,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                         sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
                     } | undefined;
                     mainProduct?: string[] | undefined;
+                    noteworthyOnly?: boolean | undefined;
                     operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
                     originCountry?: string[] | undefined;
                     person?: string[] | undefined;
@@ -822,6 +827,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     sortPriority?: "ANY_LOGO_FIRST" | "NONE" | "REAL_LOGO_FIRST" | undefined;
                 } | undefined;
                 mainProduct?: string[] | undefined;
+                noteworthyOnly?: boolean | undefined;
                 operatingStatus?: ("Acquired" | "Acquired Subsidiary" | "Closed" | "Closed (Acquihire)" | "Inactive" | "Operating")[] | undefined;
                 originCountry?: string[] | undefined;
                 person?: string[] | undefined;

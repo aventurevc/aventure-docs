@@ -14,6 +14,7 @@ export declare const EntityInvestmentsParamSchema: z.ZodObject<{
     size: z.ZodOptional<z.ZodInt>;
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     cursor: z.ZodOptional<z.ZodString>;
+    dateAnnounced: z.ZodOptional<z.ZodString>;
     dateFrom: z.ZodOptional<z.ZodISODate>;
     dateTo: z.ZodOptional<z.ZodISODate>;
     latestPerEntity: z.ZodOptional<z.ZodBoolean>;
@@ -21,6 +22,7 @@ export declare const EntityInvestmentsParamSchema: z.ZodObject<{
     minAmount: z.ZodOptional<z.ZodNumber>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
     round: z.ZodOptional<z.ZodString>;
+    roundExact: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 export type EntityInvestmentsParam = z.infer<typeof EntityInvestmentsParamSchema>;
 //# sourceMappingURL=investments-param.d.ts.map

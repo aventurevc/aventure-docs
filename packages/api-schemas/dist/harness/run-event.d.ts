@@ -15,6 +15,9 @@ export interface HarnessRunEventSchemaInput extends z.input<typeof HarnessRunEve
  *
  * @openapiSchema HarnessRunEvent
  * @endpoint GET /v1/entities/{entityId}/analysis-replay
+ * @endpoint GET /v1/research-runs/{runId}/events
+ * @endpoint POST /v1/research-runs/{runId}/turns
+ * @usedBySchema CursorSliceHarnessRunEventSchema
  * @usedBySchema EntityAnalysisReplaySchema
  * @contractShape harness.run-event
  * @contractRole canonical

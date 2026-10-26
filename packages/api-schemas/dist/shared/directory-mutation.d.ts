@@ -133,6 +133,7 @@ declare const SharedDirectoryMutationSchemaDefinition: z.ZodObject<{
             }>>;
         }, z.core.$strip>>;
         mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        noteworthyOnly: z.ZodOptional<z.ZodBoolean>;
         operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
             Acquired: "Acquired";
             "Acquired Subsidiary": "Acquired Subsidiary";
@@ -321,6 +322,7 @@ declare const SharedDirectoryMutationSchemaDefinition: z.ZodObject<{
                     }>>;
                 }, z.core.$strip>>;
                 mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                noteworthyOnly: z.ZodOptional<z.ZodBoolean>;
                 operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
                     Acquired: "Acquired";
                     "Acquired Subsidiary": "Acquired Subsidiary";
@@ -546,6 +548,7 @@ declare const SharedDirectoryMutationSchemaDefinition: z.ZodObject<{
                 }>>;
             }, z.core.$strip>>;
             mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            noteworthyOnly: z.ZodOptional<z.ZodBoolean>;
             operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
                 Acquired: "Acquired";
                 "Acquired Subsidiary": "Acquired Subsidiary";

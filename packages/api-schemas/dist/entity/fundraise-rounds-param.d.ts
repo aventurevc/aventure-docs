@@ -14,12 +14,14 @@ export declare const EntityFundraiseRoundsParamSchema: z.ZodObject<{
     size: z.ZodOptional<z.ZodInt>;
     sort: z.ZodOptional<z.ZodUnion<readonly [z.ZodString, z.ZodArray<z.ZodString>]>>;
     cursor: z.ZodOptional<z.ZodString>;
+    dateAnnounced: z.ZodOptional<z.ZodString>;
     dateFrom: z.ZodOptional<z.ZodISODate>;
     dateTo: z.ZodOptional<z.ZodISODate>;
     maxAmount: z.ZodOptional<z.ZodNumber>;
     minAmount: z.ZodOptional<z.ZodNumber>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
     round: z.ZodOptional<z.ZodString>;
+    roundExact: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
 export type EntityFundraiseRoundsParam = z.infer<typeof EntityFundraiseRoundsParamSchema>;
 //# sourceMappingURL=fundraise-rounds-param.d.ts.map

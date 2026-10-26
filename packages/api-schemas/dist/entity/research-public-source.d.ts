@@ -23,6 +23,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/research-runs/{runId}/draft/sources
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
@@ -35,6 +36,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/natural/people
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityAcquisitionSchema
+ * @usedBySchema EntityAnalysisSourceSchema
  * @usedBySchema EntityFundraiseTransactionSchema
  * @usedBySchema EntityRelationshipSchema
  * @usedBySchema EntityResearchDetailSchema

@@ -5,6 +5,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/classifications/tags
  * @endpoint GET /v1/news
  * @endpoint GET /v1/people
+ * @endpoint GET /v1/research-runs
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
@@ -64,6 +65,7 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntityUrlLinkSchema
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema
  * @usedBySchema PageGithubRepoSchema
+ * @usedBySchema PageHarnessRunSchema
  * @usedBySchema PageNewsSchema
  * @usedBySchema PagePersonDetailSchema
  * @usedBySchema PagePersonInvestmentSchema

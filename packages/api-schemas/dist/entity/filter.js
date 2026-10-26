@@ -74,6 +74,8 @@ export const EntityFilterSchema = z.strictObject({
     logoOption: EntityFilterLogoOptionSchema.optional(),
     /** Main product classification values. */
     mainProduct: z.array(z.string()).optional(),
+    /** Precise notable activity in 48h. */
+    noteworthyOnly: z.boolean().optional(),
     /** Operating states to include; omit to include every state. */
     operatingStatus: z.array(EntityOperatingStatusSchema).optional(),
     /** Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now. */

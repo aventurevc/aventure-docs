@@ -20,6 +20,7 @@ import { EntityTextSchema } from "../entity/text.js";
 import { EntityUrlLinkSchema } from "../entity/url-link.js";
 import { EntityValuationTimeSeriesPointSchema } from "../entity/valuation-time-series-point.js";
 import { GithubRepoSchema } from "../github/repo.js";
+import { HarnessRunSchema } from "../harness/run.js";
 import { NewsSchema } from "../news/news.js";
 import { PageableObjectSchema } from "../pageable/object.js";
 import { PersonDetailSchema } from "../person/detail.js";
@@ -460,6 +461,27 @@ const PageGithubRepoSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageGithubRepoSchema = PageGithubRepoSchemaDefinition;
+const PageHarnessRunSchemaDefinition = z.object({
+    content: z.array(HarnessRunSchema).optional(),
+    empty: z.boolean().optional(),
+    first: z.boolean().optional(),
+    last: z.boolean().optional(),
+    number: z.int().optional(),
+    numberOfElements: z.int().optional(),
+    pageable: PageableObjectSchema.optional(),
+    size: z.int().optional(),
+    sort: SortObjectSchema.optional(),
+    totalElements: z.number().int().optional(),
+    totalPages: z.int().optional(),
+});
+/**
+ * @openapiSchema PageHarnessRun
+ * @endpoint GET /v1/research-runs
+ * @contractShape pagination.page-harness-run
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export const PageHarnessRunSchema = PageHarnessRunSchemaDefinition;
 const PageNewsSchemaDefinition = z.object({
     content: z.array(NewsSchema).optional(),
     empty: z.boolean().optional(),

@@ -234,6 +234,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cursor/slice-address-link",
         schemaName: "CursorSliceAddressLinkSchema",
     },
+    CursorSliceHarnessRunEvent: {
+        modulePath: "cursor/slice-harness-run-event",
+        schemaName: "CursorSliceHarnessRunEventSchema",
+    },
     CursorSliceSharedDirectoryList: {
         modulePath: "cursor/slice-shared-directory-list",
         schemaName: "CursorSliceSharedDirectoryListSchema",
@@ -292,9 +296,57 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityAcquisitionStageSchema",
     },
     EntityAliasType: { modulePath: "entity/alias-type", schemaName: "EntityAliasTypeSchema" },
+    EntityAnalysisCitation: {
+        modulePath: "entity/analysis-citation",
+        schemaName: "EntityAnalysisCitationSchema",
+    },
+    EntityAnalysisDraft: {
+        modulePath: "entity/analysis-draft",
+        schemaName: "EntityAnalysisDraftSchema",
+    },
+    EntityAnalysisFigure: {
+        modulePath: "entity/analysis-figure",
+        schemaName: "EntityAnalysisFigureSchema",
+    },
+    EntityAnalysisFigureCell: {
+        modulePath: "entity/analysis-figure-cell",
+        schemaName: "EntityAnalysisFigureCellSchema",
+    },
+    EntityAnalysisFigureEntry: {
+        modulePath: "entity/analysis-figure-entry",
+        schemaName: "EntityAnalysisFigureEntrySchema",
+    },
+    EntityAnalysisFigureType: {
+        modulePath: "entity/analysis-figure-type",
+        schemaName: "EntityAnalysisFigureTypeSchema",
+    },
+    EntityAnalysisInvocation: {
+        modulePath: "entity/analysis-invocation",
+        schemaName: "EntityAnalysisInvocationSchema",
+    },
+    EntityAnalysisParagraph: {
+        modulePath: "entity/analysis-paragraph",
+        schemaName: "EntityAnalysisParagraphSchema",
+    },
     EntityAnalysisReplay: {
         modulePath: "entity/analysis-replay",
         schemaName: "EntityAnalysisReplaySchema",
+    },
+    EntityAnalysisSection: {
+        modulePath: "entity/analysis-section",
+        schemaName: "EntityAnalysisSectionSchema",
+    },
+    EntityAnalysisSectionOrigin: {
+        modulePath: "entity/analysis-section-origin",
+        schemaName: "EntityAnalysisSectionOriginSchema",
+    },
+    EntityAnalysisSource: {
+        modulePath: "entity/analysis-source",
+        schemaName: "EntityAnalysisSourceSchema",
+    },
+    EntityAnalysisTool: {
+        modulePath: "entity/analysis-tool",
+        schemaName: "EntityAnalysisToolSchema",
     },
     EntityBrand: { modulePath: "entity/brand", schemaName: "EntityBrandSchema" },
     EntityClassification: {
@@ -589,6 +641,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "HarnessRunProgressSchema",
     },
     HarnessRunStatus: { modulePath: "harness/run-status", schemaName: "HarnessRunStatusSchema" },
+    HarnessRunTurn: { modulePath: "harness/run-turn", schemaName: "HarnessRunTurnSchema" },
     HarnessRunType: { modulePath: "harness/run-type", schemaName: "HarnessRunTypeSchema" },
     HarnessTaskInput: { modulePath: "harness/task", schemaName: "HarnessTaskSchema" },
     HarnessTaskInputType: {
@@ -782,6 +835,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "PageEntityValuationTimeSeriesPointSchema",
     },
     PageGithubRepo: { modulePath: "pagination/schemas", schemaName: "PageGithubRepoSchema" },
+    PageHarnessRun: { modulePath: "pagination/schemas", schemaName: "PageHarnessRunSchema" },
     PageNews: { modulePath: "pagination/schemas", schemaName: "PageNewsSchema" },
     PagePerson: { modulePath: "pagination/schemas", schemaName: "PagePersonSchema" },
     PagePersonDetail: { modulePath: "pagination/schemas", schemaName: "PagePersonDetailSchema" },
