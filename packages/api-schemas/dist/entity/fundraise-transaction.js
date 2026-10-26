@@ -29,7 +29,7 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     /** Canonical fundraise transaction UUID */
     id: z.uuid(),
     investor: z.array(EntityFundraiseInvestorJoinSchema).nullish(),
-    /** Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's attributed participation amount for this round. */
+    /** Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's whole investment in this round: its joins here (one per vehicle, such as a CEA and a SAFE) summed. joinId names one of those joins. */
     investorAttribution: FundraiseInvestmentAttributionSchema.nullish(),
     /** Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor. */
     investorCount: z.int().nullish(),

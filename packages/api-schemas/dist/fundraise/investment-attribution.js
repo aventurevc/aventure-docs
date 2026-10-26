@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { FundraiseInvestmentAttributionTypeSchema } from "./investment-attribution-type.js";
 import { RoundLabelSchema } from "../round/label.js";
 /**
- * Investor-specific attribution for one fundraise participation row
+ * Investor-specific attribution: an investor's investment in one round (its joins there, one per vehicle, summed) or, in source attribution, one investor join
  *
  * @openapiSchema FundraiseInvestmentAttribution
  * @endpoint GET /v1/entities
@@ -41,7 +41,7 @@ import { RoundLabelSchema } from "../round/label.js";
  * @contractRole canonical
  */
 export const FundraiseInvestmentAttributionSchema = z.object({
-    /** Investor-level attributed amount invested in the fundraise transaction currency. Serialized as a plain JSON number such as 220000 or 123456.78; no currency sign, currency code, comma grouping, or abbreviated amount text is valid. */
+    /** Investor-level attributed amount invested in the fundraise transaction currency: the investor's joins on the round summed for an investment, or one join's amount in source attribution. Serialized as a plain JSON number such as 220000 or 123456.78; no currency sign, currency code, comma grouping, or abbreviated amount text is valid. */
     amountInvested: z.number().nullish(),
     /** How this attribution row participates in the investor view. */
     attributionType: FundraiseInvestmentAttributionTypeSchema,
@@ -49,7 +49,7 @@ export const FundraiseInvestmentAttributionSchema = z.object({
     beneficialEntityId: z.uuid().nullish(),
     /** Fund-manager relationship id when the attribution rolls up through a managed fund. */
     fundManagerRelationshipId: z.int().nullish(),
-    /** Fundraise investor join identifier */
+    /** Fundraise investor join identifier; for a summed investment, one of the joins it sums */
     joinId: z.uuid(),
     /** Whether this investor is the lead investor for the round — the lead/anchor investor that set the round terms or made the primary commitment. */
     leadInvestor: z.boolean(),

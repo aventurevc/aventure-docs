@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Investor-specific attribution for one fundraise participation row
+ * Investor-specific attribution: an investor's investment in one round (its joins there, one per vehicle, summed) or, in source attribution, one investor join
  *
  * @openapiSchema FundraiseInvestmentAttribution
  * @endpoint GET /v1/entities

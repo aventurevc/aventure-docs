@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Published page behind a research value, read from the provenance event that wrote the value. Absent for internal sources and for privacy, terms, or other legal pages.
+ * Published page behind a research value, read from the provenance event that wrote the value. Absent for internal sources, privacy, terms, or other legal pages, and, in public views, suppressed secondary sources such as data aggregators.
  *
  * @openapiSchema EntityResearchPublicSource
  * @endpoint GET /v1/entities
