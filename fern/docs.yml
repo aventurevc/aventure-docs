@@ -148,7 +148,6 @@ navigation:
             contents:
               - agents
               - researchRuns
-              - harness
               - system
 
 navbar-links:
@@ -471,7 +470,9 @@ redirects:
     destination: "/api-reference/auth"
   - source: "/api-reference/cli-authorizations/:slug*"
     destination: "/api-reference/auth/:slug*"
-  # The run operations moved to research-runs; analysis replay still uses harness.
+  # Run operations moved to research-runs; analysis replay moved to entity-research.
+  - source: "/api-reference/harness/get-entity-analysis-replay"
+    destination: "/api-reference/entity-research/get-entity-analysis-replay"
   - source: "/api-reference/harness/create-harness-run"
     destination: "/api-reference/research-runs/create-research-run"
   - source: "/api-reference/harness/get-harness-run"
