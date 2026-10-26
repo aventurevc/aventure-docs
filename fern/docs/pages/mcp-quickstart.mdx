@@ -25,7 +25,11 @@ Every app connects to the same hosted server:
 
 When the app opens aVenture's sign-in page, sign in to your aVenture account and
 approve the access it asks for. Most tabs end with a one-shot prompt to paste
-into that app; it finishes setup and runs a first lookup.
+into that app; it finishes setup and runs a first lookup. Pages on this site
+whose URL ends in `.md` include a Fern header naming
+`https://docs.aventure.vc/_mcp/server`, which searches developer documentation
+only; connect `https://mcp.aventure.vc/mcp` to search companies, people,
+investors, funding rounds, and news.
 
 <Tabs>
 <Tab title="ChatGPT">
@@ -271,7 +275,7 @@ tools from your own code or prompts, read
 <Accordion title="Run the Server Yourself (Rarely Needed)">
 
 Run the server yourself when you need it inside your own network. It requires
-Node.js 24.18.0 or later.
+Node.js 24.22.1 or later.
 
 ```bash
 npm install --global @aventurevc/mcp-server
