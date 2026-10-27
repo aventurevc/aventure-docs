@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * One metered allowance a paid subscriber may use past its monthly cap.
+ * One metered allowance a paid subscriber may use past its included cap.
  *
  * @openapiSchema BillingAdditionalUsageType
  * @endpoint GET /v1/billing/plans
@@ -16,6 +16,7 @@ export declare const BillingAdditionalUsageTypeSchema: z.ZodUnion<readonly [z.Zo
     COMPANY: "COMPANY";
     ENTITY_BRAND: "ENTITY_BRAND";
     ENTITY_VIEW: "ENTITY_VIEW";
+    EXPORT: "EXPORT";
     PERSON: "PERSON";
     PERSON_VIEW: "PERSON_VIEW";
     WEB_SEARCH: "WEB_SEARCH";
@@ -25,6 +26,7 @@ export declare const BillingAdditionalUsageTypeSchema: z.ZodUnion<readonly [z.Zo
         COMPANY: "COMPANY";
         ENTITY_BRAND: "ENTITY_BRAND";
         ENTITY_VIEW: "ENTITY_VIEW";
+        EXPORT: "EXPORT";
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";
         WEB_SEARCH: "WEB_SEARCH";

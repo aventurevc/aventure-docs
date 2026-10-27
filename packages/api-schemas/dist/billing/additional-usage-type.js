@@ -7,10 +7,11 @@ const BillingAdditionalUsageTypeSchemaKnownMembers = z.enum([
     "ENTITY_BRAND",
     "PERSON_VIEW",
     "WEB_SEARCH",
+    "EXPORT",
     "AI_CREDIT",
 ]);
 /**
- * One metered allowance a paid subscriber may use past its monthly cap.
+ * One metered allowance a paid subscriber may use past its included cap.
  *
  * @openapiSchema BillingAdditionalUsageType
  * @endpoint GET /v1/billing/plans

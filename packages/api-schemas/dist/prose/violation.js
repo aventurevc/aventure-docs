@@ -4,7 +4,7 @@ import { ProseProblemSchema } from "./problem.js";
 const ProseViolationSchemaDefinition = z.object({
     /** Whether proseOverrideReason can accept this problem; ProblemDetail.hint says when an override is allowed. */
     overridable: z.boolean(),
-    /** The rejected sentence, the whole text for a text-contract violation, or the source URL for a legal-page source. */
+    /** The rejected sentence or paragraph, the whole text for a global text-contract violation, or the source URL for a legal-page source. */
     passage: z.string(),
     /** The problem this passage shows. */
     problem: ProseProblemSchema,

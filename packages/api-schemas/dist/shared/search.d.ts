@@ -5166,6 +5166,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 modeRequested: string;
                 modeUsed: string;
             };
+            incompleteScope?: ("entity" | "news" | "person")[] | undefined;
             news: {
                 modeRequested: string;
                 modeUsed: string;
@@ -10344,6 +10345,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 modeRequested: string;
                 modeUsed: string;
             };
+            incompleteScope?: ("entity" | "news" | "person")[] | undefined;
             news: {
                 modeRequested: string;
                 modeUsed: string;

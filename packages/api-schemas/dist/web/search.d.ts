@@ -81,12 +81,14 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
     relatedSearch: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     result: z.ZodArray<z.ZodType<{
         image?: string | null | undefined;
+        publishedDate?: string | null | undefined;
         relevanceScore: number;
         snippet: string;
         title: string;
         url: string;
     }, import("../search/hit.ts").SearchHitSchemaInput, z.core.$ZodTypeInternals<{
         image?: string | null | undefined;
+        publishedDate?: string | null | undefined;
         relevanceScore: number;
         snippet: string;
         title: string;

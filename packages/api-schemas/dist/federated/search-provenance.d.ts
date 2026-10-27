@@ -8,6 +8,11 @@ declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
         modeRequested: string;
         modeUsed: string;
     }, import("../search/mode-execution.ts").SearchModeExecutionSchemaInput>>;
+    incompleteScope: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+        entity: "entity";
+        news: "news";
+        person: "person";
+    }>>>;
     news: z.ZodType<{
         modeRequested: string;
         modeUsed: string;

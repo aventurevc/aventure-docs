@@ -5155,6 +5155,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 modeRequested: string;
                 modeUsed: string;
             };
+            incompleteScope?: ("entity" | "news" | "person")[] | undefined;
             news: {
                 modeRequested: string;
                 modeUsed: string;
@@ -10333,6 +10334,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 modeRequested: string;
                 modeUsed: string;
             };
+            incompleteScope?: ("entity" | "news" | "person")[] | undefined;
             news: {
                 modeRequested: string;
                 modeUsed: string;

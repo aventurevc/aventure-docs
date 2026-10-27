@@ -4,7 +4,7 @@ import { EntityResearchValueTypeSchema } from "../entity/research-value-type.js"
 import { ResearchValueRangeSchema } from "./value-range.js";
 import { ResearchValueShapeTypeSchema } from "./value-shape-type.js";
 const ResearchDetailTypeSchemaDefinition = z.object({
-    /** Allowed valueResearchDetail tokens for enumeratedToken shapes. */
+    /** Allowed valueResearchDetail tokens, or textValue categories when valueShape is freeText. */
     allowedToken: z.array(z.string()).nullish(),
     curated: z.boolean(),
     label: z.string(),

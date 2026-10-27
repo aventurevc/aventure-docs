@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const SearchHitSchemaDefinition: z.ZodObject<{
     image: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    publishedDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
     relevanceScore: z.ZodNumber;
     snippet: z.ZodString;
     title: z.ZodString;
