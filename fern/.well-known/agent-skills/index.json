@@ -37,6 +37,13 @@
       "digest": "sha256:51f7d278b5de5513ab8f6785efd6c586916aa284fffcf22e0ecb0dbd3047481f"
     },
     {
+      "name": "customer-analysis",
+      "type": "archive",
+      "description": "Use only when asked who a company or product sells to, who its customers or buyers are, or why they buy: named customer accounts verified from public evidence, the roles and personas who buy and use inside them, the use case and trigger behind each purchase, and a ranking by purchase urgency, frequency, and spend.",
+      "url": "/.well-known/agent-skills/customer-analysis.tgz",
+      "digest": "sha256:561518d8fbe93bf057fdc9dc231048e15e618758cb50b34453443b9a27ea964e"
+    },
+    {
       "name": "fundraising-environment",
       "type": "skill-md",
       "description": "Use only when asked about the venture and growth capital environment for a company's specific sub-sector: round counts and sizes, valuation direction, active and retreating investors, exits, and implications for its next raise.",

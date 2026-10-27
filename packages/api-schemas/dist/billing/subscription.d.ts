@@ -9,7 +9,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         meter: {
             amountCents: number;
             quantity: number;
-            type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: string;
         }[];
         resetAt: string;
         spendCapCents?: number | null | undefined;
@@ -24,7 +24,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         meter: {
             amountCents: number;
             quantity: number;
-            type: "AI_CREDIT" | "COMPANY" | "ENTITY_BRAND" | "ENTITY_VIEW" | "PERSON" | "PERSON_VIEW" | "WEB_SEARCH";
+            type: string;
         }[];
         resetAt: string;
         spendCapCents?: number | null | undefined;
@@ -53,6 +53,13 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
+        export?: {
+            access?: string | null | undefined;
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        } | undefined;
         newCompany: {
             access?: string | null | undefined;
             limit?: number | null | undefined;
@@ -124,6 +131,13 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             resetAt: string;
             used: number;
         };
+        export?: {
+            access?: string | null | undefined;
+            limit?: number | null | undefined;
+            remaining?: number | null | undefined;
+            resetAt: string;
+            used: number;
+        } | undefined;
         newCompany: {
             access?: string | null | undefined;
             limit?: number | null | undefined;

@@ -11,7 +11,7 @@ import { z } from "zod/v4";
  * @contractShape billing.additional-usage-type
  * @contractRole canonical
  */
-export declare const BillingAdditionalUsageTypeSchema: z.ZodEnum<{
+export declare const BillingAdditionalUsageTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     AI_CREDIT: "AI_CREDIT";
     COMPANY: "COMPANY";
     ENTITY_BRAND: "ENTITY_BRAND";
@@ -19,6 +19,16 @@ export declare const BillingAdditionalUsageTypeSchema: z.ZodEnum<{
     PERSON: "PERSON";
     PERSON_VIEW: "PERSON_VIEW";
     WEB_SEARCH: "WEB_SEARCH";
-}>;
+}>, z.ZodString]> & {
+    enum: {
+        AI_CREDIT: "AI_CREDIT";
+        COMPANY: "COMPANY";
+        ENTITY_BRAND: "ENTITY_BRAND";
+        ENTITY_VIEW: "ENTITY_VIEW";
+        PERSON: "PERSON";
+        PERSON_VIEW: "PERSON_VIEW";
+        WEB_SEARCH: "WEB_SEARCH";
+    };
+};
 export type BillingAdditionalUsageType = z.infer<typeof BillingAdditionalUsageTypeSchema>;
 //# sourceMappingURL=additional-usage-type.d.ts.map

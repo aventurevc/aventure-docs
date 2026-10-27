@@ -6,7 +6,10 @@ import { z } from "zod/v4";
  * @openapiSchema SharedDirectoryType
  * @endpoint GET /v1/directory/shared
  * @endpoint GET /v1/directory/shared/slug/{slug}
+ * @endpoint POST /v1/directory/exports
  * @endpoint POST /v1/directory/shared
+ * @usedBySchema DirectoryExportMutationSchema
+ * @usedBySchema DirectoryExportSchema
  * @usedBySchema SharedDirectoryListSchema
  * @usedBySchema SharedDirectoryMutationSchema
  * @contractShape shared.directory-type

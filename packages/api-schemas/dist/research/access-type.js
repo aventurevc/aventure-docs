@@ -13,6 +13,7 @@ const ResearchAccessTypeSchemaKnownMembers = z.enum([
  * @openapiSchema ResearchAccessType
  * @endpoint GET /v1/billing/ai-credits
  * @endpoint GET /v1/billing/subscription
+ * @endpoint POST /v1/directory/exports
  * @usedBySchema ResearchAllowanceSchema
  * @contractShape research.access-type
  * @contractRole canonical

@@ -4,6 +4,8 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
     cadence: z.ZodString;
     currency: z.ZodString;
     displayName: z.ZodString;
+    exportLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    exportPeriod: z.ZodOptional<z.ZodString>;
     introductoryAmount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";

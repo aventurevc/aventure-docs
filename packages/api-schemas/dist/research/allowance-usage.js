@@ -7,6 +7,8 @@ const ResearchAllowanceUsageSchemaDefinition = z.object({
     /** Thin company brand reads (names, logos, links, tags) */
     entityBrand: ResearchAllowanceSchema,
     entityView: ResearchAllowanceSchema,
+    /** Distinct exported records; UTC month on monthly plans, full subscription period on yearly plans */
+    export: ResearchAllowanceSchema.optional(),
     /** Deprecated: replaced by company, which it mirrors. */
     newCompany: ResearchAllowanceSchema,
     /** Deprecated: replaced by person, which it mirrors. */

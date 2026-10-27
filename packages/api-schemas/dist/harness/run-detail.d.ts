@@ -167,6 +167,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             COMPANY: "COMPANY";
             ENTITY_BRAND: "ENTITY_BRAND";
             ENTITY_VIEW: "ENTITY_VIEW";
+            EXPORT: "EXPORT";
             PERSON: "PERSON";
             PERSON_VIEW: "PERSON_VIEW";
             WEB_SEARCH: "WEB_SEARCH";
@@ -175,6 +176,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
                 COMPANY: "COMPANY";
                 ENTITY_BRAND: "ENTITY_BRAND";
                 ENTITY_VIEW: "ENTITY_VIEW";
+                EXPORT: "EXPORT";
                 PERSON: "PERSON";
                 PERSON_VIEW: "PERSON_VIEW";
                 WEB_SEARCH: "WEB_SEARCH";

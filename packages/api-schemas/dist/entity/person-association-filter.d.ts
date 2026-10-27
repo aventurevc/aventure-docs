@@ -8,6 +8,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/directory/exports
  * @endpoint POST /v1/directory/shared
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search

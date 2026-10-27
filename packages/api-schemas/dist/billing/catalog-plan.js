@@ -9,6 +9,10 @@ const BillingCatalogPlanSchemaDefinition = z.object({
     /** ISO 4217 currency code. */
     currency: z.string(),
     displayName: z.string(),
+    /** Distinct exported records per exportPeriod; absent means uncapped. */
+    exportLimit: z.int().nullish(),
+    /** ISO 8601 export allowance period: P1M is a UTC month; P1Y is the subscription billing period, available in full at its start. */
+    exportPeriod: z.string().optional(),
     /** First invoice amount in currency minor units (USD cents) when an automatic, one-time Checkout offer is available; absent otherwise. Renewals use unitAmount. */
     introductoryAmount: z.number().int().nullish(),
     plan: BillingPlanTypeSchema,

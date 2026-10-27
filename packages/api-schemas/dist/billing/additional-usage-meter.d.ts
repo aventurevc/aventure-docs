@@ -2,7 +2,7 @@ import { z } from "zod/v4";
 declare const BillingAdditionalUsageMeterSchemaDefinition: z.ZodObject<{
     amountCents: z.ZodNumber;
     quantity: z.ZodInt;
-    type: z.ZodEnum<{
+    type: z.ZodUnion<readonly [z.ZodEnum<{
         AI_CREDIT: "AI_CREDIT";
         COMPANY: "COMPANY";
         ENTITY_BRAND: "ENTITY_BRAND";
@@ -10,7 +10,17 @@ declare const BillingAdditionalUsageMeterSchemaDefinition: z.ZodObject<{
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";
         WEB_SEARCH: "WEB_SEARCH";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            AI_CREDIT: "AI_CREDIT";
+            COMPANY: "COMPANY";
+            ENTITY_BRAND: "ENTITY_BRAND";
+            ENTITY_VIEW: "ENTITY_VIEW";
+            PERSON: "PERSON";
+            PERSON_VIEW: "PERSON_VIEW";
+            WEB_SEARCH: "WEB_SEARCH";
+        };
+    };
 }, z.core.$strip>;
 type BillingAdditionalUsageMeterDefinition = z.infer<typeof BillingAdditionalUsageMeterSchemaDefinition>;
 export interface BillingAdditionalUsageMeterSchemaInput extends z.input<typeof BillingAdditionalUsageMeterSchemaDefinition> {

@@ -7,9 +7,10 @@ const ResearchAllowanceTypeSchemaKnownMembers = z.enum([
     "ENTITY_BRAND",
     "PERSON_VIEW",
     "WEB_SEARCH",
+    "EXPORT",
 ]);
 /**
- * Metered allowance. `COMPANY` and `PERSON` meter research runs on company and person-profile targets; `ENTITY_VIEW`, `ENTITY_BRAND`, and `PERSON_VIEW` meter profile and brand reads; `WEB_SEARCH` meters web searches.
+ * Metered allowance. `COMPANY` and `PERSON` meter research runs on company and person-profile targets; `ENTITY_VIEW`, `ENTITY_BRAND`, and `PERSON_VIEW` meter profile and brand reads; `WEB_SEARCH` meters web searches; `EXPORT` meters distinct exported records.
  *
  * @openapiSchema ResearchAllowanceType
  * @standardProblemResponse

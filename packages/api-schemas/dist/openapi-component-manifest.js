@@ -256,6 +256,15 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     DateRange: { modulePath: "date/range", schemaName: "DateRangeSchema" },
     DecimalRange: { modulePath: "decimal/range", schemaName: "DecimalRangeSchema" },
+    DirectoryExport: { modulePath: "directory/export", schemaName: "DirectoryExportSchema" },
+    DirectoryExportColumnType: {
+        modulePath: "directory/export-column-type",
+        schemaName: "DirectoryExportColumnTypeSchema",
+    },
+    DirectoryExportMutation: {
+        modulePath: "directory/export-mutation",
+        schemaName: "DirectoryExportMutationSchema",
+    },
     DomainConflictDetails: {
         modulePath: "domain/conflict-details",
         schemaName: "DomainConflictDetailsSchema",

@@ -1,5 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const BillingAdditionalUsageTypeSchemaKnownMembers = z.enum([
+    "COMPANY",
+    "PERSON",
+    "ENTITY_VIEW",
+    "ENTITY_BRAND",
+    "PERSON_VIEW",
+    "WEB_SEARCH",
+    "AI_CREDIT",
+]);
 /**
  * One metered allowance a paid subscriber may use past its monthly cap.
  *
@@ -12,13 +21,5 @@ import { z } from "zod/v4";
  * @contractShape billing.additional-usage-type
  * @contractRole canonical
  */
-export const BillingAdditionalUsageTypeSchema = z.enum([
-    "COMPANY",
-    "PERSON",
-    "ENTITY_VIEW",
-    "ENTITY_BRAND",
-    "PERSON_VIEW",
-    "WEB_SEARCH",
-    "AI_CREDIT",
-]);
+export const BillingAdditionalUsageTypeSchema = Object.assign(z.union([BillingAdditionalUsageTypeSchemaKnownMembers, z.string()]), { enum: BillingAdditionalUsageTypeSchemaKnownMembers.enum });
 //# sourceMappingURL=additional-usage-type.js.map

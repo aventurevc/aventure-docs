@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 declare const BillingCatalogAdditionalUsageSchemaDefinition: z.ZodObject<{
-    type: z.ZodEnum<{
+    type: z.ZodUnion<readonly [z.ZodEnum<{
         AI_CREDIT: "AI_CREDIT";
         COMPANY: "COMPANY";
         ENTITY_BRAND: "ENTITY_BRAND";
@@ -8,7 +8,17 @@ declare const BillingCatalogAdditionalUsageSchemaDefinition: z.ZodObject<{
         PERSON: "PERSON";
         PERSON_VIEW: "PERSON_VIEW";
         WEB_SEARCH: "WEB_SEARCH";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            AI_CREDIT: "AI_CREDIT";
+            COMPANY: "COMPANY";
+            ENTITY_BRAND: "ENTITY_BRAND";
+            ENTITY_VIEW: "ENTITY_VIEW";
+            PERSON: "PERSON";
+            PERSON_VIEW: "PERSON_VIEW";
+            WEB_SEARCH: "WEB_SEARCH";
+        };
+    };
     unitAmount: z.ZodNumber;
 }, z.core.$strip>;
 type BillingCatalogAdditionalUsageDefinition = z.infer<typeof BillingCatalogAdditionalUsageSchemaDefinition>;
