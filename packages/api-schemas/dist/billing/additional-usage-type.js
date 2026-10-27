@@ -7,7 +7,6 @@ const BillingAdditionalUsageTypeSchemaKnownMembers = z.enum([
     "ENTITY_BRAND",
     "PERSON_VIEW",
     "WEB_SEARCH",
-    "EXPORT",
     "AI_CREDIT",
 ]);
 /**

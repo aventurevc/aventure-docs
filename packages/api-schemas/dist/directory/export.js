@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { ResearchAllowanceSchema } from "../research/allowance.js";
 import { SharedDirectoryTypeSchema } from "../shared/directory-type.js";
 const DirectoryExportSchemaDefinition = z.object({
+    /** The shared monthly entityView allowance for company or investor rows, or personView allowance for person rows, after this export. */
     allowance: ResearchAllowanceSchema,
     column: z.array(z.string()),
     directory: SharedDirectoryTypeSchema,

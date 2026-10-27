@@ -1,26 +1,18 @@
 import { z } from "zod/v4";
 declare const DirectoryExportSchemaDefinition: z.ZodObject<{
-    allowance: z.ZodObject<{
-        access: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
-            ADDITIONAL_USAGE: "ADDITIONAL_USAGE";
-            BILLING_BLOCKED: "BILLING_BLOCKED";
-            EXHAUSTED: "EXHAUSTED";
-            INCLUDED: "INCLUDED";
-            PLAN_REQUIRED: "PLAN_REQUIRED";
-        }>, z.ZodString]> & {
-            enum: {
-                ADDITIONAL_USAGE: "ADDITIONAL_USAGE";
-                BILLING_BLOCKED: "BILLING_BLOCKED";
-                EXHAUSTED: "EXHAUSTED";
-                INCLUDED: "INCLUDED";
-                PLAN_REQUIRED: "PLAN_REQUIRED";
-            };
-        }>>;
-        limit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        remaining: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-        resetAt: z.ZodISODateTime;
-        used: z.ZodInt;
-    }, z.core.$strip>;
+    allowance: z.ZodType<{
+        access?: string | null | undefined;
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, import("../research/allowance.ts").ResearchAllowanceSchemaInput, z.core.$ZodTypeInternals<{
+        access?: string | null | undefined;
+        limit?: number | null | undefined;
+        remaining?: number | null | undefined;
+        resetAt: string;
+        used: number;
+    }, import("../research/allowance.ts").ResearchAllowanceSchemaInput>>;
     column: z.ZodArray<z.ZodString>;
     directory: z.ZodEnum<{
         companies: "companies";

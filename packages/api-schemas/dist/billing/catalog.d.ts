@@ -20,8 +20,6 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         cadence: string;
         currency: string;
         displayName: string;
-        exportLimit?: number | null | undefined;
-        exportPeriod?: string | undefined;
         introductoryAmount?: number | null | undefined;
         plan: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
@@ -31,8 +29,6 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         cadence: string;
         currency: string;
         displayName: string;
-        exportLimit?: number | null | undefined;
-        exportPeriod?: string | undefined;
         introductoryAmount?: number | null | undefined;
         plan: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
@@ -66,7 +62,7 @@ type BillingCatalogDefinition = z.infer<typeof BillingCatalogSchemaDefinition>;
 export interface BillingCatalogSchemaInput extends z.input<typeof BillingCatalogSchemaDefinition> {
 }
 /**
- * Every self-serve subscription tier with its monthly allowance caps and free daily allowances, every plan Checkout sells with its effective export cap and period, and the prices of eligible usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.
+ * Every self-serve subscription tier with its monthly allowance caps and free daily allowances, every plan Checkout sells, and the prices of eligible usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.
  *
  * @openapiSchema BillingCatalog
  * @endpoint GET /v1/billing/plans
