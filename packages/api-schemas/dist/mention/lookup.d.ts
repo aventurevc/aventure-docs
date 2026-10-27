@@ -1,5 +1,10 @@
 import { z } from "zod/v4";
 declare const MentionLookupSchemaDefinition: z.ZodObject<{
+    filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        jobId: z.ZodUUID;
+        mode: z.ZodString;
+        statusUrl: z.ZodString;
+    }, z.core.$strip>>>;
     mention: z.ZodArray<z.ZodType<{
         enrichmentRunId?: string | null | undefined;
         entity: {
@@ -630,6 +635,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
+            filing?: {
+                jobId: string;
+                mode: string;
+                statusUrl: string;
+            } | null | undefined;
+            inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
                 createdAt?: string | null | undefined;
@@ -1347,6 +1358,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
+            filing?: {
+                jobId: string;
+                mode: string;
+                statusUrl: string;
+            } | null | undefined;
+            inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
                 createdAt?: string | null | undefined;

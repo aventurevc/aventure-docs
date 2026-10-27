@@ -1228,6 +1228,12 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>;
         enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            jobId: z.ZodUUID;
+            mode: z.ZodString;
+            statusUrl: z.ZodString;
+        }, z.core.$strip>>>;
+        inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

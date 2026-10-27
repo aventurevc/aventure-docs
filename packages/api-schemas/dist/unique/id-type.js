@@ -9,6 +9,13 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "isin",
     "cusip",
     "crd",
+    "firmCrd",
+    "secPrivateFundId",
+    "npi",
+    "ipedsUnitId",
+    "ncesSchoolId",
+    "ncesLeaId",
+    "ncesPssId",
     "orcid",
     "fdicCert",
     "ncuaCharter",
@@ -20,7 +27,7 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "folk",
 ]);
 /**
- * External identifier type that maps an owner to a registry id: ein, secCik, ticker, lei, duns, isin, cusip, crd, orcid, fdicCert, ncuaCharter, rssd, holdingCompanyRssd, signalNfxFirm, signalNfxPerson, signalNfxCompany, or folk.
+ * External identifier type that maps an owner to a well-known registry id.
  *
  * @openapiSchema UniqueIdType
  * @endpoint GET /v1/entities/lookup-exact

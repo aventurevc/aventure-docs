@@ -15,6 +15,7 @@ import { z } from "zod/v4";
  */
 export declare const IdentificationSubjectSchema: z.ZodObject<{
     context: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    email: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     employer: z.ZodOptional<z.ZodArray<z.ZodString>>;
     kind: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         ENTITY: "ENTITY";

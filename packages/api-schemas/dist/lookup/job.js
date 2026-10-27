@@ -9,7 +9,7 @@ const LookupJobSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }),
     /** Why the job failed; absent unless state is FAILED. */
     failureReason: z.string().nullish(),
-    /** Subject jobs only: once COMPLETED, the identification GET /v1/lookup or POST /v1/entities/lookup returns for source.subject; absent otherwise. */
+    /** Subject jobs only: once COMPLETED, the identification GET or POST /v1/lookup or POST /v1/entities/lookup returns for source.subject, including requested filing and source-claim outcomes; absent otherwise. */
     identification: IdentificationSchema.nullish(),
     /** Lookup job id. */
     jobId: z.uuid(),

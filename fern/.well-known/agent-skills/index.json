@@ -13,70 +13,70 @@
       "type": "skill-md",
       "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
       "url": "/.well-known/agent-skills/aventure/SKILL.md",
-      "digest": "sha256:8335d40b589b2b37a332f13731631dcd8777488309663181213c130ad14d6c34"
+      "digest": "sha256:57970dcd6b2bfe4e98019697e6ad90d11ad64c77fcb024b831e806a8eb623bfd"
     },
     {
       "name": "business-cycle-analysis",
       "type": "skill-md",
       "description": "Use only when asked where a company's specific sub-sector sits in its business cycle: demand, capacity, pricing, capital, and regulation phases, dated evidence, and the implications for the company against named alternatives.",
       "url": "/.well-known/agent-skills/business-cycle-analysis/SKILL.md",
-      "digest": "sha256:a2b5411a95e5cc82376fd948daa721bd1557255cf21d9e32ae7a22b0edfa522a"
+      "digest": "sha256:4faddb452c63cd8630844a62fc6e80478faae145725d550337e4d13020f67ae0"
     },
     {
       "name": "competitive-landscape",
       "type": "skill-md",
       "description": "Use only when asked for a competitive landscape report on a company, product, or investment firm: the field within a stated boundary, player classes, the axes buyers trade off, a sourced player table, recent funding and M&A, unmet needs, and the subject's position.",
       "url": "/.well-known/agent-skills/competitive-landscape/SKILL.md",
-      "digest": "sha256:e439f8b192fae7b0fd48a445ec18fc856dfd4a6a05de25087558203759ac445b"
+      "digest": "sha256:bf82e44c45fab05a9ef31e9d0d157703c56ef088c8bad67abc044d6a3bdb06c0"
     },
     {
       "name": "competitor-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a competitor analysis of a company or product: head-to-head comparison with its closest rivals on product, total cost, customers, distribution, traction, economics, and team, with the subject's relative strength judged on evidence.",
       "url": "/.well-known/agent-skills/competitor-analysis/SKILL.md",
-      "digest": "sha256:f64206a8a0502eebd4e25d53603034cbea074463151e72460b6229a52a95a24a"
+      "digest": "sha256:51f7d278b5de5513ab8f6785efd6c586916aa284fffcf22e0ecb0dbd3047481f"
     },
     {
       "name": "fundraising-environment",
       "type": "skill-md",
       "description": "Use only when asked about the venture and growth capital environment for a company's specific sub-sector: round counts and sizes, valuation direction, active and retreating investors, exits, and implications for its next raise.",
       "url": "/.well-known/agent-skills/fundraising-environment/SKILL.md",
-      "digest": "sha256:c3fb603b7612dd53defa11fd6fcc9b0caf4bf64f66fd7466edfa47ce15a7e14b"
+      "digest": "sha256:8df6e0a44679fe44ce86b19004a86222627b021c30af1c25e1bb186acf8a614d"
     },
     {
       "name": "investor-portfolio-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a portfolio analysis of an investment firm or individual investor: funds, observed deal activity by year, stage, sector, and geography, lead and follow-on behavior with coverage stated, verified outcomes, co-investors, stated versus revealed thesis, and recent activity.",
       "url": "/.well-known/agent-skills/investor-portfolio-analysis/SKILL.md",
-      "digest": "sha256:35baca0355c635c0d9dde14340f494746e585a523b140de80714993074771294"
+      "digest": "sha256:3ee30060498a57d155df4e3404b5c6195942338cb33448949e05135179d031c4"
     },
     {
       "name": "leadership-track-record",
       "type": "skill-md",
       "description": "Use only when asked for a track record of a founder, executive, or investor: a verified, dated role history, outcomes during each tenure with careful attribution, board seats and investments, public record matters, and unverified claims flagged.",
       "url": "/.well-known/agent-skills/leadership-track-record/SKILL.md",
-      "digest": "sha256:53e7d8cbd07151176363b4035bc784c2b3e6725c1349f42416e20e56ca517758"
+      "digest": "sha256:2d7421ee2a7be7f8d028fdb0ecb05dca2c72fd215b0056eaab9adcc8c095a83d"
     },
     {
       "name": "market-research",
       "type": "skill-md",
       "description": "Use only when asked for a market research report on the market a company or product sells into: market boundary, size with shown arithmetic, growth, segments, buyers, pricing, regulation, and the subject's position.",
       "url": "/.well-known/agent-skills/market-research/SKILL.md",
-      "digest": "sha256:129a9476338e08500c260d45c61b901bd2fe6f9636dc55de8ad53ff12a579676"
+      "digest": "sha256:9a3ad092d931cea37d9c47363e54de0ca3716f932ed1c326dcddca35b8d3c561"
     },
     {
       "name": "porters-five-forces",
       "type": "skill-md",
       "description": "Use only when asked for a Porter's Five Forces analysis of the industry a company or product competes in: a defined industry boundary, each force rated from structural evidence, its direction, the profit implication, and the subject's position.",
       "url": "/.well-known/agent-skills/porters-five-forces/SKILL.md",
-      "digest": "sha256:e1ecd5c445c480b838fd98436f28e211effbed7c166f7f439a1d6e737b886213"
+      "digest": "sha256:e83520c5e9183503d6992b3253e27f67fbe4be3d6f9a060b344b8f4b4278b570"
     },
     {
       "name": "swot-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a SWOT analysis of a company, product, or investment firm: internal strengths and weaknesses, external opportunities and threats, each specific and sourced, ranked for the reader's decision, and crossed into feasible actions.",
       "url": "/.well-known/agent-skills/swot-analysis/SKILL.md",
-      "digest": "sha256:cc7fb579b8cba2194f9060922accd7ff5184200c321721dec9e499ef1071dfd0"
+      "digest": "sha256:8170c663b4fbb17dac7b28f658f765b0ca793e04f483605c1745443a35cd2255"
     }
   ]
 }

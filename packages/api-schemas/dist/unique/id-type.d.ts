@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * External identifier type that maps an owner to a registry id: ein, secCik, ticker, lei, duns, isin, cusip, crd, orcid, fdicCert, ncuaCharter, rssd, holdingCompanyRssd, signalNfxFirm, signalNfxPerson, signalNfxCompany, or folk.
+ * External identifier type that maps an owner to a well-known registry id.
  *
  * @openapiSchema UniqueIdType
  * @endpoint GET /v1/entities/lookup-exact
@@ -30,14 +30,21 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     duns: "duns";
     ein: "ein";
     fdicCert: "fdicCert";
+    firmCrd: "firmCrd";
     folk: "folk";
     holdingCompanyRssd: "holdingCompanyRssd";
+    ipedsUnitId: "ipedsUnitId";
     isin: "isin";
     lei: "lei";
+    ncesLeaId: "ncesLeaId";
+    ncesPssId: "ncesPssId";
+    ncesSchoolId: "ncesSchoolId";
     ncuaCharter: "ncuaCharter";
+    npi: "npi";
     orcid: "orcid";
     rssd: "rssd";
     secCik: "secCik";
+    secPrivateFundId: "secPrivateFundId";
     signalNfxCompany: "signalNfxCompany";
     signalNfxFirm: "signalNfxFirm";
     signalNfxPerson: "signalNfxPerson";
@@ -49,14 +56,21 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         duns: "duns";
         ein: "ein";
         fdicCert: "fdicCert";
+        firmCrd: "firmCrd";
         folk: "folk";
         holdingCompanyRssd: "holdingCompanyRssd";
+        ipedsUnitId: "ipedsUnitId";
         isin: "isin";
         lei: "lei";
+        ncesLeaId: "ncesLeaId";
+        ncesPssId: "ncesPssId";
+        ncesSchoolId: "ncesSchoolId";
         ncuaCharter: "ncuaCharter";
+        npi: "npi";
         orcid: "orcid";
         rssd: "rssd";
         secCik: "secCik";
+        secPrivateFundId: "secPrivateFundId";
         signalNfxCompany: "signalNfxCompany";
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";

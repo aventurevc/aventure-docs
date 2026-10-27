@@ -137,6 +137,12 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         }, z.core.$strip>>;
         enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            jobId: z.ZodUUID;
+            mode: z.ZodString;
+            statusUrl: z.ZodString;
+        }, z.core.$strip>>>;
+        inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -841,6 +847,12 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
+            filing?: {
+                jobId: string;
+                mode: string;
+                statusUrl: string;
+            } | null | undefined;
+            inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
                 createdAt?: string | null | undefined;
@@ -1558,6 +1570,12 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             }[];
             enrichmentRunId?: string | null | undefined;
+            filing?: {
+                jobId: string;
+                mode: string;
+                statusUrl: string;
+            } | null | undefined;
+            inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
                 createdAt?: string | null | undefined;
@@ -1661,6 +1679,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         sourceUrl?: string | null | undefined;
         subject?: {
             context?: string | null | undefined;
+            email?: string | null | undefined;
             employer?: string[] | undefined;
             kind?: "ENTITY" | "PERSON" | null | undefined;
             location?: string | null | undefined;
@@ -1689,6 +1708,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         sourceUrl?: string | null | undefined;
         subject?: {
             context?: string | null | undefined;
+            email?: string | null | undefined;
             employer?: string[] | undefined;
             kind?: "ENTITY" | "PERSON" | null | undefined;
             location?: string | null | undefined;
