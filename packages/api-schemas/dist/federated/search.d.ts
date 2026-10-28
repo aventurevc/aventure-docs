@@ -18,6 +18,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 }[];
                 text: string;
                 topic?: string | null | undefined;
+                webSource?: {
+                    title: string;
+                    url: string;
+                }[] | undefined;
             }[];
             relatedQuery: string[];
             shareable: boolean;
@@ -2520,6 +2524,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 }[];
                 text: string;
                 topic?: string | null | undefined;
+                webSource?: {
+                    title: string;
+                    url: string;
+                }[] | undefined;
             }[];
             relatedQuery: string[];
             shareable: boolean;

@@ -14,6 +14,7 @@ export interface EntityAnalysisCitationSchemaInput extends z.input<typeof Entity
  * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
+ * @usedBySchema EntityAnalysisSectionMutationSchema
  * @usedBySchema EntityAnalysisSectionSchema
  * @contractShape entity.analysis-citation
  * @contractRole canonical

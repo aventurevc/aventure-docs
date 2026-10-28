@@ -39,6 +39,10 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         }[];
         text: string;
         topic?: string | null | undefined;
+        webSource?: {
+            title: string;
+            url: string;
+        }[] | undefined;
     }, import("./answer-paragraph.ts").SearchAnswerParagraphSchemaInput, z.core.$ZodTypeInternals<{
         citation: {
             entityId: string;
@@ -47,6 +51,10 @@ export declare const SearchAnswerSchema: z.ZodObject<{
         }[];
         text: string;
         topic?: string | null | undefined;
+        webSource?: {
+            title: string;
+            url: string;
+        }[] | undefined;
     }, import("./answer-paragraph.ts").SearchAnswerParagraphSchemaInput>>>;
     relatedQuery: z.ZodArray<z.ZodString>;
     shareable: z.ZodBoolean;

@@ -346,6 +346,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/analysis-section",
         schemaName: "EntityAnalysisSectionSchema",
     },
+    EntityAnalysisSectionMutation: {
+        modulePath: "entity/analysis-section-mutation",
+        schemaName: "EntityAnalysisSectionMutationSchema",
+    },
     EntityAnalysisSectionOrigin: {
         modulePath: "entity/analysis-section-origin",
         schemaName: "EntityAnalysisSectionOriginSchema",
@@ -1046,6 +1050,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/answer-paragraph",
         schemaName: "SearchAnswerParagraphSchema",
     },
+    SearchAnswerWebSource: {
+        modulePath: "search/answer-web-source",
+        schemaName: "SearchAnswerWebSourceSchema",
+    },
     SearchCacheMode: { modulePath: "search/cache-mode", schemaName: "SearchCacheModeSchema" },
     SearchDiscoveryFiling: {
         modulePath: "search/discovery-filing",
@@ -1198,9 +1206,36 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },
     WebSearchProvider: { modulePath: "web/search-provider", schemaName: "WebSearchProviderSchema" },
     WebSearchRecency: { modulePath: "web/search-recency", schemaName: "WebSearchRecencySchema" },
+    WriterAnalysisSection: {
+        modulePath: "writer/analysis-section",
+        schemaName: "WriterAnalysisSectionSchema",
+    },
+    WriterBrief: { modulePath: "writer/brief", schemaName: "WriterBriefSchema" },
+    WriterChangeSignal: {
+        modulePath: "writer/change-signal",
+        schemaName: "WriterChangeSignalSchema",
+    },
     WriterClaimSurface: {
         modulePath: "writer/claim-surface",
         schemaName: "WriterClaimSurfaceSchema",
     },
+    WriterGap: { modulePath: "writer/gap", schemaName: "WriterGapSchema" },
+    WriterGapReason: { modulePath: "writer/gap-reason", schemaName: "WriterGapReasonSchema" },
+    WriterJudgment: { modulePath: "writer/judgment", schemaName: "WriterJudgmentSchema" },
+    WriterMetaAnalysis: {
+        modulePath: "writer/meta-analysis",
+        schemaName: "WriterMetaAnalysisSchema",
+    },
+    WriterParagraph: { modulePath: "writer/paragraph", schemaName: "WriterParagraphSchema" },
+    WriterParagraphAnalysis: {
+        modulePath: "writer/paragraph-analysis",
+        schemaName: "WriterParagraphAnalysisSchema",
+    },
+    WriterPositioning: { modulePath: "writer/positioning", schemaName: "WriterPositioningSchema" },
+    WriterPositioningElement: {
+        modulePath: "writer/positioning-element",
+        schemaName: "WriterPositioningElementSchema",
+    },
+    WriterScope: { modulePath: "writer/scope", schemaName: "WriterScopeSchema" },
 });
 //# sourceMappingURL=openapi-component-manifest.js.map

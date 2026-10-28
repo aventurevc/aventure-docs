@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { SearchAnswerCitationSchema } from "./answer-citation.js";
+import { SearchAnswerWebSourceSchema } from "./answer-web-source.js";
 const SearchAnswerParagraphSchemaDefinition = z.object({
     /** Evidence this paragraph rests on, most important first. */
     citation: z.array(SearchAnswerCitationSchema),
@@ -8,6 +9,8 @@ const SearchAnswerParagraphSchemaDefinition = z.object({
     text: z.string(),
     /** Short label naming the category, market, or segment this paragraph covers, such as "Smartphones · North America"; absent on the lead paragraph. */
     topic: z.string().nullish(),
+    /** Web pages this paragraph rests on that no aVenture record owns, such as an encyclopedia article about a company the directory lacks; most important first. Always sent; absent only from answers written before it existed. */
+    webSource: z.array(SearchAnswerWebSourceSchema).optional(),
 });
 /**
  * One paragraph of an answer and the evidence it rests on.

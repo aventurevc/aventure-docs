@@ -11,6 +11,13 @@ declare const SearchAnswerParagraphSchemaDefinition: z.ZodObject<{
     }, import("./answer-citation.ts").SearchAnswerCitationSchemaInput>>>;
     text: z.ZodString;
     topic: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    webSource: z.ZodOptional<z.ZodArray<z.ZodType<{
+        title: string;
+        url: string;
+    }, import("./answer-web-source.ts").SearchAnswerWebSourceSchemaInput, z.core.$ZodTypeInternals<{
+        title: string;
+        url: string;
+    }, import("./answer-web-source.ts").SearchAnswerWebSourceSchemaInput>>>>;
 }, z.core.$strip>;
 type SearchAnswerParagraphDefinition = z.infer<typeof SearchAnswerParagraphSchemaDefinition>;
 export interface SearchAnswerParagraphSchemaInput extends z.input<typeof SearchAnswerParagraphSchemaDefinition> {

@@ -25,6 +25,10 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             }[];
             text: string;
             topic?: string | null | undefined;
+            webSource?: {
+                title: string;
+                url: string;
+            }[] | undefined;
         }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput, z.core.$ZodTypeInternals<{
             citation: {
                 entityId: string;
@@ -33,6 +37,10 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             }[];
             text: string;
             topic?: string | null | undefined;
+            webSource?: {
+                title: string;
+                url: string;
+            }[] | undefined;
         }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput>>>;
         relatedQuery: z.ZodArray<z.ZodString>;
         shareable: z.ZodBoolean;

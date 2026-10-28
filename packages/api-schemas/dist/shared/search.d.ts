@@ -31,6 +31,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     text: string;
                     topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
                 }[];
                 relatedQuery: string[];
                 shareable: boolean;
@@ -5842,6 +5846,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     text: string;
                     topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
                 }[];
                 relatedQuery: string[];
                 shareable: boolean;

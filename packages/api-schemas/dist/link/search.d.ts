@@ -20,6 +20,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     text: string;
                     topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
                 }[];
                 relatedQuery: string[];
                 shareable: boolean;
@@ -5831,6 +5835,10 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     text: string;
                     topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
                 }[];
                 relatedQuery: string[];
                 shareable: boolean;

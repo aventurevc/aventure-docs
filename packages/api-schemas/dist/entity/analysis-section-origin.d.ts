@@ -7,6 +7,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
+ * @usedBySchema EntityAnalysisSectionMutationSchema
  * @usedBySchema EntityAnalysisSectionSchema
  * @contractShape entity.analysis-section-origin
  * @contractRole canonical
