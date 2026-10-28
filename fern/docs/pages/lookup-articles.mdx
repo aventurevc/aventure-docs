@@ -16,67 +16,56 @@ already hold, start a [bulk lookup job](/lookup-jobs) instead.
 | Need | CLI | Result |
 |---|---|---|
 | One synchronous JSON response from an article, screenshot, or supplied mention names | `aventure lookup mentions --source-url "<article-url>"` (or `--file "<image>"`, `--mention-name ...`) | Identifications only; it creates no records or research runs |
-| Asynchronous article processing | `aventure lookup mentions --source-url "<article-url>"` | Identifications, plus a record for each confirmed new name, usually with a research run |
+| Records and research for new names | `aventure lookup mentions --source-url "<article-url>" --schedule-enrichment true` | Identifications, plus a record for each confirmed new name with a research run |
 | Bounded identification-only work | `aventure lookup mentions --max-names 8 --source-url "<article-url>"` or repeated `--mention-name` | Identifications only; it creates no records or research runs |
 
-Use the synchronous path when you need the answer in one response. Use the
-asynchronous job when the article may name companies or people aVenture does
-not have yet. Use `--max-names` when you want a bounded batch of
-identifications and will continue the article yourself.
+Use the first row when you need only the answers. Add `scheduleEnrichment=true`
+when the article may name companies or people aVenture does not have yet and you
+want each new record researched. Use `--max-names` when you want a bounded batch
+of identifications and will continue the article yourself; that call answers
+`202` with a `jobId` you read at `GET /v1/lookup/jobs/{jobId}`.
 
-1. Start the job with `POST /v1/lookup/mentions` and a body holding `sourceUrl`,
-   `sourceNewsId`, or both. The call returns `202` with a `jobId`. Sending the
-   same article again soon returns the earlier job.
-2. Read the job with `GET /v1/lookup/jobs/{jobId}` until `state` is
-   `COMPLETED` or `FAILED`. Only the caller that started the job can read it.
+1. Send `POST /v1/lookup/mentions` with a body holding `sourceUrl`,
+   `sourceNewsId`, or both. Add `scheduleEnrichment=true` to queue research on
+   each record it adds. The call answers `200` with every name in `mention`.
+2. To get the identifications before new records finish filing, also send
+   `Prefer: respond-async`. The answer then carries `filing`; read its
+   `statusUrl` until the job completes, and merge its filing outcomes into the
+   names you already have.
 3. Act on each entry in `mention`. Every entry has the `name` as the article
    writes it and a `mentionType` of `COMPANY`, `PRODUCT_SERVICE`, or `PERSON`:
    - `identification` is the lookup answer, read exactly as in
      [Act on the answer](/lookup#act-on-the-answer).
-   - `shell` is set when the answer is `NO_MATCH` and the job filed a new
+   - `shell` is set when the answer is `NO_MATCH` and the lookup filed a new
      record for the name, or found a record aVenture already holds for the
-     subject's website. The job files one only when the article and the
-     subject's own live website both name it. `shell` holds the record's
-     `entityId` or `personId`; when `enrichmentRunId` is present, it names the
-     research run that fills in the profile. Filing it costs nothing.
+     subject's website. It files one only when the article and the subject's
+     own live website both name it. `shell` holds the record's `entityId` or
+     `personId`; when `enrichmentRunId` is present, it names the research run
+     that fills in the profile. Filing it costs nothing.
    - `shellDetail` says, in one sentence, why no new record was filed for a
      `NO_MATCH` name.
    - `failureReason` replaces `identification` when a name could not be
      identified. Send that name alone to `POST /v1/lookup`.
 
-When the job is accepted it spends one natural-search call to read the article
-and one name-identification call for each name it may identify, up to its
-per-article limit. A repeat of the same article that
-returns the earlier job spends nothing. The job answers `402` and `429` under
-the same rules as a single lookup.
+Reading the article spends one natural-search call, and each name it identifies
+spends one name-identification call, up to its per-article limit. The call
+answers `402` and `429` under the same rules as a single lookup.
 
 ## Example
 
-Set `ARTICLE_URL` to the article's address and start a job:
+Set `ARTICLE_URL` to the article's address and look it up, queueing research on
+new records:
 
 <CodeBlocks>
 ```bash title="curl"
-curl -X POST "https://api.aventure.vc/v1/lookup/mentions" \
+curl -X POST "https://api.aventure.vc/v1/lookup/mentions?scheduleEnrichment=true" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"sourceUrl":"'"$ARTICLE_URL"'"}'
 ```
 
 ```bash title="CLI"
-aventure lookup mentions --source-url "$ARTICLE_URL"
-```
-</CodeBlocks>
-
-Read the job with the returned `jobId` until `state` is `COMPLETED`:
-
-<CodeBlocks>
-```bash title="curl"
-curl "https://api.aventure.vc/v1/lookup/jobs/$JOB_ID" \
-  -H "Authorization: Bearer $AUTH_TOKEN"
-```
-
-```bash title="CLI"
-aventure lookup jobs get --job-id "$JOB_ID"
+aventure lookup mentions --source-url "$ARTICLE_URL" --schedule-enrichment true
 ```
 </CodeBlocks>
 
