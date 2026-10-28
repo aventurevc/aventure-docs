@@ -642,6 +642,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     HarnessChassis: { modulePath: "harness/chassis", schemaName: "HarnessChassisSchema" },
     HarnessLlmApi: { modulePath: "harness/llm-api", schemaName: "HarnessLlmApiSchema" },
     HarnessRun: { modulePath: "harness/run", schemaName: "HarnessRunSchema" },
+    HarnessRunActivity: {
+        modulePath: "harness/run-activity",
+        schemaName: "HarnessRunActivitySchema",
+    },
+    HarnessRunActivityType: {
+        modulePath: "harness/run-activity-type",
+        schemaName: "HarnessRunActivityTypeSchema",
+    },
     HarnessRunCreate: { modulePath: "harness/run-create", schemaName: "HarnessRunCreateSchema" },
     HarnessRunDetail: { modulePath: "harness/run-detail", schemaName: "HarnessRunDetailSchema" },
     HarnessRunEnvironment: {
