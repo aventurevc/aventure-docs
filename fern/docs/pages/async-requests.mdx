@@ -18,7 +18,7 @@ Requests without the header behave exactly as before.
 
 | Request | With `Prefer: respond-async` | Poll | `Retry-After` |
 |---------|------------------------------|------|---------------|
-| [`GET /v1/lookup`, `POST /v1/lookup`, `POST /v1/entities/lookup`](/lookup) | Always answers `202` with a lookup job | `GET /v1/lookup-jobs/{jobId}` | 10 seconds |
+| [`POST /v1/lookup`](/lookup) | Always answers `202` with a lookup job | `GET /v1/lookup/jobs/{jobId}` | 10 seconds |
 | `POST /v1/web/search` | Answers `200` when the search finishes inside the live wait; `202` only when it is still running | `GET /v1/web/searches/jobs/{jobId}` | 30 seconds |
 | `GET /v1/search/link` | Always answers `202` with a link search job, except a repeat of a search that finished in the last 10 minutes, which answers `200` | `GET /v1/search/link/jobs/{jobId}` | 5 seconds |
 
@@ -31,7 +31,7 @@ The header has no effect anywhere else. `POST /v1/people/lookup` ignores it, and
 
 ```http
 HTTP/1.1 202 Accepted
-Location: /v1/lookup-jobs/0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10
+Location: /v1/lookup/jobs/0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10
 Retry-After: 10
 Preference-Applied: respond-async
 Cache-Control: no-store
@@ -40,7 +40,7 @@ Content-Type: application/json
 {
   "jobId": "0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10",
   "mode": "async",
-  "statusUrl": "/v1/lookup-jobs/0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10"
+  "statusUrl": "/v1/lookup/jobs/0f9d6a52-3c1e-4c55-9a8e-6f1b2d7c4e10"
 }
 ```
 
@@ -89,12 +89,12 @@ Then read the job from the `Location` header:
 
 <CodeBlocks>
 ```bash title="curl"
-curl "https://api.aventure.vc/v1/lookup-jobs/$JOB_ID" \
+curl "https://api.aventure.vc/v1/lookup/jobs/$JOB_ID" \
   -H "Authorization: Bearer $AUTH_TOKEN"
 ```
 
 ```bash title="CLI"
-aventure lookup-jobs get --job-id "$JOB_ID"
+aventure lookup jobs get --job-id "$JOB_ID"
 ```
 
 ```json title="MCP (aventure_read)"
@@ -104,7 +104,7 @@ aventure lookup-jobs get --job-id "$JOB_ID"
 
 The CLI and MCP server send synchronous requests and wait for the answer, so
 they do not send `Prefer: respond-async`. They can read any job id with
-`aventure lookup-jobs get`, `aventure web searches jobs get`, and
+`aventure lookup jobs get`, `aventure web searches jobs get`, and
 `aventure search link jobs get`, or the MCP operations `getLookupJob`,
 `getWebSearchJob`, and `getLinkSearchJob` through `aventure_read`.
 

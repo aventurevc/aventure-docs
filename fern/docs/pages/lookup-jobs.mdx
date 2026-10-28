@@ -18,7 +18,7 @@ aVenture does not have yet.
 
 ## Start a Job
 
-Send `POST /v1/lookup-jobs` with the `maxNames` query parameter. `maxNames` is
+Send `POST /v1/lookup/mentions` with the `maxNames` query parameter. `maxNames` is
 what makes the job a bulk job, and it must be between 1 and 2,000. The body
 holds one of two sources, never both:
 
@@ -36,7 +36,7 @@ The call returns `202` with a `JobEnqueue` body (`jobId`, `statusUrl`) and a
 
 ## Read the Job
 
-Poll `GET /v1/lookup-jobs/{jobId}`. While `state` is `PENDING` or `RUNNING`
+Poll `GET /v1/lookup/jobs/{jobId}`. While `state` is `PENDING` or `RUNNING`
 the read answers `202` with a `Retry-After` header (10 seconds); wait that long
 before reading again. Once the job is terminal it answers `200`. Send the
 `ETag` from an earlier read as `If-None-Match` to get `304` when nothing has
@@ -81,19 +81,19 @@ Identify a list of names you already have. Save the body as `names.json`:
 
 <CodeBlocks>
 ```bash title="curl"
-curl -X POST "https://api.aventure.vc/v1/lookup-jobs?maxNames=3" \
+curl -X POST "https://api.aventure.vc/v1/lookup/mentions?maxNames=3" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
   -d @names.json
 ```
 
 ```bash title="CLI"
-aventure lookup-jobs create --max-names 3 --from-file names.json
+aventure lookup mentions --max-names 3 --from-file names.json
 ```
 
 ```json title="MCP (aventure_job)"
 {
-  "operationId": "createLookupJob",
+  "operationId": "lookupMentions",
   "query": { "maxNames": 3 },
   "body": { "mention": [{ "name": "Mercury", "type": "COMPANY" }, { "name": "Patrick Collison", "type": "PERSON" }] }
 }
@@ -104,18 +104,18 @@ Identify up to 500 names from one page:
 
 <CodeBlocks>
 ```bash title="curl"
-curl -X POST "https://api.aventure.vc/v1/lookup-jobs?maxNames=500" \
+curl -X POST "https://api.aventure.vc/v1/lookup/mentions?maxNames=500" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"sourceUrl":"'"$PAGE_URL"'"}'
 ```
 
 ```bash title="CLI"
-aventure lookup-jobs create --max-names 500 --source-url "$PAGE_URL"
+aventure lookup mentions --max-names 500 --source-url "$PAGE_URL"
 ```
 
 ```json title="MCP (aventure_job)"
-{ "operationId": "createLookupJob", "query": { "maxNames": 500 }, "body": { "sourceUrl": "https://example.com/portfolio" } }
+{ "operationId": "lookupMentions", "query": { "maxNames": 500 }, "body": { "sourceUrl": "https://example.com/portfolio" } }
 ```
 </CodeBlocks>
 
@@ -123,12 +123,12 @@ Read the job with the returned `jobId`:
 
 <CodeBlocks>
 ```bash title="curl"
-curl "https://api.aventure.vc/v1/lookup-jobs/$JOB_ID" \
+curl "https://api.aventure.vc/v1/lookup/jobs/$JOB_ID" \
   -H "Authorization: Bearer $AUTH_TOKEN"
 ```
 
 ```bash title="CLI"
-aventure lookup-jobs get --job-id "$JOB_ID"
+aventure lookup jobs get --job-id "$JOB_ID"
 ```
 
 ```json title="MCP (aventure_read)"
@@ -152,7 +152,7 @@ same request that returns the earlier job spends nothing.
 
 ## Answers in Seconds Instead
 
-For a handful of names, `POST /v1/lookup-mentions` (CLI `aventure lookup-mentions`,
+For a handful of names, `POST /v1/lookup/mentions` (CLI `aventure lookup mentions`,
 MCP `lookupMentions`) answers in the request, from a page, a screenshot, or a
 `mention` list. Send `Accept: text/event-stream` to receive each name as a
 `mention` event the moment it settles, fastest first, followed by one `complete`

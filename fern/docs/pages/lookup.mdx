@@ -19,15 +19,15 @@ one record matches, none does, or a person has to decide.
 
 | Operation | Use it when | CLI |
 |-----------|-------------|-----|
-| `GET /v1/lookup` | Query clues identify a company, product, service, or person without scheduling research | `aventure lookup` |
+| `POST /v1/lookup` | JSON body clues identify a company, product, service, or person without scheduling research | `aventure lookup-from-file` |
 | `POST /v1/lookup` | You send the clues as a JSON body, optionally with a known `kind` | `aventure lookup-from-file` |
 | `GET /v1/entities/lookup-exact` or `/v1/people/lookup-exact` | You hold an exact slug, website, domain, or profile URL and want the full record | `aventure entities lookup-exact get` or `aventure people lookup-exact get` |
 
-`POST /v1/entities/lookup` and `POST /v1/people/lookup` are deprecated. Send
-`POST /v1/lookup` with `kind` set to `ENTITY` or `PERSON` instead.
+Send `POST /v1/lookup` with `kind` set to `ENTITY` for a company or `PERSON`
+for a person.
 
-The two `/v1/lookup` operations return the same identification shape. The GET
-operation takes query parameters; the POST operation takes the body shown below.
+The `/v1/lookup` operation returns the identification shape shown below. Send
+the clues as a JSON body.
 
 A name that is exactly a record's id, handle, registry id, or slug settles on every
 plan. Any other name counts against the free plan's 20 lookups a day; past those it answers `402` with `code` `subscription_required` until the next UTC day, and [AI Plus or AI Pro](https://aventure.vc/pricing) lifts the limit. On every plan, `GET /v1/entities/lookup-exact`
