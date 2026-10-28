@@ -11233,6 +11233,7 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
             wordCount: number;
         } | null | undefined;
         createdAt?: string | null | undefined;
+        expandedTextId?: number | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -11253,6 +11254,7 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
             wordCount: number;
         } | null | undefined;
         createdAt?: string | null | undefined;
+        expandedTextId?: number | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -11578,6 +11580,7 @@ declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
             INDIVIDUAL: "INDIVIDUAL";
         }>;
         model: z.ZodString;
+        modelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         nextAttemptAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         researchAllowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             COMPANY: "COMPANY";
@@ -11606,6 +11609,7 @@ declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
             stopped: "stopped";
         }>;
         subagentModel: z.ZodString;
+        subagentModelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
         type: z.ZodEnum<{
             ENRICHMENT: "ENRICHMENT";

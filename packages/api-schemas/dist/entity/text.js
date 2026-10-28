@@ -6,6 +6,8 @@ const EntityTextSchemaDefinition = z.object({
     /** Derived character/word counts and governed-contract compliance for this text row; null when not evaluated. */
     compliance: ContentComplianceSchema.nullish(),
     createdAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Id of the expanded row a summary create wrote in the same transaction from expandedWriterBrief; read it at GET /v1/entities/{entityId}/texts/{textId}. Null on every other response. */
+    expandedTextId: z.int().nullish(),
     /** Type-safe identifier for text records */
     id: z.int(),
     /** Whether this is the owner's current text of its textType; setting it clears the flag on the owner's other texts of that type. */

@@ -210,6 +210,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             INDIVIDUAL: "INDIVIDUAL";
         }>;
         model: z.ZodString;
+        modelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         nextAttemptAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         researchAllowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             COMPANY: "COMPANY";
@@ -238,6 +239,7 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             stopped: "stopped";
         }>;
         subagentModel: z.ZodString;
+        subagentModelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
         type: z.ZodEnum<{
             ENRICHMENT: "ENRICHMENT";

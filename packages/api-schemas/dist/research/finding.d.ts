@@ -1,8 +1,11 @@
 import { z } from "zod/v4";
 declare const ResearchFindingSchemaDefinition: z.ZodObject<{
+    end: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     gateId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    quote: z.ZodString;
+    quote: z.ZodOptional<z.ZodString>;
+    sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceUrl: z.ZodString;
+    start: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     statement: z.ZodString;
     writerSurface: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         BOTH: "BOTH";

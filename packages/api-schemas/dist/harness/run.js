@@ -69,6 +69,8 @@ export const HarnessRunSchema = z.object({
     mode: EnrichmentModeSchema,
     /** Model the run uses */
     model: z.string(),
+    /** True when the requester left `model` to the auto router, which picks it again each time the run leaves the queue; null on engine lease responses */
+    modelRouted: z.boolean().nullish(),
     /** Earliest re-claim time when waiting on retry backoff */
     nextAttemptAt: z.iso.datetime({ offset: true }).nullish(),
     /** Research allowance this run reserved when it was filed: COMPANY or PERSON; null for a run filed without one */
@@ -81,6 +83,8 @@ export const HarnessRunSchema = z.object({
     status: HarnessRunStatusSchema,
     /** Read-only research, cohort, and completion sub-agent model id */
     subagentModel: z.string(),
+    /** True when the requester left `subagentModel` to the auto router, which picks it again each time the run leaves the queue; null on engine lease responses */
+    subagentModelRouted: z.boolean().nullish(),
     /** Research presets filed with the run */
     taskPresetKey: z.array(z.string()).nullish(),
     /** Run kind: ENRICHMENT for a research request a caller filed, TASK for a narrower run aVenture scheduled */
