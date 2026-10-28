@@ -487,6 +487,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -620,6 +632,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -667,6 +691,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -957,6 +993,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -1050,6 +1098,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         valuationPostMoney?: number | null | undefined;
                         valuationPreMoney?: number | null | undefined;
                     }[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     provider?: {
                         entity: {
                             defaultCurrency?: string | null | undefined;
@@ -1059,6 +1113,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -1137,6 +1203,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -1229,6 +1307,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1519,6 +1609,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -1612,6 +1714,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         valuationPostMoney?: number | null | undefined;
                         valuationPreMoney?: number | null | undefined;
                     }[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     provider?: {
                         entity: {
                             defaultCurrency?: string | null | undefined;
@@ -1621,6 +1729,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -1699,6 +1819,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -1781,6 +1913,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -2071,6 +2215,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -2164,6 +2320,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     valuationPostMoney?: number | null | undefined;
                     valuationPreMoney?: number | null | undefined;
                 }[];
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | undefined;
                 provider?: {
                     entity: {
                         defaultCurrency?: string | null | undefined;
@@ -2173,6 +2335,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -2251,6 +2425,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -2328,6 +2514,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -2352,6 +2550,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -2618,6 +2817,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -2724,6 +2935,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
                 title: string;
+                titleMention?: {
+                    end: number;
+                    entity?: {
+                        createdAt: string;
+                        entityId: string;
+                        href?: string | null | undefined;
+                        internal: boolean;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        slug?: string | null | undefined;
+                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    person?: {
+                        createdAt: string;
+                        href?: string | null | undefined;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        personId: string;
+                        slug?: string | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    start: number;
+                }[] | undefined;
                 updatedAt?: string | null | undefined;
             }[];
             person: {
@@ -2778,6 +3013,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -2848,6 +3095,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -2906,6 +3159,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -2913,6 +3172,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -2938,6 +3198,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     };
                     updatedAt?: string | null | undefined;
                 };
+                coveringRunId?: string | null | undefined;
                 enrichment: {
                     address: {
                         address?: number | null | undefined;
@@ -3008,6 +3269,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -3038,6 +3305,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -3130,6 +3409,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             publishedAt?: string | null | undefined;
                             slug?: string | null | undefined;
                             title: string;
+                            titleMention?: {
+                                end: number;
+                                entity?: {
+                                    createdAt: string;
+                                    entityId: string;
+                                    href?: string | null | undefined;
+                                    internal: boolean;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    slug?: string | null | undefined;
+                                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                person?: {
+                                    createdAt: string;
+                                    href?: string | null | undefined;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    personId: string;
+                                    slug?: string | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                start: number;
+                            }[] | undefined;
                             updatedAt?: string | null | undefined;
                         }[];
                         similarEntity: {
@@ -3142,6 +3445,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                         isMonogram: boolean;
                                         logo?: string | null | undefined;
                                         logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
                                     };
                                     lastModifiedAt?: string | null | undefined;
                                     nameAlias: {
@@ -3185,6 +3500,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 personImage: {
                                     isMonogram: boolean;
                                     picture?: string | null | undefined;
+                                    pictureVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 personName: string;
                                 personSlug: string;
@@ -3200,6 +3521,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -3214,6 +3541,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -3253,6 +3592,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -3291,6 +3642,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         investorCount?: number | null | undefined;
                         nameBrand: string;
@@ -3388,6 +3751,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         entityName?: string | null | undefined;
                         entityOperatingStatus?: string | null | undefined;
@@ -3458,6 +3833,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -3494,6 +3875,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         image: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -3501,6 +3888,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             name: string;
                             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                         }[];
+                        nameDisplay: string;
                         nameFirst?: string | null | undefined;
                         nameFull: string;
                         nameLast?: string | null | undefined;
@@ -3536,6 +3924,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     };
                 }[] | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -3545,6 +3939,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -3620,6 +4026,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     fundingStage?: string | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     sellsTo: string[];
                     totalRaised?: number | null | undefined;
                     website?: string | null | undefined;
@@ -3634,6 +4046,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -3683,6 +4107,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -3793,6 +4229,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
                 title: string;
+                titleMention?: {
+                    end: number;
+                    entity?: {
+                        createdAt: string;
+                        entityId: string;
+                        href?: string | null | undefined;
+                        internal: boolean;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        slug?: string | null | undefined;
+                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    person?: {
+                        createdAt: string;
+                        href?: string | null | undefined;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        personId: string;
+                        slug?: string | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    start: number;
+                }[] | undefined;
                 updatedAt?: string | null | undefined;
             }[];
             number: number;
@@ -4154,6 +4614,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -4299,6 +4771,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -4306,6 +4784,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -4390,6 +4869,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -4460,6 +4951,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -4518,6 +5015,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -4525,6 +5028,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -4550,6 +5054,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -4620,6 +5125,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -4650,6 +5161,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -4742,6 +5265,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -4754,6 +5301,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -4797,6 +5356,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -4812,6 +5377,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -4826,6 +5397,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -4865,6 +5448,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -4903,6 +5498,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -5000,6 +5607,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -5070,6 +5689,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -5106,6 +5731,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -5113,6 +5744,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -5666,6 +6298,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -5799,6 +6443,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -5846,6 +6502,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -6136,6 +6804,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -6229,6 +6909,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         valuationPostMoney?: number | null | undefined;
                         valuationPreMoney?: number | null | undefined;
                     }[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     provider?: {
                         entity: {
                             defaultCurrency?: string | null | undefined;
@@ -6238,6 +6924,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -6316,6 +7014,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -6408,6 +7118,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -6698,6 +7420,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -6791,6 +7525,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         valuationPostMoney?: number | null | undefined;
                         valuationPreMoney?: number | null | undefined;
                     }[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     provider?: {
                         entity: {
                             defaultCurrency?: string | null | undefined;
@@ -6800,6 +7540,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -6878,6 +7630,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -6960,6 +7724,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -7250,6 +8026,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -7343,6 +8131,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     valuationPostMoney?: number | null | undefined;
                     valuationPreMoney?: number | null | undefined;
                 }[];
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | undefined;
                 provider?: {
                     entity: {
                         defaultCurrency?: string | null | undefined;
@@ -7352,6 +8146,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -7430,6 +8236,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -7507,6 +8325,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -7531,6 +8361,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -7797,6 +8628,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -7903,6 +8746,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
                 title: string;
+                titleMention?: {
+                    end: number;
+                    entity?: {
+                        createdAt: string;
+                        entityId: string;
+                        href?: string | null | undefined;
+                        internal: boolean;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        slug?: string | null | undefined;
+                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    person?: {
+                        createdAt: string;
+                        href?: string | null | undefined;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        personId: string;
+                        slug?: string | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    start: number;
+                }[] | undefined;
                 updatedAt?: string | null | undefined;
             }[];
             person: {
@@ -7957,6 +8824,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -8027,6 +8906,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -8085,6 +8970,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -8092,6 +8983,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -8117,6 +9009,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     };
                     updatedAt?: string | null | undefined;
                 };
+                coveringRunId?: string | null | undefined;
                 enrichment: {
                     address: {
                         address?: number | null | undefined;
@@ -8187,6 +9080,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -8217,6 +9116,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -8309,6 +9220,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             publishedAt?: string | null | undefined;
                             slug?: string | null | undefined;
                             title: string;
+                            titleMention?: {
+                                end: number;
+                                entity?: {
+                                    createdAt: string;
+                                    entityId: string;
+                                    href?: string | null | undefined;
+                                    internal: boolean;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    slug?: string | null | undefined;
+                                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                person?: {
+                                    createdAt: string;
+                                    href?: string | null | undefined;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    personId: string;
+                                    slug?: string | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                start: number;
+                            }[] | undefined;
                             updatedAt?: string | null | undefined;
                         }[];
                         similarEntity: {
@@ -8321,6 +9256,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                         isMonogram: boolean;
                                         logo?: string | null | undefined;
                                         logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
                                     };
                                     lastModifiedAt?: string | null | undefined;
                                     nameAlias: {
@@ -8364,6 +9311,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 personImage: {
                                     isMonogram: boolean;
                                     picture?: string | null | undefined;
+                                    pictureVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 personName: string;
                                 personSlug: string;
@@ -8379,6 +9332,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -8393,6 +9352,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -8432,6 +9403,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -8470,6 +9453,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         investorCount?: number | null | undefined;
                         nameBrand: string;
@@ -8567,6 +9562,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         entityName?: string | null | undefined;
                         entityOperatingStatus?: string | null | undefined;
@@ -8637,6 +9644,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -8673,6 +9686,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         image: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -8680,6 +9699,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             name: string;
                             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                         }[];
+                        nameDisplay: string;
                         nameFirst?: string | null | undefined;
                         nameFull: string;
                         nameLast?: string | null | undefined;
@@ -8715,6 +9735,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     };
                 }[] | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -8724,6 +9750,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -8799,6 +9837,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     fundingStage?: string | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     sellsTo: string[];
                     totalRaised?: number | null | undefined;
                     website?: string | null | undefined;
@@ -8813,6 +9857,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -8862,6 +9918,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -8972,6 +10040,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
                 title: string;
+                titleMention?: {
+                    end: number;
+                    entity?: {
+                        createdAt: string;
+                        entityId: string;
+                        href?: string | null | undefined;
+                        internal: boolean;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        slug?: string | null | undefined;
+                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    person?: {
+                        createdAt: string;
+                        href?: string | null | undefined;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        personId: string;
+                        slug?: string | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    start: number;
+                }[] | undefined;
                 updatedAt?: string | null | undefined;
             }[];
             number: number;
@@ -9333,6 +10425,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -9478,6 +10582,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -9485,6 +10595,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -9569,6 +10680,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -9639,6 +10762,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -9697,6 +10826,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -9704,6 +10839,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -9729,6 +10865,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -9799,6 +10936,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -9829,6 +10972,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -9921,6 +11076,30 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -9933,6 +11112,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -9976,6 +11167,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -9991,6 +11188,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -10005,6 +11208,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -10044,6 +11259,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -10082,6 +11309,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -10179,6 +11418,18 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -10249,6 +11500,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -10285,6 +11542,12 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -10292,6 +11555,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;

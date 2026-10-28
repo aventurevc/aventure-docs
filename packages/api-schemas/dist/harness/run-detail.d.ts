@@ -8,10 +8,34 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodObject<{
@@ -76,10 +100,34 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodObject<{
@@ -208,6 +256,7 @@ export interface HarnessRunDetailSchemaInput extends z.input<typeof HarnessRunDe
  *
  * @openapiSchema HarnessRunDetail
  * @endpoint GET /v1/research-runs/{runId}
+ * @endpoint GET /v1/research/runs/{runId}
  * @contractShape harness.run-detail
  * @contractRole canonical
  */

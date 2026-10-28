@@ -10,6 +10,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -300,6 +312,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -393,6 +417,12 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -402,6 +432,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -480,6 +522,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -555,6 +609,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -845,6 +911,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -938,6 +1016,12 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -947,6 +1031,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -1025,6 +1121,18 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -1094,6 +1202,10 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
     }, import("../entity/list.ts").EntityListSchemaInput>>>;
     failureReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     identification: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        acceptedOwner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        }, z.core.$strip>>>;
         candidate: z.ZodArray<z.ZodObject<{
             createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -1229,6 +1341,7 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>;
         enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             jobId: z.ZodUUID;
             mode: z.ZodString;
             statusUrl: z.ZodString;
@@ -1319,6 +1432,12 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -1326,6 +1445,7 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -1358,6 +1478,12 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -1365,6 +1491,7 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -1404,7 +1531,9 @@ export interface LookupJobMentionSchemaInput extends z.input<typeof LookupJobMen
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobSchema
  * @usedBySchema MentionLookupSchema
  * @contractShape lookup.job-mention

@@ -9,6 +9,8 @@ const HarnessTaskPlanStepSchemaDefinition = z.object({
     mcpTool: z.string().nullish(),
     /** The stored step. */
     step: HarnessTaskStepSchema,
+    /** Display title supplied by the stored step. */
+    title: z.string().nullish(),
     /** What the server expects of the prose this step writes, derived from the operation's judged prose type when the plan is read; null when the step writes no judged prose. */
     writeGuidance: HarnessTaskWriteGuidanceSchema.nullish(),
 });

@@ -12,6 +12,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/employee-counts
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research-details
@@ -19,6 +20,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -28,6 +30,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

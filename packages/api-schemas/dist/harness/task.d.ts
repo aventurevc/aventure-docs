@@ -6,11 +6,13 @@ declare const HarnessTaskSchemaDefinition: z.ZodObject<{
     required: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     type: z.ZodUnion<readonly [z.ZodEnum<{
         ENTITY: "ENTITY";
+        NEWS: "NEWS";
         TEXT: "TEXT";
         WRITER_BRIEF: "WRITER_BRIEF";
     }>, z.ZodString]> & {
         enum: {
             ENTITY: "ENTITY";
+            NEWS: "NEWS";
             TEXT: "TEXT";
             WRITER_BRIEF: "WRITER_BRIEF";
         };

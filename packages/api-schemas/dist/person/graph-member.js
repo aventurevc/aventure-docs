@@ -26,6 +26,7 @@ const PersonGraphMemberSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph

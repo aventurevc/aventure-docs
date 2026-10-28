@@ -105,6 +105,46 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
     }>>;
     ownership: z.ZodArray<z.ZodString>;
     pricingModel: z.ZodArray<z.ZodString>;
+    profileStatus: z.ZodOptional<z.ZodObject<{
+        headline: z.ZodUnion<readonly [z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            "Business Line": "Business Line";
+            Closed: "Closed";
+            "Closed (Acquihire)": "Closed (Acquihire)";
+            Company: "Company";
+            Fund: "Fund";
+            Government: "Government";
+            Inactive: "Inactive";
+            "Investment Firm": "Investment Firm";
+            Nonprofit: "Nonprofit";
+            "Private company": "Private company";
+            Product: "Product";
+            "Public company": "Public company";
+            Service: "Service";
+        }>, z.ZodString]> & {
+            enum: {
+                Acquired: "Acquired";
+                "Acquired Subsidiary": "Acquired Subsidiary";
+                "Business Line": "Business Line";
+                Closed: "Closed";
+                "Closed (Acquihire)": "Closed (Acquihire)";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                Inactive: "Inactive";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                "Private company": "Private company";
+                Product: "Product";
+                "Public company": "Public company";
+                Service: "Service";
+            };
+        };
+        isAcquired: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isClosed: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isTerminal: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    }, z.core.$strip>>;
     sellsTo: z.ZodArray<z.ZodString>;
     totalRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     website: z.ZodOptional<z.ZodNullable<z.ZodString>>;

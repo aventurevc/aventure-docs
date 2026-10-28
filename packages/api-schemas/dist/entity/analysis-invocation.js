@@ -6,6 +6,7 @@ import { EntityAnalysisToolSchema } from "./analysis-tool.js";
  *
  * @openapiSchema EntityAnalysisInvocation
  * @endpoint POST /v1/research-runs/{runId}/turns
+ * @endpoint POST /v1/research/runs/{runId}/turns
  * @usedBySchema HarnessRunTurnSchema
  * @contractShape entity.analysis-invocation
  * @contractRole canonical

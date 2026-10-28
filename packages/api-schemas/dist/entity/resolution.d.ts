@@ -18,10 +18,34 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("./image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodObject<{
@@ -59,6 +83,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
             }>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
+        coveringRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         enrichment: z.ZodType<{
             address: {
                 address?: number | null | undefined;
@@ -573,6 +598,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -682,6 +719,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -788,6 +837,30 @@ export declare const EntityResolutionSchema: z.ZodObject<{
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
             title: string;
+            titleMention?: {
+                end: number;
+                entity?: {
+                    createdAt: string;
+                    entityId: string;
+                    href?: string | null | undefined;
+                    internal: boolean;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                person?: {
+                    createdAt: string;
+                    href?: string | null | undefined;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    personId: string;
+                    slug?: string | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                start: number;
+            }[] | undefined;
             updatedAt?: string | null | undefined;
         }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
             author?: string | null | undefined;
@@ -802,6 +875,30 @@ export declare const EntityResolutionSchema: z.ZodObject<{
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
             title: string;
+            titleMention?: {
+                end: number;
+                entity?: {
+                    createdAt: string;
+                    entityId: string;
+                    href?: string | null | undefined;
+                    internal: boolean;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                person?: {
+                    createdAt: string;
+                    href?: string | null | undefined;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    personId: string;
+                    slug?: string | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                start: number;
+            }[] | undefined;
             updatedAt?: string | null | undefined;
         }, import("../news/news.ts").NewsSchemaInput>>>;
         person: z.ZodArray<z.ZodType<{
@@ -856,6 +953,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -926,6 +1035,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -984,6 +1099,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -991,6 +1112,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -1016,6 +1138,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -1086,6 +1209,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -1116,6 +1245,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -1208,6 +1349,30 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -1220,6 +1385,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -1263,6 +1440,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -1278,6 +1461,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -1292,6 +1481,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1331,6 +1532,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1369,6 +1582,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -1466,6 +1691,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -1536,6 +1773,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -1572,6 +1815,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -1579,6 +1828,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -1665,6 +1915,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -1735,6 +1997,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -1793,6 +2061,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -1800,6 +2074,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -1825,6 +2100,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -1895,6 +2171,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -1925,6 +2207,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -2017,6 +2311,30 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -2029,6 +2347,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -2072,6 +2402,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -2087,6 +2423,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -2101,6 +2443,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -2140,6 +2494,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -2178,6 +2544,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -2275,6 +2653,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -2345,6 +2735,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -2381,6 +2777,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -2388,6 +2790,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -2423,6 +2826,46 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 };
             }[] | null | undefined;
         }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
+        profileStatus: z.ZodOptional<z.ZodObject<{
+            headline: z.ZodUnion<readonly [z.ZodEnum<{
+                Acquired: "Acquired";
+                "Acquired Subsidiary": "Acquired Subsidiary";
+                "Business Line": "Business Line";
+                Closed: "Closed";
+                "Closed (Acquihire)": "Closed (Acquihire)";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                Inactive: "Inactive";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                "Private company": "Private company";
+                Product: "Product";
+                "Public company": "Public company";
+                Service: "Service";
+            }>, z.ZodString]> & {
+                enum: {
+                    Acquired: "Acquired";
+                    "Acquired Subsidiary": "Acquired Subsidiary";
+                    "Business Line": "Business Line";
+                    Closed: "Closed";
+                    "Closed (Acquihire)": "Closed (Acquihire)";
+                    Company: "Company";
+                    Fund: "Fund";
+                    Government: "Government";
+                    Inactive: "Inactive";
+                    "Investment Firm": "Investment Firm";
+                    Nonprofit: "Nonprofit";
+                    "Private company": "Private company";
+                    Product: "Product";
+                    "Public company": "Public company";
+                    Service: "Service";
+                };
+            };
+            isAcquired: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            isClosed: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            isTerminal: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        }, z.core.$strip>>;
         provider: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             entity: z.ZodObject<{
                 defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -2432,10 +2875,34 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 }, import("./image.ts").EntityImageSchemaInput>>;
                 lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 nameAlias: z.ZodArray<z.ZodObject<{
@@ -2533,6 +3000,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | undefined;
                 sellsTo: string[];
                 totalRaised?: number | null | undefined;
                 website?: string | null | undefined;
@@ -2547,6 +3020,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -2591,6 +3076,12 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | undefined;
                 sellsTo: string[];
                 totalRaised?: number | null | undefined;
                 website?: string | null | undefined;
@@ -2605,6 +3096,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -2654,6 +3157,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -2738,6 +3253,18 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {

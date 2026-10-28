@@ -8,6 +8,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investments
@@ -32,10 +33,34 @@ export declare const EntityFundraiseSchema: z.ZodObject<{
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
+        logoSquareVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
+        logoVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
     }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
         isMonogram: boolean;
         logo?: string | null | undefined;
         logoSquare?: string | null | undefined;
+        logoSquareVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
+        logoVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
     }, import("./image.ts").EntityImageSchemaInput>>;
     investorCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     nameBrand: z.ZodString;

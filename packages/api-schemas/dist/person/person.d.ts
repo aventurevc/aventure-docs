@@ -7,9 +7,21 @@ declare const PersonSchemaDefinition: z.ZodObject<{
     image: z.ZodType<{
         isMonogram: boolean;
         picture?: string | null | undefined;
+        pictureVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
     }, import("./image.ts").PersonImageSchemaInput, z.core.$ZodTypeInternals<{
         isMonogram: boolean;
         picture?: string | null | undefined;
+        pictureVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
     }, import("./image.ts").PersonImageSchemaInput>>;
     lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     nameAlias: z.ZodArray<z.ZodType<{
@@ -21,6 +33,7 @@ declare const PersonSchemaDefinition: z.ZodObject<{
         name: string;
         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
     }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput>>>;
+    nameDisplay: z.ZodString;
     nameFirst: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     nameFull: z.ZodString;
     nameLast: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -91,8 +104,10 @@ export interface PersonSchemaInput extends z.input<typeof PersonSchemaDefinition
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -102,6 +117,7 @@ export interface PersonSchemaInput extends z.input<typeof PersonSchemaDefinition
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search

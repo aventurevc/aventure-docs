@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema HarnessRunProgress
  * @endpoint GET /v1/research-runs/{runId}
+ * @endpoint GET /v1/research/runs/{runId}
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run-progress
  * @contractRole canonical

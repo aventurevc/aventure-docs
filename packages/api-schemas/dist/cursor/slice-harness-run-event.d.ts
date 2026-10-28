@@ -23,6 +23,7 @@ export interface CursorSliceHarnessRunEventSchemaInput extends z.input<typeof Cu
 /**
  * @openapiSchema CursorSliceHarnessRunEvent
  * @endpoint GET /v1/research-runs/{runId}/events
+ * @endpoint GET /v1/research/runs/{runId}/events
  * @contractShape cursor.slice-harness-run-event
  * @contractRole canonical
  */

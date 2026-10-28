@@ -16,6 +16,7 @@ export interface EntityAnalysisSourceSchemaInput extends z.input<typeof EntityAn
  *
  * @openapiSchema EntityAnalysisSource
  * @endpoint GET /v1/research-runs/{runId}/draft/sources
+ * @endpoint GET /v1/research/runs/{runId}/draft/sources
  * @contractShape entity.analysis-source
  * @contractRole canonical
  */

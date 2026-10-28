@@ -9,6 +9,8 @@ const HarnessTaskStepSchemaDefinition = z.object({
     planTaskKey: z.array(z.string()).optional(),
     /** Step key, unique within its task. */
     stepKey: z.string().optional(),
+    /** Display title for this step, when the catalog supplies one. */
+    title: z.string().nullish(),
 });
 /**
  * One ordered task step: its key, instruction, the operation that runs it, and the delegated plans it follows.

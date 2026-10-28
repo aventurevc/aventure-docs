@@ -15,6 +15,7 @@ import { EntityUrlTypeSchema } from "./url-type.js";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors
@@ -24,6 +25,7 @@ import { EntityUrlTypeSchema } from "./url-type.js";
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
@@ -37,6 +39,7 @@ import { EntityUrlTypeSchema } from "./url-type.js";
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

@@ -12,6 +12,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityTextSchema
  * @usedBySchema EntityUrlLinkSchema
  * @usedBySchema IdentificationCandidateSchema
+ * @usedBySchema IdentificationSchema
  * @usedBySchema LookupJobMentionSchema
  * @usedBySchema ResolvedHandleSchema
  * @usedBySchema SearchInvestmentSchema

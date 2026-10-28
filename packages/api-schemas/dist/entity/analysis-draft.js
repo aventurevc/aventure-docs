@@ -16,7 +16,9 @@ const EntityAnalysisDraftSchemaDefinition = z.object({
  *
  * @openapiSchema EntityAnalysisDraft
  * @endpoint GET /v1/research-runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
+ * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @contractShape entity.analysis-draft
  * @contractRole canonical
  */

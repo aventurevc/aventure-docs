@@ -6,6 +6,7 @@ import { HarnessRunFollowUpAdmissionSchema } from "./run-follow-up-admission.js"
  *
  * @openapiSchema HarnessRunFollowUp
  * @endpoint GET /v1/research-runs/{runId}
+ * @endpoint GET /v1/research/runs/{runId}
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run-follow-up
  * @contractRole canonical

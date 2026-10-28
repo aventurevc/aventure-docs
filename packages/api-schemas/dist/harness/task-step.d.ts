@@ -4,6 +4,7 @@ declare const HarnessTaskStepSchemaDefinition: z.ZodObject<{
     operationId: z.ZodString;
     planTaskKey: z.ZodOptional<z.ZodArray<z.ZodString>>;
     stepKey: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type HarnessTaskStepDefinition = z.infer<typeof HarnessTaskStepSchemaDefinition>;
 export interface HarnessTaskStepSchemaInput extends z.input<typeof HarnessTaskStepSchemaDefinition> {

@@ -14,6 +14,30 @@ declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
         title: string;
+        titleMention?: {
+            end: number;
+            entity?: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            person?: {
+                createdAt: string;
+                href?: string | null | undefined;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                personId: string;
+                slug?: string | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            start: number;
+        }[] | undefined;
         updatedAt?: string | null | undefined;
     }, import("./news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
@@ -28,6 +52,30 @@ declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
         title: string;
+        titleMention?: {
+            end: number;
+            entity?: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            person?: {
+                createdAt: string;
+                href?: string | null | undefined;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                personId: string;
+                slug?: string | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            start: number;
+        }[] | undefined;
         updatedAt?: string | null | undefined;
     }, import("./news.ts").NewsSchemaInput>>;
     eventId: z.ZodString;

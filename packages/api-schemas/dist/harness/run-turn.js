@@ -14,6 +14,7 @@ const HarnessRunTurnSchemaDefinition = z.object({
  *
  * @openapiSchema HarnessRunTurn
  * @endpoint POST /v1/research-runs/{runId}/turns
+ * @endpoint POST /v1/research/runs/{runId}/turns
  * @contractShape harness.run-turn
  * @contractRole canonical
  */

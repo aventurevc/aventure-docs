@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema AgentTaskPresetPhase
  * @endpoint GET /v1/research-runs/presets
+ * @endpoint GET /v1/research/runs/presets
  * @usedBySchema AgentTaskPresetSchema
  * @contractShape agent.task-preset-phase
  * @contractRole canonical

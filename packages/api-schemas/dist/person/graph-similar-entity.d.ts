@@ -9,10 +9,34 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("../entity/image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodObject<{
@@ -149,6 +173,12 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
         personImage: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         personName: string;
         personSlug: string;
@@ -159,6 +189,12 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
         personImage: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         personName: string;
         personSlug: string;
@@ -177,6 +213,7 @@ export interface PersonGraphSimilarEntitySchemaInput extends z.input<typeof Pers
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph

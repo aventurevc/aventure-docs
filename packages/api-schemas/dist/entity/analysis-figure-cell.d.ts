@@ -11,7 +11,9 @@ export interface EntityAnalysisFigureCellSchemaInput extends z.input<typeof Enti
  *
  * @openapiSchema EntityAnalysisFigureCell
  * @endpoint GET /v1/research-runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
+ * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisFigureEntrySchema
  * @contractShape entity.analysis-figure-cell
  * @contractRole canonical

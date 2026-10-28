@@ -35,6 +35,7 @@ const LookupJobSchemaDefinition = z.object({
  *
  * @openapiSchema LookupJob
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @contractShape lookup.job
  * @contractRole canonical
  */

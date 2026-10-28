@@ -651,6 +651,18 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -799,6 +811,18 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -955,6 +979,12 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -962,6 +992,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -1000,6 +1031,12 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -1007,6 +1044,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;

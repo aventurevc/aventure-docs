@@ -3,6 +3,28 @@ declare const EntityImageSchemaDefinition: z.ZodObject<{
     isMonogram: z.ZodBoolean;
     logo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     logoSquare: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    logoSquareVariant: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput, z.core.$ZodTypeInternals<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput>>>>>;
+    logoVariant: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput, z.core.$ZodTypeInternals<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput>>>>>;
 }, z.core.$strip>;
 type EntityImageDefinition = z.infer<typeof EntityImageSchemaDefinition>;
 export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchemaDefinition> {
@@ -23,6 +45,7 @@ export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchema
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors
@@ -33,6 +56,7 @@ export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchema
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
@@ -41,6 +65,7 @@ export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchema
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/research-runs/{runId}
+ * @endpoint GET /v1/research/runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
@@ -48,6 +73,7 @@ export interface EntityImageSchemaInput extends z.input<typeof EntityImageSchema
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

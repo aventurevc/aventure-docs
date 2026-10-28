@@ -4,7 +4,9 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityAnalysisFigureType
  * @endpoint GET /v1/research-runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
+ * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisFigureSchema
  * @contractShape entity.analysis-figure-type
  * @contractRole canonical

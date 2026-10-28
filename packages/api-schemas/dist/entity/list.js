@@ -5,6 +5,7 @@ import { EntityEnrichmentSchema } from "./enrichment.js";
 import { EntitySchema } from "./entity.js";
 import { EntityFundraiseTransactionSchema } from "./fundraise-transaction.js";
 import { EntityListResearchSchema } from "./list-research.js";
+import { EntityProfileStatusSchema } from "./profile-status.js";
 import { EntityProviderSchema } from "./provider.js";
 const EntityListSchemaDefinition = z.object({
     /** Flat entity core — identity, naming, status, image, and source metadata */
@@ -13,6 +14,8 @@ const EntityListSchemaDefinition = z.object({
     enrichment: EntityEnrichmentSchema,
     /** Fundraise rounds associated with this entity */
     fundraiseRound: z.array(EntityFundraiseTransactionSchema),
+    /** Derived profile status; read-only. */
+    profileStatus: EntityProfileStatusSchema.optional(),
     /** Fund manager firm or product/service provider; null otherwise. */
     provider: EntityProviderSchema.nullish(),
     /** List-safe research disclosure without text snippets */
@@ -29,11 +32,13 @@ const EntityListSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared

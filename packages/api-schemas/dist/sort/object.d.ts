@@ -1,11 +1,13 @@
 import { z } from "zod/v4";
 /**
  * @openapiSchema SortObject
+ * @endpoint GET /v1/content
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/classifications/tags
  * @endpoint GET /v1/news
  * @endpoint GET /v1/people
  * @endpoint GET /v1/research-runs
+ * @endpoint GET /v1/research/runs
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
@@ -14,6 +16,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
@@ -38,6 +41,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/urls
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/search

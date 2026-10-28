@@ -5,9 +5,11 @@ import { z } from "zod/v4";
  * @openapiSchema Identification
  * @endpoint GET /v1/lookup
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema LookupJobMentionSchema
  * @usedBySchema LookupJobSchema
@@ -15,6 +17,10 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const IdentificationSchema: z.ZodObject<{
+    acceptedOwner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    }, z.core.$strip>>>;
     candidate: z.ZodArray<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -150,6 +156,7 @@ export declare const IdentificationSchema: z.ZodObject<{
     }, z.core.$strip>>;
     enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         jobId: z.ZodUUID;
         mode: z.ZodString;
         statusUrl: z.ZodString;

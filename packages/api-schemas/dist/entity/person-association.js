@@ -14,6 +14,7 @@ import { PersonImageSchema } from "../person/image.js";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors

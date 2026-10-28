@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationCandidateSchema } from "./candidate.js";
 import { JobEnqueueSchema } from "../job/enqueue.js";
 import { UrlHostFormResolutionSchema } from "../url/host-form-resolution.js";
@@ -9,9 +10,11 @@ import { UrlHostFormResolutionSchema } from "../url/host-form-resolution.js";
  * @openapiSchema Identification
  * @endpoint GET /v1/lookup
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema LookupJobMentionSchema
  * @usedBySchema LookupJobSchema
@@ -19,6 +22,8 @@ import { UrlHostFormResolutionSchema } from "../url/host-form-resolution.js";
  * @contractRole canonical
  */
 export const IdentificationSchema = z.object({
+    /** The owner to bind without confirming: a match no language model settled whose record an exact id, URL, slug, or registry id proved, or whose name spells the requested name up to a trailing legal or group form (an Investment Firm also by its bare brand); or created when its name keeps the requested name as whole words. Absent otherwise: confirm the match or created record before binding it. */
+    acceptedOwner: EntityPersonOwnerSchema.nullish(),
     /** Records considered, most probable first. */
     candidate: z.array(IdentificationCandidateSchema),
     /** The new unpublished record a NO_MATCH subject with a proven own site was added as, or the existing one that already held its website. Absent otherwise. */

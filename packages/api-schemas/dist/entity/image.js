@@ -1,10 +1,15 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ImageVariantSchema } from "../image/variant.js";
 const EntityImageSchemaDefinition = z.object({
     /** Whether entity image monogram */
     isMonogram: z.boolean(),
     logo: z.string().nullish(),
     logoSquare: z.string().nullish(),
+    /** Verified variants of logoSquare's exact final master path; null means unknown, an empty array means known-empty. Use the master when absent or empty. */
+    logoSquareVariant: z.array(ImageVariantSchema).nullish(),
+    /** Verified variants of logo's exact final master path; null means unknown, an empty array means known-empty. Use the master when absent or empty. */
+    logoVariant: z.array(ImageVariantSchema).nullish(),
 });
 /**
  * Grouped entity image fields for square, standard, and monogram logo state
@@ -22,6 +27,7 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors
@@ -32,6 +38,7 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
@@ -40,6 +47,7 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/research-runs/{runId}
+ * @endpoint GET /v1/research/runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
@@ -47,6 +55,7 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

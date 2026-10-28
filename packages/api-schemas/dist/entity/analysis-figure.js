@@ -17,7 +17,9 @@ const EntityAnalysisFigureSchemaDefinition = z.object({
  *
  * @openapiSchema EntityAnalysisFigure
  * @endpoint GET /v1/research-runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
+ * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisSectionSchema
  * @contractShape entity.analysis-figure
  * @contractRole canonical

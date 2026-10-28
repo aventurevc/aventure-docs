@@ -25,6 +25,7 @@ const HarnessRunDetailSchemaDefinition = z.object({
  *
  * @openapiSchema HarnessRunDetail
  * @endpoint GET /v1/research-runs/{runId}
+ * @endpoint GET /v1/research/runs/{runId}
  * @contractShape harness.run-detail
  * @contractRole canonical
  */

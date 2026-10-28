@@ -8,10 +8,34 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodObject<{
@@ -563,6 +587,18 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -672,6 +708,18 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -765,6 +813,46 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
     }, import("./fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
+    profileStatus: z.ZodOptional<z.ZodObject<{
+        headline: z.ZodUnion<readonly [z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            "Business Line": "Business Line";
+            Closed: "Closed";
+            "Closed (Acquihire)": "Closed (Acquihire)";
+            Company: "Company";
+            Fund: "Fund";
+            Government: "Government";
+            Inactive: "Inactive";
+            "Investment Firm": "Investment Firm";
+            Nonprofit: "Nonprofit";
+            "Private company": "Private company";
+            Product: "Product";
+            "Public company": "Public company";
+            Service: "Service";
+        }>, z.ZodString]> & {
+            enum: {
+                Acquired: "Acquired";
+                "Acquired Subsidiary": "Acquired Subsidiary";
+                "Business Line": "Business Line";
+                Closed: "Closed";
+                "Closed (Acquihire)": "Closed (Acquihire)";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                Inactive: "Inactive";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                "Private company": "Private company";
+                Product: "Product";
+                "Public company": "Public company";
+                Service: "Service";
+            };
+        };
+        isAcquired: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isClosed: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isTerminal: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    }, z.core.$strip>>;
     provider: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         entity: z.ZodObject<{
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -774,10 +862,34 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("./image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodObject<{
@@ -878,6 +990,18 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -943,6 +1067,18 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -1050,11 +1186,13 @@ export interface EntityListSchemaInput extends z.input<typeof EntityListSchemaDe
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared

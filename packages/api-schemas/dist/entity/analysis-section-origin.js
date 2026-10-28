@@ -6,7 +6,9 @@ const EntityAnalysisSectionOriginSchemaKnownMembers = z.enum(["AGENT", "USER"]);
  *
  * @openapiSchema EntityAnalysisSectionOrigin
  * @endpoint GET /v1/research-runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
+ * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisSectionSchema
  * @contractShape entity.analysis-section-origin
  * @contractRole canonical

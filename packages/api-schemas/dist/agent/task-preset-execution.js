@@ -6,6 +6,7 @@ const AgentTaskPresetExecutionSchemaKnownMembers = z.enum(["FULL", "MICRO", "INT
  *
  * @openapiSchema AgentTaskPresetExecution
  * @endpoint GET /v1/research-runs/presets
+ * @endpoint GET /v1/research/runs/presets
  * @usedBySchema AgentTaskPresetSchema
  * @contractShape agent.task-preset-execution
  * @contractRole canonical

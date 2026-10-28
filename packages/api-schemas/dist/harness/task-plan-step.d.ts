@@ -7,12 +7,15 @@ declare const HarnessTaskPlanStepSchemaDefinition: z.ZodObject<{
         operationId: string;
         planTaskKey?: string[] | undefined;
         stepKey?: string | undefined;
+        title?: string | null | undefined;
     }, import("./task-step.ts").HarnessTaskStepSchemaInput, z.core.$ZodTypeInternals<{
         instruction: string;
         operationId: string;
         planTaskKey?: string[] | undefined;
         stepKey?: string | undefined;
+        title?: string | null | undefined;
     }, import("./task-step.ts").HarnessTaskStepSchemaInput>>;
+    title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     writeGuidance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         body: z.ZodString;
         expectation: z.ZodString;

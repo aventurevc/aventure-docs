@@ -5,9 +5,9 @@ import { LookupMentionSchema } from "./mention.js";
 const LookupJobMutationSchemaDefinition = z.object({
     /** Companies and people the caller already read, identified without sending the page or screenshot. Send them alone, without an article or file. On lookup jobs, maxNames is required and no records are created and no research is requested. */
     mention: z.array(LookupMentionSchema).optional(),
-    /** POST /v1/lookup-mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer. */
+    /** POST /v1/lookup/mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer. */
     omitRecords: z.boolean().optional(),
-    /** Id of a stored source document whose text is the article; send it alone. Only POST /v1/lookup-mentions reads it, and only for accounts with editing rights. */
+    /** Id of a stored source document whose text is the article; send it alone. Only POST /v1/lookup/mentions reads it, and only for accounts with editing rights. */
     sourceDocumentId: z.uuid().nullish(),
     /** aVenture news id of the article; an id that names no stored article is an error. */
     sourceNewsId: z.int().nullish(),
@@ -17,12 +17,14 @@ const LookupJobMutationSchemaDefinition = z.object({
     subject: IdentificationSubjectSchema.nullish(),
 });
 /**
- * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup-mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup-mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.
+ * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup/mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup/mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.
  *
  * @openapiSchema LookupJobMutation
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/lookup-jobs
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobSchema
  * @contractShape lookup.job-mutation
  * @contractRole canonical

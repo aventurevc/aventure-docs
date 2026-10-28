@@ -8,6 +8,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/web/searches/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
@@ -15,6 +16,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup-jobs
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema IdentificationSchema
  * @usedBySchema MentionLookupSchema
@@ -22,6 +24,8 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export const JobEnqueueSchema = z.object({
+    /** `true` when an earlier run answers this request instead of a new one; absent on routes that do not report deduplication. */
+    deduped: z.boolean().nullish(),
     jobId: z.uuid(),
     mode: z.string(),
     /** Endpoint to poll for asynchronous job state and result. */

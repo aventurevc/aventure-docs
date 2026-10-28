@@ -8,6 +8,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -32,6 +33,12 @@ export declare const PersonGraphSchema: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -62,6 +69,18 @@ export declare const PersonGraphSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -154,6 +173,30 @@ export declare const PersonGraphSchema: z.ZodObject<{
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
             title: string;
+            titleMention?: {
+                end: number;
+                entity?: {
+                    createdAt: string;
+                    entityId: string;
+                    href?: string | null | undefined;
+                    internal: boolean;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                person?: {
+                    createdAt: string;
+                    href?: string | null | undefined;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    personId: string;
+                    slug?: string | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                start: number;
+            }[] | undefined;
             updatedAt?: string | null | undefined;
         }[];
         similarEntity: {
@@ -166,6 +209,18 @@ export declare const PersonGraphSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -209,6 +264,12 @@ export declare const PersonGraphSchema: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -222,6 +283,12 @@ export declare const PersonGraphSchema: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -252,6 +319,18 @@ export declare const PersonGraphSchema: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -344,6 +423,30 @@ export declare const PersonGraphSchema: z.ZodObject<{
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
             title: string;
+            titleMention?: {
+                end: number;
+                entity?: {
+                    createdAt: string;
+                    entityId: string;
+                    href?: string | null | undefined;
+                    internal: boolean;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                person?: {
+                    createdAt: string;
+                    href?: string | null | undefined;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    personId: string;
+                    slug?: string | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                start: number;
+            }[] | undefined;
             updatedAt?: string | null | undefined;
         }[];
         similarEntity: {
@@ -356,6 +459,18 @@ export declare const PersonGraphSchema: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -399,6 +514,12 @@ export declare const PersonGraphSchema: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -414,6 +535,12 @@ export declare const PersonGraphSchema: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -428,6 +555,18 @@ export declare const PersonGraphSchema: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -461,6 +600,12 @@ export declare const PersonGraphSchema: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -475,6 +620,18 @@ export declare const PersonGraphSchema: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {

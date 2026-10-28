@@ -3,6 +3,7 @@ import { z } from "zod/v4";
  * Reasoning effort level, lowest to highest: `minimal`, `low`, `medium`, `high`, `xhigh`, `max`. A model receives the nearest level it supports.
  *
  * @openapiSchema ReasoningEffort
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @endpoint POST /v1/search

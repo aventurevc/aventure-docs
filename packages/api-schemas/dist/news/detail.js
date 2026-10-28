@@ -1,9 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { NewsAnalysisSchema } from "./analysis.js";
 import { NewsSchema } from "./news.js";
 import { NewsResolvedEntityLinkSchema } from "./resolved-entity-link.js";
 import { NewsResolvedPersonLinkSchema } from "./resolved-person-link.js";
 const NewsDetailSchemaDefinition = z.object({
+    /** Current shared article analysis, absent before publication. */
+    analysis: NewsAnalysisSchema.nullish(),
     content: z.string().nullish(),
     core: NewsSchema,
     /** Resolved entity mentions — read-only display projections. News mutations attach entities only via flat entityJoinId values, never these nested objects. */

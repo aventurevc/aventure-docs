@@ -219,6 +219,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cli/authorization-terminal-reason",
         schemaName: "CliAuthorizationTerminalReasonSchema",
     },
+    CompetitorDegree: { modulePath: "competitor/degree", schemaName: "CompetitorDegreeSchema" },
     Confidence: { modulePath: "confidence/confidence", schemaName: "ConfidenceSchema" },
     ContentCompliance: { modulePath: "content/compliance", schemaName: "ContentComplianceSchema" },
     ContentEmbeddingMatch: {
@@ -503,6 +504,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityPersonAssociationFilterSchema",
     },
     EntityPersonOwner: { modulePath: "entity/person-owner", schemaName: "EntityPersonOwnerSchema" },
+    EntityProfileHeadline: {
+        modulePath: "entity/profile-headline",
+        schemaName: "EntityProfileHeadlineSchema",
+    },
+    EntityProfileStatus: {
+        modulePath: "entity/profile-status",
+        schemaName: "EntityProfileStatusSchema",
+    },
     EntityProvider: { modulePath: "entity/provider", schemaName: "EntityProviderSchema" },
     EntityRelationship: {
         modulePath: "entity/relationship",
@@ -687,6 +696,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "identification/subject",
         schemaName: "IdentificationSubjectSchema",
     },
+    ImageVariant: { modulePath: "image/variant", schemaName: "ImageVariantSchema" },
     IntRange: { modulePath: "int/range", schemaName: "IntRangeSchema" },
     InvestorActivityFilter: {
         modulePath: "investor/activity-filter",
@@ -718,6 +728,15 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "NaturalSearchResultSchema",
     },
     News: { modulePath: "news/news", schemaName: "NewsSchema" },
+    NewsAnalysis: { modulePath: "news/analysis", schemaName: "NewsAnalysisSchema" },
+    NewsAnalysisSection: {
+        modulePath: "news/analysis-section",
+        schemaName: "NewsAnalysisSectionSchema",
+    },
+    NewsAnalysisSourceReference: {
+        modulePath: "news/analysis-source-reference",
+        schemaName: "NewsAnalysisSourceReferenceSchema",
+    },
     NewsCandidateScore: {
         modulePath: "news/candidate-score",
         schemaName: "NewsCandidateScoreSchema",
@@ -787,6 +806,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "news/subscription-test-event",
         schemaName: "NewsSubscriptionTestEventSchema",
     },
+    NewsTitleMention: { modulePath: "news/title-mention", schemaName: "NewsTitleMentionSchema" },
     PageableObject: { modulePath: "pageable/object", schemaName: "PageableObjectSchema" },
     PageBlogPost: { modulePath: "pagination/schemas", schemaName: "PageBlogPostSchema" },
     PageClassification: {
@@ -952,6 +972,15 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "RedirectSlugPathSchema",
     },
     RefinementMeta: { modulePath: "refinement/meta", schemaName: "RefinementMetaSchema" },
+    RegistryFiling: { modulePath: "registry/filing", schemaName: "RegistryFilingSchema" },
+    RegistryFilingAddress: {
+        modulePath: "registry/filing-address",
+        schemaName: "RegistryFilingAddressSchema",
+    },
+    RegistryFilingPerson: {
+        modulePath: "registry/filing-person",
+        schemaName: "RegistryFilingPersonSchema",
+    },
     RelationshipDirection: {
         modulePath: "relationship/direction",
         schemaName: "RelationshipDirectionSchema",
@@ -986,6 +1015,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "research/paragraph-shape",
         schemaName: "ResearchParagraphShapeSchema",
     },
+    ResearchRunView: { modulePath: "research/run-view", schemaName: "ResearchRunViewSchema" },
     ResearchSnippetType: {
         modulePath: "research/snippet-type",
         schemaName: "ResearchSnippetTypeSchema",
@@ -1141,7 +1171,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "system/global-metrics",
         schemaName: "SystemGlobalMetricsSchema",
     },
-    SystemStatus: { modulePath: "system/status", schemaName: "SystemStatusSchema" },
     TextTypeOption: { modulePath: "text/type-option", schemaName: "TextTypeOptionSchema" },
     UniqueId: { modulePath: "unique/id", schemaName: "UniqueIdSchema" },
     UniqueIdMutation: { modulePath: "unique/id-mutation", schemaName: "UniqueIdMutationSchema" },

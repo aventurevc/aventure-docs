@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityAnalysisInvocation
  * @endpoint POST /v1/research-runs/{runId}/turns
+ * @endpoint POST /v1/research/runs/{runId}/turns
  * @usedBySchema HarnessRunTurnSchema
  * @contractShape entity.analysis-invocation
  * @contractRole canonical

@@ -7,7 +7,7 @@ import { PersonSchema } from "../person/person.js";
 const LookupJobMentionSchemaDefinition = z.object({
     /** Research request filed for this mention, if any. */
     enrichmentRunId: z.uuid().nullish(),
-    /** POST /v1/lookup-mentions only: the candidate companies as search results show them, the match first, then by match probability and duplicate-check score. */
+    /** POST /v1/lookup/mentions only: the candidate companies as search results show them, the match first, then by match probability and duplicate-check score. */
     entity: z.array(EntityListSchema),
     /** One sentence on why this name could not be identified; absent otherwise. */
     failureReason: z.string().nullish(),
@@ -17,7 +17,7 @@ const LookupJobMentionSchemaDefinition = z.object({
     mentionType: z.enum(["COMPANY", "PERSON", "PRODUCT_SERVICE"]),
     /** Name as the source writes it. */
     name: z.string(),
-    /** POST /v1/lookup-mentions only: the candidate people as search results show them, ranked like entity. */
+    /** POST /v1/lookup/mentions only: the candidate people as search results show them, ranked like entity. */
     person: z.array(PersonSchema),
     /** New unpublished record aVenture created, at no charge, for a NO_MATCH name whose own live site names it. enrichmentRunId names research filed for it, if any; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
     shell: EntityPersonOwnerSchema.nullish(),
@@ -29,7 +29,9 @@ const LookupJobMentionSchemaDefinition = z.object({
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobSchema
  * @usedBySchema MentionLookupSchema
  * @contractShape lookup.job-mention

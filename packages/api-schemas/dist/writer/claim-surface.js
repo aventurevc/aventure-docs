@@ -7,6 +7,7 @@ const WriterClaimSurfaceSchemaKnownMembers = z.enum(["ENTITY_TEXT", "RESEARCH_SN
  * @openapiSchema WriterClaimSurface
  * @endpoint POST /v1/entities/{entityId}/enrichments
  * @endpoint POST /v1/research-runs
+ * @endpoint POST /v1/research/runs
  * @usedBySchema ResearchFindingSchema
  * @contractShape writer.claim-surface
  * @contractRole canonical

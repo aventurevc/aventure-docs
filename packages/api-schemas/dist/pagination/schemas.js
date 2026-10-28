@@ -477,6 +477,7 @@ const PageHarnessRunSchemaDefinition = z.object({
 /**
  * @openapiSchema PageHarnessRun
  * @endpoint GET /v1/research-runs
+ * @endpoint GET /v1/research/runs
  * @contractShape pagination.page-harness-run
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -583,6 +584,7 @@ const PagePersonInvestorParticipationSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePersonInvestorParticipation
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @contractShape pagination.page-person-investor-participation
  * @contractRole canonical
@@ -625,8 +627,10 @@ const PagePublicationSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePublication
+ * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication

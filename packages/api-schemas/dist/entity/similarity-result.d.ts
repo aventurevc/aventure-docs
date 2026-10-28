@@ -9,6 +9,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -299,6 +311,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -392,6 +416,12 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -401,6 +431,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -479,6 +521,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -554,6 +608,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -844,6 +910,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -937,6 +1015,12 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -946,6 +1030,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -1024,6 +1120,18 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {

@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const MentionLookupSchemaDefinition: z.ZodObject<{
     filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         jobId: z.ZodUUID;
         mode: z.ZodString;
         statusUrl: z.ZodString;
@@ -16,6 +17,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -306,6 +319,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -399,6 +424,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -408,6 +439,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -486,6 +529,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -555,6 +610,10 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         }[];
         failureReason?: string | null | undefined;
         identification?: {
+            acceptedOwner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
             candidate: {
                 createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
@@ -636,6 +695,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             }[];
             enrichmentRunId?: string | null | undefined;
             filing?: {
+                deduped?: boolean | null | undefined;
                 jobId: string;
                 mode: string;
                 statusUrl: string;
@@ -691,6 +751,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -698,6 +764,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -739,6 +806,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -1029,6 +1108,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1122,6 +1213,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -1131,6 +1228,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -1209,6 +1318,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1278,6 +1399,10 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         }[];
         failureReason?: string | null | undefined;
         identification?: {
+            acceptedOwner?: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            } | null | undefined;
             candidate: {
                 createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
@@ -1359,6 +1484,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             }[];
             enrichmentRunId?: string | null | undefined;
             filing?: {
+                deduped?: boolean | null | undefined;
                 jobId: string;
                 mode: string;
                 statusUrl: string;
@@ -1414,6 +1540,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -1421,6 +1553,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -1462,6 +1595,7 @@ export interface MentionLookupSchemaInput extends z.input<typeof MentionLookupSc
  *
  * @openapiSchema MentionLookup
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @contractShape mention.lookup
  * @contractRole canonical
  */

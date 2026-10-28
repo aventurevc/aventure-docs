@@ -12,10 +12,12 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -25,6 +27,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
@@ -45,10 +48,34 @@ export declare const EntityFundraiseTransactionEntitySchema: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("./image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodObject<{

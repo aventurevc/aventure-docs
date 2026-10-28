@@ -15,6 +15,7 @@ const MentionLookupSchemaDefinition = z.object({
  *
  * @openapiSchema MentionLookup
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @contractShape mention.lookup
  * @contractRole canonical
  */

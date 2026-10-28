@@ -17,8 +17,10 @@ export interface LookupMentionSchemaInput extends z.input<typeof LookupMentionSc
  *
  * @openapiSchema LookupMention
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/lookup-jobs
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobMutationSchema
  * @contractShape lookup.mention
  * @contractRole canonical

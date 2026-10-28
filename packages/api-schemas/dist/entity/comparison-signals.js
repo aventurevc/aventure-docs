@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityProfileStatusSchema } from "./profile-status.js";
 import { FundingStageSchema } from "../funding/stage.js";
 /**
  * Competitive comparison signals for a provider entity — sells-to customers, pricing model, ownership, funding stage, total raised, and website. Projected from entity enrichment for side-by-side comparison; founded year rides the entity core.
@@ -30,6 +31,8 @@ export const EntityComparisonSignalsSchema = z.object({
     ownership: z.array(z.string()),
     /** Provider pricing/revenue model (current typeRevenue tags) */
     pricingModel: z.array(z.string()),
+    /** Derived profile status of the provider */
+    profileStatus: EntityProfileStatusSchema.optional(),
     /** Customer types the provider sells to (current typeCustomer tags) */
     sellsTo: z.array(z.string()),
     /** Total capital raised in USD, each round converted at its announcement-date rate; null when no round converts to USD or no funding is known */

@@ -4,10 +4,12 @@ import { z } from "zod/v4";
  *
  * @openapiSchema IdentificationSubject
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup-jobs
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema LookupJobMutationSchema
  * @contractShape identification.subject
@@ -17,6 +19,35 @@ export declare const IdentificationSubjectSchema: z.ZodObject<{
     context: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     email: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     employer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        address: z.ZodOptional<z.ZodArray<z.ZodType<{
+            addressLine1?: string | null | undefined;
+            cityName?: string | null | undefined;
+            postalCode?: string | null | undefined;
+            stateAbbrev?: string | null | undefined;
+        }, import("../registry/filing-address.ts").RegistryFilingAddressSchemaInput, z.core.$ZodTypeInternals<{
+            addressLine1?: string | null | undefined;
+            cityName?: string | null | undefined;
+            postalCode?: string | null | undefined;
+            stateAbbrev?: string | null | undefined;
+        }, import("../registry/filing-address.ts").RegistryFilingAddressSchemaInput>>>>;
+        incorporatedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        nameFormer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        person: z.ZodOptional<z.ZodArray<z.ZodType<{
+            executiveOfficer: boolean;
+            nameFirst: string;
+            nameLast: string;
+        }, import("../registry/filing-person.ts").RegistryFilingPersonSchemaInput, z.core.$ZodTypeInternals<{
+            executiveOfficer: boolean;
+            nameFirst: string;
+            nameLast: string;
+        }, import("../registry/filing-person.ts").RegistryFilingPersonSchemaInput>>>>;
+        uniqueId: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            identifier: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            idType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strip>>>;
     kind: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         ENTITY: "ENTITY";
         PERSON: "PERSON";

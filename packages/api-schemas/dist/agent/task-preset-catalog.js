@@ -10,6 +10,7 @@ const AgentTaskPresetCatalogSchemaDefinition = z.object({
  *
  * @openapiSchema AgentTaskPresetCatalog
  * @endpoint GET /v1/research-runs/presets
+ * @endpoint GET /v1/research/runs/presets
  * @contractShape agent.task-preset-catalog
  * @contractRole canonical
  */

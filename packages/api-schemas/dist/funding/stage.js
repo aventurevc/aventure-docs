@@ -41,7 +41,7 @@ const FundingStageSchemaKnownMembers = z.enum([
     "Bankrupt",
 ]);
 /**
- * Canonical inferred equity, entity-type, or Company operating-status stage emitted by the entity fundraise rollup. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.
+ * Funding stage only, emitted by the entity fundraise rollup. The record headline is profileStatus.headline; the entity-type and operating-status members are deprecated as a headline and retire in a later contract change. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.
  *
  * @openapiSchema FundingStage
  * @endpoint GET /v1/entities
@@ -53,6 +53,7 @@ const FundingStageSchemaKnownMembers = z.enum([
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/similar
@@ -60,6 +61,7 @@ const FundingStageSchemaKnownMembers = z.enum([
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -69,6 +71,7 @@ const FundingStageSchemaKnownMembers = z.enum([
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

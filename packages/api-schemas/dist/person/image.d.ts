@@ -2,6 +2,17 @@ import { z } from "zod/v4";
 declare const PersonImageSchemaDefinition: z.ZodObject<{
     isMonogram: z.ZodBoolean;
     picture: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    pictureVariant: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput, z.core.$ZodTypeInternals<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput>>>>>;
 }, z.core.$strip>;
 type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
 export interface PersonImageSchemaInput extends z.input<typeof PersonImageSchemaDefinition> {
@@ -16,10 +27,12 @@ export interface PersonImageSchemaInput extends z.input<typeof PersonImageSchema
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
@@ -32,6 +45,7 @@ export interface PersonImageSchemaInput extends z.input<typeof PersonImageSchema
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search

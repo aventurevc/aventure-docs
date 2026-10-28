@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { NewsTitleMentionSchema } from "./title-mention.js";
 const NewsSchemaDefinition = z.object({
     author: z.string().nullish(),
     category: z.string().nullish(),
@@ -22,6 +23,8 @@ const NewsSchemaDefinition = z.object({
         .nullish(),
     /** Article headline; the headline field is title */
     title: z.string(),
+    /** Sorted, non-overlapping UTF-16 ranges of linked public records' current names in title; empty when none match. */
+    titleMention: z.array(NewsTitleMentionSchema).optional(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 /**
@@ -35,6 +38,7 @@ const NewsSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/trending-news
  * @endpoint GET /v1/news/{newsId}

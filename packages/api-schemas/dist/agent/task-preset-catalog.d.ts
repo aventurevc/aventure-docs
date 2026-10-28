@@ -20,6 +20,7 @@ export interface AgentTaskPresetCatalogSchemaInput extends z.input<typeof AgentT
  *
  * @openapiSchema AgentTaskPresetCatalog
  * @endpoint GET /v1/research-runs/presets
+ * @endpoint GET /v1/research/runs/presets
  * @contractShape agent.task-preset-catalog
  * @contractRole canonical
  */

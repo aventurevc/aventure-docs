@@ -9,7 +9,7 @@ const SearchEvidenceSourceSchemaKnownMembers = z.enum([
     "webProfile",
 ]);
 /**
- * Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `personRecord` a person linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution.
+ * Owner of search evidence: `entityRecord` is the entity's structured record, `researchSnippet` an entity research snippet, `newsArticle` a news article linked to the entity; `personRecord` a person linked to the entity; `fundraiseTransaction` a recorded investment round with investor attribution; `webProfile` a web page on a site the entity owns.
  *
  * @openapiSchema SearchEvidenceSource
  * @endpoint GET /v1/search/link

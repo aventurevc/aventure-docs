@@ -53,6 +53,7 @@ export interface NaturalSearchSchemaInput extends z.input<typeof NaturalSearchSc
  * Plain-English search request. The server plans the query into the target domain filter plus sort, then runs that domain's canonical list engine.
  *
  * @openapiSchema NaturalSearch
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @endpoint POST /v1/search/natural/entities

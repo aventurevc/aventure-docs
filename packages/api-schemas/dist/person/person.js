@@ -17,6 +17,8 @@ const PersonSchemaDefinition = z.object({
     lastModifiedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Display and search aliases for this person */
     nameAlias: z.array(EntityNameAliasPersonAliasTypeSchema),
+    /** Name to display: nameFull with the nickname in parentheses after the given name (`William (Bill) Alan Callahan`). Equals nameFull when the person has no nickname or nameFull already shows it; match and search on nameFull, never on this. */
+    nameDisplay: z.string(),
     nameFirst: z.string().nullish(),
     nameFull: z.string(),
     nameLast: z.string().nullish(),
@@ -50,8 +52,10 @@ const PersonSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -61,6 +65,7 @@ const PersonSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search

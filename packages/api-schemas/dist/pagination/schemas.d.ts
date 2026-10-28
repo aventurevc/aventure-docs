@@ -242,10 +242,34 @@ declare const PageEntitySchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput>>;
         lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         nameAlias: z.ZodArray<z.ZodObject<{
@@ -331,6 +355,18 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -363,6 +399,18 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -422,6 +470,18 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -454,6 +514,18 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -553,10 +625,34 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             }, import("../entity/image.ts").EntityImageSchemaInput>>;
             lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             nameAlias: z.ZodArray<z.ZodObject<{
@@ -594,6 +690,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
+        coveringRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         enrichment: z.ZodType<{
             address: {
                 address?: number | null | undefined;
@@ -1108,6 +1205,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -1217,6 +1326,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -1323,6 +1444,30 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
             title: string;
+            titleMention?: {
+                end: number;
+                entity?: {
+                    createdAt: string;
+                    entityId: string;
+                    href?: string | null | undefined;
+                    internal: boolean;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                person?: {
+                    createdAt: string;
+                    href?: string | null | undefined;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    personId: string;
+                    slug?: string | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                start: number;
+            }[] | undefined;
             updatedAt?: string | null | undefined;
         }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
             author?: string | null | undefined;
@@ -1337,6 +1482,30 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             publishedAt?: string | null | undefined;
             slug?: string | null | undefined;
             title: string;
+            titleMention?: {
+                end: number;
+                entity?: {
+                    createdAt: string;
+                    entityId: string;
+                    href?: string | null | undefined;
+                    internal: boolean;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    slug?: string | null | undefined;
+                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                person?: {
+                    createdAt: string;
+                    href?: string | null | undefined;
+                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                    mention?: string | null | undefined;
+                    personId: string;
+                    slug?: string | null | undefined;
+                    updatedAt: string;
+                } | null | undefined;
+                start: number;
+            }[] | undefined;
             updatedAt?: string | null | undefined;
         }, import("../news/news.ts").NewsSchemaInput>>>;
         person: z.ZodArray<z.ZodType<{
@@ -1391,6 +1560,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -1461,6 +1642,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -1519,6 +1706,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -1526,6 +1719,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -1551,6 +1745,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -1621,6 +1816,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -1651,6 +1852,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -1743,6 +1956,30 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -1755,6 +1992,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -1798,6 +2047,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -1813,6 +2068,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -1827,6 +2088,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1866,6 +2139,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -1904,6 +2189,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -2001,6 +2298,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -2071,6 +2380,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -2107,6 +2422,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -2114,6 +2435,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -2200,6 +2522,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -2270,6 +2604,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -2328,6 +2668,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -2335,6 +2681,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -2360,6 +2707,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -2430,6 +2778,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -2460,6 +2814,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -2552,6 +2918,30 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -2564,6 +2954,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -2607,6 +3009,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -2622,6 +3030,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -2636,6 +3050,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -2675,6 +3101,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -2713,6 +3151,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -2810,6 +3260,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -2880,6 +3342,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -2916,6 +3384,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -2923,6 +3397,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -2958,6 +3433,46 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 };
             }[] | null | undefined;
         }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
+        profileStatus: z.ZodOptional<z.ZodObject<{
+            headline: z.ZodUnion<readonly [z.ZodEnum<{
+                Acquired: "Acquired";
+                "Acquired Subsidiary": "Acquired Subsidiary";
+                "Business Line": "Business Line";
+                Closed: "Closed";
+                "Closed (Acquihire)": "Closed (Acquihire)";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                Inactive: "Inactive";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                "Private company": "Private company";
+                Product: "Product";
+                "Public company": "Public company";
+                Service: "Service";
+            }>, z.ZodString]> & {
+                enum: {
+                    Acquired: "Acquired";
+                    "Acquired Subsidiary": "Acquired Subsidiary";
+                    "Business Line": "Business Line";
+                    Closed: "Closed";
+                    "Closed (Acquihire)": "Closed (Acquihire)";
+                    Company: "Company";
+                    Fund: "Fund";
+                    Government: "Government";
+                    Inactive: "Inactive";
+                    "Investment Firm": "Investment Firm";
+                    Nonprofit: "Nonprofit";
+                    "Private company": "Private company";
+                    Product: "Product";
+                    "Public company": "Public company";
+                    Service: "Service";
+                };
+            };
+            isAcquired: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            isClosed: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            isTerminal: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        }, z.core.$strip>>;
         provider: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             entity: z.ZodObject<{
                 defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -2967,10 +3482,34 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 }, import("../entity/image.ts").EntityImageSchemaInput>>;
                 lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 nameAlias: z.ZodArray<z.ZodObject<{
@@ -3068,6 +3607,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | undefined;
                 sellsTo: string[];
                 totalRaised?: number | null | undefined;
                 website?: string | null | undefined;
@@ -3082,6 +3627,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -3126,6 +3683,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | undefined;
                 sellsTo: string[];
                 totalRaised?: number | null | undefined;
                 website?: string | null | undefined;
@@ -3140,6 +3703,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -3189,6 +3764,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -3273,6 +3860,18 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -3505,6 +4104,18 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -3614,6 +4225,18 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -3757,6 +4380,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -3781,6 +4416,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -4047,6 +4683,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -4153,6 +4801,30 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
                 title: string;
+                titleMention?: {
+                    end: number;
+                    entity?: {
+                        createdAt: string;
+                        entityId: string;
+                        href?: string | null | undefined;
+                        internal: boolean;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        slug?: string | null | undefined;
+                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    person?: {
+                        createdAt: string;
+                        href?: string | null | undefined;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        personId: string;
+                        slug?: string | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    start: number;
+                }[] | undefined;
                 updatedAt?: string | null | undefined;
             }[];
             person: {
@@ -4207,6 +4879,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -4277,6 +4961,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -4335,6 +5025,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -4342,6 +5038,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -4367,6 +5064,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                     updatedAt?: string | null | undefined;
                 };
+                coveringRunId?: string | null | undefined;
                 enrichment: {
                     address: {
                         address?: number | null | undefined;
@@ -4437,6 +5135,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -4467,6 +5171,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -4559,6 +5275,30 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             publishedAt?: string | null | undefined;
                             slug?: string | null | undefined;
                             title: string;
+                            titleMention?: {
+                                end: number;
+                                entity?: {
+                                    createdAt: string;
+                                    entityId: string;
+                                    href?: string | null | undefined;
+                                    internal: boolean;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    slug?: string | null | undefined;
+                                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                person?: {
+                                    createdAt: string;
+                                    href?: string | null | undefined;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    personId: string;
+                                    slug?: string | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                start: number;
+                            }[] | undefined;
                             updatedAt?: string | null | undefined;
                         }[];
                         similarEntity: {
@@ -4571,6 +5311,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                         isMonogram: boolean;
                                         logo?: string | null | undefined;
                                         logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
                                     };
                                     lastModifiedAt?: string | null | undefined;
                                     nameAlias: {
@@ -4614,6 +5366,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 personImage: {
                                     isMonogram: boolean;
                                     picture?: string | null | undefined;
+                                    pictureVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 personName: string;
                                 personSlug: string;
@@ -4629,6 +5387,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -4643,6 +5407,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -4682,6 +5458,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -4720,6 +5508,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         investorCount?: number | null | undefined;
                         nameBrand: string;
@@ -4817,6 +5617,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         entityName?: string | null | undefined;
                         entityOperatingStatus?: string | null | undefined;
@@ -4887,6 +5699,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -4923,6 +5741,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         image: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -4930,6 +5754,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             name: string;
                             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                         }[];
+                        nameDisplay: string;
                         nameFirst?: string | null | undefined;
                         nameFull: string;
                         nameLast?: string | null | undefined;
@@ -4965,6 +5790,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                 }[] | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -4974,6 +5805,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -5049,6 +5892,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     fundingStage?: string | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     sellsTo: string[];
                     totalRaised?: number | null | undefined;
                     website?: string | null | undefined;
@@ -5063,6 +5912,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -5112,6 +5973,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -5235,6 +6108,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -5259,6 +6144,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -5525,6 +6411,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -5631,6 +6529,30 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 publishedAt?: string | null | undefined;
                 slug?: string | null | undefined;
                 title: string;
+                titleMention?: {
+                    end: number;
+                    entity?: {
+                        createdAt: string;
+                        entityId: string;
+                        href?: string | null | undefined;
+                        internal: boolean;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        slug?: string | null | undefined;
+                        typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    person?: {
+                        createdAt: string;
+                        href?: string | null | undefined;
+                        matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                        mention?: string | null | undefined;
+                        personId: string;
+                        slug?: string | null | undefined;
+                        updatedAt: string;
+                    } | null | undefined;
+                    start: number;
+                }[] | undefined;
                 updatedAt?: string | null | undefined;
             }[];
             person: {
@@ -5685,6 +6607,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -5755,6 +6689,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -5813,6 +6753,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -5820,6 +6766,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -5845,6 +6792,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                     updatedAt?: string | null | undefined;
                 };
+                coveringRunId?: string | null | undefined;
                 enrichment: {
                     address: {
                         address?: number | null | undefined;
@@ -5915,6 +6863,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -5945,6 +6899,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -6037,6 +7003,30 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             publishedAt?: string | null | undefined;
                             slug?: string | null | undefined;
                             title: string;
+                            titleMention?: {
+                                end: number;
+                                entity?: {
+                                    createdAt: string;
+                                    entityId: string;
+                                    href?: string | null | undefined;
+                                    internal: boolean;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    slug?: string | null | undefined;
+                                    typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                person?: {
+                                    createdAt: string;
+                                    href?: string | null | undefined;
+                                    matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                    mention?: string | null | undefined;
+                                    personId: string;
+                                    slug?: string | null | undefined;
+                                    updatedAt: string;
+                                } | null | undefined;
+                                start: number;
+                            }[] | undefined;
                             updatedAt?: string | null | undefined;
                         }[];
                         similarEntity: {
@@ -6049,6 +7039,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                         isMonogram: boolean;
                                         logo?: string | null | undefined;
                                         logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
                                     };
                                     lastModifiedAt?: string | null | undefined;
                                     nameAlias: {
@@ -6092,6 +7094,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 personImage: {
                                     isMonogram: boolean;
                                     picture?: string | null | undefined;
+                                    pictureVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 personName: string;
                                 personSlug: string;
@@ -6107,6 +7115,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -6121,6 +7135,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -6160,6 +7186,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -6198,6 +7236,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         investorCount?: number | null | undefined;
                         nameBrand: string;
@@ -6295,6 +7345,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         entityName?: string | null | undefined;
                         entityOperatingStatus?: string | null | undefined;
@@ -6365,6 +7427,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -6401,6 +7469,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         image: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -6408,6 +7482,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             name: string;
                             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                         }[];
+                        nameDisplay: string;
                         nameFirst?: string | null | undefined;
                         nameFull: string;
                         nameLast?: string | null | undefined;
@@ -6443,6 +7518,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     };
                 }[] | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -6452,6 +7533,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -6527,6 +7620,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     fundingStage?: string | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
+                    profileStatus?: {
+                        headline: string;
+                        isAcquired?: boolean | null | undefined;
+                        isClosed?: boolean | null | undefined;
+                        isTerminal?: boolean | null | undefined;
+                    } | undefined;
                     sellsTo: string[];
                     totalRaised?: number | null | undefined;
                     website?: string | null | undefined;
@@ -6541,6 +7640,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -6590,6 +7701,18 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -6752,6 +7875,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -7042,6 +8177,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -7135,6 +8282,12 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -7144,6 +8297,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -7222,6 +8387,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -7297,6 +8474,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -7587,6 +8776,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -7680,6 +8881,12 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -7689,6 +8896,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -7767,6 +8986,18 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -7931,10 +9162,34 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput>>;
         entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -8046,9 +9301,21 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
         personImage: z.ZodType<{
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../person/image.ts").PersonImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../person/image.ts").PersonImageSchemaInput>>;
         personName: z.ZodString;
         personSlug: z.ZodString;
@@ -8148,6 +9415,12 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
             fundingStage?: string | null | undefined;
             ownership: string[];
             pricingModel: string[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             sellsTo: string[];
             totalRaised?: number | null | undefined;
             website?: string | null | undefined;
@@ -8162,6 +9435,18 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -8206,6 +9491,12 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
             fundingStage?: string | null | undefined;
             ownership: string[];
             pricingModel: string[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             sellsTo: string[];
             totalRaised?: number | null | undefined;
             website?: string | null | undefined;
@@ -8220,6 +9511,18 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -8452,6 +9755,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -8742,6 +10057,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -8835,6 +10162,12 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -8844,6 +10177,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -8922,6 +10267,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -9011,6 +10368,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -9301,6 +10670,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -9394,6 +10775,12 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
             }[];
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | undefined;
             provider?: {
                 entity: {
                     defaultCurrency?: string | null | undefined;
@@ -9403,6 +10790,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -9481,6 +10880,18 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -9609,6 +11020,18 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -9684,6 +11107,18 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -10212,6 +11647,7 @@ export interface PageHarnessRunSchemaInput extends z.input<typeof PageHarnessRun
 /**
  * @openapiSchema PageHarnessRun
  * @endpoint GET /v1/research-runs
+ * @endpoint GET /v1/research/runs
  * @contractShape pagination.page-harness-run
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -10232,6 +11668,30 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
         title: string;
+        titleMention?: {
+            end: number;
+            entity?: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            person?: {
+                createdAt: string;
+                href?: string | null | undefined;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                personId: string;
+                slug?: string | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            start: number;
+        }[] | undefined;
         updatedAt?: string | null | undefined;
     }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
@@ -10246,6 +11706,30 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
         title: string;
+        titleMention?: {
+            end: number;
+            entity?: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            person?: {
+                createdAt: string;
+                href?: string | null | undefined;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                personId: string;
+                slug?: string | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            start: number;
+        }[] | undefined;
         updatedAt?: string | null | undefined;
     }, import("../news/news.ts").NewsSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
@@ -10296,6 +11780,12 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -10303,6 +11793,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -10335,6 +11826,12 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -10342,6 +11839,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -10459,6 +11957,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
@@ -10529,6 +12039,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -10587,6 +12103,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -10594,6 +12116,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -10619,6 +12142,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             };
             updatedAt?: string | null | undefined;
         };
+        coveringRunId?: string | null | undefined;
         enrichment: {
             address: {
                 address?: number | null | undefined;
@@ -10689,6 +12213,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -10719,6 +12249,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -10811,6 +12353,30 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     publishedAt?: string | null | undefined;
                     slug?: string | null | undefined;
                     title: string;
+                    titleMention?: {
+                        end: number;
+                        entity?: {
+                            createdAt: string;
+                            entityId: string;
+                            href?: string | null | undefined;
+                            internal: boolean;
+                            matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                            mention?: string | null | undefined;
+                            slug?: string | null | undefined;
+                            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                            updatedAt: string;
+                        } | null | undefined;
+                        person?: {
+                            createdAt: string;
+                            href?: string | null | undefined;
+                            matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                            mention?: string | null | undefined;
+                            personId: string;
+                            slug?: string | null | undefined;
+                            updatedAt: string;
+                        } | null | undefined;
+                        start: number;
+                    }[] | undefined;
                     updatedAt?: string | null | undefined;
                 }[];
                 similarEntity: {
@@ -10823,6 +12389,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -10866,6 +12444,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -10881,6 +12465,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -10895,6 +12485,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -10934,6 +12536,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -10972,6 +12586,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 investorCount?: number | null | undefined;
                 nameBrand: string;
@@ -11069,6 +12695,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -11139,6 +12777,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -11175,6 +12819,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -11182,6 +12832,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -11268,6 +12919,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
@@ -11338,6 +13001,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -11396,6 +13065,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -11403,6 +13078,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -11428,6 +13104,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             };
             updatedAt?: string | null | undefined;
         };
+        coveringRunId?: string | null | undefined;
         enrichment: {
             address: {
                 address?: number | null | undefined;
@@ -11498,6 +13175,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -11528,6 +13211,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -11620,6 +13315,30 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     publishedAt?: string | null | undefined;
                     slug?: string | null | undefined;
                     title: string;
+                    titleMention?: {
+                        end: number;
+                        entity?: {
+                            createdAt: string;
+                            entityId: string;
+                            href?: string | null | undefined;
+                            internal: boolean;
+                            matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                            mention?: string | null | undefined;
+                            slug?: string | null | undefined;
+                            typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                            updatedAt: string;
+                        } | null | undefined;
+                        person?: {
+                            createdAt: string;
+                            href?: string | null | undefined;
+                            matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                            mention?: string | null | undefined;
+                            personId: string;
+                            slug?: string | null | undefined;
+                            updatedAt: string;
+                        } | null | undefined;
+                        start: number;
+                    }[] | undefined;
                     updatedAt?: string | null | undefined;
                 }[];
                 similarEntity: {
@@ -11632,6 +13351,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -11675,6 +13406,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -11690,6 +13427,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -11704,6 +13447,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -11743,6 +13498,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -11781,6 +13548,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 investorCount?: number | null | undefined;
                 nameBrand: string;
@@ -11878,6 +13657,18 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -11948,6 +13739,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -11984,6 +13781,12 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -11991,6 +13794,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -12076,6 +13880,18 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -12114,6 +13930,18 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             investorCount?: number | null | undefined;
             nameBrand: string;
@@ -12149,6 +13977,18 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -12187,6 +14027,18 @@ declare const PagePersonInvestmentSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             investorCount?: number | null | undefined;
             nameBrand: string;
@@ -12317,6 +14169,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -12387,6 +14251,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -12445,6 +14315,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -12452,6 +14328,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -12477,6 +14354,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -12547,6 +14425,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -12577,6 +14461,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -12669,6 +14565,30 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -12681,6 +14601,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -12724,6 +14656,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -12739,6 +14677,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -12753,6 +14697,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -12792,6 +14748,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -12830,6 +14798,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -12927,6 +14907,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -12997,6 +14989,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -13033,6 +15031,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -13040,6 +15044,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -13145,6 +15150,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 entityName?: string | null | undefined;
                 entityOperatingStatus?: string | null | undefined;
@@ -13215,6 +15232,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 personImage: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 personName: string;
                 personSlug: string;
@@ -13273,6 +15296,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 image: {
                     isMonogram: boolean;
                     picture?: string | null | undefined;
+                    pictureVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -13280,6 +15309,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     name: string;
                     type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                 }[];
+                nameDisplay: string;
                 nameFirst?: string | null | undefined;
                 nameFull: string;
                 nameLast?: string | null | undefined;
@@ -13305,6 +15335,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 };
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -13375,6 +15406,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -13405,6 +15442,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 isMonogram: boolean;
                                 logo?: string | null | undefined;
                                 logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             lastModifiedAt?: string | null | undefined;
                             nameAlias: {
@@ -13497,6 +15546,30 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         publishedAt?: string | null | undefined;
                         slug?: string | null | undefined;
                         title: string;
+                        titleMention?: {
+                            end: number;
+                            entity?: {
+                                createdAt: string;
+                                entityId: string;
+                                href?: string | null | undefined;
+                                internal: boolean;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                slug?: string | null | undefined;
+                                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            person?: {
+                                createdAt: string;
+                                href?: string | null | undefined;
+                                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                                mention?: string | null | undefined;
+                                personId: string;
+                                slug?: string | null | undefined;
+                                updatedAt: string;
+                            } | null | undefined;
+                            start: number;
+                        }[] | undefined;
                         updatedAt?: string | null | undefined;
                     }[];
                     similarEntity: {
@@ -13509,6 +15582,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                                     isMonogram: boolean;
                                     logo?: string | null | undefined;
                                     logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
                                 };
                                 lastModifiedAt?: string | null | undefined;
                                 nameAlias: {
@@ -13552,6 +15637,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             personImage: {
                                 isMonogram: boolean;
                                 picture?: string | null | undefined;
+                                pictureVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
                             };
                             personName: string;
                             personSlug: string;
@@ -13567,6 +15658,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         personImage: {
                             isMonogram: boolean;
                             picture?: string | null | undefined;
+                            pictureVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         personName: string;
                         personSlug: string;
@@ -13581,6 +15678,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -13620,6 +15729,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             isMonogram: boolean;
                             logo?: string | null | undefined;
                             logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
                         };
                         lastModifiedAt?: string | null | undefined;
                         nameAlias: {
@@ -13658,6 +15779,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     investorCount?: number | null | undefined;
                     nameBrand: string;
@@ -13755,6 +15888,18 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     entityName?: string | null | undefined;
                     entityOperatingStatus?: string | null | undefined;
@@ -13825,6 +15970,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     personImage: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     personName: string;
                     personSlug: string;
@@ -13861,6 +16012,12 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     image: {
                         isMonogram: boolean;
                         picture?: string | null | undefined;
+                        pictureVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -13868,6 +16025,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         name: string;
                         type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
                     }[];
+                    nameDisplay: string;
                     nameFirst?: string | null | undefined;
                     nameFull: string;
                     nameLast?: string | null | undefined;
@@ -13939,6 +16097,7 @@ export interface PagePersonInvestorParticipationSchemaInput extends z.input<type
 }
 /**
  * @openapiSchema PagePersonInvestorParticipation
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @contractShape pagination.page-person-investor-participation
  * @contractRole canonical
@@ -13998,6 +16157,18 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
@@ -14068,6 +16239,12 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -14104,6 +16281,12 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -14111,6 +16294,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -14195,6 +16379,18 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             entityName?: string | null | undefined;
             entityOperatingStatus?: string | null | undefined;
@@ -14265,6 +16461,12 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             personImage: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             personName: string;
             personSlug: string;
@@ -14301,6 +16503,12 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             image: {
                 isMonogram: boolean;
                 picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -14308,6 +16516,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 name: string;
                 type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
             }[];
+            nameDisplay: string;
             nameFirst?: string | null | undefined;
             nameFull: string;
             nameLast?: string | null | undefined;
@@ -14443,8 +16652,10 @@ export interface PagePublicationSchemaInput extends z.input<typeof PagePublicati
 }
 /**
  * @openapiSchema PagePublication
+ * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/people/{personId}/content
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication
@@ -14463,6 +16674,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -14753,6 +16976,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -14846,6 +17081,12 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -14855,6 +17096,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -14933,6 +17186,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -15008,6 +17273,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 isMonogram: boolean;
                 logo?: string | null | undefined;
                 logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
             };
             lastModifiedAt?: string | null | undefined;
             nameAlias: {
@@ -15298,6 +17575,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -15391,6 +17680,12 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }[];
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | undefined;
         provider?: {
             entity: {
                 defaultCurrency?: string | null | undefined;
@@ -15400,6 +17695,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     isMonogram: boolean;
                     logo?: string | null | undefined;
                     logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
                 };
                 lastModifiedAt?: string | null | undefined;
                 nameAlias: {
@@ -15478,6 +17785,18 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                         isMonogram: boolean;
                         logo?: string | null | undefined;
                         logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
                     };
                     lastModifiedAt?: string | null | undefined;
                     nameAlias: {
@@ -15582,6 +17901,30 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
         title: string;
+        titleMention?: {
+            end: number;
+            entity?: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            person?: {
+                createdAt: string;
+                href?: string | null | undefined;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                personId: string;
+                slug?: string | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            start: number;
+        }[] | undefined;
         updatedAt?: string | null | undefined;
     }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
         author?: string | null | undefined;
@@ -15596,6 +17939,30 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         slug?: string | null | undefined;
         title: string;
+        titleMention?: {
+            end: number;
+            entity?: {
+                createdAt: string;
+                entityId: string;
+                href?: string | null | undefined;
+                internal: boolean;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                slug?: string | null | undefined;
+                typeRecord?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            person?: {
+                createdAt: string;
+                href?: string | null | undefined;
+                matchStatus?: "approved" | "auto-match" | "needs-review" | "rejected" | null | undefined;
+                mention?: string | null | undefined;
+                personId: string;
+                slug?: string | null | undefined;
+                updatedAt: string;
+            } | null | undefined;
+            start: number;
+        }[] | undefined;
         updatedAt?: string | null | undefined;
     }, import("../news/news.ts").NewsSchemaInput>>>;
     number: z.ZodInt;
@@ -15629,6 +17996,12 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -15636,6 +18009,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -15668,6 +18042,12 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -15675,6 +18055,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;

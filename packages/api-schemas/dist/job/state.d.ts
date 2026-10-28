@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema JobState
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @usedBySchema LookupJobSchema
  * @contractShape job.state
  * @contractRole canonical

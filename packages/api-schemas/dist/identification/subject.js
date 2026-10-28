@@ -1,16 +1,19 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityTypeSchema } from "../entity/type.js";
+import { RegistryFilingSchema } from "../registry/filing.js";
 import { UniqueIdMutationSchema } from "../unique/id-mutation.js";
 /**
  * The company, Product, Service, or person to identify. Send the name, a URL it owns, or both, plus every location and source you have; a website or profile URL usually settles the answer without any model call.
  *
  * @openapiSchema IdentificationSubject
  * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup-jobs
  * @endpoint POST /v1/lookup-mentions
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema LookupJobMutationSchema
  * @contractShape identification.subject
@@ -23,6 +26,7 @@ export const IdentificationSubjectSchema = z.object({
     email: z.string().nullish(),
     /** Companies the subject is known to work at; a person filing accepts a LinkedIn profile only when one of them appears in the profile's employer fields. */
     employer: z.array(z.string()).max(10).optional(),
+    filing: RegistryFilingSchema.nullish(),
     /** Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or providerId implies ENTITY. */
     kind: z.enum(["ENTITY", "PERSON"]).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */

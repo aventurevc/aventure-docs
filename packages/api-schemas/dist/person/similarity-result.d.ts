@@ -56,10 +56,34 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             logo?: string | null | undefined;
             logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("../entity/image.ts").EntityImageSchemaInput>>;
         entityName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         entityOperatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -171,9 +195,21 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         personImage: z.ZodType<{
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("./image.ts").PersonImageSchemaInput, z.core.$ZodTypeInternals<{
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         }, import("./image.ts").PersonImageSchemaInput>>;
         personName: z.ZodString;
         personSlug: z.ZodString;
@@ -235,6 +271,12 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -242,6 +284,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -274,6 +317,12 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
         image: {
             isMonogram: boolean;
             picture?: string | null | undefined;
+            pictureVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
         };
         lastModifiedAt?: string | null | undefined;
         nameAlias: {
@@ -281,6 +330,7 @@ declare const PersonSimilarityResultSchemaDefinition: z.ZodObject<{
             name: string;
             type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
         }[];
+        nameDisplay: string;
         nameFirst?: string | null | undefined;
         nameFull: string;
         nameLast?: string | null | undefined;
@@ -334,6 +384,7 @@ export interface PersonSimilarityResultSchemaInput extends z.input<typeof Person
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar

@@ -16,6 +16,8 @@ const PersonDetailSchemaDefinition = z.object({
     /** Newest active blog posts first; present only when include names blogPost */
     blogPost: z.array(BlogPostSchema).nullish(),
     core: PersonSchema,
+    /** The queued or running full-research run covering this record; null when none, and always null on people embedded in another record. */
+    coveringRunId: z.uuid().nullish(),
     enrichment: PersonEnrichmentSchema,
     /** Precomputed person graph; present only when include names graph */
     graph: PersonGraphSchema.nullish(),
@@ -37,6 +39,7 @@ const PersonDetailSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/search/link/jobs/{jobId}

@@ -13,6 +13,7 @@ const PersonInvestorParticipationSchemaDefinition = z.object({
  * Person investor with round participation labels and count
  *
  * @openapiSchema PersonInvestorParticipation
+ * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @usedBySchema PagePersonInvestorParticipationSchema
  * @contractShape person.investor-participation
