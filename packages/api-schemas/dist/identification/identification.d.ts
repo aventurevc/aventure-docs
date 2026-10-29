@@ -110,6 +110,7 @@ export declare const IdentificationSchema: z.ZodObject<{
         website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
     detail: z.ZodString;
+    deterministicMatch: z.ZodOptional<z.ZodBoolean>;
     duplicate: z.ZodArray<z.ZodObject<{
         createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         dataCompletionCoverage: z.ZodOptional<z.ZodNullable<z.ZodInt>>;

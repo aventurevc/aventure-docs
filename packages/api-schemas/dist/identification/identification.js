@@ -30,6 +30,8 @@ export const IdentificationSchema = z.object({
     created: IdentificationCandidateSchema.nullish(),
     /** One sentence naming what settled the answer or what the user must decide. */
     detail: z.string(),
+    /** Whether this answer is a deterministic match to the scoped record. Absent on older stored responses; absence is not proof of a deterministic match. */
+    deterministicMatch: z.boolean().optional(),
     /** Other records that appear to describe the same subject as match. Empty when none were found. */
     duplicate: z.array(IdentificationCandidateSchema),
     /** Research request filed for the created record; absent without created, when the lookup did not request research on it, and when the record is already public. */

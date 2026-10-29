@@ -54,6 +54,8 @@ export const PersonFilterSchema = z.object({
     lastName: z.string().nullish(),
     /** First-name initial. */
     letter: z.string().nullish(),
+    /** Name eligibility independent of search; preserve it on replay. */
+    nameQuery: z.string().nullish(),
     /** Restrict results to specific person IDs. Omit or use [] for no ID restriction. */
     personId: z.array(z.uuid()).max(200).optional(),
     /** Exact normalized match against a person's full name or slug. */

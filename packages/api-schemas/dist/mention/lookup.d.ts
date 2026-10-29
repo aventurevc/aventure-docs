@@ -668,6 +668,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             } | null | undefined;
             detail: string;
+            deterministicMatch?: boolean | undefined;
             duplicate: {
                 createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;
@@ -1458,6 +1459,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 website?: string | null | undefined;
             } | null | undefined;
             detail: string;
+            deterministicMatch?: boolean | undefined;
             duplicate: {
                 createdAt?: string | null | undefined;
                 dataCompletionCoverage?: number | null | undefined;

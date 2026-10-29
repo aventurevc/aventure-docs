@@ -457,6 +457,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     isCurrent?: boolean | null | undefined;
                     lastName?: string | null | undefined;
                     letter?: string | null | undefined;
+                    nameQuery?: string | null | undefined;
                     personId?: string[] | undefined;
                     personName?: string[] | undefined;
                     rankByEmployer?: boolean | null | undefined;
@@ -4589,6 +4590,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     isCurrent?: boolean | null | undefined;
                     lastName?: string | null | undefined;
                     letter?: string | null | undefined;
+                    nameQuery?: string | null | undefined;
                     personId?: string[] | undefined;
                     personName?: string[] | undefined;
                     rankByEmployer?: boolean | null | undefined;
@@ -6278,6 +6280,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     isCurrent?: boolean | null | undefined;
                     lastName?: string | null | undefined;
                     letter?: string | null | undefined;
+                    nameQuery?: string | null | undefined;
                     personId?: string[] | undefined;
                     personName?: string[] | undefined;
                     rankByEmployer?: boolean | null | undefined;
@@ -10410,6 +10413,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     isCurrent?: boolean | null | undefined;
                     lastName?: string | null | undefined;
                     letter?: string | null | undefined;
+                    nameQuery?: string | null | undefined;
                     personId?: string[] | undefined;
                     personName?: string[] | undefined;
                     rankByEmployer?: boolean | null | undefined;
