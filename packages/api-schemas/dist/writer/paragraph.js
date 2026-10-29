@@ -7,7 +7,7 @@ const WriterParagraphSchemaDefinition = z.object({
     analysis: WriterParagraphAnalysisSchema.optional(),
     /** Output claims this paragraph states, in order. */
     claim: z.array(z.int()),
-    /** Positioning decisions this paragraph must consume; each declared decision at most once across paragraphs. An unlisted decision goes to the paragraph that states its claims. */
+    /** Positioning decisions this paragraph must consume; each declared decision at most once across paragraphs. Assign all claims cited by a decision to its paragraph. An unlisted decision goes to the paragraph of its first cited claim. */
     positioning: z.array(WriterPositioningElementSchema).optional(),
 });
 /**

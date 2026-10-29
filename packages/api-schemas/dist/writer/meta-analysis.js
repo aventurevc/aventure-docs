@@ -28,7 +28,7 @@ export const WriterMetaAnalysisSchema = z.object({
     question: z.string(),
     /** Boundary and period used by the research. */
     scope: WriterScopeSchema,
-    /** Ordered framework judgments, when the skill defines sections. */
+    /** Ordered framework judgments for a research snippet whose skill defines sections. Entity text (summary and expanded) omits it; the server refuses any section there. */
     section: z.array(WriterAnalysisSectionSchema),
 });
 //# sourceMappingURL=meta-analysis.js.map

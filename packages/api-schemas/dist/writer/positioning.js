@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { WriterPositioningElementSchema } from "./positioning-element.js";
 const WriterPositioningSchemaDefinition = z.object({
-    /** Supporting evidence claim numbers. */
+    /** Output claim numbers whose quotes support the decision; all cited claims must be assigned to its paragraph. */
     claim: z.array(z.int()),
     /** Positioning element decided by research. */
     element: WriterPositioningElementSchema,

@@ -23,7 +23,7 @@ export const WriterBriefSchema = z.object({
     outputClaim: z.array(z.int()).optional(),
     /** Paragraph plan; each paragraph states the listed claims and judgments, and paragraph order is the output order; only the first paragraph consumes the answer. */
     paragraph: z.array(WriterParagraphSchema),
-    /** Positioning decisions selected by research. Each is stated in the paragraph that lists it, else in the paragraph that states its cited claims. */
+    /** Positioning decisions selected by research. Put each decision and all its cited claims in one paragraph. A listed decision stays in that paragraph; an unlisted decision goes to the paragraph of its first cited claim. */
     positioning: z.array(WriterPositioningSchema),
 });
 //# sourceMappingURL=brief.js.map
