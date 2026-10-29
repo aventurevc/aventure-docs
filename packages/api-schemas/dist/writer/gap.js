@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { WriterGapReasonSchema } from "./gap-reason.js";
 const WriterGapSchemaDefinition = z.object({
-    /** Evidence claim numbers supporting the gap. */
+    /** Evidence claim numbers supporting the gap; cite at least one for a CONFLICTING gap, or use an empty list when nothing was found. */
     claim: z.array(z.int()),
     /** Why the gap is present. */
     reason: WriterGapReasonSchema,
