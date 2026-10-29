@@ -176,15 +176,17 @@ market. This one finds seed-stage fintech companies headquartered in New York.
 <Tab title="API">
 
 ```bash
-curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&tag=Fintech&headquartersState=New%20York&size=3"
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"typeRecord":["Company"],"stage":["Seed"],"tag":["Fintech"],"headquartersState":["New York"]}' \
+  "https://api.aventure.vc/v1/entities/search?size=3"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities list --type-record Company --stage Seed --tag Fintech --headquarters-state "New York" --size 3
+aventure entities search --type-record Company --stage Seed --tag Fintech --headquarters-state "New York" --size 3
 ```
 
 </Tab>
@@ -193,7 +195,7 @@ aventure entities list --type-record Company --stage Seed --tag Fintech --headqu
 Call `aventure_read`:
 
 ```json
-{"operationId": "listEntities", "query": {"typeRecord": "Company", "stage": "Seed", "tag": "Fintech", "headquartersState": "New York", "size": 3}}
+{"operationId": "searchEntities", "query": {"size": 3}, "body": {"typeRecord": ["Company"], "stage": ["Seed"], "tag": ["Fintech"], "headquartersState": ["New York"]}}
 ```
 
 </Tab>
@@ -265,7 +267,7 @@ One recorded Series I round in the example snapshot:
 
 Each investor row names the investor by id only, in `investor.entityId` or
 `investor.personId`. Send several firm ids to the company list at once
-(`aventure entities list --entity-id <id> <id>`) to read their names; for this
+(`aventure entities search --entity-id <id> <id> --size 40`) to read their names; for this
 round they include General Catalyst, Thrive Capital, and Goldman Sachs Asset
 Management. `entityId` is always the company that raised, never the investor.
 Amounts stay in each round's own `currency`; do not add different currencies without conversion.
@@ -496,4 +498,3 @@ article](/lookup-articles) finds every company and person it names.
 
 [Plans and usage](/plans-and-usage) covers every allowance, and the
 [API reference](/api-reference) lists every parameter and response field.
-

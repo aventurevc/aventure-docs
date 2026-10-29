@@ -22,10 +22,10 @@ Requests without the header behave exactly as before.
 | `POST /v1/web/search` | Answers `200` when the search finishes inside the live wait; `202` only when it is still running | `GET /v1/web/searches/jobs/{jobId}` | 30 seconds |
 | `GET /v1/search/link` | Always answers `202` with a link search job, except a repeat of a search that finished in the last 10 minutes, which answers `200` | `GET /v1/search/link/jobs/{jobId}` | 5 seconds |
 
-The header has no effect anywhere else. `POST /v1/people/lookup` ignores it, and
-`POST /v1/lookup` ignores it when `fileOnMiss=true`. A name on
-`POST /v1/lookup` that is exactly a record's id, handle, or slug still answers
-`200` at once.
+The header has no effect anywhere else. To identify a person, use
+`POST /v1/lookup` with `"kind":"PERSON"` in the JSON body; it supports the same
+asynchronous lookup flow. A name on `POST /v1/lookup` that is exactly a record's
+id, handle, or slug still answers `200` at once.
 
 ## The 202 Answer
 

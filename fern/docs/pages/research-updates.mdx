@@ -36,8 +36,8 @@ requests, but can fund runs with sufficient prepaid credit and additional usage
 turned on.
 [Plans and usage](/plans-and-usage) explains allowances and additional usage.
 
-Check a run's progress with `GET /v1/research-runs/{runId}` (CLI:
-`aventure research-runs get --run-id "$RUN_ID"`), using the `id` of the
+Check a run's progress with `GET /v1/research/runs/{runId}` (CLI:
+`aventure research runs get --run-id "$RUN_ID"`), using the `id` of the
 returned run. Its `run.status` moves through `queued` and `running` to
 `completed`, `failed`, or `stopped`. When it is `completed`, read the updated
 record with `GET /v1/entities/{entityId}` or `GET /v1/people/{personId}`
@@ -79,11 +79,11 @@ Check each returned run:
 
 <CodeBlocks>
 ```bash title="curl"
-curl "https://api.aventure.vc/v1/research-runs/$RUN_ID" \
+curl "https://api.aventure.vc/v1/research/runs/$RUN_ID" \
   -H "Authorization: Bearer $AUTH_TOKEN"
 ```
 
 ```bash title="CLI"
-aventure research-runs get --run-id "$RUN_ID"
+aventure research runs get --run-id "$RUN_ID"
 ```
 </CodeBlocks>
