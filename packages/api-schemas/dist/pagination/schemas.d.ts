@@ -1431,20 +1431,20 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
         }, import("../entity/fundraise-transaction.ts").EntityFundraiseTransactionSchemaInput>>>;
-        newsArticle: z.ZodArray<z.ZodType<{
-            author?: string | null | undefined;
-            category?: string | null | undefined;
-            createdAt?: string | null | undefined;
-            excerpt?: string | null | undefined;
-            externalNewsArticle?: boolean | null | undefined;
-            id: number;
-            newsImageThumbnail?: string | null | undefined;
-            newsUrlOriginal?: string | null | undefined;
-            publication?: string | null | undefined;
-            publishedAt?: string | null | undefined;
-            slug?: string | null | undefined;
-            title: string;
-            titleMention?: {
+        newsArticle: z.ZodArray<z.ZodObject<{
+            author: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            category: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            excerpt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            externalNewsArticle: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            id: z.ZodInt;
+            newsImageThumbnail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            newsUrlOriginal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            publication: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            title: z.ZodString;
+            titleMention: z.ZodOptional<z.ZodArray<z.ZodType<{
                 end: number;
                 entity?: {
                     createdAt: string;
@@ -1467,22 +1467,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt: string;
                 } | null | undefined;
                 start: number;
-            }[] | undefined;
-            updatedAt?: string | null | undefined;
-        }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
-            author?: string | null | undefined;
-            category?: string | null | undefined;
-            createdAt?: string | null | undefined;
-            excerpt?: string | null | undefined;
-            externalNewsArticle?: boolean | null | undefined;
-            id: number;
-            newsImageThumbnail?: string | null | undefined;
-            newsUrlOriginal?: string | null | undefined;
-            publication?: string | null | undefined;
-            publishedAt?: string | null | undefined;
-            slug?: string | null | undefined;
-            title: string;
-            titleMention?: {
+            }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput, z.core.$ZodTypeInternals<{
                 end: number;
                 entity?: {
                     createdAt: string;
@@ -1505,9 +1490,9 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt: string;
                 } | null | undefined;
                 start: number;
-            }[] | undefined;
-            updatedAt?: string | null | undefined;
-        }, import("../news/news.ts").NewsSchemaInput>>>;
+            }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput>>>>;
+            updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        }, z.core.$strip>>;
         person: z.ZodArray<z.ZodType<{
             articleCount?: number | null | undefined;
             association: {
@@ -11705,20 +11690,20 @@ export interface PageHarnessRunSchemaInput extends z.input<typeof PageHarnessRun
 export declare const PageHarnessRunSchema: z.ZodType<PageHarnessRunDefinition, PageHarnessRunSchemaInput>;
 export type PageHarnessRun = z.infer<typeof PageHarnessRunSchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
-        author?: string | null | undefined;
-        category?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        excerpt?: string | null | undefined;
-        externalNewsArticle?: boolean | null | undefined;
-        id: number;
-        newsImageThumbnail?: string | null | undefined;
-        newsUrlOriginal?: string | null | undefined;
-        publication?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        slug?: string | null | undefined;
-        title: string;
-        titleMention?: {
+    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        author: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        category: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        excerpt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        externalNewsArticle: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        id: z.ZodInt;
+        newsImageThumbnail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        newsUrlOriginal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publication: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        title: z.ZodString;
+        titleMention: z.ZodOptional<z.ZodArray<z.ZodType<{
             end: number;
             entity?: {
                 createdAt: string;
@@ -11741,22 +11726,7 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
                 updatedAt: string;
             } | null | undefined;
             start: number;
-        }[] | undefined;
-        updatedAt?: string | null | undefined;
-    }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
-        author?: string | null | undefined;
-        category?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        excerpt?: string | null | undefined;
-        externalNewsArticle?: boolean | null | undefined;
-        id: number;
-        newsImageThumbnail?: string | null | undefined;
-        newsUrlOriginal?: string | null | undefined;
-        publication?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        slug?: string | null | undefined;
-        title: string;
-        titleMention?: {
+        }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput, z.core.$ZodTypeInternals<{
             end: number;
             entity?: {
                 createdAt: string;
@@ -11779,9 +11749,9 @@ declare const PageNewsSchemaDefinition: z.ZodObject<{
                 updatedAt: string;
             } | null | undefined;
             start: number;
-        }[] | undefined;
-        updatedAt?: string | null | undefined;
-    }, import("../news/news.ts").NewsSchemaInput>>>>;
+        }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput>>>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -17938,20 +17908,20 @@ export interface PageResultEntityListSchemaInput extends z.input<typeof PageResu
 export declare const PageResultEntityListSchema: z.ZodType<PageResultEntityListDefinition, PageResultEntityListSchemaInput>;
 export type PageResultEntityList = z.infer<typeof PageResultEntityListSchema>;
 declare const PageResultNewsSchemaDefinition: z.ZodObject<{
-    content: z.ZodArray<z.ZodType<{
-        author?: string | null | undefined;
-        category?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        excerpt?: string | null | undefined;
-        externalNewsArticle?: boolean | null | undefined;
-        id: number;
-        newsImageThumbnail?: string | null | undefined;
-        newsUrlOriginal?: string | null | undefined;
-        publication?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        slug?: string | null | undefined;
-        title: string;
-        titleMention?: {
+    content: z.ZodArray<z.ZodObject<{
+        author: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        category: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        excerpt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        externalNewsArticle: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        id: z.ZodInt;
+        newsImageThumbnail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        newsUrlOriginal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publication: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        title: z.ZodString;
+        titleMention: z.ZodOptional<z.ZodArray<z.ZodType<{
             end: number;
             entity?: {
                 createdAt: string;
@@ -17974,22 +17944,7 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
                 updatedAt: string;
             } | null | undefined;
             start: number;
-        }[] | undefined;
-        updatedAt?: string | null | undefined;
-    }, import("../news/news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
-        author?: string | null | undefined;
-        category?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        excerpt?: string | null | undefined;
-        externalNewsArticle?: boolean | null | undefined;
-        id: number;
-        newsImageThumbnail?: string | null | undefined;
-        newsUrlOriginal?: string | null | undefined;
-        publication?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        slug?: string | null | undefined;
-        title: string;
-        titleMention?: {
+        }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput, z.core.$ZodTypeInternals<{
             end: number;
             entity?: {
                 createdAt: string;
@@ -18012,9 +17967,9 @@ declare const PageResultNewsSchemaDefinition: z.ZodObject<{
                 updatedAt: string;
             } | null | undefined;
             start: number;
-        }[] | undefined;
-        updatedAt?: string | null | undefined;
-    }, import("../news/news.ts").NewsSchemaInput>>>;
+        }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput>>>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    }, z.core.$strip>>;
     number: z.ZodInt;
     size: z.ZodInt;
     totalElements: z.ZodNumber;

@@ -3,6 +3,8 @@ import { z } from "zod/v4";
 import { IdentificationSubjectSchema } from "../identification/subject.js";
 import { LookupMentionSchema } from "./mention.js";
 const LookupJobMutationSchemaDefinition = z.object({
+    /** POST /v1/lookup/mentions without maxNames only: identify extracted names using deterministic stages, without judgment, web-evidence identity or shell filing. Name extraction is unchanged. Lookup jobs reject true. */
+    deterministic: z.boolean().optional(),
     /** Companies and people the caller already read, identified without sending the page or screenshot. Send them alone, without an article or file. On lookup jobs, maxNames is required and no records are created and no research is requested. */
     mention: z.array(LookupMentionSchema).optional(),
     /** POST /v1/lookup/mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer. */

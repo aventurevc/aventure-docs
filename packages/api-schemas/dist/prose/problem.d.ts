@@ -4,6 +4,8 @@ import { z } from "zod/v4";
  *
  * @openapiSchema ProseProblem
  * @standardProblemResponse
+ * @usedBySchema EntityAnalysisSectionVerificationSchema
+ * @usedBySchema EntityAnalysisVerificationFailureSchema
  * @usedBySchema ProseViolationSchema
  * @contractShape prose.problem
  * @contractRole canonical

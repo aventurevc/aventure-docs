@@ -60,6 +60,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         jobrunr_disabled: "jobrunr_disabled";
         jobrunr_storage_unavailable: "jobrunr_storage_unavailable";
         logo_first_party_missing: "logo_first_party_missing";
+        logo_source_dead: "logo_source_dead";
         lookup_still_running: "lookup_still_running";
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";

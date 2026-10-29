@@ -97,6 +97,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "image_reference_unavailable",
             /** No usable first-party logo found. Set a direct image; do not retry. */
             "logo_first_party_missing",
+            /** Dead or parked logo source. Supply a live first-party source; do not retry. */
+            "logo_source_dead",
             /** Image upload was a photograph or scene image rather than a standalone logo/mark graphic (a homepage hero, product photo, ad, or screenshot carrying an embedded wordmark). Agent action: supply the entity's standalone mark — a favicon, app icon, wordmark, or lockup — not page imagery; retrying the same bytes will not pass. */
             "image_photographic",
             /** An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately. */
@@ -147,9 +149,9 @@ const ProblemDetailSchemaDefinition = z.object({
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only. */
             "github_fetch_failed",
-            /** LLM inference provider call failed. Agent action: retry once with backoff; persistent failure indicates provider outage or invalid profile config. */
+            /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
             "INFERENCE_PROVIDER_ERROR",
-            /** LLM inference provider call failed. Agent action: retry once with backoff; persistent failure indicates provider outage or invalid profile config. */
+            /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
             "inference_provider_error",
             /** LLM inference provider returned an empty response body. Agent action: retry once; persistent empty responses indicate prompt or provider misconfiguration. */
             "INFERENCE_PROVIDER_RESPONSE_EMPTY",

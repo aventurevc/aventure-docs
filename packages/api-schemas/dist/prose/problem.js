@@ -22,6 +22,8 @@ const ProseProblemSchemaKnownMembers = z.enum([
  *
  * @openapiSchema ProseProblem
  * @standardProblemResponse
+ * @usedBySchema EntityAnalysisSectionVerificationSchema
+ * @usedBySchema EntityAnalysisVerificationFailureSchema
  * @usedBySchema ProseViolationSchema
  * @contractShape prose.problem
  * @contractRole canonical

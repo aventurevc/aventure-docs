@@ -51,13 +51,49 @@ declare const EntityAnalysisDraftSchemaDefinition: z.ZodObject<{
         }[];
         title: string;
     }, import("./analysis-section.ts").EntityAnalysisSectionSchemaInput>>>;
+    verification: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        section: z.ZodArray<z.ZodType<{
+            failure: {
+                passage: string;
+                problem: "citedLegalPage" | "invalidSection" | "missingCitation" | "notApplicable" | "prose" | "quoteNotFound" | "restatement" | "unreadSource";
+                proseProblem?: string | null | undefined;
+                reason: string;
+                rule: string;
+            }[];
+            key: string;
+            outcome: "failed" | "passed";
+            passage?: string | null | undefined;
+            problem?: "citedLegalPage" | "invalidSection" | "missingCitation" | "notApplicable" | "prose" | "quoteNotFound" | "restatement" | "unreadSource" | null | undefined;
+            prosePolicyVersion?: string | null | undefined;
+            proseProblem?: string | null | undefined;
+            rule?: string | null | undefined;
+            violation?: string | null | undefined;
+        }, import("./analysis-section-verification.ts").EntityAnalysisSectionVerificationSchemaInput, z.core.$ZodTypeInternals<{
+            failure: {
+                passage: string;
+                problem: "citedLegalPage" | "invalidSection" | "missingCitation" | "notApplicable" | "prose" | "quoteNotFound" | "restatement" | "unreadSource";
+                proseProblem?: string | null | undefined;
+                reason: string;
+                rule: string;
+            }[];
+            key: string;
+            outcome: "failed" | "passed";
+            passage?: string | null | undefined;
+            problem?: "citedLegalPage" | "invalidSection" | "missingCitation" | "notApplicable" | "prose" | "quoteNotFound" | "restatement" | "unreadSource" | null | undefined;
+            prosePolicyVersion?: string | null | undefined;
+            proseProblem?: string | null | undefined;
+            rule?: string | null | undefined;
+            violation?: string | null | undefined;
+        }, import("./analysis-section-verification.ts").EntityAnalysisSectionVerificationSchemaInput>>>;
+        version: z.ZodInt;
+    }, z.core.$strip>>>;
     version: z.ZodInt;
 }, z.core.$strip>;
 type EntityAnalysisDraftDefinition = z.infer<typeof EntityAnalysisDraftSchemaDefinition>;
 export interface EntityAnalysisDraftSchemaInput extends z.input<typeof EntityAnalysisDraftSchemaDefinition> {
 }
 /**
- * Private, unverified analysis for one research run.
+ * Private analysis for one research run, with section acceptance outcomes.
  *
  * @openapiSchema EntityAnalysisDraft
  * @endpoint GET /v1/research-runs/{runId}/draft

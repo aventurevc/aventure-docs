@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
+    deterministic: z.ZodOptional<z.ZodBoolean>;
     mention: z.ZodOptional<z.ZodArray<z.ZodType<{
         name: string;
         providerName?: string | null | undefined;

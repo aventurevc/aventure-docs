@@ -40,6 +40,12 @@ export declare const OpenApiWriteReadbackSchema: z.ZodObject<{
         readPointer: z.ZodUnion<readonly [z.ZodLiteral<"">, z.ZodString]>;
         identityPointer: z.ZodUnion<readonly [z.ZodLiteral<"">, z.ZodString]>;
     }, z.core.$strict>>>;
+    fallback: z.ZodOptional<z.ZodObject<{
+        writePointer: z.ZodUnion<readonly [z.ZodLiteral<"">, z.ZodString]>;
+        readPointer: z.ZodUnion<readonly [z.ZodLiteral<"">, z.ZodString]>;
+        readQueryName: z.ZodString;
+        readQueryValue: z.ZodString;
+    }, z.core.$strict>>;
 }, z.core.$strict>;
 export type OpenApiWriteReadback = z.infer<typeof OpenApiWriteReadbackSchema>;
 //# sourceMappingURL=openapi-metadata.d.ts.map

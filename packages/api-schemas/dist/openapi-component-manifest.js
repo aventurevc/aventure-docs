@@ -354,6 +354,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/analysis-section-origin",
         schemaName: "EntityAnalysisSectionOriginSchema",
     },
+    EntityAnalysisSectionVerification: {
+        modulePath: "entity/analysis-section-verification",
+        schemaName: "EntityAnalysisSectionVerificationSchema",
+    },
     EntityAnalysisSource: {
         modulePath: "entity/analysis-source",
         schemaName: "EntityAnalysisSourceSchema",
@@ -361,6 +365,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityAnalysisTool: {
         modulePath: "entity/analysis-tool",
         schemaName: "EntityAnalysisToolSchema",
+    },
+    EntityAnalysisVerification: {
+        modulePath: "entity/analysis-verification",
+        schemaName: "EntityAnalysisVerificationSchema",
+    },
+    EntityAnalysisVerificationFailure: {
+        modulePath: "entity/analysis-verification-failure",
+        schemaName: "EntityAnalysisVerificationFailureSchema",
     },
     EntityBrand: { modulePath: "entity/brand", schemaName: "EntityBrandSchema" },
     EntityClassification: {

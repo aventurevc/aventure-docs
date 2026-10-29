@@ -1804,6 +1804,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
     namesFound: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     namesProcessed: z.ZodInt;
     source: z.ZodType<{
+        deterministic?: boolean | undefined;
         mention?: {
             name: string;
             providerName?: string | null | undefined;
@@ -1853,6 +1854,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             url?: string[] | undefined;
         } | null | undefined;
     }, import("./job-mutation.ts").LookupJobMutationSchemaInput, z.core.$ZodTypeInternals<{
+        deterministic?: boolean | undefined;
         mention?: {
             name: string;
             providerName?: string | null | undefined;

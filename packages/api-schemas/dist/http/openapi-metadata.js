@@ -42,5 +42,14 @@ export const OpenApiWriteReadbackSchema = z.strictObject({
     }))
         .min(1)
         .optional(),
+    /** Read instead when the mutation response has no parent record at `writePointer`. */
+    fallback: z
+        .strictObject({
+        writePointer: OpenApiJsonPointerSchema,
+        readPointer: OpenApiJsonPointerSchema,
+        readQueryName: z.string().min(1),
+        readQueryValue: z.string().min(1),
+    })
+        .optional(),
 });
 //# sourceMappingURL=openapi-metadata.js.map

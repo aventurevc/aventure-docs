@@ -1,20 +1,20 @@
 import { z } from "zod/v4";
 declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
     cursor: z.ZodString;
-    data: z.ZodType<{
-        author?: string | null | undefined;
-        category?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        excerpt?: string | null | undefined;
-        externalNewsArticle?: boolean | null | undefined;
-        id: number;
-        newsImageThumbnail?: string | null | undefined;
-        newsUrlOriginal?: string | null | undefined;
-        publication?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        slug?: string | null | undefined;
-        title: string;
-        titleMention?: {
+    data: z.ZodObject<{
+        author: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        category: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        excerpt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        externalNewsArticle: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        id: z.ZodInt;
+        newsImageThumbnail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        newsUrlOriginal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publication: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        title: z.ZodString;
+        titleMention: z.ZodOptional<z.ZodArray<z.ZodType<{
             end: number;
             entity?: {
                 createdAt: string;
@@ -37,22 +37,7 @@ declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
                 updatedAt: string;
             } | null | undefined;
             start: number;
-        }[] | undefined;
-        updatedAt?: string | null | undefined;
-    }, import("./news.ts").NewsSchemaInput, z.core.$ZodTypeInternals<{
-        author?: string | null | undefined;
-        category?: string | null | undefined;
-        createdAt?: string | null | undefined;
-        excerpt?: string | null | undefined;
-        externalNewsArticle?: boolean | null | undefined;
-        id: number;
-        newsImageThumbnail?: string | null | undefined;
-        newsUrlOriginal?: string | null | undefined;
-        publication?: string | null | undefined;
-        publishedAt?: string | null | undefined;
-        slug?: string | null | undefined;
-        title: string;
-        titleMention?: {
+        }, import("./title-mention.ts").NewsTitleMentionSchemaInput, z.core.$ZodTypeInternals<{
             end: number;
             entity?: {
                 createdAt: string;
@@ -75,9 +60,9 @@ declare const NewsPublishedEventSchemaDefinition: z.ZodObject<{
                 updatedAt: string;
             } | null | undefined;
             start: number;
-        }[] | undefined;
-        updatedAt?: string | null | undefined;
-    }, import("./news.ts").NewsSchemaInput>>;
+        }, import("./title-mention.ts").NewsTitleMentionSchemaInput>>>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    }, z.core.$strip>;
     eventId: z.ZodString;
     name: z.ZodEnum<{
         "entity.news.published": "entity.news.published";
