@@ -7,7 +7,7 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
         sourceDocumentId?: string | null | undefined;
         sourceUrl: string;
         start?: number | null | undefined;
-        statement: string;
+        statement?: string | undefined;
         writerSurface?: string | null | undefined;
     }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
         end?: number | null | undefined;
@@ -16,7 +16,7 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
         sourceDocumentId?: string | null | undefined;
         sourceUrl: string;
         start?: number | null | undefined;
-        statement: string;
+        statement?: string | undefined;
         writerSurface?: string | null | undefined;
     }, import("../research/finding.ts").ResearchFindingSchemaInput>>>>>;
     mode: z.ZodOptional<z.ZodEnum<{

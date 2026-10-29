@@ -14,8 +14,8 @@ const ResearchFindingSchemaDefinition = z.object({
     sourceUrl: z.string(),
     /** Inclusive UTF-16 start offset, as an entity folio fact's start. */
     start: z.int().nullish(),
-    /** The fact to write, in plain words. */
-    statement: z.string(),
+    /** The fact to write, in plain words. May be omitted for a complete sourceDocumentId, start, end span; the server uses that span's exact stored text as the statement. */
+    statement: z.string().optional(),
     /** Surface this sourced claim may enter: durable entity text, point-in-time research snippets, or both. New writer briefs must declare it. */
     writerSurface: WriterClaimSurfaceSchema.nullish(),
 });

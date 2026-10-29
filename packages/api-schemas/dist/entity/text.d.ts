@@ -7,6 +7,7 @@ declare const EntityTextSchemaDefinition: z.ZodObject<{
         wordCount: z.ZodInt;
     }, z.core.$strip>>>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    expandedText: z.ZodOptional<z.ZodNullable<z.ZodObject</*elided*/ any, z.core.$strip>>>;
     expandedTextId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     id: z.ZodInt;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;

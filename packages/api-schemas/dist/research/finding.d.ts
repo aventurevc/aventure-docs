@@ -6,7 +6,7 @@ declare const ResearchFindingSchemaDefinition: z.ZodObject<{
     sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceUrl: z.ZodString;
     start: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    statement: z.ZodString;
+    statement: z.ZodOptional<z.ZodString>;
     writerSurface: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         BOTH: "BOTH";
         ENTITY_TEXT: "ENTITY_TEXT";

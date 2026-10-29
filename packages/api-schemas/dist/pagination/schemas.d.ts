@@ -11233,6 +11233,29 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
             wordCount: number;
         } | null | undefined;
         createdAt?: string | null | undefined;
+        expandedText?: {
+            compliance?: {
+                characterCount: number;
+                meetsRequirements: boolean;
+                violation: string[];
+                wordCount: number;
+            } | null | undefined;
+            createdAt?: string | null | undefined;
+            expandedText?: /*elided*/ any | null | undefined;
+            expandedTextId?: number | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            language?: string | null | undefined;
+            owner: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            };
+            text: string;
+            textName?: string | null | undefined;
+            textType: string;
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         expandedTextId?: number | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
@@ -11254,6 +11277,29 @@ declare const PageEntityTextSchemaDefinition: z.ZodObject<{
             wordCount: number;
         } | null | undefined;
         createdAt?: string | null | undefined;
+        expandedText?: {
+            compliance?: {
+                characterCount: number;
+                meetsRequirements: boolean;
+                violation: string[];
+                wordCount: number;
+            } | null | undefined;
+            createdAt?: string | null | undefined;
+            expandedText?: any | null | undefined;
+            expandedTextId?: number | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            language?: string | null | undefined;
+            owner: {
+                entityId?: string | null | undefined;
+                personId?: string | null | undefined;
+            };
+            text: string;
+            textName?: string | null | undefined;
+            textType: string;
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         expandedTextId?: number | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
