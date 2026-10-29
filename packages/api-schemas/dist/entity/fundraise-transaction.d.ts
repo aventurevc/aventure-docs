@@ -262,6 +262,20 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>>;
         transactionId: z.ZodUUID;
     }, z.core.$strip>>;
+    unsupportedField: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+        amountRaised: "amountRaised";
+        currency: "currency";
+        dateAnnounced: "dateAnnounced";
+        dateFundingComplete: "dateFundingComplete";
+        dateInvestorExit: "dateInvestorExit";
+        financialInstrumentType: "financialInstrumentType";
+        investorCount: "investorCount";
+        round: "round";
+        roundType: "roundType";
+        status: "status";
+        valuationPostMoney: "valuationPostMoney";
+        valuationPreMoney: "valuationPreMoney";
+    }>>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     valuationPostMoney: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     valuationPreMoney: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

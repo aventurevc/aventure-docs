@@ -1042,6 +1042,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -1202,6 +1203,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -1765,6 +1767,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -2378,6 +2381,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -2994,6 +2998,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -3599,6 +3604,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -4205,6 +4211,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
@@ -4804,6 +4811,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;

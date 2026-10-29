@@ -6,6 +6,7 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseDataConfidenceSchema } from "../fundraise/data-confidence.js";
 import { FundraiseFinancialInstrumentTypeSchema } from "../fundraise/financial-instrument-type.js";
 import { FundraiseInvestmentAttributionSchema } from "../fundraise/investment-attribution.js";
+import { FundraiseRoundFieldSchema } from "../fundraise/round-field.js";
 const EntityFundraiseTransactionSchemaDefinition = z.object({
     amountRaised: z.number().int().nullish(),
     createdAt: z.iso.datetime({ offset: true }).nullish(),
@@ -40,6 +41,8 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     /** Source-reported classification persisted for this round (e.g. Public for a SPAC Merger); it is not derived from the round label. */
     roundType: z.string().nullish(),
     sourceAttribution: z.array(FundraiseInvestmentAttributionSchema),
+    /** Proposed fields not admitted from the cited source, including dependent fields withheld to keep retained values consistent. Stored values for these fields are unchanged; do not resend the whole round. */
+    unsupportedField: z.array(FundraiseRoundFieldSchema).optional(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
     valuationPostMoney: z.number().int().nullish(),
     valuationPreMoney: z.number().int().nullish(),

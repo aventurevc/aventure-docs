@@ -1306,6 +1306,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
@@ -1427,6 +1428,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
@@ -4190,6 +4192,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             transactionId: string;
         }[];
+        unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
@@ -4311,6 +4314,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             transactionId: string;
         }[];
+        unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
         updatedAt?: string | null | undefined;
         valuationPostMoney?: number | null | undefined;
         valuationPreMoney?: number | null | undefined;
@@ -4769,6 +4773,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -6497,6 +6502,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -8263,6 +8269,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
@@ -8862,6 +8869,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
@@ -10143,6 +10151,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -10756,6 +10765,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     transactionId: string;
                 }[];
+                unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
                 updatedAt?: string | null | undefined;
                 valuationPostMoney?: number | null | undefined;
                 valuationPreMoney?: number | null | undefined;
@@ -17097,6 +17107,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;
@@ -17696,6 +17707,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 transactionId: string;
             }[];
+            unsupportedField?: ("amountRaised" | "currency" | "dateAnnounced" | "dateFundingComplete" | "dateInvestorExit" | "financialInstrumentType" | "investorCount" | "round" | "roundType" | "status" | "valuationPostMoney" | "valuationPreMoney")[] | undefined;
             updatedAt?: string | null | undefined;
             valuationPostMoney?: number | null | undefined;
             valuationPreMoney?: number | null | undefined;

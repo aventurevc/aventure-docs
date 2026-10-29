@@ -646,6 +646,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "fundraise/investment-evidence",
         schemaName: "FundraiseInvestmentEvidenceSchema",
     },
+    FundraiseRoundField: {
+        modulePath: "fundraise/round-field",
+        schemaName: "FundraiseRoundFieldSchema",
+    },
     FundraiseTransactionStatus: {
         modulePath: "fundraise/transaction-status",
         schemaName: "FundraiseTransactionStatusSchema",
