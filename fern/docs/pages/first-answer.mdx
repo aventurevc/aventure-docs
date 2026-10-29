@@ -11,23 +11,25 @@ a [quickstart](/welcome) first so you are signed in.
 <Steps>
 <Step title="Narrow the Dataset to the Companies You Mean">
 
-Filters are query parameters on the company list, and they combine.
-`typeRecord=Company` excludes products, services, and other record types.
+Filters go in the company search's JSON body, and they combine.
+`"typeRecord":["Company"]` excludes products, services, and other record types.
 `stage` and `headquartersCity` narrow the companies further.
 
 <Tabs>
 <Tab title="API">
 
 ```bash
-curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCity=Austin&stage=Seed&size=5"
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"typeRecord":["Company"],"headquartersCity":["Austin"],"stage":["Seed"]}' \
+  "https://api.aventure.vc/v1/entities/search?size=5"
 ```
 
 </Tab>
 <Tab title="CLI">
 
 ```bash
-aventure entities list --type-record Company --headquarters-city Austin --stage Seed --size 5
+aventure entities search --type-record Company --headquarters-city Austin --stage Seed --size 5
 ```
 
 </Tab>
@@ -37,8 +39,9 @@ Call `aventure_read` and name the operation:
 
 ```json
 {
-  "operationId": "listEntities",
-  "query": { "typeRecord": ["Company"], "headquartersCity": ["Austin"], "stage": ["Seed"], "size": 5 }
+  "operationId": "searchEntities",
+  "query": { "size": 5 },
+  "body": { "typeRecord": ["Company"], "headquartersCity": ["Austin"], "stage": ["Seed"] }
 }
 ```
 
@@ -51,7 +54,7 @@ answers "how many are there". `content` holds up to five records. Each record's
 
 <Note>
 Location filters take the full name, not the postal abbreviation:
-`headquartersState=Texas` matches, and `headquartersState=TX` returns no records.
+`"headquartersState":["Texas"]` matches, and `"headquartersState":["TX"]` returns no records.
 [Pagination and filtering](/pagination-and-filtering) explains how filters
 combine.
 </Note>

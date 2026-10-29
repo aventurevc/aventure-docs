@@ -4,7 +4,7 @@ subtitle: Page through results and narrow them down
 slug: pagination-and-filtering
 ---
 
-The examples use `GET /v1/entities` with an
+The examples use `POST /v1/entities/search` with an
 [API key](/authentication#create-an-api-key) in `AUTH_TOKEN`. Other list
 operations share the page fields, but their defaults and sortable fields differ;
 check each operation in the [API reference](/api-reference).
@@ -20,8 +20,9 @@ Set `size` explicitly so page sizes stay predictable across API versions.
 | `sort` | None | `property,(asc\|desc)`; repeat the parameter for more criteria |
 
 ```bash
-curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?page=2&size=50&sort=nameBrand,asc"
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" -d '{}' \
+  "https://api.aventure.vc/v1/entities/search?page=2&size=50&sort=nameBrand,asc"
 ```
 
 Sort order is ascending when you omit the direction, so `sort=nameBrand` and
@@ -56,35 +57,39 @@ added.
 
 ## Filtering
 
-Filters are query parameters. Most accept repetition, and repeating a filter
-means **any of these**:
+Filters go in the JSON body; `page`, `size`, and `sort` stay in the query
+string. Most filters take arrays, where several values mean **any of these**:
 
 ```bash
 # Companies headquartered in either country
-curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?typeRecord=Company&headquartersCountry=US&headquartersCountry=CA"
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"typeRecord":["Company"],"headquartersCountry":["US","CA"]}' \
+  "https://api.aventure.vc/v1/entities/search?size=40"
 ```
 
 Different filters must all match:
 
 ```bash
 # Seed-stage companies headquartered in the US
-curl -H "Authorization: Bearer $AUTH_TOKEN" \
-  "https://api.aventure.vc/v1/entities?typeRecord=Company&stage=Seed&headquartersCountry=US"
+curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"typeRecord":["Company"],"stage":["Seed"],"headquartersCountry":["US"]}' \
+  "https://api.aventure.vc/v1/entities/search?size=40"
 ```
 
-`GET /v1/entities` accepts more than sixty filters. The main groups are:
+`POST /v1/entities/search` accepts these main groups of body filters:
 
 - **Identity:** `entityId`, `slug`, `entityName` (exact match on the normalized name), `url`, `urlDomain`
 - **Classification:** `industry`, `mainProduct`, `typeModel`, `typeOwnership`, `typeCustomer`, `typeRecord`, `tag`
 - **Location:** `headquartersCountry`, `headquartersState`, `headquartersCity`
 - **Accelerator:** `acceleratorBrand`, `acceleratorName`, `acceleratorCohort`, `acceleratorStatus`
-- **Funding:** the `fundraiseActivity.*` parameters, covering round, amounts raised and invested, valuation, and last round year
-- **Ranges:** `yearFoundedRange`, `employeeCountRange`, and the `.min` and `.max` parameters of `createdAtRange` and `updatedAtRange`
-- **Presence and quality:** `hasLogo`, `hasFundraising`, `operatingStatus`, `qualityGate`
+- **Funding:** the nested `fundraiseActivity` object, covering round, amounts raised and invested, valuation, and last round year
+- **Ranges:** `yearFoundedRange` and `employeeCountRange`, arrays of objects with inclusive `min` and `max` bounds
+- **Presence and quality:** `hasFundraising`, `operatingStatus`, `qualityGate`
 
 Location filters take full names, not postal abbreviations:
-`headquartersState=Texas` matches, and `headquartersState=TX` returns no
+`"headquartersState":["Texas"]` matches, and `"headquartersState":["TX"]` returns no
 records.
 
 `GET /v1/entities/filters` lists each filter with its accepted values, so use it
@@ -101,18 +106,18 @@ Three inputs look similar and do different things:
 
 - **`entityName`** matches the normalized brand or legal name exactly. Use it
   when you know the company's name.
-- **`textSearch`** runs keyword and full-text search across the record.
+- **`textSearch`** matches company identity text: brand names, legal names,
+  slugs, and aliases.
 - **`POST /v1/search`** takes a plain-English request, turns it into filters,
   and searches companies, people, and news together. It requires a credential
   and a plan that includes search.
 
-## When the Query Outgrows a URL
+## Semantic Search
 
-A long filter set can exceed practical query-string limits.
-`POST /v1/entities/search` takes the same company filters as a JSON body and is
-still a read. It requires a [credential](/authentication). `page`, `size`, and
-`sort` stay in the query string, and its default `size` is `25`. Its body also
-accepts `semanticQuery`, which matches on meaning instead of wording.
+`POST /v1/entities/search` is a read and requires a
+[credential](/authentication). Its default `size` is `25`. Add `semanticQuery`
+to the filter body to match on meaning instead of wording; keep explicit
+filters for hard constraints.
 
 ## Counting Without Fetching
 

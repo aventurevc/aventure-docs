@@ -76,8 +76,8 @@ without `q` is not an error; it returns the start of the full catalog, unranked.
 Put path parameters in `pathParams`, URL query parameters in `query`, and the
 JSON request body in `body`, following the selected operation's contract.
 Do not reuse argument placement between operations. For example, `entityId` is
-a path parameter on `GET /v1/entities/{entityId}` but a repeatable query filter
-on `GET /v1/entities`. For `searchPeople`, body `entityId` is one JSON
+a path parameter on `GET /v1/entities/{entityId}` but an array in the JSON body
+of `POST /v1/entities/search`. For `searchPeople`, body `entityId` is one JSON
 string; it is not an array. A natural company search nests the request text
 under `body.search.query`, with explicit constraints in `body.filter`.
 
@@ -151,4 +151,3 @@ recovery guidance. Reduce `size` and page through the relevant sub-resource
 instead of changing the format. A compact receipt for a queued job means the
 job already started; do not resubmit it to recover its body.
 </Note>
-

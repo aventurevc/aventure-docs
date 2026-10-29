@@ -201,4 +201,4 @@ and how to upgrade.
 |----------|-----|
 | Names, logos, links, and categories for a company you can identify by URL, slug, or ID | `GET /v1/entities/brand` |
 | The full record: research, funding, people, and news | `GET /v1/entities/lookup-exact`, which counts as a company profile view |
-| The record a bare name refers to, with location or context clues | `POST /v1/entities/lookup`, described in [Identify a company or person](/lookup) |
+| The record a bare name refers to, with location or context clues | `POST /v1/lookup` with `"kind":"ENTITY"` in the JSON body, described in [Identify a company or person](/lookup) |

@@ -136,8 +136,8 @@ navigation:
               - section: Resolve
                 slug: resolve
                 contents:
-                  - endpoint: GET /v1/resolve/{token}
-                    slug: resolve-identifier
+                  - link: Resolve an Identifier (exact=true)
+                    href: /api-reference/search/lookup-record
           - section: Account and Billing
             skip-slug: true
             contents:
@@ -225,6 +225,10 @@ agents:
   llms-txt: ./llms.txt
 
 redirects:
+  # The retired resolver's public URL now points to universal lookup; send
+  # exact=true with the identifier in the JSON body's name field.
+  - source: "/api-reference/resolve/resolve-identifier"
+    destination: "/api-reference/search/lookup-record"
   # Stable address for the byte-exact released specification. The <Download> on
   # the API reference overview pins one release; this path always serves the
   # current one, so a consumer or API catalog can bookmark it.
