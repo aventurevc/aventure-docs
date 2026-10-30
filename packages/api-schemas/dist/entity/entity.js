@@ -90,7 +90,7 @@ export const EntitySchema = z.object({
         .string()
         .regex(/^e[0-9A-Za-z]{11}$/)
         .nullish(),
-    /** Absolute public profile URL on the aVenture front-end, e.g. `https://aventure.vc/non-profits/{slug}`, derived from the typeRecord's canonical route family. Null when the route needs relationship context or the record has no direct public SSR route (Business Line, Organization, Product, Service, or a non-public slug). EntityDetail.publicUrl resolves Business Line parent context. Product/Service pages are provider-nested: compose the provider entity's publicUrl + `/products-services/` + this record's slug, or consume the sitemap-urls slot paths, which already emit the composed child routes. */
+    /** Absolute public profile URL on the aVenture front-end, e.g. `https://aventure.vc/non-profits/{slug}`, derived from the typeRecord's canonical route family. Null when the route needs relationship context or the record has no direct public SSR route (Business Line, Organization, Product, Service, or a non-public slug). EntityDetail.publicUrl resolves Business Line parent context. A Product/Service has no standalone page: it is addressed only as `{providerPublicUrl}/products-services/{slug}` under its provider, because its slug is unique only per provider; the sitemap-urls slot paths already emit those child routes. */
     publicUrl: z.string().nullish(),
     /** Sub-route eligibility, populated by the sitemap projection. Null on non-sitemap reads to keep thin payloads compact. */
     sitemap: EntitySitemapSchema.nullish(),

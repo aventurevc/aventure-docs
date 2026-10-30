@@ -11,7 +11,7 @@ const EntityTypeAliasSchemaDefinition = z.object({
     description: z.string(),
     /** Nested public route segment shared by Product and Service records. */
     productServiceRouteSegment: z.string(),
-    /** Public website path prefix for this EntityType. */
+    /** Published website family prefix. Product and Service retain the legacy `/companies/products-services` family metadata, not a standalone route; their pages require `{providerPrefix}/{providerSlug}/products-services/{slug}`. */
     publicPathPrefix: z.string(),
 });
 /**

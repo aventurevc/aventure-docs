@@ -41,6 +41,11 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EntityFundingDetailSchema: z.ZodObject<{
+    applicability: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        NOT_APPLICABLE: "NOT_APPLICABLE";
+        RECORDED: "RECORDED";
+        UNKNOWN: "UNKNOWN";
+    }>>>;
     currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     fundingRoundCount: z.ZodInt;
     investorCount: z.ZodInt;

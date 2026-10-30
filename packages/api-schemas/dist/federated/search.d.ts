@@ -528,6 +528,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -944,6 +945,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         })[] | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -1035,6 +1037,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -1561,6 +1564,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         })[] | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -1652,6 +1656,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -2168,6 +2173,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -2259,6 +2265,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -3040,6 +3047,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -3456,6 +3464,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         })[] | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -3547,6 +3556,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -4073,6 +4083,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         })[] | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -4164,6 +4175,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -4680,6 +4692,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -4771,6 +4784,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -5312,6 +5326,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -5560,6 +5575,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -5651,6 +5667,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -5773,6 +5790,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -6285,6 +6303,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -6425,6 +6444,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -7251,6 +7271,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -7391,6 +7412,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -8878,6 +8900,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -9423,6 +9446,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -9971,6 +9995,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -10111,6 +10136,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -10937,6 +10963,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -11077,6 +11104,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;

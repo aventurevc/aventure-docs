@@ -135,6 +135,11 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            applicability: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                NOT_APPLICABLE: "NOT_APPLICABLE";
+                RECORDED: "RECORDED";
+                UNKNOWN: "UNKNOWN";
+            }>>>;
             currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;
@@ -384,6 +389,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -460,6 +466,7 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;

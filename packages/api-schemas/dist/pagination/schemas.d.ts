@@ -903,6 +903,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -1151,6 +1152,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -1242,6 +1244,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -1364,6 +1367,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -1876,6 +1880,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -2016,6 +2021,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -2842,6 +2848,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -2982,6 +2989,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -4136,6 +4144,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -4258,6 +4267,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -4626,6 +4636,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -4717,6 +4728,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -5206,6 +5218,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -5346,6 +5359,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                     updatedAt?: string | null | undefined;
                                 };
                                 fundingDetail?: {
+                                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                     currency?: string | null | undefined;
                                     fundingRoundCount: number;
                                     investorCount: number;
@@ -6359,6 +6373,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -6450,6 +6465,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -6939,6 +6955,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -7079,6 +7096,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                                     updatedAt?: string | null | undefined;
                                 };
                                 fundingDetail?: {
+                                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                     currency?: string | null | undefined;
                                     fundingRoundCount: number;
                                     investorCount: number;
@@ -8130,6 +8148,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -8221,6 +8240,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -8730,6 +8750,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -8821,6 +8842,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -10012,6 +10034,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -10103,6 +10126,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -10626,6 +10650,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     })[] | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -10717,6 +10742,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -11068,6 +11094,7 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         };
         fundingDetail?: {
+            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
             currency?: string | null | undefined;
             fundingRoundCount: number;
             investorCount: number;
@@ -11155,6 +11182,7 @@ declare const PageEntitySimilaritySummarySchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         };
         fundingDetail?: {
+            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
             currency?: string | null | undefined;
             fundingRoundCount: number;
             investorCount: number;
@@ -12333,6 +12361,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -12473,6 +12502,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -13299,6 +13329,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     };
                     fundingDetail?: {
+                        applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
@@ -13439,6 +13470,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -14553,6 +14585,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -14693,6 +14726,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -15538,6 +15572,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         };
                         fundingDetail?: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
@@ -15678,6 +15713,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                                 updatedAt?: string | null | undefined;
                             };
                             fundingDetail?: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
@@ -16985,6 +17021,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -17076,6 +17113,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
@@ -17585,6 +17623,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 })[] | undefined;
             };
             fundingDetail?: {
+                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
@@ -17676,6 +17715,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 };
                 fundingDetail?: {
+                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;

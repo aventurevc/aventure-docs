@@ -75,6 +75,11 @@ declare const PersonGraphSimilarEntitySchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>;
         fundingDetail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            applicability: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                NOT_APPLICABLE: "NOT_APPLICABLE";
+                RECORDED: "RECORDED";
+                UNKNOWN: "UNKNOWN";
+            }>>>;
             currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;

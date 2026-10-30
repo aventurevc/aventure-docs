@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { FundingApplicabilitySchema } from "../funding/applicability.js";
 import { FundingStageSchema } from "../funding/stage.js";
 /**
  * Aggregate view of an entity's fundraising activity
@@ -43,6 +44,8 @@ import { FundingStageSchema } from "../funding/stage.js";
  * @contractRole canonical
  */
 export const EntityFundingDetailSchema = z.object({
+    /** RECORDED when an eligible financing amount, including an explicit zero, exists. Otherwise UNKNOWN for a company, investment firm, or unestablished kind; NOT_APPLICABLE for a fund, nonprofit, government, business line, product, or service with no recorded financing amount. Recorded financing history is preserved for every kind. Null or absent means this contract was not supplied, not that financing is unknown. totalRaised retains its legacy numeric type. */
+    applicability: FundingApplicabilitySchema.nullish(),
     /** ISO 4217 currency of totalRaised, latestValuation, and mostRecentAmount: the one currency every round uses, else the entity's own currency when rounds carry none. Null when rounds use more than one currency or no fundraise rollup exists, so these amounts have no single currency. */
     currency: z.string().nullish(),
     /** Recorded round count, including rounds with no recorded amount. */
@@ -52,7 +55,7 @@ export const EntityFundingDetailSchema = z.object({
     mostRecentAmount: z.number().nullish(),
     mostRecentDate: z.iso.date().nullish(),
     stage: FundingStageSchema.nullish(),
-    /** Sum of recorded round amounts in their original currencies, excluding rounds with no amount; not a complete lifetime total when amounts are missing. Use totalRaisedUsd for a USD aggregate; totalRaised has no single currency when currency is null. */
+    /** Sum of recorded round amounts in their original currencies, excluding rounds with no amount; not a complete lifetime total when amounts are missing. Use totalRaisedUsd for a USD aggregate; totalRaised has no single currency when currency is null. Legacy numeric projection: zero also represents unknown or inapplicable financing; read applicability before displaying it. This field remains numeric until all supported readers accept nullable totals. */
     totalRaised: z.number(),
     /** USD aggregate at enrichment.fundingDetail.totalRaisedUsd: sums only recorded round amounts with an announcement-date ECB/World Bank rate. Excludes rounds with no amount or no rate, so do not report it as a complete lifetime total when either is missing. Zero when no round converts; null when no rollup exists. Use instead of totalRaised across currencies; see unconvertedRoundCount for missing rates only. */
     totalRaisedUsd: z.number().nullish(),
