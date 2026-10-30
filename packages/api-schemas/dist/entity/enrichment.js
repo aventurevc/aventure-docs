@@ -6,7 +6,7 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
 import { EntityTextBundleSchema } from "./text-bundle.js";
 import { EntityUrlLinkSchema } from "./url-link.js";
 const EntityEnrichmentSchemaDefinition = z.object({
-    /** Current addresses. Full-detail search carries only the headquarters row (headquartersAddressId); GET /v1/entities/{entityId}/addresses lists every row. */
+    /** Current addresses. List rows carry bounded current locations for named roles, identification evidence, and card display, not every office or association history. Single-detail reads retain all current locations and their association history. Full-detail search carries only the headquarters row (headquartersAddressId); GET /v1/entities/{entityId}/addresses lists every row. */
     address: z.array(AddressSchema),
     /** Entity classifications. Single-detail and full-detail batch reads include history; list, default batch, and similar-entity reads may return only current classifications. Use GET /v1/entities/{entityId}/classifications?includeInactive=true for the full history. */
     classification: EntityClassificationSchema,

@@ -739,6 +739,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
     LinkSearch: { modulePath: "link/search", schemaName: "LinkSearchSchema" },
     LogoAccuracy: { modulePath: "logo/accuracy", schemaName: "LogoAccuracySchema" },
+    LogoAccuracyMethod: {
+        modulePath: "logo/accuracy-method",
+        schemaName: "LogoAccuracyMethodSchema",
+    },
     LogoAccuracyReference: {
         modulePath: "logo/accuracy-reference",
         schemaName: "LogoAccuracyReferenceSchema",

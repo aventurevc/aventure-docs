@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { ConfidenceSchema } from "../confidence/confidence.js";
+import { LogoAccuracyMethodSchema } from "./accuracy-method.js";
 import { LogoAccuracyReferenceSchema } from "./accuracy-reference.js";
 /**
  * Read-only assessment of whether a stored logo/photo depicts the target's own brand, decided from visible features of the stored mark versus the target's own reference marks
@@ -19,7 +20,7 @@ export const LogoAccuracySchema = z.object({
     /** Confidence in the outcome */
     confidence: ConfidenceSchema,
     /** How the outcome was reached */
-    method: z.enum(["PERCEPTUAL_HASH", "VISION", "OPERATOR_REVIEW", "REFERENCE_UNAVAILABLE"]),
+    method: LogoAccuracyMethodSchema,
     /** Whether the candidate mark matches the target's own brand */
     outcome: z.enum(["MATCH", "MISMATCH", "INSUFFICIENT"]),
     /** Reference marks fetched from the target's own surfaces, each with its perceptual-hash distance to the candidate. The deciding deterministic distance is the smallest entry */

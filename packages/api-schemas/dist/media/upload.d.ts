@@ -7,12 +7,19 @@ declare const MediaUploadSchemaDefinition: z.ZodObject<{
             LOW: "LOW";
             MEDIUM: "MEDIUM";
         }>;
-        method: z.ZodEnum<{
+        method: z.ZodUnion<readonly [z.ZodEnum<{
             OPERATOR_REVIEW: "OPERATOR_REVIEW";
             PERCEPTUAL_HASH: "PERCEPTUAL_HASH";
             REFERENCE_UNAVAILABLE: "REFERENCE_UNAVAILABLE";
             VISION: "VISION";
-        }>;
+        }>, z.ZodString]> & {
+            enum: {
+                OPERATOR_REVIEW: "OPERATOR_REVIEW";
+                PERCEPTUAL_HASH: "PERCEPTUAL_HASH";
+                REFERENCE_UNAVAILABLE: "REFERENCE_UNAVAILABLE";
+                VISION: "VISION";
+            };
+        };
         outcome: z.ZodEnum<{
             INSUFFICIENT: "INSUFFICIENT";
             MATCH: "MATCH";

@@ -81,7 +81,7 @@ type LookupJobMutationDefinition = z.infer<typeof LookupJobMutationSchemaDefinit
 export interface LookupJobMutationSchemaInput extends z.input<typeof LookupJobMutationSchemaDefinition> {
 }
 /**
- * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup/mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup/mentions also accept mention instead. A job filed by Prefer: respond-async on GET /v1/lookup or POST /v1/entities/lookup carries that request's subject instead.
+ * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup/mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup/mentions also accept mention instead. A job filed by Prefer: respond-async on POST /v1/lookup with kind in the JSON body carries that request's subject instead.
  *
  * @openapiSchema LookupJobMutation
  * @endpoint GET /v1/lookup-jobs/{jobId}
