@@ -4,9 +4,9 @@
     {
       "name": "aventure-cookbook",
       "type": "skill-md",
-      "description": "Use for multi-step aVenture research recipes: company briefs, funding histories, round investors, investor portfolios, founder backgrounds, competitor sets, news monitoring, and resolving a list of names.",
+      "description": "Use for multi-step aVenture research: company briefs, funding and investors, portfolios, founder backgrounds, competitors, news monitoring, and resolving name lists.",
       "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
-      "digest": "sha256:5d3b13b103da85039d8f533959ef13305eb9ce5539239235c47b852108ed87de"
+      "digest": "sha256:d582f443e4bd90b91aab863ccc303c70c7a6578a009a3ec48efd2c199620aba1"
     },
     {
       "name": "aventure",
