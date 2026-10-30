@@ -1355,11 +1355,15 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         round?: string | null | undefined;
     }, import("./investment.ts").PersonInvestmentSchemaInput>>>;
     investorActivity: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        acquiredRecipientCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         attributedInvestmentCount: z.ZodInt;
         averageAmountInvestedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        closedRecipientCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         currentPortfolioCount: z.ZodInt;
         largestAmountInvestedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        operatingRecipientCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         portfolioCompanyCount: z.ZodInt;
+        publicRecipientCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         smallestAmountInvestedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         topInvestmentStage: z.ZodArray<z.ZodType<{
             count: number;

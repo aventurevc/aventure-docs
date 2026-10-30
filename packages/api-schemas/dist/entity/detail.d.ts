@@ -1620,11 +1620,15 @@ export declare const EntityDetailSchema: z.ZodObject<{
             round?: string | null | undefined;
         }[];
         investorActivity?: {
+            acquiredRecipientCount?: number | null | undefined;
             attributedInvestmentCount: number;
             averageAmountInvestedUsd?: number | null | undefined;
+            closedRecipientCount?: number | null | undefined;
             currentPortfolioCount: number;
             largestAmountInvestedUsd?: number | null | undefined;
+            operatingRecipientCount?: number | null | undefined;
             portfolioCompanyCount: number;
+            publicRecipientCount?: number | null | undefined;
             smallestAmountInvestedUsd?: number | null | undefined;
             topInvestmentStage: {
                 count: number;
@@ -2582,11 +2586,15 @@ export declare const EntityDetailSchema: z.ZodObject<{
             round?: string | null | undefined;
         }[];
         investorActivity?: {
+            acquiredRecipientCount?: number | null | undefined;
             attributedInvestmentCount: number;
             averageAmountInvestedUsd?: number | null | undefined;
+            closedRecipientCount?: number | null | undefined;
             currentPortfolioCount: number;
             largestAmountInvestedUsd?: number | null | undefined;
+            operatingRecipientCount?: number | null | undefined;
             portfolioCompanyCount: number;
+            publicRecipientCount?: number | null | undefined;
             smallestAmountInvestedUsd?: number | null | undefined;
             topInvestmentStage: {
                 count: number;
