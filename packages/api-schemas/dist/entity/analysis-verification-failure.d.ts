@@ -12,9 +12,12 @@ declare const EntityAnalysisVerificationFailureSchemaDefinition: z.ZodObject<{
         unreadSource: "unreadSource";
     }>;
     proseProblem: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        analysis: "analysis";
         chained: "chained";
         disclaimer: "disclaimer";
+        evidenceAuthority: "evidenceAuthority";
         factList: "factList";
+        internalRepetition: "internalRepetition";
         legalSource: "legalSource";
         marketing: "marketing";
         markup: "markup";
@@ -29,9 +32,12 @@ declare const EntityAnalysisVerificationFailureSchemaDefinition: z.ZodObject<{
         voice: "voice";
     }>, z.ZodString]> & {
         enum: {
+            analysis: "analysis";
             chained: "chained";
             disclaimer: "disclaimer";
+            evidenceAuthority: "evidenceAuthority";
             factList: "factList";
+            internalRepetition: "internalRepetition";
             legalSource: "legalSource";
             marketing: "marketing";
             markup: "markup";

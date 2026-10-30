@@ -31,9 +31,12 @@ declare const EntityAnalysisSectionVerificationSchemaDefinition: z.ZodObject<{
     }>>>;
     prosePolicyVersion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     proseProblem: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        analysis: "analysis";
         chained: "chained";
         disclaimer: "disclaimer";
+        evidenceAuthority: "evidenceAuthority";
         factList: "factList";
+        internalRepetition: "internalRepetition";
         legalSource: "legalSource";
         marketing: "marketing";
         markup: "markup";
@@ -48,9 +51,12 @@ declare const EntityAnalysisSectionVerificationSchemaDefinition: z.ZodObject<{
         voice: "voice";
     }>, z.ZodString]> & {
         enum: {
+            analysis: "analysis";
             chained: "chained";
             disclaimer: "disclaimer";
+            evidenceAuthority: "evidenceAuthority";
             factList: "factList";
+            internalRepetition: "internalRepetition";
             legalSource: "legalSource";
             marketing: "marketing";
             markup: "markup";

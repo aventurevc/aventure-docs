@@ -1,6 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 const SearchHitSchemaDefinition = z.object({
+    /** True when the provider withheld this result's page link, so url is only its publisher's site root: cite it as the publisher, never fetch it as the page. */
+    hostOnly: z.boolean().optional(),
     /** Image the provider attached to this result (a LinkedIn profile's headshot); null when it attached none. */
     image: z.string().nullish(),
     /** Provider-reported source publication calendar date, retaining the date in its reported offset rather than converting to UTC. Null when no valid complete ISO publication date is supplied; never inferred from the URL or retrieval time. */

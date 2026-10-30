@@ -80,6 +80,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
     }, import("../search/related-question.ts").SearchRelatedQuestionSchemaInput>>>>>;
     relatedSearch: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     result: z.ZodArray<z.ZodType<{
+        hostOnly?: boolean | undefined;
         image?: string | null | undefined;
         publishedDate?: string | null | undefined;
         relevanceScore: number;
@@ -87,6 +88,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         title: string;
         url: string;
     }, import("../search/hit.ts").SearchHitSchemaInput, z.core.$ZodTypeInternals<{
+        hostOnly?: boolean | undefined;
         image?: string | null | undefined;
         publishedDate?: string | null | undefined;
         relevanceScore: number;

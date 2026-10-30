@@ -16,6 +16,9 @@ const ProseProblemSchemaKnownMembers = z.enum([
     "unsupported",
     "legalSource",
     "textContract",
+    "evidenceAuthority",
+    "internalRepetition",
+    "analysis",
 ]);
 /**
  * Why a sentence or paragraph of entity text or a research snippet was rejected.

@@ -11,9 +11,12 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
+    analysis: "analysis";
     chained: "chained";
     disclaimer: "disclaimer";
+    evidenceAuthority: "evidenceAuthority";
     factList: "factList";
+    internalRepetition: "internalRepetition";
     legalSource: "legalSource";
     marketing: "marketing";
     markup: "markup";
@@ -28,9 +31,12 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     voice: "voice";
 }>, z.ZodString]> & {
     enum: {
+        analysis: "analysis";
         chained: "chained";
         disclaimer: "disclaimer";
+        evidenceAuthority: "evidenceAuthority";
         factList: "factList";
+        internalRepetition: "internalRepetition";
         legalSource: "legalSource";
         marketing: "marketing";
         markup: "markup";

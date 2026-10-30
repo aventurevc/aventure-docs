@@ -3,9 +3,12 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
     overridable: z.ZodBoolean;
     passage: z.ZodString;
     problem: z.ZodUnion<readonly [z.ZodEnum<{
+        analysis: "analysis";
         chained: "chained";
         disclaimer: "disclaimer";
+        evidenceAuthority: "evidenceAuthority";
         factList: "factList";
+        internalRepetition: "internalRepetition";
         legalSource: "legalSource";
         marketing: "marketing";
         markup: "markup";
@@ -20,9 +23,12 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         voice: "voice";
     }>, z.ZodString]> & {
         enum: {
+            analysis: "analysis";
             chained: "chained";
             disclaimer: "disclaimer";
+            evidenceAuthority: "evidenceAuthority";
             factList: "factList";
+            internalRepetition: "internalRepetition";
             legalSource: "legalSource";
             marketing: "marketing";
             markup: "markup";
