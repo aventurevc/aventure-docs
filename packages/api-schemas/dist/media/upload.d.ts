@@ -8,12 +8,14 @@ declare const MediaUploadSchemaDefinition: z.ZodObject<{
             MEDIUM: "MEDIUM";
         }>;
         method: z.ZodUnion<readonly [z.ZodEnum<{
+            FIRST_PARTY_DECLARATION: "FIRST_PARTY_DECLARATION";
             OPERATOR_REVIEW: "OPERATOR_REVIEW";
             PERCEPTUAL_HASH: "PERCEPTUAL_HASH";
             REFERENCE_UNAVAILABLE: "REFERENCE_UNAVAILABLE";
             VISION: "VISION";
         }>, z.ZodString]> & {
             enum: {
+                FIRST_PARTY_DECLARATION: "FIRST_PARTY_DECLARATION";
                 OPERATOR_REVIEW: "OPERATOR_REVIEW";
                 PERCEPTUAL_HASH: "PERCEPTUAL_HASH";
                 REFERENCE_UNAVAILABLE: "REFERENCE_UNAVAILABLE";

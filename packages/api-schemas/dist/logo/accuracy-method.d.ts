@@ -11,12 +11,14 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const LogoAccuracyMethodSchema: z.ZodUnion<readonly [z.ZodEnum<{
+    FIRST_PARTY_DECLARATION: "FIRST_PARTY_DECLARATION";
     OPERATOR_REVIEW: "OPERATOR_REVIEW";
     PERCEPTUAL_HASH: "PERCEPTUAL_HASH";
     REFERENCE_UNAVAILABLE: "REFERENCE_UNAVAILABLE";
     VISION: "VISION";
 }>, z.ZodString]> & {
     enum: {
+        FIRST_PARTY_DECLARATION: "FIRST_PARTY_DECLARATION";
         OPERATOR_REVIEW: "OPERATOR_REVIEW";
         PERCEPTUAL_HASH: "PERCEPTUAL_HASH";
         REFERENCE_UNAVAILABLE: "REFERENCE_UNAVAILABLE";
