@@ -47,6 +47,8 @@ export const HarnessRunSchema = z.object({
     failureClass: z.string().nullish(),
     /** Run completion timestamp */
     finishedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Successful claim acknowledgement only: true on first-ever start, false on reclaim; reads null (unknown) */
+    firstStart: z.boolean().nullish(),
     /** Follow-up admission for the exact current terminal generation; old engine terminals remain PENDING */
     followUpAdmission: HarnessRunFollowUpAdmissionSchema.optional(),
     /** Whether this run consumes an immutable private source document */
