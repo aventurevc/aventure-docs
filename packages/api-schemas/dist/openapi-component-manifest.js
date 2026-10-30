@@ -221,6 +221,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     CompetitorDegree: { modulePath: "competitor/degree", schemaName: "CompetitorDegreeSchema" },
     Confidence: { modulePath: "confidence/confidence", schemaName: "ConfidenceSchema" },
+    ContactDetail: { modulePath: "contact/detail", schemaName: "ContactDetailSchema" },
     ContentCompliance: { modulePath: "content/compliance", schemaName: "ContentComplianceSchema" },
     ContentEmbeddingMatch: {
         modulePath: "content/embedding-match",

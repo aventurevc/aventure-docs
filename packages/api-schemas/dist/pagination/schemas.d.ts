@@ -1704,7 +1704,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -2232,7 +2232,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             similar?: {
                 currentRole?: {
@@ -2420,7 +2420,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -2666,7 +2666,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -3194,7 +3194,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             similar?: {
                 currentRole?: {
@@ -3382,7 +3382,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -5026,7 +5026,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -5554,7 +5554,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 similar?: {
                     currentRole?: {
@@ -5742,7 +5742,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         nameAlias: {
                             displayable?: boolean | null | undefined;
                             name: string;
-                            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                         }[];
                         nameDisplay: string;
                         nameFirst?: string | null | undefined;
@@ -6755,7 +6755,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -7283,7 +7283,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 similar?: {
                     currentRole?: {
@@ -7471,7 +7471,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         nameAlias: {
                             displayable?: boolean | null | undefined;
                             name: string;
-                            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                         }[];
                         nameDisplay: string;
                         nameFirst?: string | null | undefined;
@@ -11821,7 +11821,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         nameDisplay: string;
         nameFirst?: string | null | undefined;
@@ -11867,7 +11867,7 @@ declare const PagePersonSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         nameDisplay: string;
         nameFirst?: string | null | undefined;
@@ -12144,7 +12144,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             nameDisplay: string;
             nameFirst?: string | null | undefined;
@@ -12672,7 +12672,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         similar?: {
             currentRole?: {
@@ -12860,7 +12860,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -13106,7 +13106,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             nameDisplay: string;
             nameFirst?: string | null | undefined;
@@ -13634,7 +13634,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         similar?: {
             currentRole?: {
@@ -13822,7 +13822,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -14356,7 +14356,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -14884,7 +14884,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             similar?: {
                 currentRole?: {
@@ -15072,7 +15072,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -15337,7 +15337,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -15865,7 +15865,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             similar?: {
                 currentRole?: {
@@ -16053,7 +16053,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -16322,7 +16322,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             nameDisplay: string;
             nameFirst?: string | null | undefined;
@@ -16544,7 +16544,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             nameDisplay: string;
             nameFirst?: string | null | undefined;
@@ -18024,7 +18024,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         nameDisplay: string;
         nameFirst?: string | null | undefined;
@@ -18070,7 +18070,7 @@ declare const PageResultPersonSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         nameDisplay: string;
         nameFirst?: string | null | undefined;

@@ -27,11 +27,11 @@ declare const PersonSchemaDefinition: z.ZodObject<{
     nameAlias: z.ZodArray<z.ZodType<{
         displayable?: boolean | null | undefined;
         name: string;
-        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
     }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
         displayable?: boolean | null | undefined;
         name: string;
-        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
     }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput>>>;
     nameDisplay: z.ZodString;
     nameFirst: z.ZodOptional<z.ZodNullable<z.ZodString>>;

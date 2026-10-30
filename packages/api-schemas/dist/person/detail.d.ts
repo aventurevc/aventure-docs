@@ -326,7 +326,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         nameDisplay: string;
         nameFirst?: string | null | undefined;
@@ -372,7 +372,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
         nameAlias: {
             displayable?: boolean | null | undefined;
             name: string;
-            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
         }[];
         nameDisplay: string;
         nameFirst?: string | null | undefined;
@@ -1376,11 +1376,11 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
     nameAlias: z.ZodArray<z.ZodType<{
         displayable?: boolean | null | undefined;
         name: string;
-        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
     }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput, z.core.$ZodTypeInternals<{
         displayable?: boolean | null | undefined;
         name: string;
-        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
     }, import("../entity/name-alias-person-alias-type.ts").EntityNameAliasPersonAliasTypeSchemaInput>>>;
     similar: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         currentRole?: {
@@ -1568,7 +1568,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             nameDisplay: string;
             nameFirst?: string | null | undefined;
@@ -1790,7 +1790,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             nameDisplay: string;
             nameFirst?: string | null | undefined;

@@ -35,7 +35,6 @@ import { z } from "zod/v4";
 export declare const PersonAliasTypeSchema: z.ZodEnum<{
     formerName: "formerName";
     maidenName: "maidenName";
-    nickname: "nickname";
     stageName: "stageName";
 }>;
 export type PersonAliasType = z.infer<typeof PersonAliasTypeSchema>;

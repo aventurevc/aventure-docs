@@ -5,7 +5,6 @@ declare const EntityNameAliasPersonAliasTypeSchemaDefinition: z.ZodObject<{
     type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         formerName: "formerName";
         maidenName: "maidenName";
-        nickname: "nickname";
         stageName: "stageName";
     }>>>;
 }, z.core.$strip>;

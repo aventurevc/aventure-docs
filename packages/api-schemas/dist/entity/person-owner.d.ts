@@ -6,6 +6,7 @@ import { z } from "zod/v4";
  * @standardProblemResponse
  * @usedBySchema AddressLinkSchema
  * @usedBySchema BlogPostSchema
+ * @usedBySchema ContactDetailSchema
  * @usedBySchema EnrichmentSchema
  * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @usedBySchema EntityTextSchema

@@ -3191,7 +3191,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -3719,7 +3719,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 similar?: {
                     currentRole?: {
@@ -3907,7 +3907,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         nameAlias: {
                             displayable?: boolean | null | undefined;
                             name: string;
-                            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                         }[];
                         nameDisplay: string;
                         nameFirst?: string | null | undefined;
@@ -4805,7 +4805,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -5049,7 +5049,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -5577,7 +5577,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             similar?: {
                 currentRole?: {
@@ -5765,7 +5765,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -9014,7 +9014,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -9542,7 +9542,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 similar?: {
                     currentRole?: {
@@ -9730,7 +9730,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         nameAlias: {
                             displayable?: boolean | null | undefined;
                             name: string;
-                            type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                            type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                         }[];
                         nameDisplay: string;
                         nameFirst?: string | null | undefined;
@@ -10628,7 +10628,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;
@@ -10872,7 +10872,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 nameAlias: {
                     displayable?: boolean | null | undefined;
                     name: string;
-                    type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                    type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                 }[];
                 nameDisplay: string;
                 nameFirst?: string | null | undefined;
@@ -11400,7 +11400,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             nameAlias: {
                 displayable?: boolean | null | undefined;
                 name: string;
-                type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                type?: "formerName" | "maidenName" | "stageName" | null | undefined;
             }[];
             similar?: {
                 currentRole?: {
@@ -11588,7 +11588,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     nameAlias: {
                         displayable?: boolean | null | undefined;
                         name: string;
-                        type?: "formerName" | "maidenName" | "nickname" | "stageName" | null | undefined;
+                        type?: "formerName" | "maidenName" | "stageName" | null | undefined;
                     }[];
                     nameDisplay: string;
                     nameFirst?: string | null | undefined;

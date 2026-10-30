@@ -33,5 +33,5 @@ import { z } from "zod/v4";
  * @contractShape person.alias-type
  * @contractRole canonical
  */
-export const PersonAliasTypeSchema = z.enum(["nickname", "maidenName", "formerName", "stageName"]);
+export const PersonAliasTypeSchema = z.enum(["maidenName", "formerName", "stageName"]);
 //# sourceMappingURL=alias-type.js.map
