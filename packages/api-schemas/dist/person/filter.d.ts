@@ -490,6 +490,11 @@ export declare const PersonFilterSchema: z.ZodObject<{
     search: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    tenure: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        ANY: "ANY";
+        CURRENT: "CURRENT";
+        PAST: "PAST";
+    }>>>;
 }, z.core.$strip>;
 export type PersonFilter = z.infer<typeof PersonFilterSchema>;
 //# sourceMappingURL=filter.d.ts.map

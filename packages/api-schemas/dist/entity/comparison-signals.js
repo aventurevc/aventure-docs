@@ -27,7 +27,7 @@ import { FundingStageSchema } from "../funding/stage.js";
 export const EntityComparisonSignalsSchema = z.object({
     /** Latest funding stage when known */
     fundingStage: FundingStageSchema.nullish(),
-    /** Provider ownership structure (current typeOwnership tags) */
+    /** Provider ownership from current tags and current primary parent or acquirer relationships */
     ownership: z.array(z.string()),
     /** Provider pricing/revenue model (current typeRevenue tags) */
     pricingModel: z.array(z.string()),

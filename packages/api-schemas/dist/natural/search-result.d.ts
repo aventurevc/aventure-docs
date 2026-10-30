@@ -474,6 +474,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             search?: string | null | undefined;
             semanticQuery?: string | null | undefined;
             status?: string | null | undefined;
+            tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         } | null | undefined;
         sort: {
             order: {
@@ -905,6 +906,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             search?: string | null | undefined;
             semanticQuery?: string | null | undefined;
             status?: string | null | undefined;
+            tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         } | null | undefined;
         sort: {
             order: {

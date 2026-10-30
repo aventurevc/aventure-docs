@@ -35,7 +35,7 @@ export const PersonListArrayFilterSchema = z.object({
     /** Fundraise round labels. */
     round: z.array(z.string()).nullish(),
     totalInvestmentCount: z.array(IntRangeSchema).nullish(),
-    /** Associated entity type scope. Omit or use [] for any associated type. */
+    /** Associated types; Organization uses EntityFilter expansion. */
     typeRecord: z.array(EntityTypeSchema).nullish(),
 });
 //# sourceMappingURL=list-array-filter.js.map

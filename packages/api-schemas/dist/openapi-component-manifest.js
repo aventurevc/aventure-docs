@@ -923,6 +923,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     PageUniqueId: { modulePath: "pagination/schemas", schemaName: "PageUniqueIdSchema" },
     Person: { modulePath: "person/person", schemaName: "PersonSchema" },
     PersonAliasType: { modulePath: "person/alias-type", schemaName: "PersonAliasTypeSchema" },
+    PersonAssociationTenure: {
+        modulePath: "person/association-tenure",
+        schemaName: "PersonAssociationTenureSchema",
+    },
     PersonDetail: { modulePath: "person/detail", schemaName: "PersonDetailSchema" },
     PersonDetailInclude: {
         modulePath: "person/detail-include",

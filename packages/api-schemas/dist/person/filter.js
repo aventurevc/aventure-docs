@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityFilterSchema } from "../entity/filter.js";
 import { EntityPersonAssociationFilterSchema } from "../entity/person-association-filter.js";
 import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
+import { PersonAssociationTenureSchema } from "./association-tenure.js";
 import { PersonListArrayFilterSchema } from "./list-array-filter.js";
 /**
  * Canonical person criteria contract for GET/POST/batch endpoints
@@ -34,7 +35,7 @@ export const PersonFilterSchema = z.object({
     additionalAssociation: EntityPersonAssociationFilterSchema.nullish(),
     /** Array and range filters */
     arrayFilter: PersonListArrayFilterSchema.optional(),
-    /** Constraints on the associated entity, as on POST /v1/search/natural/entities: a person matches when an association (current unless isCurrent=false) points at an entity matching every field and visible in entity listings, such as yearFoundedRange, hasFundraising, or fundraiseActivity.totalRaisedRange. Omit for no associated-entity constraint. */
+    /** Constraints on the associated entity, as on POST /v1/search/natural/entities: a person matches when an association (current by default; selectable with tenure) points at an entity matching every field and visible in entity listings, such as yearFoundedRange, hasFundraising, or fundraiseActivity.totalRaisedRange. Omit for no associated-entity constraint. */
     entityFilter: EntityFilterSchema.optional(),
     /** Associated entity UUID. */
     entityId: z.uuid().nullish(),
@@ -48,7 +49,7 @@ export const PersonFilterSchema = z.object({
     includeUrl: z.boolean().nullish(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
-    /** Filter current associations. */
+    /** Legacy tenure filter; omit when selecting tenure explicitly. */
     isCurrent: z.boolean().nullish(),
     /** Person last name. */
     lastName: z.string().nullish(),
@@ -56,7 +57,7 @@ export const PersonFilterSchema = z.object({
     letter: z.string().nullish(),
     /** Name eligibility independent of search; preserve it on replay. */
     nameQuery: z.string().nullish(),
-    /** Restrict results to specific person IDs. Omit or use [] for no ID restriction. */
+    /** Specific person IDs; omit or use [] for no restriction. */
     personId: z.array(z.uuid()).max(200).optional(),
     /** Exact normalized match against a person's full name or slug. */
     personName: z.array(z.string()).optional(),
@@ -70,5 +71,7 @@ export const PersonFilterSchema = z.object({
     semanticQuery: z.string().nullish(),
     /** Person workflow status. */
     status: z.string().nullish(),
+    /** Tenure of the association title and employer match: CURRENT, PAST, or ANY. Omitted, titles match any tenure and employers current; isCurrent must agree. */
+    tenure: PersonAssociationTenureSchema.nullish(),
 });
 //# sourceMappingURL=filter.js.map

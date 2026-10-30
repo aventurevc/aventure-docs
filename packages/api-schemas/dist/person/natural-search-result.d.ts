@@ -302,6 +302,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             search?: string | null | undefined;
             semanticQuery?: string | null | undefined;
             status?: string | null | undefined;
+            tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         };
         interpretation: string;
         sort: {
@@ -615,6 +616,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             search?: string | null | undefined;
             semanticQuery?: string | null | undefined;
             status?: string | null | undefined;
+            tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         };
         interpretation: string;
         sort: {
