@@ -5,10 +5,14 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/content
  * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/classifications/tags
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/news
  * @endpoint GET /v1/people
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/research-runs
  * @endpoint GET /v1/research/runs
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
  * @endpoint GET /v1/entities/{entityId}/content
@@ -16,6 +20,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/investments
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
@@ -33,22 +38,30 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/valuations
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
+ * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/content
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/investments
+ * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/people/{personId}/repositories
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/urls
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/{personId}/content/search
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
  * @usedBySchema PageableObjectSchema
  * @usedBySchema PageBlogPostSchema
  * @usedBySchema PageClassificationSchema
@@ -71,6 +84,8 @@ import { z } from "zod/v4";
  * @usedBySchema PageEntityValuationTimeSeriesPointSchema
  * @usedBySchema PageGithubRepoSchema
  * @usedBySchema PageHarnessRunSchema
+ * @usedBySchema PageInvestorPortfolioRecipientSchema
+ * @usedBySchema PageInvestorPortfolioSectorSchema
  * @usedBySchema PageNewsSchema
  * @usedBySchema PagePersonDetailSchema
  * @usedBySchema PagePersonInvestmentSchema

@@ -1,5 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+// oxlint-disable import/no-cycle -- Generated recursive module references are deferred with z.lazy.
 import { z } from "zod/v4";
+import { InvestorPortfolioSchema } from "../investor/portfolio.js";
 import { StageFrequencySchema } from "../stage/frequency.js";
 /**
  * Investor-perspective activity aggregate for entity and person investors.
@@ -43,6 +45,8 @@ export const EntityFundraiseInvestorActivitySchema = z.object({
     largestAmountInvestedUsd: z.number().nullish(),
     /** Distinct recorded recipients currently Operating, excluding the public bucket; not current holdings. Null until the status breakdown has been calculated. */
     operatingRecipientCount: z.int().nullish(),
+    /** Selected fresh public recipient cohort and paged sector/recipient evidence. Null when portfolioOutcome was not requested or this capability is unavailable. Its visibility and snapshot differ from the legacy stored activity totals. */
+    portfolio: z.lazy(() => InvestorPortfolioSchema).nullish(),
     /** Distinct recorded recipients this investor has participated in, across all recipient operating statuses. Counts recipients, whereas totalInvestment counts distinct fundraise transactions. */
     portfolioCompanyCount: z.int(),
     /** Distinct recorded recipients with current unconflicted Public ownership, or legacy Public status, excluding acquired/closed recipients; not exits. Unknown statuses are not inferred from funding. Null until the status breakdown has been calculated. */

@@ -1,10 +1,11 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+// oxlint-disable import/no-cycle -- Generated recursive module references are deferred with z.lazy.
 import { z } from "zod/v4";
 import { EntityDetailSchema } from "./detail.js";
 import { FundraiseInvestmentAttributionSchema } from "../fundraise/investment-attribution.js";
 import { RoundLabelSchema } from "../round/label.js";
 const EntityInvestorParticipationSchemaDefinition = z.object({
-    entity: EntityDetailSchema,
+    entity: z.lazy(() => EntityDetailSchema),
     investorAttribution: z.array(FundraiseInvestmentAttributionSchema),
     round: z.array(RoundLabelSchema),
     roundCount: z.int(),

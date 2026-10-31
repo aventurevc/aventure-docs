@@ -626,7 +626,7 @@ export interface PageEntityAcquisitionSchemaInput extends z.input<typeof PageEnt
 export declare const PageEntityAcquisitionSchema: z.ZodType<PageEntityAcquisitionDefinition, PageEntityAcquisitionSchemaInput>;
 export type PageEntityAcquisition = z.infer<typeof PageEntityAcquisitionSchema>;
 declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodLazy<z.ZodObject<{
         core: z.ZodObject<{
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -1577,7 +1577,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput>>>>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>;
-        person: z.ZodArray<z.ZodType<{
+        person: z.ZodArray<z.ZodLazy<z.ZodType<{
             articleCount?: number | null | undefined;
             association: {
                 associationId: number;
@@ -2338,6 +2338,163 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 currentPortfolioCount: number;
                 largestAmountInvestedUsd?: number | null | undefined;
                 operatingRecipientCount?: number | null | undefined;
+                portfolio?: {
+                    ambiguousSectorCount: number;
+                    classifiedRecipientCount: number;
+                    observedAt: string;
+                    outcome: string;
+                    rankableRecipientCount: number;
+                    recipient: {
+                        content?: {
+                            entity: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            funding: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                                currency?: string | null | undefined;
+                                currentValuation?: {
+                                    amount: string;
+                                    asOfDate?: string | null | undefined;
+                                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    postMoneyUsd?: string | null | undefined;
+                                    referenceValue?: string | null | undefined;
+                                    source: "fundraiseRound" | "researchDetail";
+                                    sourceRef: string;
+                                } | null | undefined;
+                                disclosedStage?: string | null | undefined;
+                                disclosedStageTransactionId?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: string | null | undefined;
+                                totalRaised: number;
+                                totalRaisedAmountRoundCount?: number | null | undefined;
+                                totalRaisedRoundCount?: number | null | undefined;
+                                totalRaisedUsd?: number | null | undefined;
+                                totalRaisedUsdRoundCount?: number | null | undefined;
+                                unconvertedRoundCount: number;
+                            };
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    recipientCount: number;
+                    sector: {
+                        content?: {
+                            industry: {
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                registry: string;
+                            } & {
+                                bucket?: string | null | undefined;
+                                classificationId?: number | null | undefined;
+                                createdAt?: string | null | undefined;
+                                id: number;
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                slug?: string | null | undefined;
+                                type: string;
+                                updatedAt?: string | null | undefined;
+                            };
+                            recipientCount: number;
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    unknownSectorCount: number;
+                } | null | undefined;
                 portfolioCompanyCount: number;
                 publicRecipientCount?: number | null | undefined;
                 smallestAmountInvestedUsd?: number | null | undefined;
@@ -3339,6 +3496,163 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 currentPortfolioCount: number;
                 largestAmountInvestedUsd?: number | null | undefined;
                 operatingRecipientCount?: number | null | undefined;
+                portfolio?: {
+                    ambiguousSectorCount: number;
+                    classifiedRecipientCount: number;
+                    observedAt: string;
+                    outcome: string;
+                    rankableRecipientCount: number;
+                    recipient: {
+                        content?: {
+                            entity: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            funding: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                                currency?: string | null | undefined;
+                                currentValuation?: {
+                                    amount: string;
+                                    asOfDate?: string | null | undefined;
+                                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    postMoneyUsd?: string | null | undefined;
+                                    referenceValue?: string | null | undefined;
+                                    source: "fundraiseRound" | "researchDetail";
+                                    sourceRef: string;
+                                } | null | undefined;
+                                disclosedStage?: string | null | undefined;
+                                disclosedStageTransactionId?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: string | null | undefined;
+                                totalRaised: number;
+                                totalRaisedAmountRoundCount?: number | null | undefined;
+                                totalRaisedRoundCount?: number | null | undefined;
+                                totalRaisedUsd?: number | null | undefined;
+                                totalRaisedUsdRoundCount?: number | null | undefined;
+                                unconvertedRoundCount: number;
+                            };
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    recipientCount: number;
+                    sector: {
+                        content?: {
+                            industry: {
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                registry: string;
+                            } & {
+                                bucket?: string | null | undefined;
+                                classificationId?: number | null | undefined;
+                                createdAt?: string | null | undefined;
+                                id: number;
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                slug?: string | null | undefined;
+                                type: string;
+                                updatedAt?: string | null | undefined;
+                            };
+                            recipientCount: number;
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    unknownSectorCount: number;
+                } | null | undefined;
                 portfolioCompanyCount: number;
                 publicRecipientCount?: number | null | undefined;
                 smallestAmountInvestedUsd?: number | null | undefined;
@@ -3579,7 +3893,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     sharedSectionCount?: number | null | undefined;
                 };
             }[] | null | undefined;
-        }, import("../person/detail.ts").PersonDetailSchemaInput>>>;
+        }, import("../person/detail.ts").PersonDetailSchemaInput>>>>;
         profileStatus: z.ZodOptional<z.ZodObject<{
             headline: z.ZodUnion<readonly [z.ZodEnum<{
                 Acquired: "Acquired";
@@ -4145,7 +4459,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             updatedAt: string;
             venue?: string | null | undefined;
         }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
-    }, z.core.$strip>>>;
+    }, z.core.$strip>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -4573,7 +4887,7 @@ export interface PageEntityFundraiseTransactionSchemaInput extends z.input<typeo
 export declare const PageEntityFundraiseTransactionSchema: z.ZodType<PageEntityFundraiseTransactionDefinition, PageEntityFundraiseTransactionSchemaInput>;
 export type PageEntityFundraiseTransaction = z.infer<typeof PageEntityFundraiseTransactionSchema>;
 declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+    content: z.ZodOptional<z.ZodArray<z.ZodLazy<z.ZodType<{
         entity: {
             core: {
                 defaultCurrency?: string | null | undefined;
@@ -5828,6 +6142,163 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     currentPortfolioCount: number;
                     largestAmountInvestedUsd?: number | null | undefined;
                     operatingRecipientCount?: number | null | undefined;
+                    portfolio?: {
+                        ambiguousSectorCount: number;
+                        classifiedRecipientCount: number;
+                        observedAt: string;
+                        outcome: string;
+                        rankableRecipientCount: number;
+                        recipient: {
+                            content?: {
+                                entity: {
+                                    defaultCurrency?: string | null | undefined;
+                                    foundedYear?: number | null | undefined;
+                                    id: string;
+                                    image: {
+                                        isMonogram: boolean;
+                                        logo?: string | null | undefined;
+                                        logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                    };
+                                    lastModifiedAt?: string | null | undefined;
+                                    nameAlias: {
+                                        displayable?: boolean | null | undefined;
+                                        name: string;
+                                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                    }[];
+                                    nameBrand: string;
+                                    nameLegal?: string | null | undefined;
+                                    operatingStatus?: string | null | undefined;
+                                    publicId?: string | null | undefined;
+                                    publicUrl?: string | null | undefined;
+                                    sitemap?: {
+                                        hasAcquisitions?: boolean | undefined;
+                                        hasAnalysis: boolean;
+                                        hasEmployees: boolean;
+                                        hasFundraising: boolean;
+                                        hasNews: boolean;
+                                        productServiceSlug: string[];
+                                    } | null | undefined;
+                                    slug: string;
+                                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                    updatedAt?: string | null | undefined;
+                                };
+                                funding: {
+                                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    currentValuation?: {
+                                        amount: string;
+                                        asOfDate?: string | null | undefined;
+                                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                        currency?: string | null | undefined;
+                                        postMoneyUsd?: string | null | undefined;
+                                        referenceValue?: string | null | undefined;
+                                        source: "fundraiseRound" | "researchDetail";
+                                        sourceRef: string;
+                                    } | null | undefined;
+                                    disclosedStage?: string | null | undefined;
+                                    disclosedStageTransactionId?: string | null | undefined;
+                                    fundingRoundCount: number;
+                                    investorCount: number;
+                                    latestValuation?: number | null | undefined;
+                                    mostRecentAmount?: number | null | undefined;
+                                    mostRecentDate?: string | null | undefined;
+                                    stage?: string | null | undefined;
+                                    totalRaised: number;
+                                    totalRaisedAmountRoundCount?: number | null | undefined;
+                                    totalRaisedRoundCount?: number | null | undefined;
+                                    totalRaisedUsd?: number | null | undefined;
+                                    totalRaisedUsdRoundCount?: number | null | undefined;
+                                    unconvertedRoundCount: number;
+                                };
+                            }[] | undefined;
+                            empty?: boolean | undefined;
+                            first?: boolean | undefined;
+                            last?: boolean | undefined;
+                            number?: number | undefined;
+                            numberOfElements?: number | undefined;
+                            pageable?: {
+                                offset?: number | undefined;
+                                paged?: boolean | undefined;
+                                pageNumber?: number | undefined;
+                                pageSize?: number | undefined;
+                                sort?: {
+                                    empty?: boolean | undefined;
+                                    sorted?: boolean | undefined;
+                                    unsorted?: boolean | undefined;
+                                } | undefined;
+                                unpaged?: boolean | undefined;
+                            } | undefined;
+                            size?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            totalElements?: number | undefined;
+                            totalPages?: number | undefined;
+                        };
+                        recipientCount: number;
+                        sector: {
+                            content?: {
+                                industry: {
+                                    isCurrent?: boolean | null | undefined;
+                                    isPrimary?: boolean | null | undefined;
+                                    name: string;
+                                    registry: string;
+                                } & {
+                                    bucket?: string | null | undefined;
+                                    classificationId?: number | null | undefined;
+                                    createdAt?: string | null | undefined;
+                                    id: number;
+                                    isCurrent?: boolean | null | undefined;
+                                    isPrimary?: boolean | null | undefined;
+                                    name: string;
+                                    slug?: string | null | undefined;
+                                    type: string;
+                                    updatedAt?: string | null | undefined;
+                                };
+                                recipientCount: number;
+                            }[] | undefined;
+                            empty?: boolean | undefined;
+                            first?: boolean | undefined;
+                            last?: boolean | undefined;
+                            number?: number | undefined;
+                            numberOfElements?: number | undefined;
+                            pageable?: {
+                                offset?: number | undefined;
+                                paged?: boolean | undefined;
+                                pageNumber?: number | undefined;
+                                pageSize?: number | undefined;
+                                sort?: {
+                                    empty?: boolean | undefined;
+                                    sorted?: boolean | undefined;
+                                    unsorted?: boolean | undefined;
+                                } | undefined;
+                                unpaged?: boolean | undefined;
+                            } | undefined;
+                            size?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            totalElements?: number | undefined;
+                            totalPages?: number | undefined;
+                        };
+                        unknownSectorCount: number;
+                    } | null | undefined;
                     portfolioCompanyCount: number;
                     publicRecipientCount?: number | null | undefined;
                     smallestAmountInvestedUsd?: number | null | undefined;
@@ -7641,6 +8112,163 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     currentPortfolioCount: number;
                     largestAmountInvestedUsd?: number | null | undefined;
                     operatingRecipientCount?: number | null | undefined;
+                    portfolio?: {
+                        ambiguousSectorCount: number;
+                        classifiedRecipientCount: number;
+                        observedAt: string;
+                        outcome: string;
+                        rankableRecipientCount: number;
+                        recipient: {
+                            content?: {
+                                entity: {
+                                    defaultCurrency?: string | null | undefined;
+                                    foundedYear?: number | null | undefined;
+                                    id: string;
+                                    image: {
+                                        isMonogram: boolean;
+                                        logo?: string | null | undefined;
+                                        logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                    };
+                                    lastModifiedAt?: string | null | undefined;
+                                    nameAlias: {
+                                        displayable?: boolean | null | undefined;
+                                        name: string;
+                                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                    }[];
+                                    nameBrand: string;
+                                    nameLegal?: string | null | undefined;
+                                    operatingStatus?: string | null | undefined;
+                                    publicId?: string | null | undefined;
+                                    publicUrl?: string | null | undefined;
+                                    sitemap?: {
+                                        hasAcquisitions?: boolean | undefined;
+                                        hasAnalysis: boolean;
+                                        hasEmployees: boolean;
+                                        hasFundraising: boolean;
+                                        hasNews: boolean;
+                                        productServiceSlug: string[];
+                                    } | null | undefined;
+                                    slug: string;
+                                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                    updatedAt?: string | null | undefined;
+                                };
+                                funding: {
+                                    applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    currentValuation?: {
+                                        amount: string;
+                                        asOfDate?: string | null | undefined;
+                                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                        currency?: string | null | undefined;
+                                        postMoneyUsd?: string | null | undefined;
+                                        referenceValue?: string | null | undefined;
+                                        source: "fundraiseRound" | "researchDetail";
+                                        sourceRef: string;
+                                    } | null | undefined;
+                                    disclosedStage?: string | null | undefined;
+                                    disclosedStageTransactionId?: string | null | undefined;
+                                    fundingRoundCount: number;
+                                    investorCount: number;
+                                    latestValuation?: number | null | undefined;
+                                    mostRecentAmount?: number | null | undefined;
+                                    mostRecentDate?: string | null | undefined;
+                                    stage?: string | null | undefined;
+                                    totalRaised: number;
+                                    totalRaisedAmountRoundCount?: number | null | undefined;
+                                    totalRaisedRoundCount?: number | null | undefined;
+                                    totalRaisedUsd?: number | null | undefined;
+                                    totalRaisedUsdRoundCount?: number | null | undefined;
+                                    unconvertedRoundCount: number;
+                                };
+                            }[] | undefined;
+                            empty?: boolean | undefined;
+                            first?: boolean | undefined;
+                            last?: boolean | undefined;
+                            number?: number | undefined;
+                            numberOfElements?: number | undefined;
+                            pageable?: {
+                                offset?: number | undefined;
+                                paged?: boolean | undefined;
+                                pageNumber?: number | undefined;
+                                pageSize?: number | undefined;
+                                sort?: {
+                                    empty?: boolean | undefined;
+                                    sorted?: boolean | undefined;
+                                    unsorted?: boolean | undefined;
+                                } | undefined;
+                                unpaged?: boolean | undefined;
+                            } | undefined;
+                            size?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            totalElements?: number | undefined;
+                            totalPages?: number | undefined;
+                        };
+                        recipientCount: number;
+                        sector: {
+                            content?: {
+                                industry: {
+                                    isCurrent?: boolean | null | undefined;
+                                    isPrimary?: boolean | null | undefined;
+                                    name: string;
+                                    registry: string;
+                                } & {
+                                    bucket?: string | null | undefined;
+                                    classificationId?: number | null | undefined;
+                                    createdAt?: string | null | undefined;
+                                    id: number;
+                                    isCurrent?: boolean | null | undefined;
+                                    isPrimary?: boolean | null | undefined;
+                                    name: string;
+                                    slug?: string | null | undefined;
+                                    type: string;
+                                    updatedAt?: string | null | undefined;
+                                };
+                                recipientCount: number;
+                            }[] | undefined;
+                            empty?: boolean | undefined;
+                            first?: boolean | undefined;
+                            last?: boolean | undefined;
+                            number?: number | undefined;
+                            numberOfElements?: number | undefined;
+                            pageable?: {
+                                offset?: number | undefined;
+                                paged?: boolean | undefined;
+                                pageNumber?: number | undefined;
+                                pageSize?: number | undefined;
+                                sort?: {
+                                    empty?: boolean | undefined;
+                                    sorted?: boolean | undefined;
+                                    unsorted?: boolean | undefined;
+                                } | undefined;
+                                unpaged?: boolean | undefined;
+                            } | undefined;
+                            size?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            totalElements?: number | undefined;
+                            totalPages?: number | undefined;
+                        };
+                        unknownSectorCount: number;
+                    } | null | undefined;
                     portfolioCompanyCount: number;
                     publicRecipientCount?: number | null | undefined;
                     smallestAmountInvestedUsd?: number | null | undefined;
@@ -8199,7 +8827,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             round: string;
         }[];
         roundCount: number;
-    }, import("../entity/investor-participation.ts").EntityInvestorParticipationSchemaInput>>>>;
+    }, import("../entity/investor-participation.ts").EntityInvestorParticipationSchemaInput>>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -12282,6 +12910,308 @@ export interface PageHarnessRunSchemaInput extends z.input<typeof PageHarnessRun
  */
 export declare const PageHarnessRunSchema: z.ZodType<PageHarnessRunDefinition, PageHarnessRunSchemaInput>;
 export type PageHarnessRun = z.infer<typeof PageHarnessRunSchema>;
+declare const PageInvestorPortfolioRecipientSchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        entity: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        };
+        funding: {
+            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+            currency?: string | null | undefined;
+            currentValuation?: {
+                amount: string;
+                asOfDate?: string | null | undefined;
+                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                currency?: string | null | undefined;
+                postMoneyUsd?: string | null | undefined;
+                referenceValue?: string | null | undefined;
+                source: "fundraiseRound" | "researchDetail";
+                sourceRef: string;
+            } | null | undefined;
+            disclosedStage?: string | null | undefined;
+            disclosedStageTransactionId?: string | null | undefined;
+            fundingRoundCount: number;
+            investorCount: number;
+            latestValuation?: number | null | undefined;
+            mostRecentAmount?: number | null | undefined;
+            mostRecentDate?: string | null | undefined;
+            stage?: string | null | undefined;
+            totalRaised: number;
+            totalRaisedAmountRoundCount?: number | null | undefined;
+            totalRaisedRoundCount?: number | null | undefined;
+            totalRaisedUsd?: number | null | undefined;
+            totalRaisedUsdRoundCount?: number | null | undefined;
+            unconvertedRoundCount: number;
+        };
+    }, import("../investor/portfolio-recipient.ts").InvestorPortfolioRecipientSchemaInput, z.core.$ZodTypeInternals<{
+        entity: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        };
+        funding: {
+            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+            currency?: string | null | undefined;
+            currentValuation?: {
+                amount: string;
+                asOfDate?: string | null | undefined;
+                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                currency?: string | null | undefined;
+                postMoneyUsd?: string | null | undefined;
+                referenceValue?: string | null | undefined;
+                source: "fundraiseRound" | "researchDetail";
+                sourceRef: string;
+            } | null | undefined;
+            disclosedStage?: string | null | undefined;
+            disclosedStageTransactionId?: string | null | undefined;
+            fundingRoundCount: number;
+            investorCount: number;
+            latestValuation?: number | null | undefined;
+            mostRecentAmount?: number | null | undefined;
+            mostRecentDate?: string | null | undefined;
+            stage?: string | null | undefined;
+            totalRaised: number;
+            totalRaisedAmountRoundCount?: number | null | undefined;
+            totalRaisedRoundCount?: number | null | undefined;
+            totalRaisedUsd?: number | null | undefined;
+            totalRaisedUsdRoundCount?: number | null | undefined;
+            unconvertedRoundCount: number;
+        };
+    }, import("../investor/portfolio-recipient.ts").InvestorPortfolioRecipientSchemaInput>>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
+}, z.core.$strip>;
+type PageInvestorPortfolioRecipientDefinition = z.infer<typeof PageInvestorPortfolioRecipientSchemaDefinition>;
+export interface PageInvestorPortfolioRecipientSchemaInput extends z.input<typeof PageInvestorPortfolioRecipientSchemaDefinition> {
+}
+/**
+ * @openapiSchema PageInvestorPortfolioRecipient
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
+ * @endpoint GET /v1/entities/{entityId}/person-investors
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/investor-activity
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema InvestorPortfolioSchema
+ * @contractShape pagination.page-investor-portfolio-recipient
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export declare const PageInvestorPortfolioRecipientSchema: z.ZodType<PageInvestorPortfolioRecipientDefinition, PageInvestorPortfolioRecipientSchemaInput>;
+export type PageInvestorPortfolioRecipient = z.infer<typeof PageInvestorPortfolioRecipientSchema>;
+declare const PageInvestorPortfolioSectorSchemaDefinition: z.ZodObject<{
+    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        industry: {
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            registry: string;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+        };
+        recipientCount: number;
+    }, import("../investor/portfolio-sector.ts").InvestorPortfolioSectorSchemaInput, z.core.$ZodTypeInternals<{
+        industry: {
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            registry: string;
+        } & {
+            bucket?: string | null | undefined;
+            classificationId?: number | null | undefined;
+            createdAt?: string | null | undefined;
+            id: number;
+            isCurrent?: boolean | null | undefined;
+            isPrimary?: boolean | null | undefined;
+            name: string;
+            slug?: string | null | undefined;
+            type: string;
+            updatedAt?: string | null | undefined;
+        };
+        recipientCount: number;
+    }, import("../investor/portfolio-sector.ts").InvestorPortfolioSectorSchemaInput>>>>;
+    empty: z.ZodOptional<z.ZodBoolean>;
+    first: z.ZodOptional<z.ZodBoolean>;
+    last: z.ZodOptional<z.ZodBoolean>;
+    number: z.ZodOptional<z.ZodInt>;
+    numberOfElements: z.ZodOptional<z.ZodInt>;
+    pageable: z.ZodOptional<z.ZodObject<{
+        offset: z.ZodOptional<z.ZodNumber>;
+        paged: z.ZodOptional<z.ZodBoolean>;
+        pageNumber: z.ZodOptional<z.ZodInt>;
+        pageSize: z.ZodOptional<z.ZodInt>;
+        sort: z.ZodOptional<z.ZodObject<{
+            empty: z.ZodOptional<z.ZodBoolean>;
+            sorted: z.ZodOptional<z.ZodBoolean>;
+            unsorted: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        unpaged: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    size: z.ZodOptional<z.ZodInt>;
+    sort: z.ZodOptional<z.ZodObject<{
+        empty: z.ZodOptional<z.ZodBoolean>;
+        sorted: z.ZodOptional<z.ZodBoolean>;
+        unsorted: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+    totalElements: z.ZodOptional<z.ZodNumber>;
+    totalPages: z.ZodOptional<z.ZodInt>;
+}, z.core.$strip>;
+type PageInvestorPortfolioSectorDefinition = z.infer<typeof PageInvestorPortfolioSectorSchemaDefinition>;
+export interface PageInvestorPortfolioSectorSchemaInput extends z.input<typeof PageInvestorPortfolioSectorSchemaDefinition> {
+}
+/**
+ * @openapiSchema PageInvestorPortfolioSector
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
+ * @endpoint GET /v1/entities/{entityId}/person-investors
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/investor-activity
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema InvestorPortfolioSchema
+ * @contractShape pagination.page-investor-portfolio-sector
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export declare const PageInvestorPortfolioSectorSchema: z.ZodType<PageInvestorPortfolioSectorDefinition, PageInvestorPortfolioSectorSchemaInput>;
+export type PageInvestorPortfolioSector = z.infer<typeof PageInvestorPortfolioSectorSchema>;
 declare const PageNewsSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         author: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -12518,7 +13448,7 @@ export interface PagePersonSchemaInput extends z.input<typeof PagePersonSchemaDe
 export declare const PagePersonSchema: z.ZodType<PagePersonDefinition, PagePersonSchemaInput>;
 export type PagePerson = z.infer<typeof PagePersonSchema>;
 declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+    content: z.ZodOptional<z.ZodArray<z.ZodLazy<z.ZodType<{
         articleCount?: number | null | undefined;
         association: {
             associationId: number;
@@ -13279,6 +14209,163 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             currentPortfolioCount: number;
             largestAmountInvestedUsd?: number | null | undefined;
             operatingRecipientCount?: number | null | undefined;
+            portfolio?: {
+                ambiguousSectorCount: number;
+                classifiedRecipientCount: number;
+                observedAt: string;
+                outcome: string;
+                rankableRecipientCount: number;
+                recipient: {
+                    content?: {
+                        entity: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        };
+                        funding: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                            currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
+                            fundingRoundCount: number;
+                            investorCount: number;
+                            latestValuation?: number | null | undefined;
+                            mostRecentAmount?: number | null | undefined;
+                            mostRecentDate?: string | null | undefined;
+                            stage?: string | null | undefined;
+                            totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
+                            totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
+                            unconvertedRoundCount: number;
+                        };
+                    }[] | undefined;
+                    empty?: boolean | undefined;
+                    first?: boolean | undefined;
+                    last?: boolean | undefined;
+                    number?: number | undefined;
+                    numberOfElements?: number | undefined;
+                    pageable?: {
+                        offset?: number | undefined;
+                        paged?: boolean | undefined;
+                        pageNumber?: number | undefined;
+                        pageSize?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        unpaged?: boolean | undefined;
+                    } | undefined;
+                    size?: number | undefined;
+                    sort?: {
+                        empty?: boolean | undefined;
+                        sorted?: boolean | undefined;
+                        unsorted?: boolean | undefined;
+                    } | undefined;
+                    totalElements?: number | undefined;
+                    totalPages?: number | undefined;
+                };
+                recipientCount: number;
+                sector: {
+                    content?: {
+                        industry: {
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        };
+                        recipientCount: number;
+                    }[] | undefined;
+                    empty?: boolean | undefined;
+                    first?: boolean | undefined;
+                    last?: boolean | undefined;
+                    number?: number | undefined;
+                    numberOfElements?: number | undefined;
+                    pageable?: {
+                        offset?: number | undefined;
+                        paged?: boolean | undefined;
+                        pageNumber?: number | undefined;
+                        pageSize?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        unpaged?: boolean | undefined;
+                    } | undefined;
+                    size?: number | undefined;
+                    sort?: {
+                        empty?: boolean | undefined;
+                        sorted?: boolean | undefined;
+                        unsorted?: boolean | undefined;
+                    } | undefined;
+                    totalElements?: number | undefined;
+                    totalPages?: number | undefined;
+                };
+                unknownSectorCount: number;
+            } | null | undefined;
             portfolioCompanyCount: number;
             publicRecipientCount?: number | null | undefined;
             smallestAmountInvestedUsd?: number | null | undefined;
@@ -14280,6 +15367,163 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
             currentPortfolioCount: number;
             largestAmountInvestedUsd?: number | null | undefined;
             operatingRecipientCount?: number | null | undefined;
+            portfolio?: {
+                ambiguousSectorCount: number;
+                classifiedRecipientCount: number;
+                observedAt: string;
+                outcome: string;
+                rankableRecipientCount: number;
+                recipient: {
+                    content?: {
+                        entity: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        };
+                        funding: {
+                            applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                            currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
+                            fundingRoundCount: number;
+                            investorCount: number;
+                            latestValuation?: number | null | undefined;
+                            mostRecentAmount?: number | null | undefined;
+                            mostRecentDate?: string | null | undefined;
+                            stage?: string | null | undefined;
+                            totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
+                            totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
+                            unconvertedRoundCount: number;
+                        };
+                    }[] | undefined;
+                    empty?: boolean | undefined;
+                    first?: boolean | undefined;
+                    last?: boolean | undefined;
+                    number?: number | undefined;
+                    numberOfElements?: number | undefined;
+                    pageable?: {
+                        offset?: number | undefined;
+                        paged?: boolean | undefined;
+                        pageNumber?: number | undefined;
+                        pageSize?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        unpaged?: boolean | undefined;
+                    } | undefined;
+                    size?: number | undefined;
+                    sort?: {
+                        empty?: boolean | undefined;
+                        sorted?: boolean | undefined;
+                        unsorted?: boolean | undefined;
+                    } | undefined;
+                    totalElements?: number | undefined;
+                    totalPages?: number | undefined;
+                };
+                recipientCount: number;
+                sector: {
+                    content?: {
+                        industry: {
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        };
+                        recipientCount: number;
+                    }[] | undefined;
+                    empty?: boolean | undefined;
+                    first?: boolean | undefined;
+                    last?: boolean | undefined;
+                    number?: number | undefined;
+                    numberOfElements?: number | undefined;
+                    pageable?: {
+                        offset?: number | undefined;
+                        paged?: boolean | undefined;
+                        pageNumber?: number | undefined;
+                        pageSize?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        unpaged?: boolean | undefined;
+                    } | undefined;
+                    size?: number | undefined;
+                    sort?: {
+                        empty?: boolean | undefined;
+                        sorted?: boolean | undefined;
+                        unsorted?: boolean | undefined;
+                    } | undefined;
+                    totalElements?: number | undefined;
+                    totalPages?: number | undefined;
+                };
+                unknownSectorCount: number;
+            } | null | undefined;
             portfolioCompanyCount: number;
             publicRecipientCount?: number | null | undefined;
             smallestAmountInvestedUsd?: number | null | undefined;
@@ -14520,7 +15764,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 sharedSectionCount?: number | null | undefined;
             };
         }[] | null | undefined;
-    }, import("../person/detail.ts").PersonDetailSchemaInput>>>>;
+    }, import("../person/detail.ts").PersonDetailSchemaInput>>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;
@@ -14794,7 +16038,7 @@ export interface PagePersonInvestmentSchemaInput extends z.input<typeof PagePers
 export declare const PagePersonInvestmentSchema: z.ZodType<PagePersonInvestmentDefinition, PagePersonInvestmentSchemaInput>;
 export type PagePersonInvestment = z.infer<typeof PagePersonInvestmentSchema>;
 declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
-    content: z.ZodOptional<z.ZodArray<z.ZodType<{
+    content: z.ZodOptional<z.ZodArray<z.ZodLazy<z.ZodType<{
         investorAttribution: {
             amountInvested?: number | null | undefined;
             attributionType: "direct" | "managedFund";
@@ -15569,6 +16813,163 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 currentPortfolioCount: number;
                 largestAmountInvestedUsd?: number | null | undefined;
                 operatingRecipientCount?: number | null | undefined;
+                portfolio?: {
+                    ambiguousSectorCount: number;
+                    classifiedRecipientCount: number;
+                    observedAt: string;
+                    outcome: string;
+                    rankableRecipientCount: number;
+                    recipient: {
+                        content?: {
+                            entity: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            funding: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                                currency?: string | null | undefined;
+                                currentValuation?: {
+                                    amount: string;
+                                    asOfDate?: string | null | undefined;
+                                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    postMoneyUsd?: string | null | undefined;
+                                    referenceValue?: string | null | undefined;
+                                    source: "fundraiseRound" | "researchDetail";
+                                    sourceRef: string;
+                                } | null | undefined;
+                                disclosedStage?: string | null | undefined;
+                                disclosedStageTransactionId?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: string | null | undefined;
+                                totalRaised: number;
+                                totalRaisedAmountRoundCount?: number | null | undefined;
+                                totalRaisedRoundCount?: number | null | undefined;
+                                totalRaisedUsd?: number | null | undefined;
+                                totalRaisedUsdRoundCount?: number | null | undefined;
+                                unconvertedRoundCount: number;
+                            };
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    recipientCount: number;
+                    sector: {
+                        content?: {
+                            industry: {
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                registry: string;
+                            } & {
+                                bucket?: string | null | undefined;
+                                classificationId?: number | null | undefined;
+                                createdAt?: string | null | undefined;
+                                id: number;
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                slug?: string | null | undefined;
+                                type: string;
+                                updatedAt?: string | null | undefined;
+                            };
+                            recipientCount: number;
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    unknownSectorCount: number;
+                } | null | undefined;
                 portfolioCompanyCount: number;
                 publicRecipientCount?: number | null | undefined;
                 smallestAmountInvestedUsd?: number | null | undefined;
@@ -16589,6 +17990,163 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                 currentPortfolioCount: number;
                 largestAmountInvestedUsd?: number | null | undefined;
                 operatingRecipientCount?: number | null | undefined;
+                portfolio?: {
+                    ambiguousSectorCount: number;
+                    classifiedRecipientCount: number;
+                    observedAt: string;
+                    outcome: string;
+                    rankableRecipientCount: number;
+                    recipient: {
+                        content?: {
+                            entity: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            };
+                            funding: {
+                                applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
+                                currency?: string | null | undefined;
+                                currentValuation?: {
+                                    amount: string;
+                                    asOfDate?: string | null | undefined;
+                                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    postMoneyUsd?: string | null | undefined;
+                                    referenceValue?: string | null | undefined;
+                                    source: "fundraiseRound" | "researchDetail";
+                                    sourceRef: string;
+                                } | null | undefined;
+                                disclosedStage?: string | null | undefined;
+                                disclosedStageTransactionId?: string | null | undefined;
+                                fundingRoundCount: number;
+                                investorCount: number;
+                                latestValuation?: number | null | undefined;
+                                mostRecentAmount?: number | null | undefined;
+                                mostRecentDate?: string | null | undefined;
+                                stage?: string | null | undefined;
+                                totalRaised: number;
+                                totalRaisedAmountRoundCount?: number | null | undefined;
+                                totalRaisedRoundCount?: number | null | undefined;
+                                totalRaisedUsd?: number | null | undefined;
+                                totalRaisedUsdRoundCount?: number | null | undefined;
+                                unconvertedRoundCount: number;
+                            };
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    recipientCount: number;
+                    sector: {
+                        content?: {
+                            industry: {
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                registry: string;
+                            } & {
+                                bucket?: string | null | undefined;
+                                classificationId?: number | null | undefined;
+                                createdAt?: string | null | undefined;
+                                id: number;
+                                isCurrent?: boolean | null | undefined;
+                                isPrimary?: boolean | null | undefined;
+                                name: string;
+                                slug?: string | null | undefined;
+                                type: string;
+                                updatedAt?: string | null | undefined;
+                            };
+                            recipientCount: number;
+                        }[] | undefined;
+                        empty?: boolean | undefined;
+                        first?: boolean | undefined;
+                        last?: boolean | undefined;
+                        number?: number | undefined;
+                        numberOfElements?: number | undefined;
+                        pageable?: {
+                            offset?: number | undefined;
+                            paged?: boolean | undefined;
+                            pageNumber?: number | undefined;
+                            pageSize?: number | undefined;
+                            sort?: {
+                                empty?: boolean | undefined;
+                                sorted?: boolean | undefined;
+                                unsorted?: boolean | undefined;
+                            } | undefined;
+                            unpaged?: boolean | undefined;
+                        } | undefined;
+                        size?: number | undefined;
+                        sort?: {
+                            empty?: boolean | undefined;
+                            sorted?: boolean | undefined;
+                            unsorted?: boolean | undefined;
+                        } | undefined;
+                        totalElements?: number | undefined;
+                        totalPages?: number | undefined;
+                    };
+                    unknownSectorCount: number;
+                } | null | undefined;
                 portfolioCompanyCount: number;
                 publicRecipientCount?: number | null | undefined;
                 smallestAmountInvestedUsd?: number | null | undefined;
@@ -16834,7 +18392,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
             round: string;
         }[];
         roundCount: number;
-    }, import("../person/investor-participation.ts").PersonInvestorParticipationSchemaInput>>>>;
+    }, import("../person/investor-participation.ts").PersonInvestorParticipationSchemaInput>>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;
     last: z.ZodOptional<z.ZodBoolean>;

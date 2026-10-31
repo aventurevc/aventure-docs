@@ -10,15 +10,21 @@ import { ClassificationSchema } from "../classification/classification.js";
  * @endpoint GET /v1/entities/classifications/catalog
  * @endpoint GET /v1/entities/classifications/tags
  * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/classifications
  * @endpoint GET /v1/entities/{entityId}/classifications/suggestions
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
+ * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
@@ -27,12 +33,14 @@ import { ClassificationSchema } from "../classification/classification.js";
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
+ * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared
  * @usedBySchema ClassificationCatalogBucketSchema
  * @usedBySchema EntityClassificationSchema
  * @usedBySchema EntityClassificationSuggestionSchema
+ * @usedBySchema InvestorPortfolioSectorSchema
  * @usedBySchema PageClassificationSchema
  * @contractShape entity.tag
  * @contractRole canonical

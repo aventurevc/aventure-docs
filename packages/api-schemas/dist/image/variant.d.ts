@@ -24,6 +24,7 @@ export interface ImageVariantSchemaInput extends z.input<typeof ImageVariantSche
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
@@ -43,6 +44,7 @@ export interface ImageVariantSchemaInput extends z.input<typeof ImageVariantSche
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/investments
+ * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/people/{personId}/similar
  * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}

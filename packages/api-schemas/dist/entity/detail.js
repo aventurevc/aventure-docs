@@ -1,4 +1,5 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+// oxlint-disable import/no-cycle -- Generated recursive module references are deferred with z.lazy.
 import { z } from "zod/v4";
 import { EntityEnrichmentSchema } from "./enrichment.js";
 import { EntitySchema } from "./entity.js";
@@ -46,7 +47,7 @@ export const EntityDetailSchema = z.object({
     /** News articles associated with this entity; full-detail search carries the first few, and GET /v1/news?owner.entityId={entityId} lists them all. Articles whose headline names the entity (brand or alias) and were published within a recent window lead, then newest first; explicit sorts and text search on the list are unchanged. When an indexed article reports a newer funding round, role, or milestone not yet reflected in structured fields, report both and offer to request an update on the record. */
     newsArticle: z.array(NewsSchema),
     /** People associated with this entity; full-detail search carries the first few, and GET /v1/entities/{entityId}/people lists them all. */
-    person: z.array(PersonDetailSchema),
+    person: z.array(z.lazy(() => PersonDetailSchema)),
     /** Derived profile status; read-only. */
     profileStatus: EntityProfileStatusSchema.optional(),
     /** Fund manager firm or product/service provider; null otherwise. */

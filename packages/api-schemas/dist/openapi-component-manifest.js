@@ -761,6 +761,19 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "investor/name-match-mode",
         schemaName: "InvestorNameMatchModeSchema",
     },
+    InvestorPortfolio: { modulePath: "investor/portfolio", schemaName: "InvestorPortfolioSchema" },
+    InvestorPortfolioOutcome: {
+        modulePath: "investor/portfolio-outcome",
+        schemaName: "InvestorPortfolioOutcomeSchema",
+    },
+    InvestorPortfolioRecipient: {
+        modulePath: "investor/portfolio-recipient",
+        schemaName: "InvestorPortfolioRecipientSchema",
+    },
+    InvestorPortfolioSector: {
+        modulePath: "investor/portfolio-sector",
+        schemaName: "InvestorPortfolioSectorSchema",
+    },
     JobEnqueue: { modulePath: "job/enqueue", schemaName: "JobEnqueueSchema" },
     JobState: { modulePath: "job/state", schemaName: "JobStateSchema" },
     JsonValue: { modulePath: "http/json-value", schemaName: "JsonValueSchema" },
@@ -929,6 +942,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     PageGithubRepo: { modulePath: "pagination/schemas", schemaName: "PageGithubRepoSchema" },
     PageHarnessRun: { modulePath: "pagination/schemas", schemaName: "PageHarnessRunSchema" },
+    PageInvestorPortfolioRecipient: {
+        modulePath: "pagination/schemas",
+        schemaName: "PageInvestorPortfolioRecipientSchema",
+    },
+    PageInvestorPortfolioSector: {
+        modulePath: "pagination/schemas",
+        schemaName: "PageInvestorPortfolioSectorSchema",
+    },
     PageNews: { modulePath: "pagination/schemas", schemaName: "PageNewsSchema" },
     PagePerson: { modulePath: "pagination/schemas", schemaName: "PagePersonSchema" },
     PagePersonDetail: { modulePath: "pagination/schemas", schemaName: "PagePersonDetailSchema" },

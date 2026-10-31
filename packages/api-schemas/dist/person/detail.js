@@ -1,4 +1,5 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+// oxlint-disable import/no-cycle -- Generated recursive module references are deferred with z.lazy.
 import { z } from "zod/v4";
 import { BlogPostSchema } from "../blog/post.js";
 import { EntityFundraiseInvestorActivitySchema } from "../entity/fundraise-investor-activity.js";
@@ -24,7 +25,7 @@ const PersonDetailSchemaDefinition = z.object({
     /** Investments associated with this person. When include names investment, these are newest first, the same rows as GET /v1/people/{personId}/investments?sort=date,desc&size=200 page 0: fewer than 200 rows is the whole list, otherwise continue at page=1 with the same sort and size. */
     investment: z.array(PersonInvestmentSchema),
     /** Investor activity rollup; present only when include names investorActivity */
-    investorActivity: EntityFundraiseInvestorActivitySchema.nullish(),
+    investorActivity: z.lazy(() => EntityFundraiseInvestorActivitySchema).nullish(),
     /** Display and search aliases for this person */
     nameAlias: z.array(EntityNameAliasPersonAliasTypeSchema),
     /** Most similar people, highest score first; present only when include names similar */

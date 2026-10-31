@@ -1,4 +1,5 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
+// oxlint-disable import/no-cycle -- Generated recursive module references are deferred with z.lazy.
 import { z } from "zod/v4";
 import { BlogPostSchema } from "../blog/post.js";
 import { EmployeeCountSchema } from "../employee/count.js";
@@ -21,6 +22,8 @@ import { EntityUrlLinkSchema } from "../entity/url-link.js";
 import { EntityValuationTimeSeriesPointSchema } from "../entity/valuation-time-series-point.js";
 import { GithubRepoSchema } from "../github/repo.js";
 import { HarnessRunSchema } from "../harness/run.js";
+import { InvestorPortfolioRecipientSchema } from "../investor/portfolio-recipient.js";
+import { InvestorPortfolioSectorSchema } from "../investor/portfolio-sector.js";
 import { NewsSchema } from "../news/news.js";
 import { PageableObjectSchema } from "../pageable/object.js";
 import { PersonDetailSchema } from "../person/detail.js";
@@ -139,7 +142,7 @@ const PageEntityAcquisitionSchemaDefinition = z.object({
  */
 export const PageEntityAcquisitionSchema = PageEntityAcquisitionSchemaDefinition;
 const PageEntityDetailSchemaDefinition = z.object({
-    content: z.array(EntityDetailSchema).optional(),
+    content: z.array(z.lazy(() => EntityDetailSchema)).optional(),
     empty: z.boolean().optional(),
     first: z.boolean().optional(),
     last: z.boolean().optional(),
@@ -204,7 +207,7 @@ const PageEntityFundraiseTransactionSchemaDefinition = z.object({
  */
 export const PageEntityFundraiseTransactionSchema = PageEntityFundraiseTransactionSchemaDefinition;
 const PageEntityInvestorParticipationSchemaDefinition = z.object({
-    content: z.array(EntityInvestorParticipationSchema).optional(),
+    content: z.array(z.lazy(() => EntityInvestorParticipationSchema)).optional(),
     empty: z.boolean().optional(),
     first: z.boolean().optional(),
     last: z.boolean().optional(),
@@ -483,6 +486,86 @@ const PageHarnessRunSchemaDefinition = z.object({
  * @ownerModule pagination/schemas.ts
  */
 export const PageHarnessRunSchema = PageHarnessRunSchemaDefinition;
+const PageInvestorPortfolioRecipientSchemaDefinition = z.object({
+    content: z.array(InvestorPortfolioRecipientSchema).optional(),
+    empty: z.boolean().optional(),
+    first: z.boolean().optional(),
+    last: z.boolean().optional(),
+    number: z.int().optional(),
+    numberOfElements: z.int().optional(),
+    pageable: PageableObjectSchema.optional(),
+    size: z.int().optional(),
+    sort: SortObjectSchema.optional(),
+    totalElements: z.number().int().optional(),
+    totalPages: z.int().optional(),
+});
+/**
+ * @openapiSchema PageInvestorPortfolioRecipient
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
+ * @endpoint GET /v1/entities/{entityId}/person-investors
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/investor-activity
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema InvestorPortfolioSchema
+ * @contractShape pagination.page-investor-portfolio-recipient
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export const PageInvestorPortfolioRecipientSchema = PageInvestorPortfolioRecipientSchemaDefinition;
+const PageInvestorPortfolioSectorSchemaDefinition = z.object({
+    content: z.array(InvestorPortfolioSectorSchema).optional(),
+    empty: z.boolean().optional(),
+    first: z.boolean().optional(),
+    last: z.boolean().optional(),
+    number: z.int().optional(),
+    numberOfElements: z.int().optional(),
+    pageable: PageableObjectSchema.optional(),
+    size: z.int().optional(),
+    sort: SortObjectSchema.optional(),
+    totalElements: z.number().int().optional(),
+    totalPages: z.int().optional(),
+});
+/**
+ * @openapiSchema PageInvestorPortfolioSector
+ * @endpoint GET /v1/entities/lookup-exact
+ * @endpoint GET /v1/people/lookup-exact
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
+ * @endpoint GET /v1/entities/{entityId}/investors
+ * @endpoint GET /v1/entities/{entityId}/investors/people
+ * @endpoint GET /v1/entities/{entityId}/person-investors
+ * @endpoint GET /v1/people/{personId}
+ * @endpoint GET /v1/people/{personId}/investor-activity
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/people/lookup-batch
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema InvestorPortfolioSchema
+ * @contractShape pagination.page-investor-portfolio-sector
+ * @contractRole canonical
+ * @ownerModule pagination/schemas.ts
+ */
+export const PageInvestorPortfolioSectorSchema = PageInvestorPortfolioSectorSchemaDefinition;
 const PageNewsSchemaDefinition = z.object({
     content: z.array(NewsSchema).optional(),
     empty: z.boolean().optional(),
@@ -528,7 +611,7 @@ const PagePersonSchemaDefinition = z.object({
  */
 export const PagePersonSchema = PagePersonSchemaDefinition;
 const PagePersonDetailSchemaDefinition = z.object({
-    content: z.array(PersonDetailSchema).optional(),
+    content: z.array(z.lazy(() => PersonDetailSchema)).optional(),
     empty: z.boolean().optional(),
     first: z.boolean().optional(),
     last: z.boolean().optional(),
@@ -570,7 +653,7 @@ const PagePersonInvestmentSchemaDefinition = z.object({
  */
 export const PagePersonInvestmentSchema = PagePersonInvestmentSchemaDefinition;
 const PagePersonInvestorParticipationSchemaDefinition = z.object({
-    content: z.array(PersonInvestorParticipationSchema).optional(),
+    content: z.array(z.lazy(() => PersonInvestorParticipationSchema)).optional(),
     empty: z.boolean().optional(),
     first: z.boolean().optional(),
     last: z.boolean().optional(),

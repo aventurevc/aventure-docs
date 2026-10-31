@@ -19,6 +19,7 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
+ * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
@@ -34,6 +35,7 @@ import { EntityTypeSchema } from "./type.js";
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/investments
+ * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -59,6 +61,7 @@ import { EntityTypeSchema } from "./type.js";
  * @usedBySchema EntityRelationshipSchema
  * @usedBySchema EntitySimilaritySummarySchema
  * @usedBySchema HarnessRunDetailSchema
+ * @usedBySchema InvestorPortfolioRecipientSchema
  * @usedBySchema PageEntitySchema
  * @usedBySchema PersonGraphCoInvestorSchema
  * @usedBySchema PersonInvestedCompanySchema
