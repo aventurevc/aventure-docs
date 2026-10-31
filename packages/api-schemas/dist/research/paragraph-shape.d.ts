@@ -13,6 +13,7 @@ import { z } from "zod/v4";
  */
 export declare const ResearchParagraphShapeSchema: z.ZodObject<{
     maxChars: z.ZodInt;
+    maxClaimWords: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     maxParagraphs: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     maxSentences: z.ZodInt;
     minChars: z.ZodInt;

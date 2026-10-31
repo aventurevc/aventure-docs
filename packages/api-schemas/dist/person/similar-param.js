@@ -16,6 +16,6 @@ export const PersonSimilarParamSchema = z.object({
     /** Permit monogram fallback */
     permitMonogram: z.boolean().optional(),
     /** The size of the page to be returned */
-    size: z.int().min(1).default(10).optional(),
+    size: z.int().min(1).default(20).optional(),
 });
 //# sourceMappingURL=similar-param.js.map

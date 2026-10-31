@@ -39,9 +39,9 @@
     {
       "name": "customer-analysis",
       "type": "archive",
-      "description": "Use only when asked who a company or product sells to, who its customers or buyers are, or why they buy: named customer accounts verified from public evidence, the roles and personas who buy and use inside them, the use case and trigger behind each purchase, and a ranking by purchase urgency, frequency, and spend.",
+      "description": "Identifies a company's customers from public evidence. Use for who buys or uses a product, current adoption, named accounts, buying roles and motives, and evidence-backed purchase rankings.",
       "url": "/.well-known/agent-skills/customer-analysis.tgz",
-      "digest": "sha256:bc835054d4526b45b1725f9003345fbce0b83846e57a4f6a02506b7754497bc5"
+      "digest": "sha256:dcd90e4a80b0ae34b97725bc4b6d83f541c1fde00560f127797e692fe1105235"
     },
     {
       "name": "fundraising-environment",

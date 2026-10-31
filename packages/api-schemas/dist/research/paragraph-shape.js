@@ -15,6 +15,8 @@ import { z } from "zod/v4";
 export const ResearchParagraphShapeSchema = z.object({
     /** Maximum characters per paragraph (inclusive). */
     maxChars: z.int(),
+    /** Maximum words across the statements of the claims one planned writer paragraph states (paragraph.claim); null means unbounded. */
+    maxClaimWords: z.int().nullish(),
     /** Maximum paragraph count (inclusive); null means unbounded. */
     maxParagraphs: z.int().nullish(),
     /** Maximum sentences per paragraph (inclusive). */

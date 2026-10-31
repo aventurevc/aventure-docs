@@ -5,6 +5,7 @@ declare const TextTypeOptionSchemaDefinition: z.ZodObject<{
     minWords: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     paragraphShape: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         maxChars: z.ZodInt;
+        maxClaimWords: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         maxParagraphs: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
         maxSentences: z.ZodInt;
         minChars: z.ZodInt;
