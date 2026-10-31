@@ -64,6 +64,18 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -71,7 +83,10 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
@@ -210,6 +225,18 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -217,7 +244,10 @@ declare const SearchInvestmentSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;

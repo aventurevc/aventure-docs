@@ -8,8 +8,11 @@ declare const EntityResearchFactValueSchemaDefinition: z.ZodObject<{
         medium: "medium";
     }>>>;
     dateValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    decimalValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    measurementBasis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     numericValue: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     referenceValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    reportingScope: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     textValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

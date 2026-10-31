@@ -40,8 +40,11 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             currentEligible?: boolean | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
+            decimalValue?: string | null | undefined;
+            measurementBasis?: string | null | undefined;
             numericValue?: number | null | undefined;
             referenceValue?: string | null | undefined;
+            reportingScope?: string | null | undefined;
             source?: string | null | undefined;
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
@@ -51,8 +54,11 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             currentEligible?: boolean | null | undefined;
             dataConfidence?: "high" | "low" | "medium" | null | undefined;
             dateValue?: string | null | undefined;
+            decimalValue?: string | null | undefined;
+            measurementBasis?: string | null | undefined;
             numericValue?: number | null | undefined;
             referenceValue?: string | null | undefined;
+            reportingScope?: string | null | undefined;
             source?: string | null | undefined;
             textValue?: string | null | undefined;
             updatedAt?: string | null | undefined;
@@ -141,6 +147,25 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 UNKNOWN: "UNKNOWN";
             }>>>;
             currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            currentValuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                amount: z.ZodString;
+                asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                basis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                    postMoney: "postMoney";
+                    preMoney: "preMoney";
+                    reported: "reported";
+                }>>>;
+                currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                postMoneyUsd: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                referenceValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+                source: z.ZodEnum<{
+                    fundraiseRound: "fundraiseRound";
+                    researchDetail: "researchDetail";
+                }>;
+                sourceRef: z.ZodString;
+            }, z.core.$strip>>>;
+            disclosedStage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            disclosedStageTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
             fundingRoundCount: z.ZodInt;
             investorCount: z.ZodInt;
             latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -228,7 +253,10 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 };
             }>>;
             totalRaised: z.ZodNumber;
+            totalRaisedAmountRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            totalRaisedRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+            totalRaisedUsdRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
             unconvertedRoundCount: z.ZodInt;
         }, z.core.$strip>>>;
     }, z.core.$strip>;
@@ -391,6 +419,18 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             fundingDetail?: {
                 applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
+                currentValuation?: {
+                    amount: string;
+                    asOfDate?: string | null | undefined;
+                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                    currency?: string | null | undefined;
+                    postMoneyUsd?: string | null | undefined;
+                    referenceValue?: string | null | undefined;
+                    source: "fundraiseRound" | "researchDetail";
+                    sourceRef: string;
+                } | null | undefined;
+                disclosedStage?: string | null | undefined;
+                disclosedStageTransactionId?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -398,7 +438,10 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedAmountRoundCount?: number | null | undefined;
+                totalRaisedRoundCount?: number | null | undefined;
                 totalRaisedUsd?: number | null | undefined;
+                totalRaisedUsdRoundCount?: number | null | undefined;
                 unconvertedRoundCount: number;
             } | null | undefined;
         };
@@ -468,6 +511,18 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
             fundingDetail?: {
                 applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
+                currentValuation?: {
+                    amount: string;
+                    asOfDate?: string | null | undefined;
+                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                    currency?: string | null | undefined;
+                    postMoneyUsd?: string | null | undefined;
+                    referenceValue?: string | null | undefined;
+                    source: "fundraiseRound" | "researchDetail";
+                    sourceRef: string;
+                } | null | undefined;
+                disclosedStage?: string | null | undefined;
+                disclosedStageTransactionId?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -475,7 +530,10 @@ declare const PersonGraphCareerContextSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedAmountRoundCount?: number | null | undefined;
+                totalRaisedRoundCount?: number | null | undefined;
                 totalRaisedUsd?: number | null | undefined;
+                totalRaisedUsdRoundCount?: number | null | undefined;
                 unconvertedRoundCount: number;
             } | null | undefined;
         };

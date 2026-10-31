@@ -8,6 +8,7 @@ declare const EntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
         medium: "medium";
     }>;
     currency: z.ZodString;
+    decimalValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     declaredBasis: z.ZodEnum<{
         postMoney: "postMoney";
         preMoney: "preMoney";
@@ -21,6 +22,8 @@ declare const EntityValuationTimeSeriesPointSchemaDefinition: z.ZodObject<{
     }>;
     detailId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     label: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    measurementBasis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    reportingScope: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     source: z.ZodEnum<{
         fundraiseRound: "fundraiseRound";
         researchDetail: "researchDetail";

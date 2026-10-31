@@ -106,6 +106,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
     detail: z.ZodArray<z.ZodType<{
         asOfDate?: string | null | undefined;
         currentEligible?: boolean | null | undefined;
+        decimalValue?: string | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -115,12 +116,14 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
+        measurementBasis?: string | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;
             recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
+        reportingScope?: string | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;
@@ -129,6 +132,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
     }, import("./research-detail.ts").EntityResearchDetailSchemaInput, z.core.$ZodTypeInternals<{
         asOfDate?: string | null | undefined;
         currentEligible?: boolean | null | undefined;
+        decimalValue?: string | null | undefined;
         derivedRange?: {
             asOfDate: string;
             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -138,12 +142,14 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         discreteValue?: number | null | undefined;
         entityId: string;
         id: number;
+        measurementBasis?: string | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;
             recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
+        reportingScope?: string | null | undefined;
         textValue?: string | null | undefined;
         typeResearchDetail: string;
         updatedAt?: string | null | undefined;

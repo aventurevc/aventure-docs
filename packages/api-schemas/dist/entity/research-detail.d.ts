@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     currentEligible: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    decimalValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     derivedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         asOfDate: z.ZodString;
         bucket: z.ZodEnum<{
@@ -18,12 +19,14 @@ declare const EntityResearchDetailSchemaDefinition: z.ZodObject<{
     discreteValue: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     entityId: z.ZodUUID;
     id: z.ZodInt;
+    measurementBasis: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         recordedAt: z.ZodISODateTime;
         sourceDetail: z.ZodString;
     }, z.core.$strip>>>;
+    reportingScope: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     textValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     typeResearchDetail: z.ZodString;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

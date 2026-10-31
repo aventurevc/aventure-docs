@@ -16,8 +16,14 @@ const EntityResearchFactValueSchemaDefinition = z.object({
         .string()
         .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
         .nullish(),
+    /** Lossless monetary decimal string; numericValue is only its legacy approximation. Absent for legacy-only numbers. */
+    decimalValue: z.string().nullish(),
+    /** Source-stated measurement/accounting basis; null means unknown. */
+    measurementBasis: z.string().nullish(),
     numericValue: z.number().nullish(),
     referenceValue: z.string().nullish(),
+    /** Source-stated reporting scope; null means unknown. */
+    reportingScope: z.string().nullish(),
     source: z.string().nullish(),
     textValue: z.string().nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

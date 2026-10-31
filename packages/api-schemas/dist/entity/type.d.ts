@@ -4,6 +4,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema EntityType
  * @standardProblemResponse
+ * @usedBySchema EntityFilterMetaSchema
  * @usedBySchema EntityFilterSchema
  * @usedBySchema EntityListFilterSchema
  * @usedBySchema EntityPersonAssociationSchema
@@ -12,6 +13,7 @@ import { z } from "zod/v4";
  * @usedBySchema IdentificationSubjectSchema
  * @usedBySchema NewsResolvedEntityLinkSchema
  * @usedBySchema PersonListArrayFilterSchema
+ * @usedBySchema ResearchDetailTypeSchema
  * @usedBySchema ResearchSnippetTypeSchema
  * @usedBySchema SearchDuplicateCandidateScoreSchema
  * @contractShape entity.type

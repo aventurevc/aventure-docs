@@ -6,7 +6,9 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         category: string;
         classificationId?: number | null | undefined;
         code?: number | null | undefined;
+        codeText?: string | null | undefined;
         createdAt?: string | null | undefined;
+        edition?: string | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
@@ -18,7 +20,9 @@ declare const ClassificationCatalogCategorySchemaDefinition: z.ZodObject<{
         category: string;
         classificationId?: number | null | undefined;
         code?: number | null | undefined;
+        codeText?: string | null | undefined;
         createdAt?: string | null | undefined;
+        edition?: string | null | undefined;
         id: number;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;

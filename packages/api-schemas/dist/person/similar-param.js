@@ -11,6 +11,8 @@ export const PERSON_SIMILAR_ENDPOINT = "/v1/people/{personId}/similar";
  * @contractRole canonical
  */
 export const PersonSimilarParamSchema = z.object({
+    /** Continuation from X-Next-Cursor; reuse the same person and size. A changed ranked roster returns 400; restart without cursor. Page is ignored with cursor. */
+    cursor: z.string().optional(),
     /** Zero-based page index (0..N) */
     page: z.int().min(0).default(0).optional(),
     /** Permit monogram fallback */

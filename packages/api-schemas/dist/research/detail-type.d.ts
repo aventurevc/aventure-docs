@@ -1,6 +1,17 @@
 import { z } from "zod/v4";
 declare const ResearchDetailTypeSchemaDefinition: z.ZodObject<{
     allowedToken: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+    appliesToType: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodEnum<{
+        "Business Line": "Business Line";
+        Company: "Company";
+        Fund: "Fund";
+        Government: "Government";
+        "Investment Firm": "Investment Firm";
+        Nonprofit: "Nonprofit";
+        Organization: "Organization";
+        Product: "Product";
+        Service: "Service";
+    }>>>>;
     curated: z.ZodBoolean;
     label: z.ZodString;
     range: z.ZodOptional<z.ZodNullable<z.ZodObject<{

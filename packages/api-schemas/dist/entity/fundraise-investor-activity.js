@@ -43,7 +43,7 @@ export const EntityFundraiseInvestorActivitySchema = z.object({
     largestAmountInvestedUsd: z.number().nullish(),
     /** Distinct recorded recipients currently Operating, excluding the public bucket; not current holdings. Null until the status breakdown has been calculated. */
     operatingRecipientCount: z.int().nullish(),
-    /** Distinct portfolio companies this investor has participated in, across all portfolio-company statuses. Counts companies, whereas totalInvestment counts distinct fundraise transactions. */
+    /** Distinct recorded recipients this investor has participated in, across all recipient operating statuses. Counts recipients, whereas totalInvestment counts distinct fundraise transactions. */
     portfolioCompanyCount: z.int(),
     /** Distinct recorded recipients with current unconflicted Public ownership, or legacy Public status, excluding acquired/closed recipients; not exits. Unknown statuses are not inferred from funding. Null until the status breakdown has been calculated. */
     publicRecipientCount: z.int().nullish(),

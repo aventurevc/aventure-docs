@@ -1,11 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityResearchValueTypeSchema } from "../entity/research-value-type.js";
+import { EntityTypeSchema } from "../entity/type.js";
 import { ResearchValueRangeSchema } from "./value-range.js";
 import { ResearchValueShapeTypeSchema } from "./value-shape-type.js";
 const ResearchDetailTypeSchemaDefinition = z.object({
     /** Allowed valueResearchDetail tokens, or textValue categories when valueShape is freeText. */
     allowedToken: z.array(z.string()).nullish(),
+    /** Effective concrete entity kinds for this detail, including inherited section applicability; absent only on older servers. Path prefixes do not override this leaf rule. */
+    appliesToType: z.array(EntityTypeSchema).nullish(),
     curated: z.boolean(),
     label: z.string(),
     /** Inclusive numeric bounds for monetary and numericRatio, numericScore, and numericGrowthRate values. numericGrowthRate uses percentage points: 80 means 80%, not 0.8. */

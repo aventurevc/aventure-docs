@@ -3,7 +3,9 @@ declare const StandardizedClassificationSchemaDefinition: z.ZodObject<{
     category: z.ZodString;
     classificationId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    codeText: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    edition: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodInt;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;

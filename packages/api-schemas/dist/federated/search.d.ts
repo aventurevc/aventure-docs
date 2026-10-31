@@ -47,6 +47,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 affinity?: string[] | undefined;
                 closedLast?: boolean | undefined;
                 employeeCountRange?: {
+                    matchMode?: string | null | undefined;
                     max?: number | null | undefined;
                     min?: number | null | undefined;
                 }[] | undefined;
@@ -118,6 +119,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 headquartersCountry?: string[] | undefined;
                 headquartersState?: string[] | undefined;
                 industry?: string[] | undefined;
+                investorPopulation?: boolean | null | undefined;
                 letter?: string | null | undefined;
                 location?: string[] | undefined;
                 logoOption?: {
@@ -133,9 +135,24 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 rankByProminence?: boolean | null | undefined;
+                researchDetailRange?: {
+                    max?: string | null | undefined;
+                    measurementBasis?: string | null | undefined;
+                    min?: string | null | undefined;
+                    reportingScope?: string | null | undefined;
+                    targetPath: string;
+                    valueResearchDetail: string;
+                }[] | undefined;
                 semanticQuery?: string | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
+                standardizedClassification?: {
+                    category: string;
+                    code?: number | null | undefined;
+                    codeText?: string | null | undefined;
+                    edition?: string | null | undefined;
+                    hasEdition?: boolean | null | undefined;
+                }[] | undefined;
                 suppressLateStage?: boolean | null | undefined;
                 suppressNonOperating?: boolean | null | undefined;
                 suppressZeroTotalRaised?: boolean | null | undefined;
@@ -168,6 +185,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
                         employeeCountRange?: {
+                            matchMode?: string | null | undefined;
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
@@ -239,6 +257,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         headquartersCountry?: string[] | undefined;
                         headquartersState?: string[] | undefined;
                         industry?: string[] | undefined;
+                        investorPopulation?: boolean | null | undefined;
                         letter?: string | null | undefined;
                         location?: string[] | undefined;
                         logoOption?: {
@@ -254,8 +273,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
+                        researchDetailRange?: {
+                            max?: string | null | undefined;
+                            measurementBasis?: string | null | undefined;
+                            min?: string | null | undefined;
+                            reportingScope?: string | null | undefined;
+                            targetPath: string;
+                            valueResearchDetail: string;
+                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
+                        standardizedClassification?: {
+                            category: string;
+                            code?: number | null | undefined;
+                            codeText?: string | null | undefined;
+                            edition?: string | null | undefined;
+                            hasEdition?: boolean | null | undefined;
+                        }[] | undefined;
                         suppressLateStage?: boolean | null | undefined;
                         suppressNonOperating?: boolean | null | undefined;
                         suppressZeroTotalRaised?: boolean | null | undefined;
@@ -306,6 +340,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
                     employeeCountRange?: {
+                        matchMode?: string | null | undefined;
                         max?: number | null | undefined;
                         min?: number | null | undefined;
                     }[] | undefined;
@@ -377,6 +412,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     headquartersCountry?: string[] | undefined;
                     headquartersState?: string[] | undefined;
                     industry?: string[] | undefined;
+                    investorPopulation?: boolean | null | undefined;
                     letter?: string | null | undefined;
                     location?: string[] | undefined;
                     logoOption?: {
@@ -392,8 +428,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
+                    researchDetailRange?: {
+                        max?: string | null | undefined;
+                        measurementBasis?: string | null | undefined;
+                        min?: string | null | undefined;
+                        reportingScope?: string | null | undefined;
+                        targetPath: string;
+                        valueResearchDetail: string;
+                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
+                    standardizedClassification?: {
+                        category: string;
+                        code?: number | null | undefined;
+                        codeText?: string | null | undefined;
+                        edition?: string | null | undefined;
+                        hasEdition?: boolean | null | undefined;
+                    }[] | undefined;
                     suppressLateStage?: boolean | null | undefined;
                     suppressNonOperating?: boolean | null | undefined;
                     suppressZeroTotalRaised?: boolean | null | undefined;
@@ -530,6 +581,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -537,7 +600,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -832,7 +898,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             category: string;
                             classificationId?: number | null | undefined;
                             code?: number | null | undefined;
+                            codeText?: string | null | undefined;
                             createdAt?: string | null | undefined;
+                            edition?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -947,6 +1015,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -954,7 +1034,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
@@ -1039,6 +1122,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -1046,7 +1141,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -1258,6 +1356,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     detail: {
                         asOfDate?: string | null | undefined;
                         currentEligible?: boolean | null | undefined;
+                        decimalValue?: string | null | undefined;
                         derivedRange?: {
                             asOfDate: string;
                             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -1267,12 +1366,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         discreteValue?: number | null | undefined;
                         entityId: string;
                         id: number;
+                        measurementBasis?: string | null | undefined;
                         publicSource?: {
                             lastFetchedAt?: string | null | undefined;
                             publishedAt?: string | null | undefined;
                             recordedAt: string;
                             sourceDetail: string;
                         } | null | undefined;
+                        reportingScope?: string | null | undefined;
                         textValue?: string | null | undefined;
                         typeResearchDetail: string;
                         updatedAt?: string | null | undefined;
@@ -1451,7 +1552,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             category: string;
                             classificationId?: number | null | undefined;
                             code?: number | null | undefined;
+                            codeText?: string | null | undefined;
                             createdAt?: string | null | undefined;
+                            edition?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -1566,6 +1669,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -1573,7 +1688,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
@@ -1658,6 +1776,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -1665,7 +1795,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -1877,6 +2010,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     detail: {
                         asOfDate?: string | null | undefined;
                         currentEligible?: boolean | null | undefined;
+                        decimalValue?: string | null | undefined;
                         derivedRange?: {
                             asOfDate: string;
                             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -1886,12 +2020,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         discreteValue?: number | null | undefined;
                         entityId: string;
                         id: number;
+                        measurementBasis?: string | null | undefined;
                         publicSource?: {
                             lastFetchedAt?: string | null | undefined;
                             publishedAt?: string | null | undefined;
                             recordedAt: string;
                             sourceDetail: string;
                         } | null | undefined;
+                        reportingScope?: string | null | undefined;
                         textValue?: string | null | undefined;
                         typeResearchDetail: string;
                         updatedAt?: string | null | undefined;
@@ -2060,7 +2196,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         category: string;
                         classificationId?: number | null | undefined;
                         code?: number | null | undefined;
+                        codeText?: string | null | undefined;
                         createdAt?: string | null | undefined;
+                        edition?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -2175,6 +2313,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -2182,7 +2332,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
@@ -2267,6 +2420,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -2274,7 +2439,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
@@ -2486,6 +2654,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 detail: {
                     asOfDate?: string | null | undefined;
                     currentEligible?: boolean | null | undefined;
+                    decimalValue?: string | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -2495,12 +2664,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
+                    measurementBasis?: string | null | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
                         recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
+                    reportingScope?: string | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -2566,6 +2737,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 affinity?: string[] | undefined;
                 closedLast?: boolean | undefined;
                 employeeCountRange?: {
+                    matchMode?: string | null | undefined;
                     max?: number | null | undefined;
                     min?: number | null | undefined;
                 }[] | undefined;
@@ -2637,6 +2809,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 headquartersCountry?: string[] | undefined;
                 headquartersState?: string[] | undefined;
                 industry?: string[] | undefined;
+                investorPopulation?: boolean | null | undefined;
                 letter?: string | null | undefined;
                 location?: string[] | undefined;
                 logoOption?: {
@@ -2652,9 +2825,24 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 rankByProminence?: boolean | null | undefined;
+                researchDetailRange?: {
+                    max?: string | null | undefined;
+                    measurementBasis?: string | null | undefined;
+                    min?: string | null | undefined;
+                    reportingScope?: string | null | undefined;
+                    targetPath: string;
+                    valueResearchDetail: string;
+                }[] | undefined;
                 semanticQuery?: string | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
+                standardizedClassification?: {
+                    category: string;
+                    code?: number | null | undefined;
+                    codeText?: string | null | undefined;
+                    edition?: string | null | undefined;
+                    hasEdition?: boolean | null | undefined;
+                }[] | undefined;
                 suppressLateStage?: boolean | null | undefined;
                 suppressNonOperating?: boolean | null | undefined;
                 suppressZeroTotalRaised?: boolean | null | undefined;
@@ -2687,6 +2875,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
                         employeeCountRange?: {
+                            matchMode?: string | null | undefined;
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
@@ -2758,6 +2947,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         headquartersCountry?: string[] | undefined;
                         headquartersState?: string[] | undefined;
                         industry?: string[] | undefined;
+                        investorPopulation?: boolean | null | undefined;
                         letter?: string | null | undefined;
                         location?: string[] | undefined;
                         logoOption?: {
@@ -2773,8 +2963,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
+                        researchDetailRange?: {
+                            max?: string | null | undefined;
+                            measurementBasis?: string | null | undefined;
+                            min?: string | null | undefined;
+                            reportingScope?: string | null | undefined;
+                            targetPath: string;
+                            valueResearchDetail: string;
+                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
+                        standardizedClassification?: {
+                            category: string;
+                            code?: number | null | undefined;
+                            codeText?: string | null | undefined;
+                            edition?: string | null | undefined;
+                            hasEdition?: boolean | null | undefined;
+                        }[] | undefined;
                         suppressLateStage?: boolean | null | undefined;
                         suppressNonOperating?: boolean | null | undefined;
                         suppressZeroTotalRaised?: boolean | null | undefined;
@@ -2825,6 +3030,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
                     employeeCountRange?: {
+                        matchMode?: string | null | undefined;
                         max?: number | null | undefined;
                         min?: number | null | undefined;
                     }[] | undefined;
@@ -2896,6 +3102,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     headquartersCountry?: string[] | undefined;
                     headquartersState?: string[] | undefined;
                     industry?: string[] | undefined;
+                    investorPopulation?: boolean | null | undefined;
                     letter?: string | null | undefined;
                     location?: string[] | undefined;
                     logoOption?: {
@@ -2911,8 +3118,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
+                    researchDetailRange?: {
+                        max?: string | null | undefined;
+                        measurementBasis?: string | null | undefined;
+                        min?: string | null | undefined;
+                        reportingScope?: string | null | undefined;
+                        targetPath: string;
+                        valueResearchDetail: string;
+                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
+                    standardizedClassification?: {
+                        category: string;
+                        code?: number | null | undefined;
+                        codeText?: string | null | undefined;
+                        edition?: string | null | undefined;
+                        hasEdition?: boolean | null | undefined;
+                    }[] | undefined;
                     suppressLateStage?: boolean | null | undefined;
                     suppressNonOperating?: boolean | null | undefined;
                     suppressZeroTotalRaised?: boolean | null | undefined;
@@ -3049,6 +3271,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -3056,7 +3290,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -3351,7 +3588,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             category: string;
                             classificationId?: number | null | undefined;
                             code?: number | null | undefined;
+                            codeText?: string | null | undefined;
                             createdAt?: string | null | undefined;
+                            edition?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -3466,6 +3705,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -3473,7 +3724,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
@@ -3558,6 +3812,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -3565,7 +3831,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -3777,6 +4046,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     detail: {
                         asOfDate?: string | null | undefined;
                         currentEligible?: boolean | null | undefined;
+                        decimalValue?: string | null | undefined;
                         derivedRange?: {
                             asOfDate: string;
                             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -3786,12 +4056,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         discreteValue?: number | null | undefined;
                         entityId: string;
                         id: number;
+                        measurementBasis?: string | null | undefined;
                         publicSource?: {
                             lastFetchedAt?: string | null | undefined;
                             publishedAt?: string | null | undefined;
                             recordedAt: string;
                             sourceDetail: string;
                         } | null | undefined;
+                        reportingScope?: string | null | undefined;
                         textValue?: string | null | undefined;
                         typeResearchDetail: string;
                         updatedAt?: string | null | undefined;
@@ -3970,7 +4242,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             category: string;
                             classificationId?: number | null | undefined;
                             code?: number | null | undefined;
+                            codeText?: string | null | undefined;
                             createdAt?: string | null | undefined;
+                            edition?: string | null | undefined;
                             id: number;
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -4085,6 +4359,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -4092,7 +4378,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                     headquartersAddressId?: number | null | undefined;
@@ -4177,6 +4466,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -4184,7 +4485,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -4396,6 +4700,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     detail: {
                         asOfDate?: string | null | undefined;
                         currentEligible?: boolean | null | undefined;
+                        decimalValue?: string | null | undefined;
                         derivedRange?: {
                             asOfDate: string;
                             bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -4405,12 +4710,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         discreteValue?: number | null | undefined;
                         entityId: string;
                         id: number;
+                        measurementBasis?: string | null | undefined;
                         publicSource?: {
                             lastFetchedAt?: string | null | undefined;
                             publishedAt?: string | null | undefined;
                             recordedAt: string;
                             sourceDetail: string;
                         } | null | undefined;
+                        reportingScope?: string | null | undefined;
                         textValue?: string | null | undefined;
                         typeResearchDetail: string;
                         updatedAt?: string | null | undefined;
@@ -4579,7 +4886,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         category: string;
                         classificationId?: number | null | undefined;
                         code?: number | null | undefined;
+                        codeText?: string | null | undefined;
                         createdAt?: string | null | undefined;
+                        edition?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -4694,6 +5003,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -4701,7 +5022,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
@@ -4786,6 +5110,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -4793,7 +5129,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
@@ -5005,6 +5344,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 detail: {
                     asOfDate?: string | null | undefined;
                     currentEligible?: boolean | null | undefined;
+                    decimalValue?: string | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -5014,12 +5354,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
+                    measurementBasis?: string | null | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
                         recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
+                    reportingScope?: string | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -5213,7 +5555,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     category: string;
                     classificationId?: number | null | undefined;
                     code?: number | null | undefined;
+                    codeText?: string | null | undefined;
                     createdAt?: string | null | undefined;
+                    edition?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -5328,6 +5672,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             fundingDetail?: {
                 applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
+                currentValuation?: {
+                    amount: string;
+                    asOfDate?: string | null | undefined;
+                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                    currency?: string | null | undefined;
+                    postMoneyUsd?: string | null | undefined;
+                    referenceValue?: string | null | undefined;
+                    source: "fundraiseRound" | "researchDetail";
+                    sourceRef: string;
+                } | null | undefined;
+                disclosedStage?: string | null | undefined;
+                disclosedStageTransactionId?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -5335,7 +5691,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedAmountRoundCount?: number | null | undefined;
+                totalRaisedRoundCount?: number | null | undefined;
                 totalRaisedUsd?: number | null | undefined;
+                totalRaisedUsdRoundCount?: number | null | undefined;
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
@@ -5462,7 +5821,9 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     category: string;
                     classificationId?: number | null | undefined;
                     code?: number | null | undefined;
+                    codeText?: string | null | undefined;
                     createdAt?: string | null | undefined;
+                    edition?: string | null | undefined;
                     id: number;
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -5577,6 +5938,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             fundingDetail?: {
                 applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                 currency?: string | null | undefined;
+                currentValuation?: {
+                    amount: string;
+                    asOfDate?: string | null | undefined;
+                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                    currency?: string | null | undefined;
+                    postMoneyUsd?: string | null | undefined;
+                    referenceValue?: string | null | undefined;
+                    source: "fundraiseRound" | "researchDetail";
+                    sourceRef: string;
+                } | null | undefined;
+                disclosedStage?: string | null | undefined;
+                disclosedStageTransactionId?: string | null | undefined;
                 fundingRoundCount: number;
                 investorCount: number;
                 latestValuation?: number | null | undefined;
@@ -5584,7 +5957,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 mostRecentDate?: string | null | undefined;
                 stage?: string | null | undefined;
                 totalRaised: number;
+                totalRaisedAmountRoundCount?: number | null | undefined;
+                totalRaisedRoundCount?: number | null | undefined;
                 totalRaisedUsd?: number | null | undefined;
+                totalRaisedUsdRoundCount?: number | null | undefined;
                 unconvertedRoundCount: number;
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
@@ -5669,6 +6045,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -5676,7 +6064,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
@@ -5792,6 +6183,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -5799,7 +6202,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
             } | null | undefined;
@@ -6248,8 +6654,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             currentEligible?: boolean | null | undefined;
                             dataConfidence?: "high" | "low" | "medium" | null | undefined;
                             dateValue?: string | null | undefined;
+                            decimalValue?: string | null | undefined;
+                            measurementBasis?: string | null | undefined;
                             numericValue?: number | null | undefined;
                             referenceValue?: string | null | undefined;
+                            reportingScope?: string | null | undefined;
                             source?: string | null | undefined;
                             textValue?: string | null | undefined;
                             updatedAt?: string | null | undefined;
@@ -6305,6 +6714,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -6312,7 +6733,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     };
@@ -6446,6 +6870,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             fundingDetail?: {
                                 applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
+                                currentValuation?: {
+                                    amount: string;
+                                    asOfDate?: string | null | undefined;
+                                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    postMoneyUsd?: string | null | undefined;
+                                    referenceValue?: string | null | undefined;
+                                    source: "fundraiseRound" | "researchDetail";
+                                    sourceRef: string;
+                                } | null | undefined;
+                                disclosedStage?: string | null | undefined;
+                                disclosedStageTransactionId?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
                                 latestValuation?: number | null | undefined;
@@ -6453,7 +6889,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 mostRecentDate?: string | null | undefined;
                                 stage?: string | null | undefined;
                                 totalRaised: number;
+                                totalRaisedAmountRoundCount?: number | null | undefined;
+                                totalRaisedRoundCount?: number | null | undefined;
                                 totalRaisedUsd?: number | null | undefined;
+                                totalRaisedUsdRoundCount?: number | null | undefined;
                                 unconvertedRoundCount: number;
                             } | null | undefined;
                         };
@@ -7216,8 +7655,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             currentEligible?: boolean | null | undefined;
                             dataConfidence?: "high" | "low" | "medium" | null | undefined;
                             dateValue?: string | null | undefined;
+                            decimalValue?: string | null | undefined;
+                            measurementBasis?: string | null | undefined;
                             numericValue?: number | null | undefined;
                             referenceValue?: string | null | undefined;
+                            reportingScope?: string | null | undefined;
                             source?: string | null | undefined;
                             textValue?: string | null | undefined;
                             updatedAt?: string | null | undefined;
@@ -7273,6 +7715,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -7280,7 +7734,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     };
@@ -7414,6 +7871,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             fundingDetail?: {
                                 applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                                 currency?: string | null | undefined;
+                                currentValuation?: {
+                                    amount: string;
+                                    asOfDate?: string | null | undefined;
+                                    basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                    currency?: string | null | undefined;
+                                    postMoneyUsd?: string | null | undefined;
+                                    referenceValue?: string | null | undefined;
+                                    source: "fundraiseRound" | "researchDetail";
+                                    sourceRef: string;
+                                } | null | undefined;
+                                disclosedStage?: string | null | undefined;
+                                disclosedStageTransactionId?: string | null | undefined;
                                 fundingRoundCount: number;
                                 investorCount: number;
                                 latestValuation?: number | null | undefined;
@@ -7421,7 +7890,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 mostRecentDate?: string | null | undefined;
                                 stage?: string | null | undefined;
                                 totalRaised: number;
+                                totalRaisedAmountRoundCount?: number | null | undefined;
+                                totalRaisedRoundCount?: number | null | undefined;
                                 totalRaisedUsd?: number | null | undefined;
+                                totalRaisedUsdRoundCount?: number | null | undefined;
                                 unconvertedRoundCount: number;
                             } | null | undefined;
                         };
@@ -8236,6 +8708,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             detail: {
                 asOfDate?: string | null | undefined;
                 currentEligible?: boolean | null | undefined;
+                decimalValue?: string | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -8245,12 +8718,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
+                measurementBasis?: string | null | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                reportingScope?: string | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -8332,6 +8807,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             detail: {
                 asOfDate?: string | null | undefined;
                 currentEligible?: boolean | null | undefined;
+                decimalValue?: string | null | undefined;
                 derivedRange?: {
                     asOfDate: string;
                     bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -8341,12 +8817,14 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 discreteValue?: number | null | undefined;
                 entityId: string;
                 id: number;
+                measurementBasis?: string | null | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                reportingScope?: string | null | undefined;
                 textValue?: string | null | undefined;
                 typeResearchDetail: string;
                 updatedAt?: string | null | undefined;
@@ -8383,26 +8861,38 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>;
         uniqueId: z.ZodArray<z.ZodType<{
             createdAt: string;
+            effectiveFrom?: string | null | undefined;
+            effectiveTo?: string | null | undefined;
             id: number;
             identifier: string;
             idType: string;
+            listingStanding?: string | null | undefined;
             owner: {
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
             };
+            shareClass?: string | null | undefined;
             source?: string | null | undefined;
+            standingAsOf?: string | null | undefined;
             updatedAt: string;
+            venue?: string | null | undefined;
         }, import("../unique/id.ts").UniqueIdSchemaInput, z.core.$ZodTypeInternals<{
             createdAt: string;
+            effectiveFrom?: string | null | undefined;
+            effectiveTo?: string | null | undefined;
             id: number;
             identifier: string;
             idType: string;
+            listingStanding?: string | null | undefined;
             owner: {
                 entityId?: string | null | undefined;
                 personId?: string | null | undefined;
             };
+            shareClass?: string | null | undefined;
             source?: string | null | undefined;
+            standingAsOf?: string | null | undefined;
             updatedAt: string;
+            venue?: string | null | undefined;
         }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
     }, z.core.$strip>>;
     news: z.ZodType<{
@@ -8540,6 +9030,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
                         employeeCountRange?: {
+                            matchMode?: string | null | undefined;
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
@@ -8611,6 +9102,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         headquartersCountry?: string[] | undefined;
                         headquartersState?: string[] | undefined;
                         industry?: string[] | undefined;
+                        investorPopulation?: boolean | null | undefined;
                         letter?: string | null | undefined;
                         location?: string[] | undefined;
                         logoOption?: {
@@ -8626,8 +9118,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
+                        researchDetailRange?: {
+                            max?: string | null | undefined;
+                            measurementBasis?: string | null | undefined;
+                            min?: string | null | undefined;
+                            reportingScope?: string | null | undefined;
+                            targetPath: string;
+                            valueResearchDetail: string;
+                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
+                        standardizedClassification?: {
+                            category: string;
+                            code?: number | null | undefined;
+                            codeText?: string | null | undefined;
+                            edition?: string | null | undefined;
+                            hasEdition?: boolean | null | undefined;
+                        }[] | undefined;
                         suppressLateStage?: boolean | null | undefined;
                         suppressNonOperating?: boolean | null | undefined;
                         suppressZeroTotalRaised?: boolean | null | undefined;
@@ -8678,6 +9185,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
                     employeeCountRange?: {
+                        matchMode?: string | null | undefined;
                         max?: number | null | undefined;
                         min?: number | null | undefined;
                     }[] | undefined;
@@ -8749,6 +9257,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     headquartersCountry?: string[] | undefined;
                     headquartersState?: string[] | undefined;
                     industry?: string[] | undefined;
+                    investorPopulation?: boolean | null | undefined;
                     letter?: string | null | undefined;
                     location?: string[] | undefined;
                     logoOption?: {
@@ -8764,8 +9273,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
+                    researchDetailRange?: {
+                        max?: string | null | undefined;
+                        measurementBasis?: string | null | undefined;
+                        min?: string | null | undefined;
+                        reportingScope?: string | null | undefined;
+                        targetPath: string;
+                        valueResearchDetail: string;
+                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
+                    standardizedClassification?: {
+                        category: string;
+                        code?: number | null | undefined;
+                        codeText?: string | null | undefined;
+                        edition?: string | null | undefined;
+                        hasEdition?: boolean | null | undefined;
+                    }[] | undefined;
                     suppressLateStage?: boolean | null | undefined;
                     suppressNonOperating?: boolean | null | undefined;
                     suppressZeroTotalRaised?: boolean | null | undefined;
@@ -8902,6 +9426,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -8909,7 +9445,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -9086,6 +9625,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
                         employeeCountRange?: {
+                            matchMode?: string | null | undefined;
                             max?: number | null | undefined;
                             min?: number | null | undefined;
                         }[] | undefined;
@@ -9157,6 +9697,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         headquartersCountry?: string[] | undefined;
                         headquartersState?: string[] | undefined;
                         industry?: string[] | undefined;
+                        investorPopulation?: boolean | null | undefined;
                         letter?: string | null | undefined;
                         location?: string[] | undefined;
                         logoOption?: {
@@ -9172,8 +9713,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
+                        researchDetailRange?: {
+                            max?: string | null | undefined;
+                            measurementBasis?: string | null | undefined;
+                            min?: string | null | undefined;
+                            reportingScope?: string | null | undefined;
+                            targetPath: string;
+                            valueResearchDetail: string;
+                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
+                        standardizedClassification?: {
+                            category: string;
+                            code?: number | null | undefined;
+                            codeText?: string | null | undefined;
+                            edition?: string | null | undefined;
+                            hasEdition?: boolean | null | undefined;
+                        }[] | undefined;
                         suppressLateStage?: boolean | null | undefined;
                         suppressNonOperating?: boolean | null | undefined;
                         suppressZeroTotalRaised?: boolean | null | undefined;
@@ -9224,6 +9780,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
                     employeeCountRange?: {
+                        matchMode?: string | null | undefined;
                         max?: number | null | undefined;
                         min?: number | null | undefined;
                     }[] | undefined;
@@ -9295,6 +9852,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     headquartersCountry?: string[] | undefined;
                     headquartersState?: string[] | undefined;
                     industry?: string[] | undefined;
+                    investorPopulation?: boolean | null | undefined;
                     letter?: string | null | undefined;
                     location?: string[] | undefined;
                     logoOption?: {
@@ -9310,8 +9868,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
+                    researchDetailRange?: {
+                        max?: string | null | undefined;
+                        measurementBasis?: string | null | undefined;
+                        min?: string | null | undefined;
+                        reportingScope?: string | null | undefined;
+                        targetPath: string;
+                        valueResearchDetail: string;
+                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
+                    standardizedClassification?: {
+                        category: string;
+                        code?: number | null | undefined;
+                        codeText?: string | null | undefined;
+                        edition?: string | null | undefined;
+                        hasEdition?: boolean | null | undefined;
+                    }[] | undefined;
                     suppressLateStage?: boolean | null | undefined;
                     suppressNonOperating?: boolean | null | undefined;
                     suppressZeroTotalRaised?: boolean | null | undefined;
@@ -9448,6 +10021,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -9455,7 +10040,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     } | null | undefined;
@@ -9940,8 +10528,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         currentEligible?: boolean | null | undefined;
                         dataConfidence?: "high" | "low" | "medium" | null | undefined;
                         dateValue?: string | null | undefined;
+                        decimalValue?: string | null | undefined;
+                        measurementBasis?: string | null | undefined;
                         numericValue?: number | null | undefined;
                         referenceValue?: string | null | undefined;
+                        reportingScope?: string | null | undefined;
                         source?: string | null | undefined;
                         textValue?: string | null | undefined;
                         updatedAt?: string | null | undefined;
@@ -9997,6 +10588,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -10004,7 +10607,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 };
@@ -10138,6 +10744,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -10145,7 +10763,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     };
@@ -10908,8 +11529,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         currentEligible?: boolean | null | undefined;
                         dataConfidence?: "high" | "low" | "medium" | null | undefined;
                         dateValue?: string | null | undefined;
+                        decimalValue?: string | null | undefined;
+                        measurementBasis?: string | null | undefined;
                         numericValue?: number | null | undefined;
                         referenceValue?: string | null | undefined;
+                        reportingScope?: string | null | undefined;
                         source?: string | null | undefined;
                         textValue?: string | null | undefined;
                         updatedAt?: string | null | undefined;
@@ -10965,6 +11589,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -10972,7 +11608,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 };
@@ -11106,6 +11745,18 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         fundingDetail?: {
                             applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                             currency?: string | null | undefined;
+                            currentValuation?: {
+                                amount: string;
+                                asOfDate?: string | null | undefined;
+                                basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                                currency?: string | null | undefined;
+                                postMoneyUsd?: string | null | undefined;
+                                referenceValue?: string | null | undefined;
+                                source: "fundraiseRound" | "researchDetail";
+                                sourceRef: string;
+                            } | null | undefined;
+                            disclosedStage?: string | null | undefined;
+                            disclosedStageTransactionId?: string | null | undefined;
                             fundingRoundCount: number;
                             investorCount: number;
                             latestValuation?: number | null | undefined;
@@ -11113,7 +11764,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             mostRecentDate?: string | null | undefined;
                             stage?: string | null | undefined;
                             totalRaised: number;
+                            totalRaisedAmountRoundCount?: number | null | undefined;
+                            totalRaisedRoundCount?: number | null | undefined;
                             totalRaisedUsd?: number | null | undefined;
+                            totalRaisedUsdRoundCount?: number | null | undefined;
                             unconvertedRoundCount: number;
                         } | null | undefined;
                     };

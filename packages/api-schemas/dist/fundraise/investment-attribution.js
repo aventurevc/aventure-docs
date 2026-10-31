@@ -54,7 +54,7 @@ export const FundraiseInvestmentAttributionSchema = z.object({
     fundManagerRelationshipId: z.int().nullish(),
     /** Fundraise investor join identifier; for a summed investment, one of the joins it sums */
     joinId: z.uuid(),
-    /** Whether this investor is the lead investor for the round — the lead/anchor investor that set the round terms or made the primary commitment. */
+    /** Recorded lead flag. Historical false values may mean non-lead or unrecorded leadership evidence; false alone is not confirmation of a non-lead role. */
     leadInvestor: z.boolean(),
     /** Entity recorded directly on the fundraise investor join. */
     recordedEntityId: z.uuid().nullish(),

@@ -34,8 +34,11 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         currentEligible?: boolean | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;
         dateValue?: string | null | undefined;
+        decimalValue?: string | null | undefined;
+        measurementBasis?: string | null | undefined;
         numericValue?: number | null | undefined;
         referenceValue?: string | null | undefined;
+        reportingScope?: string | null | undefined;
         source?: string | null | undefined;
         textValue?: string | null | undefined;
         updatedAt?: string | null | undefined;
@@ -45,8 +48,11 @@ export declare const EmployeeCountSchema: z.ZodObject<{
         currentEligible?: boolean | null | undefined;
         dataConfidence?: "high" | "low" | "medium" | null | undefined;
         dateValue?: string | null | undefined;
+        decimalValue?: string | null | undefined;
+        measurementBasis?: string | null | undefined;
         numericValue?: number | null | undefined;
         referenceValue?: string | null | undefined;
+        reportingScope?: string | null | undefined;
         source?: string | null | undefined;
         textValue?: string | null | undefined;
         updatedAt?: string | null | undefined;

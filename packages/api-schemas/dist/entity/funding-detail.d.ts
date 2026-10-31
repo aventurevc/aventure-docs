@@ -47,6 +47,25 @@ export declare const EntityFundingDetailSchema: z.ZodObject<{
         UNKNOWN: "UNKNOWN";
     }>>>;
     currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    currentValuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        amount: z.ZodString;
+        asOfDate: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        basis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            postMoney: "postMoney";
+            preMoney: "preMoney";
+            reported: "reported";
+        }>>>;
+        currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        postMoneyUsd: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        referenceValue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        source: z.ZodEnum<{
+            fundraiseRound: "fundraiseRound";
+            researchDetail: "researchDetail";
+        }>;
+        sourceRef: z.ZodString;
+    }, z.core.$strip>>>;
+    disclosedStage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    disclosedStageTransactionId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     fundingRoundCount: z.ZodInt;
     investorCount: z.ZodInt;
     latestValuation: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -134,7 +153,10 @@ export declare const EntityFundingDetailSchema: z.ZodObject<{
         };
     }>>;
     totalRaised: z.ZodNumber;
+    totalRaisedAmountRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    totalRaisedRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     totalRaisedUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    totalRaisedUsdRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     unconvertedRoundCount: z.ZodInt;
 }, z.core.$strip>;
 export type EntityFundingDetail = z.infer<typeof EntityFundingDetailSchema>;

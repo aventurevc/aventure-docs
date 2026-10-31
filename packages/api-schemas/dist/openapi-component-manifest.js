@@ -280,6 +280,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "DuplicateCreateReviewSchema",
     },
     EmployeeCount: { modulePath: "employee/count", schemaName: "EmployeeCountSchema" },
+    EmployeeCountMatchMode: {
+        modulePath: "employee/count-match-mode",
+        schemaName: "EmployeeCountMatchModeSchema",
+    },
+    EmployeeCountRange: {
+        modulePath: "employee/count-range",
+        schemaName: "EmployeeCountRangeSchema",
+    },
     Enrichment: { modulePath: "enrichment/enrichment", schemaName: "EnrichmentSchema" },
     EnrichmentBatch: { modulePath: "enrichment/batch", schemaName: "EnrichmentBatchSchema" },
     EnrichmentMode: { modulePath: "enrichment/mode", schemaName: "EnrichmentModeSchema" },
@@ -437,6 +445,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityFilterRefinedFilters: {
         modulePath: "entity/filter-refined-filters",
         schemaName: "EntityFilterRefinedFiltersSchema",
+    },
+    EntityFilterRequestBinding: {
+        modulePath: "entity/filter-request-binding",
+        schemaName: "EntityFilterRequestBindingSchema",
+    },
+    EntityFilterRequestValueShape: {
+        modulePath: "entity/filter-request-value-shape",
+        schemaName: "EntityFilterRequestValueShapeSchema",
     },
     EntityFilterScope: { modulePath: "entity/filter-scope", schemaName: "EntityFilterScopeSchema" },
     EntityFilterSearch: {
@@ -597,6 +613,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     EntityUrlLink: { modulePath: "entity/url-link", schemaName: "EntityUrlLinkSchema" },
     EntityUrlType: { modulePath: "entity/url-type", schemaName: "EntityUrlTypeSchema" },
+    EntityValuation: { modulePath: "entity/valuation", schemaName: "EntityValuationSchema" },
     EntityValuationDataConfidence: {
         modulePath: "entity/valuation-data-confidence",
         schemaName: "EntityValuationDataConfidenceSchema",
@@ -1052,6 +1069,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "research/derived-range",
         schemaName: "ResearchDerivedRangeSchema",
     },
+    ResearchDetailRange: {
+        modulePath: "research/detail-range",
+        schemaName: "ResearchDetailRangeSchema",
+    },
     ResearchDetailType: {
         modulePath: "research/detail-type",
         schemaName: "ResearchDetailTypeSchema",
@@ -1207,6 +1228,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "standardized/classification",
         schemaName: "StandardizedClassificationSchema",
     },
+    StandardizedClassificationFilter: {
+        modulePath: "standardized/classification-filter",
+        schemaName: "StandardizedClassificationFilterSchema",
+    },
     StrictUrlLookupConflict: {
         modulePath: "strict/url-lookup-conflict",
         schemaName: "StrictUrlLookupConflictSchema",
@@ -1223,6 +1248,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     TextTypeOption: { modulePath: "text/type-option", schemaName: "TextTypeOptionSchema" },
     UniqueId: { modulePath: "unique/id", schemaName: "UniqueIdSchema" },
+    UniqueIdListingStanding: {
+        modulePath: "unique/id-listing-standing",
+        schemaName: "UniqueIdListingStandingSchema",
+    },
     UniqueIdMutation: { modulePath: "unique/id-mutation", schemaName: "UniqueIdMutationSchema" },
     UniqueIdOwnerScope: {
         modulePath: "unique/id-owner-scope",

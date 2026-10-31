@@ -152,7 +152,9 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         category: string;
                         classificationId?: number | null | undefined;
                         code?: number | null | undefined;
+                        codeText?: string | null | undefined;
                         createdAt?: string | null | undefined;
+                        edition?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -267,6 +269,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -274,7 +288,10 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
@@ -359,6 +376,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -366,7 +395,10 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
@@ -578,6 +610,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 detail: {
                     asOfDate?: string | null | undefined;
                     currentEligible?: boolean | null | undefined;
+                    decimalValue?: string | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -587,12 +620,14 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
+                    measurementBasis?: string | null | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
                         recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
+                    reportingScope?: string | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;
@@ -945,7 +980,9 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         category: string;
                         classificationId?: number | null | undefined;
                         code?: number | null | undefined;
+                        codeText?: string | null | undefined;
                         createdAt?: string | null | undefined;
+                        edition?: string | null | undefined;
                         id: number;
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -1060,6 +1097,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 fundingDetail?: {
                     applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                     currency?: string | null | undefined;
+                    currentValuation?: {
+                        amount: string;
+                        asOfDate?: string | null | undefined;
+                        basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                        currency?: string | null | undefined;
+                        postMoneyUsd?: string | null | undefined;
+                        referenceValue?: string | null | undefined;
+                        source: "fundraiseRound" | "researchDetail";
+                        sourceRef: string;
+                    } | null | undefined;
+                    disclosedStage?: string | null | undefined;
+                    disclosedStageTransactionId?: string | null | undefined;
                     fundingRoundCount: number;
                     investorCount: number;
                     latestValuation?: number | null | undefined;
@@ -1067,7 +1116,10 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     mostRecentDate?: string | null | undefined;
                     stage?: string | null | undefined;
                     totalRaised: number;
+                    totalRaisedAmountRoundCount?: number | null | undefined;
+                    totalRaisedRoundCount?: number | null | undefined;
                     totalRaisedUsd?: number | null | undefined;
+                    totalRaisedUsdRoundCount?: number | null | undefined;
                     unconvertedRoundCount: number;
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
@@ -1152,6 +1204,18 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     fundingDetail?: {
                         applicability?: "NOT_APPLICABLE" | "RECORDED" | "UNKNOWN" | null | undefined;
                         currency?: string | null | undefined;
+                        currentValuation?: {
+                            amount: string;
+                            asOfDate?: string | null | undefined;
+                            basis?: "postMoney" | "preMoney" | "reported" | null | undefined;
+                            currency?: string | null | undefined;
+                            postMoneyUsd?: string | null | undefined;
+                            referenceValue?: string | null | undefined;
+                            source: "fundraiseRound" | "researchDetail";
+                            sourceRef: string;
+                        } | null | undefined;
+                        disclosedStage?: string | null | undefined;
+                        disclosedStageTransactionId?: string | null | undefined;
                         fundingRoundCount: number;
                         investorCount: number;
                         latestValuation?: number | null | undefined;
@@ -1159,7 +1223,10 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                         mostRecentDate?: string | null | undefined;
                         stage?: string | null | undefined;
                         totalRaised: number;
+                        totalRaisedAmountRoundCount?: number | null | undefined;
+                        totalRaisedRoundCount?: number | null | undefined;
                         totalRaisedUsd?: number | null | undefined;
+                        totalRaisedUsdRoundCount?: number | null | undefined;
                         unconvertedRoundCount: number;
                     } | null | undefined;
                 } | null | undefined;
@@ -1371,6 +1438,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 detail: {
                     asOfDate?: string | null | undefined;
                     currentEligible?: boolean | null | undefined;
+                    decimalValue?: string | null | undefined;
                     derivedRange?: {
                         asOfDate: string;
                         bucket: "beyondTwoYears" | "pastDue" | "sixToTwelveMonths" | "threeToSixMonths" | "twelveToTwentyFourMonths" | "withinThreeMonths";
@@ -1380,12 +1448,14 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     discreteValue?: number | null | undefined;
                     entityId: string;
                     id: number;
+                    measurementBasis?: string | null | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
                         recordedAt: string;
                         sourceDetail: string;
                     } | null | undefined;
+                    reportingScope?: string | null | undefined;
                     textValue?: string | null | undefined;
                     typeResearchDetail: string;
                     updatedAt?: string | null | undefined;

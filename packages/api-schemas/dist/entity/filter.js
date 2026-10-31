@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EmployeeCountRangeSchema } from "../employee/count-range.js";
 import { EntityFilterLogoOptionSchema } from "./filter-logo-option.js";
 import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria.js";
 import { EntityListQualityGateSchema } from "./list-quality-gate.js";
@@ -7,6 +8,8 @@ import { EntityOperatingStatusSchema } from "./operating-status.js";
 import { EntityTypeSchema } from "./type.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
+import { ResearchDetailRangeSchema } from "../research/detail-range.js";
+import { StandardizedClassificationFilterSchema } from "../standardized/classification-filter.js";
 import { UrlMatchModeSchema } from "../url/match-mode.js";
 /**
  * Entity list and search filters. GET flattens these fields as query parameters; POST accepts the same shape as JSON.
@@ -47,9 +50,9 @@ export const EntityFilterSchema = z.strictObject({
     affinity: z.array(z.string()).optional(),
     /** Rank closed entities (Closed, Closed (Acquihire), Inactive) after every other textSearch or semanticQuery match, ahead of relevance and sort; omitted means true. false ranks them by relevance alone. Filter them out with operatingStatus or suppressNonOperating. */
     closedLast: z.boolean().optional(),
-    /** Inclusive reported employee-count ranges, in employees. */
-    employeeCountRange: z.array(IntRangeSchema).optional(),
-    /** Restrict results to specific entity IDs. */
+    /** Current workforce ranges; omitted matchMode is numeric-only. */
+    employeeCountRange: z.array(EmployeeCountRangeSchema).optional(),
+    /** Restrict results to entity IDs. */
     entityId: z.array(z.uuid()).optional(),
     /** Exact normalized match against entity brand, legal, or alias names. */
     entityName: z.array(z.string()).optional(),
@@ -67,6 +70,8 @@ export const EntityFilterSchema = z.strictObject({
     headquartersState: z.array(z.string()).optional(),
     /** Industry classification values. */
     industry: z.array(z.string()).optional(),
+    /** Opt in to Firms/Funds, a current source-stated investing mandate, or recorded non-grant direct/current-primary-managed investment participation. Omitted/false keeps legacy scope; explicit typeRecord intersects. Prose, legal form and missing funding establish nothing. */
+    investorPopulation: z.boolean().nullish(),
     /** First letter of the display name. */
     letter: z.string().nullish(),
     /** Geographic classification values. */
@@ -93,6 +98,8 @@ export const EntityFilterSchema = z.strictObject({
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
+    /** Reader adoption only: stored criteria load; execution and new writes refuse. */
+    researchDetailRange: z.array(ResearchDetailRangeSchema).max(10).optional(),
     /** Restrict results to entity slugs. */
     slug: z
         .array(z
@@ -100,8 +107,10 @@ export const EntityFilterSchema = z.strictObject({
         .regex(/^[a-z0-9_-]+$/)
         .max(255))
         .optional(),
-    /** Investment stage classification values. */
+    /** Stage classification values. */
     stage: z.array(z.string()).optional(),
+    /** OR exact tuples within this facet; AND with other facets. */
+    standardizedClassification: z.array(StandardizedClassificationFilterSchema).max(20).optional(),
     /** Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status. */
     suppressLateStage: z.boolean().nullish(),
     /** Suppress entities with terminal operating status. */
@@ -114,9 +123,9 @@ export const EntityFilterSchema = z.strictObject({
     textSearch: z.string().nullish(),
     /** Customer-type classification values. */
     typeCustomer: z.array(z.string()).optional(),
-    /** Business-model classification values. */
+    /** Business-model values. */
     typeModel: z.array(z.string()).optional(),
-    /** Ownership-model classification values. */
+    /** Ownership-model values. */
     typeOwnership: z.array(z.string()).optional(),
     /** Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type. */
     typeRecord: z.array(EntityTypeSchema).optional(),
@@ -132,7 +141,7 @@ export const EntityFilterSchema = z.strictObject({
     urlMatchMode: UrlMatchModeSchema.nullish(),
     /** Restrict URL matching to one URL type. */
     urlType: EntityUrlTypeSchema.nullish(),
-    /** Inclusive founding-year ranges, in calendar years. */
+    /** Inclusive founding-year ranges. */
     yearFoundedRange: z.array(IntRangeSchema).optional(),
 });
 //# sourceMappingURL=filter.js.map

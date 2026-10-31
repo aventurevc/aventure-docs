@@ -1,6 +1,8 @@
 import { z } from "zod/v4";
 declare const UniqueIdSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodISODateTime;
+    effectiveFrom: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    effectiveTo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodInt;
     identifier: z.ZodString;
     idType: z.ZodUnion<readonly [z.ZodEnum<{
@@ -56,12 +58,26 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             ticker: "ticker";
         };
     };
+    listingStanding: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        delisted: "delisted";
+        listed: "listed";
+        suspended: "suspended";
+    }>, z.ZodString]> & {
+        enum: {
+            delisted: "delisted";
+            listed: "listed";
+            suspended: "suspended";
+        };
+    }>>;
     owner: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     }, z.core.$strip>;
+    shareClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    standingAsOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     updatedAt: z.ZodISODateTime;
+    venue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type UniqueIdDefinition = z.infer<typeof UniqueIdSchemaDefinition>;
 export interface UniqueIdSchemaInput extends z.input<typeof UniqueIdSchemaDefinition> {

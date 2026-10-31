@@ -11,6 +11,34 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EntityFilterMetaSchema: z.ZodObject<{
+    applicableTypeRecord: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodEnum<{
+        "Business Line": "Business Line";
+        Company: "Company";
+        Fund: "Fund";
+        Government: "Government";
+        "Investment Firm": "Investment Firm";
+        Nonprofit: "Nonprofit";
+        Organization: "Organization";
+        Product: "Product";
+        Service: "Service";
+    }>>>>;
+    requestBinding: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        path: z.ZodArray<z.ZodString>;
+        rangeBound: z.ZodArray<z.ZodString>;
+        valueShape: z.ZodUnion<readonly [z.ZodEnum<{
+            ARRAY: "ARRAY";
+            BOOLEAN: "BOOLEAN";
+            DECIMAL_RANGE_ARRAY: "DECIMAL_RANGE_ARRAY";
+            INTEGER_RANGE_ARRAY: "INTEGER_RANGE_ARRAY";
+        }>, z.ZodString]> & {
+            enum: {
+                ARRAY: "ARRAY";
+                BOOLEAN: "BOOLEAN";
+                DECIMAL_RANGE_ARRAY: "DECIMAL_RANGE_ARRAY";
+                INTEGER_RANGE_ARRAY: "INTEGER_RANGE_ARRAY";
+            };
+        };
+    }, z.core.$strip>>>;
     ui: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         headquartersOption: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             country: z.ZodArray<z.ZodType<{

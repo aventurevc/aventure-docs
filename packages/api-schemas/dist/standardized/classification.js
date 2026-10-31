@@ -6,10 +6,14 @@ const StandardizedClassificationSchemaDefinition = z.object({
     category: z.string(),
     /** Id of this classification on the entity; null in catalog and search results. */
     classificationId: z.int().nullish(),
-    /** Standardized classification code when present. */
+    /** Legacy numeric standardized code when present; does not establish codeText or edition. */
     code: z.int().nullish(),
+    /** Exact source-stated code text; null is unrecorded, never reconstructed from code. */
+    codeText: z.string().max(255).nullish(),
     /** Registry row creation timestamp. */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Source-stated codebook edition; null is unknown, never an assumed current edition. */
+    edition: z.string().max(128).nullish(),
     /** Standardized classification id. */
     id: z.int(),
     /** Standardized reference rows are current by definition. */

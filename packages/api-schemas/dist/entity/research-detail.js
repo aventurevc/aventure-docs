@@ -11,14 +11,20 @@ const EntityResearchDetailSchemaDefinition = z.object({
         .nullish(),
     /** Eligibility as a current fact at response time; multiple rows may be eligible. Select the first eligible row in the returned authoritative order. */
     currentEligible: z.boolean().nullish(),
+    /** Exact monetary amount as a plain decimal string. Absent on legacy Double-only facts; never reconstruct exactness from discreteValue. */
+    decimalValue: z.string().nullish(),
     /** Read-only range derived only for targetDateAbsolute detail rows */
     derivedRange: ResearchDerivedRangeSchema.nullish(),
     discreteValue: z.number().nullish(),
     /** Canonical entity UUID */
     entityId: z.uuid(),
     id: z.int(),
+    /** Source-stated measurement/accounting basis; null means unknown. */
+    measurementBasis: z.string().nullish(),
     /** Published page behind this value, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
+    /** Source-stated reporting scope; null means unknown. */
+    reportingScope: z.string().nullish(),
     textValue: z.string().nullish(),
     typeResearchDetail: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

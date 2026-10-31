@@ -39,9 +39,25 @@ export declare const RegistryFilingSchema: z.ZodObject<{
         nameLast: string;
     }, import("./filing-person.ts").RegistryFilingPersonSchemaInput>>>>;
     uniqueId: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        effectiveFrom: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        effectiveTo: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         identifier: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         idType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        listingStanding: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            delisted: "delisted";
+            listed: "listed";
+            suspended: "suspended";
+        }>, z.ZodString]> & {
+            enum: {
+                delisted: "delisted";
+                listed: "listed";
+                suspended: "suspended";
+            };
+        }>>;
+        shareClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         source: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        standingAsOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        venue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
 export type RegistryFiling = z.infer<typeof RegistryFilingSchema>;

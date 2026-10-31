@@ -21,7 +21,7 @@ const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .nullish(),
-    /** Whether this investor is the lead investor for the round — the lead/anchor investor that set the round terms or made the primary commitment. */
+    /** Recorded lead/anchor flag. True records a lead role; historical false values may mean either non-lead or unrecorded leadership evidence. A false flag alone does not establish confirmed non-lead participation. */
     leadInvestor: z.boolean(),
     /** Fundraise transaction identifier */
     transactionId: z.uuid(),

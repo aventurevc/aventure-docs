@@ -15,6 +15,8 @@ const EntityValuationTimeSeriesPointSchemaDefinition = z.object({
     confidence: EntityValuationDataConfidenceSchema,
     /** ISO 4217 currency code. */
     currency: z.string(),
+    /** Exact source monetary decimal string for a research-detail valuation; legacy Long values are only projections. */
+    decimalValue: z.string().nullish(),
     /** Basis declared by the original source. */
     declaredBasis: ValuationTypeSchema,
     /** How pre-money and post-money fields were obtained. */
@@ -23,6 +25,10 @@ const EntityValuationTimeSeriesPointSchemaDefinition = z.object({
     detailId: z.int().nullish(),
     /** Fundraise round label or legacy detail display text, when present. */
     label: z.string().nullish(),
+    /** Source-stated measurement basis. */
+    measurementBasis: z.string().nullish(),
+    /** Source-stated reporting scope. */
+    reportingScope: z.string().nullish(),
     /** Canonical store that supplied the point. */
     source: EntityValuationSourceSchema,
     /** `detail-<id>` or `fundraise-<transactionId>` display reference. */

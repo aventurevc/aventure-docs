@@ -68,12 +68,14 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
         affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
         closedLast: z.ZodOptional<z.ZodBoolean>;
         employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+            matchMode?: string | null | undefined;
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+        }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput, z.core.$ZodTypeInternals<{
+            matchMode?: string | null | undefined;
             max?: number | null | undefined;
             min?: number | null | undefined;
-        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+        }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput>>>>;
         entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
         entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -178,6 +180,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
         headquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
         headquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
         industry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        investorPopulation: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         location: z.ZodOptional<z.ZodArray<z.ZodString>>;
         logoOption: z.ZodOptional<z.ZodObject<{
@@ -207,9 +210,37 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
             NONE: "NONE";
         }>>;
         rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        researchDetailRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+            max?: string | null | undefined;
+            measurementBasis?: string | null | undefined;
+            min?: string | null | undefined;
+            reportingScope?: string | null | undefined;
+            targetPath: string;
+            valueResearchDetail: string;
+        }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput, z.core.$ZodTypeInternals<{
+            max?: string | null | undefined;
+            measurementBasis?: string | null | undefined;
+            min?: string | null | undefined;
+            reportingScope?: string | null | undefined;
+            targetPath: string;
+            valueResearchDetail: string;
+        }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput>>>>;
         semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
         stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        standardizedClassification: z.ZodOptional<z.ZodArray<z.ZodType<{
+            category: string;
+            code?: number | null | undefined;
+            codeText?: string | null | undefined;
+            edition?: string | null | undefined;
+            hasEdition?: boolean | null | undefined;
+        }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput, z.core.$ZodTypeInternals<{
+            category: string;
+            code?: number | null | undefined;
+            codeText?: string | null | undefined;
+            edition?: string | null | undefined;
+            hasEdition?: boolean | null | undefined;
+        }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput>>>>;
         suppressLateStage: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         suppressZeroTotalRaised: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -258,12 +289,14 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
                 affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 closedLast: z.ZodOptional<z.ZodBoolean>;
                 employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    matchMode?: string | null | undefined;
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+                }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    matchMode?: string | null | undefined;
                     max?: number | null | undefined;
                     min?: number | null | undefined;
-                }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+                }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput>>>>;
                 entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
                 entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -368,6 +401,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
                 headquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 headquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 industry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                investorPopulation: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
                 letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
                 location: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 logoOption: z.ZodOptional<z.ZodObject<{
@@ -397,8 +431,36 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
                     NONE: "NONE";
                 }>>;
                 rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                researchDetailRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: string | null | undefined;
+                    measurementBasis?: string | null | undefined;
+                    min?: string | null | undefined;
+                    reportingScope?: string | null | undefined;
+                    targetPath: string;
+                    valueResearchDetail: string;
+                }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: string | null | undefined;
+                    measurementBasis?: string | null | undefined;
+                    min?: string | null | undefined;
+                    reportingScope?: string | null | undefined;
+                    targetPath: string;
+                    valueResearchDetail: string;
+                }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput>>>>;
                 slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                standardizedClassification: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    category: string;
+                    code?: number | null | undefined;
+                    codeText?: string | null | undefined;
+                    edition?: string | null | undefined;
+                    hasEdition?: boolean | null | undefined;
+                }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput, z.core.$ZodTypeInternals<{
+                    category: string;
+                    code?: number | null | undefined;
+                    codeText?: string | null | undefined;
+                    edition?: string | null | undefined;
+                    hasEdition?: boolean | null | undefined;
+                }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput>>>>;
                 suppressLateStage: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
                 suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
                 suppressZeroTotalRaised: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -484,12 +546,14 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
             affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
             closedLast: z.ZodOptional<z.ZodBoolean>;
             employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                matchMode?: string | null | undefined;
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+            }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput, z.core.$ZodTypeInternals<{
+                matchMode?: string | null | undefined;
                 max?: number | null | undefined;
                 min?: number | null | undefined;
-            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+            }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput>>>>;
             entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
             entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -594,6 +658,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
             headquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
             headquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
             industry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investorPopulation: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             location: z.ZodOptional<z.ZodArray<z.ZodString>>;
             logoOption: z.ZodOptional<z.ZodObject<{
@@ -623,8 +688,36 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
                 NONE: "NONE";
             }>>;
             rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            researchDetailRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: string | null | undefined;
+                measurementBasis?: string | null | undefined;
+                min?: string | null | undefined;
+                reportingScope?: string | null | undefined;
+                targetPath: string;
+                valueResearchDetail: string;
+            }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: string | null | undefined;
+                measurementBasis?: string | null | undefined;
+                min?: string | null | undefined;
+                reportingScope?: string | null | undefined;
+                targetPath: string;
+                valueResearchDetail: string;
+            }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput>>>>;
             slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
             stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            standardizedClassification: z.ZodOptional<z.ZodArray<z.ZodType<{
+                category: string;
+                code?: number | null | undefined;
+                codeText?: string | null | undefined;
+                edition?: string | null | undefined;
+                hasEdition?: boolean | null | undefined;
+            }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput, z.core.$ZodTypeInternals<{
+                category: string;
+                code?: number | null | undefined;
+                codeText?: string | null | undefined;
+                edition?: string | null | undefined;
+                hasEdition?: boolean | null | undefined;
+            }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput>>>>;
             suppressLateStage: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             suppressZeroTotalRaised: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;

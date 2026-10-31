@@ -10,6 +10,7 @@ export declare const PERSON_SIMILAR_ENDPOINT: "/v1/people/{personId}/similar";
  * @contractRole canonical
  */
 export declare const PersonSimilarParamSchema: z.ZodObject<{
+    cursor: z.ZodOptional<z.ZodString>;
     page: z.ZodOptional<z.ZodDefault<z.ZodInt>>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
     size: z.ZodOptional<z.ZodDefault<z.ZodInt>>;

@@ -19,6 +19,12 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
         controlType: "checkbox" | "currencyRange" | "dateRange" | "range";
         filterKey: string;
         filterMeta?: {
+            applicableTypeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
+            requestBinding?: {
+                path: string[];
+                rangeBound: string[];
+                valueShape: string;
+            } | null | undefined;
             ui?: {
                 headquartersOption?: {
                     country: {
@@ -55,6 +61,12 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
         controlType: "checkbox" | "currencyRange" | "dateRange" | "range";
         filterKey: string;
         filterMeta?: {
+            applicableTypeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
+            requestBinding?: {
+                path: string[];
+                rangeBound: string[];
+                valueShape: string;
+            } | null | undefined;
             ui?: {
                 headquartersOption?: {
                     country: {
@@ -116,6 +128,12 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
         controlType: "checkbox" | "currencyRange" | "dateRange" | "range";
         filterKey: string;
         filterMeta?: {
+            applicableTypeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
+            requestBinding?: {
+                path: string[];
+                rangeBound: string[];
+                valueShape: string;
+            } | null | undefined;
             ui?: {
                 headquartersOption?: {
                     country: {
@@ -152,6 +170,12 @@ declare const EntityFilterOptionSetSchemaDefinition: z.ZodObject<{
         controlType: "checkbox" | "currencyRange" | "dateRange" | "range";
         filterKey: string;
         filterMeta?: {
+            applicableTypeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | null | undefined;
+            requestBinding?: {
+                path: string[];
+                rangeBound: string[];
+                valueShape: string;
+            } | null | undefined;
             ui?: {
                 headquartersOption?: {
                     country: {
