@@ -40,6 +40,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         callback_tls_error: "callback_tls_error";
         cvc_inherited_headcount: "cvc_inherited_headcount";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
+        fundraise_evidence_unsupported: "fundraise_evidence_unsupported";
         geocode_provider_error: "geocode_provider_error";
         github_fetch_failed: "github_fetch_failed";
         image_blocklist_match: "image_blocklist_match";
@@ -96,6 +97,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         task_plan_operation_unserved: "task_plan_operation_unserved";
         url_surface_misclassification: "url_surface_misclassification";
         web_crawl_fetch_failed: "web_crawl_fetch_failed";
+        website_not_own_live_site: "website_not_own_live_site";
     }>, z.ZodString]>>>;
     conflictingRecord: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         deletedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

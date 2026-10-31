@@ -23,7 +23,7 @@ const SearchInterpretationSchemaDefinition = z.object({
     personAssociation: PersonFilterSchema.nullish(),
     /** Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms. */
     sort: SearchOrderingEntityFilterSortableSchema,
-    /** Brand or legal names of the entities the question is about, as written in the query; empty for discovery questions. */
+    /** Brand or legal names of the entities the question is about, as written in the query; usually empty for discovery questions, but retained for an unresolved typed offering profile. A name does not establish an accepted entity ID. */
     subjectEntityName: z.array(z.string()),
     /** Constraint the planner could not translate into the canonical EntityFilter contract, and the planned constraints a zero-row search relaxed; null when every material constraint was supported and applied. */
     unsupported: z.string().nullish(),

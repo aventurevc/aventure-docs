@@ -6,6 +6,7 @@ const ResearchAllowanceUsageSchemaDefinition = z.object({
     company: ResearchAllowanceSchema,
     /** Thin company brand reads (names, logos, links, tags) */
     entityBrand: ResearchAllowanceSchema,
+    /** Company profile views; Essential shares included usage with personView, while paid tiers meter each separately */
     entityView: ResearchAllowanceSchema,
     /** Deprecated: replaced by company, which it mirrors. */
     newCompany: ResearchAllowanceSchema,
@@ -13,6 +14,7 @@ const ResearchAllowanceUsageSchemaDefinition = z.object({
     newPerson: ResearchAllowanceSchema,
     /** Research runs on person-profile targets, new or existing */
     person: ResearchAllowanceSchema,
+    /** Person profile views; Essential reports the same shared included usage as entityView, not an additional free allowance */
     personView: ResearchAllowanceSchema,
     /** Deprecated: replaced by company, which it mirrors. */
     update: ResearchAllowanceSchema,

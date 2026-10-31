@@ -11,7 +11,7 @@ const ProblemDetailSchemaDefinition = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: ResearchAllowanceTypeSchema.nullish(),
     circuitBreaker: z.string().nullish(),
-    /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Code groups include auth/session, rate limiting, job infrastructure, RBAC, external providers, image processing, R2 storage, search, and inference. Many codes describe server-side conditions a caller cannot fix: surface the error and stop rather than retry. */
+    /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Many codes describe server-side conditions a caller cannot fix: surface the error and stop rather than retry. */
     code: z
         .union([
         z.enum([
@@ -51,6 +51,10 @@ const ProblemDetailSchemaDefinition = z.object({
             "suspected_shell_strip",
             /** Entity text or a research snippet failed its prose judge or contract. Rewrite every ProblemDetail.proseViolation passage and resend the whole text. ProblemDetail.hint names an override only when every violation is overridable. */
             "prose_rejected",
+            /** Cited source does not establish this round or role; follow its detail. */
+            "fundraise_evidence_unsupported",
+            /** Not the company's own live site; settle its state, then see detail. */
+            "website_not_own_live_site",
             /** CVC headcount inherited from its parent; follow ProblemDetail.hint. */
             "cvc_inherited_headcount",
             /** Every source-grounding slot is held by other text writes, so this write was refused before it judged or wrote anything. Agent action: replay the identical request after retryAfterSeconds (also in the Retry-After header). */
@@ -63,9 +67,9 @@ const ProblemDetailSchemaDefinition = z.object({
             "jobrunr_disabled",
             /** A catalog task step runs an operation this API instance does not serve, so its plan cannot be projected: rollout skew, or an instance whose configuration disables that operation. Agent action: retry after the rollout; on a deployed instance that persists, report it as rollout skew. */
             "task_plan_operation_unserved",
-            /** JobRunr backing storage (Postgres) is unavailable. Agent action: stop; retrying will not help until DB connectivity is restored. */
+            /** JobRunr storage (Postgres) is down. Agent action: stop until it recovers. */
             "JOBRUNR_STORAGE_UNAVAILABLE",
-            /** JobRunr backing storage (Postgres) is unavailable. Agent action: stop; retrying will not help until DB connectivity is restored. */
+            /** JobRunr storage (Postgres) is down. Agent action: stop until it recovers. */
             "jobrunr_storage_unavailable",
             /** RBAC role lookup failed (app_user read did not return). Agent action: retry once; persistent failure indicates a database outage. */
             "rbac_lookup_unavailable",
