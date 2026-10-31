@@ -260,6 +260,8 @@ const ProblemDetailSchemaDefinition = z.object({
     traceId: z.string().nullish(),
     type: z.string().optional(),
     unknownParameters: z.array(z.string()).nullish(),
+    /** On a task-completion 409, the completion gate ids whose owning reads did not pass; absent for every other problem. */
+    unmetGateId: z.array(z.string()).nullish(),
     /** Requests already charged against the limitType meter this period. */
     used: z.number().int().nullish(),
     validParameters: z.array(z.string()).nullish(),

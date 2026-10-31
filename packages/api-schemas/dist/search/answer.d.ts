@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.
+ * Answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.
  *
  * @openapiSchema SearchAnswer
  * @endpoint GET /v1/search/link

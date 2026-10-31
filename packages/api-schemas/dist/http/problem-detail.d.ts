@@ -322,6 +322,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     traceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     type: z.ZodOptional<z.ZodString>;
     unknownParameters: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+    unmetGateId: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     used: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     validParameters: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     value: z.ZodOptional<z.ZodNullable<z.ZodString>>;

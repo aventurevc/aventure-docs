@@ -5,7 +5,7 @@ import { SearchAnswerWebSourceSchema } from "./answer-web-source.js";
 const SearchAnswerParagraphSchemaDefinition = z.object({
     /** Evidence this paragraph rests on, most important first. */
     citation: z.array(SearchAnswerCitationSchema),
-    /** Paragraph text in plain prose. */
+    /** Paragraph text in plain prose, including attributed unchanged source quotations. */
     text: z.string(),
     /** Short label naming the category, market, or segment this paragraph covers, such as "Smartphones · North America"; absent on the lead paragraph. */
     topic: z.string().nullish(),

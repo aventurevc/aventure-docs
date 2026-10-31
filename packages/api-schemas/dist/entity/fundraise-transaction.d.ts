@@ -271,6 +271,7 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         recordedAt: z.ZodISODateTime;
         sourceDetail: z.ZodString;
     }, z.core.$strip>>>;
+    rawRoundLabel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     round: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     roundType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceAttribution: z.ZodArray<z.ZodObject<{

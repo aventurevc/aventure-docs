@@ -36,6 +36,8 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     investorCount: z.int().nullish(),
     /** Published page supporting this round, from its latest economic value write. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
+    /** Stored source round label, before display derivation. */
+    rawRoundLabel: z.string().nullish(),
     /** Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written. */
     round: z.string().nullish(),
     /** Source-reported classification persisted for this round (e.g. Public for a SPAC Merger); it is not derived from the round label. */

@@ -4,7 +4,7 @@ import { ConfidenceSchema } from "../confidence/confidence.js";
 import { SearchAnswerCitationSchema } from "./answer-citation.js";
 import { SearchAnswerParagraphSchema } from "./answer-paragraph.js";
 /**
- * Written answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.
+ * Answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means the evidence does not answer the question.
  *
  * @openapiSchema SearchAnswer
  * @endpoint GET /v1/search/link
@@ -23,11 +23,11 @@ export const SearchAnswerSchema = z.object({
     citation: z.array(SearchAnswerCitationSchema),
     /** How fully the cited evidence answers the question. */
     confidence: ConfidenceSchema,
-    /** One- or two-sentence summary of at most 155 characters for a search-result snippet; absent when the answer abstains. */
+    /** Summary of at most 155 characters for a search-result snippet; source financial answers use a whole selected recorded proposition or a generic funding phrase. Absent when the answer abstains. */
     description: z.string().nullish(),
     /** The question as the answer page's heading: the asker's own words in title case, with record names in their stored casing; it never adds, drops, or corrects a word. Absent when the answer abstains. */
     heading: z.string().nullish(),
-    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it. */
+    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it. Source financial answers render recorded funding facts literally, followed by attributed unchanged admitted source passages; a recorded total is not a round. */
     paragraph: z.array(SearchAnswerParagraphSchema),
     /** Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains. */
     relatedQuery: z.array(z.string()),
@@ -35,7 +35,7 @@ export const SearchAnswerSchema = z.object({
     shareable: z.boolean(),
     /** Every paragraph's text in reading order, separated by blank lines; read `paragraph` to place each citation beside the text it supports. */
     text: z.string(),
-    /** Page title of at most 60 characters naming the answer's subject, then the angle and scope its paragraphs cover, written by the same model call; pages show it as the subheading under `heading`. Absent when the answer abstains. */
+    /** Page title of at most 60 characters naming the answer's subject, then the angle and scope its paragraphs cover. Narrative titles come from the writer; source financial titles use a whole selected recorded proposition or a generic funding title. Pages show it as the subheading under `heading`. Absent when the answer abstains. */
     title: z.string().nullish(),
 });
 //# sourceMappingURL=answer.js.map

@@ -738,6 +738,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
@@ -876,6 +877,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {

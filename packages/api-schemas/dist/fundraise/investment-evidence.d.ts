@@ -126,6 +126,7 @@ declare const FundraiseInvestmentEvidenceSchemaDefinition: z.ZodObject<{
             recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
+        rawRoundLabel?: string | null | undefined;
         round?: string | null | undefined;
         roundType?: string | null | undefined;
         sourceAttribution: {
@@ -264,6 +265,7 @@ declare const FundraiseInvestmentEvidenceSchemaDefinition: z.ZodObject<{
             recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
+        rawRoundLabel?: string | null | undefined;
         round?: string | null | undefined;
         roundType?: string | null | undefined;
         sourceAttribution: {

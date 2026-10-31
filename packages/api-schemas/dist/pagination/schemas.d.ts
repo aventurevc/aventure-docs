@@ -1355,6 +1355,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
@@ -1493,6 +1494,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
@@ -4371,6 +4373,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
+        rawRoundLabel?: string | null | undefined;
         round?: string | null | undefined;
         roundType?: string | null | undefined;
         sourceAttribution: {
@@ -4509,6 +4512,7 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             recordedAt: string;
             sourceDetail: string;
         } | null | undefined;
+        rawRoundLabel?: string | null | undefined;
         round?: string | null | undefined;
         roundType?: string | null | undefined;
         sourceAttribution: {
@@ -5003,6 +5007,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                rawRoundLabel?: string | null | undefined;
                 round?: string | null | undefined;
                 roundType?: string | null | undefined;
                 sourceAttribution: {
@@ -6815,6 +6820,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                rawRoundLabel?: string | null | undefined;
                 round?: string | null | undefined;
                 roundType?: string | null | undefined;
                 sourceAttribution: {
@@ -8665,6 +8671,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
@@ -9303,6 +9310,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
@@ -10629,6 +10637,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                rawRoundLabel?: string | null | undefined;
                 round?: string | null | undefined;
                 roundType?: string | null | undefined;
                 sourceAttribution: {
@@ -11281,6 +11290,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                rawRoundLabel?: string | null | undefined;
                 round?: string | null | undefined;
                 roundType?: string | null | undefined;
                 sourceAttribution: {
@@ -17856,6 +17866,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
@@ -18494,6 +18505,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 recordedAt: string;
                 sourceDetail: string;
             } | null | undefined;
+            rawRoundLabel?: string | null | undefined;
             round?: string | null | undefined;
             roundType?: string | null | undefined;
             sourceAttribution: {
