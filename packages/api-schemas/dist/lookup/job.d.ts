@@ -1,6 +1,10 @@
 import { z } from "zod/v4";
 declare const LookupJobSchemaDefinition: z.ZodObject<{
     createdAt: z.ZodISODateTime;
+    failureDisposition: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        TERMINAL: "TERMINAL";
+        TRANSIENT: "TRANSIENT";
+    }>>>;
     failureReason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     identification: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         acceptedOwner: z.ZodOptional<z.ZodNullable<z.ZodObject<{

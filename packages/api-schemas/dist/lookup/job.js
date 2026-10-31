@@ -9,6 +9,8 @@ import { NewsSchema } from "../news/news.js";
 const LookupJobSchemaDefinition = z.object({
     /** When the job was requested. */
     createdAt: z.iso.datetime({ offset: true }),
+    /** Whether retrying the failed lookup can succeed: TERMINAL when the job judged the failure not transient, TRANSIENT when a transient failure exhausted or lacked its retry budget; absent unless state is FAILED and the job recorded that decision. */
+    failureDisposition: z.enum(["TRANSIENT", "TERMINAL"]).nullish(),
     /** Why the job failed; absent unless state is FAILED. */
     failureReason: z.string().nullish(),
     /** Subject jobs only: once COMPLETED, the identification returned for source.subject by POST /v1/lookup (kind in the JSON body), including requested filing and source-claim outcomes; absent otherwise. */
