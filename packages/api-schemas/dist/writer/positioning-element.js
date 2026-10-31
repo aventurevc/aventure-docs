@@ -11,6 +11,8 @@ const WriterPositioningElementSchemaKnownMembers = z.enum([
  * Research-selected category, buyer, approach, differentiation, or alternative.
  *
  * @openapiSchema WriterPositioningElement
+ * @endpoint POST /v1/research-runs
+ * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema WriterParagraphSchema

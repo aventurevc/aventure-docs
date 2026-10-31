@@ -23,6 +23,8 @@ export interface WriterGapSchemaInput extends z.input<typeof WriterGapSchemaDefi
  * A known evidence gap or conflict.
  *
  * @openapiSchema WriterGap
+ * @endpoint POST /v1/research-runs
+ * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema WriterMetaAnalysisSchema

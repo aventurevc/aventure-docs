@@ -8,9 +8,12 @@ import { WriterPositioningSchema } from "./positioning.js";
  * Finished research analysis for a governed prose write. The writer may phrase only the selected output claims and supplied judgments.
  *
  * @openapiSchema WriterBrief
+ * @endpoint POST /v1/research-runs
+ * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisSectionMutationSchema
+ * @usedBySchema HarnessTaskInputBindingSchema
  * @contractShape writer.brief
  * @contractRole canonical
  */

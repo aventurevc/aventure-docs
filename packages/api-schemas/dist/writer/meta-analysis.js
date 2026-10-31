@@ -9,6 +9,8 @@ import { WriterScopeSchema } from "./scope.js";
  * Research judgment the writer must preserve.
  *
  * @openapiSchema WriterMetaAnalysis
+ * @endpoint POST /v1/research-runs
+ * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema WriterBriefSchema

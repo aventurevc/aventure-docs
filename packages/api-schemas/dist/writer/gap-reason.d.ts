@@ -3,6 +3,8 @@ import { z } from "zod/v4";
  * Reason a research gap remains unresolved.
  *
  * @openapiSchema WriterGapReason
+ * @endpoint POST /v1/research-runs
+ * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema WriterGapSchema

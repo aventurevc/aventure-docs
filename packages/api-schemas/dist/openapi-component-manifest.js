@@ -694,7 +694,12 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     HarnessRunStatus: { modulePath: "harness/run-status", schemaName: "HarnessRunStatusSchema" },
     HarnessRunTurn: { modulePath: "harness/run-turn", schemaName: "HarnessRunTurnSchema" },
     HarnessRunType: { modulePath: "harness/run-type", schemaName: "HarnessRunTypeSchema" },
+    HarnessTaskFact: { modulePath: "harness/task-fact", schemaName: "HarnessTaskFactSchema" },
     HarnessTaskInput: { modulePath: "harness/task", schemaName: "HarnessTaskSchema" },
+    HarnessTaskInputBinding: {
+        modulePath: "harness/task-input-binding",
+        schemaName: "HarnessTaskInputBindingSchema",
+    },
     HarnessTaskInputType: {
         modulePath: "harness/task-input-type",
         schemaName: "HarnessTaskInputTypeSchema",
