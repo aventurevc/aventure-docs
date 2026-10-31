@@ -5,7 +5,7 @@ import { EntityNameAliasPersonAliasTypeSchema } from "../entity/name-alias-perso
 import { EntityTextBundleSchema } from "../entity/text-bundle.js";
 import { PersonImageSchema } from "./image.js";
 const PersonSchemaDefinition = z.object({
-    /** When the person's short text (bio) row was last edited; absent when the person has no short-text row. */
+    /** Latest assertion of the person's current biography body, including an unchanged-value citation; legacy rows use creation time, never metadata maintenance; absent without a biography. */
     bioUpdatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Record creation timestamp */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
