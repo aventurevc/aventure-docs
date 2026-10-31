@@ -38,6 +38,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         callback_http_5xx: "callback_http_5xx";
         callback_timeout: "callback_timeout";
         callback_tls_error: "callback_tls_error";
+        clerk_m2m_unavailable: "clerk_m2m_unavailable";
         cvc_inherited_headcount: "cvc_inherited_headcount";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
         fundraise_evidence_unsupported: "fundraise_evidence_unsupported";

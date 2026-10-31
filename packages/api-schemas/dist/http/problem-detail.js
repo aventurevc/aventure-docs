@@ -153,6 +153,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only. */
             "github_fetch_failed",
+            /** Clerk M2M token API failed. Agent action: retry after retryAfterSeconds. */
+            "clerk_m2m_unavailable",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
             "INFERENCE_PROVIDER_ERROR",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
