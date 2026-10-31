@@ -513,6 +513,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
                 headquartersRemoteAsOf?: string | null | undefined;
+                publicControllingParentId?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -1341,6 +1342,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
                 headquartersRemoteAsOf?: string | null | undefined;
+                publicControllingParentId?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;

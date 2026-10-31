@@ -100,6 +100,7 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
                 Nonprofit: "Nonprofit";
                 "Private company": "Private company";
                 Product: "Product";
+                Public: "Public";
                 "Public company": "Public company";
                 Service: "Service";
             }>, z.ZodString]> & {
@@ -117,6 +118,7 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
                     Nonprofit: "Nonprofit";
                     "Private company": "Private company";
                     Product: "Product";
+                    Public: "Public";
                     "Public company": "Public company";
                     Service: "Service";
                 };

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Profile headline derived from record kind, current market-standing ownership (Public or Private only), and operating status. Never a funding stage. Render an unrecognized value verbatim.
+ * Profile headline derived from record kind, current market-standing ownership (Public or Private only), a Business Line's proven public controlling parent, and operating status. Never a funding stage. Render an unrecognized value verbatim.
  *
  * @openapiSchema EntityProfileHeadline
  * @endpoint GET /v1/entities
@@ -43,6 +43,7 @@ export declare const EntityProfileHeadlineSchema: z.ZodUnion<readonly [z.ZodEnum
     Nonprofit: "Nonprofit";
     "Private company": "Private company";
     Product: "Product";
+    Public: "Public";
     "Public company": "Public company";
     Service: "Service";
 }>, z.ZodString]> & {
@@ -60,6 +61,7 @@ export declare const EntityProfileHeadlineSchema: z.ZodUnion<readonly [z.ZodEnum
         Nonprofit: "Nonprofit";
         "Private company": "Private company";
         Product: "Product";
+        Public: "Public";
         "Public company": "Public company";
         Service: "Service";
     };

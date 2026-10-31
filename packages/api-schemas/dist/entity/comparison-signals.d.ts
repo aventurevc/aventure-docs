@@ -120,6 +120,7 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
             Nonprofit: "Nonprofit";
             "Private company": "Private company";
             Product: "Product";
+            Public: "Public";
             "Public company": "Public company";
             Service: "Service";
         }>, z.ZodString]> & {
@@ -137,6 +138,7 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
                 Nonprofit: "Nonprofit";
                 "Private company": "Private company";
                 Product: "Product";
+                Public: "Public";
                 "Public company": "Public company";
                 Service: "Service";
             };

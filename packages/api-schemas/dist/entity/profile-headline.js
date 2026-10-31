@@ -4,6 +4,7 @@ const EntityProfileHeadlineSchemaKnownMembers = z.enum([
     "Company",
     "Private company",
     "Public company",
+    "Public",
     "Investment Firm",
     "Fund",
     "Nonprofit",
@@ -18,7 +19,7 @@ const EntityProfileHeadlineSchemaKnownMembers = z.enum([
     "Inactive",
 ]);
 /**
- * Profile headline derived from record kind, current market-standing ownership (Public or Private only), and operating status. Never a funding stage. Render an unrecognized value verbatim.
+ * Profile headline derived from record kind, current market-standing ownership (Public or Private only), a Business Line's proven public controlling parent, and operating status. Never a funding stage. Render an unrecognized value verbatim.
  *
  * @openapiSchema EntityProfileHeadline
  * @endpoint GET /v1/entities

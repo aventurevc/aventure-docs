@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { EntityProfileHeadlineSchema } from "./profile-headline.js";
 /**
- * Read-only profile status derived from stored kind, ownership, and operating status. Funding stage stays on enrichment.fundingDetail.stage.
+ * Read-only profile status derived from stored kind, ownership, operating status, and a Business Line's proven public controlling parent. Funding stage stays on enrichment.fundingDetail.stage.
  *
  * @openapiSchema EntityProfileStatus
  * @endpoint GET /v1/entities

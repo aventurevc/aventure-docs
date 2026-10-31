@@ -16,6 +16,8 @@ const EntityEnrichmentSchemaDefinition = z.object({
     headquartersAddressId: z.int().nullish(),
     /** When aVenture last verified that this entity runs no operating headquarters (a remote company); absent while a current operating headquarters is on record or no unexpired verification exists. */
     headquartersRemoteAsOf: z.iso.datetime({ offset: true }).nullish(),
+    /** Unique publicly readable current primary controlling parent with current Public eligibility, for a Business Line only; null when not proven. Derived from the current parent or acquirer relationship, never a listing or Public ownership claim on this entity. */
+    publicControllingParentId: z.uuid().nullish(),
     text: EntityTextBundleSchema,
     /** URL link filter values */
     urlLink: z.array(EntityUrlLinkSchema),

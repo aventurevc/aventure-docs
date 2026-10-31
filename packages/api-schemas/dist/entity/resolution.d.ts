@@ -327,6 +327,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -593,6 +594,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -2974,6 +2976,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 Nonprofit: "Nonprofit";
                 "Private company": "Private company";
                 Product: "Product";
+                Public: "Public";
                 "Public company": "Public company";
                 Service: "Service";
             }>, z.ZodString]> & {
@@ -2991,6 +2994,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     Nonprofit: "Nonprofit";
                     "Private company": "Private company";
                     Product: "Product";
+                    Public: "Public";
                     "Public company": "Public company";
                     Service: "Service";
                 };

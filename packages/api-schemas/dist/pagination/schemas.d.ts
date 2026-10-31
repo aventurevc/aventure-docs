@@ -944,6 +944,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -1210,6 +1211,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -3591,6 +3593,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 Nonprofit: "Nonprofit";
                 "Private company": "Private company";
                 Product: "Product";
+                Public: "Public";
                 "Public company": "Public company";
                 Service: "Service";
             }>, z.ZodString]> & {
@@ -3608,6 +3611,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     Nonprofit: "Nonprofit";
                     "Private company": "Private company";
                     Product: "Product";
+                    Public: "Public";
                     "Public company": "Public company";
                     Service: "Service";
                 };
@@ -4855,6 +4859,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
                 headquartersRemoteAsOf?: string | null | undefined;
+                publicControllingParentId?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -6666,6 +6671,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
                 headquartersRemoteAsOf?: string | null | undefined;
+                publicControllingParentId?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -8515,6 +8521,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -9152,6 +9159,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -10477,6 +10485,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
                 headquartersRemoteAsOf?: string | null | undefined;
+                publicControllingParentId?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -11128,6 +11137,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 headquartersAddressId?: number | null | undefined;
                 headquartersRemoteAsOf?: string | null | undefined;
+                publicControllingParentId?: string | null | undefined;
                 text: {
                     expanded?: string | null | undefined;
                     generatedDescription?: string | null | undefined;
@@ -17702,6 +17712,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;
@@ -18339,6 +18350,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             headquartersAddressId?: number | null | undefined;
             headquartersRemoteAsOf?: string | null | undefined;
+            publicControllingParentId?: string | null | undefined;
             text: {
                 expanded?: string | null | undefined;
                 generatedDescription?: string | null | undefined;

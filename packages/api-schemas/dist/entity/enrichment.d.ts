@@ -508,6 +508,7 @@ declare const EntityEnrichmentSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     headquartersAddressId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     headquartersRemoteAsOf: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    publicControllingParentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     text: z.ZodType<{
         expanded?: string | null | undefined;
         generatedDescription?: string | null | undefined;
