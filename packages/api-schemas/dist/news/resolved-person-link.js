@@ -15,6 +15,8 @@ import { NewsMatchStatusSchema } from "./match-status.js";
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/trending-news
+ * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph

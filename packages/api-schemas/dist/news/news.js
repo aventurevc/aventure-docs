@@ -15,6 +15,8 @@ import { NewsTitleMentionSchema } from "./title-mention.js";
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/trending-news
+ * @endpoint GET /v1/lookup-jobs/{jobId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -30,6 +32,7 @@ import { NewsTitleMentionSchema } from "./title-mention.js";
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityDetailSchema
+ * @usedBySchema LookupJobSchema
  * @usedBySchema MentionLookupSchema
  * @usedBySchema NewsDetailSchema
  * @usedBySchema NewsPublishedEventSchema

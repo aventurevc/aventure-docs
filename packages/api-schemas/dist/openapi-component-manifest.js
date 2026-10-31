@@ -778,6 +778,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     LookupJobMention: { modulePath: "lookup/job-mention", schemaName: "LookupJobMentionSchema" },
     LookupJobMutation: { modulePath: "lookup/job-mutation", schemaName: "LookupJobMutationSchema" },
     LookupMention: { modulePath: "lookup/mention", schemaName: "LookupMentionSchema" },
+    LookupSourceRead: { modulePath: "lookup/source-read", schemaName: "LookupSourceReadSchema" },
+    LookupSourceReadPhase: {
+        modulePath: "lookup/source-read-phase",
+        schemaName: "LookupSourceReadPhaseSchema",
+    },
     MediaObjectType: { modulePath: "media/object-type", schemaName: "MediaObjectTypeSchema" },
     MediaUpload: { modulePath: "media/upload", schemaName: "MediaUploadSchema" },
     MentionLookup: { modulePath: "mention/lookup", schemaName: "MentionLookupSchema" },

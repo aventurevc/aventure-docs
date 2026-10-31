@@ -1725,6 +1725,28 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput>>>>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
+    sourceRead: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        continuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            jobId: z.ZodUUID;
+            mode: z.ZodString;
+            statusUrl: z.ZodString;
+        }, z.core.$strip>>>;
+        faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        logoUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        message: z.ZodArray<z.ZodString>;
+        p95Ms: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        phase: z.ZodUnion<readonly [z.ZodEnum<{
+            MATCHING: "MATCHING";
+            READING: "READING";
+        }>, z.ZodString]> & {
+            enum: {
+                MATCHING: "MATCHING";
+                READING: "READING";
+            };
+        };
+        publication: z.ZodString;
+    }, z.core.$strip>>>;
     truncated: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type MentionLookupDefinition = z.infer<typeof MentionLookupSchemaDefinition>;

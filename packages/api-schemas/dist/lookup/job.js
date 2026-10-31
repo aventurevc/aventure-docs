@@ -4,6 +4,8 @@ import { IdentificationSchema } from "../identification/identification.js";
 import { JobStateSchema } from "../job/state.js";
 import { LookupJobMentionSchema } from "./job-mention.js";
 import { LookupJobMutationSchema } from "./job-mutation.js";
+import { LookupSourceReadSchema } from "./source-read.js";
+import { NewsSchema } from "../news/news.js";
 const LookupJobSchemaDefinition = z.object({
     /** When the job was requested. */
     createdAt: z.iso.datetime({ offset: true }),
@@ -23,8 +25,12 @@ const LookupJobSchemaDefinition = z.object({
     namesFound: z.int().nullish(),
     /** Names processed so far, including per-name failures. */
     namesProcessed: z.int(),
+    /** Stored article behind a shared-article lookup, when known. */
+    news: NewsSchema.nullish(),
     /** The article the job reads or names supplied for a bulk lookup. */
     source: LookupJobMutationSchema,
+    /** Publisher-reading activity for a durably accepted shared-article lookup. */
+    sourceRead: LookupSourceReadSchema.nullish(),
     /** Current job state. */
     state: JobStateSchema,
     /** When the job last changed state. */

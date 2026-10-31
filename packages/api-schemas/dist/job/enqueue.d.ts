@@ -18,6 +18,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup
  * @usedBySchema IdentificationSchema
+ * @usedBySchema LookupSourceReadSchema
  * @usedBySchema MentionLookupSchema
  * @contractShape job.enqueue
  * @contractRole canonical
