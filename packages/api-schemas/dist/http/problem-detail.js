@@ -155,6 +155,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "github_fetch_failed",
             /** Clerk M2M token API failed. Agent action: retry after retryAfterSeconds. */
             "clerk_m2m_unavailable",
+            /** Clerk OAuth API failed. Agent action: retry after retryAfterSeconds. */
+            "clerk_oauth_unavailable",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
             "INFERENCE_PROVIDER_ERROR",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
