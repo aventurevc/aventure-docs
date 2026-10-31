@@ -141,7 +141,7 @@ const ProblemDetailSchemaDefinition = z.object({
             "source_document_capture_limit_exceeded",
             /** News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking. */
             "news_similarity_embedding_unavailable",
-            /** The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint will succeed. */
+            /** The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint succeeds. */
             "search_provider_not_configured",
             /** Search provider call failed. Agent action: inspect detail and source. Provider credential or credit refusals (401, 402, or 407) are terminal: restore the provider credential or credits first. TERMINAL means refused or already retried: record the outage, never resend. TRANSIENT: retry once per Retry-After. */
             "search_provider_error",
@@ -149,7 +149,7 @@ const ProblemDetailSchemaDefinition = z.object({
             "search_still_running",
             /** A lookup sent with Prefer: respond-async was accepted as a lookup job instead of answered in the request. Agent action: poll the Location status URL after Retry-After. */
             "lookup_still_running",
-            /** SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or rate limiting affect the public-company preview endpoint only. */
+            /** SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or throttling affect only the public-company preview. */
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only. */
             "github_fetch_failed",
@@ -157,6 +157,8 @@ const ProblemDetailSchemaDefinition = z.object({
             "clerk_m2m_unavailable",
             /** Clerk OAuth API failed. Agent action: retry after retryAfterSeconds. */
             "clerk_oauth_unavailable",
+            /** Researchly usage API failed. Agent action: retry after retryAfterSeconds. */
+            "researchly_usage_unavailable",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
             "INFERENCE_PROVIDER_ERROR",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */

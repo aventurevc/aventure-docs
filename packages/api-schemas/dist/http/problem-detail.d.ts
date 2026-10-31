@@ -81,6 +81,7 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
         rateLimited: "rateLimited";
         rate_limited: "rate_limited";
         rbac_lookup_unavailable: "rbac_lookup_unavailable";
+        researchly_usage_unavailable: "researchly_usage_unavailable";
         search_provider_error: "search_provider_error";
         search_provider_not_configured: "search_provider_not_configured";
         search_still_running: "search_still_running";
