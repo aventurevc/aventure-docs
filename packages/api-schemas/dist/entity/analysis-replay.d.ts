@@ -18,13 +18,32 @@ declare const EntityAnalysisReplaySchemaDefinition: z.ZodObject<{
         seq: number;
         type: string;
     }, import("../harness/run-event.ts").HarnessRunEventSchemaInput>>>;
+    publishedSection: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        compliance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            characterCount: z.ZodInt;
+            meetsRequirements: z.ZodBoolean;
+            violation: z.ZodArray<z.ZodString>;
+            wordCount: z.ZodInt;
+        }, z.core.$strip>>>;
+        entityId: z.ZodUUID;
+        id: z.ZodInt;
+        publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            recordedAt: z.ZodISODateTime;
+            sourceDetail: z.ZodString;
+        }, z.core.$strip>>>;
+        text: z.ZodString;
+        textType: z.ZodString;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    }, z.core.$strip>>>;
     section: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
 type EntityAnalysisReplayDefinition = z.infer<typeof EntityAnalysisReplaySchemaDefinition>;
 export interface EntityAnalysisReplaySchemaInput extends z.input<typeof EntityAnalysisReplaySchemaDefinition> {
 }
 /**
- * A published staff research session replayed read-only beside the Research tab's paywall. It is the requested company's own session when one exists, otherwise the newest one.
+ * One accepted current published result shown read-only beside the Research tab's paywall. The same global example is selected independently of the requested profile.
  *
  * @openapiSchema EntityAnalysisReplay
  * @endpoint GET /v1/entities/{entityId}/analysis-replay

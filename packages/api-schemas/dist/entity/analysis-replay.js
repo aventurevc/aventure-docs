@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityResearchSnippetSchema } from "./research-snippet.js";
 import { HarnessRunEventSchema } from "../harness/run-event.js";
 const EntityAnalysisReplaySchemaDefinition = z.object({
     /** Company the replayed session researched. */
@@ -8,13 +9,15 @@ const EntityAnalysisReplaySchemaDefinition = z.object({
     entityName: z.string(),
     /** Profile slug of that company. */
     entitySlug: z.string(),
-    /** The session's section requests and the analyst's replies to them, in sequence order; never free-text turns, narration, drafts, checks, tool, or usage events. */
+    /** Retained legacy field, always empty. Conversation is withheld; publishedSection is a result, not a reply. */
     event: z.array(HarnessRunEventSchema),
-    /** Research snippet types this session published that are still current and unchanged since. */
+    /** The accepted current visible snippet, with only canonical public source metadata. */
+    publishedSection: EntityResearchSnippetSchema.nullish(),
+    /** The single snippet type displayed by this public example. */
     section: z.array(z.string()),
 });
 /**
- * A published staff research session replayed read-only beside the Research tab's paywall. It is the requested company's own session when one exists, otherwise the newest one.
+ * One accepted current published result shown read-only beside the Research tab's paywall. The same global example is selected independently of the requested profile.
  *
  * @openapiSchema EntityAnalysisReplay
  * @endpoint GET /v1/entities/{entityId}/analysis-replay

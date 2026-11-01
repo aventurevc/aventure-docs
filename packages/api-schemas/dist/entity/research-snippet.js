@@ -9,6 +9,7 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/analysis-replay
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research-snippets
@@ -21,6 +22,7 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/shared
+ * @usedBySchema EntityAnalysisReplaySchema
  * @usedBySchema EntityResearchSchema
  * @usedBySchema PageEntityResearchSnippetSchema
  * @contractShape entity.research-snippet

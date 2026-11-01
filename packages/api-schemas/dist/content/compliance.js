@@ -7,6 +7,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/analysis-replay
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research-snippets
