@@ -3,6 +3,7 @@ declare const BillingPortalMutationSchemaDefinition: z.ZodObject<{
     flow: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         PAYMENT_METHOD_UPDATE: "PAYMENT_METHOD_UPDATE";
     }>>>;
+    returnUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingPortalMutationDefinition = z.infer<typeof BillingPortalMutationSchemaDefinition>;
 export interface BillingPortalMutationSchemaInput extends z.input<typeof BillingPortalMutationSchemaDefinition> {
