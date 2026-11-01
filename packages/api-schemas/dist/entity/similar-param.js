@@ -13,6 +13,8 @@ export const ENTITY_SIMILAR_ENDPOINT = "/v1/entities/{entityId}/similar";
 export const EntitySimilarParamSchema = z.object({
     /** Opaque URL-safe cursor token from X-Next-Cursor. Reuse the same filters and sort. */
     cursor: z.string().optional(),
+    /** Exclude funds managed by this entity (UUID) before pagination */
+    excludeManagerId: z.uuid().optional(),
     /** Zero-based page index (0..N) */
     page: z.int().min(0).default(0).optional(),
     /** Permit monogram fallback */

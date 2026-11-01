@@ -11,6 +11,7 @@ export declare const ENTITY_SIMILAR_ENDPOINT: "/v1/entities/{entityId}/similar";
  */
 export declare const EntitySimilarParamSchema: z.ZodObject<{
     cursor: z.ZodOptional<z.ZodString>;
+    excludeManagerId: z.ZodOptional<z.ZodUUID>;
     page: z.ZodOptional<z.ZodDefault<z.ZodInt>>;
     permitMonogram: z.ZodOptional<z.ZodBoolean>;
     relationshipType: z.ZodOptional<z.ZodString>;
