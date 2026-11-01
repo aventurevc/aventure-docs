@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { FederatedSearchRejectionSchema } from "./search-rejection.js";
 import { SearchModeExecutionSchema } from "../search/mode-execution.js";
 const FederatedSearchProvenanceSchemaDefinition = z.object({
-    /** True when synthesis was requested but the answer model was temporarily unavailable (an upstream outage, open circuit, full concurrency limit, or expired deadline), so the entity scope carries no answer while every scope's rows returned. Retrying the same query may succeed. */
+    /** True when synthesis was requested but the answer model was temporarily unavailable (an upstream outage, open circuit, full concurrency limit, or expired deadline), so the entity scope carries no answer while every scope's rows returned, or when the answer check refused every paragraph the answer model drafted, so the answer has no paragraph. Retrying the same query may succeed. */
     answerUnavailable: z.boolean(),
     /** Entity search strategy execution. */
     entity: SearchModeExecutionSchema,
