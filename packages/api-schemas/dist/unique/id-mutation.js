@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { UniqueIdListingStandingSchema } from "./id-listing-standing.js";
 /**
- * Create or merge-patch an external identifier mapping. Omitted fields preserve existing values; listing qualifiers apply only to entity tickers and remain write-refused during the preserving-reader rollout.
+ * Create or merge-patch an external identifier mapping. Omitted fields preserve existing values; listing qualifiers apply only to entity tickers.
  *
  * @openapiSchema UniqueIdMutation
  * @endpoint GET /v1/lookup-jobs/{jobId}

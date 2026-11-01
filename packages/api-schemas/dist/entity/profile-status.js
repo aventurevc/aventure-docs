@@ -30,6 +30,7 @@ import { EntityProfileHeadlineSchema } from "./profile-headline.js";
  * @usedBySchema EntityComparisonSignalsSchema
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityListSchema
+ * @usedBySchema EntityRelationshipSchema
  * @contractShape entity.profile-status
  * @contractRole canonical
  */

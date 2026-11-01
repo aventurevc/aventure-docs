@@ -134,6 +134,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
+                    uniqueId?: {
+                        identifier?: string | null | undefined;
+                        idType: string;
+                    }[] | undefined;
                     url?: string | null | undefined;
                     urlDomain?: string | null | undefined;
                     urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -289,6 +293,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
+                uniqueId?: {
+                    identifier?: string | null | undefined;
+                    idType: string;
+                }[] | undefined;
                 url?: string | null | undefined;
                 urlDomain?: string | null | undefined;
                 urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -482,6 +490,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
+                    uniqueId?: {
+                        identifier?: string | null | undefined;
+                        idType: string;
+                    }[] | undefined;
                     url?: string | null | undefined;
                     urlDomain?: string | null | undefined;
                     urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -637,6 +649,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
+                uniqueId?: {
+                    identifier?: string | null | undefined;
+                    idType: string;
+                }[] | undefined;
                 url?: string | null | undefined;
                 urlDomain?: string | null | undefined;
                 urlMatchMode?: "domain" | "hostPath" | null | undefined;

@@ -177,6 +177,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
+                    uniqueId?: {
+                        identifier?: string | null | undefined;
+                        idType: string;
+                    }[] | undefined;
                     url?: string | null | undefined;
                     urlDomain?: string | null | undefined;
                     urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -314,6 +318,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                             typeRevenue?: string[] | undefined;
                             typeTechnologyUsed?: string[] | undefined;
+                            uniqueId?: {
+                                identifier?: string | null | undefined;
+                                idType: string;
+                            }[] | undefined;
                             url?: string | null | undefined;
                             urlDomain?: string | null | undefined;
                             urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -469,6 +477,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
+                        uniqueId?: {
+                            identifier?: string | null | undefined;
+                            idType: string;
+                        }[] | undefined;
                         url?: string | null | undefined;
                         urlDomain?: string | null | undefined;
                         urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -4524,6 +4536,12 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 id?: number | null | undefined;
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | null | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -4857,6 +4875,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                             typeRevenue?: string[] | undefined;
                             typeTechnologyUsed?: string[] | undefined;
+                            uniqueId?: {
+                                identifier?: string | null | undefined;
+                                idType: string;
+                            }[] | undefined;
                             url?: string | null | undefined;
                             urlDomain?: string | null | undefined;
                             urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -5012,6 +5034,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
+                        uniqueId?: {
+                            identifier?: string | null | undefined;
+                            idType: string;
+                        }[] | undefined;
                         url?: string | null | undefined;
                         urlDomain?: string | null | undefined;
                         urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -6675,6 +6701,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
+                    uniqueId?: {
+                        identifier?: string | null | undefined;
+                        idType: string;
+                    }[] | undefined;
                     url?: string | null | undefined;
                     urlDomain?: string | null | undefined;
                     urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -6812,6 +6842,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                             typeRevenue?: string[] | undefined;
                             typeTechnologyUsed?: string[] | undefined;
+                            uniqueId?: {
+                                identifier?: string | null | undefined;
+                                idType: string;
+                            }[] | undefined;
                             url?: string | null | undefined;
                             urlDomain?: string | null | undefined;
                             urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -6967,6 +7001,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
+                        uniqueId?: {
+                            identifier?: string | null | undefined;
+                            idType: string;
+                        }[] | undefined;
                         url?: string | null | undefined;
                         urlDomain?: string | null | undefined;
                         urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -11022,6 +11060,12 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 id?: number | null | undefined;
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | null | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -11355,6 +11399,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                             typeRevenue?: string[] | undefined;
                             typeTechnologyUsed?: string[] | undefined;
+                            uniqueId?: {
+                                identifier?: string | null | undefined;
+                                idType: string;
+                            }[] | undefined;
                             url?: string | null | undefined;
                             urlDomain?: string | null | undefined;
                             urlMatchMode?: "domain" | "hostPath" | null | undefined;
@@ -11510,6 +11558,10 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
+                        uniqueId?: {
+                            identifier?: string | null | undefined;
+                            idType: string;
+                        }[] | undefined;
                         url?: string | null | undefined;
                         urlDomain?: string | null | undefined;
                         urlMatchMode?: "domain" | "hostPath" | null | undefined;

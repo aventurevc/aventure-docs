@@ -7,7 +7,7 @@ const FederatedSearchProvenanceSchemaDefinition = z.object({
     answerUnavailable: z.boolean(),
     /** Entity search strategy execution. */
     entity: SearchModeExecutionSchema,
-    /** Scopes whose optional sources or candidate judgments did not all complete. Returned rows remain judged and usable but the population is incomplete, so this response must not be cached as final. Retrying the same query may complete these scopes. */
+    /** Scopes whose required named subjects could not be resolved, or whose optional sources or candidate judgments did not all complete. Returned rows remain usable but the requested population is incomplete, so this response must not be cached as final. Clarifying the named subjects or retrying may complete these scopes. */
     incompleteScope: z.array(z.enum(["entity", "person", "news"])).optional(),
     /** News search strategy execution. */
     news: SearchModeExecutionSchema,

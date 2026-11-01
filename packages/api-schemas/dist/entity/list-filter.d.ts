@@ -223,6 +223,13 @@ export declare const EntityListFilterSchema: z.ZodObject<{
     }>>>;
     typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
     typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    uniqueId: z.ZodOptional<z.ZodArray<z.ZodType<{
+        identifier?: string | null | undefined;
+        idType: string;
+    }, import("./unique-id-filter.ts").EntityUniqueIdFilterSchemaInput, z.core.$ZodTypeInternals<{
+        identifier?: string | null | undefined;
+        idType: string;
+    }, import("./unique-id-filter.ts").EntityUniqueIdFilterSchemaInput>>>>;
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     urlDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     urlMatchMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{

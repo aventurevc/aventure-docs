@@ -603,6 +603,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/type-group-membership",
         schemaName: "EntityTypeGroupMembershipSchema",
     },
+    EntityUniqueIdFilter: {
+        modulePath: "entity/unique-id-filter",
+        schemaName: "EntityUniqueIdFilterSchema",
+    },
     EntityUrlCrawlCdnProvider: {
         modulePath: "entity/url-crawl-cdn-provider",
         schemaName: "EntityUrlCrawlCdnProviderSchema",

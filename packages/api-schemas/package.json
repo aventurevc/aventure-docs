@@ -1,6 +1,6 @@
 {
   "name": "@aventurevc/api-schemas",
-  "version": "0.8.314",
+  "version": "0.8.315",
   "private": false,
   "description": "Zod v4 schemas and TypeScript types for the aVenture API.",
   "license": "Apache-2.0",
@@ -42,6 +42,6 @@
   },
   "scripts": {},
   "engines": {
-    "node": ">=24.18.0"
+    "node": ">=24.22.1 <25"
   }
 }

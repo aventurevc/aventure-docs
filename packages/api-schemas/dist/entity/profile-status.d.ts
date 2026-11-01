@@ -28,6 +28,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityComparisonSignalsSchema
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityListSchema
+ * @usedBySchema EntityRelationshipSchema
  * @contractShape entity.profile-status
  * @contractRole canonical
  */

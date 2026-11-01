@@ -209,6 +209,48 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
     id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    profileStatus: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        headline: z.ZodUnion<readonly [z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            "Business Line": "Business Line";
+            Closed: "Closed";
+            "Closed (Acquihire)": "Closed (Acquihire)";
+            Company: "Company";
+            Fund: "Fund";
+            Government: "Government";
+            Inactive: "Inactive";
+            "Investment Firm": "Investment Firm";
+            Nonprofit: "Nonprofit";
+            "Private company": "Private company";
+            Product: "Product";
+            Public: "Public";
+            "Public company": "Public company";
+            Service: "Service";
+        }>, z.ZodString]> & {
+            enum: {
+                Acquired: "Acquired";
+                "Acquired Subsidiary": "Acquired Subsidiary";
+                "Business Line": "Business Line";
+                Closed: "Closed";
+                "Closed (Acquihire)": "Closed (Acquihire)";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                Inactive: "Inactive";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                "Private company": "Private company";
+                Product: "Product";
+                Public: "Public";
+                "Public company": "Public company";
+                Service: "Service";
+            };
+        };
+        isAcquired: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isClosed: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isTerminal: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    }, z.core.$strip>>>;
     publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

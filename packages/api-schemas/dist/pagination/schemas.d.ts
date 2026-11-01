@@ -4129,6 +4129,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             id?: number | null | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | null | undefined;
             publicSource?: {
                 lastFetchedAt?: string | null | undefined;
                 publishedAt?: string | null | undefined;
@@ -4205,6 +4211,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             id?: number | null | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
+            profileStatus?: {
+                headline: string;
+                isAcquired?: boolean | null | undefined;
+                isClosed?: boolean | null | undefined;
+                isTerminal?: boolean | null | undefined;
+            } | null | undefined;
             publicSource?: {
                 lastFetchedAt?: string | null | undefined;
                 publishedAt?: string | null | undefined;
@@ -6701,6 +6713,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 id?: number | null | undefined;
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | null | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -8671,6 +8689,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 id?: number | null | undefined;
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
+                profileStatus?: {
+                    headline: string;
+                    isAcquired?: boolean | null | undefined;
+                    isClosed?: boolean | null | undefined;
+                    isTerminal?: boolean | null | undefined;
+                } | null | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -10555,6 +10579,12 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         id?: number | null | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;
@@ -10631,6 +10661,12 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         id?: number | null | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;

@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EntityComparisonSignalsSchema } from "./comparison-signals.js";
 import { EntitySchema } from "./entity.js";
+import { EntityProfileStatusSchema } from "./profile-status.js";
 import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 const EntityRelationshipSchemaDefinition = z.object({
     /** Source-stated effective date, preserving stored precision */
@@ -22,6 +23,8 @@ const EntityRelationshipSchemaDefinition = z.object({
     isCurrent: z.boolean().nullish(),
     /** Whether this relationship is the primary one shown. isCurrent=false or isPrimary=false hides the row from default relationship reads. */
     isPrimary: z.boolean().nullish(),
+    /** Derived profile status of the joined entity, as its list and detail reads report it; absent on write responses, nested rows, and identity-only reads. */
+    profileStatus: EntityProfileStatusSchema.nullish(),
     /** Published page behind this relationship, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     /** Nested relationships for the joined entity */

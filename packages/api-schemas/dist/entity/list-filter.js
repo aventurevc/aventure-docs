@@ -6,6 +6,7 @@ import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria
 import { EntityListQualityGateSchema } from "./list-quality-gate.js";
 import { EntityOperatingStatusSchema } from "./operating-status.js";
 import { EntityTypeSchema } from "./type.js";
+import { EntityUniqueIdFilterSchema } from "./unique-id-filter.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
 import { ResearchDetailRangeSchema } from "../research/detail-range.js";
@@ -131,6 +132,8 @@ export const EntityListFilterSchema = z.strictObject({
     typeRevenue: z.array(z.string()).optional(),
     /** Technology-used classification values. */
     typeTechnologyUsed: z.array(z.string()).optional(),
+    /** OR public-registry identifier predicates; AND with other facets. */
+    uniqueId: z.array(EntityUniqueIdFilterSchema).max(20).optional(),
     /** Current URL to match by normalized host and path. */
     url: z.string().nullish(),
     /** Current root domain to match when urlMatchMode=domain. */

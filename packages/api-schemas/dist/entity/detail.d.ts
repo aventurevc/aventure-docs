@@ -3525,6 +3525,12 @@ export declare const EntityDetailSchema: z.ZodObject<{
         id?: number | null | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;
@@ -3601,6 +3607,12 @@ export declare const EntityDetailSchema: z.ZodObject<{
         id?: number | null | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
+        profileStatus?: {
+            headline: string;
+            isAcquired?: boolean | null | undefined;
+            isClosed?: boolean | null | undefined;
+            isTerminal?: boolean | null | undefined;
+        } | null | undefined;
         publicSource?: {
             lastFetchedAt?: string | null | undefined;
             publishedAt?: string | null | undefined;
