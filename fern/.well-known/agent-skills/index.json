@@ -55,7 +55,7 @@
       "type": "skill-md",
       "description": "Use only when asked for a portfolio analysis of an investment firm or individual investor: funds, observed deal activity by year, stage, sector, and geography, lead and follow-on behavior with coverage stated, verified outcomes, co-investors, stated versus revealed thesis, and recent activity.",
       "url": "/.well-known/agent-skills/investor-portfolio-analysis/SKILL.md",
-      "digest": "sha256:8fb5750d9df2798c15a41a98ed22134ac2ed3d460fee0bf2d04a42bb4a1f07eb"
+      "digest": "sha256:6126ccb95c38f40338b49e99780569b9baf74db9ecc52c5c232aeec243df2e3e"
     },
     {
       "name": "leadership-track-record",
