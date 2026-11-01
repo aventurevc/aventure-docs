@@ -22,7 +22,7 @@ const UrlDuplicateConflictSchemaDefinition = z.object({
     urlType: z.string(),
 });
 /**
- * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; inspect its identity before changing ownership. An offering sharing its provider's homepage uses the provider relationship without a duplicate URL row.
+ * Typed extension on ProblemDetail.details for HTTP 409 when a create/update attempts to set a URL with urlType=website (or another exclusive urlType) that is already a current URL on a different entity or person. The existingJoin list names every current owner of the normalized URL; inspect its identity before changing ownership. A person holds one current LinkedIn person profile (/in/<slug>): a different one answers this conflict with existingJoin naming the person's own held row. An offering sharing its provider's homepage uses the provider relationship without a duplicate URL row.
  *
  * @openapiSchema UrlDuplicateConflict
  * @standardProblemResponse
