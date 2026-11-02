@@ -1,5 +1,13 @@
 import { z } from "zod/v4";
-declare const ProblemDetailSchemaDefinition: z.ZodObject<{
+/**
+ * RFC 9457 problem response with aVenture extensions.
+ *
+ * @openapiSchema ProblemDetail
+ * @standardProblemResponse
+ * @contractShape http.problem-detail
+ * @contractRole canonical
+ */
+export declare const ProblemDetailSchema: z.ZodObject<{
     allowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         COMPANY: "COMPANY";
         ENTITY_BRAND: "ENTITY_BRAND";
@@ -331,18 +339,5 @@ declare const ProblemDetailSchemaDefinition: z.ZodObject<{
     value: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     windowSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
-type ProblemDetailDefinition = z.infer<typeof ProblemDetailSchemaDefinition>;
-export interface ProblemDetailSchemaInput extends z.input<typeof ProblemDetailSchemaDefinition> {
-}
-/**
- * RFC 9457 problem response with aVenture extensions.
- *
- * @openapiSchema ProblemDetail
- * @standardProblemResponse
- * @contractShape http.problem-detail
- * @contractRole canonical
- */
-export declare const ProblemDetailSchema: z.ZodType<ProblemDetailDefinition, ProblemDetailSchemaInput>;
 export type ProblemDetail = z.infer<typeof ProblemDetailSchema>;
-export {};
 //# sourceMappingURL=problem-detail.d.ts.map

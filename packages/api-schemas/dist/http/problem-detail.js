@@ -7,7 +7,15 @@ import { ProseViolationSchema } from "../prose/violation.js";
 import { CurrentSlugOwnerSchema } from "../redirect/current-slug-owner.js";
 import { RedirectSlugPathSchema } from "../redirect/redirect-slug-path.js";
 import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
-const ProblemDetailSchemaDefinition = z.object({
+/**
+ * RFC 9457 problem response with aVenture extensions.
+ *
+ * @openapiSchema ProblemDetail
+ * @standardProblemResponse
+ * @contractShape http.problem-detail
+ * @contractRole canonical
+ */
+export const ProblemDetailSchema = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: ResearchAllowanceTypeSchema.nullish(),
     circuitBreaker: z.string().nullish(),
@@ -275,13 +283,4 @@ const ProblemDetailSchemaDefinition = z.object({
     /** Length of a rolling throttle window; absent for period meters. */
     windowSeconds: z.number().int().nullish(),
 });
-/**
- * RFC 9457 problem response with aVenture extensions.
- *
- * @openapiSchema ProblemDetail
- * @standardProblemResponse
- * @contractShape http.problem-detail
- * @contractRole canonical
- */
-export const ProblemDetailSchema = ProblemDetailSchemaDefinition;
 //# sourceMappingURL=problem-detail.js.map

@@ -32,10 +32,12 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     investor: z.array(EntityFundraiseInvestorJoinSchema).nullish(),
     /** Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's whole investment in this round: its joins here (one per vehicle, such as a CEA and a SAFE) summed. joinId names one of those joins. */
     investorAttribution: FundraiseInvestmentAttributionSchema.nullish(),
-    /** Source-reported number of investors in the round. This can exceed the identified investor joins when a source reports a total without naming every investor. */
+    /** Greater of source and distinct-investor counts; null if both are unknown. */
     investorCount: z.int().nullish(),
     /** Published page supporting this round, from its latest economic value write. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
+    /** Stored source-reported investor count; null when unknown. */
+    rawInvestorCount: z.int().nullish(),
     /** Stored source round label, before display derivation. */
     rawRoundLabel: z.string().nullish(),
     /** Display round label derived from the stored round label, round type, and financial instrument type (an 'Initial Public Offering' round of type IPO reads as IPO); it can differ from the round label written. */

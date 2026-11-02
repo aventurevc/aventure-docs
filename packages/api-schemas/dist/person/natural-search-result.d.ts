@@ -841,6 +841,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                rawInvestorCount?: number | null | undefined;
                 rawRoundLabel?: string | null | undefined;
                 round?: string | null | undefined;
                 roundType?: string | null | undefined;
@@ -1019,6 +1020,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     recordedAt: string;
                     sourceDetail: string;
                 } | null | undefined;
+                rawInvestorCount?: number | null | undefined;
                 rawRoundLabel?: string | null | undefined;
                 round?: string | null | undefined;
                 roundType?: string | null | undefined;
