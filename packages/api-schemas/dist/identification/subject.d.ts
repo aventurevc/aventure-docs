@@ -71,6 +71,7 @@ export declare const IdentificationSubjectSchema: z.ZodObject<{
     location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceIdentifier: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         effectiveFrom: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         effectiveTo: z.ZodOptional<z.ZodNullable<z.ZodString>>;

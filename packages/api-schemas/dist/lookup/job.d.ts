@@ -2010,6 +2010,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             location?: string | null | undefined;
             name?: string | null | undefined;
             providerId?: string | null | undefined;
+            sourceDocumentId?: string | null | undefined;
             sourceIdentifier?: {
                 effectiveFrom?: string | null | undefined;
                 effectiveTo?: string | null | undefined;
@@ -2072,6 +2073,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             location?: string | null | undefined;
             name?: string | null | undefined;
             providerId?: string | null | undefined;
+            sourceDocumentId?: string | null | undefined;
             sourceIdentifier?: {
                 effectiveFrom?: string | null | undefined;
                 effectiveTo?: string | null | undefined;
