@@ -2713,6 +2713,33 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
         };
         entityDetail: {
+            comparisonAnswer?: {
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                confidence: "HIGH" | "LOW" | "MEDIUM";
+                description?: string | null | undefined;
+                heading?: string | null | undefined;
+                paragraph: {
+                    citation: {
+                        entityId: string;
+                        source: string;
+                        sourceId: string;
+                    }[];
+                    text: string;
+                    topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
+                }[];
+                relatedQuery: string[];
+                shareable: boolean;
+                text: string;
+                title?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
@@ -9237,6 +9264,33 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
         };
         entityDetail: {
+            comparisonAnswer?: {
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                confidence: "HIGH" | "LOW" | "MEDIUM";
+                description?: string | null | undefined;
+                heading?: string | null | undefined;
+                paragraph: {
+                    citation: {
+                        entityId: string;
+                        source: string;
+                        sourceId: string;
+                    }[];
+                    text: string;
+                    topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
+                }[];
+                relatedQuery: string[];
+                shareable: boolean;
+                text: string;
+                title?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;

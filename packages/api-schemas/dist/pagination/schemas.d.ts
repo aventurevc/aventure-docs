@@ -627,6 +627,53 @@ export declare const PageEntityAcquisitionSchema: z.ZodType<PageEntityAcquisitio
 export type PageEntityAcquisition = z.infer<typeof PageEntityAcquisitionSchema>;
 declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodLazy<z.ZodObject<{
+        comparisonAnswer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            citation: z.ZodArray<z.ZodType<{
+                entityId: string;
+                source: string;
+                sourceId: string;
+            }, import("../search/answer-citation.ts").SearchAnswerCitationSchemaInput, z.core.$ZodTypeInternals<{
+                entityId: string;
+                source: string;
+                sourceId: string;
+            }, import("../search/answer-citation.ts").SearchAnswerCitationSchemaInput>>>;
+            confidence: z.ZodEnum<{
+                HIGH: "HIGH";
+                LOW: "LOW";
+                MEDIUM: "MEDIUM";
+            }>;
+            description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            heading: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            paragraph: z.ZodArray<z.ZodType<{
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                text: string;
+                topic?: string | null | undefined;
+                webSource?: {
+                    title: string;
+                    url: string;
+                }[] | undefined;
+            }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput, z.core.$ZodTypeInternals<{
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                text: string;
+                topic?: string | null | undefined;
+                webSource?: {
+                    title: string;
+                    url: string;
+                }[] | undefined;
+            }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput>>>;
+            relatedQuery: z.ZodArray<z.ZodString>;
+            shareable: z.ZodBoolean;
+            text: z.ZodString;
+            title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>>>;
         core: z.ZodObject<{
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
@@ -4901,6 +4948,33 @@ export type PageEntityFundraiseTransaction = z.infer<typeof PageEntityFundraiseT
 declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodLazy<z.ZodType<{
         entity: {
+            comparisonAnswer?: {
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                confidence: "HIGH" | "LOW" | "MEDIUM";
+                description?: string | null | undefined;
+                heading?: string | null | undefined;
+                paragraph: {
+                    citation: {
+                        entityId: string;
+                        source: string;
+                        sourceId: string;
+                    }[];
+                    text: string;
+                    topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
+                }[];
+                relatedQuery: string[];
+                shareable: boolean;
+                text: string;
+                title?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
@@ -6877,6 +6951,33 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
         roundCount: number;
     }, import("../entity/investor-participation.ts").EntityInvestorParticipationSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
+            comparisonAnswer?: {
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                confidence: "HIGH" | "LOW" | "MEDIUM";
+                description?: string | null | undefined;
+                heading?: string | null | undefined;
+                paragraph: {
+                    citation: {
+                        entityId: string;
+                        source: string;
+                        sourceId: string;
+                    }[];
+                    text: string;
+                    topic?: string | null | undefined;
+                    webSource?: {
+                        title: string;
+                        url: string;
+                    }[] | undefined;
+                }[];
+                relatedQuery: string[];
+                shareable: boolean;
+                text: string;
+                title?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;

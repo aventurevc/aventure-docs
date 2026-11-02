@@ -26,6 +26,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            nameAgreement: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -70,6 +71,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            nameAgreement: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -116,6 +118,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            nameAgreement: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -169,6 +172,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             }>>>;
             duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            nameAgreement: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             owner: z.ZodObject<{
                 entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
                 personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
@@ -882,6 +886,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -908,6 +913,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -936,6 +942,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -971,6 +978,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1712,6 +1720,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1738,6 +1747,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1766,6 +1776,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1801,6 +1812,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;

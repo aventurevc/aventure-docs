@@ -11,6 +11,7 @@ import { EntityResearchSchema } from "./research.js";
 import { EntitySitemapSchema } from "./sitemap.js";
 import { NewsSchema } from "../news/news.js";
 import { PersonDetailSchema } from "../person/detail.js";
+import { SearchAnswerSchema } from "../search/answer.js";
 import { UniqueIdSchema } from "../unique/id.js";
 /**
  * Full entity detail response: core entity, enrichment, governed research, relationships, external identifiers, fundraising, news, people, and sitemap eligibility. Core identity and naming fields live under core.
@@ -36,6 +37,8 @@ import { UniqueIdSchema } from "../unique/id.js";
  * @contractRole canonical
  */
 export const EntityDetailSchema = z.object({
+    /** Optional cited comparison of this public profile with comparisonEntityId in the requested order. Null when not requested, not entitled, withheld, or unavailable. HEAD and detail streams never compose it; ordinary detail admission is unchanged. */
+    comparisonAnswer: SearchAnswerSchema.nullish(),
     /** Core entity identity, naming, status, image, and source metadata. */
     core: EntitySchema,
     /** The queued or running full-research run covering this record; null when none, and always null on people embedded in another record. */

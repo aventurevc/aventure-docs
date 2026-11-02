@@ -31,6 +31,8 @@ export const IdentificationCandidateSchema = z.object({
     duplicateProbability: z.number().nullish(),
     /** The year the entity was founded, when stored; absent for people and records without one. */
     foundedYear: z.int().nullish(),
+    /** Strict canonical equality of the requested name and this entity's display brand, under the lookup's matching rules. Not a similarity, legal-name or alias proof. Absent for people, missing names, unavailable proof and older stored responses. */
+    nameAgreement: z.boolean().nullish(),
     /** Entity identity (entityId) or person identity (personId). record.typeRecord distinguishes a company, product, or service; read it with GET /v1/entities/{entityId} or GET /v1/people/{personId}. */
     owner: EntityPersonOwnerSchema,
     /** Confidence, 0 to 1, that this record is the subject: the one confidence to act on. Absent when an exact id, URL, slug, or registry-id match settled the answer, which needs no confidence, or when this record was not compared. */

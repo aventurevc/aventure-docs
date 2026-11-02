@@ -10,6 +10,53 @@ import { z } from "zod/v4";
 export declare const EntityResolutionSchema: z.ZodObject<{
     candidateEntityId: z.ZodArray<z.ZodUUID>;
     detail: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        comparisonAnswer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            citation: z.ZodArray<z.ZodType<{
+                entityId: string;
+                source: string;
+                sourceId: string;
+            }, import("../search/answer-citation.ts").SearchAnswerCitationSchemaInput, z.core.$ZodTypeInternals<{
+                entityId: string;
+                source: string;
+                sourceId: string;
+            }, import("../search/answer-citation.ts").SearchAnswerCitationSchemaInput>>>;
+            confidence: z.ZodEnum<{
+                HIGH: "HIGH";
+                LOW: "LOW";
+                MEDIUM: "MEDIUM";
+            }>;
+            description: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            heading: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            paragraph: z.ZodArray<z.ZodType<{
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                text: string;
+                topic?: string | null | undefined;
+                webSource?: {
+                    title: string;
+                    url: string;
+                }[] | undefined;
+            }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput, z.core.$ZodTypeInternals<{
+                citation: {
+                    entityId: string;
+                    source: string;
+                    sourceId: string;
+                }[];
+                text: string;
+                topic?: string | null | undefined;
+                webSource?: {
+                    title: string;
+                    url: string;
+                }[] | undefined;
+            }, import("../search/answer-paragraph.ts").SearchAnswerParagraphSchemaInput>>>;
+            relatedQuery: z.ZodArray<z.ZodString>;
+            shareable: z.ZodBoolean;
+            text: z.ZodString;
+            title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        }, z.core.$strip>>>;
         core: z.ZodObject<{
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;

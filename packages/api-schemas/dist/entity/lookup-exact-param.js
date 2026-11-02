@@ -17,6 +17,8 @@ export const EntityLookupExactParamSchema = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255)
         .optional(),
+    /** Exact peer UUIDs in display order for an optional cited comparison on the UUID item JSON read. Exclude the subject and duplicates; subject plus peers must fit the served search answer policy maxEntityEvidence. Uses public stored evidence only, requires the caller's paid natural-search entitlement, and consumes no search allowance or peer views. Omit for ordinary reads; ignored on HEAD and SSE. */
+    comparisonEntityId: z.array(z.uuid()).optional(),
     /** Location candidate: city, state, or country. */
     location: z.string().optional(),
     /** Primary entity name candidate. */

@@ -7,13 +7,20 @@ import { SearchAnswerParagraphSchema } from "./answer-paragraph.js";
  * Answer to a natural-language question, grounded only in the response's entity records and passages. LOW confidence with no paragraph means no grounded answer: the evidence does not answer the question when `provenance.answerUnavailable` is false, and the answer check refused every drafted paragraph when it is true, so a retry may answer. LOW confidence with paragraphs means at least one kept paragraph passed the answer check only below its acceptance bar.
  *
  * @openapiSchema SearchAnswer
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/shared
+ * @usedBySchema EntityDetailSchema
  * @usedBySchema NaturalSearchResultSchema
  * @contractShape search.answer
  * @contractRole canonical

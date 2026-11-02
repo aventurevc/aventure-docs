@@ -661,6 +661,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -687,6 +688,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -715,6 +717,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -750,6 +753,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1491,6 +1495,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1517,6 +1522,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1545,6 +1551,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;
@@ -1580,6 +1587,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 duplicateBasis?: "JUDGED" | "SHARED_FACT" | "STUB" | null | undefined;
                 duplicateProbability?: number | null | undefined;
                 foundedYear?: number | null | undefined;
+                nameAgreement?: boolean | null | undefined;
                 owner: {
                     entityId?: string | null | undefined;
                     personId?: string | null | undefined;

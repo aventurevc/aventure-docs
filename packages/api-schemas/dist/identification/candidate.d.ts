@@ -30,6 +30,7 @@ export declare const IdentificationCandidateSchema: z.ZodObject<{
     }>>>;
     duplicateProbability: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    nameAgreement: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     owner: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

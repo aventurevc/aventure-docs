@@ -11,6 +11,7 @@ export declare const ENTITY_LOOKUP_EXACT_ENDPOINT: "/v1/entities/lookup-exact";
  */
 export declare const EntityLookupExactParamSchema: z.ZodObject<{
     companySlug: z.ZodOptional<z.ZodString>;
+    comparisonEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
     location: z.ZodOptional<z.ZodString>;
     name: z.ZodOptional<z.ZodString>;
     nameBrand: z.ZodOptional<z.ZodString>;

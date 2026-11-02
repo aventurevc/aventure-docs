@@ -4,7 +4,10 @@ import { z } from "zod/v4";
  * Three-level confidence band for a classifier, model, or probe verdict. The carrying property states what is assessed and what each band licenses.
  *
  * @openapiSchema Confidence
+ * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/entities/{entityId}
+ * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/logo
  * @endpoint GET /v1/news/{newsId}/thumbnail
  * @endpoint GET /v1/people/{personId}/photo
@@ -12,6 +15,9 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/agents/help
+ * @endpoint POST /v1/entities/lookup-batch
+ * @endpoint POST /v1/entities/lookup-matches
+ * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/help
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
