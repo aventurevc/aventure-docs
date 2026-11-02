@@ -31,6 +31,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         httpStatus?: number | null | undefined;
         id: string;
         lastAccessedAt?: string | null | undefined;
+        lastFetchedAt?: string | undefined;
         provider: string;
         providerRequestId?: string | null | undefined;
         rawByteCount?: number | null | undefined;
@@ -38,6 +39,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         rawMediaType?: string | null | undefined;
         sourceKey: string;
         upstreamContentEncoding?: string | null | undefined;
+        url?: string | null | undefined;
     }, import("../source/document-list.ts").SourceDocumentListSchemaInput, z.core.$ZodTypeInternals<{
         cacheHitCount: number;
         createdAt: string;
@@ -46,6 +48,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         httpStatus?: number | null | undefined;
         id: string;
         lastAccessedAt?: string | null | undefined;
+        lastFetchedAt?: string | undefined;
         provider: string;
         providerRequestId?: string | null | undefined;
         rawByteCount?: number | null | undefined;
@@ -53,6 +56,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         rawMediaType?: string | null | undefined;
         sourceKey: string;
         upstreamContentEncoding?: string | null | undefined;
+        url?: string | null | undefined;
     }, import("../source/document-list.ts").SourceDocumentListSchemaInput>>;
     knowledgeGraph: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         attribute: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{

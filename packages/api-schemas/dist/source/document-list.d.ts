@@ -7,6 +7,7 @@ declare const SourceDocumentListSchemaDefinition: z.ZodObject<{
     httpStatus: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     id: z.ZodUUID;
     lastAccessedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    lastFetchedAt: z.ZodOptional<z.ZodISODateTime>;
     provider: z.ZodString;
     providerRequestId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     rawByteCount: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
@@ -14,6 +15,7 @@ declare const SourceDocumentListSchemaDefinition: z.ZodObject<{
     rawMediaType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceKey: z.ZodString;
     upstreamContentEncoding: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type SourceDocumentListDefinition = z.infer<typeof SourceDocumentListSchemaDefinition>;
 export interface SourceDocumentListSchemaInput extends z.input<typeof SourceDocumentListSchemaDefinition> {

@@ -9,6 +9,8 @@ const SourceDocumentListSchemaDefinition = z.object({
     /** Document id */
     id: z.uuid(),
     lastAccessedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Newest successful capture time in latestPerUrl mode; otherwise this version last fetch. Older API revisions omit this field. */
+    lastFetchedAt: z.iso.datetime({ offset: true }).optional(),
     provider: z.string(),
     providerRequestId: z.string().nullish(),
     rawByteCount: z.number().int().nullish(),
@@ -17,6 +19,8 @@ const SourceDocumentListSchemaDefinition = z.object({
     /** Canonical fetch identity: canonical URL, query hash, or dataset + external id */
     sourceKey: z.string(),
     upstreamContentEncoding: z.string().nullish(),
+    /** Fetched page URL; recency keyset continuation uses this value */
+    url: z.string().nullish(),
 });
 /**
  * Metadata-only ledger row for source-document lists
