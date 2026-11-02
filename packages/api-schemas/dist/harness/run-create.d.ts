@@ -27,6 +27,53 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
     name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     taskInput: z.ZodOptional<z.ZodArray<z.ZodType<{
         entityId?: string | null | undefined;
+        entityWriterBrief?: {
+            claim: {
+                end?: number | null | undefined;
+                gateId?: string | null | undefined;
+                quote?: string | undefined;
+                sourceDocumentId?: string | null | undefined;
+                sourceUrl: string;
+                start?: number | null | undefined;
+                statement?: string | undefined;
+                writerSurface?: string | null | undefined;
+            }[];
+            metaAnalysis: {
+                answer: {
+                    claim: number[];
+                    statement: string;
+                };
+                asOfDate: string;
+                changeSignal: {
+                    claim: number[];
+                    statement: string;
+                }[];
+                gap: {
+                    claim: number[];
+                    reason: string;
+                    statement: string;
+                }[];
+                question: string;
+                scope: {
+                    boundary: string;
+                    geography?: string | null | undefined;
+                    period?: string | null | undefined;
+                };
+            };
+            outputClaim?: number[] | undefined;
+            paragraph: {
+                analysis: {
+                    answer: boolean;
+                };
+                claim: number[];
+                positioning: string[];
+            }[];
+            positioning: {
+                claim: number[];
+                element: string;
+                statement: string;
+            }[];
+        } | null | undefined;
         fact?: {
             eventDate?: string | null | undefined;
             sourceUrl: string;
@@ -92,6 +139,53 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
         } | null | undefined;
     }, import("./task-input-binding.ts").HarnessTaskInputBindingSchemaInput, z.core.$ZodTypeInternals<{
         entityId?: string | null | undefined;
+        entityWriterBrief?: {
+            claim: {
+                end?: number | null | undefined;
+                gateId?: string | null | undefined;
+                quote?: string | undefined;
+                sourceDocumentId?: string | null | undefined;
+                sourceUrl: string;
+                start?: number | null | undefined;
+                statement?: string | undefined;
+                writerSurface?: string | null | undefined;
+            }[];
+            metaAnalysis: {
+                answer: {
+                    claim: number[];
+                    statement: string;
+                };
+                asOfDate: string;
+                changeSignal: {
+                    claim: number[];
+                    statement: string;
+                }[];
+                gap: {
+                    claim: number[];
+                    reason: string;
+                    statement: string;
+                }[];
+                question: string;
+                scope: {
+                    boundary: string;
+                    geography?: string | null | undefined;
+                    period?: string | null | undefined;
+                };
+            };
+            outputClaim?: number[] | undefined;
+            paragraph: {
+                analysis: {
+                    answer: boolean;
+                };
+                claim: number[];
+                positioning: string[];
+            }[];
+            positioning: {
+                claim: number[];
+                element: string;
+                statement: string;
+            }[];
+        } | null | undefined;
         fact?: {
             eventDate?: string | null | undefined;
             sourceUrl: string;

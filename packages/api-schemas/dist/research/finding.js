@@ -29,6 +29,7 @@ const ResearchFindingSchemaDefinition = z.object({
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EnrichmentPromptSchema
+ * @usedBySchema EntityWriterBriefSchema
  * @usedBySchema HarnessRunCreateSchema
  * @usedBySchema WriterBriefSchema
  * @contractShape research.finding

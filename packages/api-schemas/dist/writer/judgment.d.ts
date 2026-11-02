@@ -14,6 +14,7 @@ export interface WriterJudgmentSchemaInput extends z.input<typeof WriterJudgment
  * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
+ * @usedBySchema EntityWriterMetaAnalysisSchema
  * @usedBySchema WriterAnalysisSectionSchema
  * @usedBySchema WriterMetaAnalysisSchema
  * @contractShape writer.judgment

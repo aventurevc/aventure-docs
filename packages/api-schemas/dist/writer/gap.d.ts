@@ -27,6 +27,7 @@ export interface WriterGapSchemaInput extends z.input<typeof WriterGapSchemaDefi
  * @endpoint POST /v1/research/runs
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
+ * @usedBySchema EntityWriterMetaAnalysisSchema
  * @usedBySchema WriterMetaAnalysisSchema
  * @contractShape writer.gap
  * @contractRole canonical

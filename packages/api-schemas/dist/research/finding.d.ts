@@ -32,6 +32,7 @@ export interface ResearchFindingSchemaInput extends z.input<typeof ResearchFindi
  * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EnrichmentPromptSchema
+ * @usedBySchema EntityWriterBriefSchema
  * @usedBySchema HarnessRunCreateSchema
  * @usedBySchema WriterBriefSchema
  * @contractShape research.finding

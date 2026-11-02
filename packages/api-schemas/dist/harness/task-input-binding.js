@@ -1,10 +1,13 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityWriterBriefSchema } from "../entity/writer-brief.js";
 import { HarnessTaskFactSchema } from "./task-fact.js";
 import { WriterBriefSchema } from "../writer/brief.js";
 const HarnessTaskInputBindingSchemaDefinition = z.object({
     /** Canonical entity UUID; exclusive with newsId, text, writerBrief and fact. */
     entityId: z.uuid().nullish(),
+    /** Section-free entity or person text brief for a WRITER_BRIEF input; exclusive with writerBrief, entityId, newsId, text and fact. The task must create entity or person text. Use this typed value only with compatible Harness readers; legacy writerBrief remains supported. */
+    entityWriterBrief: EntityWriterBriefSchema.nullish(),
     /** One source-bound fact for a FACT input; exclusive with entityId, newsId, text and writerBrief. */
     fact: HarnessTaskFactSchema.nullish(),
     /** Catalog input key; omit it to bind the task's only declared input of the value's type. */

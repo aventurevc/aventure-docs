@@ -1,6 +1,93 @@
 import { z } from "zod/v4";
 declare const HarnessTaskInputBindingSchemaDefinition: z.ZodObject<{
     entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    entityWriterBrief: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        claim: z.ZodArray<z.ZodType<{
+            end?: number | null | undefined;
+            gateId?: string | null | undefined;
+            quote?: string | undefined;
+            sourceDocumentId?: string | null | undefined;
+            sourceUrl: string;
+            start?: number | null | undefined;
+            statement?: string | undefined;
+            writerSurface?: string | null | undefined;
+        }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
+            end?: number | null | undefined;
+            gateId?: string | null | undefined;
+            quote?: string | undefined;
+            sourceDocumentId?: string | null | undefined;
+            sourceUrl: string;
+            start?: number | null | undefined;
+            statement?: string | undefined;
+            writerSurface?: string | null | undefined;
+        }, import("../research/finding.ts").ResearchFindingSchemaInput>>>;
+        metaAnalysis: z.ZodType<{
+            answer: {
+                claim: number[];
+                statement: string;
+            };
+            asOfDate: string;
+            changeSignal: {
+                claim: number[];
+                statement: string;
+            }[];
+            gap: {
+                claim: number[];
+                reason: string;
+                statement: string;
+            }[];
+            question: string;
+            scope: {
+                boundary: string;
+                geography?: string | null | undefined;
+                period?: string | null | undefined;
+            };
+        }, import("../entity/writer-meta-analysis.ts").EntityWriterMetaAnalysisSchemaInput, z.core.$ZodTypeInternals<{
+            answer: {
+                claim: number[];
+                statement: string;
+            };
+            asOfDate: string;
+            changeSignal: {
+                claim: number[];
+                statement: string;
+            }[];
+            gap: {
+                claim: number[];
+                reason: string;
+                statement: string;
+            }[];
+            question: string;
+            scope: {
+                boundary: string;
+                geography?: string | null | undefined;
+                period?: string | null | undefined;
+            };
+        }, import("../entity/writer-meta-analysis.ts").EntityWriterMetaAnalysisSchemaInput>>;
+        outputClaim: z.ZodOptional<z.ZodArray<z.ZodInt>>;
+        paragraph: z.ZodArray<z.ZodType<{
+            analysis: {
+                answer: boolean;
+            };
+            claim: number[];
+            positioning: string[];
+        }, import("../entity/writer-paragraph.ts").EntityWriterParagraphSchemaInput, z.core.$ZodTypeInternals<{
+            analysis: {
+                answer: boolean;
+            };
+            claim: number[];
+            positioning: string[];
+        }, import("../entity/writer-paragraph.ts").EntityWriterParagraphSchemaInput>>>;
+        positioning: z.ZodArray<z.ZodType<{
+            claim: number[];
+            element: string;
+            statement: string;
+        }, import("../writer/positioning.ts").WriterPositioningSchemaInput, z.core.$ZodTypeInternals<{
+            claim: number[];
+            element: string;
+            statement: string;
+        }, import("../writer/positioning.ts").WriterPositioningSchemaInput>>>;
+    }, z.core.$strip>>>;
     fact: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         eventDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
         sourceUrl: z.ZodString;

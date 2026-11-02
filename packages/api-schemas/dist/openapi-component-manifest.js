@@ -634,6 +634,19 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/valuation-time-series-point",
         schemaName: "EntityValuationTimeSeriesPointSchema",
     },
+    EntityWriterBrief: { modulePath: "entity/writer-brief", schemaName: "EntityWriterBriefSchema" },
+    EntityWriterMetaAnalysis: {
+        modulePath: "entity/writer-meta-analysis",
+        schemaName: "EntityWriterMetaAnalysisSchema",
+    },
+    EntityWriterParagraph: {
+        modulePath: "entity/writer-paragraph",
+        schemaName: "EntityWriterParagraphSchema",
+    },
+    EntityWriterParagraphAnalysis: {
+        modulePath: "entity/writer-paragraph-analysis",
+        schemaName: "EntityWriterParagraphAnalysisSchema",
+    },
     FederatedNaturalSearch: {
         modulePath: "federated/natural-search",
         schemaName: "FederatedNaturalSearchSchema",
