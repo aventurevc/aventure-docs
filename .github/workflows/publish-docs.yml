@@ -51,7 +51,7 @@ jobs:
               r"Upload complete in [0-9]+ms — [0-9]+ uploaded, [0-9]+ already in store|"
               r"Finished in [0-9]+ms — deploymentId=[A-Za-z0-9_-]+, reused=(?:true|false)|"
               r"All content already in CAS — no uploads needed)$")
-          key = r"(?:deploymentId|siteId|deploymentHash|reusedDeployment|additionalSiteIds|translationsProcessed|missingContent|defined|code|status|message|data|error|json)"
+          key = r"(?:deploymentId|siteId|deploymentHash|reusedDeployment|additionalSiteIds|translationsProcessed|missingContent|defined|code|status|message|data)"
           keys = rf"(?:none|{key}(?:,{key})*)"
           code = r"(?:absent|other|BAD_REQUEST|UNAUTHORIZED|FORBIDDEN|NOT_FOUND|METHOD_NOT_SUPPORTED|NOT_ACCEPTABLE|TIMEOUT|CONFLICT|PRECONDITION_FAILED|PAYLOAD_TOO_LARGE|UNSUPPORTED_MEDIA_TYPE|UNPROCESSABLE_CONTENT|TOO_MANY_REQUESTS|CLIENT_CLOSED_REQUEST|INTERNAL_SERVER_ERROR|NOT_IMPLEMENTED|BAD_GATEWAY|SERVICE_UNAVAILABLE|GATEWAY_TIMEOUT)"
           body = re.compile(
