@@ -7,6 +7,8 @@ const HarnessTaskStepSchemaDefinition = z.object({
     operationId: z.string(),
     /** Agent-task keys whose plans this step follows instead of restating their steps: the task then owns each named plan's steps, so a write one of them commits counts for this task too. Each must name another planned task; a key may appear once per task and delegations must not loop. */
     planTaskKey: z.array(z.string()).optional(),
+    /** Whether this step must supply an analysis section when its task publishes an article analysis. Optional lens steps already require a section when accepted. */
+    publishesAnalysis: z.boolean().optional(),
     /** Step key, unique within its task. */
     stepKey: z.string().optional(),
     /** Display title for this step, when the catalog supplies one. */

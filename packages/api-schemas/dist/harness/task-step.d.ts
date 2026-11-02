@@ -3,6 +3,7 @@ declare const HarnessTaskStepSchemaDefinition: z.ZodObject<{
     instruction: z.ZodString;
     operationId: z.ZodString;
     planTaskKey: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    publishesAnalysis: z.ZodOptional<z.ZodBoolean>;
     stepKey: z.ZodOptional<z.ZodString>;
     title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;

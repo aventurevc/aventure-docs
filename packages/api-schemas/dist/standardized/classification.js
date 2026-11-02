@@ -16,7 +16,7 @@ const StandardizedClassificationSchemaDefinition = z.object({
     edition: z.string().max(128).nullish(),
     /** Standardized classification id. */
     id: z.int(),
-    /** Standardized reference rows are current by definition. */
+    /** Whether the entity's classification join is current; false retains historical context. Catalog and search reference rows are current by definition. */
     isCurrent: z.boolean().nullish(),
     /** Whether this is the entity's primary classification in this category. */
     isPrimary: z.boolean().nullish(),

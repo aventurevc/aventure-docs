@@ -32,6 +32,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             instruction: string;
             operationId: string;
             planTaskKey?: string[] | undefined;
+            publishesAnalysis?: boolean | undefined;
             stepKey?: string | undefined;
             title?: string | null | undefined;
         };
@@ -51,6 +52,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
             instruction: string;
             operationId: string;
             planTaskKey?: string[] | undefined;
+            publishesAnalysis?: boolean | undefined;
             stepKey?: string | undefined;
             title?: string | null | undefined;
         };

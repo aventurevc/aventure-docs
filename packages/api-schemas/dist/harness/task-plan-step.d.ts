@@ -6,12 +6,14 @@ declare const HarnessTaskPlanStepSchemaDefinition: z.ZodObject<{
         instruction: string;
         operationId: string;
         planTaskKey?: string[] | undefined;
+        publishesAnalysis?: boolean | undefined;
         stepKey?: string | undefined;
         title?: string | null | undefined;
     }, import("./task-step.ts").HarnessTaskStepSchemaInput, z.core.$ZodTypeInternals<{
         instruction: string;
         operationId: string;
         planTaskKey?: string[] | undefined;
+        publishesAnalysis?: boolean | undefined;
         stepKey?: string | undefined;
         title?: string | null | undefined;
     }, import("./task-step.ts").HarnessTaskStepSchemaInput>>;
