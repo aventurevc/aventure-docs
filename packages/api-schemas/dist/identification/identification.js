@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { DomainConflictTypeSchema } from "../domain/conflict-type.js";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationCandidateSchema } from "./candidate.js";
 import { JobEnqueueSchema } from "../job/enqueue.js";
@@ -38,6 +39,8 @@ export const IdentificationSchema = z.object({
     enrichmentRunId: z.uuid().nullish(),
     /** Present only for callers that sent Prefer: respond-async. The identification is settled, but filing is pending. Poll statusUrl until the lookup job completes and use its identification; do not treat this as a final unfiled absence. */
     filing: JobEnqueueSchema.nullish(),
+    /** Conflict kind that refused creating the shell, from ProblemDetail.details.conflictType. Absent when no typed conflict refused filing; detail retains the explanation. */
+    filingRefusal: DomainConflictTypeSchema.nullish(),
     /** Present only for callers that sent Prefer: respond-async. For a completed filing job, whether that request inserted created. */
     inserted: z.boolean().nullish(),
     /** true when the match was settled on a second, slower review; confirm it before relying on it. Absent otherwise. */

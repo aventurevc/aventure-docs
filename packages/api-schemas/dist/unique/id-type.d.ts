@@ -36,6 +36,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     ipedsUnitId: "ipedsUnitId";
     isin: "isin";
     lei: "lei";
+    naicCompanyCode: "naicCompanyCode";
     ncesLeaId: "ncesLeaId";
     ncesPssId: "ncesPssId";
     ncesSchoolId: "ncesSchoolId";
@@ -62,6 +63,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         ipedsUnitId: "ipedsUnitId";
         isin: "isin";
         lei: "lei";
+        naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";
         ncesPssId: "ncesPssId";
         ncesSchoolId: "ncesSchoolId";

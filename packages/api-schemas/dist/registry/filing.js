@@ -28,7 +28,7 @@ export const RegistryFilingSchema = z.object({
     nameFormer: z.array(z.string()).max(10).optional(),
     /** People the filing names: executive officers, directors, promoters. */
     person: z.array(RegistryFilingPersonSchema).max(100).optional(),
-    /** Registry ids the filing states, such as secCik, ein, or npi. A record holding the same id is strong evidence; a record holding a different id of the same type is a different filer and never matches. */
+    /** Registry ids the filing states, such as secCik, ein, or npi. A record holding the same non-EIN id is strong evidence; an EIN is a reported tax assertion, never independent identity evidence. Filing or claiming a source requires verified tax-owner evidence before any write; unresolved EINs return review. A record holding a different exclusive id of the same type is a different filer. */
     uniqueId: z.array(UniqueIdMutationSchema).max(5).optional(),
 });
 //# sourceMappingURL=filing.js.map

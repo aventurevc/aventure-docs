@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { UniqueIdListingStandingSchema } from "./id-listing-standing.js";
 /**
- * Create or merge-patch an external identifier mapping. Omitted fields preserve existing values; listing qualifiers apply only to entity tickers.
+ * Create or merge-patch an external identifier mapping. Omitted fields preserve existing values; listing qualifiers apply only to entity tickers. A new or changed EIN requires independently verified tax-owner evidence; an unheld number or source label does not establish ownership. Unchanged bindings and label-only patches preserve the existing tax identity.
  *
  * @openapiSchema UniqueIdMutation
  * @endpoint GET /v1/lookup-jobs/{jobId}

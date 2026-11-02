@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 const LookupSourceReadPhaseSchemaKnownMembers = z.enum(["READING", "MATCHING"]);
 /**
- * Observed article-reading activity; unknown future phases retain their supplied copy.
+ * Observed source-reading activity; unknown future phases retain their supplied copy.
  *
  * @openapiSchema LookupSourceReadPhase
  * @endpoint GET /v1/lookup-jobs/{jobId}

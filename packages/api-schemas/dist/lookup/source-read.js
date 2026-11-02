@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { JobEnqueueSchema } from "../job/enqueue.js";
 import { LookupSourceReadPhaseSchema } from "./source-read-phase.js";
 /**
- * Publisher context and honest reading activity for a shared-article lookup.
+ * Source context and honest reading activity for a shared article or profile.
  *
  * @openapiSchema LookupSourceRead
  * @endpoint GET /v1/lookup-jobs/{jobId}

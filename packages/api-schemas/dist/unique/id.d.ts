@@ -17,6 +17,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         ipedsUnitId: "ipedsUnitId";
         isin: "isin";
         lei: "lei";
+        naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";
         ncesPssId: "ncesPssId";
         ncesSchoolId: "ncesSchoolId";
@@ -43,6 +44,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             ipedsUnitId: "ipedsUnitId";
             isin: "isin";
             lei: "lei";
+            naicCompanyCode: "naicCompanyCode";
             ncesLeaId: "ncesLeaId";
             ncesPssId: "ncesPssId";
             ncesSchoolId: "ncesSchoolId";

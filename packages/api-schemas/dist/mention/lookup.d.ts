@@ -745,6 +745,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 mode: string;
                 statusUrl: string;
             } | null | undefined;
+            filingRefusal?: string | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
@@ -1580,6 +1581,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                 mode: string;
                 statusUrl: string;
             } | null | undefined;
+            filingRefusal?: string | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {

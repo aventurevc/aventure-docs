@@ -15,6 +15,7 @@ const DomainConflictTypeSchemaKnownMembers = z.enum([
  * @usedBySchema ClassificationInactiveTagDetailsSchema
  * @usedBySchema DomainConflictDetailsSchema
  * @usedBySchema DuplicateCreateReviewSchema
+ * @usedBySchema IdentificationSchema
  * @usedBySchema NewsSourceUrlConflictSchema
  * @usedBySchema StrictUrlLookupConflictSchema
  * @usedBySchema UrlDuplicateConflictSchema

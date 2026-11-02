@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Observed article-reading activity; unknown future phases retain their supplied copy.
+ * Observed source-reading activity; unknown future phases retain their supplied copy.
  *
  * @openapiSchema LookupSourceReadPhase
  * @endpoint GET /v1/lookup-jobs/{jobId}

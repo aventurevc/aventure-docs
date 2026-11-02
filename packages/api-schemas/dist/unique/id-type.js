@@ -21,6 +21,7 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "ncuaCharter",
     "rssd",
     "holdingCompanyRssd",
+    "naicCompanyCode",
     "signalNfxFirm",
     "signalNfxPerson",
     "signalNfxCompany",

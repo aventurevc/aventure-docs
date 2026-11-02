@@ -155,6 +155,21 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             mode: z.ZodString;
             statusUrl: z.ZodString;
         }, z.core.$strip>>>;
+        filingRefusal: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
+            DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
+            NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
+            STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
+            URL_DUPLICATE: "URL_DUPLICATE";
+        }>, z.ZodString]> & {
+            enum: {
+                CLASSIFICATION_INACTIVE_TAG: "CLASSIFICATION_INACTIVE_TAG";
+                DUPLICATE_CREATE_REVIEW: "DUPLICATE_CREATE_REVIEW";
+                NEWS_SOURCE_URL: "NEWS_SOURCE_URL";
+                STRICT_URL_LOOKUP: "STRICT_URL_LOOKUP";
+                URL_DUPLICATE: "URL_DUPLICATE";
+            };
+        }>>;
         inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -970,6 +985,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 mode: string;
                 statusUrl: string;
             } | null | undefined;
+            filingRefusal?: string | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
@@ -1805,6 +1821,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 mode: string;
                 statusUrl: string;
             } | null | undefined;
+            filingRefusal?: string | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
