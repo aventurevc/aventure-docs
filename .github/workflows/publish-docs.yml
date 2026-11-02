@@ -41,7 +41,25 @@ jobs:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
         run: |
           set -eo pipefail
-          fern generate --docs --log-level info 2>&1 | tee "$RUNNER_TEMP/fern-publish.log"
+          # Raw DEBUG includes token fragments; retain only the ledger's bounded identity messages.
+          fern generate --docs --log-level debug 2>&1 | python3 -u -c '
+          import re, sys
+          ansi = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
+          ledger = re.compile(
+              r"\[ledger\] (?:Registered in [0-9]+ms — hash=[0-9a-f]{64}, missing=[0-9]+ blobs|"
+              r"Upload complete in [0-9]+ms — [0-9]+ uploaded, [0-9]+ already in store|"
+              r"Finished in [0-9]+ms — deploymentId=[A-Za-z0-9_-]+, reused=(?:true|false)|"
+              r"All content already in CAS — no uploads needed)$")
+          for raw in sys.stdin:
+              line = ansi.sub("", raw).rstrip()
+              match = ledger.search(line)
+              if match:
+                  print(match.group(0), flush=True)
+              elif line.endswith("Docs deploy mode: ledger"):
+                  print("Docs deploy mode: ledger", flush=True)
+              elif "Failed to locate API section" in line:
+                  print("Failed to locate API section", flush=True)
+          ' | tee "$RUNNER_TEMP/fern-publish.log"
           # A layout key that no longer matches a spec tag is only a warning to Fern.
           if grep -q 'Failed to locate API section' "$RUNNER_TEMP/fern-publish.log"; then exit 1; fi
 
