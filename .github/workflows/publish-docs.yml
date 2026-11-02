@@ -39,6 +39,7 @@ jobs:
       - name: Publish Docs
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
+          NODE_OPTIONS: --import=${{ github.workspace }}/scripts/fern-ledger-response.mjs
         run: |
           set -eo pipefail
           # Raw DEBUG includes token fragments; retain only the ledger's bounded identity messages.
@@ -55,6 +56,8 @@ jobs:
               match = ledger.search(line)
               if match:
                   print(match.group(0), flush=True)
+              elif re.fullmatch(r"\[ledger-response\] phase=(?:register|finish) status=[0-9]{3} contentType=(?:JSON|HTML|other|absent) durationMs=[0-9]+", line):
+                  print(line, flush=True)
               elif line.endswith("Docs deploy mode: ledger"):
                   print("Docs deploy mode: ledger", flush=True)
               elif "Failed to locate API section" in line:
