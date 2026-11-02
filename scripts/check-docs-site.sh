@@ -91,8 +91,7 @@ fetch_page() {
   out="$TMP/pagefetch/$(printf '%s' "$url" | shasum -a 256 | cut -d' ' -f1)"
   body="$(curl -fsSL --retry 3 --retry-delay 2 --retry-all-errors \
     --max-time "$CURL_MAX_TIME" "$url" || true)"
-  line="$(printf '%s\n' "$body" \
-    | grep -m1 -oE '^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) https?://[^ ]+' || true)"
+  line="$(grep -m1 -oE '^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) https?://[^ ]+' <<<"$body" || true)"
   if [ -z "$line" ]; then printf '%s\n' "$url" > "$out.unparsed"; return 0; fi
   method="${line%% *}"; full="${line#* }"
   path="/${full#*://*/}"
