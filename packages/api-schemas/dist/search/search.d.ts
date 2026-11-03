@@ -3,12 +3,21 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     allowSuspectedShellStrip: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     bypassCache: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     cacheKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    cacheMode: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
+        bypass: "bypass";
+        refresh: "refresh";
+        use: "use";
+    }>>>;
     cacheSource: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
         ANY: "ANY";
         PROVIDER: "PROVIDER";
     }>>>;
     deep: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     deferredAiOverview: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+    freshness: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
+        auto: "auto";
+        cached: "cached";
+    }>>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     provider: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         BRIGHT_DATA: "BRIGHT_DATA";

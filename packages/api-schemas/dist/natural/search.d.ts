@@ -6,6 +6,10 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
         refresh: "refresh";
         use: "use";
     }>>>;
+    freshness: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
+        auto: "auto";
+        cached: "cached";
+    }>>>;
     mode: z.ZodOptional<z.ZodDefault<z.ZodUnion<readonly [z.ZodEnum<{
         auto: "auto";
         exact: "exact";

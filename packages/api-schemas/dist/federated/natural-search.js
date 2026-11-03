@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { EntityFilterSchema } from "../entity/filter.js";
 import { ReasoningEffortSchema } from "../reasoning/effort.js";
 import { SearchCacheModeSchema } from "../search/cache-mode.js";
+import { SearchFreshnessSchema } from "../search/freshness.js";
 import { SearchModeSchema } from "../search/mode.js";
 const FederatedNaturalSearchSchemaDefinition = z.object({
     /** Optional supported model for the written answer, which also supplies the page heading, title, and description. Omit it to use the default; an unsupported model answers 422. */
@@ -11,6 +12,8 @@ const FederatedNaturalSearchSchemaDefinition = z.object({
     cacheMode: SearchCacheModeSchema.default("use").optional(),
     /** Explicit entity constraints for the entity scope only, as on POST /v1/search/natural/entities: caller-supplied fields override planner values. The person and news scopes ignore it. Omitted defaults suppress non-operating entities, matching the aventure.vc search page; natural entity search is unchanged. */
     entityFilter: EntityFilterSchema.optional(),
+    /** auto refreshes date-sensitive queries before cache admission; cached permits ordinary cache reuse. Explicit admitted bypass or refresh wins. */
+    freshness: SearchFreshnessSchema.default("auto").optional(),
     /** Search strategy to run. Defaults to `auto`: the fast name layer runs first (a single-token query as keyword search, a multiword query as an exact normalized name) and the language-model planner runs only on a miss, so name lookups never pay for planning. Any other value forces exactly that strategy: `exact` and `keyword` skip planner model resolution and its rate limit. Entity and person natural-search take every value but `hybrid`; news and federated search accept only `auto` and `keyword`; content search accepts `auto`, `keyword`, `semantic`, and `hybrid` (`semantic` and `hybrid` only for one entity's or person's content). */
     mode: SearchModeSchema.default("auto").optional(),
     /** Optional supported model for planning the search. Omit it to use the default; an unsupported model answers 422. */

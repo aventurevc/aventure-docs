@@ -1173,6 +1173,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/evidence-source",
         schemaName: "SearchEvidenceSourceSchema",
     },
+    SearchFreshness: { modulePath: "search/freshness", schemaName: "SearchFreshnessSchema" },
     SearchHit: { modulePath: "search/hit", schemaName: "SearchHitSchema" },
     SearchIntent: { modulePath: "search/intent", schemaName: "SearchIntentSchema" },
     SearchInterpretation: {

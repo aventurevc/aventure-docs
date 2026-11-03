@@ -104,9 +104,11 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        cacheMode?: "bypass" | "refresh" | "use" | undefined;
         cacheSource?: "ANY" | "PROVIDER" | undefined;
         deep?: boolean | undefined;
         deferredAiOverview?: boolean | undefined;
+        freshness?: "auto" | "cached" | undefined;
         language?: string | null | undefined;
         provider?: string | null | undefined;
         recency?: "DAY" | "MONTH" | "WEEK" | "YEAR" | null | undefined;
@@ -122,9 +124,11 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        cacheMode?: "bypass" | "refresh" | "use" | undefined;
         cacheSource?: "ANY" | "PROVIDER" | undefined;
         deep?: boolean | undefined;
         deferredAiOverview?: boolean | undefined;
+        freshness?: "auto" | "cached" | undefined;
         language?: string | null | undefined;
         provider?: string | null | undefined;
         recency?: "DAY" | "MONTH" | "WEEK" | "YEAR" | null | undefined;

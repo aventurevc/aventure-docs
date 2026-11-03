@@ -551,6 +551,7 @@ declare const PersonNaturalSearchSchemaDefinition: z.ZodObject<{
     search: z.ZodType<{
         answerModel?: string | null | undefined;
         cacheMode?: "bypass" | "refresh" | "use" | undefined;
+        freshness?: "auto" | "cached" | undefined;
         mode?: string | undefined;
         model?: string | null | undefined;
         modelCatalogRevision?: number | null | undefined;
@@ -561,6 +562,7 @@ declare const PersonNaturalSearchSchemaDefinition: z.ZodObject<{
     }, import("../natural/search.ts").NaturalSearchSchemaInput, z.core.$ZodTypeInternals<{
         answerModel?: string | null | undefined;
         cacheMode?: "bypass" | "refresh" | "use" | undefined;
+        freshness?: "auto" | "cached" | undefined;
         mode?: string | undefined;
         model?: string | null | undefined;
         modelCatalogRevision?: number | null | undefined;
