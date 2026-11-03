@@ -41,7 +41,7 @@
       "type": "archive",
       "description": "Identifies a company's customers from public evidence. Use for who buys or uses a product, current adoption, named accounts, buying roles and motives, and evidence-backed purchase rankings.",
       "url": "/.well-known/agent-skills/customer-analysis.tgz",
-      "digest": "sha256:36e98131e5d5f2134bcd60a82f31d989f6bd35af01b508f4c05d615dc0cb9364"
+      "digest": "sha256:dcd90e4a80b0ae34b97725bc4b6d83f541c1fde00560f127797e692fe1105235"
     },
     {
       "name": "fundraising-environment",
