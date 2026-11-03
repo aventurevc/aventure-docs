@@ -16,9 +16,14 @@ import { z } from "zod/v4";
  * @contractShape harness.run-lane
  * @contractRole canonical
  */
-export declare const HarnessRunLaneSchema: z.ZodEnum<{
+export declare const HarnessRunLaneSchema: z.ZodUnion<readonly [z.ZodEnum<{
     background: "background";
     interactive: "interactive";
-}>;
+}>, z.ZodString]> & {
+    enum: {
+        background: "background";
+        interactive: "interactive";
+    };
+};
 export type HarnessRunLane = z.infer<typeof HarnessRunLaneSchema>;
 //# sourceMappingURL=run-lane.d.ts.map
