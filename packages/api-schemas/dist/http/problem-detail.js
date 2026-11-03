@@ -19,7 +19,7 @@ export const ProblemDetailSchema = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: ResearchAllowanceTypeSchema.nullish(),
     circuitBreaker: z.string().nullish(),
-    /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Many codes describe server-side conditions a caller cannot fix: surface the error and stop rather than retry. */
+    /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Many codes describe server-side conditions a caller cannot fix: surface them and stop. */
     code: z
         .union([
         z.enum([
@@ -31,25 +31,27 @@ export const ProblemDetailSchema = z.object({
             "rateLimited",
             /** Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance. */
             "rate_limited",
-            /** Caller is authenticated but the subscription on their account does not include this operation. Agent action: surface ProblemDetail.detail explaining the subscription requirement and stop. The identical request cannot succeed until the account changes plan, so never retry it. */
+            /** Caller is authenticated but the subscription on their account does not include this operation. Agent action: surface ProblemDetail.detail explaining the subscription requirement and stop; never retry until the account changes plan. */
             "subscription_required",
-            /** Caller's subscription was canceled or its first payment expired unpaid, so it no longer includes this operation. Agent action: surface ProblemDetail.detail and stop; the account must subscribe again through the resolution's Checkout endpoint before the identical request can succeed. */
+            /** Caller's subscription was canceled or its first payment expired unpaid, so it no longer includes this operation. Agent action: surface ProblemDetail.detail and stop; the account must subscribe again through the resolution's Checkout endpoint. */
             "subscription_canceled",
-            /** Caller's subscription has a failed or unfinished payment, so it does not include this operation until the payment succeeds. Agent action: surface ProblemDetail.detail and stop; the account must update its payment method through the resolution's Billing Portal endpoint. */
+            /** Caller's subscription has a failed or unfinished payment, so it excludes this operation. Agent action: surface ProblemDetail.detail and stop; the account must update its payment method through the resolution's Billing Portal endpoint. */
             "subscription_past_due",
             /** Caller's subscription is paused, so it does not include this operation. Agent action: surface ProblemDetail.detail and stop; the account must add a payment method through the resolution's Billing Portal endpoint, then resume with PATCH /v1/billing/subscription and paused false. */
             "subscription_paused",
-            /** The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; resetAt is when the meter refills and is typically weeks away. Do not retry inside the period even though the status is 429. */
+            /** The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt, when the meter refills (typically weeks away). Do not retry inside the period even though the status is 429. */
             "billing_allowance_exhausted",
             /** The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt. */
             "billing_additional_usage_cap_reached",
             /** The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key. */
             "billing_credit_checkout_closed",
+            /** Checkout refused: the account already has a continuing Stripe subscription. Agent action: change its plan with POST /v1/billing/plan-changes; never retry Checkout. */
+            "billing_plan_change_required",
             /** A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email. */
             "account_exists",
             /** Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle. */
             "origin_detail_capacity",
-            /** Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not a capacity defect — do not treat it as backend saturation. */
+            /** Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not backend saturation. */
             "origin_detail_shutdown",
             /** A read overran its database query budget and was shed before answering, so the identical request can be replayed. Agent action: retry after a short backoff; the shed is expected and files no incident. */
             "query_deadline_shed",
