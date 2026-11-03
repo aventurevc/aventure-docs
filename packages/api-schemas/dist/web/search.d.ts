@@ -104,6 +104,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        cacheSource?: "ANY" | "PROVIDER" | undefined;
         deep?: boolean | undefined;
         deferredAiOverview?: boolean | undefined;
         language?: string | null | undefined;
@@ -121,6 +122,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         allowSuspectedShellStrip?: boolean | null | undefined;
         bypassCache?: boolean | undefined;
         cacheKey?: string | null | undefined;
+        cacheSource?: "ANY" | "PROVIDER" | undefined;
         deep?: boolean | undefined;
         deferredAiOverview?: boolean | undefined;
         language?: string | null | undefined;

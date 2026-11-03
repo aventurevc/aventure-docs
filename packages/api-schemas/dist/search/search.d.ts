@@ -3,6 +3,10 @@ declare const SearchSchemaDefinition: z.ZodObject<{
     allowSuspectedShellStrip: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     bypassCache: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     cacheKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    cacheSource: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
+        ANY: "ANY";
+        PROVIDER: "PROVIDER";
+    }>>>;
     deep: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     deferredAiOverview: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     language: z.ZodOptional<z.ZodNullable<z.ZodString>>;

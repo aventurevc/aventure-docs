@@ -1318,6 +1318,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     UrlTypeAlias: { modulePath: "url/type-alias", schemaName: "UrlTypeAliasSchema" },
     ValuationType: { modulePath: "valuation/type", schemaName: "ValuationTypeSchema" },
     WebSearch: { modulePath: "web/search", schemaName: "WebSearchSchema" },
+    WebSearchCacheSource: {
+        modulePath: "web/search-cache-source",
+        schemaName: "WebSearchCacheSourceSchema",
+    },
     WebSearchProvider: { modulePath: "web/search-provider", schemaName: "WebSearchProviderSchema" },
     WebSearchRecency: { modulePath: "web/search-recency", schemaName: "WebSearchRecencySchema" },
     WriterAnalysisSection: {

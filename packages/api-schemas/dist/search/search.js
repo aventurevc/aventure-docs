@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
+import { WebSearchCacheSourceSchema } from "../web/search-cache-source.js";
 import { WebSearchProviderSchema } from "../web/search-provider.js";
 import { WebSearchRecencySchema } from "../web/search-recency.js";
 const SearchSchemaDefinition = z.object({
@@ -10,6 +11,8 @@ const SearchSchemaDefinition = z.object({
     bypassCache: z.boolean().default(false).optional(),
     /** Stable lookup text for cache keying when generated search text varies between runs */
     cacheKey: z.string().nullish(),
+    /** Permit compatible cached results from ANY provider by default, or restrict to PROVIDER. The provider field independently selects live misses; bypassCache skips every provider's cache. document.provider identifies the serving source. */
+    cacheSource: WebSearchCacheSourceSchema.default("ANY").optional(),
     /** Deprecated alias for `provider: EXA_DEEP`; `true` with any other `provider` is refused with 400. */
     deep: z.boolean().default(false).optional(),
     /** Wait in-request for Google's AI Overview when Google defers it to a follow-up request, as it does for most company and person lookups: one extra SerpAPI search per overview not already stored. An explicit `true` also reruns a stored search older than SerpAPI's one-hour cache to get a fresh token (its one-minute overview token expired and the cache would return it unchanged). Without it, no deferred overview is fetched; one an earlier fetch stored still comes back at no extra cost. A fetch that returns no overview is not retried for six hours. An overview Google returns inline always comes back in `aiOverview` at no extra cost. Exa results never carry one. */
