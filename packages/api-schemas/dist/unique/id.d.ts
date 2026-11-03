@@ -31,6 +31,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
         ticker: "ticker";
+        usptoPractitioner: "usptoPractitioner";
     }>, z.ZodString]> & {
         enum: {
             crd: "crd";
@@ -58,6 +59,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             signalNfxFirm: "signalNfxFirm";
             signalNfxPerson: "signalNfxPerson";
             ticker: "ticker";
+            usptoPractitioner: "usptoPractitioner";
         };
     };
     listingStanding: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{

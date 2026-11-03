@@ -12,6 +12,7 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "firmCrd",
     "secPrivateFundId",
     "npi",
+    "usptoPractitioner",
     "ipedsUnitId",
     "ncesSchoolId",
     "ncesLeaId",

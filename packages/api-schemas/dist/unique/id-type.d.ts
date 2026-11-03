@@ -50,6 +50,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     signalNfxFirm: "signalNfxFirm";
     signalNfxPerson: "signalNfxPerson";
     ticker: "ticker";
+    usptoPractitioner: "usptoPractitioner";
 }>, z.ZodString]> & {
     enum: {
         crd: "crd";
@@ -77,6 +78,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
         ticker: "ticker";
+        usptoPractitioner: "usptoPractitioner";
     };
 };
 export type UniqueIdType = z.infer<typeof UniqueIdTypeSchema>;
