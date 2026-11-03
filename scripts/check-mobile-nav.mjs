@@ -24,9 +24,24 @@ const TARGETS = [
 ];
 const TIMEOUT_MS = 20_000;
 
+// A load timeout names no URL; the requests still unfinished at the deadline show
+// whether the document itself or one subresource stalled.
+async function load(page, url) {
+  const unfinished = new Set();
+  page.on("request", (request) => unfinished.add(request));
+  page.on("requestfinished", (request) => unfinished.delete(request));
+  page.on("requestfailed", (request) => unfinished.delete(request));
+  try {
+    await page.goto(url, { waitUntil: "load", timeout: TIMEOUT_MS });
+  } catch (error) {
+    const stalled = [...unfinished].map((request) => request.url()).join(", ") || "none";
+    throw new Error(`${error.message.split("\n")[0]} unfinished requests: ${stalled}`);
+  }
+}
+
 async function checkPage(context, path) {
   const warmup = await context.newPage();
-  await warmup.goto(base + path, { waitUntil: "load", timeout: TIMEOUT_MS });
+  await load(warmup, base + path);
   await warmup.close();
   const page = await context.newPage();
   const pageErrors = [];
@@ -40,7 +55,7 @@ async function checkPage(context, path) {
   page.on("response", (response) => {
     if (response.status() >= 400) failedRequests.push(`${response.url()} (HTTP ${response.status()})`);
   });
-  await page.goto(base + path, { waitUntil: "load", timeout: TIMEOUT_MS });
+  await load(page, base + path);
   // Server-rendered markup already holds the button; only hydration proves it
   // survives. Astro drops the `ssr` attribute once an island hydrates.
   await page.waitForSelector('astro-island[component-url*="HeaderContentIsland"]:not([ssr])', {
