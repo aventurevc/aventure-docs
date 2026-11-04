@@ -2,11 +2,14 @@
 import { z } from "zod/v4";
 import { EnrichmentInstructionSchema } from "./instruction.js";
 import { EnrichmentModeSchema } from "./mode.js";
+import { HarnessRunLaneSchema } from "../harness/run-lane.js";
 const EnrichmentBatchSchemaDefinition = z.object({
     /** Canonical entity UUIDs to enrich, filed in order before any person */
     entityId: z.array(z.uuid()).optional(),
     /** Additional instructions for selected records, one entry per owner. Each entry appends to the shared userPrompt for that owner only. Duplicate or unselected owners and combined prompts longer than the run limit are rejected before any run is filed. Omit for identical instructions on every run. */
     instruction: z.array(EnrichmentInstructionSchema).optional(),
+    /** Origin priority: live for lookup, interactive for an individual request, or bulk for a client batch (the default when omitted). Background is reserved for system backlog */
+    lane: HarnessRunLaneSchema.nullish(),
     /** COMPREHENSIVE (the default) researches each whole profile; INDIVIDUAL runs only the tasks named in taskPresetKey */
     mode: EnrichmentModeSchema.optional(),
     /** Model id for each run's lead agent; omit to use aVenture's default model */

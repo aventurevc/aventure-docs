@@ -14,6 +14,7 @@ const HarnessRunLaneSchemaKnownMembers = z.enum(["live", "interactive", "bulk", 
  * @endpoint POST /v1/people/{personId}/enrichments
  * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
+ * @usedBySchema EnrichmentBatchSchema
  * @usedBySchema HarnessRunSchema
  * @contractShape harness.run-lane
  * @contractRole canonical

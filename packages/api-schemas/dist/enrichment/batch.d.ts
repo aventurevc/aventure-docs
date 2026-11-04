@@ -14,6 +14,19 @@ declare const EnrichmentBatchSchemaDefinition: z.ZodObject<{
         };
         userPrompt?: string | null | undefined;
     }, import("./instruction.ts").EnrichmentInstructionSchemaInput>>>>;
+    lane: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        background: "background";
+        bulk: "bulk";
+        interactive: "interactive";
+        live: "live";
+    }>, z.ZodString]> & {
+        enum: {
+            background: "background";
+            bulk: "bulk";
+            interactive: "interactive";
+            live: "live";
+        };
+    }>>;
     mode: z.ZodOptional<z.ZodEnum<{
         COMPREHENSIVE: "COMPREHENSIVE";
         INDIVIDUAL: "INDIVIDUAL";

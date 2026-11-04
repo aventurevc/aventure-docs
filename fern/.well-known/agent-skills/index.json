@@ -6,14 +6,14 @@
       "type": "skill-md",
       "description": "Use for multi-step aVenture research: company briefs, funding and investors, portfolios, founder backgrounds, competitors, news monitoring, and resolving name lists.",
       "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
-      "digest": "sha256:2234083ced19c640a8f12c251d036ae5d8073daf4c270041809751acd6891de0"
+      "digest": "sha256:724fe91ae614699f50a11ff8fdaf381ee3bad82a1509c598ccb4727f4ec8c0e1"
     },
     {
       "name": "aventure",
       "type": "skill-md",
       "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
       "url": "/.well-known/agent-skills/aventure/SKILL.md",
-      "digest": "sha256:5d2a5103db85a7c405808ea9f21c43f23ddaf4108c91d21a283100523e76885d"
+      "digest": "sha256:f87c2fcf3d7afa51cfc04b8a999a6b5f96db42e168f64645c1dcd7f7d01c80af"
     },
     {
       "name": "business-cycle-analysis",
@@ -76,7 +76,14 @@
       "type": "skill-md",
       "description": "Use only when asked for a market research report on the market a company or product sells into: market boundary, size with shown arithmetic, growth, segments, buyers, pricing, regulation, and the subject's position.",
       "url": "/.well-known/agent-skills/market-research/SKILL.md",
-      "digest": "sha256:0efe467c7f92cbf0aba730dd3ae9ef2222b40bb8ce9dc76f2d26407de1079b23"
+      "digest": "sha256:b93c9180214d923ea60eb70a4790b1c94e4f08297702e0c3624d29a2f65756e1"
+    },
+    {
+      "name": "market-sizing",
+      "type": "archive",
+      "description": "Use only when asked to size the market a company or product sells into: TAM, SAM, and SOM, current spend versus addressable potential, penetration, implied share, and growth, built bottom-up from counted buyers and prices, checked top-down against published totals and a rival-revenue floor, with every input cited or flagged. For the full market report (segments, buyers, pricing, regulation, position), use market-research, which loads this skill for its sizing.",
+      "url": "/.well-known/agent-skills/market-sizing.tgz",
+      "digest": "sha256:c39b2c6afd1e4c5363930f5397b4fe359ec3b4d9e24a2190257ac0ec8cb003cb"
     },
     {
       "name": "porters-five-forces",
@@ -104,7 +111,7 @@
       "type": "skill-md",
       "description": "Use only when asked what a company's products or services are used for, its use cases, the jobs to be done it serves, or which marketed use cases are real: each job written as a solution-free statement with the person who does it and the circumstance, evidenced from named customers, documentation, required integrations, pricing, and buyers' own words, and tiered proven, partly evidenced, marketed only, or not served. For named customer accounts, use customer-analysis.",
       "url": "/.well-known/agent-skills/use-case-analysis/SKILL.md",
-      "digest": "sha256:aa65f974b5488ce2459453e96c61b1484d16574439d12a15d4e5a7cddd3ab098"
+      "digest": "sha256:26234df642a88af3267a836389ad3bfd0f26f1cf305abb50987c8b4c2a295d42"
     }
   ]
 }
