@@ -24,6 +24,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         ncesSchoolId: "ncesSchoolId";
         ncuaCharter: "ncuaCharter";
         npi: "npi";
+        nyAttorneyRegistration: "nyAttorneyRegistration";
         orcid: "orcid";
         rssd: "rssd";
         samUei: "samUei";
@@ -54,6 +55,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             ncesSchoolId: "ncesSchoolId";
             ncuaCharter: "ncuaCharter";
             npi: "npi";
+            nyAttorneyRegistration: "nyAttorneyRegistration";
             orcid: "orcid";
             rssd: "rssd";
             samUei: "samUei";
