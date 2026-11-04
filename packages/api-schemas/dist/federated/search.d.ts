@@ -97,6 +97,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                     } | undefined;
+                    investorEntityId?: string[] | undefined;
                     investorName?: string[] | undefined;
                     investorNameMatch?: "any" | "every" | null | undefined;
                     lastRoundYearRange?: {
@@ -239,6 +240,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                     min?: number | null | undefined;
                                 }[] | undefined;
                             } | undefined;
+                            investorEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -398,6 +400,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 min?: number | null | undefined;
                             }[] | undefined;
                         } | undefined;
+                        investorEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {
@@ -3118,6 +3121,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                     } | undefined;
+                    investorEntityId?: string[] | undefined;
                     investorName?: string[] | undefined;
                     investorNameMatch?: "any" | "every" | null | undefined;
                     lastRoundYearRange?: {
@@ -3260,6 +3264,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                     min?: number | null | undefined;
                                 }[] | undefined;
                             } | undefined;
+                            investorEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -3419,6 +3424,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 min?: number | null | undefined;
                             }[] | undefined;
                         } | undefined;
+                        investorEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {
@@ -10387,6 +10393,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                     min?: number | null | undefined;
                                 }[] | undefined;
                             } | undefined;
+                            investorEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -10546,6 +10553,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 min?: number | null | undefined;
                             }[] | undefined;
                         } | undefined;
+                        investorEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {
@@ -11036,6 +11044,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                     min?: number | null | undefined;
                                 }[] | undefined;
                             } | undefined;
+                            investorEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -11195,6 +11204,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 min?: number | null | undefined;
                             }[] | undefined;
                         } | undefined;
+                        investorEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {

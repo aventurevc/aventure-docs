@@ -91,6 +91,7 @@ declare const SharedDirectoryMutationSchemaDefinition: z.ZodObject<{
                     min?: number | null | undefined;
                 }, import("../int/range.ts").IntRangeSchemaInput>>>>;
             }, z.core.$strip>>;
+            investorEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
             investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
             investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                 any: "any";
@@ -318,6 +319,7 @@ declare const SharedDirectoryMutationSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
                     }, z.core.$strip>>;
+                    investorEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
                     investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
                     investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                         any: "any";
@@ -582,6 +584,7 @@ declare const SharedDirectoryMutationSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }, import("../int/range.ts").IntRangeSchemaInput>>>>;
                 }, z.core.$strip>>;
+                investorEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
                 investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
                     any: "any";

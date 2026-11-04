@@ -48,9 +48,11 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     investedRound: z.array(z.string()).optional(),
     /** Aggregate investor activity filters. */
     investorActivity: InvestorActivityFilterSchema.optional(),
-    /** Investor names. Each matches an investor entity whose brand, legal name, or alias equals it ignoring case and punctuation, or an individual investor's exact full name; a name that begins public entities' brands as whole words ("Sequoia") also matches the one holding many times the recorded investments of every other such entity (Sequoia Capital). Restricts returned entities to companies with a fundraise that investor joined. */
+    /** Investor entity ids. Restricts returned entities to the portfolio the investor's own investments list shows: fundraises it joined directly or through a fund it currently manages as primary manager. */
+    investorEntityId: z.array(z.uuid()).optional(),
+    /** Deprecated: use investorEntityId. Investor names. Each resolves to at most one investor entity, whose portfolio investorEntityId would select: a live Investment Firm or Fund whose brand or alias equals it ignoring case and punctuation, else the entity with the most recorded investments whose brand, legal name, or alias equals it, else the public entity whose brand the name begins as whole words ("Sequoia") holding many times the recorded investments of every other such entity (Sequoia Capital). A name also matches an individual investor's exact full name. */
     investorName: z.array(z.string()).optional(),
-    /** How investorName names combine: any (default) returns companies one named investor backed; every returns companies every named investor backed, each in any of the company's fundraises. */
+    /** How investorEntityId ids and investorName names combine: any (default) returns companies one named investor backed; every returns companies every named investor backed, each in any of the company's fundraises. */
     investorNameMatch: InvestorNameMatchModeSchema.nullish(),
     /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),
