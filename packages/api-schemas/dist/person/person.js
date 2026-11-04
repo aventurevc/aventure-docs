@@ -22,6 +22,7 @@ const PersonSchemaDefinition = z.object({
     nameFirst: z.string().nullish(),
     nameFull: z.string(),
     nameLast: z.string().nullish(),
+    /** Middle name as stored after name normalization */
     nameMiddle: z.string().nullish(),
     nickname: z.string().nullish(),
     /** Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill. */

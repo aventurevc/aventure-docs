@@ -1938,6 +1938,17 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             statusUrl: z.ZodString;
         }, z.core.$strip>>>;
         faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        kind: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            ARTICLE: "ARTICLE";
+            POST: "POST";
+            PROFILE: "PROFILE";
+        }>, z.ZodString]> & {
+            enum: {
+                ARTICLE: "ARTICLE";
+                POST: "POST";
+                PROFILE: "PROFILE";
+            };
+        }>>;
         logoUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         message: z.ZodArray<z.ZodString>;
         p95Ms: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

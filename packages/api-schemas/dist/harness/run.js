@@ -3,7 +3,9 @@ import { z } from "zod/v4";
 import { EnrichmentModeSchema } from "../enrichment/mode.js";
 import { HarnessChassisSchema } from "./chassis.js";
 import { HarnessLlmApiSchema } from "./llm-api.js";
+import { HarnessResearchOutcomeSchema } from "./research-outcome.js";
 import { HarnessRunEnvironmentSchema } from "./run-environment.js";
+import { HarnessRunExecutionSchema } from "./run-execution.js";
 import { HarnessRunFollowUpAdmissionSchema } from "./run-follow-up-admission.js";
 import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
@@ -43,6 +45,8 @@ export const HarnessRunSchema = z.object({
     environment: HarnessRunEnvironmentSchema,
     /** Why the run failed; null unless failed */
     error: z.string().nullish(),
+    /** Executor of this research attempt; absent on older APIs */
+    execution: HarnessRunExecutionSchema.nullish(),
     /** Typed terminal-failure class from the harness retry classifier (e.g. runtime_cap, escalated, provider_capacity, context_overflow); null unless failed */
     failureClass: z.string().nullish(),
     /** Run completion timestamp */
@@ -69,7 +73,7 @@ export const HarnessRunSchema = z.object({
     maxScoutConcurrent: z.int(),
     /** Enrichment breadth selected for this run */
     mode: EnrichmentModeSchema,
-    /** Model the run uses */
+    /** Engine model */
     model: z.string(),
     /** True when the requester left `model` to the auto router, which picks it again each time the run leaves the queue; null on engine lease responses */
     modelRouted: z.boolean().nullish(),
@@ -77,6 +81,8 @@ export const HarnessRunSchema = z.object({
     nextAttemptAt: z.iso.datetime({ offset: true }).nullish(),
     /** Research allowance this run reserved when it was filed: COMPANY or PERSON; null for a run filed without one */
     researchAllowanceType: ResearchAllowanceTypeSchema.nullish(),
+    /** Partial or blocked direct research, derived from its recorded failure class; null for other outcomes */
+    researchOutcome: HarnessResearchOutcomeSchema.nullish(),
     /** Instant past which a warm resume is no longer guaranteed; the harness writes it with session_resume from the model's cache window. Warm-resumable now iff failed/stopped and this is in the future. Null when there is no resume window. */
     resumeSafeUntil: z.iso.datetime({ offset: true }).nullish(),
     /** Run start timestamp */

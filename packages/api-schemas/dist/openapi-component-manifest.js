@@ -700,6 +700,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     GithubRepo: { modulePath: "github/repo", schemaName: "GithubRepoSchema" },
     HarnessChassis: { modulePath: "harness/chassis", schemaName: "HarnessChassisSchema" },
     HarnessLlmApi: { modulePath: "harness/llm-api", schemaName: "HarnessLlmApiSchema" },
+    HarnessResearchOutcome: {
+        modulePath: "harness/research-outcome",
+        schemaName: "HarnessResearchOutcomeSchema",
+    },
     HarnessRun: { modulePath: "harness/run", schemaName: "HarnessRunSchema" },
     HarnessRunActivity: {
         modulePath: "harness/run-activity",
@@ -716,6 +720,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "HarnessRunEnvironmentSchema",
     },
     HarnessRunEvent: { modulePath: "harness/run-event", schemaName: "HarnessRunEventSchema" },
+    HarnessRunExecution: {
+        modulePath: "harness/run-execution",
+        schemaName: "HarnessRunExecutionSchema",
+    },
     HarnessRunFollowUp: {
         modulePath: "harness/run-follow-up",
         schemaName: "HarnessRunFollowUpSchema",
@@ -812,6 +820,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     LookupJobMention: { modulePath: "lookup/job-mention", schemaName: "LookupJobMentionSchema" },
     LookupJobMutation: { modulePath: "lookup/job-mutation", schemaName: "LookupJobMutationSchema" },
     LookupMention: { modulePath: "lookup/mention", schemaName: "LookupMentionSchema" },
+    LookupSourceKind: { modulePath: "lookup/source-kind", schemaName: "LookupSourceKindSchema" },
     LookupSourceRead: { modulePath: "lookup/source-read", schemaName: "LookupSourceReadSchema" },
     LookupSourceReadPhase: {
         modulePath: "lookup/source-read-phase",

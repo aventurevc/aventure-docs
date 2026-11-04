@@ -32,6 +32,7 @@ const ProblemTypeSchemaKnownMembers = z.enum({
     ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found",
     GONE: "https://api.aventure.vc/errors/gone",
     RATE_LIMITED: "https://api.aventure.vc/errors/rate-limited",
+    HARNESS_RUN_ALREADY_REQUESTED: "https://api.aventure.vc/errors/harness-run-already-requested",
     PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed",
     PRECONDITION_REQUIRED: "https://api.aventure.vc/errors/precondition-required",
     BILLING_ALLOWANCE_EXHAUSTED: "https://api.aventure.vc/errors/billing-allowance-exhausted",

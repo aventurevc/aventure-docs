@@ -72,6 +72,9 @@ export declare const IdentificationSubjectSchema: z.ZodObject<{
     location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+    role: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        INVESTOR: "INVESTOR";
+    }>>>;
     sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     sourceIdentifier: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         effectiveFrom: z.ZodOptional<z.ZodNullable<z.ZodString>>;

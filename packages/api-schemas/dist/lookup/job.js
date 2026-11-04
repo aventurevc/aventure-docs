@@ -31,7 +31,7 @@ const LookupJobSchemaDefinition = z.object({
     news: NewsSchema.nullish(),
     /** The article the job reads or names supplied for a bulk lookup. */
     source: LookupJobMutationSchema,
-    /** Publisher-reading activity for a durably accepted shared-article lookup. */
+    /** Source-reading activity for a durably accepted shared article, post, or profile lookup. */
     sourceRead: LookupSourceReadSchema.nullish(),
     /** Current job state. */
     state: JobStateSchema,

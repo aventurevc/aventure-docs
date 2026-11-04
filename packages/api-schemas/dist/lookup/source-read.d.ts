@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Source context and honest reading activity for a shared article or profile.
+ * Source context and honest reading activity for a shared article, post, or profile.
  *
  * @openapiSchema LookupSourceRead
  * @endpoint GET /v1/lookup-jobs/{jobId}
@@ -20,6 +20,17 @@ export declare const LookupSourceReadSchema: z.ZodObject<{
         statusUrl: z.ZodString;
     }, z.core.$strip>>>;
     faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    kind: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        ARTICLE: "ARTICLE";
+        POST: "POST";
+        PROFILE: "PROFILE";
+    }>, z.ZodString]> & {
+        enum: {
+            ARTICLE: "ARTICLE";
+            POST: "POST";
+            PROFILE: "PROFILE";
+        };
+    }>>;
     logoUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     message: z.ZodArray<z.ZodString>;
     p95Ms: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;

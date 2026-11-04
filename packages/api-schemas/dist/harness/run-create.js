@@ -12,7 +12,7 @@ const HarnessRunCreateSchemaDefinition = z.object({
     model: z.string().nullish(),
     /** Name of the subject at url, such as Clarity Health; the run verifies it and uses it to pick the right subject when the site names several */
     name: z.string().max(200).nullish(),
-    /** Requester values keyed by the selected task's input definitions. ENTITY binds from url and a supplied entityId must match it. TEXT requires explicit text; a missing required or ambiguous supplied value is rejected before enqueue; omitted optional inputs stay unbound. Never infer values from userPrompt. */
+    /** Requester values keyed by the selected task's input definitions. ENTITY binds from url and a supplied entityId must match it; a task declaring several ENTITY inputs binds one from url and takes each other as the keyed entityId of an existing record (404 when none exists). TEXT requires explicit text; a missing required or ambiguous supplied value is rejected before enqueue; omitted optional inputs stay unbound. Never infer values from userPrompt. */
     taskInput: z.array(HarnessTaskInputBindingSchema).optional(),
     /** Research presets that focus the run, listed by GET /v1/research/runs/presets; omit them for a full run */
     taskPresetKey: z.array(z.string()).nullish(),

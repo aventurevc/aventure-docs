@@ -33,6 +33,15 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
             unassigned: "unassigned";
         }>;
         error: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        execution: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            DIRECT: "DIRECT";
+            ENGINE: "ENGINE";
+        }>, z.ZodString]> & {
+            enum: {
+                DIRECT: "DIRECT";
+                ENGINE: "ENGINE";
+            };
+        }>>;
         failureClass: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         firstStart: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
@@ -88,6 +97,15 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
                 PERSON: "PERSON";
                 PERSON_VIEW: "PERSON_VIEW";
                 WEB_SEARCH: "WEB_SEARCH";
+            };
+        }>>;
+        researchOutcome: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+            BLOCKED: "BLOCKED";
+            PARTIAL: "PARTIAL";
+        }>, z.ZodString]> & {
+            enum: {
+                BLOCKED: "BLOCKED";
+                PARTIAL: "PARTIAL";
             };
         }>>;
         resumeSafeUntil: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;

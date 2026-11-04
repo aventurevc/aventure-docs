@@ -40,6 +40,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     readonly ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found";
     readonly GONE: "https://api.aventure.vc/errors/gone";
     readonly RATE_LIMITED: "https://api.aventure.vc/errors/rate-limited";
+    readonly HARNESS_RUN_ALREADY_REQUESTED: "https://api.aventure.vc/errors/harness-run-already-requested";
     readonly PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed";
     readonly PRECONDITION_REQUIRED: "https://api.aventure.vc/errors/precondition-required";
     readonly BILLING_ALLOWANCE_EXHAUSTED: "https://api.aventure.vc/errors/billing-allowance-exhausted";
@@ -103,6 +104,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         readonly ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found";
         readonly GONE: "https://api.aventure.vc/errors/gone";
         readonly RATE_LIMITED: "https://api.aventure.vc/errors/rate-limited";
+        readonly HARNESS_RUN_ALREADY_REQUESTED: "https://api.aventure.vc/errors/harness-run-already-requested";
         readonly PRECONDITION_FAILED: "https://api.aventure.vc/errors/precondition-failed";
         readonly PRECONDITION_REQUIRED: "https://api.aventure.vc/errors/precondition-required";
         readonly BILLING_ALLOWANCE_EXHAUSTED: "https://api.aventure.vc/errors/billing-allowance-exhausted";

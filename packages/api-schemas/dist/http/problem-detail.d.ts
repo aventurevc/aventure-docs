@@ -127,6 +127,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         showOnSitemap: z.ZodBoolean;
         slug: z.ZodString;
     }, z.core.$strip>>>;
+    coveringRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     detail: z.ZodOptional<z.ZodString>;
     details: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodType<{
         conflictType: string;

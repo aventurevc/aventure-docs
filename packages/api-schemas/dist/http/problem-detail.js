@@ -196,6 +196,8 @@ export const ProblemDetailSchema = z.object({
     ])
         .nullish(),
     conflictingRecord: CurrentSlugOwnerSchema.nullish(),
+    /** The caller's own queued or running research request that already covers the record on a harness-run-already-requested problem; absent when another requester or aVenture filed it, and for every other problem. */
+    coveringRunId: z.uuid().nullish(),
     detail: z.string().optional(),
     /** Structured conflict details. A possible duplicate or an ambiguous lookup returns its candidate records; score and threshold rank the candidates and do not prove that the requested record is absent. */
     details: DomainConflictDetailsSchema.nullish(),
