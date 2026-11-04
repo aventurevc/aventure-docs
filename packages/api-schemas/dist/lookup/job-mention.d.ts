@@ -1817,7 +1817,7 @@ type LookupJobMentionDefinition = z.infer<typeof LookupJobMentionSchemaDefinitio
 export interface LookupJobMentionSchemaInput extends z.input<typeof LookupJobMentionSchemaDefinition> {
 }
 /**
- * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new unpublished record created when it is new. Bulk lookup only identifies names and creates no records.
+ * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new record created when it is new (a company public and a person hidden unless the lookup's publishCreated says otherwise). Bulk lookup only identifies names and creates no records.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

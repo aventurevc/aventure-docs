@@ -19,13 +19,13 @@ const LookupJobMentionSchemaDefinition = z.object({
     name: z.string(),
     /** POST /v1/lookup/mentions only: the candidate people as search results show them, ranked like entity. */
     person: z.array(PersonSchema),
-    /** New unpublished record aVenture created, at no charge, for a NO_MATCH name whose own live site names it. enrichmentRunId names research filed for it, if any; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
+    /** New record aVenture created, at no charge, for a NO_MATCH name whose own live site names it: a company public and a person hidden unless publishCreated says otherwise. enrichmentRunId names research filed for it, if any; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
     shell: EntityPersonOwnerSchema.nullish(),
     /** Why no new record was created for this NO_MATCH name. */
     shellDetail: z.string().nullish(),
 });
 /**
- * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new unpublished record created when it is new. Bulk lookup only identifies names and creates no records.
+ * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new record created when it is new (a company public and a person hidden unless the lookup's publishCreated says otherwise). Bulk lookup only identifies names and creates no records.
  *
  * @openapiSchema LookupJobMention
  * @endpoint GET /v1/lookup-jobs/{jobId}

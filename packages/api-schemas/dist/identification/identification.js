@@ -27,7 +27,7 @@ export const IdentificationSchema = z.object({
     acceptedOwner: EntityPersonOwnerSchema.nullish(),
     /** Records considered, most probable first. */
     candidate: z.array(IdentificationCandidateSchema),
-    /** The new unpublished record a NO_MATCH subject with a proven own site was added as, or the existing one that already held its website. Absent otherwise. */
+    /** The new record a NO_MATCH subject with a proven own site was added as, or the existing one that already held its website. A new company is public and a new person hidden unless publishCreated says otherwise. Absent otherwise. */
     created: IdentificationCandidateSchema.nullish(),
     /** One sentence naming what settled the answer or what the user must decide. */
     detail: z.string(),
