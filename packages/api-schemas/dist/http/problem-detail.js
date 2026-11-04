@@ -206,6 +206,7 @@ export const ProblemDetailSchema = z.object({
     existingRecordId: z.string().nullish(),
     existingRedirect: RedirectSlugPathSchema.nullish(),
     feId: z.string().nullish(),
+    /** Rejected input field. With type validation-failed, nameBrand/nameLegal/nameAlias means entity-name or identity admission refused the requested record mutation before its write transaction. Other field and type combinations make no such promise. */
     field: z.string().nullish(),
     /** Research request ids a batch filed or reused for its other records before returning this error; absent for every other error. */
     filedRunId: z.array(z.uuid()).nullish(),
