@@ -5,7 +5,6 @@ import { z } from "zod/v4";
  * @openapiSchema ResearchParagraphShape
  * @endpoint GET /v1/entities/research-snippets/types
  * @endpoint GET /v1/entities/texts/types
- * @endpoint GET /v1/people/texts/types
  * @usedBySchema ResearchSnippetTypeSchema
  * @usedBySchema TextTypeOptionSchema
  * @contractShape research.paragraph-shape

@@ -393,7 +393,6 @@ const PageEntityTextSchemaDefinition = z.object({
 /**
  * @openapiSchema PageEntityText
  * @endpoint GET /v1/entities/{entityId}/texts
- * @endpoint GET /v1/people/{personId}/texts
  * @contractShape pagination.page-entity-text
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

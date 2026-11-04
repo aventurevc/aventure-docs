@@ -23,7 +23,6 @@ export interface TextTypeOptionSchemaInput extends z.input<typeof TextTypeOption
  *
  * @openapiSchema TextTypeOption
  * @endpoint GET /v1/entities/texts/types
- * @endpoint GET /v1/people/texts/types
  * @contractShape text.type-option
  * @contractRole canonical
  */

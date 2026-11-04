@@ -47,7 +47,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/people/{personId}/repositories
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint GET /v1/people/{personId}/texts
  * @endpoint GET /v1/people/{personId}/unique-ids
  * @endpoint GET /v1/people/{personId}/urls
  * @endpoint GET /v1/search/link/jobs/{jobId}

@@ -13,8 +13,6 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/research-snippets/{snippetId}
  * @endpoint GET /v1/entities/{entityId}/texts
  * @endpoint GET /v1/entities/{entityId}/texts/{textId}
- * @endpoint GET /v1/people/{personId}/texts
- * @endpoint GET /v1/people/{personId}/texts/{textId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}

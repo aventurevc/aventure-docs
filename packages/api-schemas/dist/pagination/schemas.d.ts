@@ -13660,7 +13660,6 @@ export interface PageEntityTextSchemaInput extends z.input<typeof PageEntityText
 /**
  * @openapiSchema PageEntityText
  * @endpoint GET /v1/entities/{entityId}/texts
- * @endpoint GET /v1/people/{personId}/texts
  * @contractShape pagination.page-entity-text
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

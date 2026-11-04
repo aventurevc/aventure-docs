@@ -33,8 +33,6 @@ const EntityTextSchemaDefinition = z.object({
  * @openapiSchema EntityText
  * @endpoint GET /v1/entities/{entityId}/texts
  * @endpoint GET /v1/entities/{entityId}/texts/{textId}
- * @endpoint GET /v1/people/{personId}/texts
- * @endpoint GET /v1/people/{personId}/texts/{textId}
  * @usedBySchema PageEntityTextSchema
  * @contractShape entity.text
  * @contractRole canonical
