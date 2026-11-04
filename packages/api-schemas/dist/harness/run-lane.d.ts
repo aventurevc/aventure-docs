@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Queue lane for admission priority: interactive client work vs background backlog
+ * Queue lane for admission priority: live (search and lookup) and interactive (one client run) take interactive admission; bulk (client batch) and background (system backlog) take background admission
  *
  * @openapiSchema HarnessRunLane
  * @endpoint GET /v1/research-runs
@@ -18,11 +18,15 @@ import { z } from "zod/v4";
  */
 export declare const HarnessRunLaneSchema: z.ZodUnion<readonly [z.ZodEnum<{
     background: "background";
+    bulk: "bulk";
     interactive: "interactive";
+    live: "live";
 }>, z.ZodString]> & {
     enum: {
         background: "background";
+        bulk: "bulk";
         interactive: "interactive";
+        live: "live";
     };
 };
 export type HarnessRunLane = z.infer<typeof HarnessRunLaneSchema>;

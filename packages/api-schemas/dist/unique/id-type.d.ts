@@ -30,6 +30,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     duns: "duns";
     ein: "ein";
     fdicCert: "fdicCert";
+    federalAgencyCode: "federalAgencyCode";
     firmCrd: "firmCrd";
     folk: "folk";
     holdingCompanyRssd: "holdingCompanyRssd";
@@ -44,6 +45,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     npi: "npi";
     orcid: "orcid";
     rssd: "rssd";
+    samUei: "samUei";
     secCik: "secCik";
     secPrivateFundId: "secPrivateFundId";
     signalNfxCompany: "signalNfxCompany";
@@ -58,6 +60,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         duns: "duns";
         ein: "ein";
         fdicCert: "fdicCert";
+        federalAgencyCode: "federalAgencyCode";
         firmCrd: "firmCrd";
         folk: "folk";
         holdingCompanyRssd: "holdingCompanyRssd";
@@ -72,6 +75,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         npi: "npi";
         orcid: "orcid";
         rssd: "rssd";
+        samUei: "samUei";
         secCik: "secCik";
         secPrivateFundId: "secPrivateFundId";
         signalNfxCompany: "signalNfxCompany";

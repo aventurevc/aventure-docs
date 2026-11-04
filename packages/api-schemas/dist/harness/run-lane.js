@@ -1,8 +1,8 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
-const HarnessRunLaneSchemaKnownMembers = z.enum(["interactive", "background"]);
+const HarnessRunLaneSchemaKnownMembers = z.enum(["live", "interactive", "bulk", "background"]);
 /**
- * Queue lane for admission priority: interactive client work vs background backlog
+ * Queue lane for admission priority: live (search and lookup) and interactive (one client run) take interactive admission; bulk (client batch) and background (system backlog) take background admission
  *
  * @openapiSchema HarnessRunLane
  * @endpoint GET /v1/research-runs

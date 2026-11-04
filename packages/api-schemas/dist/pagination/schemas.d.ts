@@ -12964,11 +12964,15 @@ declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
         iteration: z.ZodInt;
         lane: z.ZodUnion<readonly [z.ZodEnum<{
             background: "background";
+            bulk: "bulk";
             interactive: "interactive";
+            live: "live";
         }>, z.ZodString]> & {
             enum: {
                 background: "background";
+                bulk: "bulk";
                 interactive: "interactive";
+                live: "live";
             };
         };
         latestStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;

@@ -11,6 +11,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         duns: "duns";
         ein: "ein";
         fdicCert: "fdicCert";
+        federalAgencyCode: "federalAgencyCode";
         firmCrd: "firmCrd";
         folk: "folk";
         holdingCompanyRssd: "holdingCompanyRssd";
@@ -25,6 +26,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         npi: "npi";
         orcid: "orcid";
         rssd: "rssd";
+        samUei: "samUei";
         secCik: "secCik";
         secPrivateFundId: "secPrivateFundId";
         signalNfxCompany: "signalNfxCompany";
@@ -39,6 +41,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             duns: "duns";
             ein: "ein";
             fdicCert: "fdicCert";
+            federalAgencyCode: "federalAgencyCode";
             firmCrd: "firmCrd";
             folk: "folk";
             holdingCompanyRssd: "holdingCompanyRssd";
@@ -53,6 +56,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             npi: "npi";
             orcid: "orcid";
             rssd: "rssd";
+            samUei: "samUei";
             secCik: "secCik";
             secPrivateFundId: "secPrivateFundId";
             signalNfxCompany: "signalNfxCompany";
