@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityPersonOwnerSchema } from "./person-owner.js";
+import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseFinancialInstrumentTypeSchema } from "../fundraise/financial-instrument-type.js";
 const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
     /** Investor-level attributed amount invested in the fundraise transaction currency. Serialized as a plain JSON number such as 220000 or 123456.78; no currency sign, currency code, comma grouping, or abbreviated amount text is valid. */
@@ -23,6 +24,8 @@ const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
         .nullish(),
     /** Recorded lead/anchor flag. True records a lead role; historical false values may mean either non-lead or unrecorded leadership evidence. A false flag alone does not establish confirmed non-lead participation. */
     leadInvestor: z.boolean(),
+    /** Published page that supports this investor's participation, from the join's latest value write. Omitted when no published source is recorded. */
+    publicSource: EntityResearchPublicSourceSchema.nullish(),
     /** Fundraise transaction identifier */
     transactionId: z.uuid(),
     /** Updated timestamp */

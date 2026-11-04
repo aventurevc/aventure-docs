@@ -38,6 +38,7 @@ export declare const RegistryFilingSchema: z.ZodObject<{
         nameFirst: string;
         nameLast: string;
     }, import("./filing-person.ts").RegistryFilingPersonSchemaInput>>>>;
+    phone: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     uniqueId: z.ZodOptional<z.ZodArray<z.ZodObject<{
         effectiveFrom: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         effectiveTo: z.ZodOptional<z.ZodNullable<z.ZodString>>;

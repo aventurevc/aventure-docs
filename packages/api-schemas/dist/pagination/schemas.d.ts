@@ -1423,6 +1423,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;
@@ -1607,6 +1613,12 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;
@@ -4837,6 +4849,12 @@ declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
         investorName?: string | null | undefined;
         investorSlug?: string | null | undefined;
         leadInvestor: boolean;
+        publicSource?: {
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
+            sourceDetail: string;
+        } | null | undefined;
         transactionId: string;
         updatedAt: string;
     }, import("../entity/fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput, z.core.$ZodTypeInternals<{
@@ -4851,6 +4869,12 @@ declare const PageEntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
         investorName?: string | null | undefined;
         investorSlug?: string | null | undefined;
         leadInvestor: boolean;
+        publicSource?: {
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
+            sourceDetail: string;
+        } | null | undefined;
         transactionId: string;
         updatedAt: string;
     }, import("../entity/fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput>>>>;
@@ -5033,6 +5057,12 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             investorName?: string | null | undefined;
             investorSlug?: string | null | undefined;
             leadInvestor: boolean;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
             transactionId: string;
             updatedAt: string;
         }[] | null | undefined;
@@ -5217,6 +5247,12 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
             investorName?: string | null | undefined;
             investorSlug?: string | null | undefined;
             leadInvestor: boolean;
+            publicSource?: {
+                lastFetchedAt?: string | null | undefined;
+                publishedAt?: string | null | undefined;
+                recordedAt: string;
+                sourceDetail: string;
+            } | null | undefined;
             transactionId: string;
             updatedAt: string;
         }[] | null | undefined;
@@ -5784,6 +5820,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     investorName?: string | null | undefined;
                     investorSlug?: string | null | undefined;
                     leadInvestor: boolean;
+                    publicSource?: {
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
+                        sourceDetail: string;
+                    } | null | undefined;
                     transactionId: string;
                     updatedAt: string;
                 }[] | null | undefined;
@@ -7920,6 +7962,12 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     investorName?: string | null | undefined;
                     investorSlug?: string | null | undefined;
                     leadInvestor: boolean;
+                    publicSource?: {
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
+                        sourceDetail: string;
+                    } | null | undefined;
                     transactionId: string;
                     updatedAt: string;
                 }[] | null | undefined;
@@ -10111,6 +10159,12 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;
@@ -10839,6 +10893,12 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;
@@ -12267,6 +12327,12 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     investorName?: string | null | undefined;
                     investorSlug?: string | null | undefined;
                     leadInvestor: boolean;
+                    publicSource?: {
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
+                        sourceDetail: string;
+                    } | null | undefined;
                     transactionId: string;
                     updatedAt: string;
                 }[] | null | undefined;
@@ -13009,6 +13075,12 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     investorName?: string | null | undefined;
                     investorSlug?: string | null | undefined;
                     leadInvestor: boolean;
+                    publicSource?: {
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
+                        sourceDetail: string;
+                    } | null | undefined;
                     transactionId: string;
                     updatedAt: string;
                 }[] | null | undefined;
@@ -20964,6 +21036,12 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;
@@ -21692,6 +21770,12 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;

@@ -304,6 +304,12 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         investorName?: string | null | undefined;
         investorSlug?: string | null | undefined;
         leadInvestor: boolean;
+        publicSource?: {
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
+            sourceDetail: string;
+        } | null | undefined;
         transactionId: string;
         updatedAt: string;
     }, import("./fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput, z.core.$ZodTypeInternals<{
@@ -318,6 +324,12 @@ declare const EntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         investorName?: string | null | undefined;
         investorSlug?: string | null | undefined;
         leadInvestor: boolean;
+        publicSource?: {
+            lastFetchedAt?: string | null | undefined;
+            publishedAt?: string | null | undefined;
+            recordedAt: string;
+            sourceDetail: string;
+        } | null | undefined;
         transactionId: string;
         updatedAt: string;
     }, import("./fundraise-investor-join.ts").EntityFundraiseInvestorJoinSchemaInput>>>>>;

@@ -22,6 +22,12 @@ declare const EntityFundraiseInvestorJoinSchemaDefinition: z.ZodObject<{
     investorName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     investorSlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     leadInvestor: z.ZodBoolean;
+    publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        recordedAt: z.ZodISODateTime;
+        sourceDetail: z.ZodString;
+    }, z.core.$strip>>>;
     transactionId: z.ZodUUID;
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;

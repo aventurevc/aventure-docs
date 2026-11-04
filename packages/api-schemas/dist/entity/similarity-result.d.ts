@@ -497,6 +497,12 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;
@@ -1225,6 +1231,12 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 investorName?: string | null | undefined;
                 investorSlug?: string | null | undefined;
                 leadInvestor: boolean;
+                publicSource?: {
+                    lastFetchedAt?: string | null | undefined;
+                    publishedAt?: string | null | undefined;
+                    recordedAt: string;
+                    sourceDetail: string;
+                } | null | undefined;
                 transactionId: string;
                 updatedAt: string;
             }[] | null | undefined;

@@ -505,6 +505,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     investorName?: string | null | undefined;
                     investorSlug?: string | null | undefined;
                     leadInvestor: boolean;
+                    publicSource?: {
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
+                        sourceDetail: string;
+                    } | null | undefined;
                     transactionId: string;
                     updatedAt: string;
                 }[] | null | undefined;
@@ -1429,6 +1435,12 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
                     investorName?: string | null | undefined;
                     investorSlug?: string | null | undefined;
                     leadInvestor: boolean;
+                    publicSource?: {
+                        lastFetchedAt?: string | null | undefined;
+                        publishedAt?: string | null | undefined;
+                        recordedAt: string;
+                        sourceDetail: string;
+                    } | null | undefined;
                     transactionId: string;
                     updatedAt: string;
                 }[] | null | undefined;
@@ -1917,6 +1929,7 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         }, import("../news/title-mention.ts").NewsTitleMentionSchemaInput>>>>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
+    profileAutoEnrich: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     sourceRead: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         continuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;

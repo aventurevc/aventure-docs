@@ -256,6 +256,8 @@ export const ProblemDetailSchema = z.object({
     matchedBlocklistKey: z.string().nullish(),
     mediaType: z.string().nullish(),
     moderationReason: z.string().nullish(),
+    /** True only when the operation owner proves that none of the requested record mutations committed. Preparation may have stored source documents or temporary assets. Absent when the mutation outcome is unknown; disposition alone makes no such promise. */
+    mutationNotApplied: z.boolean().nullish(),
     path: z.string().nullish(),
     properties: z.record(z.string(), JsonValueSchema).optional(),
     /** Every rejected passage of a PROSE_REJECTED write, once per problem it shows; absent for every other problem. */

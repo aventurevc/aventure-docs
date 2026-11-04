@@ -11,6 +11,8 @@ const MentionLookupSchemaDefinition = z.object({
     mention: z.array(LookupJobMentionSchema),
     /** The stored aVenture news article the source page is, when it is one; absent otherwise. */
     news: NewsSchema.nullish(),
+    /** On a shared LinkedIn or X profile lookup's source event: whether the server's profile policy (app.lookup-mentions.profile-auto-enrich-enabled) researches the profile at once. A caller that sends scheduleEnrichment=false and files research itself follows it. Absent on every other event and lookup. */
+    profileAutoEnrich: z.boolean().nullish(),
     /** Publisher reading state, available before the first name settles; a continuation is present only after its durable job commits. */
     sourceRead: LookupSourceReadSchema.nullish(),
     /** True when the page names more than this answer holds: more names than one live lookup reads, or a body longer than the read limit. A lookup job with maxNames reads every name. */

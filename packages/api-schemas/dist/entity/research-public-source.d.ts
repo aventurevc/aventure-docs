@@ -10,6 +10,8 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/acquisitions/{relationshipId}
  * @endpoint GET /v1/entities/{entityId}/analysis-replay
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
+ * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins/{joinId}
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds/{fundraiseRoundId}
  * @endpoint GET /v1/entities/{entityId}/investments
@@ -41,6 +43,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityAcquisitionSchema
  * @usedBySchema EntityAnalysisSourceSchema
+ * @usedBySchema EntityFundraiseInvestorJoinSchema
  * @usedBySchema EntityFundraiseTransactionSchema
  * @usedBySchema EntityRelationshipSchema
  * @usedBySchema EntityResearchDetailSchema
