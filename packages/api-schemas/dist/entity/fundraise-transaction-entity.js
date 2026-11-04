@@ -43,6 +43,8 @@ import { EntityFundingDetailSchema } from "./funding-detail.js";
  * @contractRole canonical
  */
 export const EntityFundraiseTransactionEntitySchema = z.object({
+    /** Public buyer of the newest completed acquisition; null for announced or non-public buyers. */
+    acquirer: EntitySchema.nullish(),
     core: EntitySchema,
     fundingDetail: EntityFundingDetailSchema.nullish(),
 });

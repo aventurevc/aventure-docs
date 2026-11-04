@@ -559,6 +559,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -782,6 +826,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
             peer: {
                 entity: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -1103,6 +1191,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -1439,6 +1571,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             personLead: boolean;
             result: {
                 content: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -1760,6 +1936,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -2086,6 +2306,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             };
             searchRequestId?: string | null | undefined;
             subject: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -2407,6 +2671,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     dateFundingComplete?: string | null | undefined;
                     dateInvestorExit?: string | null | undefined;
                     entity?: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -3077,6 +3385,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 dateFundingComplete?: string | null | undefined;
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -3587,6 +3939,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             id: string;
                         } | null | undefined;
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -3743,6 +4139,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         similarEntity: {
                             entity: {
+                                acquirer?: {
+                                    defaultCurrency?: string | null | undefined;
+                                    foundedYear?: number | null | undefined;
+                                    id: string;
+                                    image: {
+                                        isMonogram: boolean;
+                                        logo?: string | null | undefined;
+                                        logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                    };
+                                    lastModifiedAt?: string | null | undefined;
+                                    nameAlias: {
+                                        displayable?: boolean | null | undefined;
+                                        name: string;
+                                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                    }[];
+                                    nameBrand: string;
+                                    nameLegal?: string | null | undefined;
+                                    operatingStatus?: string | null | undefined;
+                                    publicId?: string | null | undefined;
+                                    publicUrl?: string | null | undefined;
+                                    sitemap?: {
+                                        hasAcquisitions?: boolean | undefined;
+                                        hasAnalysis: boolean;
+                                        hasEmployees: boolean;
+                                        hasFundraising: boolean;
+                                        hasNews: boolean;
+                                        productServiceSlug: string[];
+                                    } | null | undefined;
+                                    slug: string;
+                                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                    updatedAt?: string | null | undefined;
+                                } | null | undefined;
                                 core: {
                                     defaultCurrency?: string | null | undefined;
                                     foundedYear?: number | null | undefined;
@@ -5148,6 +5588,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -5717,6 +6201,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         id: string;
                     } | null | undefined;
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -5873,6 +6401,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     similarEntity: {
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -7116,6 +7688,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -7339,6 +7955,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
             peer: {
                 entity: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -7660,6 +8320,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -7996,6 +8700,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             personLead: boolean;
             result: {
                 content: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -8317,6 +9065,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -8643,6 +9435,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             };
             searchRequestId?: string | null | undefined;
             subject: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -8964,6 +9800,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     dateFundingComplete?: string | null | undefined;
                     dateInvestorExit?: string | null | undefined;
                     entity?: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -9634,6 +10514,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                 dateFundingComplete?: string | null | undefined;
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -10144,6 +11068,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             id: string;
                         } | null | undefined;
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -10300,6 +11268,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         }[];
                         similarEntity: {
                             entity: {
+                                acquirer?: {
+                                    defaultCurrency?: string | null | undefined;
+                                    foundedYear?: number | null | undefined;
+                                    id: string;
+                                    image: {
+                                        isMonogram: boolean;
+                                        logo?: string | null | undefined;
+                                        logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                    };
+                                    lastModifiedAt?: string | null | undefined;
+                                    nameAlias: {
+                                        displayable?: boolean | null | undefined;
+                                        name: string;
+                                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                    }[];
+                                    nameBrand: string;
+                                    nameLegal?: string | null | undefined;
+                                    operatingStatus?: string | null | undefined;
+                                    publicId?: string | null | undefined;
+                                    publicUrl?: string | null | undefined;
+                                    sitemap?: {
+                                        hasAcquisitions?: boolean | undefined;
+                                        hasAnalysis: boolean;
+                                        hasEmployees: boolean;
+                                        hasFundraising: boolean;
+                                        hasNews: boolean;
+                                        productServiceSlug: string[];
+                                    } | null | undefined;
+                                    slug: string;
+                                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                    updatedAt?: string | null | undefined;
+                                } | null | undefined;
                                 core: {
                                     defaultCurrency?: string | null | undefined;
                                     foundedYear?: number | null | undefined;
@@ -11705,6 +12717,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         dateFundingComplete?: string | null | undefined;
                         dateInvestorExit?: string | null | undefined;
                         entity?: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -12274,6 +13330,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         id: string;
                     } | null | undefined;
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -12430,6 +13530,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     }[];
                     similarEntity: {
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;

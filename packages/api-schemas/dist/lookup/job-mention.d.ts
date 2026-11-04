@@ -2,6 +2,50 @@ import { z } from "zod/v4";
 declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
     enrichmentRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     entity: z.ZodArray<z.ZodType<{
+        acquirer?: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -323,6 +367,50 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -642,6 +730,50 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             sourceType: string;
         } | null | undefined;
     }, import("../entity/list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
+        acquirer?: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -963,6 +1095,50 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;

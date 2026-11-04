@@ -1292,6 +1292,50 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -1432,6 +1476,50 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -1965,6 +2053,50 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         id: string;
                     } | null | undefined;
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -2121,6 +2253,50 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     }[];
                     similarEntity: {
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -3123,6 +3299,50 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         id: string;
                     } | null | undefined;
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -3279,6 +3499,50 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     }[];
                     similarEntity: {
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -4638,6 +4902,50 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         dateFundingComplete?: string | null | undefined;
         dateInvestorExit?: string | null | undefined;
         entity?: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
@@ -4778,6 +5086,50 @@ declare const PageEntityFundraiseTransactionSchemaDefinition: z.ZodObject<{
         dateFundingComplete?: string | null | undefined;
         dateInvestorExit?: string | null | undefined;
         entity?: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
@@ -5301,6 +5653,50 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 dateFundingComplete?: string | null | undefined;
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -5811,6 +6207,50 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             id: string;
                         } | null | undefined;
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -5967,6 +6407,50 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         }[];
                         similarEntity: {
                             entity: {
+                                acquirer?: {
+                                    defaultCurrency?: string | null | undefined;
+                                    foundedYear?: number | null | undefined;
+                                    id: string;
+                                    image: {
+                                        isMonogram: boolean;
+                                        logo?: string | null | undefined;
+                                        logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                    };
+                                    lastModifiedAt?: string | null | undefined;
+                                    nameAlias: {
+                                        displayable?: boolean | null | undefined;
+                                        name: string;
+                                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                    }[];
+                                    nameBrand: string;
+                                    nameLegal?: string | null | undefined;
+                                    operatingStatus?: string | null | undefined;
+                                    publicId?: string | null | undefined;
+                                    publicUrl?: string | null | undefined;
+                                    sitemap?: {
+                                        hasAcquisitions?: boolean | undefined;
+                                        hasAnalysis: boolean;
+                                        hasEmployees: boolean;
+                                        hasFundraising: boolean;
+                                        hasNews: boolean;
+                                        productServiceSlug: string[];
+                                    } | null | undefined;
+                                    slug: string;
+                                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                    updatedAt?: string | null | undefined;
+                                } | null | undefined;
                                 core: {
                                     defaultCurrency?: string | null | undefined;
                                     foundedYear?: number | null | undefined;
@@ -7305,6 +7789,50 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 dateFundingComplete?: string | null | undefined;
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -7815,6 +8343,50 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             id: string;
                         } | null | undefined;
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -7971,6 +8543,50 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         }[];
                         similarEntity: {
                             entity: {
+                                acquirer?: {
+                                    defaultCurrency?: string | null | undefined;
+                                    foundedYear?: number | null | undefined;
+                                    id: string;
+                                    image: {
+                                        isMonogram: boolean;
+                                        logo?: string | null | undefined;
+                                        logoSquare?: string | null | undefined;
+                                        logoSquareVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                        logoVariant?: {
+                                            contentType: string;
+                                            height: number;
+                                            path: string;
+                                            width: number;
+                                        }[] | null | undefined;
+                                    };
+                                    lastModifiedAt?: string | null | undefined;
+                                    nameAlias: {
+                                        displayable?: boolean | null | undefined;
+                                        name: string;
+                                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                    }[];
+                                    nameBrand: string;
+                                    nameLegal?: string | null | undefined;
+                                    operatingStatus?: string | null | undefined;
+                                    publicId?: string | null | undefined;
+                                    publicUrl?: string | null | undefined;
+                                    sitemap?: {
+                                        hasAcquisitions?: boolean | undefined;
+                                        hasAnalysis: boolean;
+                                        hasEmployees: boolean;
+                                        hasFundraising: boolean;
+                                        hasNews: boolean;
+                                        productServiceSlug: string[];
+                                    } | null | undefined;
+                                    slug: string;
+                                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                    updatedAt?: string | null | undefined;
+                                } | null | undefined;
                                 core: {
                                     defaultCurrency?: string | null | undefined;
                                     foundedYear?: number | null | undefined;
@@ -8999,6 +9615,50 @@ export declare const PageEntityInvestorParticipationSchema: z.ZodType<PageEntity
 export type PageEntityInvestorParticipation = z.infer<typeof PageEntityInvestorParticipationSchema>;
 declare const PageEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
+        acquirer?: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -9320,6 +9980,50 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -9639,6 +10343,50 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             sourceType: string;
         } | null | undefined;
     }, import("../entity/list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
+        acquirer?: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -9960,6 +10708,50 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -10979,6 +11771,50 @@ export type PageEntityResearchSnippet = z.infer<typeof PageEntityResearchSnippet
 declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         entity: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
@@ -11300,6 +12136,50 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 dateFundingComplete?: string | null | undefined;
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -11633,6 +12513,50 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
         };
     }, import("../entity/similarity-result.ts").EntitySimilarityResultSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             core: {
                 defaultCurrency?: string | null | undefined;
                 foundedYear?: number | null | undefined;
@@ -11954,6 +12878,50 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 dateFundingComplete?: string | null | undefined;
                 dateInvestorExit?: string | null | undefined;
                 entity?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -13943,6 +14911,50 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     id: string;
                 } | null | undefined;
                 entity: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -14099,6 +15111,50 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 }[];
                 similarEntity: {
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -15101,6 +16157,50 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     id: string;
                 } | null | undefined;
                 entity: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     core: {
                         defaultCurrency?: string | null | undefined;
                         foundedYear?: number | null | undefined;
@@ -15257,6 +16357,50 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 }[];
                 similarEntity: {
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -16547,6 +17691,50 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         id: string;
                     } | null | undefined;
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -16703,6 +17891,50 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     }[];
                     similarEntity: {
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -17724,6 +18956,50 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         id: string;
                     } | null | undefined;
                     entity: {
+                        acquirer?: {
+                            defaultCurrency?: string | null | undefined;
+                            foundedYear?: number | null | undefined;
+                            id: string;
+                            image: {
+                                isMonogram: boolean;
+                                logo?: string | null | undefined;
+                                logoSquare?: string | null | undefined;
+                                logoSquareVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                                logoVariant?: {
+                                    contentType: string;
+                                    height: number;
+                                    path: string;
+                                    width: number;
+                                }[] | null | undefined;
+                            };
+                            lastModifiedAt?: string | null | undefined;
+                            nameAlias: {
+                                displayable?: boolean | null | undefined;
+                                name: string;
+                                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                            }[];
+                            nameBrand: string;
+                            nameLegal?: string | null | undefined;
+                            operatingStatus?: string | null | undefined;
+                            publicId?: string | null | undefined;
+                            publicUrl?: string | null | undefined;
+                            sitemap?: {
+                                hasAcquisitions?: boolean | undefined;
+                                hasAnalysis: boolean;
+                                hasEmployees: boolean;
+                                hasFundraising: boolean;
+                                hasNews: boolean;
+                                productServiceSlug: string[];
+                            } | null | undefined;
+                            slug: string;
+                            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                            updatedAt?: string | null | undefined;
+                        } | null | undefined;
                         core: {
                             defaultCurrency?: string | null | undefined;
                             foundedYear?: number | null | undefined;
@@ -17880,6 +19156,50 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     }[];
                     similarEntity: {
                         entity: {
+                            acquirer?: {
+                                defaultCurrency?: string | null | undefined;
+                                foundedYear?: number | null | undefined;
+                                id: string;
+                                image: {
+                                    isMonogram: boolean;
+                                    logo?: string | null | undefined;
+                                    logoSquare?: string | null | undefined;
+                                    logoSquareVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                    logoVariant?: {
+                                        contentType: string;
+                                        height: number;
+                                        path: string;
+                                        width: number;
+                                    }[] | null | undefined;
+                                };
+                                lastModifiedAt?: string | null | undefined;
+                                nameAlias: {
+                                    displayable?: boolean | null | undefined;
+                                    name: string;
+                                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                                }[];
+                                nameBrand: string;
+                                nameLegal?: string | null | undefined;
+                                operatingStatus?: string | null | undefined;
+                                publicId?: string | null | undefined;
+                                publicUrl?: string | null | undefined;
+                                sitemap?: {
+                                    hasAcquisitions?: boolean | undefined;
+                                    hasAnalysis: boolean;
+                                    hasEmployees: boolean;
+                                    hasFundraising: boolean;
+                                    hasNews: boolean;
+                                    productServiceSlug: string[];
+                                } | null | undefined;
+                                slug: string;
+                                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                                updatedAt?: string | null | undefined;
+                            } | null | undefined;
                             core: {
                                 defaultCurrency?: string | null | undefined;
                                 foundedYear?: number | null | undefined;
@@ -19149,6 +20469,50 @@ export declare const PagePublicationSchema: z.ZodType<PagePublicationDefinition,
 export type PagePublication = z.infer<typeof PagePublicationSchema>;
 declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
     content: z.ZodArray<z.ZodType<{
+        acquirer?: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -19470,6 +20834,50 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;
@@ -19789,6 +21197,50 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             sourceType: string;
         } | null | undefined;
     }, import("../entity/list.ts").EntityListSchemaInput, z.core.$ZodTypeInternals<{
+        acquirer?: {
+            defaultCurrency?: string | null | undefined;
+            foundedYear?: number | null | undefined;
+            id: string;
+            image: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            lastModifiedAt?: string | null | undefined;
+            nameAlias: {
+                displayable?: boolean | null | undefined;
+                name: string;
+                type?: "alternativeDba" | "relatedLegal" | null | undefined;
+            }[];
+            nameBrand: string;
+            nameLegal?: string | null | undefined;
+            operatingStatus?: string | null | undefined;
+            publicId?: string | null | undefined;
+            publicUrl?: string | null | undefined;
+            sitemap?: {
+                hasAcquisitions?: boolean | undefined;
+                hasAnalysis: boolean;
+                hasEmployees: boolean;
+                hasFundraising: boolean;
+                hasNews: boolean;
+                productServiceSlug: string[];
+            } | null | undefined;
+            slug: string;
+            typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+            updatedAt?: string | null | undefined;
+        } | null | undefined;
         core: {
             defaultCurrency?: string | null | undefined;
             foundedYear?: number | null | undefined;
@@ -20110,6 +21562,50 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             dateFundingComplete?: string | null | undefined;
             dateInvestorExit?: string | null | undefined;
             entity?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 core: {
                     defaultCurrency?: string | null | undefined;
                     foundedYear?: number | null | undefined;

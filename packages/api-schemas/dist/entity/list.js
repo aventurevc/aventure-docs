@@ -8,6 +8,8 @@ import { EntityListResearchSchema } from "./list-research.js";
 import { EntityProfileStatusSchema } from "./profile-status.js";
 import { EntityProviderSchema } from "./provider.js";
 const EntityListSchemaDefinition = z.object({
+    /** Public buyer of the newest completed acquisition; null for announced or non-public buyers. */
+    acquirer: EntitySchema.nullish(),
     /** Flat entity core — identity, naming, status, image, and source metadata */
     core: EntitySchema,
     /** Supplemental entity data — addresses, classification tags, funding, text content, and URL links */
