@@ -60,6 +60,7 @@ const ProblemTypeSchemaKnownMembers = z.enum({
     NON_ENGLISH_ARTICLE: "https://api.aventure.vc/errors/non-english-article",
     INVALID_IMAGE: "https://api.aventure.vc/errors/invalid-image",
     UPSTREAM_EDGE_CHALLENGED: "https://api.aventure.vc/errors/upstream-edge-challenged",
+    UPSTREAM_TARGET_THROTTLED: "https://api.aventure.vc/errors/upstream-target-throttled",
     ACCELERATOR_DETAIL_RESTATES_TARGET: "https://api.aventure.vc/errors/accelerator-detail-restates-target",
 });
 /**

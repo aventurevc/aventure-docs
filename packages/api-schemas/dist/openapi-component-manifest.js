@@ -290,6 +290,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     Enrichment: { modulePath: "enrichment/enrichment", schemaName: "EnrichmentSchema" },
     EnrichmentBatch: { modulePath: "enrichment/batch", schemaName: "EnrichmentBatchSchema" },
+    EnrichmentInstruction: {
+        modulePath: "enrichment/instruction",
+        schemaName: "EnrichmentInstructionSchema",
+    },
     EnrichmentMode: { modulePath: "enrichment/mode", schemaName: "EnrichmentModeSchema" },
     EnrichmentPrompt: { modulePath: "enrichment/prompt", schemaName: "EnrichmentPromptSchema" },
     EnrichmentRefusalType: {

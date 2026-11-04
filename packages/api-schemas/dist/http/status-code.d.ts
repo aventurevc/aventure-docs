@@ -25,6 +25,7 @@ export declare const HTTP_METHOD_NOT_ALLOWED: 405;
 export declare const HTTP_CONFLICT: 409;
 export declare const HTTP_GONE: 410;
 export declare const HTTP_UNPROCESSABLE_ENTITY: 422;
+export declare const HTTP_FAILED_DEPENDENCY: 424;
 export declare const HTTP_TOO_MANY_REQUESTS: 429;
 export declare const HTTP_INTERNAL_SERVER_ERROR: 500;
 export declare const HTTP_NOT_IMPLEMENTED: 501;

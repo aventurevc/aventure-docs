@@ -68,6 +68,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     readonly NON_ENGLISH_ARTICLE: "https://api.aventure.vc/errors/non-english-article";
     readonly INVALID_IMAGE: "https://api.aventure.vc/errors/invalid-image";
     readonly UPSTREAM_EDGE_CHALLENGED: "https://api.aventure.vc/errors/upstream-edge-challenged";
+    readonly UPSTREAM_TARGET_THROTTLED: "https://api.aventure.vc/errors/upstream-target-throttled";
     readonly ACCELERATOR_DETAIL_RESTATES_TARGET: "https://api.aventure.vc/errors/accelerator-detail-restates-target";
 }>, z.ZodString]> & {
     enum: {
@@ -130,6 +131,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         readonly NON_ENGLISH_ARTICLE: "https://api.aventure.vc/errors/non-english-article";
         readonly INVALID_IMAGE: "https://api.aventure.vc/errors/invalid-image";
         readonly UPSTREAM_EDGE_CHALLENGED: "https://api.aventure.vc/errors/upstream-edge-challenged";
+        readonly UPSTREAM_TARGET_THROTTLED: "https://api.aventure.vc/errors/upstream-target-throttled";
         readonly ACCELERATOR_DETAIL_RESTATES_TARGET: "https://api.aventure.vc/errors/accelerator-detail-restates-target";
     };
 };
