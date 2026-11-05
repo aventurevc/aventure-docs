@@ -172,21 +172,6 @@ export declare const EntityListFilterSchema: z.ZodObject<{
         NONE: "NONE";
     }>>;
     rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    researchDetailRange: z.ZodOptional<z.ZodArray<z.ZodType<{
-        max?: string | null | undefined;
-        measurementBasis?: string | null | undefined;
-        min?: string | null | undefined;
-        reportingScope?: string | null | undefined;
-        targetPath: string;
-        valueResearchDetail: string;
-    }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput, z.core.$ZodTypeInternals<{
-        max?: string | null | undefined;
-        measurementBasis?: string | null | undefined;
-        min?: string | null | undefined;
-        reportingScope?: string | null | undefined;
-        targetPath: string;
-        valueResearchDetail: string;
-    }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput>>>>;
     semanticQuery: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
     stage: z.ZodOptional<z.ZodArray<z.ZodString>>;

@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntitySchema } from "./entity.js";
 import { EntityProfileStatusSchema } from "./profile-status.js";
 import { FundingStageSchema } from "../funding/stage.js";
 /**
@@ -25,6 +26,8 @@ import { FundingStageSchema } from "../funding/stage.js";
  * @contractRole canonical
  */
 export const EntityComparisonSignalsSchema = z.object({
+    /** Public buyer of the newest completed acquisition; null for announced or non-public buyers. */
+    acquirer: EntitySchema.nullish(),
     /** Latest funding stage when known */
     fundingStage: FundingStageSchema.nullish(),
     /** Provider ownership from current tags and current primary parent or acquirer relationships */

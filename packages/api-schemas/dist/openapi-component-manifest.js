@@ -1125,10 +1125,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "research/derived-range",
         schemaName: "ResearchDerivedRangeSchema",
     },
-    ResearchDetailRange: {
-        modulePath: "research/detail-range",
-        schemaName: "ResearchDetailRangeSchema",
-    },
     ResearchDetailType: {
         modulePath: "research/detail-type",
         schemaName: "ResearchDetailTypeSchema",

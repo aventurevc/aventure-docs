@@ -23,6 +23,79 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const EntityDetailSchema: z.ZodObject<{
+    acquirer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        id: z.ZodUUID;
+        image: z.ZodType<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+        }, import("./image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
+            isMonogram: boolean;
+            logo?: string | null | undefined;
+            logoSquare?: string | null | undefined;
+            logoSquareVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+            logoVariant?: {
+                contentType: string;
+                height: number;
+                path: string;
+                width: number;
+            }[] | null | undefined;
+        }, import("./image.ts").EntityImageSchemaInput>>;
+        lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        nameAlias: z.ZodArray<z.ZodObject<{
+            displayable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            name: z.ZodString;
+            type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                alternativeDba: "alternativeDba";
+                relatedLegal: "relatedLegal";
+            }>>>;
+        }, z.core.$strip>>;
+        nameBrand: z.ZodString;
+        nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publicId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        sitemap: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+            hasAnalysis: z.ZodBoolean;
+            hasEmployees: z.ZodBoolean;
+            hasFundraising: z.ZodBoolean;
+            hasNews: z.ZodBoolean;
+            productServiceSlug: z.ZodArray<z.ZodString>;
+        }, z.core.$strip>>>;
+        slug: z.ZodString;
+        typeRecord: z.ZodEnum<{
+            "Business Line": "Business Line";
+            Company: "Company";
+            Fund: "Fund";
+            Government: "Government";
+            "Investment Firm": "Investment Firm";
+            Nonprofit: "Nonprofit";
+            Organization: "Organization";
+            Product: "Product";
+            Service: "Service";
+        }>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    }, z.core.$strip>>>;
     comparisonAnswer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         citation: z.ZodArray<z.ZodType<{
             entityId: string;
@@ -3788,6 +3861,50 @@ export declare const EntityDetailSchema: z.ZodObject<{
     relationship: z.ZodArray<z.ZodType<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             fundingStage?: string | null | undefined;
             ownership: string[];
             pricingModel: string[];
@@ -3870,6 +3987,50 @@ export declare const EntityDetailSchema: z.ZodObject<{
     }, import("./relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
         asOf?: string | null | undefined;
         comparisonSignals?: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             fundingStage?: string | null | undefined;
             ownership: string[];
             pricingModel: string[];

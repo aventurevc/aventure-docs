@@ -37,6 +37,8 @@ import { UniqueIdSchema } from "../unique/id.js";
  * @contractRole canonical
  */
 export const EntityDetailSchema = z.object({
+    /** Public buyer of the newest completed acquisition; null for announced or non-public buyers. */
+    acquirer: EntitySchema.nullish(),
     /** Optional cited comparison of this public profile with comparisonEntityId in the requested order. Null when not requested, not entitled, withheld, or unavailable. HEAD and detail streams never compose it; ordinary detail admission is unchanged. */
     comparisonAnswer: SearchAnswerSchema.nullish(),
     /** Core entity identity, naming, status, image, and source metadata. */

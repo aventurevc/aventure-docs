@@ -149,14 +149,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     semanticQuery?: string | null | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
@@ -292,14 +284,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             portfolioHeadquartersState?: string[] | undefined;
                             qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                             rankByProminence?: boolean | null | undefined;
-                            researchDetailRange?: {
-                                max?: string | null | undefined;
-                                measurementBasis?: string | null | undefined;
-                                min?: string | null | undefined;
-                                reportingScope?: string | null | undefined;
-                                targetPath: string;
-                                valueResearchDetail: string;
-                            }[] | undefined;
                             slug?: string[] | undefined;
                             stage?: string[] | undefined;
                             standardizedClassification?: {
@@ -452,14 +436,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -3063,6 +3039,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
         };
         entityDetail: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             comparisonAnswer?: {
                 citation: {
                     entityId: string;
@@ -4979,6 +4999,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             relationship: {
                 asOf?: string | null | undefined;
                 comparisonSignals?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     fundingStage?: string | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
@@ -5353,14 +5417,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             portfolioHeadquartersState?: string[] | undefined;
                             qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                             rankByProminence?: boolean | null | undefined;
-                            researchDetailRange?: {
-                                max?: string | null | undefined;
-                                measurementBasis?: string | null | undefined;
-                                min?: string | null | undefined;
-                                reportingScope?: string | null | undefined;
-                                targetPath: string;
-                                valueResearchDetail: string;
-                            }[] | undefined;
                             slug?: string[] | undefined;
                             stage?: string[] | undefined;
                             standardizedClassification?: {
@@ -5513,14 +5569,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -7319,14 +7367,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     semanticQuery?: string | null | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
@@ -7462,14 +7502,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             portfolioHeadquartersState?: string[] | undefined;
                             qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                             rankByProminence?: boolean | null | undefined;
-                            researchDetailRange?: {
-                                max?: string | null | undefined;
-                                measurementBasis?: string | null | undefined;
-                                min?: string | null | undefined;
-                                reportingScope?: string | null | undefined;
-                                targetPath: string;
-                                valueResearchDetail: string;
-                            }[] | undefined;
                             slug?: string[] | undefined;
                             stage?: string[] | undefined;
                             standardizedClassification?: {
@@ -7622,14 +7654,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -10233,6 +10257,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             }[];
         };
         entityDetail: {
+            acquirer?: {
+                defaultCurrency?: string | null | undefined;
+                foundedYear?: number | null | undefined;
+                id: string;
+                image: {
+                    isMonogram: boolean;
+                    logo?: string | null | undefined;
+                    logoSquare?: string | null | undefined;
+                    logoSquareVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                    logoVariant?: {
+                        contentType: string;
+                        height: number;
+                        path: string;
+                        width: number;
+                    }[] | null | undefined;
+                };
+                lastModifiedAt?: string | null | undefined;
+                nameAlias: {
+                    displayable?: boolean | null | undefined;
+                    name: string;
+                    type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                }[];
+                nameBrand: string;
+                nameLegal?: string | null | undefined;
+                operatingStatus?: string | null | undefined;
+                publicId?: string | null | undefined;
+                publicUrl?: string | null | undefined;
+                sitemap?: {
+                    hasAcquisitions?: boolean | undefined;
+                    hasAnalysis: boolean;
+                    hasEmployees: boolean;
+                    hasFundraising: boolean;
+                    hasNews: boolean;
+                    productServiceSlug: string[];
+                } | null | undefined;
+                slug: string;
+                typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                updatedAt?: string | null | undefined;
+            } | null | undefined;
             comparisonAnswer?: {
                 citation: {
                     entityId: string;
@@ -12149,6 +12217,50 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             relationship: {
                 asOf?: string | null | undefined;
                 comparisonSignals?: {
+                    acquirer?: {
+                        defaultCurrency?: string | null | undefined;
+                        foundedYear?: number | null | undefined;
+                        id: string;
+                        image: {
+                            isMonogram: boolean;
+                            logo?: string | null | undefined;
+                            logoSquare?: string | null | undefined;
+                            logoSquareVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                            logoVariant?: {
+                                contentType: string;
+                                height: number;
+                                path: string;
+                                width: number;
+                            }[] | null | undefined;
+                        };
+                        lastModifiedAt?: string | null | undefined;
+                        nameAlias: {
+                            displayable?: boolean | null | undefined;
+                            name: string;
+                            type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                        }[];
+                        nameBrand: string;
+                        nameLegal?: string | null | undefined;
+                        operatingStatus?: string | null | undefined;
+                        publicId?: string | null | undefined;
+                        publicUrl?: string | null | undefined;
+                        sitemap?: {
+                            hasAcquisitions?: boolean | undefined;
+                            hasAnalysis: boolean;
+                            hasEmployees: boolean;
+                            hasFundraising: boolean;
+                            hasNews: boolean;
+                            productServiceSlug: string[];
+                        } | null | undefined;
+                        slug: string;
+                        typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                        updatedAt?: string | null | undefined;
+                    } | null | undefined;
                     fundingStage?: string | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
@@ -12523,14 +12635,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                             portfolioHeadquartersState?: string[] | undefined;
                             qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                             rankByProminence?: boolean | null | undefined;
-                            researchDetailRange?: {
-                                max?: string | null | undefined;
-                                measurementBasis?: string | null | undefined;
-                                min?: string | null | undefined;
-                                reportingScope?: string | null | undefined;
-                                targetPath: string;
-                                valueResearchDetail: string;
-                            }[] | undefined;
                             slug?: string[] | undefined;
                             stage?: string[] | undefined;
                             standardizedClassification?: {
@@ -12683,14 +12787,6 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {

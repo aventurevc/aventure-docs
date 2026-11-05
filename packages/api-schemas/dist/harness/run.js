@@ -61,7 +61,7 @@ export const HarnessRunSchema = z.object({
     id: z.uuid(),
     /** Current loop iteration */
     iteration: z.int(),
-    /** Queue lane for admission priority */
+    /** Admission class (interactive or background) on client-facing responses; Prefer: run-lane-origin returns the actual queue lane. Engine lifecycle responses always return the actual lane. */
     lane: HarnessRunLaneSchema,
     /** Latest enrich-loop status as an opaque JSON string */
     latestStatus: z.string().nullish(),

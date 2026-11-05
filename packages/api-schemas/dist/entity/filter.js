@@ -9,7 +9,6 @@ import { EntityTypeSchema } from "./type.js";
 import { EntityUniqueIdFilterSchema } from "./unique-id-filter.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
-import { ResearchDetailRangeSchema } from "../research/detail-range.js";
 import { StandardizedClassificationFilterSchema } from "../standardized/classification-filter.js";
 import { UrlMatchModeSchema } from "../url/match-mode.js";
 /**
@@ -99,8 +98,6 @@ export const EntityFilterSchema = z.strictObject({
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
-    /** Reader adoption only: stored criteria load; execution and new writes refuse. */
-    researchDetailRange: z.array(ResearchDetailRangeSchema).max(10).optional(),
     /** Restrict results to entity slugs. */
     slug: z
         .array(z

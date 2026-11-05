@@ -49,6 +49,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityAcceleratorParticipationSchema
  * @usedBySchema EntityAcquisitionSchema
  * @usedBySchema EntityBrandSchema
+ * @usedBySchema EntityComparisonSignalsSchema
  * @usedBySchema EntityDetailSchema
  * @usedBySchema EntityFundraiseTransactionEntitySchema
  * @usedBySchema EntityListSchema

@@ -154,21 +154,6 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
             NONE: "NONE";
         }>>;
         rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-        researchDetailRange: z.ZodOptional<z.ZodArray<z.ZodType<{
-            max?: string | null | undefined;
-            measurementBasis?: string | null | undefined;
-            min?: string | null | undefined;
-            reportingScope?: string | null | undefined;
-            targetPath: string;
-            valueResearchDetail: string;
-        }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput, z.core.$ZodTypeInternals<{
-            max?: string | null | undefined;
-            measurementBasis?: string | null | undefined;
-            min?: string | null | undefined;
-            reportingScope?: string | null | undefined;
-            targetPath: string;
-            valueResearchDetail: string;
-        }, import("../research/detail-range.ts").ResearchDetailRangeSchemaInput>>>>;
         slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
         stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
         standardizedClassification: z.ZodOptional<z.ZodArray<z.ZodType<{

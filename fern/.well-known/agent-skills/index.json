@@ -76,14 +76,14 @@
       "type": "skill-md",
       "description": "Use only when asked for a market research report on the market a company or product sells into: market boundary, size with shown arithmetic, growth, segments, buyers, pricing, regulation, and the subject's position.",
       "url": "/.well-known/agent-skills/market-research/SKILL.md",
-      "digest": "sha256:b93c9180214d923ea60eb70a4790b1c94e4f08297702e0c3624d29a2f65756e1"
+      "digest": "sha256:4fb4e5d0dfe1f391f5a0acc5ee51cd98facad1e5f4de93a144d16f78083b6fa9"
     },
     {
       "name": "market-sizing",
       "type": "archive",
       "description": "Use only when asked to size the market a company or product sells into: TAM, SAM, and SOM, current spend versus addressable potential, penetration, implied share, and growth, built bottom-up from counted buyers and prices, checked top-down against published totals and a rival-revenue floor, with every input cited or flagged. For the full market report (segments, buyers, pricing, regulation, position), use market-research, which loads this skill for its sizing.",
       "url": "/.well-known/agent-skills/market-sizing.tgz",
-      "digest": "sha256:c39b2c6afd1e4c5363930f5397b4fe359ec3b4d9e24a2190257ac0ec8cb003cb"
+      "digest": "sha256:e67528693996cb1e8308f67871eec7e65bff2482c7291be2a8063cddcb28338f"
     },
     {
       "name": "porters-five-forces",

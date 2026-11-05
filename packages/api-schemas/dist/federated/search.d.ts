@@ -136,14 +136,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 rankByProminence?: boolean | null | undefined;
-                researchDetailRange?: {
-                    max?: string | null | undefined;
-                    measurementBasis?: string | null | undefined;
-                    min?: string | null | undefined;
-                    reportingScope?: string | null | undefined;
-                    targetPath: string;
-                    valueResearchDetail: string;
-                }[] | undefined;
                 semanticQuery?: string | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
@@ -279,14 +271,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -439,14 +423,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
                     standardizedClassification?: {
@@ -3184,14 +3160,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 rankByProminence?: boolean | null | undefined;
-                researchDetailRange?: {
-                    max?: string | null | undefined;
-                    measurementBasis?: string | null | undefined;
-                    min?: string | null | undefined;
-                    reportingScope?: string | null | undefined;
-                    targetPath: string;
-                    valueResearchDetail: string;
-                }[] | undefined;
                 semanticQuery?: string | null | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
@@ -3327,14 +3295,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -3487,14 +3447,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
                     standardizedClassification?: {
@@ -6098,6 +6050,79 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }[];
     }, import("../natural/search-result.ts").NaturalSearchResultSchemaInput>>;
     entityDetail: z.ZodArray<z.ZodObject<{
+        acquirer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            foundedYear: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            id: z.ZodUUID;
+            image: z.ZodType<{
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            }, import("../entity/image.ts").EntityImageSchemaInput, z.core.$ZodTypeInternals<{
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            }, import("../entity/image.ts").EntityImageSchemaInput>>;
+            lastModifiedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            nameAlias: z.ZodArray<z.ZodObject<{
+                displayable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+                name: z.ZodString;
+                type: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                    alternativeDba: "alternativeDba";
+                    relatedLegal: "relatedLegal";
+                }>>>;
+            }, z.core.$strip>>;
+            nameBrand: z.ZodString;
+            nameLegal: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            operatingStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            publicId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            sitemap: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                hasAcquisitions: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
+                hasAnalysis: z.ZodBoolean;
+                hasEmployees: z.ZodBoolean;
+                hasFundraising: z.ZodBoolean;
+                hasNews: z.ZodBoolean;
+                productServiceSlug: z.ZodArray<z.ZodString>;
+            }, z.core.$strip>>>;
+            slug: z.ZodString;
+            typeRecord: z.ZodEnum<{
+                "Business Line": "Business Line";
+                Company: "Company";
+                Fund: "Fund";
+                Government: "Government";
+                "Investment Firm": "Investment Firm";
+                Nonprofit: "Nonprofit";
+                Organization: "Organization";
+                Product: "Product";
+                Service: "Service";
+            }>;
+            updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        }, z.core.$strip>>>;
         comparisonAnswer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             citation: z.ZodArray<z.ZodType<{
                 entityId: string;
@@ -9863,6 +9888,50 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
             comparisonSignals?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
@@ -9945,6 +10014,50 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
             comparisonSignals?: {
+                acquirer?: {
+                    defaultCurrency?: string | null | undefined;
+                    foundedYear?: number | null | undefined;
+                    id: string;
+                    image: {
+                        isMonogram: boolean;
+                        logo?: string | null | undefined;
+                        logoSquare?: string | null | undefined;
+                        logoSquareVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                        logoVariant?: {
+                            contentType: string;
+                            height: number;
+                            path: string;
+                            width: number;
+                        }[] | null | undefined;
+                    };
+                    lastModifiedAt?: string | null | undefined;
+                    nameAlias: {
+                        displayable?: boolean | null | undefined;
+                        name: string;
+                        type?: "alternativeDba" | "relatedLegal" | null | undefined;
+                    }[];
+                    nameBrand: string;
+                    nameLegal?: string | null | undefined;
+                    operatingStatus?: string | null | undefined;
+                    publicId?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
+                    sitemap?: {
+                        hasAcquisitions?: boolean | undefined;
+                        hasAnalysis: boolean;
+                        hasEmployees: boolean;
+                        hasFundraising: boolean;
+                        hasNews: boolean;
+                        productServiceSlug: string[];
+                    } | null | undefined;
+                    slug: string;
+                    typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
+                    updatedAt?: string | null | undefined;
+                } | null | undefined;
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
@@ -10492,14 +10605,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -10652,14 +10757,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
                     standardizedClassification?: {
@@ -11149,14 +11246,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         portfolioHeadquartersState?: string[] | undefined;
                         qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                         rankByProminence?: boolean | null | undefined;
-                        researchDetailRange?: {
-                            max?: string | null | undefined;
-                            measurementBasis?: string | null | undefined;
-                            min?: string | null | undefined;
-                            reportingScope?: string | null | undefined;
-                            targetPath: string;
-                            valueResearchDetail: string;
-                        }[] | undefined;
                         slug?: string[] | undefined;
                         stage?: string[] | undefined;
                         standardizedClassification?: {
@@ -11309,14 +11398,6 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
                     standardizedClassification?: {

@@ -107,14 +107,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
                     standardizedClassification?: {
@@ -267,14 +259,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 rankByProminence?: boolean | null | undefined;
-                researchDetailRange?: {
-                    max?: string | null | undefined;
-                    measurementBasis?: string | null | undefined;
-                    min?: string | null | undefined;
-                    reportingScope?: string | null | undefined;
-                    targetPath: string;
-                    valueResearchDetail: string;
-                }[] | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
                 standardizedClassification?: {
@@ -465,14 +449,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     portfolioHeadquartersState?: string[] | undefined;
                     qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                     rankByProminence?: boolean | null | undefined;
-                    researchDetailRange?: {
-                        max?: string | null | undefined;
-                        measurementBasis?: string | null | undefined;
-                        min?: string | null | undefined;
-                        reportingScope?: string | null | undefined;
-                        targetPath: string;
-                        valueResearchDetail: string;
-                    }[] | undefined;
                     slug?: string[] | undefined;
                     stage?: string[] | undefined;
                     standardizedClassification?: {
@@ -625,14 +601,6 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 portfolioHeadquartersState?: string[] | undefined;
                 qualityGate?: "COMPANY_LISTING_READY" | "NONE" | undefined;
                 rankByProminence?: boolean | null | undefined;
-                researchDetailRange?: {
-                    max?: string | null | undefined;
-                    measurementBasis?: string | null | undefined;
-                    min?: string | null | undefined;
-                    reportingScope?: string | null | undefined;
-                    targetPath: string;
-                    valueResearchDetail: string;
-                }[] | undefined;
                 slug?: string[] | undefined;
                 stage?: string[] | undefined;
                 standardizedClassification?: {

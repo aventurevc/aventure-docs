@@ -9,7 +9,6 @@ import { EntityTypeSchema } from "./type.js";
 import { EntityUniqueIdFilterSchema } from "./unique-id-filter.js";
 import { EntityUrlTypeSchema } from "./url-type.js";
 import { IntRangeSchema } from "../int/range.js";
-import { ResearchDetailRangeSchema } from "../research/detail-range.js";
 import { StandardizedClassificationFilterSchema } from "../standardized/classification-filter.js";
 import { UrlMatchModeSchema } from "../url/match-mode.js";
 /**
@@ -95,8 +94,6 @@ export const EntityListFilterSchema = z.strictObject({
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
-    /** Reader adoption only: stored criteria load; execution and new writes refuse. */
-    researchDetailRange: z.array(ResearchDetailRangeSchema).max(10).optional(),
     /** Free-text semantic search phrase, this body's query text (there is no query field), such as "AI tools for dental clinics". To filter this search to companies by name, send this body's entityName field instead; to identify one record from a name, call lookupRecord (POST /v1/lookup) with name, which accepts no entityName. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity. */
     semanticQuery: z.string().nullish(),
     /** Restrict results to entity slugs. */
