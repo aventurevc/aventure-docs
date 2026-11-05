@@ -35,7 +35,7 @@ const SearchSchemaDefinition = z.object({
     resultLimit: z.int().nullish(),
     /** Company or person this search is about; the stored result is filed under that record on a fetch or a cache hit. */
     retrievedFor: EntityPersonOwnerSchema.nullish(),
-    /** Search text sent to the upstream web search provider */
+    /** Search text sent to the upstream web search provider, at most the search catalog's text.maxSearchTermLength characters; a longer query answers 422 naming that limit, so shorten it rather than retrying. */
     search: z.string(),
     /** Optional label for the calling application, up to 64 characters, stored with the search for attribution and abuse review. */
     source: z.string().max(64).nullish(),

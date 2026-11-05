@@ -1,6 +1,5 @@
 import { z } from "zod/v4";
 declare const PersonSchemaDefinition: z.ZodObject<{
-    bioUpdatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     gender: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodUUID;

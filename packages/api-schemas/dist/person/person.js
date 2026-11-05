@@ -5,8 +5,6 @@ import { EntityNameAliasPersonAliasTypeSchema } from "../entity/name-alias-perso
 import { EntityTextBundleSchema } from "../entity/text-bundle.js";
 import { PersonImageSchema } from "./image.js";
 const PersonSchemaDefinition = z.object({
-    /** Latest assertion of the person's current biography body, including an unchanged-value citation; legacy rows use creation time, never metadata maintenance; absent without a biography. */
-    bioUpdatedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Record creation timestamp */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     gender: z.string().nullish(),
@@ -38,7 +36,7 @@ const PersonSchemaDefinition = z.object({
         .regex(/^[a-z0-9_-]+$/)
         .max(255),
     suffix: z.string().nullish(),
-    /** Grouped person text content */
+    /** Always empty: people carry no biography text. */
     text: EntityTextBundleSchema,
     /** Last modification timestamp */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

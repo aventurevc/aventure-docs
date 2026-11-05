@@ -1715,7 +1715,6 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
     }>;
     name: z.ZodString;
     person: z.ZodArray<z.ZodType<{
-        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;
@@ -1761,7 +1760,6 @@ declare const LookupJobMentionSchemaDefinition: z.ZodObject<{
         };
         updatedAt?: string | null | undefined;
     }, import("../person/person.ts").PersonSchemaInput, z.core.$ZodTypeInternals<{
-        bioUpdatedAt?: string | null | undefined;
         createdAt?: string | null | undefined;
         gender?: string | null | undefined;
         id: string;

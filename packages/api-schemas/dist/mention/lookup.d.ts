@@ -885,7 +885,6 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
         person: {
-            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
@@ -1815,7 +1814,6 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         mentionType: "COMPANY" | "PERSON" | "PRODUCT_SERVICE";
         name: string;
         person: {
-            bioUpdatedAt?: string | null | undefined;
             createdAt?: string | null | undefined;
             gender?: string | null | undefined;
             id: string;
