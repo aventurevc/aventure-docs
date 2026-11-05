@@ -27,7 +27,7 @@
       "type": "skill-md",
       "description": "Use only when asked for buyer personas, buyer archetypes, buying committees, or who buys a company's products or services and how they decide: personas rolled up from roles observed at named accounts, each with the initiative that starts its purchase, the results it expects, the barriers that stop it, how it compares and eliminates options, and its decision criteria, drawn from buyers and from buyers who chose a rival or the status quo, with where each persona does not apply. For named accounts, segments, or an ideal customer profile, use customer-analysis.",
       "url": "/.well-known/agent-skills/buyer-persona-analysis/SKILL.md",
-      "digest": "sha256:f06288919e713df20000a190d07ec218be84490b64940e14a14ec9c22940bf10"
+      "digest": "sha256:1589516dc430b3086ab0a7d174d7d72208bef1c178e4f6452596a2ee7c6899a7"
     },
     {
       "name": "competitive-landscape",
@@ -104,14 +104,14 @@
       "type": "skill-md",
       "description": "Use only when asked to analyze, verify, or summarize a company's customer testimonials, case studies, customer stories, outcome or ROI claims, or review-site profiles: every story coded for its problem, prior alternative, deployment scope, and outcome with baseline, period, and measurer; each claim graded by who made it and how it was measured; the claims worth repeating checked against the customer's own later statements; and the outcomes that recur across independent named customers, counted against the stories the company chose to publish. For who the customers are, use customer-analysis.",
       "url": "/.well-known/agent-skills/testimonial-case-study-analysis/SKILL.md",
-      "digest": "sha256:fd5ac1854a3973f446e6d5979fdbe3b09605676b18d2ecc9f6542c7c5dfdfd44"
+      "digest": "sha256:c3a195bcd4e794b7e5b575982376f8572a389d86c62257fc3649b606b6ebf72d"
     },
     {
       "name": "use-case-analysis",
       "type": "skill-md",
       "description": "Use only when asked what a company's products or services are used for, its use cases, the jobs to be done it serves, or which marketed use cases are real: each job written as a solution-free statement with the person who does it and the circumstance, evidenced from named customers, documentation, required integrations, pricing, and buyers' own words, and tiered proven, partly evidenced, marketed only, or not served. For named customer accounts, use customer-analysis.",
       "url": "/.well-known/agent-skills/use-case-analysis/SKILL.md",
-      "digest": "sha256:86f88966ae10160cbf85f1eec8048aa62469214f7199b51b7b8d14acba03a8cb"
+      "digest": "sha256:46c29154d6140830247b559faa063e3ebcb1c736a03acc1f66041ea8e4b7ff90"
     }
   ]
 }
