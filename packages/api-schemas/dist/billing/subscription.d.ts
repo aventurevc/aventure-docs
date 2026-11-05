@@ -174,6 +174,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             used: number;
         };
     }, import("../research/allowance-usage.ts").ResearchAllowanceUsageSchemaInput>>;
+    appStoreCreditPurchasable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     cancelAtPeriodEnd: z.ZodBoolean;
     creditPurchasable: z.ZodBoolean;
     entitled: z.ZodBoolean;

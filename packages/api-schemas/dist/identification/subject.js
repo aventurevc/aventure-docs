@@ -37,13 +37,13 @@ export const IdentificationSubjectSchema = z.object({
     providerId: z.uuid().nullish(),
     /** Part the subject plays in the source: INVESTOR when the source lists it as an investor. Unlike typeRecord it keeps every record type a candidate, so a Company or Nonprofit that invests can still match. With it, a lookup with no url, filing, or sourceIdentifier binds a same-named Investment Firm or Fund over a record that does not invest; without a sourceNewsId it also answers NEEDS_REVIEW when the bound record shares its name with another live firm, or a visible record of its type family, unless the location's place names only the bound record's address and every namesake stores one. Without it, an Investment Firm or Fund typeRecord applies the firm preference alone. Omit it otherwise. */
     role: z.enum(["INVESTOR"]).nullish(),
-    /** Exact stored capture of sourceUrl, never an owned website. Requires capture-read authority and a matching successful evidence body; cannot accompany sourceNewsId. */
+    /** Exact stored capture of sourceUrl, never an owned website. Requires capture-read authority and a matching successful evidence body; cannot accompany sourceNewsId. Private CSV rows require private body-read authority and their matching canonical relative body#row locator in sourceUrl. Bound lookups remain synchronous. */
     sourceDocumentId: z.uuid().nullish(),
     /** Permanent source identity with idType and identifier for a catalog source-binding type. Legacy source may be omitted or null; non-null labels are rejected. Requires private visibility and resolves before names or URLs. */
     sourceIdentifier: UniqueIdMutationSchema.nullish(),
     /** aVenture news id of the article that mentions the subject; an unknown id is a 400. */
     sourceNewsId: z.int().nullish(),
-    /** URL of the article that mentions the subject; read from aVenture news when stored there, otherwise fetched. */
+    /** URL of the article that mentions the subject; read from aVenture news when stored there, otherwise fetched. Private CSV evidence uses the canonical relative body#row locator with its matching sourceDocumentId, never an owned website. */
     sourceUrl: z.string().max(2000).nullish(),
     /** Entity type to identify. A Product or Service never matches its provider organization, but a record stored under a neighboring type of the same family (Product or Service; Fund, Investment Firm, or Company) still matches, and a Business Line lookup sees both families. Invalid for a person lookup. */
     typeRecord: EntityTypeSchema.nullish(),

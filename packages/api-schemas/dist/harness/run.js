@@ -34,7 +34,7 @@ export const HarnessRunSchema = z.object({
     /** Retry attempt counter */
     attempt: z.int(),
     /** Agent loop this run executes on */
-    chassis: HarnessChassisSchema,
+    chassis: HarnessChassisSchema.nullish(),
     /** True when the chassis router, not a caller, picked `chassis` */
     chassisRouted: z.boolean(),
     /** Creation timestamp */
@@ -66,15 +66,15 @@ export const HarnessRunSchema = z.object({
     /** Latest enrich-loop status as an opaque JSON string */
     latestStatus: z.string().nullish(),
     /** Gateway wire API every LLM call of this run uses */
-    llmApi: HarnessLlmApiSchema,
+    llmApi: HarnessLlmApiSchema.nullish(),
     /** Loop iteration cap */
     maxIteration: z.int(),
     /** Parallel read-only scout fan-out width N */
     maxScoutConcurrent: z.int(),
     /** Enrichment breadth selected for this run */
     mode: EnrichmentModeSchema,
-    /** Engine model */
-    model: z.string(),
+    /** Engine model; absent for direct execution */
+    model: z.string().nullish(),
     /** True when the requester left `model` to the auto router, which picks it again each time the run leaves the queue; null on engine lease responses */
     modelRouted: z.boolean().nullish(),
     /** Earliest re-claim time when waiting on retry backoff */
@@ -90,7 +90,7 @@ export const HarnessRunSchema = z.object({
     /** Current lifecycle state */
     status: HarnessRunStatusSchema,
     /** Read-only research, cohort, and completion sub-agent model id */
-    subagentModel: z.string(),
+    subagentModel: z.string().nullish(),
     /** True when the requester left `subagentModel` to the auto router, which picks it again each time the run leaves the queue; null on engine lease responses */
     subagentModelRouted: z.boolean().nullish(),
     /** Research presets filed with the run */

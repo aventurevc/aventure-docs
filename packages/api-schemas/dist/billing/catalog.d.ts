@@ -9,9 +9,11 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
     }, import("./catalog-additional-usage.ts").BillingCatalogAdditionalUsageSchemaInput>>>;
     creditPack: z.ZodArray<z.ZodType<{
         amountCents: number;
+        appStoreProductId?: string | null | undefined;
         pack: "USD_100" | "USD_25" | "USD_250" | "USD_50";
     }, import("./catalog-credit-pack.ts").BillingCatalogCreditPackSchemaInput, z.core.$ZodTypeInternals<{
         amountCents: number;
+        appStoreProductId?: string | null | undefined;
         pack: "USD_100" | "USD_25" | "USD_250" | "USD_50";
     }, import("./catalog-credit-pack.ts").BillingCatalogCreditPackSchemaInput>>>;
     invoiceIncrementCents: z.ZodArray<z.ZodNumber>;

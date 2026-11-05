@@ -20,10 +20,10 @@ import { z } from "zod/v4";
  */
 export declare const HarnessRunSchema: z.ZodObject<{
     attempt: z.ZodInt;
-    chassis: z.ZodEnum<{
+    chassis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         "claude-agent-sdk": "claude-agent-sdk";
         "pi-agent-sdk": "pi-agent-sdk";
-    }>;
+    }>>>;
     chassisRouted: z.ZodBoolean;
     createdAt: z.ZodISODateTime;
     entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
@@ -69,18 +69,18 @@ export declare const HarnessRunSchema: z.ZodObject<{
         };
     };
     latestStatus: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    llmApi: z.ZodEnum<{
+    llmApi: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         anthropic: "anthropic";
         "openai-chat": "openai-chat";
         "openai-responses": "openai-responses";
-    }>;
+    }>>>;
     maxIteration: z.ZodInt;
     maxScoutConcurrent: z.ZodInt;
     mode: z.ZodEnum<{
         COMPREHENSIVE: "COMPREHENSIVE";
         INDIVIDUAL: "INDIVIDUAL";
     }>;
-    model: z.ZodString;
+    model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     modelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     nextAttemptAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     researchAllowanceType: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
@@ -118,7 +118,7 @@ export declare const HarnessRunSchema: z.ZodObject<{
         running: "running";
         stopped: "stopped";
     }>;
-    subagentModel: z.ZodString;
+    subagentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     subagentModelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
     type: z.ZodEnum<{

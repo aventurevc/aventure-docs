@@ -36,6 +36,8 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     amountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Inclusive announcement timestamp bounds on the same fundraise transaction as round and amountRaisedRange. Announcement dates do not establish funding completion dates. */
     dateAnnouncedRange: DateRangeSchema.nullish(),
+    /** Inclusive funding completion timestamp bounds on the same fundraise transaction as round, amountRaisedRange, and investor constraints. Calendar-only completion dates must fit entirely within the bounds. */
+    dateFundingCompleteRange: DateRangeSchema.nullish(),
     /** Total amounts raised in USD by a named portfolio company's rounds, not an investor's individual check or its own fundraising. Requires nonblank investedCompanyName. Company, investedRound, and this amount match the same portfolio-company transaction. */
     investedAmountRaisedRange: z.array(DecimalRangeSchema).optional(),
     /** Portfolio company brand, legal or canonical names, or a bare domain exactly matching a current WEBSITE root URL (not broad host discovery; no URL paths or queries). A bare-domain miss never falls back to a name. Returns their investors with investedRound, when supplied, bound to the same company transaction regardless of its age. */

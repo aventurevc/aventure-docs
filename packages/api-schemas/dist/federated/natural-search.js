@@ -10,7 +10,7 @@ const FederatedNaturalSearchSchemaDefinition = z.object({
     answerModel: z.string().nullish(),
     /** Cache policy. use reuses earlier search work; bypass and refresh compute fresh results and are honored only for accounts with private-data access. */
     cacheMode: SearchCacheModeSchema.default("use").optional(),
-    /** Explicit entity constraints for the entity scope only, as on POST /v1/search/natural/entities: caller-supplied fields override planner values. The person and news scopes ignore it. Omitted defaults suppress non-operating entities, matching the aventure.vc search page; natural entity search is unchanged. */
+    /** Explicit entity constraints for the entity scope only, as on POST /v1/search/natural/entities: caller-supplied fields override planner values. The person and news scopes ignore it. Terminal entities are suppressed only for category discovery; named and relational searches keep them, even with true. Explicit suppressNonOperating=false always includes them. */
     entityFilter: EntityFilterSchema.optional(),
     /** auto refreshes date-sensitive queries before cache admission; cached permits ordinary cache reuse. Explicit admitted bypass or refresh wins. */
     freshness: SearchFreshnessSchema.default("auto").optional(),

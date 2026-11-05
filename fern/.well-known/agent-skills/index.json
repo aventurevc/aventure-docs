@@ -6,7 +6,7 @@
       "type": "skill-md",
       "description": "Use for multi-step aVenture research: company briefs, funding and investors, portfolios, founder backgrounds, competitors, news monitoring, and resolving name lists.",
       "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
-      "digest": "sha256:724fe91ae614699f50a11ff8fdaf381ee3bad82a1509c598ccb4727f4ec8c0e1"
+      "digest": "sha256:a077381353713f665e0765aa4cbc205155c14b1317ed39513a8dacc91774c5bd"
     },
     {
       "name": "aventure",
@@ -83,7 +83,7 @@
       "type": "archive",
       "description": "Use only when asked to size the market a company or product sells into: TAM, SAM, and SOM, current spend versus addressable potential, penetration, implied share, and growth, built bottom-up from counted buyers and prices, checked top-down against published totals and a rival-revenue floor, with every input cited or flagged. For the full market report (segments, buyers, pricing, regulation, position), use market-research, which loads this skill for its sizing.",
       "url": "/.well-known/agent-skills/market-sizing.tgz",
-      "digest": "sha256:e67528693996cb1e8308f67871eec7e65bff2482c7291be2a8063cddcb28338f"
+      "digest": "sha256:db13cff16c8eec83a45c7347b047d3b7fa370bcaa3f29c8c7c1664f102c39097"
     },
     {
       "name": "porters-five-forces",

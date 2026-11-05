@@ -32,6 +32,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             enrichmentRunId?: string | null | undefined;
             entityId: string;
         }[] | null | undefined;
+        hiddenNonOperatingCount?: number | null | undefined;
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
             execution: {
@@ -64,6 +65,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }[] | undefined;
                     dateAnnouncedRange?: {
+                        max?: string | null | undefined;
+                        min?: string | null | undefined;
+                    } | null | undefined;
+                    dateFundingCompleteRange?: {
                         max?: string | null | undefined;
                         min?: string | null | undefined;
                     } | null | undefined;
@@ -199,6 +204,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 min?: number | null | undefined;
                             }[] | undefined;
                             dateAnnouncedRange?: {
+                                max?: string | null | undefined;
+                                min?: string | null | undefined;
+                            } | null | undefined;
+                            dateFundingCompleteRange?: {
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
@@ -351,6 +360,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         dateAnnouncedRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
+                        dateFundingCompleteRange?: {
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
@@ -3056,6 +3069,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             enrichmentRunId?: string | null | undefined;
             entityId: string;
         }[] | null | undefined;
+        hiddenNonOperatingCount?: number | null | undefined;
         interpretation: {
             confidence: "HIGH" | "LOW" | "MEDIUM";
             execution: {
@@ -3088,6 +3102,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }[] | undefined;
                     dateAnnouncedRange?: {
+                        max?: string | null | undefined;
+                        min?: string | null | undefined;
+                    } | null | undefined;
+                    dateFundingCompleteRange?: {
                         max?: string | null | undefined;
                         min?: string | null | undefined;
                     } | null | undefined;
@@ -3223,6 +3241,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 min?: number | null | undefined;
                             }[] | undefined;
                             dateAnnouncedRange?: {
+                                max?: string | null | undefined;
+                                min?: string | null | undefined;
+                            } | null | undefined;
+                            dateFundingCompleteRange?: {
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
@@ -3375,6 +3397,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         dateAnnouncedRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
+                        dateFundingCompleteRange?: {
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
@@ -10536,6 +10562,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
+                            dateFundingCompleteRange?: {
+                                max?: string | null | undefined;
+                                min?: string | null | undefined;
+                            } | null | undefined;
                             investedAmountRaisedRange?: {
                                 max?: number | null | undefined;
                                 min?: number | null | undefined;
@@ -10685,6 +10715,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         dateAnnouncedRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
+                        dateFundingCompleteRange?: {
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
@@ -11177,6 +11211,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 max?: string | null | undefined;
                                 min?: string | null | undefined;
                             } | null | undefined;
+                            dateFundingCompleteRange?: {
+                                max?: string | null | undefined;
+                                min?: string | null | undefined;
+                            } | null | undefined;
                             investedAmountRaisedRange?: {
                                 max?: number | null | undefined;
                                 min?: number | null | undefined;
@@ -11326,6 +11364,10 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             min?: number | null | undefined;
                         }[] | undefined;
                         dateAnnouncedRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
+                        dateFundingCompleteRange?: {
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;

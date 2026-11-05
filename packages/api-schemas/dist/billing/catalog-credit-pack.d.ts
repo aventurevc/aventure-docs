@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const BillingCatalogCreditPackSchemaDefinition: z.ZodObject<{
     amountCents: z.ZodNumber;
+    appStoreProductId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     pack: z.ZodEnum<{
         USD_100: "USD_100";
         USD_25: "USD_25";

@@ -38,6 +38,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
+                        dateFundingCompleteRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
                         investedAmountRaisedRange?: {
                             max?: number | null | undefined;
                             min?: number | null | undefined;
@@ -187,6 +191,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }[] | undefined;
                     dateAnnouncedRange?: {
+                        max?: string | null | undefined;
+                        min?: string | null | undefined;
+                    } | null | undefined;
+                    dateFundingCompleteRange?: {
                         max?: string | null | undefined;
                         min?: string | null | undefined;
                     } | null | undefined;
@@ -380,6 +388,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                             max?: string | null | undefined;
                             min?: string | null | undefined;
                         } | null | undefined;
+                        dateFundingCompleteRange?: {
+                            max?: string | null | undefined;
+                            min?: string | null | undefined;
+                        } | null | undefined;
                         investedAmountRaisedRange?: {
                             max?: number | null | undefined;
                             min?: number | null | undefined;
@@ -529,6 +541,10 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                         min?: number | null | undefined;
                     }[] | undefined;
                     dateAnnouncedRange?: {
+                        max?: string | null | undefined;
+                        min?: string | null | undefined;
+                    } | null | undefined;
+                    dateFundingCompleteRange?: {
                         max?: string | null | undefined;
                         min?: string | null | undefined;
                     } | null | undefined;

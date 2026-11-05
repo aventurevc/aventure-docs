@@ -2,8 +2,10 @@
 import { z } from "zod/v4";
 import { BillingCreditPackTypeSchema } from "./credit-pack-type.js";
 const BillingCatalogCreditPackSchemaDefinition = z.object({
-    /** Credit granted and price charged, in US cents. */
+    /** Credit granted and web price charged, in US cents. */
     amountCents: z.number().int(),
+    /** Consumable App Store product id for this credit pack; absent when it sells only on the web. StoreKit supplies the localized purchase price. */
+    appStoreProductId: z.string().nullish(),
     pack: BillingCreditPackTypeSchema,
 });
 /**

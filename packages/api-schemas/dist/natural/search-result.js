@@ -14,6 +14,8 @@ const NaturalSearchResultSchemaDefinition = z.object({
     answer: SearchAnswerSchema.nullish(),
     /** Discovered companies this caller filed and their research runs. */
     filing: z.array(SearchDiscoveryFilingSchema).nullish(),
+    /** Distinct terminal entities hidden from the measured bounded candidate recall after other filters matched. Null when suppression was disabled or not measured; this is not a directory-wide total. Acquired subsidiaries are not terminal. */
+    hiddenNonOperatingCount: z.number().int().nullish(),
     /** Structured interpretation used to run the entity list query. */
     interpretation: SearchInterpretationSchema,
     /** Recorded investment participation supporting investor discovery. Each row keeps its entity or personal investor, portfolio company, transaction attribution, and query-matched offering evidence. Empty for other question intents. */

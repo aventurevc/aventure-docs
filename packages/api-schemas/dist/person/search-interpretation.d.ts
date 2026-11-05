@@ -54,6 +54,10 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
                         max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                         min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                     }, z.core.$strip>>>;
+                    dateFundingCompleteRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                        max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                        min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                    }, z.core.$strip>>>;
                     investedAmountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
                         max?: number | null | undefined;
                         min?: number | null | undefined;
@@ -301,6 +305,10 @@ declare const PersonSearchInterpretationSchemaDefinition: z.ZodObject<{
                     min?: number | null | undefined;
                 }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
                 dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                    max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                    min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                }, z.core.$strip>>>;
+                dateFundingCompleteRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
                     max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                     min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
                 }, z.core.$strip>>>;
