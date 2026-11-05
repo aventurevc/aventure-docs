@@ -10080,6 +10080,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        coveringRunId?: string | null | undefined;
         enrichment: {
             address: {
                 address?: number | null | undefined;
@@ -10814,6 +10815,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        coveringRunId?: string | null | undefined;
         enrichment: {
             address: {
                 address?: number | null | undefined;
@@ -12336,6 +12338,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -13084,6 +13087,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                 typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                 updatedAt?: string | null | undefined;
             };
+            coveringRunId?: string | null | undefined;
             enrichment: {
                 address: {
                     address?: number | null | undefined;
@@ -21051,6 +21055,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        coveringRunId?: string | null | undefined;
         enrichment: {
             address: {
                 address?: number | null | undefined;
@@ -21785,6 +21790,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
             typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
             updatedAt?: string | null | undefined;
         };
+        coveringRunId?: string | null | undefined;
         enrichment: {
             address: {
                 address?: number | null | undefined;

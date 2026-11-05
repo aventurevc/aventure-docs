@@ -27,13 +27,15 @@ export const IdentificationSubjectSchema = z.object({
     /** Companies the subject is known to work at; a person filing accepts a LinkedIn profile only when one of them appears in the profile's employer fields. */
     employer: z.array(z.string()).max(10).optional(),
     filing: RegistryFilingSchema.nullish(),
-    /** Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or providerId implies ENTITY. */
+    /** Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or productServiceProviderId implies ENTITY. */
     kind: z.enum(["ENTITY", "PERSON"]).nullish(),
     /** City, region, or country, such as Austin, TX. Tells namesakes apart; not proof on its own. */
     location: z.string().max(2000).nullish(),
     /** Name exactly as the source writes it, such as Acme AI or Jane Doe. Send name, url, or both; a name that is an absolute http(s) URL is read as url. */
     name: z.string().max(200).nullish(),
     /** Provider entity id for a Product or Service lookup. Omit it when the provider is unknown. With no typeRecord, searches both Product and Service. Invalid for a company type or a person lookup. */
+    productServiceProviderId: z.uuid().nullish(),
+    /** Deprecated: send productServiceProviderId, the name the entity duplicate-check and create routes use. Still read as productServiceProviderId; a request that sends it answers with Deprecation and Sunset headers. */
     providerId: z.uuid().nullish(),
     /** Part the subject plays in the source: INVESTOR when the source lists it as an investor. Unlike typeRecord it keeps every record type a candidate, so a Company or Nonprofit that invests can still match. With it, a lookup with no url, filing, or sourceIdentifier binds a same-named Investment Firm or Fund over a record that does not invest; without a sourceNewsId it also answers NEEDS_REVIEW when the bound record shares its name with another live firm, or a visible record of its type family, unless the location's place names only the bound record's address and every namesake stores one. Without it, an Investment Firm or Fund typeRecord applies the firm preference alone. Omit it otherwise. */
     role: z.enum(["INVESTOR"]).nullish(),

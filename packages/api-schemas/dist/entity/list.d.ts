@@ -146,6 +146,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
         }>;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>;
+    coveringRunId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     enrichment: z.ZodType<{
         address: {
             address?: number | null | undefined;

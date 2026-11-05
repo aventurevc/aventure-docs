@@ -13,7 +13,7 @@
       "type": "skill-md",
       "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
       "url": "/.well-known/agent-skills/aventure/SKILL.md",
-      "digest": "sha256:f87c2fcf3d7afa51cfc04b8a999a6b5f96db42e168f64645c1dcd7f7d01c80af"
+      "digest": "sha256:faecc6b66a495bf0d97cbd59772be5e091d1d60223e7412f8a2f59fa12f0bc92"
     },
     {
       "name": "business-cycle-analysis",
@@ -111,7 +111,7 @@
       "type": "skill-md",
       "description": "Use only when asked what a company's products or services are used for, its use cases, the jobs to be done it serves, or which marketed use cases are real: each job written as a solution-free statement with the person who does it and the circumstance, evidenced from named customers, documentation, required integrations, pricing, and buyers' own words, and tiered proven, partly evidenced, marketed only, or not served. For named customer accounts, use customer-analysis.",
       "url": "/.well-known/agent-skills/use-case-analysis/SKILL.md",
-      "digest": "sha256:26234df642a88af3267a836389ad3bfd0f26f1cf305abb50987c8b4c2a295d42"
+      "digest": "sha256:24ec7c591f30158ea78f391f5f9a3f925d47be4cdd25b6639c90a9ffa5c3d188"
     }
   ]
 }

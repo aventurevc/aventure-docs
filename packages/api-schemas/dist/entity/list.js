@@ -12,6 +12,8 @@ const EntityListSchemaDefinition = z.object({
     acquirer: EntitySchema.nullish(),
     /** Flat entity core — identity, naming, status, image, and source metadata */
     core: EntitySchema,
+    /** The queued or running full-research run covering this record, whoever filed it; set only on federated search result and subject rows, null when none and on every other list read. */
+    coveringRunId: z.uuid().nullish(),
     /** Supplemental entity data — addresses, classification tags, funding, text content, and URL links */
     enrichment: EntityEnrichmentSchema,
     /** Fundraise rounds associated with this entity */

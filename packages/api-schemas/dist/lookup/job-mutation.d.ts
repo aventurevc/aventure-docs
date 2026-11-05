@@ -72,6 +72,7 @@ declare const LookupJobMutationSchemaDefinition: z.ZodObject<{
         }>>>;
         location: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         name: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        productServiceProviderId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         providerId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         role: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             INVESTOR: "INVESTOR";

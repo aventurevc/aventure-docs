@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { HelpScopeSchema } from "../help/scope.js";
 const AgentHelpQuestionSchemaDefinition = z.object({
-    /** Optional supported model for the answer. Omit it to use the default; an unsupported model answers 422. */
+    /** Optional supported model id for the answer. Leave the field out for the server's model; a value that is not a supported model id answers 422. */
     model: z.string().nullish(),
     /** The question to answer, in natural language. */
     question: z.string().min(1),

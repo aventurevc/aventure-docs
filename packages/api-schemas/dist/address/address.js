@@ -72,9 +72,9 @@ export const AddressSchema = z.object({
     id: z.int().nullish(),
     /** Deprecated aggregate compatibility flag; true when any association is current */
     isCurrent: z.boolean().nullish(),
-    /** Deprecated legacy flag marking the current legal/registered seat (domicile), not the operating HQ. Use enrichment.headquartersAddressId matched to enrichment.address[].id for the operating headquarters. */
+    /** Deprecated legacy flag marking the current legal/registered seat (domicile), not the operating HQ; it retires on 2027-02-05. Read a current association[].role of domicile for the legal seat, and match enrichment.headquartersAddressId to enrichment.address[].id for the operating headquarters. */
     isHq: z.boolean().nullish(),
-    /** Deprecated legacy flag marking the primary display address */
+    /** Deprecated legacy flag marking the current operating headquarters (dominant); it retires on 2027-02-05. Match enrichment.headquartersAddressId to enrichment.address[].id, or read a current association[].role of dominant. */
     isPrimary: z.boolean().nullish(),
     latitude: z.number().nullish(),
     longitude: z.number().nullish(),
