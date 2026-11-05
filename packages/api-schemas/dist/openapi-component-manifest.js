@@ -772,6 +772,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "identification/identification",
         schemaName: "IdentificationSchema",
     },
+    IdentificationCampusRefusal: {
+        modulePath: "identification/campus-refusal",
+        schemaName: "IdentificationCampusRefusalSchema",
+    },
     IdentificationCandidate: {
         modulePath: "identification/candidate",
         schemaName: "IdentificationCandidateSchema",

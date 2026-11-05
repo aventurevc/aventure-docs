@@ -25,6 +25,19 @@ export declare const ProblemDetailSchema: z.ZodObject<{
             WEB_SEARCH: "WEB_SEARCH";
         };
     }>>;
+    campusProofRefusal: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        NAME_NOT_DECLARED: "NAME_NOT_DECLARED";
+        REGISTRY_CONTACT_MISSING: "REGISTRY_CONTACT_MISSING";
+        REGISTRY_CONTACT_NOT_STATED: "REGISTRY_CONTACT_NOT_STATED";
+        SITE_UNREADABLE: "SITE_UNREADABLE";
+    }>, z.ZodString]> & {
+        enum: {
+            NAME_NOT_DECLARED: "NAME_NOT_DECLARED";
+            REGISTRY_CONTACT_MISSING: "REGISTRY_CONTACT_MISSING";
+            REGISTRY_CONTACT_NOT_STATED: "REGISTRY_CONTACT_NOT_STATED";
+            SITE_UNREADABLE: "SITE_UNREADABLE";
+        };
+    }>>;
     circuitBreaker: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     code: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         GEOCODE_PROVIDER_ERROR: "GEOCODE_PROVIDER_ERROR";

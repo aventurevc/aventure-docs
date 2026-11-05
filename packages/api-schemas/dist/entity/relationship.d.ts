@@ -75,6 +75,7 @@ declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
             }>;
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>>;
+        disclosedStage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         fundingStage: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             Acquired: "Acquired";
             "Acquired Subsidiary": "Acquired Subsidiary";

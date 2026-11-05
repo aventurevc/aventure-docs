@@ -30,8 +30,8 @@ const FederatedNaturalSearchSchemaDefinition = z.object({
     reasoningEffort: ReasoningEffortSchema.nullish(),
     /** Search catalog revision this search uses for its global search policy and vocabulary; null reads the current revision. Callers without private-data access always read the current revision. An unknown revision returns 404. */
     searchCatalogRevision: z.int().nullish(),
-    /** News article whose public entity mentions join the entity candidates and are judged with them against the question */
-    sourceNewsId: z.int().nullish(),
+    /** The stored aVenture news article this search started from. Its approved public Company and Business Line mentions lead the entity scope as subjects in mention order. An unknown or non-public article, or one without such mentions, keeps the ordinary headline search. Other scopes and answer generation are unchanged. */
+    sourceNewsId: z.int().min(1).nullish(),
     /** Runtime policy revision this search uses for the serving deployment's execution budgets; null reads that deployment's current revision. Callers without private-data access always read the current revision. An unknown revision returns 404. */
     tenantPolicyRevision: z.int().nullish(),
 });

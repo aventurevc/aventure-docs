@@ -28,6 +28,8 @@ import { FundingStageSchema } from "../funding/stage.js";
 export const EntityComparisonSignalsSchema = z.object({
     /** Public buyer of the newest completed acquisition; null for announced or non-public buyers. */
     acquirer: EntitySchema.nullish(),
+    /** Disclosed equity ladder label from fundingDetail.disclosedStage; financing history, not the provider operating status or current market standing. */
+    disclosedStage: z.string().nullish(),
     /** Latest funding stage when known */
     fundingStage: FundingStageSchema.nullish(),
     /** Provider ownership from current tags and current primary parent or acquirer relationships */

@@ -9960,6 +9960,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 } | null | undefined;
+                disclosedStage?: string | null | undefined;
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
@@ -10086,6 +10087,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     typeRecord: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service";
                     updatedAt?: string | null | undefined;
                 } | null | undefined;
+                disclosedStage?: string | null | undefined;
                 fundingStage?: string | null | undefined;
                 ownership: string[];
                 pricingModel: string[];

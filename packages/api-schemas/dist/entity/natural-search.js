@@ -7,8 +7,8 @@ const EntityNaturalSearchSchemaDefinition = z.object({
     filter: EntityFilterSchema.optional(),
     /** Canonical plain-English search request and strategy. */
     search: NaturalSearchSchema,
-    /** News article whose public entity mentions join the entity candidates and are judged with them against the question */
-    sourceNewsId: z.int().nullish(),
+    /** The stored aVenture news article this search started from. Its approved public Company and Business Line mentions are ordered subjects, rather than candidates judged from the headline. An unknown or non-public article, or one without such mentions, keeps the ordinary search. */
+    sourceNewsId: z.int().min(1).nullish(),
 });
 /**
  * Plain-English entity search plus explicit hard constraints. The planner may fill only filter fields the caller leaves unset.

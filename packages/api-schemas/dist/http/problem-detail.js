@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { DomainConflictDetailsSchema } from "../domain/conflict-details.js";
 import { JsonValueSchema } from "./json-value.js";
+import { IdentificationCampusRefusalSchema } from "../identification/campus-refusal.js";
 import { ProblemResolutionSchema } from "../problem/resolution.js";
 import { ProseViolationSchema } from "../prose/violation.js";
 import { CurrentSlugOwnerSchema } from "../redirect/current-slug-owner.js";
@@ -18,6 +19,8 @@ import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 export const ProblemDetailSchema = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: ResearchAllowanceTypeSchema.nullish(),
+    /** The unmet own-site proof for an NCES campus lookup; absent for other failures. */
+    campusProofRefusal: IdentificationCampusRefusalSchema.nullish(),
     circuitBreaker: z.string().nullish(),
     /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Many codes describe server-side conditions a caller cannot fix: surface them and stop. */
     code: z
