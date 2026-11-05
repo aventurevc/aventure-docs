@@ -27,7 +27,7 @@
       "type": "skill-md",
       "description": "Use only when asked for buyer personas, buyer archetypes, buying committees, or who buys a company's products or services and how they decide: personas rolled up from roles observed at named accounts, each with the initiative that starts its purchase, the results it expects, the barriers that stop it, how it compares and eliminates options, and its decision criteria, drawn from buyers and from buyers who chose a rival or the status quo, with where each persona does not apply. For named accounts, segments, or an ideal customer profile, use customer-analysis.",
       "url": "/.well-known/agent-skills/buyer-persona-analysis/SKILL.md",
-      "digest": "sha256:244e49b9b187ebce6a72aa3b7559a5ce6ab5062710759efa220b1d9716653464"
+      "digest": "sha256:8758e13625108eab4003a1dd344e5af7d89f41c9636ed2122556fad497e38715"
     },
     {
       "name": "competitive-landscape",
@@ -48,7 +48,7 @@
       "type": "archive",
       "description": "Identifies a company's customers from public evidence. Use for who buys or uses a product, current adoption, named accounts, buying roles and motives, and evidence-backed purchase rankings. For full buyer persona profiles use buyer-persona-analysis; for a tiered inventory of what a product is used for, use-case-analysis; for what published testimonials and case studies prove, testimonial-case-study-analysis.",
       "url": "/.well-known/agent-skills/customer-analysis.tgz",
-      "digest": "sha256:54edfa3005a96078d1da396f4ef90b03ab700c32cbbadc54b11f9d28c5a68190"
+      "digest": "sha256:279be88417560604b0f7362c853523ff0a4af9b99a7ac1211356e4dc193fec3d"
     },
     {
       "name": "fundraising-environment",
@@ -104,14 +104,14 @@
       "type": "skill-md",
       "description": "Use only when asked to analyze, verify, or summarize a company's customer testimonials, case studies, customer stories, outcome or ROI claims, or review-site profiles: every story coded for its problem, prior alternative, deployment scope, and outcome with baseline, period, and measurer; each claim graded by who made it and how it was measured; the claims worth repeating checked against the customer's own later statements; and the outcomes that recur across independent named customers, counted against the stories the company chose to publish. For who the customers are, use customer-analysis.",
       "url": "/.well-known/agent-skills/testimonial-case-study-analysis/SKILL.md",
-      "digest": "sha256:d291124dd0dcfecfbd3866907716950806a845be4eb711bd0c2c7463646f5c91"
+      "digest": "sha256:31dbf5ba348647738e24e749517d1bd46a2ab8d41e7731ed5ad2a9bec7300e16"
     },
     {
       "name": "use-case-analysis",
       "type": "skill-md",
       "description": "Use only when asked what a company's products or services are used for, its use cases, the jobs to be done it serves, or which marketed use cases are real: each job written as a solution-free statement with the person who does it and the circumstance, evidenced from named customers, documentation, required integrations, pricing, and buyers' own words, and tiered proven, partly evidenced, marketed only, or not served. For named customer accounts, use customer-analysis.",
       "url": "/.well-known/agent-skills/use-case-analysis/SKILL.md",
-      "digest": "sha256:24ec7c591f30158ea78f391f5f9a3f925d47be4cdd25b6639c90a9ffa5c3d188"
+      "digest": "sha256:d6c46aecedb09d8763481bfbe9a877b3365d39477f3efaaa4cfb67caec58860a"
     }
   ]
 }
