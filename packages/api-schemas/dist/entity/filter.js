@@ -48,7 +48,7 @@ export const EntityFilterSchema = z.strictObject({
     acceleratorStatus: z.array(z.string()).optional(),
     /** Affinity provider organization names accepted by the companies list filter. Affinity rows are member -> provider; use provider names here, not member names. */
     affinity: z.array(z.string()).optional(),
-    /** Rank terminal entities (Acquired, Closed, Closed (Acquihire), Inactive) after every other textSearch or semanticQuery match, ahead of relevance and sort; omitted means true. false ranks them by relevance alone. Filter them out with operatingStatus or suppressNonOperating. */
+    /** Rank terminal entities (Acquired, Closed, Closed (Acquihire), Inactive) after every other textSearch or semanticQuery match, ahead of relevance and sort, except that an exact textSearch name, slug, legal-name, or alias match of any status ranks ahead of every weaker match; omitted means true. false ranks them by relevance alone. Filter them out with operatingStatus or suppressNonOperating. */
     closedLast: z.boolean().optional(),
     /** Current workforce ranges; omitted matchMode is numeric-only. */
     employeeCountRange: z.array(EmployeeCountRangeSchema).optional(),
