@@ -97,6 +97,8 @@ navigation:
               - entityAcquisitions
               - entityClassifications
               - entityAddresses
+              - addresses
+              - contactDetails
               - entityLogo
               - entityResearch
               - entitySimilar
@@ -126,6 +128,7 @@ navigation:
             contents:
               - search
               - naturalSearch
+              - directory
               - semanticSimilarity:
                   - endpoint: GET /v1/entities/{entityId}/trending-news
                     slug: list-entity-trending-news
