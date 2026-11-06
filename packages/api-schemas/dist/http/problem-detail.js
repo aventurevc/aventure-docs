@@ -286,7 +286,7 @@ export const ProblemDetailSchema = z.object({
     traceId: z.string().nullish(),
     type: z.string().optional(),
     unknownParameters: z.array(z.string()).nullish(),
-    /** On a task-completion 409, the ids of the completion checks that failed; absent for every other problem. */
+    /** On a task-completion 409, the ids of the completion checks that did not pass; absent for every other problem. */
     unmetGateId: z.array(z.string()).nullish(),
     /** Requests already charged against the limitType meter this period. */
     used: z.number().int().nullish(),

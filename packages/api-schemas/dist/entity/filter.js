@@ -80,7 +80,7 @@ export const EntityFilterSchema = z.strictObject({
     logoOption: EntityFilterLogoOptionSchema.optional(),
     /** Main product classification values. */
     mainProduct: z.array(z.string()).optional(),
-    /** When true, only listing-ready companies with notable activity in 48 hours. */
+    /** When true, only operating companies or business lines with a real logo, founding year, and current headquarters that had notable activity in the last 48 hours. */
     noteworthyOnly: z.boolean().optional(),
     /** Operating states; omit for all. */
     operatingStatus: z.array(EntityOperatingStatusSchema).optional(),
