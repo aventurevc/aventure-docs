@@ -4,7 +4,7 @@ import { JobEnqueueSchema } from "../job/enqueue.js";
 import { LookupSourceKindSchema } from "./source-kind.js";
 import { LookupSourceReadPhaseSchema } from "./source-read-phase.js";
 /**
- * Source context and honest reading activity for a shared article, post, or profile.
+ * Source context and honest reading activity for a shared article, post, profile, or the caller's own captured document.
  *
  * @openapiSchema LookupSourceRead
  * @endpoint GET /v1/lookup-jobs/{jobId}

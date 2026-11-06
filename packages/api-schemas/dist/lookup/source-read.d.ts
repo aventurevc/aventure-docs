@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Source context and honest reading activity for a shared article, post, or profile.
+ * Source context and honest reading activity for a shared article, post, profile, or the caller's own captured document.
  *
  * @openapiSchema LookupSourceRead
  * @endpoint GET /v1/lookup-jobs/{jobId}
@@ -22,11 +22,13 @@ export declare const LookupSourceReadSchema: z.ZodObject<{
     faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     kind: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         ARTICLE: "ARTICLE";
+        DOCUMENT: "DOCUMENT";
         POST: "POST";
         PROFILE: "PROFILE";
     }>, z.ZodString]> & {
         enum: {
             ARTICLE: "ARTICLE";
+            DOCUMENT: "DOCUMENT";
             POST: "POST";
             PROFILE: "PROFILE";
         };

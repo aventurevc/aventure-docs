@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * What a lookup's source is, so a client names it while it loads: a news article, a LinkedIn or X post, or a supplied profile. An unknown future kind reads as a generic source.
+ * What a lookup's source is, so a client names it while it loads: a news article, a LinkedIn or X post, a supplied profile, or the caller's own captured document (sourceDocumentId). An unknown future kind reads as a generic source.
  *
  * @openapiSchema LookupSourceKind
  * @endpoint GET /v1/lookup-jobs/{jobId}
@@ -13,11 +13,13 @@ import { z } from "zod/v4";
  */
 export declare const LookupSourceKindSchema: z.ZodUnion<readonly [z.ZodEnum<{
     ARTICLE: "ARTICLE";
+    DOCUMENT: "DOCUMENT";
     POST: "POST";
     PROFILE: "PROFILE";
 }>, z.ZodString]> & {
     enum: {
         ARTICLE: "ARTICLE";
+        DOCUMENT: "DOCUMENT";
         POST: "POST";
         PROFILE: "PROFILE";
     };

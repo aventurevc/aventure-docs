@@ -2314,11 +2314,13 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         kind: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             ARTICLE: "ARTICLE";
+            DOCUMENT: "DOCUMENT";
             POST: "POST";
             PROFILE: "PROFILE";
         }>, z.ZodString]> & {
             enum: {
                 ARTICLE: "ARTICLE";
+                DOCUMENT: "DOCUMENT";
                 POST: "POST";
                 PROFILE: "PROFILE";
             };
