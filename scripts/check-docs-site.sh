@@ -60,6 +60,11 @@ ops_of() { # spec file -> sorted "METHOD /path" lines
          | ascii_upcase + " " + $p' "$1" | sort
 }
 ops_of "$SPEC" > "$TMP/expected"
+# Each webhook also gets a reference page. Fern slugs it from the event name
+# (dots become dashes) and shows its method with no URL, so the slug is the
+# only identity the page carries.
+{ cat "$TMP/expected"; jq -r '.webhooks // {} | keys[] | "WEBHOOK " + gsub("[.]"; "-")' "$SPEC"; } \
+  | sort > "$TMP/expected_pages"
 fail=0
 
 # --- 1. custom root llms.txt -----------------------------------------------
@@ -92,7 +97,14 @@ fetch_page() {
   body="$(curl -fsSL --retry 3 --retry-delay 2 --retry-all-errors \
     --max-time "$CURL_MAX_TIME" "$url" || true)"
   line="$(grep -m1 -oE '^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) https?://[^ ]+' <<<"$body" || true)"
-  if [ -z "$line" ]; then printf '%s\n' "$url" > "$out.unparsed"; return 0; fi
+  if [ -z "$line" ]; then
+    if grep -qE '^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) *$' <<<"$body"; then
+      printf 'WEBHOOK %s\t%s\n' "$(basename "$url" .md)" "$url" > "$out.found"
+    else
+      printf '%s\n' "$url" > "$out.unparsed"
+    fi
+    return 0
+  fi
   method="${line%% *}"; full="${line#* }"
   path="/${full#*://*/}"
   printf '%s %s\t%s\n' "$method" "$path" "$url" > "$out.found"
@@ -102,8 +114,8 @@ xargs -P 8 -I{} bash -c 'fetch_page "$1"' _ {} < "$TMP/pages"
 cat "$TMP/pagefetch"/*.found > "$TMP/found" 2>/dev/null || :
 cat "$TMP/pagefetch"/*.unparsed > "$TMP/unparsed" 2>/dev/null || :
 cut -f1 "$TMP/found" | sort > "$TMP/found_ops"
-comm -23 "$TMP/expected" <(sort -u "$TMP/found_ops") > "$TMP/missing"
-comm -13 "$TMP/expected" <(sort -u "$TMP/found_ops") > "$TMP/extra"
+comm -23 "$TMP/expected_pages" <(sort -u "$TMP/found_ops") > "$TMP/missing"
+comm -13 "$TMP/expected_pages" <(sort -u "$TMP/found_ops") > "$TMP/extra"
 uniq -d "$TMP/found_ops" > "$TMP/dup"
 
 report() { # label file
