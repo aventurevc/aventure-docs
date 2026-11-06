@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Output kind for governed research detail values
  *
  * @openapiSchema EntityResearchValueType
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/entities/research-details/types
  * @endpoint GET /v1/people/lookup-exact
@@ -12,13 +11,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/employee-counts
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/research-details
  * @endpoint GET /v1/entities/{entityId}/research-details/{detailId}
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -28,7 +25,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search

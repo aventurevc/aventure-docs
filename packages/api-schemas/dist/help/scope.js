@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Operation scope a help answer may recommend: read-only, write, or all.
  *
  * @openapiSchema HelpScope
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema AgentHelpQuestionSchema
  * @contractShape help.scope

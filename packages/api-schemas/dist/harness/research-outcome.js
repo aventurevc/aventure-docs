@@ -5,14 +5,11 @@ const HarnessResearchOutcomeSchemaKnownMembers = z.enum(["PARTIAL", "BLOCKED"]);
  * Unsuccessful direct-session research disposition
  *
  * @openapiSchema HarnessResearchOutcome
- * @endpoint GET /v1/research-runs
  * @endpoint GET /v1/research/runs
- * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}
  * @endpoint POST /v1/enrichments
  * @endpoint POST /v1/entities/{entityId}/enrichments
  * @endpoint POST /v1/people/{personId}/enrichments
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema HarnessRunSchema
  * @contractShape harness.research-outcome

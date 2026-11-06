@@ -11,9 +11,7 @@ const WriterAnalysisSectionSchemaDefinition = z.object({
  * One ordered framework judgment.
  *
  * @openapiSchema WriterAnalysisSection
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema WriterMetaAnalysisSchema
  * @contractShape writer.analysis-section

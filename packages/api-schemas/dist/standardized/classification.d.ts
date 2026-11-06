@@ -29,7 +29,6 @@ export interface StandardizedClassificationSchemaInput extends z.input<typeof St
  * Industry or ownership classification from a standard taxonomy such as NAICS, SIC, or ISIC, with its category, code, and hierarchy level.
  *
  * @openapiSchema StandardizedClassification
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/classifications/catalog
  * @endpoint GET /v1/entities/classifications/tags
@@ -41,7 +40,6 @@ export interface StandardizedClassificationSchemaInput extends z.input<typeof St
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -49,7 +47,6 @@ export interface StandardizedClassificationSchemaInput extends z.input<typeof St
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

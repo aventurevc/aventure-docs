@@ -4,19 +4,15 @@ import { SortObjectSchema } from "../sort/object.js";
 /**
  * @openapiSchema PageableObject
  * @endpoint GET /v1/content
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/classifications/tags
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/news
- * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
- * @endpoint GET /v1/research-runs
  * @endpoint GET /v1/research/runs
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/acquisitions
  * @endpoint GET /v1/entities/{entityId}/blog-posts
- * @endpoint GET /v1/entities/{entityId}/content
  * @endpoint GET /v1/entities/{entityId}/employee-counts
  * @endpoint GET /v1/entities/{entityId}/fundraise-investor-joins
  * @endpoint GET /v1/entities/{entityId}/fundraise-rounds
@@ -25,7 +21,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/repositories
  * @endpoint GET /v1/entities/{entityId}/research-details
@@ -41,7 +36,6 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/blog-posts
- * @endpoint GET /v1/people/{personId}/content
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/investor-activity
@@ -53,11 +47,9 @@ import { SortObjectSchema } from "../sort/object.js";
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/content/search
- * @endpoint POST /v1/entities/{entityId}/content/search
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/people/{personId}/content/search
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search
  * @endpoint POST /v1/search

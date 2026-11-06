@@ -11,7 +11,6 @@ const ClassificationSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema Classification
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/classifications/catalog
  * @endpoint GET /v1/entities/classifications/tags
@@ -24,10 +23,8 @@ const ClassificationSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investor-activity
@@ -37,7 +34,6 @@ const ClassificationSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search

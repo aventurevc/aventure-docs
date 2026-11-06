@@ -5,7 +5,6 @@ import { EntityProfileHeadlineSchema } from "./profile-headline.js";
  * Read-only profile status derived from stored kind, ownership, operating status, and a Business Line's proven public controlling parent. Funding stage stays on enrichment.fundingDetail.stage.
  *
  * @openapiSchema EntityProfileStatus
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -14,7 +13,6 @@ import { EntityProfileHeadlineSchema } from "./profile-headline.js";
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -22,7 +20,6 @@ import { EntityProfileHeadlineSchema } from "./profile-headline.js";
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

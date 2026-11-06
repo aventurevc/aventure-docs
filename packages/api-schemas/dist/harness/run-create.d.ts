@@ -261,7 +261,6 @@ export interface HarnessRunCreateSchemaInput extends z.input<typeof HarnessRunCr
  * Request one research run
  *
  * @openapiSchema HarnessRunCreate
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @contractShape harness.run-create
  * @contractRole canonical

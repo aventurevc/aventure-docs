@@ -248,10 +248,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "cursor/slice-shared-search-list",
         schemaName: "CursorSliceSharedSearchListSchema",
     },
-    DatasourceDataSourceType: {
-        modulePath: "datasource/data-source-type",
-        schemaName: "DatasourceDataSourceTypeSchema",
-    },
     DatasourceSourceMetadata: {
         modulePath: "datasource/source-metadata",
         schemaName: "DatasourceSourceMetadataSchema",
@@ -1151,7 +1147,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "research/value-shape-type",
         schemaName: "ResearchValueShapeTypeSchema",
     },
-    ResolvedHandle: { modulePath: "resolved/handle", schemaName: "ResolvedHandleSchema" },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
     SearchAiOverview: { modulePath: "search/ai-overview", schemaName: "SearchAiOverviewSchema" },
@@ -1293,7 +1288,6 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "strict/url-lookup-conflict",
         schemaName: "StrictUrlLookupConflictSchema",
     },
-    SuppressionReason: { modulePath: "suppression/reason", schemaName: "SuppressionReasonSchema" },
     SystemBuild: { modulePath: "system/system-build", schemaName: "SystemBuildSchema" },
     SystemBuildDetail: {
         modulePath: "system/system-build-detail",

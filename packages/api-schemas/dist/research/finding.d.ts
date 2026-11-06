@@ -27,9 +27,7 @@ export interface ResearchFindingSchemaInput extends z.input<typeof ResearchFindi
  *
  * @openapiSchema ResearchFinding
  * @endpoint POST /v1/entities/{entityId}/enrichments
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EnrichmentPromptSchema
  * @usedBySchema EntityWriterBriefSchema

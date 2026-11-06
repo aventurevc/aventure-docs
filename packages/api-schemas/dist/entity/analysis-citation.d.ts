@@ -10,9 +10,7 @@ export interface EntityAnalysisCitationSchemaInput extends z.input<typeof Entity
  * Verbatim evidence from an archived source document.
  *
  * @openapiSchema EntityAnalysisCitation
- * @endpoint GET /v1/research-runs/{runId}/draft
  * @endpoint GET /v1/research/runs/{runId}/draft
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisSectionMutationSchema
  * @usedBySchema EntityAnalysisSectionSchema

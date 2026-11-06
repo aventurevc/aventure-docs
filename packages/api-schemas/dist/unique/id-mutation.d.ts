@@ -3,14 +3,9 @@ import { z } from "zod/v4";
  * Create or merge-patch an external identifier mapping. Omitted fields preserve existing values; listing qualifiers apply only to entity tickers. A new or changed EIN requires independently verified tax-owner evidence; an unheld number or source label does not establish ownership. Unchanged bindings and label-only patches preserve the existing tax identity.
  *
  * @openapiSchema UniqueIdMutation
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
- * @endpoint POST /v1/lookup-jobs
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
- * @endpoint POST /v1/people/lookup
  * @usedBySchema IdentificationSubjectSchema
  * @usedBySchema RegistryFilingSchema
  * @contractShape unique.id-mutation

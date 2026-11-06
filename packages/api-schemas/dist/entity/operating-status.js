@@ -4,8 +4,6 @@ import { z } from "zod/v4";
  * Operating state accepted by entity filters and mutation endpoints. Acquired Subsidiary means the entity was acquired and still operates; Closed (Acquihire) means the entity was acquired for its team and is terminal, rendering like Closed everywhere; Acquired means the entity is terminal, folded into the buyer, or closed.
  *
  * @openapiSchema EntityOperatingStatus
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}

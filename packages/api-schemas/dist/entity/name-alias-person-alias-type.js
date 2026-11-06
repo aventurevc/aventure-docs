@@ -14,14 +14,11 @@ const EntityNameAliasPersonAliasTypeSchemaDefinition = z.object({
  *
  * @openapiSchema EntityNameAliasPersonAliasType
  * @endpoint GET /v1/entities/lookup-exact
- * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar
@@ -31,7 +28,6 @@ const EntityNameAliasPersonAliasTypeSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search

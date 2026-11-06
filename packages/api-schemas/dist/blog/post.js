@@ -43,7 +43,6 @@ const BlogPostSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/blog-posts/{blogPostId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/blog-posts
  * @endpoint GET /v1/people/{personId}/blog-posts/{blogPostId}

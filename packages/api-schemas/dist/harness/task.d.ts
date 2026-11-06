@@ -27,7 +27,6 @@ export interface HarnessTaskSchemaInput extends z.input<typeof HarnessTaskSchema
  * One typed task input, required unless explicitly marked optional.
  *
  * @openapiSchema HarnessTaskInput
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema HarnessTaskPlanSchema
  * @contractShape harness.task

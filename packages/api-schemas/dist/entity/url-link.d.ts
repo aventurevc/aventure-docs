@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.
  *
  * @openapiSchema EntityUrlLink
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
@@ -13,13 +12,11 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/{entityId}/urls
  * @endpoint GET /v1/entities/{entityId}/urls/{urlId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
@@ -33,7 +30,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search

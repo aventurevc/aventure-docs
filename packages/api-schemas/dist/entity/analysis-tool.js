@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Analysis tool
  *
  * @openapiSchema EntityAnalysisTool
- * @endpoint POST /v1/research-runs/{runId}/turns
  * @endpoint POST /v1/research/runs/{runId}/turns
  * @usedBySchema EntityAnalysisInvocationSchema
  * @contractShape entity.analysis-tool

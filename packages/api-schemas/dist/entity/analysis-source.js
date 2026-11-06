@@ -11,7 +11,6 @@ const EntityAnalysisSourceSchemaDefinition = z.object({
  * Public page behind a source document a draft quotes; never persisted in a draft.
  *
  * @openapiSchema EntityAnalysisSource
- * @endpoint GET /v1/research-runs/{runId}/draft/sources
  * @endpoint GET /v1/research/runs/{runId}/draft/sources
  * @contractShape entity.analysis-source
  * @contractRole canonical

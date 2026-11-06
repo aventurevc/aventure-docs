@@ -7,14 +7,9 @@ import { UniqueIdMutationSchema } from "../unique/id-mutation.js";
  * The company, Product, Service, or person to identify. Send the name, a URL it owns, or both, plus every location and source you have; a website or profile URL usually settles the answer without any model call.
  *
  * @openapiSchema IdentificationSubject
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
- * @endpoint POST /v1/lookup-jobs
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
- * @endpoint POST /v1/people/lookup
  * @usedBySchema LookupJobMutationSchema
  * @contractShape identification.subject
  * @contractRole canonical

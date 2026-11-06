@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Corpus partition a help citation is drawn from.
  *
  * @openapiSchema HelpSourceType
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema HelpCitationSchema
  * @contractShape help.source-type

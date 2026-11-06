@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Durable completion barrier and direct child run ids
  *
  * @openapiSchema HarnessRunFollowUp
- * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}
  * @usedBySchema HarnessRunDetailSchema
  * @contractShape harness.run-follow-up

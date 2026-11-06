@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Dispatch phase governing intra-job ordering when presets are multi-selected.
  *
  * @openapiSchema AgentTaskPresetPhase
- * @endpoint GET /v1/research-runs/presets
  * @endpoint GET /v1/research/runs/presets
  * @usedBySchema AgentTaskPresetSchema
  * @contractShape agent.task-preset-phase

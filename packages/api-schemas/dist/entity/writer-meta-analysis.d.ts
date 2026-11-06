@@ -42,7 +42,6 @@ export interface EntityWriterMetaAnalysisSchemaInput extends z.input<typeof Enti
  * Entity-text research judgment without framework sections.
  *
  * @openapiSchema EntityWriterMetaAnalysis
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema EntityWriterBriefSchema
  * @contractShape entity.writer-meta-analysis

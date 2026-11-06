@@ -14,7 +14,6 @@ export interface HarnessTaskStepSchemaInput extends z.input<typeof HarnessTaskSt
  * One ordered task step: its key, instruction, the operation that runs it, and the delegated plans it follows.
  *
  * @openapiSchema HarnessTaskStep
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema HarnessTaskPlanStepSchema
  * @contractShape harness.task-step

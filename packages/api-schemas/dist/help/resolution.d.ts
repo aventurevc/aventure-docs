@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Resolution of a request to a catalog task or an operation, clarification between candidates, or an abstention.
  *
  * @openapiSchema HelpResolution
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema AgentHelpSchema
  * @contractShape help.resolution

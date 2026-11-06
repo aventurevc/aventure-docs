@@ -15,7 +15,6 @@ const AgentHelpQuestionSchemaDefinition = z.object({
  * A plain-English question about how to use aVenture, answered with references to the operations that do it.
  *
  * @openapiSchema AgentHelpQuestion
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @contractShape agent.help-question
  * @contractRole canonical

@@ -16,7 +16,6 @@ const AgentTaskPresetSchemaDefinition = z.object({
  * A research preset: one named topic a research run can focus on.
  *
  * @openapiSchema AgentTaskPreset
- * @endpoint GET /v1/research-runs/presets
  * @endpoint GET /v1/research/runs/presets
  * @usedBySchema AgentTaskPresetCatalogSchema
  * @contractShape agent.task-preset

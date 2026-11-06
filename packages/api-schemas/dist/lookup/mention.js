@@ -14,10 +14,7 @@ const LookupMentionSchemaDefinition = z.object({
  * One company, Product or Service, or person a caller read from a page or screenshot it did not send.
  *
  * @openapiSchema LookupMention
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/lookup-jobs
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobMutationSchema
  * @contractShape lookup.mention

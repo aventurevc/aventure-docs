@@ -2356,7 +2356,6 @@ export interface LookupJobSchemaInput extends z.input<typeof LookupJobSchemaDefi
  * An async lookup job's state and, once COMPLETED, identified companies and people from its article or supplied names, or the identification of its subject.
  *
  * @openapiSchema LookupJob
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @contractShape lookup.job
  * @contractRole canonical

@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * One catalog task's typed inputs and ordered steps with derived CLI commands and MCP tools, read from the stated catalog revision.
  *
  * @openapiSchema HarnessTaskPlan
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema HelpResolutionSchema
  * @contractShape harness.task-plan

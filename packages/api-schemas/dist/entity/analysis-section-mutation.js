@@ -25,7 +25,6 @@ const EntityAnalysisSectionMutationSchemaDefinition = z.object({
  * Replace a private analysis section with paragraphs or a finished writer brief.
  *
  * @openapiSchema EntityAnalysisSectionMutation
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @contractShape entity.analysis-section-mutation
  * @contractRole canonical

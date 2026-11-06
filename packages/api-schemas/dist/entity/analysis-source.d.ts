@@ -15,7 +15,6 @@ export interface EntityAnalysisSourceSchemaInput extends z.input<typeof EntityAn
  * Public page behind a source document a draft quotes; never persisted in a draft.
  *
  * @openapiSchema EntityAnalysisSource
- * @endpoint GET /v1/research-runs/{runId}/draft/sources
  * @endpoint GET /v1/research/runs/{runId}/draft/sources
  * @contractShape entity.analysis-source
  * @contractRole canonical

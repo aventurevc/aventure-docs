@@ -3,9 +3,7 @@ import { z } from "zod/v4";
  * Observed source-reading activity; unknown future phases retain their supplied copy.
  *
  * @openapiSchema LookupSourceReadPhase
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupSourceReadSchema
  * @contractShape lookup.source-read-phase

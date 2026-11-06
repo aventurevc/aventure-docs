@@ -22,7 +22,6 @@ const EntityProfileHeadlineSchemaKnownMembers = z.enum([
  * Profile headline derived from record kind, current market-standing ownership (Public or Private only), a Business Line's proven public controlling parent, and operating status. Never a funding stage. Render an unrecognized value verbatim.
  *
  * @openapiSchema EntityProfileHeadline
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -31,7 +30,6 @@ const EntityProfileHeadlineSchemaKnownMembers = z.enum([
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -39,7 +37,6 @@ const EntityProfileHeadlineSchemaKnownMembers = z.enum([
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

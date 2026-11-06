@@ -3,9 +3,7 @@ import { z } from "zod/v4";
 import { EntityAnalysisSectionVerificationSchema } from "./analysis-section-verification.js";
 /**
  * @openapiSchema EntityAnalysisVerification
- * @endpoint GET /v1/research-runs/{runId}/draft
  * @endpoint GET /v1/research/runs/{runId}/draft
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisDraftSchema
  * @contractShape entity.analysis-verification

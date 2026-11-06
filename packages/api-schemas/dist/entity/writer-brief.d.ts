@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Finished entity-text research analysis and section-free paragraph plan.
  *
  * @openapiSchema EntityWriterBrief
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema HarnessTaskInputBindingSchema
  * @contractShape entity.writer-brief

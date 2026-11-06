@@ -87,7 +87,6 @@ export interface EntityAcceleratorParticipationSchemaInput extends z.input<typeo
  * Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.
  *
  * @openapiSchema EntityAcceleratorParticipation
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -95,7 +94,6 @@ export interface EntityAcceleratorParticipationSchemaInput extends z.input<typeo
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -103,7 +101,6 @@ export interface EntityAcceleratorParticipationSchemaInput extends z.input<typeo
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

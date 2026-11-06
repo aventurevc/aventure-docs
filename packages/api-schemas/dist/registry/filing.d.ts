@@ -3,14 +3,9 @@ import { z } from "zod/v4";
  * Facts a government registry filing (SEC Form D, IRS, HRSA, NPPES) states about the organization. A lookup weighs each stored record's former names, addresses, team, registry ids, and founded year against them and matches without any model call only at about 220:1 odds. Invalid for a person lookup.
  *
  * @openapiSchema RegistryFiling
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/entities/lookup
  * @endpoint POST /v1/lookup
- * @endpoint POST /v1/lookup-jobs
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
- * @endpoint POST /v1/people/lookup
  * @usedBySchema IdentificationSubjectSchema
  * @contractShape registry.filing
  * @contractRole canonical

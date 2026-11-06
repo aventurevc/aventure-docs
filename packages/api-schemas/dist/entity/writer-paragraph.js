@@ -14,7 +14,6 @@ const EntityWriterParagraphSchemaDefinition = z.object({
  * One planned entity-text paragraph without framework sections.
  *
  * @openapiSchema EntityWriterParagraph
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema EntityWriterBriefSchema
  * @contractShape entity.writer-paragraph

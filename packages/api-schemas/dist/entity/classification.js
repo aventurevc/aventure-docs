@@ -28,7 +28,6 @@ const EntityClassificationSchemaDefinition = z.object({
  * Entity classifications grouped by bucket. Reads return current classifications by default; includeInactive=true adds inactive and historical ones.
  *
  * @openapiSchema EntityClassification
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
@@ -37,7 +36,6 @@ const EntityClassificationSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -45,7 +43,6 @@ const EntityClassificationSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

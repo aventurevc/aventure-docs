@@ -10,8 +10,6 @@ export interface EntityUniqueIdFilterSchemaInput extends z.input<typeof EntityUn
  * Public-registry identifier predicate: entities holding an identifier in this namespace, or this exact identifier when identifier is supplied. Private namespaces are refused.
  *
  * @openapiSchema EntityUniqueIdFilter
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}

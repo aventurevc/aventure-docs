@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Outcome of a resolve request.
  *
  * @openapiSchema HelpResolutionOutcome
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema HelpResolutionSchema
  * @contractShape help.resolution-outcome

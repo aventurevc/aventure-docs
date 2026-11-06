@@ -14,8 +14,6 @@ const PublicationFacetSchemaDefinition = z.object({
  *
  * @openapiSchema PublicationFacet
  * @endpoint GET /v1/content/facets
- * @endpoint GET /v1/entities/{entityId}/content/facets
- * @endpoint GET /v1/people/{personId}/content/facets
  * @contractShape publication.facet
  * @contractRole canonical
  */

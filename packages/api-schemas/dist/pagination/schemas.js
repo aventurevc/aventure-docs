@@ -242,7 +242,6 @@ const PageEntityListSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageEntityList
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/search/jobs/{jobId}
  * @endpoint POST /v1/entities/search
  * @contractShape pagination.page-entity-list
@@ -478,7 +477,6 @@ const PageHarnessRunSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PageHarnessRun
- * @endpoint GET /v1/research-runs
  * @endpoint GET /v1/research/runs
  * @contractShape pagination.page-harness-run
  * @contractRole canonical
@@ -507,7 +505,6 @@ const PageInvestorPortfolioRecipientSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -547,7 +544,6 @@ const PageInvestorPortfolioSectorSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/search/link/jobs/{jobId}
@@ -602,7 +598,6 @@ const PagePersonSchemaDefinition = z.object({
 });
 /**
  * @openapiSchema PagePerson
- * @endpoint GET /v1/people
  * @endpoint POST /v1/people/search
  * @contractShape pagination.page-person
  * @contractRole canonical
@@ -667,7 +662,6 @@ const PagePersonInvestorParticipationSchemaDefinition = z.object({
 /**
  * @openapiSchema PagePersonInvestorParticipation
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @contractShape pagination.page-person-investor-participation
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts
@@ -710,11 +704,7 @@ const PagePublicationSchemaDefinition = z.object({
 /**
  * @openapiSchema PagePublication
  * @endpoint GET /v1/content
- * @endpoint GET /v1/entities/{entityId}/content
- * @endpoint GET /v1/people/{personId}/content
  * @endpoint POST /v1/content/search
- * @endpoint POST /v1/entities/{entityId}/content/search
- * @endpoint POST /v1/people/{personId}/content/search
  * @contractShape pagination.page-publication
  * @contractRole canonical
  * @ownerModule pagination/schemas.ts

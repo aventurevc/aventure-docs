@@ -17,7 +17,6 @@ const AgentHelpSchemaDefinition = z.object({
  * Help answer with citations to the operations it draws on. Unsupported questions abstain (LOW confidence) rather than guess.
  *
  * @openapiSchema AgentHelp
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @contractShape agent.help
  * @contractRole canonical

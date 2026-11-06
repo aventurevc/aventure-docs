@@ -16,9 +16,7 @@ export interface EntityAnalysisFigureEntrySchemaInput extends z.input<typeof Ent
  * One labeled entry of excerpt cells.
  *
  * @openapiSchema EntityAnalysisFigureEntry
- * @endpoint GET /v1/research-runs/{runId}/draft
  * @endpoint GET /v1/research/runs/{runId}/draft
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisFigureSchema
  * @contractShape entity.analysis-figure-entry

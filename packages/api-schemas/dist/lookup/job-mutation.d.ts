@@ -122,10 +122,7 @@ export interface LookupJobMutationSchemaInput extends z.input<typeof LookupJobMu
  * The article whose companies and people a lookup identifies. Send sourceUrl, sourceNewsId, or both; POST /v1/lookup/mentions also reads a recorded sourceDocumentId alone; lookup-only bulk jobs and POST /v1/lookup/mentions also accept mention instead. A job filed by Prefer: respond-async on POST /v1/lookup with kind in the JSON body carries that request's subject instead.
  *
  * @openapiSchema LookupJobMutation
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/lookup-jobs
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobSchema
  * @contractShape lookup.job-mutation

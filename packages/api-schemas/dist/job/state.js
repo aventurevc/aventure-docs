@@ -4,7 +4,6 @@ import { z } from "zod/v4";
  * Shared lifecycle states for async jobs (duplicate-check, logo-audit, etc.)
  *
  * @openapiSchema JobState
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @usedBySchema LookupJobSchema
  * @contractShape job.state

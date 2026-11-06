@@ -10,9 +10,7 @@ const EntityAnalysisFigureCellSchemaDefinition = z.object({
  * A verbatim excerpt of one section citation's quote.
  *
  * @openapiSchema EntityAnalysisFigureCell
- * @endpoint GET /v1/research-runs/{runId}/draft
  * @endpoint GET /v1/research/runs/{runId}/draft
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisFigureEntrySchema
  * @contractShape entity.analysis-figure-cell

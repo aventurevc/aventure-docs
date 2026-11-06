@@ -28,9 +28,7 @@ export interface WriterParagraphSchemaInput extends z.input<typeof WriterParagra
  * One planned paragraph.
  *
  * @openapiSchema WriterParagraph
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema WriterBriefSchema
  * @contractShape writer.paragraph

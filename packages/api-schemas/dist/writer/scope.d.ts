@@ -11,9 +11,7 @@ export interface WriterScopeSchemaInput extends z.input<typeof WriterScopeSchema
  * Research boundary used by a writer brief.
  *
  * @openapiSchema WriterScope
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityWriterMetaAnalysisSchema
  * @usedBySchema WriterMetaAnalysisSchema

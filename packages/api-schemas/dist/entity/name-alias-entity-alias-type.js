@@ -5,7 +5,6 @@ import { EntityAliasTypeSchema } from "./alias-type.js";
  * Alternate name used for search and display
  *
  * @openapiSchema EntityNameAliasEntityAliasType
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
@@ -19,21 +18,18 @@ import { EntityAliasTypeSchema } from "./alias-type.js";
  * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/investor-activity
- * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -41,7 +37,6 @@ import { EntityAliasTypeSchema } from "./alias-type.js";
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search

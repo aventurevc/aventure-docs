@@ -34,7 +34,6 @@ export interface HelpCitationSchemaInput extends z.input<typeof HelpCitationSche
  * A single corpus document the help answer is grounded in.
  *
  * @openapiSchema HelpCitation
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema AgentHelpSchema
  * @usedBySchema HelpResolutionSchema

@@ -12,7 +12,6 @@ import { EntityResearchFactValueSchema } from "../entity/research-fact-value.js"
  * @endpoint GET /v1/entities/{entityId}/employee-counts
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
  * @endpoint GET /v1/search/link/jobs/{jobId}

@@ -13,7 +13,6 @@ const HarnessRunTurnSchemaDefinition = z.object({
  * One conversation turn; set exactly one of text or invocation
  *
  * @openapiSchema HarnessRunTurn
- * @endpoint POST /v1/research-runs/{runId}/turns
  * @endpoint POST /v1/research/runs/{runId}/turns
  * @contractShape harness.run-turn
  * @contractRole canonical

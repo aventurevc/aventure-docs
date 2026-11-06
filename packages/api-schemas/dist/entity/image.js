@@ -15,7 +15,6 @@ const EntityImageSchemaDefinition = z.object({
  * Grouped entity image fields for square, standard, and monogram logo state
  *
  * @openapiSchema EntityImage
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
@@ -31,14 +30,12 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/research
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/news/{newsId}/related-entities
  * @endpoint GET /v1/people/{personId}
@@ -48,7 +45,6 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/people/{personId}/investor-activity
  * @endpoint GET /v1/people/{personId}/similar
- * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -56,7 +52,6 @@ const EntityImageSchemaDefinition = z.object({
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search

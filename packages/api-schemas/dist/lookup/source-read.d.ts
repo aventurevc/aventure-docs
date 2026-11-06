@@ -3,9 +3,7 @@ import { z } from "zod/v4";
  * Source context and honest reading activity for a shared article, post, profile, or the caller's own captured document.
  *
  * @openapiSchema LookupSourceRead
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobSchema
  * @usedBySchema MentionLookupSchema

@@ -8,7 +8,6 @@ const EntityWriterParagraphAnalysisSchemaDefinition = z.object({
  * Overall research answer assignment for entity text.
  *
  * @openapiSchema EntityWriterParagraphAnalysis
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema EntityWriterParagraphSchema
  * @contractShape entity.writer-paragraph-analysis

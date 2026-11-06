@@ -18,18 +18,14 @@ const ContentSourceTypeSchemaKnownMembers = z.enum([
  * Discriminator for unified content embedding source partitions
  *
  * @openapiSchema ContentSourceType
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
- * @endpoint GET /v1/people
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/similar
@@ -39,7 +35,6 @@ const ContentSourceTypeSchemaKnownMembers = z.enum([
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/people/search

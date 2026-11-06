@@ -3,7 +3,6 @@ import { z } from "zod/v4";
  * Published page behind a research value, read from the provenance event that wrote the value. Absent for internal sources, privacy, terms, or other legal pages, and, in public views, suppressed secondary sources such as data aggregators.
  *
  * @openapiSchema EntityResearchPublicSource
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
@@ -25,9 +24,7 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint GET /v1/research-runs/{runId}/draft/sources
  * @endpoint GET /v1/research/runs/{runId}/draft/sources
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
@@ -35,7 +32,6 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities

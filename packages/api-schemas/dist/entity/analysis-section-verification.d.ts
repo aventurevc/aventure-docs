@@ -79,9 +79,7 @@ export interface EntityAnalysisSectionVerificationSchemaInput extends z.input<ty
 }
 /**
  * @openapiSchema EntityAnalysisSectionVerification
- * @endpoint GET /v1/research-runs/{runId}/draft
  * @endpoint GET /v1/research/runs/{runId}/draft
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisVerificationSchema
  * @contractShape entity.analysis-section-verification

@@ -22,7 +22,6 @@ const EntityWriterMetaAnalysisSchemaDefinition = z.object({
  * Entity-text research judgment without framework sections.
  *
  * @openapiSchema EntityWriterMetaAnalysis
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema EntityWriterBriefSchema
  * @contractShape entity.writer-meta-analysis

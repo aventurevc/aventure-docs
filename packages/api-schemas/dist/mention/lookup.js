@@ -22,7 +22,6 @@ const MentionLookupSchemaDefinition = z.object({
  * Every company, organization, investor, and person a page or screenshot names, each identified against stored records.
  *
  * @openapiSchema MentionLookup
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @contractShape mention.lookup
  * @contractRole canonical

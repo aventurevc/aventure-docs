@@ -10,8 +10,6 @@ export interface IntRangeSchemaInput extends z.input<typeof IntRangeSchemaDefini
  * Integer range for count-based filter criteria
  *
  * @openapiSchema IntRange
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}

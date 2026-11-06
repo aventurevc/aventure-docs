@@ -34,7 +34,6 @@ export interface HarnessTaskPlanStepSchemaInput extends z.input<typeof HarnessTa
  * One task step with the CLI command and MCP tool that run its operation.
  *
  * @openapiSchema HarnessTaskPlanStep
- * @endpoint POST /v1/agents/help
  * @endpoint POST /v1/help
  * @usedBySchema HarnessTaskPlanSchema
  * @contractShape harness.task-plan-step

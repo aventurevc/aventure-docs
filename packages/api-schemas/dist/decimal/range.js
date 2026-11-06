@@ -10,8 +10,6 @@ const DecimalRangeSchemaDefinition = z.object({
  * Decimal range for monetary and numeric filter criteria
  *
  * @openapiSchema DecimalRange
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}

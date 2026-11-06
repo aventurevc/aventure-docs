@@ -199,7 +199,6 @@ export interface HarnessTaskInputBindingSchemaInput extends z.input<typeof Harne
  * One task input value bound before the run starts; the server validates its key and type.
  *
  * @openapiSchema HarnessTaskInputBinding
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
  * @usedBySchema HarnessRunCreateSchema
  * @contractShape harness.task-input-binding

@@ -285,7 +285,6 @@ export interface HarnessRunDetailSchemaInput extends z.input<typeof HarnessRunDe
  * Research run with the profile it resolved to
  *
  * @openapiSchema HarnessRunDetail
- * @endpoint GET /v1/research-runs/{runId}
  * @endpoint GET /v1/research/runs/{runId}
  * @contractShape harness.run-detail
  * @contractRole canonical

@@ -3,9 +3,7 @@ import { z } from "zod/v4";
  * Research-selected category, buyer, approach, differentiation, or alternative.
  *
  * @openapiSchema WriterPositioningElement
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityWriterParagraphSchema
  * @usedBySchema WriterParagraphSchema

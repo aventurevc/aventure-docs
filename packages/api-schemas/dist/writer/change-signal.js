@@ -10,9 +10,7 @@ const WriterChangeSignalSchemaDefinition = z.object({
  * Evidence that would change the supplied judgment.
  *
  * @openapiSchema WriterChangeSignal
- * @endpoint POST /v1/research-runs
  * @endpoint POST /v1/research/runs
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityWriterMetaAnalysisSchema
  * @usedBySchema WriterMetaAnalysisSchema

@@ -2518,7 +2518,6 @@ export interface PersonInvestorParticipationSchemaInput extends z.input<typeof P
  *
  * @openapiSchema PersonInvestorParticipation
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @usedBySchema PagePersonInvestorParticipationSchema
  * @contractShape person.investor-participation
  * @contractRole canonical

@@ -13,8 +13,6 @@ export interface StandardizedClassificationFilterSchemaInput extends z.input<typ
  * Exact standardized reference tuple. All supplied fields match one reference; no edition filter means any edition, hasEdition=false selects unknown edition.
  *
  * @openapiSchema StandardizedClassificationFilter
- * @endpoint GET /v1/entities
- * @endpoint GET /v1/people
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/directory/shared/slug/{slug}
  * @endpoint GET /v1/search/link/jobs/{jobId}

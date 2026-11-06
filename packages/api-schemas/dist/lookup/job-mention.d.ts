@@ -1820,9 +1820,7 @@ export interface LookupJobMentionSchemaInput extends z.input<typeof LookupJobMen
  * One company or person a source names, which stored record it is, and, from a standard article job or streaming lookup, the new record created when it is new (a company public and a person hidden unless the lookup's publishCreated says otherwise). Bulk lookup only identifies names and creates no records.
  *
  * @openapiSchema LookupJobMention
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @usedBySchema LookupJobSchema
  * @usedBySchema MentionLookupSchema

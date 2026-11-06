@@ -96,9 +96,7 @@ export interface EntityAnalysisDraftSchemaInput extends z.input<typeof EntityAna
  * Private analysis for one research run, with section acceptance outcomes.
  *
  * @openapiSchema EntityAnalysisDraft
- * @endpoint GET /v1/research-runs/{runId}/draft
  * @endpoint GET /v1/research/runs/{runId}/draft
- * @endpoint PUT /v1/research-runs/{runId}/draft/sections/{sectionKey}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @contractShape entity.analysis-draft
  * @contractRole canonical

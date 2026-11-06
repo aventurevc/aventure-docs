@@ -44,7 +44,6 @@ const FundingStageSchemaKnownMembers = z.enum([
  * Funding stage only, emitted by the entity fundraise rollup. The record headline is profileStatus.headline; the entity-type and operating-status members are deprecated as a headline and retire in a later contract change. Transaction classifications such as Debt, IPO, and Acquisition are not entity stages.
  *
  * @openapiSchema FundingStage
- * @endpoint GET /v1/entities
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
  * @endpoint GET /v1/search/link
@@ -55,13 +54,11 @@ const FundingStageSchemaKnownMembers = z.enum([
  * @endpoint GET /v1/entities/{entityId}/investor-activity
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/entities/{entityId}/relationships
  * @endpoint GET /v1/entities/{entityId}/similar
  * @endpoint GET /v1/entities/{entityId}/similar/summary
  * @endpoint GET /v1/entities/relationships/{relationshipId}
  * @endpoint GET /v1/entities/search/jobs/{jobId}
- * @endpoint GET /v1/lookup-jobs/{jobId}
  * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -72,7 +69,6 @@ const FundingStageSchemaKnownMembers = z.enum([
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
- * @endpoint POST /v1/lookup-mentions
  * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search

@@ -178,7 +178,6 @@ export interface PersonInvestmentSchemaInput extends z.input<typeof PersonInvest
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
- * @endpoint GET /v1/entities/{entityId}/person-investors
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/investments
  * @endpoint GET /v1/search/link/jobs/{jobId}
