@@ -66,6 +66,8 @@ export const ProblemDetailSchema = z.object({
             "suspected_shell_strip",
             /** Entity text or a research snippet failed its prose judge or contract. Rewrite every ProblemDetail.proseViolation passage and resend the whole text. ProblemDetail.hint names an override only when every violation is overridable. */
             "prose_rejected",
+            /** Name casing failed policy or source check; follow ProblemDetail.hint. */
+            "entity_name_casing_rejected",
             /** Cited source does not establish this round or role; follow its detail. */
             "fundraise_evidence_unsupported",
             /** Not the company's own live site; settle its state, then see detail. */

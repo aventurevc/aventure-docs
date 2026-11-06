@@ -34,7 +34,7 @@ export const SearchAnswerSchema = z.object({
     description: z.string().nullish(),
     /** The question as the answer page's heading: the asker's own words in title case, with record names in their stored casing; it never adds, drops, or corrects a word. Absent when the answer abstains. */
     heading: z.string().nullish(),
-    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it. Source financial answers render recorded funding facts literally, followed by attributed unchanged admitted source passages; a recorded total is not a round. */
+    /** The answer's paragraphs in reading order, each citing the evidence it rests on; empty when the answer abstains. A first paragraph without `topic` is the lead, written as a standalone answer of one or two sentences that reads complete when shown alone; later paragraphs expand it by topic without restating it. Source financial answers render recorded funding facts literally; a requested company profile follows the lead as one quoted "Products and services" paragraph, then other recorded transactions and attributed unchanged admitted source passages; a recorded total is not a round. */
     paragraph: z.array(SearchAnswerParagraphSchema),
     /** Up to five follow-up searches grounded in the cited evidence; empty when the answer abstains. */
     relatedQuery: z.array(z.string()),

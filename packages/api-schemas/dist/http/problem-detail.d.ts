@@ -63,6 +63,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         clerk_m2m_unavailable: "clerk_m2m_unavailable";
         clerk_oauth_unavailable: "clerk_oauth_unavailable";
         cvc_inherited_headcount: "cvc_inherited_headcount";
+        entity_name_casing_rejected: "entity_name_casing_rejected";
         frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
         fundraise_evidence_unsupported: "fundraise_evidence_unsupported";
         geocode_provider_error: "geocode_provider_error";
