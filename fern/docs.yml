@@ -240,6 +240,10 @@ redirects:
   # skip-slug on the API entry removed the title-derived a-venture-api segment.
   - source: "/api-reference/a-venture-api"
     destination: "/api-reference"
+  # The entity.news.published webhook gained its News tag in 0.8.377, which moved its page
+  # from the reference root into the news group.
+  - source: "/api-reference/entity-news-published"
+    destination: "/api-reference/news/entity-news-published"
   # The quickstart files are named *-quickstart; readers and agents guess those slugs.
   - source: "/mcp-quickstart"
     destination: "/mcp"
