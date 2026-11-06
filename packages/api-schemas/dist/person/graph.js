@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { PersonGraphCareerContextSchema } from "./graph-career-context.js";
 import { PersonGraphCoInvestorSchema } from "./graph-co-investor.js";
 /**
- * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors. Lists are capped and pre-ranked server-side; the response is the display order. Served from a precomputed store with member names, images, and slugs hydrated from live person records at read time; computedAt is null only when the document has not been materialized yet.
+ * Precomputed professional-graph document for one person: career context per associated entity (entity facts, recent news, colleagues, similar entities with key people), plus co-investors. Lists are capped and pre-ranked server-side; the response is the display order. The graph is computed ahead of time; member names, images, and slugs are filled in from current person records when you read it. computedAt is null only when the graph has not been computed yet.
  *
  * @openapiSchema PersonGraph
  * @endpoint GET /v1/entities/lookup-exact

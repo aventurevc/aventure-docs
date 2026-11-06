@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Output kind for governed research detail values
+ * Kind of value a research detail holds
  *
  * @openapiSchema EntityResearchValueType
  * @endpoint GET /v1/entities/lookup-exact

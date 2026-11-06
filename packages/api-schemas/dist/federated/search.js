@@ -13,7 +13,7 @@ const FederatedSearchSchemaDefinition = z.object({
     entity: NaturalSearchResultSchema,
     /** Public detail for Product/Service rows on the entity result page, in search rank order. Other entity types are not hydrated. */
     entityDetail: z.array(EntityDetailSchema),
-    /** Canonical news page returned by the keyword list engine. */
+    /** Page of news results from keyword search. */
     news: PageResultNewsSchema,
     /** Public entities each news row on the page links to, in news page order; a row with no public entity link has no entry. */
     newsEntityMention: z.array(NewsEntityMentionSchema),
@@ -31,7 +31,7 @@ const FederatedSearchSchemaDefinition = z.object({
     section: z.array(z.enum(["person", "company", "productService", "investor"])).optional(),
 });
 /**
- * Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.
+ * Combined entity, person, and news search results, each from that record type's own search, with the search method used for each.
  *
  * @openapiSchema FederatedSearch
  * @endpoint GET /v1/search/link

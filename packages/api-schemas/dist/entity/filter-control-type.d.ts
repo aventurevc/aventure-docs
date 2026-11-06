@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Render control discriminator for filter UI components
+ * Kind of control to draw for this filter
  *
  * @openapiSchema EntityFilterControlType
  * @endpoint GET /v1/entities/filters

@@ -4,11 +4,11 @@ import { SearchModeSchema } from "./mode.js";
 const SearchModeExecutionSchemaDefinition = z.object({
     /** Search mode requested by the caller. */
     modeRequested: SearchModeSchema,
-    /** Search mode executed by the canonical engine. */
+    /** Search method the server actually ran. */
     modeUsed: SearchModeSchema,
 });
 /**
- * Search strategy requested by the caller and executed by the canonical engine.
+ * Search method the caller asked for and the method the server actually ran.
  *
  * @openapiSchema SearchModeExecution
  * @endpoint GET /v1/search/link

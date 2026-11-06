@@ -7,7 +7,7 @@ type StageFrequencyDefinition = z.infer<typeof StageFrequencySchemaDefinition>;
 export interface StageFrequencySchemaInput extends z.input<typeof StageFrequencySchemaDefinition> {
 }
 /**
- * Canonical equity stage derived from a transaction calculatedRoundLabel, with deal frequency ranked by count descending.
+ * Equity stage computed from each round's calculatedRoundLabel, with how many deals reached it, most frequent first.
  *
  * @openapiSchema StageFrequency
  * @endpoint GET /v1/entities/lookup-exact

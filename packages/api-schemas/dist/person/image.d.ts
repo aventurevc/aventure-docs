@@ -18,7 +18,7 @@ type PersonImageDefinition = z.infer<typeof PersonImageSchemaDefinition>;
 export interface PersonImageSchemaInput extends z.input<typeof PersonImageSchemaDefinition> {
 }
 /**
- * Read projection: person image fields for detail/list responses
+ * A person's image fields, as returned in detail and list responses.
  *
  * @openapiSchema PersonImage
  * @endpoint GET /v1/entities/lookup-exact

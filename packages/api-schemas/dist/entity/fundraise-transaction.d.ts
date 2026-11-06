@@ -398,7 +398,7 @@ type EntityFundraiseTransactionDefinition = z.infer<typeof EntityFundraiseTransa
 export interface EntityFundraiseTransactionSchemaInput extends z.input<typeof EntityFundraiseTransactionSchemaDefinition> {
 }
 /**
- * Canonical fundraise transaction view. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.
+ * One funding round. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.
  *
  * @openapiSchema EntityFundraiseTransaction
  * @endpoint GET /v1/entities/lookup-exact

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Canonical URL link resource with owner, status, crawl, and source metadata. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` is the canonical platform role only and write values come from GET /v1/url-types. Readers accept new platform roles as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform role.
+ * A URL linked to an entity or person, with its status, crawl results, and source. Lifecycle state (current vs former, primary vs secondary) is encoded by `isCurrent` and `isPrimary` — `urlType` names only the platform (website, linkedin, and so on), and its write values come from GET /v1/url-types. Readers accept new platform types as deployments evolve. To record a rebrand or domain migration, retain the prior URL with the same `urlType` (typically `website`) and set `isCurrent=false, isPrimary=false`; never encode lifecycle in the platform type.
  *
  * @openapiSchema EntityUrlLink
  * @endpoint GET /v1/entities/brand

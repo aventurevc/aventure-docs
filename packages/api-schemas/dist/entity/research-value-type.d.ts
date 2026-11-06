@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Output kind for governed research detail values
+ * Kind of value a research detail holds
  *
  * @openapiSchema EntityResearchValueType
  * @endpoint GET /v1/entities/lookup-exact

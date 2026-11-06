@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { AgentTaskPresetSchema } from "./task-preset.js";
 const AgentTaskPresetCatalogSchemaDefinition = z.object({
-    /** Available task presets. Field name is singular by repository convention even though the value is a collection. */
+    /** Available task presets. The field name is singular, but it holds a list. */
     taskPreset: z.array(AgentTaskPresetSchema),
 });
 /**

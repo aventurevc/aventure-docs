@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 const WriterClaimSurfaceSchemaKnownMembers = z.enum(["ENTITY_TEXT", "RESEARCH_SNIPPET", "BOTH"]);
 /**
- * Output surface selected for a sourced writer claim.
+ * Where a sourced claim appears in the written output.
  *
  * @openapiSchema WriterClaimSurface
  * @endpoint POST /v1/entities/{entityId}/enrichments

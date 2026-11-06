@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Canonical entity classification for the organization, product, and service records stored in the entity domain.
+ * Kind of entity: an organization type such as Company or Investment Firm, or a Product or Service.
  *
  * @openapiSchema EntityType
  * @standardProblemResponse

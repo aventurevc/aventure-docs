@@ -19,7 +19,7 @@ const LookupJobSchemaDefinition = z.object({
     jobId: z.uuid(),
     /** True when a bulk lookup returned its name bound; more names may remain. False does not prove that extraction found every name on a page. */
     limitReached: z.boolean(),
-    /** Bulk lookup name bound; absent for legacy article jobs. */
+    /** Most names a bulk lookup accepts; absent for older article jobs. */
     maxNames: z.int().nullish(),
     /** Each identified company and person; bulk results are available while running. */
     mention: z.array(LookupJobMentionSchema),
@@ -31,7 +31,7 @@ const LookupJobSchemaDefinition = z.object({
     news: NewsSchema.nullish(),
     /** The article the job reads or names supplied for a bulk lookup. */
     source: LookupJobMutationSchema,
-    /** Source-reading activity for a durably accepted shared article, post, or profile lookup. */
+    /** Reading progress for an accepted, stored lookup of a shared article, post, or profile. */
     sourceRead: LookupSourceReadSchema.nullish(),
     /** Current job state. */
     state: JobStateSchema,

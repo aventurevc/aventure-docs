@@ -12,7 +12,7 @@ import { NewsAnalysisSectionSchema } from "./analysis-section.js";
  * @contractRole canonical
  */
 export const NewsAnalysisSchema = z.object({
-    /** Type-safe identifier for news articles */
+    /** Identifier of a news article */
     newsId: z.int(),
     publishedAt: z.iso.datetime({ offset: true }),
     section: z.array(NewsAnalysisSectionSchema),

@@ -3,13 +3,13 @@ import { z } from "zod/v4";
 import { EntityAcceleratorParticipationSchema } from "./accelerator-participation.js";
 import { EntityResearchDetailSchema } from "./research-detail.js";
 const EntityListResearchSchemaDefinition = z.object({
-    /** Joined accelerator participation derived from governed accelerator research rows */
+    /** Accelerator programs the entity took part in, derived from its accelerator research records */
     acceleratorParticipation: z.array(EntityAcceleratorParticipationSchema),
-    /** Flat governed research detail rows filtered by visibility */
+    /** Structured research details the caller is allowed to see */
     detail: z.array(EntityResearchDetailSchema),
 });
 /**
- * Nested research projection owned by EntityList rows, excluding snippet text.
+ * Research findings included in each entity list row, without snippet text.
  *
  * @openapiSchema EntityListResearch
  * @endpoint GET /v1/search/link

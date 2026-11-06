@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { ContentSourceTypeSchema } from "./source-type.js";
 /**
- * Nearest-neighbor content embedding match evidence.
+ * Why content matched a meaning-based (semantic) search.
  *
  * @openapiSchema ContentEmbeddingMatch
  * @endpoint GET /v1/entities/lookup-exact
@@ -44,13 +44,13 @@ export const ContentEmbeddingMatchSchema = z.object({
     cosineScore: z.number(),
     /** Embedding model/profile version for this row. */
     modelVersion: z.string(),
-    /** One-based semantic rank within the returned ANN candidate set. */
+    /** Rank by meaning similarity among the nearest-neighbor candidates returned, starting at 1. */
     rank: z.int(),
     /** SHA-256 hash of the source content. */
     sourceHash: z.string(),
     /** Content embedding source identifier. */
     sourceId: z.string(),
-    /** Stored content embedding source partition. */
+    /** Kind of content that matched. */
     sourceType: ContentSourceTypeSchema,
 });
 //# sourceMappingURL=embedding-match.js.map

@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { EntitySchema } from "./entity.js";
 const EntityAcceleratorParticipationSchemaDefinition = z.object({
-    /** Canonical thin accelerator entity from the acceleratorParticipant relationship */
+    /** The accelerator's basic entity record, from the acceleratorParticipant relationship */
     accelerator: EntitySchema,
     /** Full accelerator participation name, including program detail */
     acceleratorName: z.string(),
@@ -12,7 +12,7 @@ const EntityAcceleratorParticipationSchemaDefinition = z.object({
         .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/),
     /** Accelerator batch or cohort */
     batch: z.string().nullish(),
-    /** Stable participation identifier anchored to the contributing acceleratorParticipant relationship */
+    /** Stable id of this participation, tied to the acceleratorParticipant relationship it comes from */
     id: z.string(),
     /** Accelerator program name, when the source distinguishes one */
     program: z.string().nullish(),
@@ -20,7 +20,7 @@ const EntityAcceleratorParticipationSchemaDefinition = z.object({
     status: z.string().nullish(),
 });
 /**
- * Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.
+ * One accelerator program the entity took part in, from its acceleratorParticipant relationship, with the accelerator's own entity record.
  *
  * @openapiSchema EntityAcceleratorParticipation
  * @endpoint GET /v1/entities/lookup-exact

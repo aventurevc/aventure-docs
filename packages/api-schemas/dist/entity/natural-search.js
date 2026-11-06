@@ -5,7 +5,7 @@ import { NaturalSearchSchema } from "../natural/search.js";
 const EntityNaturalSearchSchemaDefinition = z.object({
     /** Explicit entity constraints. Caller-supplied fields override planner values; the planner fills only fields left at their canonical defaults. */
     filter: EntityFilterSchema.optional(),
-    /** Canonical plain-English search request and strategy. */
+    /** The plain-English search request and the search method to use. */
     search: NaturalSearchSchema,
     /** The stored aVenture news article this search started from. Its approved public Company and Business Line mentions are ordered subjects, rather than candidates judged from the headline. An unknown or non-public article, or one without such mentions, keeps the ordinary search. */
     sourceNewsId: z.int().min(1).nullish(),

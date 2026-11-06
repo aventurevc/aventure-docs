@@ -14,7 +14,7 @@ import { PersonDetailSchema } from "../person/detail.js";
 import { SearchAnswerSchema } from "../search/answer.js";
 import { UniqueIdSchema } from "../unique/id.js";
 /**
- * Full entity detail response: core entity, enrichment, governed research, relationships, external identifiers, fundraising, news, people, and sitemap eligibility. Core identity and naming fields live under core.
+ * Full entity detail: core fields, additional data, research, relationships, external identifiers, fundraising, news, people, and which profile pages exist. Identity and name fields are under core.
  *
  * @openapiSchema EntityDetail
  * @endpoint GET /v1/entities/lookup-exact
@@ -61,9 +61,9 @@ export const EntityDetailSchema = z.object({
     publicUrl: z.string().nullish(),
     /** Entity relationships. */
     relationship: z.array(EntityRelationshipSchema),
-    /** Combined research disclosure: governed detail rows, snippets, and accelerator participation. */
+    /** Research findings: structured research details, written research snippets, and accelerator participation. */
     research: EntityResearchSchema,
-    /** Sub-route eligibility computed once at the persistence boundary. */
+    /** Which of the entity's profile pages exist and are listed in the sitemap. */
     sitemap: EntitySitemapSchema,
     /** External registry identifiers associated with this entity. */
     uniqueId: z.array(UniqueIdSchema),

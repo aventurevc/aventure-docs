@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Current slug owner
+ * Record that currently uses this slug
  *
  * @openapiSchema CurrentSlugOwner
  * @standardProblemResponse

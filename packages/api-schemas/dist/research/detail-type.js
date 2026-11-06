@@ -19,7 +19,7 @@ const ResearchDetailTypeSchemaDefinition = z.object({
     typeValue: z.string(),
     /** Write-time value shape token. For numericCountOrRange details, send either discreteValue for an exact count or textValue for an employee range. */
     valueShape: ResearchValueShapeTypeSchema,
-    /** Read projection category; choose write fields from valueShape. */
+    /** Value kind on reads; pick write fields from valueShape. */
     valueType: EntityResearchValueTypeSchema,
     /** How to encode a write for this valueShape: which of valueResearchDetail, discreteValue, textValue, and asOfDate to send, with an example. */
     writeHint: z.string(),

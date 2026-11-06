@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Entity classification join registry discriminator for paths where editorial and standardized join row ids may collide.
+ * Which kind of entity classification an id belongs to, editorial or standardized; needed on paths where the two kinds can share the same id number.
  *
  * @openapiSchema ClassificationJoinRegistry
  * @endpoint GET /v1/entities/brand

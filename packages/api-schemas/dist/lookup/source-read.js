@@ -4,7 +4,7 @@ import { JobEnqueueSchema } from "../job/enqueue.js";
 import { LookupSourceKindSchema } from "./source-kind.js";
 import { LookupSourceReadPhaseSchema } from "./source-read-phase.js";
 /**
- * Source context and honest reading activity for a shared article, post, profile, or the caller's own captured document.
+ * The shared article, post, or profile, or the caller's own captured document, being read, and what the server is doing with it now.
  *
  * @openapiSchema LookupSourceRead
  * @endpoint GET /v1/lookup/jobs/{jobId}
@@ -18,7 +18,7 @@ export const LookupSourceReadSchema = z.object({
     /** A committed durable lookup to follow; only its presence permits a promise to leave and return. Follow its status URL with the same caller's bearer, honoring Retry-After. */
     continuation: JobEnqueueSchema.nullish(),
     faviconUrl: z.string().nullish(),
-    /** What the source is, so a client names it while it loads; absent only on a lookup an earlier revision accepted. */
+    /** What the source is, so a client names it while it loads; absent only on lookups accepted before this field existed. */
     kind: LookupSourceKindSchema.nullish(),
     logoUrl: z.string().nullish(),
     /** Informational messages to cycle within this stage, never evidence of completed work. */

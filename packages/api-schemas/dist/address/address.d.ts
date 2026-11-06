@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Canonical address record for entity and person payloads
+ * A postal address of an entity or person.
  *
  * @openapiSchema Address
  * @endpoint GET /v1/entities/lookup-exact

@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { EntityFundraiseTransactionEntitySchema } from "../entity/fundraise-transaction-entity.js";
 import { PersonGraphMemberSchema } from "./graph-member.js";
 const PersonGraphSimilarEntitySchemaDefinition = z.object({
-    /** Entity card projection: core identity plus aggregate funding rollup */
+    /** Entity card: core identity plus total funding */
     entity: EntityFundraiseTransactionEntitySchema,
     /** Top-ranked current people at the similar entity */
     keyPerson: z.array(PersonGraphMemberSchema),

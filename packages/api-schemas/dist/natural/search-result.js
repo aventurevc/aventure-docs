@@ -28,9 +28,9 @@ const NaturalSearchResultSchemaDefinition = z.object({
     peer: z.array(EntitySimilarityResultSchema),
     /** Web searches for this question not yet stored; their evidence joins a later request. Empty without the `web` layer. */
     pendingWebQuery: z.array(z.string()),
-    /** Whether people lead this search, stamped only on entity stream events. */
+    /** Whether this search is mainly about people; set only on entity events in the stream. */
     personLead: z.boolean(),
-    /** Entity list page returned by the canonical entity list engine. */
+    /** Page of matching entities. */
     result: PageResultEntityListSchema,
     /** Id of this search's stored record. Null when the search was not recorded. */
     searchRequestId: z.uuid().nullish(),
@@ -38,7 +38,7 @@ const NaturalSearchResultSchemaDefinition = z.object({
     subject: z.array(EntityListSchema),
 });
 /**
- * Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.
+ * Result of a plain-English entity search: how the query was interpreted, and the resulting page of entities.
  *
  * @openapiSchema NaturalSearchResult
  * @endpoint GET /v1/search/link

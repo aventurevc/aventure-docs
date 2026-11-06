@@ -11,7 +11,7 @@ type EntityTypeAliasDefinition = z.infer<typeof EntityTypeAliasSchemaDefinition>
 export interface EntityTypeAliasSchemaInput extends z.input<typeof EntityTypeAliasSchemaDefinition> {
 }
 /**
- * Canonical EntityType value, accepted aliases, and public routing metadata.
+ * An entity type, its accepted alternative spellings, and how its public pages are addressed.
  *
  * @openapiSchema EntityTypeAlias
  * @endpoint GET /v1/entities/types

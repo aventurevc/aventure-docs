@@ -4,7 +4,7 @@ const GithubRepoSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     description: z.string().nullish(),
     forkCount: z.int(),
-    /** GitHub's stable numeric repository id; sync upsert key per owner */
+    /** GitHub's stable numeric repository id; each sync uses it to match and update the owner's repository record */
     githubId: z.number().int(),
     /** Project homepage URL declared on the repository */
     homepageUrl: z.string().nullish(),

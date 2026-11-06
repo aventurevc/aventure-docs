@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { NewsTitleMentionSchema } from "./title-mention.js";
 /**
- * Canonical news owner for list and core semantics
+ * A news article, as returned by news lists and the entity.news.published webhook.
  *
  * @openapiSchema News
  * @endpoint GET /v1/entities/lookup-exact
@@ -46,14 +46,14 @@ export const NewsSchema = z.object({
     /** Article summary from the source publication feed; null means the feed supplied no description (expected absence, not an error) — full text is NewsDetail.content */
     excerpt: z.string().nullish(),
     externalNewsArticle: z.boolean().nullish(),
-    /** Type-safe identifier for news articles */
+    /** Identifier of a news article */
     id: z.int(),
     newsImageThumbnail: z.string().nullish(),
     /** Canonical article URL after host and tracking-parameter normalization. */
     newsUrlOriginal: z.string().nullish(),
     publication: z.string().nullish(),
     publishedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     slug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

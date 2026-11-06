@@ -2,9 +2,9 @@
 import { z } from "zod/v4";
 import { UniqueIdOwnerScopeSchema } from "./id-owner-scope.js";
 const UniqueIdTypeAliasSchemaDefinition = z.object({
-    /** Alias tokens accepted by the write boundary. */
+    /** Other spellings accepted for this identifier type on writes. */
     alias: z.array(z.string()),
-    /** Canonical uniqueId type value persisted in id_type. */
+    /** Identifier type value, as returned in responses and accepted on writes. */
     canonical: z.string(),
     /** Human-readable label. */
     label: z.string(),
@@ -14,7 +14,7 @@ const UniqueIdTypeAliasSchemaDefinition = z.object({
     pattern: z.string().nullish(),
 });
 /**
- * Canonical uniqueId type value plus its label, accepted aliases, owner scope, and format pattern.
+ * An identifier type with its label, accepted spellings, whether it applies to entities or people, and its format pattern.
  *
  * @openapiSchema UniqueIdTypeAlias
  * @endpoint GET /v1/unique-ids/types

@@ -9,7 +9,7 @@ const StandardizedClassificationFilterSchemaDefinition = z.object({
     codeText: z.string().max(255).nullish(),
     /** Exact supplied codebook edition; omitted does not assume the current edition. */
     edition: z.string().max(128).nullish(),
-    /** true selects recorded editions; false selects unknown edition; omitted imposes no presence predicate. */
+    /** true selects recorded editions; false selects unknown edition; omit it to match either. */
     hasEdition: z.boolean().nullish(),
 });
 /**

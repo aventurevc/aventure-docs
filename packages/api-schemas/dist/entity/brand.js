@@ -14,7 +14,7 @@ const EntityBrandSchemaDefinition = z.object({
     urlLink: z.array(EntityUrlLinkSchema),
 });
 /**
- * Thin company brand read: names and logos under core, current website and social URLs, and current classification tags.
+ * Company brand summary: names and logos under core, current website and social URLs, and current classification tags.
  *
  * @openapiSchema EntityBrand
  * @endpoint GET /v1/entities/brand

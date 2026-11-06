@@ -13,7 +13,7 @@ const EntitySimilaritySummarySchemaDefinition = z.object({
     urlLink: z.array(EntityUrlLinkSchema),
 });
 /**
- * Lean similar-entity rail row: core identity, current URL links, funding totals, and similarity provenance. Use EntitySimilarityResult for full EntityList rows.
+ * Short similar-entity card: core identity, current URL links, funding totals, and why it counts as similar. Use EntitySimilarityResult for full EntityList rows.
  *
  * @openapiSchema EntitySimilaritySummary
  * @endpoint GET /v1/entities/{entityId}/similar/summary

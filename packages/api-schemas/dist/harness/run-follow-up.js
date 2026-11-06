@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { HarnessRunFollowUpAdmissionSchema } from "./run-follow-up-admission.js";
 /**
- * Durable completion barrier and direct child run ids
+ * Follow-up runs this run started, and whether all of them have been filed
  *
  * @openapiSchema HarnessRunFollowUp
  * @endpoint GET /v1/research/runs/{runId}
@@ -11,11 +11,11 @@ import { HarnessRunFollowUpAdmissionSchema } from "./run-follow-up-admission.js"
  * @contractRole canonical
  */
 export const HarnessRunFollowUpSchema = z.object({
-    /** PENDING until every follow-up admission is durable; REJECTED when the bounded redo is exhausted */
+    /** PENDING until every follow-up run has been filed; REJECTED when the allowed redo attempts are used up */
     admission: HarnessRunFollowUpAdmissionSchema,
-    /** More than the bounded child count exists; completion is unproven */
+    /** True when this run started more follow-up runs than this list shows, so the list cannot prove the run is complete */
     hasMore: z.boolean(),
-    /** Direct appointed run ids; read each run's detail recursively */
+    /** Ids of follow-up runs this run started directly; read each one's detail to find its own follow-ups */
     runId: z.array(z.uuid()),
 });
 //# sourceMappingURL=run-follow-up.js.map

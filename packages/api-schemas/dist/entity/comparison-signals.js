@@ -4,7 +4,7 @@ import { EntitySchema } from "./entity.js";
 import { EntityProfileStatusSchema } from "./profile-status.js";
 import { FundingStageSchema } from "../funding/stage.js";
 /**
- * Competitive comparison signals for a provider entity — sells-to customers, pricing model, ownership, funding stage, total raised, and website. Projected from entity enrichment for side-by-side comparison; founded year rides the entity core.
+ * Competitive comparison signals for a provider entity — sells-to customers, pricing model, ownership, funding stage, total raised, and website. Taken from the entity's additional data for side-by-side comparison; the founding year is in the entity's core fields.
  *
  * @openapiSchema EntityComparisonSignals
  * @endpoint GET /v1/entities/lookup-exact

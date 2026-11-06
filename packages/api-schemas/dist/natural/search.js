@@ -27,7 +27,7 @@ const NaturalSearchSchemaDefinition = z.object({
     tenantPolicyRevision: z.int().nullish(),
 });
 /**
- * Plain-English search request. The server plans the query into the target domain filter plus sort, then runs that domain's canonical list engine.
+ * Plain-English search request. The server turns the query into a filter and sort for the target record type, then runs that type's standard list search.
  *
  * @openapiSchema NaturalSearch
  * @endpoint POST /v1/content/search

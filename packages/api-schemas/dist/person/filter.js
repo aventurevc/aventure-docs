@@ -6,7 +6,7 @@ import { InvestorActivityFilterSchema } from "../investor/activity-filter.js";
 import { PersonAssociationTenureSchema } from "./association-tenure.js";
 import { PersonListArrayFilterSchema } from "./list-array-filter.js";
 /**
- * Canonical person criteria contract for GET/POST/batch endpoints
+ * Filters for listing and searching people, used by the GET, POST, and batch people endpoints.
  *
  * @openapiSchema PersonFilter
  * @endpoint GET /v1/search/link

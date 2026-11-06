@@ -4,7 +4,7 @@ import { EntityFilterOptionModeSchema } from "./filter-option-mode.js";
 import { EntityTypeGroupMembershipSchema } from "./type-group-membership.js";
 import { EntityTypeGroupSchema } from "./type-group.js";
 /**
- * Generator metadata for a filter payload
+ * Information about how this filter's option list was generated
  *
  * @openapiSchema EntityFilterOptionSetMeta
  * @endpoint GET /v1/entities/filters

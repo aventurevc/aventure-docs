@@ -5,7 +5,7 @@ const SharedSearchListSchemaDefinition = z.object({
     /** Stable shared-search UUID */
     id: z.uuid(),
     query: z.string(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     slug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

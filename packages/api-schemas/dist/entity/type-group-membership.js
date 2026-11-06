@@ -7,7 +7,7 @@ const EntityTypeGroupMembershipSchemaDefinition = z.object({
     typeRecord: z.array(EntityTypeSchema),
 });
 /**
- * Canonical concrete entity types included by one entity type group.
+ * Entity types included in one entity type group.
  *
  * @openapiSchema EntityTypeGroupMembership
  * @endpoint GET /v1/entities/filters

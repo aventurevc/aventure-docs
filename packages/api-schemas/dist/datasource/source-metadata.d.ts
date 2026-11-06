@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Grouped source/provenance metadata for private v1 response fields
+ * Details of where a record's field values came from.
  *
  * @openapiSchema DatasourceSourceMetadata
  * @endpoint GET /v1/search/link

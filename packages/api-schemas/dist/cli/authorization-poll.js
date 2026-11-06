@@ -10,7 +10,7 @@ const CliAuthorizationPollSchemaDefinition = z.object({
     expiresAt: z.iso.datetime({ offset: true }),
     /** Current broker lifecycle state */
     status: CliAuthorizationStatusSchema,
-    /** Non-secret terminal-state explanation */
+    /** Why the request ended (contains no secrets) */
     terminalReason: CliAuthorizationTerminalReasonSchema.nullish(),
 });
 /**

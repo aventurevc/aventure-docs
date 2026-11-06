@@ -5,13 +5,13 @@ import { SearchModeExecutionSchema } from "../search/mode-execution.js";
 const FederatedSearchProvenanceSchemaDefinition = z.object({
     /** True when synthesis was requested but the answer model was temporarily unavailable (an upstream outage, open circuit, full concurrency limit, or expired deadline), so the entity scope carries no answer while every scope's rows returned, or when the answer check refused every paragraph the answer model drafted, so the answer has no paragraph. Retrying the same query may succeed. */
     answerUnavailable: z.boolean(),
-    /** Entity search strategy execution. */
+    /** Search method requested and used for entities. */
     entity: SearchModeExecutionSchema,
     /** Scopes whose required named subjects could not be resolved, or whose optional sources or candidate judgments did not all complete. Returned rows remain usable but the requested population is incomplete, so this response must not be cached as final. Clarifying the named subjects or retrying may complete these scopes. */
     incompleteScope: z.array(z.enum(["entity", "person", "news"])).optional(),
-    /** News search strategy execution. */
+    /** Search method requested and used for news. */
     news: SearchModeExecutionSchema,
-    /** Person search strategy execution. */
+    /** Search method requested and used for people. */
     person: SearchModeExecutionSchema,
     /** Scopes that rejected the query as unsearchable and returned an empty page while the other scopes ran; empty when every scope ran. */
     rejection: z.array(FederatedSearchRejectionSchema),

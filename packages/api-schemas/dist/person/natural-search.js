@@ -5,7 +5,7 @@ import { PersonFilterSchema } from "./filter.js";
 const PersonNaturalSearchSchemaDefinition = z.object({
     /** Explicit people constraints. Caller-supplied fields override planner values; the planner fills only fields left at their canonical defaults. */
     filter: PersonFilterSchema.optional(),
-    /** Canonical plain-English search request and strategy. */
+    /** The plain-English search request and the search method to use. */
     search: NaturalSearchSchema,
 });
 /**

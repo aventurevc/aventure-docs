@@ -474,7 +474,7 @@ type SearchInvestmentDefinition = z.infer<typeof SearchInvestmentSchemaDefinitio
 export interface SearchInvestmentSchemaInput extends z.input<typeof SearchInvestmentSchemaDefinition> {
 }
 /**
- * Canonical investor participation and matched portfolio offering evidence.
+ * An investor's participation in a round, with evidence for the portfolio product or service it matched.
  *
  * @openapiSchema SearchInvestment
  * @endpoint GET /v1/search/link

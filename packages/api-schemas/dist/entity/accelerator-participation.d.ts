@@ -84,7 +84,7 @@ type EntityAcceleratorParticipationDefinition = z.infer<typeof EntityAccelerator
 export interface EntityAcceleratorParticipationSchemaInput extends z.input<typeof EntityAcceleratorParticipationSchemaDefinition> {
 }
 /**
- * Flattened accelerator participation derived from acceleratorParticipant relationship rows and joined to the canonical accelerator entity.
+ * One accelerator program the entity took part in, from its acceleratorParticipant relationship, with the accelerator's own entity record.
  *
  * @openapiSchema EntityAcceleratorParticipation
  * @endpoint GET /v1/entities/lookup-exact

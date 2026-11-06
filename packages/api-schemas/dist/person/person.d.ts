@@ -94,7 +94,7 @@ type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
 export interface PersonSchemaInput extends z.input<typeof PersonSchemaDefinition> {
 }
 /**
- * Canonical person core record
+ * A person's core profile fields.
  *
  * @openapiSchema Person
  * @endpoint GET /v1/entities/lookup-exact

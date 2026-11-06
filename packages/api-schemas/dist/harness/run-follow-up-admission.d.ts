@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Durable admission state for one terminal run generation's follow-up work
+ * Whether the follow-up runs requested when this run last finished have all been filed
  *
  * @openapiSchema HarnessRunFollowUpAdmission
  * @endpoint GET /v1/research/runs

@@ -5,7 +5,7 @@ const HarnessRunEventSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }),
     /** Monotonic event id */
     id: z.number().int(),
-    /** Run-stream envelope as an opaque JSON string */
+    /** The full stream event as a JSON string */
     payload: z.string(),
     /** Owning run id */
     runId: z.uuid(),

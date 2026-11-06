@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Derived character/word counts and whether the row text meets its governed type contract (word/character limits and paragraph shape). violation lists each unmet rule and is empty when the row is compliant.
+ * Character and word counts for the text, and whether it meets its text type's rules (word and character limits and paragraph shape). violation lists each unmet rule and is empty when the text meets them all.
  *
  * @openapiSchema ContentCompliance
  * @endpoint GET /v1/entities/lookup-exact
@@ -30,7 +30,7 @@ import { z } from "zod/v4";
 export const ContentComplianceSchema = z.object({
     /** Character count of the row text (UTF-16 units). */
     characterCount: z.int(),
-    /** Whether the text satisfies every governed contract rule. */
+    /** Whether the text meets every length and paragraph rule for its type. */
     meetsRequirements: z.boolean(),
     /** One human-readable reason per unmet rule; empty when compliant. */
     violation: z.array(z.string()),

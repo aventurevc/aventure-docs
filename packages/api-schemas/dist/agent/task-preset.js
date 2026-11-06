@@ -9,7 +9,7 @@ const AgentTaskPresetSchemaDefinition = z.object({
     key: z.string(),
     /** Display name of the topic the preset researches. */
     name: z.string(),
-    /** Dispatch phase for intra-job ordering: PRIMARY presets run first; FINAL presets defer until the primary wave completes so they read the freshly-updated entity dossier. */
+    /** Run order within one job: PRIMARY presets run first; FINAL presets wait until every PRIMARY preset finishes so they read the freshly updated entity profile. */
     phase: AgentTaskPresetPhaseSchema,
 });
 /**

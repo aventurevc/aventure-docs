@@ -37,14 +37,14 @@ import { NewsMatchStatusSchema } from "./match-status.js";
  */
 export const NewsResolvedEntityLinkSchema = z.object({
     createdAt: z.iso.datetime({ offset: true }),
-    /** Canonical entity UUID */
+    /** Entity id (UUID) */
     entityId: z.uuid(),
     href: z.string().nullish(),
     /** True when href links to this entity's aVenture page; false when the entity has no page to link to. */
     internal: z.boolean(),
     matchStatus: NewsMatchStatusSchema.nullish(),
     mention: z.string().nullish(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     slug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

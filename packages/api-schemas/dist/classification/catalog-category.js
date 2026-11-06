@@ -10,7 +10,7 @@ const ClassificationCatalogCategorySchemaDefinition = z.object({
     classification: z.array(StandardizedClassificationSchema),
     /** Total standardized classifications in this category. */
     classificationCount: z.int(),
-    /** Whether the category has hierarchy semantics. */
+    /** Whether the category's values form a parent and child hierarchy. */
     hierarchical: z.boolean(),
     /** Human-readable category label. */
     label: z.string(),

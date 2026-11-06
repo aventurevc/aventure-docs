@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Canonical news owner for list and core semantics
+ * A news article, as returned by news lists and the entity.news.published webhook.
  *
  * @openapiSchema News
  * @endpoint GET /v1/entities/lookup-exact

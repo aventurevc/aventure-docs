@@ -135,7 +135,7 @@ type NewsDetailDefinition = z.infer<typeof NewsDetailSchemaDefinition>;
 export interface NewsDetailSchemaInput extends z.input<typeof NewsDetailSchemaDefinition> {
 }
 /**
- * Canonical news detail owner
+ * A news article with all of its detail fields.
  *
  * @openapiSchema NewsDetail
  * @endpoint GET /v1/news/lookup

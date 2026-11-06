@@ -4,7 +4,7 @@ import { RelationshipDirectionSchema } from "../relationship/direction.js";
 const EntityRelationshipTypeOptionSchemaDefinition = z.object({
     /** Whether this type must be written through acquisition endpoints. */
     acquisitionManaged: z.boolean(),
-    /** Accepted aliases that normalize to canonical. */
+    /** Other spellings accepted for this relationship type. */
     alias: z.array(z.string()),
     /** Canonical relationship type token used in reads and writes. */
     canonical: z.string(),
@@ -16,7 +16,7 @@ const EntityRelationshipTypeOptionSchemaDefinition = z.object({
     exclusiveRelationshipType: z.array(z.string()),
     /** Whether generic relationship join/write endpoints accept this type. */
     joinable: z.boolean(),
-    /** Entity type pairing rule enforced before persistence. */
+    /** Which entity types may be on each side of this relationship; writes that break it are rejected. */
     pairRule: z.string(),
     /** Whether this type is emitted by reads only and rejected on writes. */
     readOnly: z.boolean(),

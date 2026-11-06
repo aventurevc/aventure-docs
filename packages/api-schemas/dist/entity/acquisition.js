@@ -7,9 +7,9 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
 import { FundraiseDataConfidenceSchema } from "../fundraise/data-confidence.js";
 import { FundraiseTransactionStatusSchema } from "../fundraise/transaction-status.js";
 const EntityAcquisitionSchemaDefinition = z.object({
-    /** Acquired company — read-only nested display projection of the scoped path entity. */
+    /** The acquired company (the entity in the request path); read-only. */
     acquiredEntity: EntitySchema,
-    /** Buyer — read-only nested display projection. Mutations identify the buyer only via the flat acquirerEntityId UUID, never a nested entity object. */
+    /** The buyer; read-only. Mutations identify the buyer only via the flat acquirerEntityId UUID, never a nested entity object. */
     acquirerEntity: EntitySchema,
     amount: z.number().int().nullish(),
     /** Acquisition announcement date or instant, retaining its stored precision. */
@@ -31,16 +31,16 @@ const EntityAcquisitionSchemaDefinition = z.object({
     currency: z.string().nullish(),
     dataConfidence: FundraiseDataConfidenceSchema.nullish(),
     evidence: EntityAcquisitionEvidenceSchema,
-    /** Canonical fundraise transaction UUID */
+    /** Funding round id (UUID) */
     fundraiseTransactionId: z.uuid().nullish(),
-    /** Type-safe identifier for fundraise investor joins */
+    /** Identifier of one investor's participation in a funding round */
     investorJoinId: z.uuid().nullish(),
     /** Whether the buyer still owns the acquired company, not whether the company is operating. False retains the prior ownership event on this relationship. */
     isCurrent: z.boolean().nullish(),
     /** Published page behind this acquisition, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     relationshipId: z.int(),
-    /** Read stage of the acquired entity, not transactionStatus */
+    /** Acquisition stage of the acquired entity, not the deal's transactionStatus */
     status: EntityAcquisitionStageSchema,
     transactionStatus: FundraiseTransactionStatusSchema.nullish(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),

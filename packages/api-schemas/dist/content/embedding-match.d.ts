@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Nearest-neighbor content embedding match evidence.
+ * Why content matched a meaning-based (semantic) search.
  *
  * @openapiSchema ContentEmbeddingMatch
  * @endpoint GET /v1/entities/lookup-exact

@@ -5,11 +5,11 @@ import { PersonGraphMemberSchema } from "./graph-member.js";
 const PersonGraphCoInvestorSchemaDefinition = z.object({
     /** Number of shared fundraise transactions between the two people */
     overlapCount: z.int(),
-    /** Co-investing person rail member */
+    /** The co-investor's person card */
     person: PersonGraphMemberSchema,
     /** Round label of the shared fundraise transaction */
     round: z.string().nullish(),
-    /** Entity whose fundraise both people participated in (association projection) */
+    /** Entity whose funding round both people participated in */
     sharedEntity: EntitySchema.nullish(),
     /** Shared fundraise transaction id */
     transactionId: z.uuid().nullish(),

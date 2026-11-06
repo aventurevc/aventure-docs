@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Source context and honest reading activity for a shared article, post, profile, or the caller's own captured document.
+ * The shared article, post, or profile, or the caller's own captured document, being read, and what the server is doing with it now.
  *
  * @openapiSchema LookupSourceRead
  * @endpoint GET /v1/lookup/jobs/{jobId}

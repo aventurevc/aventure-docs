@@ -38,9 +38,9 @@ export const NewsResolvedPersonLinkSchema = z.object({
     href: z.string().nullish(),
     matchStatus: NewsMatchStatusSchema.nullish(),
     mention: z.string().nullish(),
-    /** Canonical person UUID */
+    /** Person id (UUID) */
     personId: z.uuid(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     slug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

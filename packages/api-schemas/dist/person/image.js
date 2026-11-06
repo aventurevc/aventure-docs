@@ -9,7 +9,7 @@ const PersonImageSchemaDefinition = z.object({
     pictureVariant: z.array(ImageVariantSchema).nullish(),
 });
 /**
- * Read projection: person image fields for detail/list responses
+ * A person's image fields, as returned in detail and list responses.
  *
  * @openapiSchema PersonImage
  * @endpoint GET /v1/entities/lookup-exact

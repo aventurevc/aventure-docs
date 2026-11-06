@@ -7,7 +7,7 @@ const InvestorPortfolioRecipientSchemaDefinition = z.object({
     funding: EntityFundingDetailSchema,
 });
 /**
- * Recipient identity with canonical recorded funding coverage.
+ * A portfolio recipient and the funding aVenture has recorded for it.
  *
  * @openapiSchema InvestorPortfolioRecipient
  * @endpoint GET /v1/entities/lookup-exact

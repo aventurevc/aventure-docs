@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Agent loop a harness run executes on: the Claude Agent SDK or the Pi agent SDK
+ * Agent framework a research run executes on: the Claude Agent SDK or the Pi agent SDK
  *
  * @openapiSchema HarnessChassis
  * @endpoint GET /v1/research/runs

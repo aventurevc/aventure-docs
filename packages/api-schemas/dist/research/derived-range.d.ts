@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Read-only derived range projection for targetDateAbsolute detail rows
+ * Read-only time range computed for targetDateAbsolute research details
  *
  * @openapiSchema ResearchDerivedRange
  * @endpoint GET /v1/entities/lookup-exact

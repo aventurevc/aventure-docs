@@ -21,7 +21,7 @@ type SourceDocumentListDefinition = z.infer<typeof SourceDocumentListSchemaDefin
 export interface SourceDocumentListSchemaInput extends z.input<typeof SourceDocumentListSchemaDefinition> {
 }
 /**
- * Metadata-only ledger row for source-document lists
+ * A stored source document's metadata, without its content.
  *
  * @openapiSchema SourceDocumentList
  * @endpoint GET /v1/web/searches/jobs/{jobId}

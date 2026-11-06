@@ -28,7 +28,7 @@ const CliAuthorizationSchemaDefinition = z.object({
     status: CliAuthorizationStatusSchema,
     /** Time this request entered its terminal state */
     terminalAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Non-secret terminal-state explanation */
+    /** Why the request ended (contains no secrets) */
     terminalReason: CliAuthorizationTerminalReasonSchema.nullish(),
     /** Most recent lifecycle update timestamp */
     updatedAt: z.iso.datetime({ offset: true }),

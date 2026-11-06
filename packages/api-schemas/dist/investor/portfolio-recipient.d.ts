@@ -197,7 +197,7 @@ type InvestorPortfolioRecipientDefinition = z.infer<typeof InvestorPortfolioReci
 export interface InvestorPortfolioRecipientSchemaInput extends z.input<typeof InvestorPortfolioRecipientSchemaDefinition> {
 }
 /**
- * Recipient identity with canonical recorded funding coverage.
+ * A portfolio recipient and the funding aVenture has recorded for it.
  *
  * @openapiSchema InvestorPortfolioRecipient
  * @endpoint GET /v1/entities/lookup-exact

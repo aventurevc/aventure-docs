@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * API response fragment for entity filter metadata
+ * Entity filter metadata
  *
  * @openapiSchema EntityFilterMeta
  * @endpoint GET /v1/entities/filters

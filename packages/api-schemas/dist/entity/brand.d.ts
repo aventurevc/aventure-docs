@@ -461,7 +461,7 @@ type EntityBrandDefinition = z.infer<typeof EntityBrandSchemaDefinition>;
 export interface EntityBrandSchemaInput extends z.input<typeof EntityBrandSchemaDefinition> {
 }
 /**
- * Thin company brand read: names and logos under core, current website and social URLs, and current classification tags.
+ * Company brand summary: names and logos under core, current website and social URLs, and current classification tags.
  *
  * @openapiSchema EntityBrand
  * @endpoint GET /v1/entities/brand

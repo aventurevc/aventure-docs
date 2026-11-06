@@ -13,7 +13,7 @@ const WebSearchSchemaDefinition = z.object({
     aiOverview: SearchAiOverviewSchema.nullish(),
     /** Google's direct answer box; null when the page shows none */
     answerBox: SearchAnswerBoxSchema.nullish(),
-    /** Source-document ledger row backing this result */
+    /** Stored record, metadata only, of the page this web search fetched */
     document: SourceDocumentListSchema,
     /** Google's knowledge panel; null when the page shows none */
     knowledgeGraph: SearchKnowledgeGraphSchema.nullish(),

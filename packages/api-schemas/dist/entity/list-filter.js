@@ -76,9 +76,9 @@ export const EntityListFilterSchema = z.strictObject({
     logoOption: EntityFilterLogoOptionSchema.optional(),
     /** Main product classification values. */
     mainProduct: z.array(z.string()).optional(),
-    /** Precise notable activity in 48h. */
+    /** When true, only listing-ready companies with notable activity in 48 hours. */
     noteworthyOnly: z.boolean().optional(),
-    /** Operating states to include; omit to include every state. */
+    /** Operating states; omit for all. */
     operatingStatus: z.array(EntityOperatingStatusSchema).optional(),
     /** Countries an entity is from: its headquarters country or the country of its current origin (founding) address, never a legal seat alone. What a nationality adjective (Colombian startups) means; headquartersCountry is only where it is based now. */
     originCountry: z.array(z.string()).optional(),
@@ -90,7 +90,7 @@ export const EntityListFilterSchema = z.strictObject({
     portfolioHeadquartersCountry: z.array(z.string()).optional(),
     /** Portfolio-company headquarters state or region values. */
     portfolioHeadquartersState: z.array(z.string()).optional(),
-    /** Server-owned list quality gate. */
+    /** Extra listing check: COMPANY_LISTING_READY or NONE (default, no check). */
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
@@ -105,7 +105,7 @@ export const EntityListFilterSchema = z.strictObject({
         .optional(),
     /** Stage classification values. */
     stage: z.array(z.string()).optional(),
-    /** OR exact tuples within this facet; AND with other facets. */
+    /** Matches any one of these entries; combined with the other filters by AND. */
     standardizedClassification: z.array(StandardizedClassificationFilterSchema).max(20).optional(),
     /** Exclude public and acquired companies (including acquired subsidiaries); what startup means. Private companies at any round stay, as do companies without a recorded stage or operating status. */
     suppressLateStage: z.boolean().nullish(),
@@ -127,9 +127,9 @@ export const EntityListFilterSchema = z.strictObject({
     typeRecord: z.array(EntityTypeSchema).optional(),
     /** Revenue-model classification values. */
     typeRevenue: z.array(z.string()).optional(),
-    /** Technology-used classification values. */
+    /** Technology-used values. */
     typeTechnologyUsed: z.array(z.string()).optional(),
-    /** OR public-registry identifier predicates; AND with other facets. */
+    /** Matches any listed registry identifier; combined with other filters by AND. */
     uniqueId: z.array(EntityUniqueIdFilterSchema).max(20).optional(),
     /** Current URL to match by normalized host and path. */
     url: z.string().nullish(),

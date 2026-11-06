@@ -12,7 +12,7 @@ const PersonInvestmentSchemaDefinition = z.object({
         .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
         .nullish(),
     fundraiseTransaction: EntityFundraiseSchema.nullish(),
-    /** Canonical fundraise transaction UUID */
+    /** Funding round id (UUID) */
     fundraiseTransactionId: z.uuid(),
     id: z.string(),
     /** When aVenture recorded this person's participation in the round. It is not the investment date: imported portfolios share their import date. Use date for when the round happened. */
@@ -22,7 +22,7 @@ const PersonInvestmentSchemaDefinition = z.object({
     round: z.string().nullish(),
 });
 /**
- * Domain model for a person's investment in an entity (fundraise transaction)
+ * A person's investment in an entity's funding round
  *
  * @openapiSchema PersonInvestment
  * @endpoint GET /v1/entities/lookup-exact

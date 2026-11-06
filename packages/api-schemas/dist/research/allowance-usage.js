@@ -4,7 +4,7 @@ import { ResearchAllowanceSchema } from "./allowance.js";
 const ResearchAllowanceUsageSchemaDefinition = z.object({
     /** Research runs on company targets, new or existing */
     company: ResearchAllowanceSchema,
-    /** Thin company brand reads (names, logos, links, tags) */
+    /** Company brand summary reads (names, logos, links, tags) */
     entityBrand: ResearchAllowanceSchema,
     /** Company profile views; Essential shares included usage with personView, while paid tiers meter each separately */
     entityView: ResearchAllowanceSchema,

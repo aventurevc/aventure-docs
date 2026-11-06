@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 const EntityTypeAliasSchemaDefinition = z.object({
-    /** Alias tokens accepted by EntityType.fromRaw (case-insensitive). */
+    /** Other spellings accepted for this entity type (case-insensitive). */
     alias: z.array(z.string()),
     /** Canonical EntityType value (e.g. "Company", "Investment Firm"). */
     canonical: z.string(),
@@ -15,7 +15,7 @@ const EntityTypeAliasSchemaDefinition = z.object({
     publicPathPrefix: z.string(),
 });
 /**
- * Canonical EntityType value, accepted aliases, and public routing metadata.
+ * An entity type, its accepted alternative spellings, and how its public pages are addressed.
  *
  * @openapiSchema EntityTypeAlias
  * @endpoint GET /v1/entities/types

@@ -6064,7 +6064,7 @@ type NaturalSearchResultDefinition = z.infer<typeof NaturalSearchResultSchemaDef
 export interface NaturalSearchResultSchemaInput extends z.input<typeof NaturalSearchResultSchemaDefinition> {
 }
 /**
- * Natural-language entity search result: planner interpretation plus the canonical entity list page produced by EntityListService.
+ * Result of a plain-English entity search: how the query was interpreted, and the resulting page of entities.
  *
  * @openapiSchema NaturalSearchResult
  * @endpoint GET /v1/search/link

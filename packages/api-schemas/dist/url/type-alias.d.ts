@@ -8,7 +8,7 @@ type UrlTypeAliasDefinition = z.infer<typeof UrlTypeAliasSchemaDefinition>;
 export interface UrlTypeAliasSchemaInput extends z.input<typeof UrlTypeAliasSchemaDefinition> {
 }
 /**
- * Canonical urlType value plus accepted alias and platform host tokens.
+ * A URL type, its accepted spellings, and the website hosts that identify it.
  *
  * @openapiSchema UrlTypeAlias
  * @endpoint GET /v1/url-types

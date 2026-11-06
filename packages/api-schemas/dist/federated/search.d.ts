@@ -14379,7 +14379,7 @@ type FederatedSearchDefinition = z.infer<typeof FederatedSearchSchemaDefinition>
 export interface FederatedSearchSchemaInput extends z.input<typeof FederatedSearchSchemaDefinition> {
 }
 /**
- * Federated entity, person, and news search result composed from each domain's canonical search result owner, with the strategy used for every scope.
+ * Combined entity, person, and news search results, each from that record type's own search, with the search method used for each.
  *
  * @openapiSchema FederatedSearch
  * @endpoint GET /v1/search/link

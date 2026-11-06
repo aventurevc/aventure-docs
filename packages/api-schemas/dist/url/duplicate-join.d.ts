@@ -10,7 +10,7 @@ type UrlDuplicateJoinDefinition = z.infer<typeof UrlDuplicateJoinSchemaDefinitio
 export interface UrlDuplicateJoinSchemaInput extends z.input<typeof UrlDuplicateJoinSchemaDefinition> {
 }
 /**
- * Entity or person that currently owns a normalized URL.
+ * Entity or person that currently has this URL (after normalization).
  *
  * @openapiSchema UrlDuplicateJoin
  * @standardProblemResponse

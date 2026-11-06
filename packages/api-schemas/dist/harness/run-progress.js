@@ -12,7 +12,7 @@ import { z } from "zod/v4";
 export const HarnessRunProgressSchema = z.object({
     /** Whether the enrichment loop reports completion */
     complete: z.boolean(),
-    /** Canonical entity slug currently reported by the loop */
+    /** Slug of the entity the run is researching, as last reported */
     entitySlug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

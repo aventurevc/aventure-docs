@@ -341,7 +341,7 @@ type EntityRelationshipDefinition = z.infer<typeof EntityRelationshipSchemaDefin
 export interface EntityRelationshipSchemaInput extends z.input<typeof EntityRelationshipSchemaDefinition> {
 }
 /**
- * Domain record for entity relationships - oriented from the requested entity to the joined entity
+ * A relationship between two entities, described from the requested entity toward the related one
  *
  * @openapiSchema EntityRelationship
  * @endpoint GET /v1/entities/lookup-exact

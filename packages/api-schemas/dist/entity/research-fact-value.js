@@ -8,7 +8,7 @@ const EntityResearchFactValueSchemaDefinition = z.object({
         .string()
         .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)
         .nullish(),
-    /** Current-fact eligibility projected from the canonical research detail row. */
+    /** Whether this fact counts as current, taken from its research detail. */
     currentEligible: z.boolean().nullish(),
     dataConfidence: EntityValuationDataConfidenceSchema.nullish(),
     /** Date-valued research fact, preserving the source's year, month, day, or timestamp precision. */
@@ -30,7 +30,7 @@ const EntityResearchFactValueSchemaDefinition = z.object({
     valueType: EntityResearchValueTypeSchema,
 });
 /**
- * Canonical typed fact value nested under entity research fields
+ * A typed research fact value, nested under the entity's research fields
  *
  * @openapiSchema EntityResearchFactValue
  * @endpoint GET /v1/entities/lookup-exact

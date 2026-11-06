@@ -36,7 +36,7 @@ type ResearchSnippetTypeDefinition = z.infer<typeof ResearchSnippetTypeSchemaDef
 export interface ResearchSnippetTypeSchemaInput extends z.input<typeof ResearchSnippetTypeSchemaDefinition> {
 }
 /**
- * Canonical research snippet type with the governance rules write callers must satisfy.
+ * A research snippet type and the rules text written to it must meet.
  *
  * @openapiSchema ResearchSnippetType
  * @endpoint GET /v1/entities/research-snippets/types

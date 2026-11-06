@@ -6,7 +6,7 @@ const ClassificationCatalogBucketSchemaDefinition = z.object({
     alias: z.array(z.string()),
     /** Canonical classification bucket key. */
     bucket: z.string().nullish(),
-    /** Whether the bucket has hierarchy semantics. */
+    /** Whether the bucket's values form a parent and child hierarchy. */
     hierarchical: z.boolean(),
     /** Human-readable bucket label (e.g. 'Revenue Model'). */
     label: z.string(),

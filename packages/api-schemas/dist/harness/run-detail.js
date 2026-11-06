@@ -7,7 +7,7 @@ import { HarnessRunSchema } from "./run.js";
 const HarnessRunDetailSchemaDefinition = z.object({
     /** Current public profile the run resolved to */
     entity: EntitySchema.nullish(),
-    /** Follow-up admission and direct child run ids for this terminal generation */
+    /** Follow-up runs filed when this run last finished, and their ids */
     followUp: HarnessRunFollowUpSchema.optional(),
     /** Time the run's newest stream event was recorded; null when the run has no events. A running run whose value stops advancing has stalled */
     lastEventAt: z.iso.datetime({ offset: true }).nullish(),

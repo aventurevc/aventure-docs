@@ -407,7 +407,7 @@ type FundraiseInvestmentEvidenceDefinition = z.infer<typeof FundraiseInvestmentE
 export interface FundraiseInvestmentEvidenceSchemaInput extends z.input<typeof FundraiseInvestmentEvidenceSchemaDefinition> {
 }
 /**
- * Canonical transaction, participation attribution, and their owning source metadata.
+ * A funding round, the investor's part in it, and the sources for each.
  *
  * @openapiSchema FundraiseInvestmentEvidence
  * @endpoint GET /v1/search/link

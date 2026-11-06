@@ -32,7 +32,7 @@ const EntityFundraiseInvestorJoinSchemaDefinition = z.object({
     updatedAt: z.iso.datetime({ offset: true }),
 });
 /**
- * Canonical fundraise investor join row for API serialization
+ * One investor's participation in one funding round.
  *
  * @openapiSchema EntityFundraiseInvestorJoin
  * @endpoint GET /v1/entities/lookup-exact

@@ -16,14 +16,14 @@ const SourceDocumentListSchemaDefinition = z.object({
     rawByteCount: z.number().int().nullish(),
     rawCharset: z.string().nullish(),
     rawMediaType: z.string().nullish(),
-    /** Canonical fetch identity: canonical URL, query hash, or dataset + external id */
+    /** What identifies this fetch: the normalized URL, a hash of the query, or a dataset name plus an external id */
     sourceKey: z.string(),
     upstreamContentEncoding: z.string().nullish(),
-    /** Fetched page URL; recency keyset continuation uses this value */
+    /** Fetched page URL; also used to page through results by recency */
     url: z.string().nullish(),
 });
 /**
- * Metadata-only ledger row for source-document lists
+ * A stored source document's metadata, without its content.
  *
  * @openapiSchema SourceDocumentList
  * @endpoint GET /v1/web/searches/jobs/{jobId}

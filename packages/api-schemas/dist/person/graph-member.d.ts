@@ -29,7 +29,7 @@ type PersonGraphMemberDefinition = z.infer<typeof PersonGraphMemberSchemaDefinit
 export interface PersonGraphMemberSchemaInput extends z.input<typeof PersonGraphMemberSchemaDefinition> {
 }
 /**
- * Lean person rail member with association title facts
+ * Short person card with the person's title at the entity
  *
  * @openapiSchema PersonGraphMember
  * @endpoint GET /v1/entities/lookup-exact

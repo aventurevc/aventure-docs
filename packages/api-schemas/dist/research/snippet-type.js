@@ -21,17 +21,17 @@ const ResearchSnippetTypeSchemaDefinition = z.object({
     paragraphShape: ResearchParagraphShapeSchema.nullish(),
     /** One reader-facing question the analysis answers, shown where readers choose an analysis. */
     readerQuestion: z.string(),
-    /** Whether this textType is recognized by the research contract catalog; true for every row returned by this endpoint. */
+    /** Whether aVenture recognizes this text type; true for every row this endpoint returns. */
     recognized: z.boolean(),
     /** Dotted research section path the snippet attaches to. */
     targetPath: z.string(),
-    /** Canonical snippet type token used on the wire. */
+    /** Snippet type value used in requests and responses. */
     typeValue: z.string(),
     /** The strategic question this snippet type answers and how to shape it. Snippets are point-in-time strategic analysis of the company's position against its market and named alternatives: open with the judgment and give dated details only as evidence for it, never as a fact list. */
     writeHint: z.string(),
 });
 /**
- * Canonical research snippet type with the governance rules write callers must satisfy.
+ * A research snippet type and the rules text written to it must meet.
  *
  * @openapiSchema ResearchSnippetType
  * @endpoint GET /v1/entities/research-snippets/types

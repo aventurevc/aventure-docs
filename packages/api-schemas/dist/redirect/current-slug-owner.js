@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { SlugResourceSchema } from "./slug-resource.js";
 /**
- * Current slug owner
+ * Record that currently uses this slug
  *
  * @openapiSchema CurrentSlugOwner
  * @standardProblemResponse

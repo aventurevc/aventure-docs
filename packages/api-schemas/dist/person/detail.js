@@ -32,7 +32,7 @@ const PersonDetailSchemaDefinition = z.object({
     similar: z.array(PersonSimilarityResultSchema).nullish(),
 });
 /**
- * Composed person wrapper: core identity + enrichment + associations + investments. Access core fields via .core (for example .core.slug or .core.nameFull).
+ * Full person detail: core identity, additional data, associations, and investments. Core fields are under core (for example .core.slug or .core.nameFull).
  *
  * @openapiSchema PersonDetail
  * @endpoint GET /v1/entities/lookup-exact

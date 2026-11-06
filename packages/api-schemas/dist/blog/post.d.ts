@@ -34,7 +34,7 @@ type BlogPostDefinition = z.infer<typeof BlogPostSchemaDefinition>;
 export interface BlogPostSchemaInput extends z.input<typeof BlogPostSchemaDefinition> {
 }
 /**
- * External research-side blog post owned by exactly one entity or person. Unrelated to app.app_blog_article.
+ * A blog post published by exactly one entity or person and collected during research. It is not an aVenture blog article.
  *
  * @openapiSchema BlogPost
  * @endpoint GET /v1/entities/lookup-exact

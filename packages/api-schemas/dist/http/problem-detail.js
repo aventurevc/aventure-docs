@@ -19,7 +19,7 @@ import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 export const ProblemDetailSchema = z.object({
     /** Which monthly allowance a BILLING_ALLOWANCE refusal exhausted. */
     allowanceType: ResearchAllowanceTypeSchema.nullish(),
-    /** The unmet own-site proof for an NCES campus lookup; absent for other failures. */
+    /** For a school campus lookup (NCES records), the evidence from the campus's own website that is still missing; absent for other failures. */
     campusProofRefusal: IdentificationCampusRefusalSchema.nullish(),
     circuitBreaker: z.string().nullish(),
     /** Machine-readable secondary code on ProblemDetail.code. Agents should branch on this value when the HTTP status alone does not identify the recovery path. Many codes describe server-side conditions a caller cannot fix: surface them and stop. */
@@ -286,7 +286,7 @@ export const ProblemDetailSchema = z.object({
     traceId: z.string().nullish(),
     type: z.string().optional(),
     unknownParameters: z.array(z.string()).nullish(),
-    /** On a task-completion 409, the completion gate ids whose owning reads did not pass; absent for every other problem. */
+    /** On a task-completion 409, the ids of the completion checks that failed; absent for every other problem. */
     unmetGateId: z.array(z.string()).nullish(),
     /** Requests already charged against the limitType meter this period. */
     used: z.number().int().nullish(),

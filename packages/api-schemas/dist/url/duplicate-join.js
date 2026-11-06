@@ -8,7 +8,7 @@ const UrlDuplicateJoinSchemaDefinition = z.object({
     urlId: z.int(),
 });
 /**
- * Entity or person that currently owns a normalized URL.
+ * Entity or person that currently has this URL (after normalization).
  *
  * @openapiSchema UrlDuplicateJoin
  * @standardProblemResponse

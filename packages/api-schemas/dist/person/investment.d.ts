@@ -169,7 +169,7 @@ type PersonInvestmentDefinition = z.infer<typeof PersonInvestmentSchemaDefinitio
 export interface PersonInvestmentSchemaInput extends z.input<typeof PersonInvestmentSchemaDefinition> {
 }
 /**
- * Domain model for a person's investment in an entity (fundraise transaction)
+ * A person's investment in an entity's funding round
  *
  * @openapiSchema PersonInvestment
  * @endpoint GET /v1/entities/lookup-exact

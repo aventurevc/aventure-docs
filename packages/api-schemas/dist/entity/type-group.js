@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Canonical entity type groups for boundary-level scope selection.
+ * Groups of entity types, such as Organization, that a filter can select at once.
  *
  * @openapiSchema EntityTypeGroup
  * @endpoint GET /v1/entities/filters

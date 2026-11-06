@@ -5,7 +5,7 @@ const StageFrequencySchemaDefinition = z.object({
     stage: z.string(),
 });
 /**
- * Canonical equity stage derived from a transaction calculatedRoundLabel, with deal frequency ranked by count descending.
+ * Equity stage computed from each round's calculatedRoundLabel, with how many deals reached it, most frequent first.
  *
  * @openapiSchema StageFrequency
  * @endpoint GET /v1/entities/lookup-exact

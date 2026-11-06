@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Derived character/word counts and whether the row text meets its governed type contract (word/character limits and paragraph shape). violation lists each unmet rule and is empty when the row is compliant.
+ * Character and word counts for the text, and whether it meets its text type's rules (word and character limits and paragraph shape). violation lists each unmet rule and is empty when the text meets them all.
  *
  * @openapiSchema ContentCompliance
  * @endpoint GET /v1/entities/lookup-exact

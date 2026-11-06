@@ -180,7 +180,7 @@ type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;
 export interface EntityResearchSchemaInput extends z.input<typeof EntityResearchSchemaDefinition> {
 }
 /**
- * Combined entity research disclosure: governed detail rows, research text snippets, and joined accelerator participation.
+ * Research findings for an entity: structured research details, written research snippets, and accelerator participation.
  *
  * @openapiSchema EntityResearch
  * @endpoint GET /v1/entities/lookup-exact

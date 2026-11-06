@@ -5,20 +5,20 @@ const PersonGraphMemberSchemaDefinition = z.object({
     isCurrent: z.boolean().nullish(),
     /** Associated person id */
     personId: z.uuid(),
-    /** Person image projection */
+    /** The person's image fields. */
     personImage: PersonImageSchema,
     /** Person display name */
     personName: z.string(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     personSlug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)
         .max(255),
-    /** Read-side corporate title text for the association row */
+    /** Job title text for this role (read-only). */
     titleName: z.string().nullish(),
 });
 /**
- * Lean person rail member with association title facts
+ * Short person card with the person's title at the entity
  *
  * @openapiSchema PersonGraphMember
  * @endpoint GET /v1/entities/lookup-exact

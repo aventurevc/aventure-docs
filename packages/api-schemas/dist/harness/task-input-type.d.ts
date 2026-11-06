@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * NEWS binds a public article to its canonical news id; ENTITY binds a target entity to its canonical id through entity identification; TEXT is a literal value the request states; FACT is one source-bound claim to research; WRITER_BRIEF is the typed research analysis a prose writer composes from (claim ledger, positioning frame, paragraph plan).
+ * NEWS is a public article, given by its aVenture news id; ENTITY is a target entity, identified and given by its aVenture id; TEXT is a literal value the request states; FACT is one source-bound claim to research; WRITER_BRIEF is the typed research analysis a prose writer composes from (claim ledger, positioning frame, paragraph plan).
  *
  * @openapiSchema HarnessTaskInputType
  * @endpoint POST /v1/help

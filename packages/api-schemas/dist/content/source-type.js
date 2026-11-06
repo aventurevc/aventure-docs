@@ -15,7 +15,7 @@ const ContentSourceTypeSchemaKnownMembers = z.enum([
     "sourceDocument",
 ]);
 /**
- * Discriminator for unified content embedding source partitions
+ * Kind of content a similarity match came from; new kinds may be added.
  *
  * @openapiSchema ContentSourceType
  * @endpoint GET /v1/entities/lookup-exact

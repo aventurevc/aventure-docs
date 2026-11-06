@@ -48,15 +48,15 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export const EntitySitemapSchema = z.object({
-    /** Whether `/companies/<slug>/acquisitions` should be emitted. True only when an acquisition relationship exists AND both the acquired and acquirer entities are publicly visible. `entities acquisitions list` returning zero rows for a confirmed acquisition relationship always means a counterpart entity is still hidden -- publish it; that list reads live rows and never lags. A `false` flag on a row newer than the last refresh is refresh lag (see `EntitySitemap`). */
+    /** Whether `/companies/<slug>/acquisitions` is listed in the sitemap. True only when an acquisition relationship exists AND both the acquired and acquirer entities are publicly visible. `entities acquisitions list` returning zero rows for a confirmed acquisition relationship always means a counterpart entity is still hidden -- publish it; that list reads live rows and never lags. A `false` flag on a row newer than the last refresh is refresh lag (see `EntitySitemap`). */
     hasAcquisitions: z.boolean().default(false).optional(),
-    /** Whether the profile Analysis sub-route should be emitted. */
+    /** Whether the entity's Analysis profile page is listed in the sitemap. */
     hasAnalysis: z.boolean(),
-    /** Whether the profile Employees sub-route should be emitted. */
+    /** Whether the entity's Employees profile page is listed in the sitemap. */
     hasEmployees: z.boolean(),
-    /** Whether the profile Fundraising sub-route should be emitted. */
+    /** Whether the entity's Fundraising profile page is listed in the sitemap. */
     hasFundraising: z.boolean(),
-    /** Whether the profile News sub-route should be emitted. */
+    /** Whether the entity's News profile page is listed in the sitemap. */
     hasNews: z.boolean(),
     /** Slugs of related Product/Service entities that should each get their own `/companies/<slug>/products-services/<productSlug>` URL, capped at `MAX_PRODUCT_SERVICE_SLUGS` server-side. Derived from current `productService` relationships in either stored direction; the entity relationships resource is the authoritative, read-your-writes view of those joins. */
     productServiceSlug: z.array(z.string()),

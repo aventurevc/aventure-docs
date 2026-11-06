@@ -5,7 +5,7 @@ import { AddressCitySchema } from "./city.js";
 import { AddressCountrySchema } from "./country.js";
 import { AddressStateSchema } from "./state.js";
 /**
- * Canonical address record for entity and person payloads
+ * A postal address of an entity or person.
  *
  * @openapiSchema Address
  * @endpoint GET /v1/entities/lookup-exact

@@ -20,9 +20,9 @@ export const IdentificationCandidateSchema = z.object({
     dataCompletionCoverage: z.int().min(0).max(100).nullish(),
     /** Whether this record's stored website agrees with a url the subject supplied; see IdentificationDomainAgreement. */
     domainAgreement: z.enum(["MATCH", "CONFLICT", "UNKNOWN"]).nullish(),
-    /** How this record was checked as the picked record stored again; absent when it was not checked. */
+    /** How this record was checked for being a duplicate of the chosen record; absent when it was not checked. */
     duplicateBasis: z.enum(["STUB", "SHARED_FACT", "JUDGED"]).nullish(),
-    /** Probability, 0 to 1, that this record is the picked record stored again; present only when duplicateBasis is JUDGED. */
+    /** Probability, 0 to 1, that this record is a duplicate of the chosen record; present only when duplicateBasis is JUDGED. */
     duplicateProbability: z.number().nullish(),
     /** The year the entity was founded, when stored; absent for people and records without one. */
     foundedYear: z.int().nullish(),

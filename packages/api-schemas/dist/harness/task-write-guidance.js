@@ -20,7 +20,7 @@ export const HarnessTaskWriteGuidanceSchema = z.object({
     override: z.string(),
     /** Each problem that rejects this prose: what fails it and the fix. */
     reject: z.array(z.string()),
-    /** The read that serves this write's per-type hints; read it before writing. */
+    /** The read operation that returns per-type hints for this write; call it first. */
     typeCatalog: z.string(),
 });
 //# sourceMappingURL=task-write-guidance.js.map

@@ -30,9 +30,9 @@ import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 export const HarnessRunSchema = z.object({
     /** Retry attempt counter */
     attempt: z.int(),
-    /** Agent loop this run executes on */
+    /** Agent framework this run executes on */
     chassis: HarnessChassisSchema.nullish(),
-    /** True when the chassis router, not a caller, picked `chassis` */
+    /** True when aVenture, not the caller, chose `chassis` */
     chassisRouted: z.boolean(),
     /** Creation timestamp */
     createdAt: z.iso.datetime({ offset: true }),
@@ -48,9 +48,9 @@ export const HarnessRunSchema = z.object({
     failureClass: z.string().nullish(),
     /** Run completion timestamp */
     finishedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** Successful claim acknowledgement only: true on first-ever start, false on reclaim; reads null (unknown) */
+    /** Set only in the response that starts the run: true the first time it starts, false when a worker restarts it; null in every other response */
     firstStart: z.boolean().nullish(),
-    /** Follow-up admission for the exact current terminal generation; old engine terminals remain PENDING */
+    /** Whether follow-up runs from this run's latest finish have all been filed; runs finished by older engine versions stay PENDING */
     followUpAdmission: HarnessRunFollowUpAdmissionSchema.optional(),
     /** Whether this run consumes an immutable private source document */
     hasSourceDocument: z.boolean(),
@@ -60,13 +60,13 @@ export const HarnessRunSchema = z.object({
     iteration: z.int(),
     /** Admission class (interactive or background) on client-facing responses; Prefer: run-lane-origin returns the actual queue lane. Engine lifecycle responses always return the actual lane. */
     lane: HarnessRunLaneSchema,
-    /** Latest enrich-loop status as an opaque JSON string */
+    /** Latest research-loop progress as a free-form JSON string */
     latestStatus: z.string().nullish(),
-    /** Gateway wire API every LLM call of this run uses */
+    /** Language-model API format this run's calls use */
     llmApi: HarnessLlmApiSchema.nullish(),
     /** Loop iteration cap */
     maxIteration: z.int(),
-    /** Parallel read-only scout fan-out width N */
+    /** How many read-only research helpers the run may use at once */
     maxScoutConcurrent: z.int(),
     /** Enrichment breadth selected for this run */
     mode: EnrichmentModeSchema,
@@ -78,7 +78,7 @@ export const HarnessRunSchema = z.object({
     nextAttemptAt: z.iso.datetime({ offset: true }).nullish(),
     /** Research allowance this run reserved when it was filed: COMPANY or PERSON; null for a run filed without one */
     researchAllowanceType: ResearchAllowanceTypeSchema.nullish(),
-    /** Partial or blocked direct research, derived from its recorded failure class; null for other outcomes */
+    /** How unsuccessful research ended: PARTIAL or BLOCKED, from its recorded failure class; null for other outcomes */
     researchOutcome: HarnessResearchOutcomeSchema.nullish(),
     /** Instant past which a warm resume is no longer guaranteed; the harness writes it with session_resume from the model's cache window. Warm-resumable now iff failed/stopped and this is in the future. Null when there is no resume window. */
     resumeSafeUntil: z.iso.datetime({ offset: true }).nullish(),
@@ -86,7 +86,7 @@ export const HarnessRunSchema = z.object({
     startedAt: z.iso.datetime({ offset: true }).nullish(),
     /** Current lifecycle state */
     status: HarnessRunStatusSchema,
-    /** Read-only research, cohort, and completion sub-agent model id */
+    /** Model id of the run's read-only research and check helpers */
     subagentModel: z.string().nullish(),
     /** True when the requester left `subagentModel` to the auto router, which picks it again each time the run leaves the queue; null on engine lease responses */
     subagentModelRouted: z.boolean().nullish(),

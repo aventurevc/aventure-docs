@@ -16,7 +16,7 @@ const EntityResearchDetailSchemaDefinition = z.object({
     /** Read-only range derived only for targetDateAbsolute detail rows */
     derivedRange: ResearchDerivedRangeSchema.nullish(),
     discreteValue: z.number().nullish(),
-    /** Canonical entity UUID */
+    /** Entity id (UUID) */
     entityId: z.uuid(),
     id: z.int(),
     /** Source-stated measurement/accounting basis; null means unknown. */

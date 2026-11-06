@@ -28,7 +28,7 @@ type EntityResearchFactValueDefinition = z.infer<typeof EntityResearchFactValueS
 export interface EntityResearchFactValueSchemaInput extends z.input<typeof EntityResearchFactValueSchemaDefinition> {
 }
 /**
- * Canonical typed fact value nested under entity research fields
+ * A typed research fact value, nested under the entity's research fields
  *
  * @openapiSchema EntityResearchFactValue
  * @endpoint GET /v1/entities/lookup-exact

@@ -11,13 +11,13 @@ const PersonGraphCareerContextSchemaDefinition = z.object({
     colleague: z.array(PersonGraphMemberSchema),
     /** Most recent employee-count research fact when one is recorded */
     employeeCount: EmployeeCountSchema.nullish(),
-    /** Entity card projection: core identity plus aggregate funding rollup */
+    /** Entity card: core identity plus total funding */
     entity: EntityFundraiseTransactionEntitySchema,
     /** Primary address of the entity when one is recorded */
     primaryAddress: AddressSchema.nullish(),
     /** Most recent news linked to the entity, newest first */
     recentNews: z.array(NewsSchema),
-    /** Entities similar to this entity, from the entity similarity rails */
+    /** Entities similar to this entity, from aVenture's similar-entity lists */
     similarEntity: z.array(PersonGraphSimilarEntitySchema),
 });
 /**

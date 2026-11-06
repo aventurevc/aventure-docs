@@ -7,7 +7,7 @@ const EntityFilterRequestValueShapeSchemaKnownMembers = z.enum([
     "DECIMAL_RANGE_ARRAY",
 ]);
 /**
- * Canonical request value shape derived from the bound Kotlin property type.
+ * Kind of value this filter property takes in the request body.
  *
  * @openapiSchema EntityFilterRequestValueShape
  * @endpoint GET /v1/entities/filters

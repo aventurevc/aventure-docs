@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Named quality gates for entity list endpoints.
+ * Extra check on listed entities. COMPANY_LISTING_READY returns only operating companies and business lines that have a real (not generated) logo, a founding year, a current headquarters, and recorded positive funding with a stage; NONE applies no extra check.
  *
  * @openapiSchema EntityListQualityGate
  * @endpoint GET /v1/search/link

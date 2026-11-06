@@ -13,7 +13,7 @@ type UniqueIdTypeAliasDefinition = z.infer<typeof UniqueIdTypeAliasSchemaDefinit
 export interface UniqueIdTypeAliasSchemaInput extends z.input<typeof UniqueIdTypeAliasSchemaDefinition> {
 }
 /**
- * Canonical uniqueId type value plus its label, accepted aliases, owner scope, and format pattern.
+ * An identifier type with its label, accepted spellings, whether it applies to entities or people, and its format pattern.
  *
  * @openapiSchema UniqueIdTypeAlias
  * @endpoint GET /v1/unique-ids/types

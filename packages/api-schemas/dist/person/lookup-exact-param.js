@@ -13,15 +13,15 @@ export const PERSON_LOOKUP_EXACT_ENDPOINT = "/v1/people/lookup-exact";
  */
 export const PersonLookupExactParamSchema = z.object({
     include: z.array(PersonDetailIncludeSchema).optional(),
-    /** Projection qualifier — include address values (default: true). Set false to omit address array. */
+    /** Include address values in the response (default: true). Set false to omit address array. */
     includeAddress: z.boolean().optional(),
-    /** Projection qualifier — include association values (default: true). Set false to omit association array. */
+    /** Include association values in the response (default: true). Set false to omit association array. */
     includeAssociation: z.boolean().optional(),
-    /** Projection qualifier — include URL link values in response (default: true). Set false to omit urlLink array. */
+    /** Include URL link values in the response (default: true). Set false to omit urlLink array. */
     includeUrl: z.boolean().optional(),
     /** Group C — candidate lookup signal: person location (city, state, country). Combine with other group-C signals for bounded search. Mutually exclusive with id and slug; may be combined with url for fallback. */
     location: z.string().optional(),
-    /** Projection qualifier — max association values to return; bounded internally to the association limit. Default: 40. */
+    /** Maximum association values to return; the server caps it at its own association limit. Default: 40. */
     maxAssociations: z.int().optional(),
     /** Group C — candidate lookup signal: loose name match (any of given/family/full). A name alone never resolves; combine it with other group-C signals or url. Mutually exclusive with id and slug. */
     nameAny: z.string().optional(),

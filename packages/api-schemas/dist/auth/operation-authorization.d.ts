@@ -28,7 +28,7 @@ type AuthOperationAuthorizationDefinition = z.infer<typeof AuthOperationAuthoriz
 export interface AuthOperationAuthorizationSchemaInput extends z.input<typeof AuthOperationAuthorizationSchemaDefinition> {
 }
 /**
- * Current permission grant, access class, and supplied API operations admitted by the live request authorization policy.
+ * Your current permissions, access level, and which of the API operations you listed you may call under the current authorization policy.
  *
  * @openapiSchema AuthOperationAuthorization
  * @endpoint POST /v1/auth/me/permissions

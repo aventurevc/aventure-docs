@@ -161,7 +161,7 @@ type EntityListResearchDefinition = z.infer<typeof EntityListResearchSchemaDefin
 export interface EntityListResearchSchemaInput extends z.input<typeof EntityListResearchSchemaDefinition> {
 }
 /**
- * Nested research projection owned by EntityList rows, excluding snippet text.
+ * Research findings included in each entity list row, without snippet text.
  *
  * @openapiSchema EntityListResearch
  * @endpoint GET /v1/search/link

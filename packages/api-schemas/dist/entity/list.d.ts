@@ -1436,7 +1436,7 @@ type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
 export interface EntityListSchemaInput extends z.input<typeof EntityListSchemaDefinition> {
 }
 /**
- * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins. Addresses are bounded current-location samples, not a complete office inventory; use the entity addresses subresource to list every office and association.
+ * Entity row returned by list and batch-list reads. It includes core identity, additional data, research details, accelerator participation, and funding rounds, but not the relationship, newsArticle, person, sitemap, and research snippet sections that detail reads return. List rows show only current classifications; to see past ones, call the entity classifications endpoint with includeInactive=true. Addresses are a few current locations, not every office; use the entity addresses endpoint to list every office and association.
  *
  * @openapiSchema EntityList
  * @endpoint GET /v1/search/link

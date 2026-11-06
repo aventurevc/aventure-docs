@@ -13,13 +13,13 @@ const PersonNaturalSearchResultSchemaDefinition = z.object({
     personLead: z.boolean(),
     /** aVenture people resolved or filed from web-discovered LinkedIn profiles whom no returned person matches, grouped by `named` in query order. A search that has not run yet runs only for a signed-in subscriber with `layer=web`. */
     profile: z.array(SearchPersonProfileSchema),
-    /** Person page returned by the canonical person list engine. */
+    /** Page of matching people. */
     result: PageResultPersonSchema,
     /** Id of this search's stored record. Null when the search was not recorded. */
     searchRequestId: z.uuid().nullish(),
 });
 /**
- * Natural-language people search result: planner interpretation plus the canonical person page produced by the person list engine.
+ * Result of a plain-English people search: how the query was interpreted, and the resulting page of people.
  *
  * @openapiSchema PersonNaturalSearchResult
  * @endpoint GET /v1/search/link

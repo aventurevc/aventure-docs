@@ -42,7 +42,7 @@ import { ClassificationSchema } from "../classification/classification.js";
  * @contractRole canonical
  */
 export const EntityTagSchema = z.intersection(ClassificationSchema, z.object({
-    /** Canonical classification bucket key; `type` is the value tag search and the catalog accept. */
+    /** Classification bucket key; tag search and the classification catalog accept this value as `type`. */
     bucket: z.string().nullish(),
     /** Id of this classification on the entity; null in catalog and search results. */
     classificationId: z.int().nullish(),

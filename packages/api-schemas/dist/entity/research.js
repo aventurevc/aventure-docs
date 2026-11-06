@@ -4,15 +4,15 @@ import { EntityAcceleratorParticipationSchema } from "./accelerator-participatio
 import { EntityResearchDetailSchema } from "./research-detail.js";
 import { EntityResearchSnippetSchema } from "./research-snippet.js";
 const EntityResearchSchemaDefinition = z.object({
-    /** Joined accelerator participation derived from governed accelerator research rows */
+    /** Accelerator programs the entity took part in, derived from its accelerator research records */
     acceleratorParticipation: z.array(EntityAcceleratorParticipationSchema),
-    /** Flat governed research detail rows filtered by visibility */
+    /** Structured research details the caller is allowed to see */
     detail: z.array(EntityResearchDetailSchema),
     /** Research text snippets for this entity */
     snippet: z.array(EntityResearchSnippetSchema),
 });
 /**
- * Combined entity research disclosure: governed detail rows, research text snippets, and joined accelerator participation.
+ * Research findings for an entity: structured research details, written research snippets, and accelerator participation.
  *
  * @openapiSchema EntityResearch
  * @endpoint GET /v1/entities/lookup-exact

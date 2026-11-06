@@ -10,7 +10,7 @@ import { EntityProviderSchema } from "./provider.js";
 const EntityListSchemaDefinition = z.object({
     /** Public buyer of the newest completed acquisition; null for announced or non-public buyers. */
     acquirer: EntitySchema.nullish(),
-    /** Flat entity core — identity, naming, status, image, and source metadata */
+    /** Core fields of the entity: identity, names, status, image, and source details */
     core: EntitySchema,
     /** The queued or running full-research run covering this record, whoever filed it; set only on federated search result and subject rows, null when none and on every other list read. */
     coveringRunId: z.uuid().nullish(),
@@ -22,13 +22,13 @@ const EntityListSchemaDefinition = z.object({
     profileStatus: EntityProfileStatusSchema.optional(),
     /** Fund manager firm or product/service provider; null otherwise. */
     provider: EntityProviderSchema.nullish(),
-    /** List-safe research disclosure without text snippets */
+    /** Research findings for list rows, without the written snippets */
     research: EntityListResearchSchema,
-    /** Semantic embedding match evidence populated only for semantic list reads. */
+    /** Why this row matched a meaning-based (semantic) search; set only on semantic searches. */
     semanticMatch: ContentEmbeddingMatchSchema.nullish(),
 });
 /**
- * Narrow entity row for list and batch-list reads. Keeps core identity, enrichment, governed research detail, accelerator participation, and fundraise rounds while omitting detail-only relationship, newsArticle, person, sitemap, and research snippet sections. Classification enrichment is current-only on list rows; use the entity classifications subresource with includeInactive=true to audit historical joins. Addresses are bounded current-location samples, not a complete office inventory; use the entity addresses subresource to list every office and association.
+ * Entity row returned by list and batch-list reads. It includes core identity, additional data, research details, accelerator participation, and funding rounds, but not the relationship, newsArticle, person, sitemap, and research snippet sections that detail reads return. List rows show only current classifications; to see past ones, call the entity classifications endpoint with includeInactive=true. Addresses are a few current locations, not every office; use the entity addresses endpoint to list every office and association.
  *
  * @openapiSchema EntityList
  * @endpoint GET /v1/search/link

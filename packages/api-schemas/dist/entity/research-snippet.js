@@ -29,9 +29,9 @@ import { EntityResearchPublicSourceSchema } from "./research-public-source.js";
  * @contractRole canonical
  */
 export const EntityResearchSnippetSchema = z.object({
-    /** Derived character/word counts and governed-contract compliance for this snippet row; null when not evaluated. */
+    /** Character and word counts for this snippet and whether it meets its type's length and paragraph rules; null when not checked. */
     compliance: ContentComplianceSchema.nullish(),
-    /** Canonical entity UUID */
+    /** Entity id (UUID) */
     entityId: z.uuid(),
     id: z.int(),
     /** Published page behind this value, read from the provenance event that wrote it; absent for internal sources. */

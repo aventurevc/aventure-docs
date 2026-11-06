@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { EntitySchema } from "./entity.js";
 import { EntityFundingDetailSchema } from "./funding-detail.js";
 /**
- * Entity projection used inside FundraiseTransaction responses
+ * Basic entity fields shown inside a funding round.
  *
  * @openapiSchema EntityFundraiseTransactionEntity
  * @endpoint GET /v1/entities/lookup-exact

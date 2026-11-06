@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 const HarnessRunLaneSchemaKnownMembers = z.enum(["live", "interactive", "bulk", "background"]);
 /**
- * Queue lane for admission priority: live (search and lookup) and interactive (one client run) take interactive admission; bulk (client batch) and background (system backlog) take background admission
+ * Queue priority of a run: live (search and lookup) and interactive (one client run) share the interactive queue; bulk (client batch) and background (system backlog) share the background queue
  *
  * @openapiSchema HarnessRunLane
  * @endpoint GET /v1/research/runs

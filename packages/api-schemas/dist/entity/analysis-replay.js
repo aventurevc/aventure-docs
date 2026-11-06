@@ -11,7 +11,7 @@ const EntityAnalysisReplaySchemaDefinition = z.object({
     entitySlug: z.string(),
     /** Retained legacy field, always empty. Conversation is withheld; publishedSection is a result, not a reply. */
     event: z.array(HarnessRunEventSchema),
-    /** The accepted current visible snippet, with only canonical public source metadata. */
+    /** The accepted, current, visible snippet, with only its public source details. */
     publishedSection: EntityResearchSnippetSchema.nullish(),
     /** The single snippet type displayed by this public example. */
     section: z.array(z.string()),

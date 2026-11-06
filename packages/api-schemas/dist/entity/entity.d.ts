@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
+ * Core fields of an entity: identity, names, status, image, and source details. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
  *
  * @openapiSchema Entity
  * @endpoint GET /v1/entities/brand

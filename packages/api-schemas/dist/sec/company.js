@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { SecListingProspectusSchema } from "./listing-prospectus.js";
 const SecCompanySchemaDefinition = z.object({
-    /** SEC Central Index Key, 10-digit zero-padded. The stable cross-sync join key. */
+    /** SEC Central Index Key, 10 digits with leading zeros. It stays the same across SEC data syncs. */
     cik: z.string(),
     /** Employer Identification Number (tax id), when SEC supplies one. */
     ein: z.string().nullish(),

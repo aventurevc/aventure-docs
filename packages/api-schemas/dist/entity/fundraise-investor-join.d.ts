@@ -35,7 +35,7 @@ type EntityFundraiseInvestorJoinDefinition = z.infer<typeof EntityFundraiseInves
 export interface EntityFundraiseInvestorJoinSchemaInput extends z.input<typeof EntityFundraiseInvestorJoinSchemaDefinition> {
 }
 /**
- * Canonical fundraise investor join row for API serialization
+ * One investor's participation in one funding round.
  *
  * @openapiSchema EntityFundraiseInvestorJoin
  * @endpoint GET /v1/entities/lookup-exact

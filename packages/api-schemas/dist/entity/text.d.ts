@@ -26,7 +26,7 @@ type EntityTextDefinition = z.infer<typeof EntityTextSchemaDefinition>;
 export interface EntityTextSchemaInput extends z.input<typeof EntityTextSchemaDefinition> {
 }
 /**
- * Canonical entity/person text read record
+ * A text record, such as a description, of an entity or person.
  *
  * @openapiSchema EntityText
  * @endpoint GET /v1/entities/{entityId}/texts

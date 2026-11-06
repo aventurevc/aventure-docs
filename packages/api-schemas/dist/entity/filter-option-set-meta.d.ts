@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Generator metadata for a filter payload
+ * Information about how this filter's option list was generated
  *
  * @openapiSchema EntityFilterOptionSetMeta
  * @endpoint GET /v1/entities/filters

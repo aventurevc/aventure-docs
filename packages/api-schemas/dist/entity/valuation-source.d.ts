@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Which canonical store the point came from.
+ * Where the point came from: a research detail or a funding round.
  *
  * @openapiSchema EntityValuationSource
  * @endpoint GET /v1/entities/lookup-exact

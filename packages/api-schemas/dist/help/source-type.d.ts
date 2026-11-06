@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Corpus partition a help citation is drawn from.
+ * Which part of the help material a citation comes from.
  *
  * @openapiSchema HelpSourceType
  * @endpoint POST /v1/help

@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Full entity detail response: core entity, enrichment, governed research, relationships, external identifiers, fundraising, news, people, and sitemap eligibility. Core identity and naming fields live under core.
+ * Full entity detail: core fields, additional data, research, relationships, external identifiers, fundraising, news, people, and which profile pages exist. Identity and name fields are under core.
  *
  * @openapiSchema EntityDetail
  * @endpoint GET /v1/entities/lookup-exact

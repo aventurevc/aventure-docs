@@ -5,7 +5,7 @@ import { EntityNameAliasEntityAliasTypeSchema } from "./name-alias-entity-alias-
 import { EntitySitemapSchema } from "./sitemap.js";
 import { EntityTypeSchema } from "./type.js";
 /**
- * Flat entity core record — identity, naming, status, image, and source metadata. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
+ * Core fields of an entity: identity, names, status, image, and source details. An entity is our umbrella record for organizations such as companies, funds, investment firms and investors, accelerators, nonprofits, and government agencies, plus products and services connected to those organizations. Nested as .core inside EntityList for default list reads and EntityDetail for detail reads.
  *
  * @openapiSchema Entity
  * @endpoint GET /v1/entities/brand
@@ -84,14 +84,14 @@ export const EntitySchema = z.object({
     nameLegal: z.string().nullish(),
     /** Current operating status. Use Acquired Subsidiary when the entity was acquired and still operates; use Closed (Acquihire) when the entity was acquired for its team and shut down, rendering like Closed everywhere; use Acquired only when it is terminal, folded, or closed. */
     operatingStatus: z.string().nullish(),
-    /** Stable, immutable public handle (e.g. `eV1StGXR8Z5a`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill. */
+    /** Stable, immutable public handle (e.g. `eV1StGXR8Z5a`). Never changes once assigned, unlike the slug. Null on responses that do not include it and on older records not yet given a handle. */
     publicId: z
         .string()
         .regex(/^e[0-9A-Za-z]{11}$/)
         .nullish(),
     /** Absolute public profile URL on the aVenture front-end, e.g. `https://aventure.vc/non-profits/{slug}`, derived from the typeRecord's canonical route family. Null when the route needs relationship context or the record has no direct public SSR route (Business Line, Organization, Product, Service, or a non-public slug). EntityDetail.publicUrl resolves Business Line parent context. A Product/Service has no standalone page: it is addressed only as `{providerPublicUrl}/products-services/{slug}` under its provider, because its slug is unique only per provider; the sitemap-urls slot paths already emit those child routes. */
     publicUrl: z.string().nullish(),
-    /** Sub-route eligibility, populated by the sitemap projection. Null on non-sitemap reads to keep thin payloads compact. */
+    /** Which of the entity's profile pages exist and are listed in the sitemap; set only on sitemap reads and null otherwise to keep responses small. */
     sitemap: EntitySitemapSchema.nullish(),
     /** URL-safe identifier */
     slug: z

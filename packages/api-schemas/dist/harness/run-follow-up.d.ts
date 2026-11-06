@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Durable completion barrier and direct child run ids
+ * Follow-up runs this run started, and whether all of them have been filed
  *
  * @openapiSchema HarnessRunFollowUp
  * @endpoint GET /v1/research/runs/{runId}

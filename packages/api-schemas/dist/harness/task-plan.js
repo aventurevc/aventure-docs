@@ -14,7 +14,7 @@ import { HarnessTaskSchema } from "./task.js";
 export const HarnessTaskPlanSchema = z.object({
     /** Stored catalog revision this plan was read from. */
     catalogRevision: z.int().optional(),
-    /** Canonical completion gate ids this task is responsible for; the ids resolve through the completion contract catalog. */
+    /** Ids of the completion checks this task must pass, as listed in the completion check catalog. */
     gateId: z.array(z.string()).optional(),
     /** Typed task inputs; required inputs must be bound before it runs. */
     input: z.array(HarnessTaskSchema),

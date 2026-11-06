@@ -6,7 +6,7 @@ import { UrlDuplicateJoinSchema } from "./duplicate-join.js";
 const UrlDuplicateConflictSchemaDefinition = z.object({
     /** Conflict kind that identifies this details shape. */
     conflictType: DomainConflictTypeSchema,
-    /** Every current owner that already holds the normalized URL with this urlType. Non-empty when this conflict is emitted. */
+    /** Every entity or person that already has this URL (after normalization) with this urlType. Non-empty when this conflict is emitted. */
     existingJoin: z.array(UrlDuplicateJoinSchema),
     /** True when URL fragment differences were ignored during duplicate matching (i.e., the conflict ignores everything after '#'). */
     fragmentIgnored: z.boolean(),
@@ -14,7 +14,7 @@ const UrlDuplicateConflictSchemaDefinition = z.object({
     guidance: z.string(),
     /** Normalized URL match key used for duplicate detection. Null when normalization could not produce a stable key (e.g., malformed input). */
     normalizedUrl: z.string().nullish(),
-    /** Owner the caller attempted to attach the URL to. */
+    /** Entity or person you tried to add the URL to. */
     requestedOwner: EntityPersonOwnerSchema,
     /** Raw URL as submitted by the caller (pre-normalization). */
     url: z.string(),

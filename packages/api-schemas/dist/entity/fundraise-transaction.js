@@ -27,7 +27,7 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     entity: EntityFundraiseTransactionEntitySchema.nullish(),
     /** Source-reported financial instrument persisted for this round. */
     financialInstrumentType: FundraiseFinancialInstrumentTypeSchema.nullish(),
-    /** Canonical fundraise transaction UUID */
+    /** Funding round id (UUID) */
     id: z.uuid(),
     investor: z.array(EntityFundraiseInvestorJoinSchema).nullish(),
     /** Investor-specific attribution when returned from investor-perspective investment views. amountInvested is not added to amountRaised; it is the selected investor's whole investment in this round: its joins here (one per vehicle, such as a CEA and a SAFE) summed. joinId names one of those joins. */
@@ -52,7 +52,7 @@ const EntityFundraiseTransactionSchemaDefinition = z.object({
     valuationPreMoney: z.number().int().nullish(),
 });
 /**
- * Canonical fundraise transaction view. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.
+ * One funding round. ONE row per discrete round. An entity that raised pre-seed, seed, and Series A is THREE rows. Combined or rolled-up totals are never modeled here — total raised is a sum across rows.
  *
  * @openapiSchema EntityFundraiseTransaction
  * @endpoint GET /v1/entities/lookup-exact

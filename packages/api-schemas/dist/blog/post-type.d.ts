@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * External research-side blog-post source classification
+ * Where a collected blog post came from
  *
  * @openapiSchema BlogPostType
  * @endpoint GET /v1/entities/lookup-exact

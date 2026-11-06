@@ -8,7 +8,7 @@ const PersonSchemaDefinition = z.object({
     /** Record creation timestamp */
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     gender: z.string().nullish(),
-    /** Canonical person UUID */
+    /** Person id (UUID) */
     id: z.uuid(),
     image: PersonImageSchema,
     /** Provenance-grounded last-modified watermark (schema.org dateModified): the latest effective time across all writes attributed to this person. */
@@ -23,14 +23,14 @@ const PersonSchemaDefinition = z.object({
     /** Middle name as stored after name normalization */
     nameMiddle: z.string().nullish(),
     nickname: z.string().nullish(),
-    /** Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on projections that do not select it and on rows still awaiting handle backfill. */
+    /** Stable, immutable public handle (e.g. `pV1StGXR8Z5ab`). Never changes once assigned, unlike the slug. Null on responses that do not include it and on older records not yet given a handle. */
     publicId: z
         .string()
         .regex(/^p[0-9A-Za-z]{12}$/)
         .nullish(),
-    /** Semantic embedding match evidence populated only for semantic people reads. */
+    /** Why this person matched a meaning-based (semantic) search; set only on semantic searches. */
     semanticMatch: ContentEmbeddingMatchSchema.nullish(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     slug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)
@@ -42,7 +42,7 @@ const PersonSchemaDefinition = z.object({
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 /**
- * Canonical person core record
+ * A person's core profile fields.
  *
  * @openapiSchema Person
  * @endpoint GET /v1/entities/lookup-exact

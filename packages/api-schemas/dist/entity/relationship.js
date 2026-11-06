@@ -17,7 +17,7 @@ const EntityRelationshipSchemaDefinition = z.object({
     detail: z.string().nullish(),
     /** Joined entity on the other side of this relationship — read-only display projection. Writes name one endpoint in the URL path and the other in targetEntityId; the relationship type determines stored orientation. */
     entity: EntitySchema,
-    /** Integer entity_relationship.id row id, not an entity UUID */
+    /** Integer id of the relationship record, not an entity UUID */
     id: z.int().nullish(),
     /** Whether this relationship is current. Default relationship reads return only rows where isCurrent=true and isPrimary=true. */
     isCurrent: z.boolean().nullish(),
@@ -40,7 +40,7 @@ const EntityRelationshipSchemaDefinition = z.object({
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 /**
- * Domain record for entity relationships - oriented from the requested entity to the joined entity
+ * A relationship between two entities, described from the requested entity toward the related one
  *
  * @openapiSchema EntityRelationship
  * @endpoint GET /v1/entities/lookup-exact

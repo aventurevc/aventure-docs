@@ -19,7 +19,7 @@ const NewsDetailSchemaDefinition = z.object({
     personMentionResolved: z.array(NewsResolvedPersonLinkSchema),
 });
 /**
- * Canonical news detail owner
+ * A news article with all of its detail fields.
  *
  * @openapiSchema NewsDetail
  * @endpoint GET /v1/news/lookup

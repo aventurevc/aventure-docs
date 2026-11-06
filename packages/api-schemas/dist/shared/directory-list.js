@@ -8,7 +8,7 @@ const SharedDirectoryListSchemaDefinition = z.object({
     heading: z.string(),
     /** Stable shared-directory UUID */
     id: z.uuid(),
-    /** Canonical lowercase URL slug for the resource */
+    /** Lowercase URL slug that identifies the record. */
     slug: z
         .string()
         .regex(/^[a-z0-9_-]+$/)

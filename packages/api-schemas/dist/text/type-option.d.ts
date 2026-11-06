@@ -19,7 +19,7 @@ type TextTypeOptionDefinition = z.infer<typeof TextTypeOptionSchemaDefinition>;
 export interface TextTypeOptionSchemaInput extends z.input<typeof TextTypeOptionSchemaDefinition> {
 }
 /**
- * Canonical textType value accepted by text endpoints; entity rows include minWords, maxWords, rewriteHint, and paragraphShape when a governed text contract applies.
+ * A text type the text endpoints accept; entity rows include minWords, maxWords, rewriteHint, and paragraphShape when that type has length and paragraph rules.
  *
  * @openapiSchema TextTypeOption
  * @endpoint GET /v1/entities/texts/types

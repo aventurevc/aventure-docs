@@ -4,7 +4,7 @@ import { EntityWriterBriefSchema } from "../entity/writer-brief.js";
 import { HarnessTaskFactSchema } from "./task-fact.js";
 import { WriterBriefSchema } from "../writer/brief.js";
 const HarnessTaskInputBindingSchemaDefinition = z.object({
-    /** Canonical entity UUID; exclusive with newsId, text, writerBrief and fact. */
+    /** Entity id (UUID); exclusive with newsId, text, writerBrief and fact. */
     entityId: z.uuid().nullish(),
     /** Section-free entity or person text brief for a WRITER_BRIEF input; exclusive with writerBrief, entityId, newsId, text and fact. The task must create entity or person text. Use this typed value only with compatible Harness readers; legacy writerBrief remains supported. */
     entityWriterBrief: EntityWriterBriefSchema.nullish(),
@@ -12,7 +12,7 @@ const HarnessTaskInputBindingSchemaDefinition = z.object({
     fact: HarnessTaskFactSchema.nullish(),
     /** Catalog input key; omit it to bind the task's only declared input of the value's type. */
     key: z.string().nullish(),
-    /** Canonical news id; exclusive with entityId, text, writerBrief and fact. */
+    /** aVenture news id; exclusive with entityId, text, writerBrief and fact. */
     newsId: z.int().nullish(),
     /** Literal requester text; exclusive with entityId, newsId, writerBrief and fact. */
     text: z.string().nullish(),

@@ -8,7 +8,7 @@ const BlogPostSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }),
     /** Stable external feed/item identifier when available */
     externalId: z.string().nullish(),
-    /** Type-safe UUID identifier for research-side external blog article links */
+    /** UUID of a link to an external blog article collected during research */
     id: z.uuid(),
     isCurrent: z.boolean(),
     /** Last time ingest fetched or summarized this blog-post URL */
@@ -32,7 +32,7 @@ const BlogPostSchemaDefinition = z.object({
     url: z.string(),
 });
 /**
- * External research-side blog post owned by exactly one entity or person. Unrelated to app.app_blog_article.
+ * A blog post published by exactly one entity or person and collected during research. It is not an aVenture blog article.
  *
  * @openapiSchema BlogPost
  * @endpoint GET /v1/entities/lookup-exact

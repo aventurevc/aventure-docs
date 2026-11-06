@@ -1293,7 +1293,7 @@ type PersonNaturalSearchResultDefinition = z.infer<typeof PersonNaturalSearchRes
 export interface PersonNaturalSearchResultSchemaInput extends z.input<typeof PersonNaturalSearchResultSchemaDefinition> {
 }
 /**
- * Natural-language people search result: planner interpretation plus the canonical person page produced by the person list engine.
+ * Result of a plain-English people search: how the query was interpreted, and the resulting page of people.
  *
  * @openapiSchema PersonNaturalSearchResult
  * @endpoint GET /v1/search/link

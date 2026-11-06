@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Gateway wire API for a run's LLM calls: Anthropic Messages, OpenAI Chat Completions, or OpenAI Responses
+ * Language-model API format a run's calls use: Anthropic Messages, OpenAI Chat Completions, or OpenAI Responses
  *
  * @openapiSchema HarnessLlmApi
  * @endpoint GET /v1/research/runs

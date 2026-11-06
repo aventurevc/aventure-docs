@@ -39,7 +39,7 @@ type SearchModeExecutionDefinition = z.infer<typeof SearchModeExecutionSchemaDef
 export interface SearchModeExecutionSchemaInput extends z.input<typeof SearchModeExecutionSchemaDefinition> {
 }
 /**
- * Search strategy requested by the caller and executed by the canonical engine.
+ * Search method the caller asked for and the method the server actually ran.
  *
  * @openapiSchema SearchModeExecution
  * @endpoint GET /v1/search/link

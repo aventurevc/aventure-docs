@@ -4,7 +4,7 @@ import { AuthOperationAccessSchema } from "./operation-access.js";
 import { AuthOperationSchema } from "./operation.js";
 import { AuthPermissionGrantSchema } from "./permission-grant.js";
 const AuthOperationAuthorizationSchemaDefinition = z.object({
-    /** Supplied operations admitted by the current session. */
+    /** Operations from your list that the current session may call. */
     operation: z.array(AuthOperationSchema),
     /** Highest access class represented by the current session. */
     operationAccess: AuthOperationAccessSchema,
@@ -12,7 +12,7 @@ const AuthOperationAuthorizationSchemaDefinition = z.object({
     permissionGrant: AuthPermissionGrantSchema,
 });
 /**
- * Current permission grant, access class, and supplied API operations admitted by the live request authorization policy.
+ * Your current permissions, access level, and which of the API operations you listed you may call under the current authorization policy.
  *
  * @openapiSchema AuthOperationAuthorization
  * @endpoint POST /v1/auth/me/permissions

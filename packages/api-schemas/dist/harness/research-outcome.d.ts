@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Unsuccessful direct-session research disposition
+ * How unsuccessful research ended: PARTIAL (some of it finished) or BLOCKED
  *
  * @openapiSchema HarnessResearchOutcome
  * @endpoint GET /v1/research/runs

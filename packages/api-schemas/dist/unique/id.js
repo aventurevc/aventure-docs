@@ -30,7 +30,7 @@ const UniqueIdSchemaDefinition = z.object({
     shareClass: z.string().nullish(),
     /** Attribution source label for the mapping, when recorded. */
     source: z.string().nullish(),
-    /** Source-effective date of the standing assertion at supplied precision. */
+    /** Date from which the source says this listing standing applies, at the precision supplied. */
     standingAsOf: z
         .string()
         .regex(/^(?!0000)[0-9]{4}(?:-(?:0[1-9]|1[0-2])(?:-(?:0[1-9]|[12][0-9]|3[01])(?:T(?:[01][0-9]|2[0-3]):[0-5][0-9](?::[0-5][0-9](?:\.[0-9]{1,9})?)?(?:Z|[+-](?:(?:0[0-9]|1[0-7]):[0-5][0-9]|18:00)))?)?)?$/)

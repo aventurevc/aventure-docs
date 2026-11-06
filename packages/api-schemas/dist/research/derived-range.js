@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 import { ResearchDerivedBucketSchema } from "./derived-bucket.js";
 /**
- * Read-only derived range projection for targetDateAbsolute detail rows
+ * Read-only time range computed for targetDateAbsolute research details
  *
  * @openapiSchema ResearchDerivedRange
  * @endpoint GET /v1/entities/lookup-exact

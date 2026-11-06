@@ -2,7 +2,7 @@
 import { z } from "zod/v4";
 const HarnessResearchOutcomeSchemaKnownMembers = z.enum(["PARTIAL", "BLOCKED"]);
 /**
- * Unsuccessful direct-session research disposition
+ * How unsuccessful research ended: PARTIAL (some of it finished) or BLOCKED
  *
  * @openapiSchema HarnessResearchOutcome
  * @endpoint GET /v1/research/runs

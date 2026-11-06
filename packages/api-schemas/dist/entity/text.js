@@ -3,7 +3,7 @@ import { z } from "zod/v4";
 import { ContentComplianceSchema } from "../content/compliance.js";
 import { EntityPersonOwnerSchema } from "./person-owner.js";
 const EntityTextSchemaDefinition = z.object({
-    /** Derived character/word counts and governed-contract compliance for this text row; null when not evaluated. */
+    /** Character and word counts for this text and whether it meets its type's length and paragraph rules; null when not checked. */
     compliance: ContentComplianceSchema.nullish(),
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     /** Expanded row written with this summary by expandedWriterBrief, including its compliance. Null when this response does not represent a paired create. */
@@ -12,7 +12,7 @@ const EntityTextSchemaDefinition = z.object({
     },
     /** Id of the expanded row a summary create wrote in the same transaction from expandedWriterBrief; read it at GET /v1/entities/{entityId}/texts/{textId}. Null on every other response. */
     expandedTextId: z.int().nullish(),
-    /** Type-safe identifier for text records */
+    /** Identifier of a text record */
     id: z.int(),
     /** Whether this is the owner's current text of its textType; setting it clears the flag on the owner's other texts of that type. */
     isCurrent: z.boolean().nullish(),
@@ -23,12 +23,12 @@ const EntityTextSchemaDefinition = z.object({
     owner: EntityPersonOwnerSchema,
     text: z.string(),
     textName: z.string().nullish(),
-    /** Value object for text type classification */
+    /** Kind of text record */
     textType: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
 });
 /**
- * Canonical entity/person text read record
+ * A text record, such as a description, of an entity or person.
  *
  * @openapiSchema EntityText
  * @endpoint GET /v1/entities/{entityId}/texts
