@@ -9,7 +9,7 @@ const LookupJobMutationSchemaDefinition = z.object({
     mention: z.array(LookupMentionSchema).optional(),
     /** POST /v1/lookup/mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer. */
     omitRecords: z.boolean().optional(),
-    /** Id of a stored source document whose text is the article; send it alone. Only POST /v1/lookup/mentions reads it, and only for accounts with editing rights. */
+    /** Id of a stored source document whose text is the article; send it alone. A durable source read (Prefer respond-async, source-read) accepts any signed-in user's own captured PDF; a live read needs editing rights. */
     sourceDocumentId: z.uuid().nullish(),
     /** aVenture news id of the article; an id that names no stored article is an error. */
     sourceNewsId: z.int().nullish(),

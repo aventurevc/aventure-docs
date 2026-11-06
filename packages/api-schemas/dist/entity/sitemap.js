@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * Sub-route eligibility GATE for sitemap.xml emission, not a write receipt. Each boolean is true only when the underlying rows EXIST AND every entity that sub-route renders (this entity and any counterpart, e.g. the acquired/acquirer company behind `hasAcquisitions`) currently passes publication visibility (not hidden, on sitemap). A `false` flag when you know the data exists means an unmet visibility prerequisite -- publish the hidden entity -- confirmed against the owning command-side read; it is an active gate result, not refresh lag, and a flag being `false` says nothing succeeded-and-is-fine. Served from a materialized projection (`mv_entity_sitemap_url_slots`) refreshed asynchronously, so a `true` flag can trail a gate that was just satisfied, but a successful write alone does not flip any flag.
+ * Sub-route eligibility GATE for sitemap.xml emission, not a write receipt. Each boolean is true only when the underlying rows EXIST AND every entity that sub-route renders (this entity and any counterpart, e.g. the acquired/acquirer company behind `hasAcquisitions`) currently passes publication visibility (not hidden, on sitemap). Served from the materialized projection `mv_entity_sitemap_url_slots`, which the `sitemap-boundaries-refresh` job rebuilds on `app.materialized-view-refresh.sitemap-boundaries.interval` and which skips write-driven requests within its `min-success-interval` of the last performed refresh. A `false` flag whose qualifying write is newer than that refresh (the `Last-Modified` time that sitemap reads report) is refresh lag that clears on the next performed refresh; polling sooner changes nothing. A `false` flag whose write is older than that refresh is the gate result: an unmet visibility prerequisite -- publish the hidden entity -- confirmed against the owning command-side read.
  *
  * @openapiSchema EntitySitemap
  * @endpoint GET /v1/entities
@@ -53,7 +53,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export const EntitySitemapSchema = z.object({
-    /** Whether `/companies/<slug>/acquisitions` should be emitted. True only when an acquisition relationship exists AND both the acquired and acquirer entities are publicly visible. A confirmed acquisition relationship row with this flag `false` (or with `entities acquisitions list` returning zero rows) means a counterpart entity is still hidden -- publish it -- it is a visibility gate, not list lag. */
+    /** Whether `/companies/<slug>/acquisitions` should be emitted. True only when an acquisition relationship exists AND both the acquired and acquirer entities are publicly visible. A confirmed acquisition relationship row older than the projection's last refresh with this flag `false` (or with `entities acquisitions list` returning zero rows) means a counterpart entity is still hidden -- publish it; a newer row is refresh lag (see `EntitySitemap`). */
     hasAcquisitions: z.boolean().default(false).optional(),
     /** Whether the profile Analysis sub-route should be emitted. */
     hasAnalysis: z.boolean(),
