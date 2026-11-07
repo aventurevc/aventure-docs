@@ -1847,6 +1847,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -2868,6 +2869,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -3091,6 +3093,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -4112,6 +4115,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -6161,6 +6165,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -7182,6 +7187,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         }[];
                         entityId: string;
+                        entityIsPublic?: boolean | null | undefined;
                         entityLogo: {
                             isMonogram: boolean;
                             logo?: string | null | undefined;
@@ -8390,6 +8396,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -9411,6 +9418,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         }[];
                         entityId: string;
+                        entityIsPublic?: boolean | null | undefined;
                         entityLogo: {
                             isMonogram: boolean;
                             logo?: string | null | undefined;
@@ -11558,6 +11566,7 @@ declare const PageEntityPersonAssociationSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>;
         entityId: z.ZodUUID;
+        entityIsPublic: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         entityLogo: z.ZodType<{
             isMonogram: boolean;
             logo?: string | null | undefined;
@@ -14401,6 +14410,7 @@ export type PageGithubRepo = z.infer<typeof PageGithubRepoSchema>;
 declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodObject<{
         attempt: z.ZodInt;
+        callerCanFollowRun: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         chassis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             "claude-agent-sdk": "claude-agent-sdk";
             "pi-agent-sdk": "pi-agent-sdk";
@@ -15129,6 +15139,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -16150,6 +16161,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -16373,6 +16385,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -17394,6 +17407,7 @@ declare const PagePersonDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -17905,6 +17919,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -18926,6 +18941,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -19168,6 +19184,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -20189,6 +20206,7 @@ declare const PagePersonInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -20456,6 +20474,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -20677,6 +20696,7 @@ declare const PagePersonSimilarityResultSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;

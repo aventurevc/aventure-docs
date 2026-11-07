@@ -3706,6 +3706,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -4727,6 +4728,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         }[];
                         entityId: string;
+                        entityIsPublic?: boolean | null | undefined;
                         entityLogo: {
                             isMonogram: boolean;
                             logo?: string | null | undefined;
@@ -6010,6 +6012,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -7031,6 +7034,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -10944,6 +10948,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -11965,6 +11970,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         }[];
                         entityId: string;
+                        entityIsPublic?: boolean | null | undefined;
                         entityLogo: {
                             isMonogram: boolean;
                             logo?: string | null | undefined;
@@ -13248,6 +13254,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -14269,6 +14276,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;

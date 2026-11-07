@@ -1230,6 +1230,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -2251,6 +2252,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -2474,6 +2476,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -3495,6 +3498,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;

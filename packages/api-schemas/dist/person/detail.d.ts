@@ -53,6 +53,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
             updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
         }, z.core.$strip>>;
         entityId: z.ZodUUID;
+        entityIsPublic: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         entityLogo: z.ZodType<{
             isMonogram: boolean;
             logo?: string | null | undefined;
@@ -1994,6 +1995,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -2215,6 +2217,7 @@ declare const PersonDetailSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;

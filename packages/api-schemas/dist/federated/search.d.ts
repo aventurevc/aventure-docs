@@ -7302,6 +7302,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -8323,6 +8324,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -8546,6 +8548,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -9567,6 +9570,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     }[];
                     entityId: string;
+                    entityIsPublic?: boolean | null | undefined;
                     entityLogo: {
                         isMonogram: boolean;
                         logo?: string | null | undefined;
@@ -11872,6 +11876,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -12893,6 +12898,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;
@@ -13116,6 +13122,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 updatedAt?: string | null | undefined;
             }[];
             entityId: string;
+            entityIsPublic?: boolean | null | undefined;
             entityLogo: {
                 isMonogram: boolean;
                 logo?: string | null | undefined;
@@ -14137,6 +14144,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 }[];
                 entityId: string;
+                entityIsPublic?: boolean | null | undefined;
                 entityLogo: {
                     isMonogram: boolean;
                     logo?: string | null | undefined;

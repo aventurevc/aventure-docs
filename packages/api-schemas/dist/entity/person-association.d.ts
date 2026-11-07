@@ -82,6 +82,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>;
     entityId: z.ZodUUID;
+    entityIsPublic: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     entityLogo: z.ZodType<{
         isMonogram: boolean;
         logo?: string | null | undefined;

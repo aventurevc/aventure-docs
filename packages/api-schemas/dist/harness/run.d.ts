@@ -17,6 +17,7 @@ import { z } from "zod/v4";
  */
 export declare const HarnessRunSchema: z.ZodObject<{
     attempt: z.ZodInt;
+    callerCanFollowRun: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     chassis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         "claude-agent-sdk": "claude-agent-sdk";
         "pi-agent-sdk": "pi-agent-sdk";

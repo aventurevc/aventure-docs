@@ -30,6 +30,8 @@ import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 export const HarnessRunSchema = z.object({
     /** Retry attempt counter */
     attempt: z.int(),
+    /** Whether you may read this run's details and activity */
+    callerCanFollowRun: z.boolean().nullish(),
     /** Agent framework this run executes on */
     chassis: HarnessChassisSchema.nullish(),
     /** True when aVenture, not the caller, chose `chassis` */
