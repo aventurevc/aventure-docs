@@ -48,7 +48,7 @@ export const EntityPersonAssociationSchema = z.object({
     entityAddress: z.array(AddressSchema),
     /** Associated entity id */
     entityId: z.uuid(),
-    /** False while the entity profile is unpublished: show name unlinked */
+    /** Whether the employer page is readable; false: show name unlinked */
     entityIsPublic: z.boolean().nullish(),
     /** The entity's logo fields. */
     entityLogo: EntityImageSchema,
