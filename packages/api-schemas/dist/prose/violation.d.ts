@@ -44,6 +44,8 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         };
     };
     reason: z.ZodString;
+    supportedWording: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    unsupportedSpan: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
 }, z.core.$strip>;
 type ProseViolationDefinition = z.infer<typeof ProseViolationSchemaDefinition>;
 export interface ProseViolationSchemaInput extends z.input<typeof ProseViolationSchemaDefinition> {

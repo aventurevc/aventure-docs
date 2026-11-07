@@ -10,6 +10,10 @@ const ProseViolationSchemaDefinition = z.object({
     problem: ProseProblemSchema,
     /** Why the passage was rejected and how to fix it. */
     reason: z.string(),
+    /** Present only on a writerBrief grounding refusal with unsupportedSpan: the passage without those clauses, which its cited quotes support. Absent when that remaining wording is still refused. */
+    supportedWording: z.string().nullish(),
+    /** Present only on a writerBrief grounding refusal of a statement with several clauses: the clauses its cited quotes do not support. Absent when every clause or none is refused. */
+    unsupportedSpan: z.array(z.string()).nullish(),
 });
 /**
  * One rejected passage and one problem it shows; a passage with several problems appears once per problem.

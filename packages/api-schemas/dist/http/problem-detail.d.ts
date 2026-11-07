@@ -317,11 +317,15 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         passage: string;
         problem: string;
         reason: string;
+        supportedWording?: string | null | undefined;
+        unsupportedSpan?: string[] | null | undefined;
     }, import("../prose/violation.ts").ProseViolationSchemaInput, z.core.$ZodTypeInternals<{
         overridable: boolean;
         passage: string;
         problem: string;
         reason: string;
+        supportedWording?: string | null | undefined;
+        unsupportedSpan?: string[] | null | undefined;
     }, import("../prose/violation.ts").ProseViolationSchemaInput>>>>>;
     remaining: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     requiredRole: z.ZodOptional<z.ZodNullable<z.ZodString>>;
