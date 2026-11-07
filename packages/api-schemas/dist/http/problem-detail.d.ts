@@ -122,6 +122,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         suspectedShellStrip: "suspectedShellStrip";
         suspected_shell_strip: "suspected_shell_strip";
         task_plan_operation_unserved: "task_plan_operation_unserved";
+        text_send_limit_reached: "text_send_limit_reached";
         url_surface_misclassification: "url_surface_misclassification";
         web_crawl_fetch_failed: "web_crawl_fetch_failed";
         website_not_own_live_site: "website_not_own_live_site";

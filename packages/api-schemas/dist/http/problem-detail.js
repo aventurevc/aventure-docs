@@ -66,6 +66,8 @@ export const ProblemDetailSchema = z.object({
             "suspected_shell_strip",
             /** Entity text or a research snippet failed its prose judge or contract. Rewrite every ProblemDetail.proseViolation passage and resend the whole text. ProblemDetail.hint names an override only when every violation is overridable. */
             "prose_rejected",
+            /** This prose write (entity, text type, and evidence basis) was already refused by the prose judge five times, so the server refused this send without judging it. Agent action: stop and report the write; only a genuinely new source or evidence basis opens a new write, and an edited payload on the same evidence does not. */
+            "text_send_limit_reached",
             /** Name casing failed policy or source check; follow ProblemDetail.hint. */
             "entity_name_casing_rejected",
             /** Cited source does not establish this round or role; follow its detail. */
@@ -98,13 +100,13 @@ export const ProblemDetailSchema = z.object({
             "sentry_api_error",
             /** Frontend cache epoch requires the cache invalidation outbox consumer to run in targeted mode. Agent action: stop polling; this 503 is a designed cutover guard, and only the operator switching the outbox mode to targeted (docs/database/cache-invalidation.md) makes the epoch readable. */
             "frontend_cache_epoch_mode_not_targeted",
-            /** Image upload matched a blocklist entry (visually similar to a known bad asset). Agent action: do not retry the same image; supply a different image or stop. */
+            /** Image is blocklisted; follow ProblemDetail.hint, never resend it. */
             "image_blocklist_match",
-            /** Image upload was blank or a flat monochrome canvas. Agent action: supply a source image with visible logo or photo detail; retrying the same bytes will not pass. */
+            /** Image is blank or monochrome; follow ProblemDetail.hint, never resend it. */
             "image_monochrome",
-            /** Image upload failed minimum dimension/file-size check. Agent action: supply a higher-resolution source image; retrying the same one will not pass. */
+            /** Image is too small; follow ProblemDetail.hint, never resend it. */
             "image_too_small",
-            /** Image upload's visible content is a wide banner/wordmark when a square logo or photo was required. Agent action: supply a square (or near-square) source image — a favicon, app icon, square logo, or cropped headshot — not a horizontal wordmark or og:image banner; retrying the same bytes will not pass. */
+            /** Image is a wide banner; follow ProblemDetail.hint, never resend it. */
             "image_wrong_aspect",
             /** Image upload was classified as a monogram (single letter / generated initial) when a real photograph or logo was required. Agent action: supply a non-monogram image or set permitMonogram=true on the read endpoint if a monogram is acceptable for the use case. */
             "image_monogram",
@@ -120,7 +122,7 @@ export const ProblemDetailSchema = z.object({
             "logo_first_party_missing",
             /** Dead or parked logo source. Supply a live first-party source; do not retry. */
             "logo_source_dead",
-            /** Image upload was a photograph or scene image rather than a standalone logo/mark graphic (a homepage hero, product photo, ad, or screenshot carrying an embedded wordmark). Agent action: supply the entity's standalone mark — a favicon, app icon, wordmark, or lockup — not page imagery; retrying the same bytes will not pass. */
+            /** Image is a photo, not a mark; follow ProblemDetail.hint, never resend it. */
             "image_photographic",
             /** An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately. */
             "web_crawl_fetch_failed",
