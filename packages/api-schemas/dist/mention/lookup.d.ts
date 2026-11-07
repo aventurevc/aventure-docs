@@ -7,6 +7,173 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         statusUrl: z.ZodString;
     }, z.core.$strip>>>;
     mention: z.ZodArray<z.ZodType<{
+        currentRole?: {
+            associationId: number;
+            endDate?: string | null | undefined;
+            entityAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            entityId: string;
+            entityIsPublic?: boolean | null | undefined;
+            entityLogo: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            entityName?: string | null | undefined;
+            entityOperatingStatus?: string | null | undefined;
+            entitySlug: string;
+            entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            entityUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            isCurrent?: boolean | null | undefined;
+            personAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            personId: string;
+            personImage: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            personName: string;
+            personSlug: string;
+            personUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            score?: number | null | undefined;
+            startDate?: string | null | undefined;
+            titleFunction?: string | null | undefined;
+            titleId?: number | null | undefined;
+            titleLevel?: string | null | undefined;
+            titleName?: string | null | undefined;
+        } | null | undefined;
         enrichmentRunId?: string | null | undefined;
         entity: {
             acquirer?: {
@@ -937,6 +1104,173 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         shellDetail?: string | null | undefined;
     }, import("../lookup/job-mention.ts").LookupJobMentionSchemaInput, z.core.$ZodTypeInternals<{
+        currentRole?: {
+            associationId: number;
+            endDate?: string | null | undefined;
+            entityAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            entityId: string;
+            entityIsPublic?: boolean | null | undefined;
+            entityLogo: {
+                isMonogram: boolean;
+                logo?: string | null | undefined;
+                logoSquare?: string | null | undefined;
+                logoSquareVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+                logoVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            entityName?: string | null | undefined;
+            entityOperatingStatus?: string | null | undefined;
+            entitySlug: string;
+            entityType?: "Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service" | null | undefined;
+            entityUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            isCurrent?: boolean | null | undefined;
+            personAddress: {
+                address?: number | null | undefined;
+                addressLine1?: string | null | undefined;
+                addressLine2?: string | null | undefined;
+                association?: {
+                    endDate?: string | null | undefined;
+                    id: number;
+                    isCurrent: boolean;
+                    role?: "domicile" | "dominant" | "origin" | null | undefined;
+                    startDate?: string | null | undefined;
+                }[] | undefined;
+                city?: {
+                    id?: number | null | undefined;
+                    name: string;
+                } | null | undefined;
+                country?: {
+                    countryCodeChar2?: string | null | undefined;
+                    countryCodeChar3?: string | null | undefined;
+                    id?: number | null | undefined;
+                    name: string;
+                    unRegion?: string | null | undefined;
+                    unSubregion?: string | null | undefined;
+                } | null | undefined;
+                countryAbbrev?: string | null | undefined;
+                createdAt?: string | null | undefined;
+                fullAddress?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isHq?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                latitude?: number | null | undefined;
+                longitude?: number | null | undefined;
+                postalCode?: string | null | undefined;
+                state?: {
+                    id?: number | null | undefined;
+                    name: string;
+                    stateAbbrev?: string | null | undefined;
+                } | null | undefined;
+                stateAbbrev?: string | null | undefined;
+                street?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+            }[];
+            personId: string;
+            personImage: {
+                isMonogram: boolean;
+                picture?: string | null | undefined;
+                pictureVariant?: {
+                    contentType: string;
+                    height: number;
+                    path: string;
+                    width: number;
+                }[] | null | undefined;
+            };
+            personName: string;
+            personSlug: string;
+            personUrlLink: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[];
+            score?: number | null | undefined;
+            startDate?: string | null | undefined;
+            titleFunction?: string | null | undefined;
+            titleId?: number | null | undefined;
+            titleLevel?: string | null | undefined;
+            titleName?: string | null | undefined;
+        } | null | undefined;
         enrichmentRunId?: string | null | undefined;
         entity: {
             acquirer?: {

@@ -1,15 +1,18 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntityListSchema } from "../entity/list.js";
+import { EntityPersonAssociationSchema } from "../entity/person-association.js";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationSchema } from "../identification/identification.js";
 import { PersonSchema } from "../person/person.js";
 const LookupJobMentionSchemaDefinition = z.object({
+    /** POST /v1/lookup/mentions only: the current titled role of the highest-ranked listed person that has one (its personId names whom); null when none does. */
+    currentRole: EntityPersonAssociationSchema.nullish(),
     /** Research request filed for this mention, if any. */
     enrichmentRunId: z.uuid().nullish(),
     /** POST /v1/lookup/mentions only: the candidate companies as search results show them, the match first, then by match probability and duplicate-check score. */
     entity: z.array(EntityListSchema),
-    /** One sentence on why this name could not be identified; absent otherwise. */
+    /** One sentence on why this name could not be identified, if not. */
     failureReason: z.string().nullish(),
     /** The lookup of this name with the source as its context: MATCHED names the stored record, NEEDS_REVIEW lists the candidates, NO_MATCH means none is stored. Absent when failureReason is set. */
     identification: IdentificationSchema.nullish(),

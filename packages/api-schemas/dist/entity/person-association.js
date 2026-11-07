@@ -17,6 +17,7 @@ import { PersonImageSchema } from "../person/image.js";
  * @endpoint GET /v1/entities/{entityId}/investors/people
  * @endpoint GET /v1/entities/{entityId}/people
  * @endpoint GET /v1/entities/{entityId}/people/{associationId}
+ * @endpoint GET /v1/lookup/jobs/{jobId}
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/entities
  * @endpoint GET /v1/people/{personId}/entities/{associationId}
@@ -27,9 +28,11 @@ import { PersonImageSchema } from "../person/image.js";
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
+ * @endpoint POST /v1/lookup/mentions
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/shared
+ * @usedBySchema LookupJobMentionSchema
  * @usedBySchema PageEntityPersonAssociationSchema
  * @usedBySchema PersonDetailSchema
  * @usedBySchema PersonSimilarityResultSchema
