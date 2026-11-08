@@ -66,6 +66,8 @@ export const ProblemDetailSchema = z.object({
             "suspected_shell_strip",
             /** Entity text or a research snippet failed its prose judge or contract. Rewrite every ProblemDetail.proseViolation passage and resend the whole text. ProblemDetail.hint names an override only when every violation is overridable. */
             "prose_rejected",
+            /** The prose checker could not judge the draft: the complete source pages the write cites exceed the checker model's input, and no rewrite of the text shrinks them. Agent action: cite fewer or smaller source pages, or stop and report the write. */
+            "prose_evidence_too_large",
             /** This prose write (entity, text type, and evidence basis) was already refused by the prose judge five times, so the server refused this send without judging it. Agent action: stop and report the write; only a genuinely new source or evidence basis opens a new write, and an edited payload on the same evidence does not. */
             "text_send_limit_reached",
             /** Name casing failed policy or source check; follow ProblemDetail.hint. */

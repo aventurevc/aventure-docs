@@ -97,6 +97,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         origin_detail_shutdown: "origin_detail_shutdown";
         primary_read_saturated: "primary_read_saturated";
         primary_website_missing: "primary_website_missing";
+        prose_evidence_too_large: "prose_evidence_too_large";
         prose_rejected: "prose_rejected";
         query_deadline_shed: "query_deadline_shed";
         r2_delete_failed: "r2_delete_failed";
