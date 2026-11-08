@@ -7,7 +7,7 @@ const LookupJobMutationSchemaDefinition = z.object({
     deterministic: z.boolean().optional(),
     /** Companies and people the caller already read, identified without sending the page or screenshot. Send them alone, without an article or file. On lookup jobs, maxNames is required and no records are created and no research is requested. */
     mention: z.array(LookupMentionSchema).optional(),
-    /** POST /v1/lookup/mentions only: true answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false, the full answer. */
+    /** True answers each name with only its name, mentionType, failureReason, and identification status, stage, match, officialUrl, and detail: no entity or person rows and empty candidate and duplicate lists. Defaults to false. */
     omitRecords: z.boolean().optional(),
     /** Id of a stored source document whose text is the article; send it alone. Only POST /v1/lookup/mentions without maxNames reads it. An event-stream request with Prefer respond-async, source-read accepts any signed-in user's own captured PDF; every other read needs editing rights. */
     sourceDocumentId: z.uuid().nullish(),

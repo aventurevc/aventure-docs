@@ -6,11 +6,11 @@ import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationSchema } from "../identification/identification.js";
 import { PersonSchema } from "../person/person.js";
 const LookupJobMentionSchemaDefinition = z.object({
-    /** POST /v1/lookup/mentions only: the current titled role of the highest-ranked listed person that has one (its personId names whom); null when none does. */
+    /** The current titled role, at a company aVenture shows publicly, of the highest-ranked listed person visible to the caller that has one (its personId names whom); null when none does or omitRecords is true. A bulk lookup job reads it on each status read. */
     currentRole: EntityPersonAssociationSchema.nullish(),
     /** Research request filed for this mention, if any. */
     enrichmentRunId: z.uuid().nullish(),
-    /** POST /v1/lookup/mentions only: the candidate companies as search results show them, the match first, then by match probability and duplicate-check score. */
+    /** The candidate companies as search results show them, the match first, then by match probability and duplicate-check score; empty when omitRecords is true. */
     entity: z.array(EntityListSchema),
     /** One sentence on why this name could not be identified, if not. */
     failureReason: z.string().nullish(),
@@ -20,7 +20,7 @@ const LookupJobMentionSchemaDefinition = z.object({
     mentionType: z.enum(["COMPANY", "PERSON", "PRODUCT_SERVICE"]),
     /** Name as the source writes it. */
     name: z.string(),
-    /** POST /v1/lookup/mentions only: the candidate people as search results show them, ranked like entity. */
+    /** The candidate people as search results show them, ranked like entity; empty when omitRecords is true. */
     person: z.array(PersonSchema),
     /** New record aVenture created, at no charge, for a NO_MATCH name whose own live site names it: a company public and a person hidden unless publishCreated says otherwise. enrichmentRunId names research filed for it, if any; to file research yourself, send its entityId to POST /v1/entities/{entityId}/enrichments or its personId to POST /v1/people/{personId}/enrichments. */
     shell: EntityPersonOwnerSchema.nullish(),
