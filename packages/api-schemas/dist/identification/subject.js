@@ -20,7 +20,7 @@ export const IdentificationSubjectSchema = z.object({
     /** Exact email address the record holds as a contact detail. Requires private visibility; when exactly one record of the requested kind holds it, that record matches before names or URLs. */
     email: z.string().nullish(),
     /** Companies the subject is known to work at; a person filing accepts a LinkedIn profile only when one of them appears in the profile's employer fields. */
-    employer: z.array(z.string()).max(10).optional(),
+    employer: z.array(z.string().max(200)).max(10).optional(),
     filing: RegistryFilingSchema.nullish(),
     /** Kind of record to identify when you know it: ENTITY for companies, funds, and firms (and their products or services); PERSON for people. Only that kind is looked up; typeRecord or productServiceProviderId implies ENTITY. */
     kind: z.enum(["ENTITY", "PERSON"]).nullish(),
