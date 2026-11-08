@@ -89,6 +89,49 @@ declare const PersonSchemaDefinition: z.ZodObject<{
         short?: string | null | undefined;
     }, import("../entity/text-bundle.ts").EntityTextBundleSchemaInput>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    urlLink: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
+        crawlCdnProvider: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            akamai: "akamai";
+            awsCloudfront: "awsCloudfront";
+            azureCdn: "azureCdn";
+            bunny: "bunny";
+            cdn77: "cdn77";
+            cdnetworks: "cdnetworks";
+            cloudflare: "cloudflare";
+            digitalocean: "digitalocean";
+            fastly: "fastly";
+            gcore: "gcore";
+            googlecloudCdn: "googlecloudCdn";
+            incapsula: "incapsula";
+            keycdn: "keycdn";
+            leaseweb: "leaseweb";
+            netlify: "netlify";
+            none: "none";
+            stackpath: "stackpath";
+            sucuri: "sucuri";
+            unknown: "unknown";
+            vercel: "vercel";
+        }>>>;
+        crawlRenderMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            jsEnhanced: "jsEnhanced";
+            jsRequired: "jsRequired";
+            static: "static";
+        }>>>;
+        createdAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        isPrimary: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        owner: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+        }, z.core.$strip>>>;
+        sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        statusChecked: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        url: z.ZodString;
+        urlType: z.ZodString;
+    }, z.core.$strip>>>>;
 }, z.core.$strip>;
 type PersonDefinition = z.infer<typeof PersonSchemaDefinition>;
 export interface PersonSchemaInput extends z.input<typeof PersonSchemaDefinition> {

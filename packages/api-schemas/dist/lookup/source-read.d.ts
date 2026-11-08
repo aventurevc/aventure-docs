@@ -14,6 +14,7 @@ export declare const LookupSourceReadSchema: z.ZodObject<{
     continuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         jobId: z.ZodUUID;
+        maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         mode: z.ZodString;
         statusUrl: z.ZodString;
     }, z.core.$strip>>>;

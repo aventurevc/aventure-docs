@@ -97,6 +97,7 @@ export interface EntityAnalysisDraftSchemaInput extends z.input<typeof EntityAna
  *
  * @openapiSchema EntityAnalysisDraft
  * @endpoint GET /v1/research/runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft/sections/{sectionKey}/writes/{writeId}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @contractShape entity.analysis-draft
  * @contractRole canonical

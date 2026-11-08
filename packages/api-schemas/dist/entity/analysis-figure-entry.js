@@ -12,6 +12,7 @@ const EntityAnalysisFigureEntrySchemaDefinition = z.object({
  *
  * @openapiSchema EntityAnalysisFigureEntry
  * @endpoint GET /v1/research/runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft/sections/{sectionKey}/writes/{writeId}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisFigureSchema
  * @contractShape entity.analysis-figure-entry

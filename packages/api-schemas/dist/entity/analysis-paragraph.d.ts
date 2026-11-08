@@ -11,6 +11,7 @@ export interface EntityAnalysisParagraphSchemaInput extends z.input<typeof Entit
  *
  * @openapiSchema EntityAnalysisParagraph
  * @endpoint GET /v1/research/runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft/sections/{sectionKey}/writes/{writeId}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisSectionMutationSchema
  * @usedBySchema EntityAnalysisSectionSchema

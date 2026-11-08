@@ -152,6 +152,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         filing: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             jobId: z.ZodUUID;
+            maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             mode: z.ZodString;
             statusUrl: z.ZodString;
         }, z.core.$strip>>>;
@@ -1244,6 +1245,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             filing?: {
                 deduped?: boolean | null | undefined;
                 jobId: string;
+                maxRuntimeSeconds?: number | null | undefined;
                 mode: string;
                 statusUrl: string;
             } | null | undefined;
@@ -1337,6 +1339,24 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 short?: string | null | undefined;
             };
             updatedAt?: string | null | undefined;
+            urlLink?: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[] | null | undefined;
         }[];
         shell?: {
             entityId?: string | null | undefined;
@@ -2341,6 +2361,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             filing?: {
                 deduped?: boolean | null | undefined;
                 jobId: string;
+                maxRuntimeSeconds?: number | null | undefined;
                 mode: string;
                 statusUrl: string;
             } | null | undefined;
@@ -2434,6 +2455,24 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 short?: string | null | undefined;
             };
             updatedAt?: string | null | undefined;
+            urlLink?: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[] | null | undefined;
         }[];
         shell?: {
             entityId?: string | null | undefined;
@@ -2642,6 +2681,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         continuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             deduped: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             jobId: z.ZodUUID;
+            maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             mode: z.ZodString;
             statusUrl: z.ZodString;
         }, z.core.$strip>>>;

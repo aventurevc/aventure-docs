@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { ContentEmbeddingMatchSchema } from "../content/embedding-match.js";
 import { EntityNameAliasPersonAliasTypeSchema } from "../entity/name-alias-person-alias-type.js";
 import { EntityTextBundleSchema } from "../entity/text-bundle.js";
+import { EntityUrlLinkSchema } from "../entity/url-link.js";
 import { PersonImageSchema } from "./image.js";
 const PersonSchemaDefinition = z.object({
     /** Record creation timestamp */
@@ -40,6 +41,8 @@ const PersonSchemaDefinition = z.object({
     text: EntityTextBundleSchema,
     /** Last modification timestamp */
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Current URLs on keyword list/search pages with includeUrl; else absent. */
+    urlLink: z.array(EntityUrlLinkSchema).nullish(),
 });
 /**
  * A person's core profile fields.

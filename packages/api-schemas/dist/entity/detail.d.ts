@@ -1431,6 +1431,24 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 short?: string | null | undefined;
             };
             updatedAt?: string | null | undefined;
+            urlLink?: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[] | null | undefined;
         };
         coveringRunId?: string | null | undefined;
         enrichment: {
@@ -2431,6 +2449,24 @@ export declare const EntityDetailSchema: z.ZodObject<{
                     short?: string | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                urlLink?: {
+                    crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                    crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id?: number | null | undefined;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    owner?: {
+                        entityId?: string | null | undefined;
+                        personId?: string | null | undefined;
+                    } | null | undefined;
+                    sourceId?: string | null | undefined;
+                    status?: string | null | undefined;
+                    statusChecked?: string | null | undefined;
+                    updatedAt?: string | null | undefined;
+                    url: string;
+                    urlType: string;
+                }[] | null | undefined;
             };
             similarity: {
                 compositeScore?: number | null | undefined;
@@ -2677,6 +2713,24 @@ export declare const EntityDetailSchema: z.ZodObject<{
                 short?: string | null | undefined;
             };
             updatedAt?: string | null | undefined;
+            urlLink?: {
+                crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                createdAt?: string | null | undefined;
+                id?: number | null | undefined;
+                isCurrent?: boolean | null | undefined;
+                isPrimary?: boolean | null | undefined;
+                owner?: {
+                    entityId?: string | null | undefined;
+                    personId?: string | null | undefined;
+                } | null | undefined;
+                sourceId?: string | null | undefined;
+                status?: string | null | undefined;
+                statusChecked?: string | null | undefined;
+                updatedAt?: string | null | undefined;
+                url: string;
+                urlType: string;
+            }[] | null | undefined;
         };
         coveringRunId?: string | null | undefined;
         enrichment: {
@@ -3677,6 +3731,24 @@ export declare const EntityDetailSchema: z.ZodObject<{
                     short?: string | null | undefined;
                 };
                 updatedAt?: string | null | undefined;
+                urlLink?: {
+                    crawlCdnProvider?: "akamai" | "awsCloudfront" | "azureCdn" | "bunny" | "cdn77" | "cdnetworks" | "cloudflare" | "digitalocean" | "fastly" | "gcore" | "googlecloudCdn" | "incapsula" | "keycdn" | "leaseweb" | "netlify" | "none" | "stackpath" | "sucuri" | "unknown" | "vercel" | null | undefined;
+                    crawlRenderMode?: "jsEnhanced" | "jsRequired" | "static" | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id?: number | null | undefined;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    owner?: {
+                        entityId?: string | null | undefined;
+                        personId?: string | null | undefined;
+                    } | null | undefined;
+                    sourceId?: string | null | undefined;
+                    status?: string | null | undefined;
+                    statusChecked?: string | null | undefined;
+                    updatedAt?: string | null | undefined;
+                    url: string;
+                    urlType: string;
+                }[] | null | undefined;
             };
             similarity: {
                 compositeScore?: number | null | undefined;

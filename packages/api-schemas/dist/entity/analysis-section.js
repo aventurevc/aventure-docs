@@ -23,6 +23,7 @@ const EntityAnalysisSectionSchemaDefinition = z.object({
  *
  * @openapiSchema EntityAnalysisSection
  * @endpoint GET /v1/research/runs/{runId}/draft
+ * @endpoint GET /v1/research/runs/{runId}/draft/sections/{sectionKey}/writes/{writeId}
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema EntityAnalysisDraftSchema
  * @contractShape entity.analysis-section
