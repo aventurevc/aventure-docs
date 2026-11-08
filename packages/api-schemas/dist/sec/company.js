@@ -4,6 +4,8 @@ import { SecListingProspectusSchema } from "./listing-prospectus.js";
 const SecCompanySchemaDefinition = z.object({
     /** SEC Central Index Key, 10 digits with leading zeros. It stays the same across SEC data syncs. */
     cik: z.string(),
+    /** SEC EDGAR company page listing this registrant's filings; cite it as the thirdPartyWebsite sourceDetail for a fact this lookup supplied. */
+    edgarCompanyUrl: z.string().optional(),
     /** Employer Identification Number (tax id), when SEC supplies one. */
     ein: z.string().nullish(),
     /** SEC entity type. `operating` marks a real operating company; `other` marks a SPAC, trust, holding, or shell filing vehicle. */

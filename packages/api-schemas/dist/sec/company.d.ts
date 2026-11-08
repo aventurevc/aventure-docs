@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const SecCompanySchemaDefinition: z.ZodObject<{
     cik: z.ZodString;
+    edgarCompanyUrl: z.ZodOptional<z.ZodString>;
     ein: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     entityType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     exchange: z.ZodArray<z.ZodString>;
