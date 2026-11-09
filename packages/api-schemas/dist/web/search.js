@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SearchAccountingReceiptSchema } from "../search/accounting-receipt.js";
 import { SearchAiOverviewSchema } from "../search/ai-overview.js";
 import { SearchAnswerBoxSchema } from "../search/answer-box.js";
 import { SearchHitSchema } from "../search/hit.js";
@@ -9,6 +10,8 @@ import { SearchSchema } from "../search/search.js";
 import { SearchSportsResultSchema } from "../search/sports-result.js";
 import { SourceDocumentListSchema } from "../source/document-list.js";
 const WebSearchSchemaDefinition = z.object({
+    /** Accounting identity of this caller's admitted search work, not historical shared-cache spend */
+    accountingReceipt: SearchAccountingReceiptSchema.nullish(),
     /** Google's AI Overview: returned whenever Google answers inline or its deferred overview is stored (fetched by this or an earlier search that set `deferredAiOverview`); null when Google produced none or no such fetch stored its deferred overview */
     aiOverview: SearchAiOverviewSchema.nullish(),
     /** Google's direct answer box; null when the page shows none */

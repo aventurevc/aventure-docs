@@ -1,5 +1,9 @@
 import { z } from "zod/v4";
 declare const WebSearchSchemaDefinition: z.ZodObject<{
+    accountingReceipt: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        executionId: z.ZodUUID;
+        workId: z.ZodUUID;
+    }, z.core.$strip>>>;
     aiOverview: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         reference: z.ZodArray<z.ZodType<{
             index: number;

@@ -6,6 +6,9 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
     id: z.ZodInt;
     identifier: z.ZodString;
     idType: z.ZodUnion<readonly [z.ZodEnum<{
+        belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
+        brazilCnpj: "brazilCnpj";
+        chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
         crd: "crd";
         cusip: "cusip";
         duns: "duns";
@@ -14,9 +17,12 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         federalAgencyCode: "federalAgencyCode";
         firmCrd: "firmCrd";
         folk: "folk";
+        franceSiren: "franceSiren";
         holdingCompanyRssd: "holdingCompanyRssd";
+        indiaCin: "indiaCin";
         ipedsUnitId: "ipedsUnitId";
         isin: "isin";
+        israelCompanyNumber: "israelCompanyNumber";
         lei: "lei";
         naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";
@@ -34,9 +40,14 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
         ticker: "ticker";
+        ukCompanyNumber: "ukCompanyNumber";
+        ukraineEdrpou: "ukraineEdrpou";
         usptoPractitioner: "usptoPractitioner";
     }>, z.ZodString]> & {
         enum: {
+            belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
+            brazilCnpj: "brazilCnpj";
+            chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
             crd: "crd";
             cusip: "cusip";
             duns: "duns";
@@ -45,9 +56,12 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             federalAgencyCode: "federalAgencyCode";
             firmCrd: "firmCrd";
             folk: "folk";
+            franceSiren: "franceSiren";
             holdingCompanyRssd: "holdingCompanyRssd";
+            indiaCin: "indiaCin";
             ipedsUnitId: "ipedsUnitId";
             isin: "isin";
+            israelCompanyNumber: "israelCompanyNumber";
             lei: "lei";
             naicCompanyCode: "naicCompanyCode";
             ncesLeaId: "ncesLeaId";
@@ -65,6 +79,8 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             signalNfxFirm: "signalNfxFirm";
             signalNfxPerson: "signalNfxPerson";
             ticker: "ticker";
+            ukCompanyNumber: "ukCompanyNumber";
+            ukraineEdrpou: "ukraineEdrpou";
             usptoPractitioner: "usptoPractitioner";
         };
     };

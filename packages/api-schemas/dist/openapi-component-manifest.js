@@ -1149,6 +1149,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
+    SearchAccountingReceipt: {
+        modulePath: "search/accounting-receipt",
+        schemaName: "SearchAccountingReceiptSchema",
+    },
     SearchAiOverview: { modulePath: "search/ai-overview", schemaName: "SearchAiOverviewSchema" },
     SearchAiOverviewReference: {
         modulePath: "search/ai-overview-reference",
