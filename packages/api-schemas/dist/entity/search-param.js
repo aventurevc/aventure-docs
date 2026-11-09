@@ -12,7 +12,7 @@ export const ENTITY_SEARCH_ENDPOINT = "/v1/entities/search";
  * @contractRole canonical
  */
 export const EntitySearchParamSchema = PageParamSchema.extend({
-    /** Return only the matching entity count in totalElements. Content is empty by design, so the page empty flag describes content, not whether matches exist. Unsupported with semanticQuery. */
+    /** Return only the matching entity count in totalElements. Content is empty by design, so the page empty flag describes content, not whether matches exist. Private backlog filters retain the search's bounded total. Unsupported with semanticQuery. */
     countOnly: z.boolean().optional(),
     /** Opaque entity cursor; reuse filters and sort. Cursor is unsupported with countOnly; semanticQuery depends on the endpoint. */
     cursor: z.string().optional(),
