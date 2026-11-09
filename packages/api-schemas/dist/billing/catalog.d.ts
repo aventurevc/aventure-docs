@@ -22,6 +22,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         cadence: string;
         currency: string;
         displayName: string;
+        freeTrialDays?: number | null | undefined;
         introductoryAmount?: number | null | undefined;
         plan: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
@@ -31,6 +32,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         cadence: string;
         currency: string;
         displayName: string;
+        freeTrialDays?: number | null | undefined;
         introductoryAmount?: number | null | undefined;
         plan: string;
         tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";

@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const BillingPaymentProfileSchemaDefinition: z.ZodObject<{
+    freeTrialEligible: z.ZodOptional<z.ZodBoolean>;
     introductoryOfferEligible: z.ZodBoolean;
     paymentMethod: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         brand: z.ZodString;
@@ -12,7 +13,7 @@ type BillingPaymentProfileDefinition = z.infer<typeof BillingPaymentProfileSchem
 export interface BillingPaymentProfileSchemaInput extends z.input<typeof BillingPaymentProfileSchemaDefinition> {
 }
 /**
- * The caller's card on file and whether its next purchase of, or upgrade to, a plan with an introductoryAmount is charged that amount, read live from Stripe.
+ * The caller's card on file, paid introductory discount eligibility, and eligibility for a free trial on a new Stripe Checkout, read live from Stripe.
  *
  * @openapiSchema BillingPaymentProfile
  * @endpoint GET /v1/billing/subscription/payment-profile

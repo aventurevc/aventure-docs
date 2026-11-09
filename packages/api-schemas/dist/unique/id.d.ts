@@ -25,6 +25,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         isin: "isin";
         israelCompanyNumber: "israelCompanyNumber";
         japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
+        koreaBusinessRegistrationNumber: "koreaBusinessRegistrationNumber";
         lei: "lei";
         naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";
@@ -41,10 +42,12 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         signalNfxCompany: "signalNfxCompany";
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
+        swissUid: "swissUid";
         ticker: "ticker";
         ukCompanyNumber: "ukCompanyNumber";
         ukraineEdrpou: "ukraineEdrpou";
         usptoPractitioner: "usptoPractitioner";
+        vietnamTaxCode: "vietnamTaxCode";
     }>, z.ZodString]> & {
         enum: {
             belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
@@ -66,6 +69,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             isin: "isin";
             israelCompanyNumber: "israelCompanyNumber";
             japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
+            koreaBusinessRegistrationNumber: "koreaBusinessRegistrationNumber";
             lei: "lei";
             naicCompanyCode: "naicCompanyCode";
             ncesLeaId: "ncesLeaId";
@@ -82,10 +86,12 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             signalNfxCompany: "signalNfxCompany";
             signalNfxFirm: "signalNfxFirm";
             signalNfxPerson: "signalNfxPerson";
+            swissUid: "swissUid";
             ticker: "ticker";
             ukCompanyNumber: "ukCompanyNumber";
             ukraineEdrpou: "ukraineEdrpou";
             usptoPractitioner: "usptoPractitioner";
+            vietnamTaxCode: "vietnamTaxCode";
         };
     };
     listingStanding: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{

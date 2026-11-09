@@ -7332,7 +7332,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             prompt: string;
         } | null | undefined;
-        section?: ("company" | "investor" | "person" | "productService")[] | undefined;
+        section?: string[] | undefined;
     }, import("../federated/search.ts").FederatedSearchSchemaInput, z.core.$ZodTypeInternals<{
         entity: {
             answer?: {
@@ -14664,7 +14664,7 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
             }[];
             prompt: string;
         } | null | undefined;
-        section?: ("company" | "investor" | "person" | "productService")[] | undefined;
+        section?: string[] | undefined;
     }, import("../federated/search.ts").FederatedSearchSchemaInput>>;
     url: z.ZodString;
 }, z.core.$strip>;

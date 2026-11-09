@@ -6,7 +6,7 @@
       "type": "skill-md",
       "description": "Use for multi-step aVenture research: company briefs, funding and investors, portfolios, founder backgrounds, competitors, news monitoring, and resolving name lists.",
       "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
-      "digest": "sha256:90def9669f4772952db3a08eb1195c839b2a78410f4fe923ae0619d747e7843d"
+      "digest": "sha256:54b8c5aa1989717f99823d308993aa5ffdf091b4060c3a531bdacc16a3aed179"
     },
     {
       "name": "aventure",
@@ -34,14 +34,14 @@
       "type": "skill-md",
       "description": "Use only when asked for a competitive landscape report on a company, product, or investment firm: the field within a stated boundary, player classes, the axes buyers trade off, a sourced player table, recent funding and M&A, unmet needs, and the subject's position.",
       "url": "/.well-known/agent-skills/competitive-landscape/SKILL.md",
-      "digest": "sha256:bcee8491dfaf567927979c93e402aa0a8bb7bf9948a89d10751b4637cf488fc7"
+      "digest": "sha256:fb48f0159ffc7b8d159c73bf7501e47541cfc4771775f40b48d32ae8f5ea5612"
     },
     {
       "name": "competitor-analysis",
       "type": "skill-md",
       "description": "Use only when asked for a competitor analysis of a company or product: head-to-head comparison with its closest rivals on product, total cost, customers, distribution, traction, economics, and team, with the subject's relative strength judged on evidence.",
       "url": "/.well-known/agent-skills/competitor-analysis/SKILL.md",
-      "digest": "sha256:149f9b7ce1a99583935b898eb4860e4c80201330c0cde312c0035350ccfa906f"
+      "digest": "sha256:a0c74ab2c7a27e80180b34d4d43a30099ec7610b7e49d11e2cff0b28a63ebad7"
     },
     {
       "name": "customer-analysis",

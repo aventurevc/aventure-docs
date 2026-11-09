@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EntityDetailSchema } from "../entity/detail.js";
 import { FederatedSearchProvenanceSchema } from "./search-provenance.js";
+import { FederatedSearchSectionSchema } from "./search-section.js";
 import { NaturalSearchResultSchema } from "../natural/search-result.js";
 import { NewsEntityMentionSchema } from "../news/entity-mention.js";
 import { PageResultNewsSchema } from "../pagination/schemas.js";
@@ -28,7 +29,7 @@ const FederatedSearchSchemaDefinition = z.object({
     /** A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */
     qualifier: SearchQualifierSchema.nullish(),
     /** Result sections from most to least relevant. People lead when `personLead` is true and come last otherwise. Companies, products and services, and investors follow the rank of each section's best entity row, so a name whose best match is an investment firm leads with investors; sections with no entity row follow in that same fixed order. */
-    section: z.array(z.enum(["person", "company", "productService", "investor"])).optional(),
+    section: z.array(FederatedSearchSectionSchema).optional(),
 });
 /**
  * Combined entity, person, and news search results, each from that record type's own search, with the search method used for each.

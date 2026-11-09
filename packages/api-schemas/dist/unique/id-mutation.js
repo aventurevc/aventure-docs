@@ -32,7 +32,7 @@ export const UniqueIdMutationSchema = z.object({
     listingStanding: UniqueIdListingStandingSchema.nullish(),
     /** Source-stated ticker share class; never inferred from the symbol. */
     shareClass: z.string().nullish(),
-    /** Optional attribution source label for the mapping. */
+    /** Optional attribution source label for the mapping; at most 100 Unicode code points after trimming surrounding whitespace. Blank labels are stored as null. */
     source: z.string().nullish(),
     /** Date from which the source says this listing standing applies, at the precision supplied. */
     standingAsOf: z

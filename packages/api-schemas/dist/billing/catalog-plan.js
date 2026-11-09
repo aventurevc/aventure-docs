@@ -9,6 +9,8 @@ const BillingCatalogPlanSchemaDefinition = z.object({
     /** ISO 4217 currency code. */
     currency: z.string(),
     displayName: z.string(),
+    /** Free trial duration in days for a new Stripe Checkout on the Customer's first transaction; absent when this plan has no free trial. Payment details are required; the plan automatically renews at unitAmount per cadence afterward. Existing subscription changes receive no trial. App Store eligibility and offers come from StoreKit separately. */
+    freeTrialDays: z.int().nullish(),
     /** First invoice amount in currency minor units (USD cents) when an automatic, one-time Checkout offer is available; absent otherwise. Renewals use unitAmount. */
     introductoryAmount: z.number().int().nullish(),
     plan: BillingPlanTypeSchema,

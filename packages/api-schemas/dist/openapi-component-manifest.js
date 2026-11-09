@@ -660,6 +660,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "federated/search-rejection",
         schemaName: "FederatedSearchRejectionSchema",
     },
+    FederatedSearchSection: {
+        modulePath: "federated/search-section",
+        schemaName: "FederatedSearchSectionSchema",
+    },
     FundingApplicability: {
         modulePath: "funding/applicability",
         schemaName: "FundingApplicabilitySchema",

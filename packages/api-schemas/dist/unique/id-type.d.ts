@@ -44,6 +44,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     isin: "isin";
     israelCompanyNumber: "israelCompanyNumber";
     japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
+    koreaBusinessRegistrationNumber: "koreaBusinessRegistrationNumber";
     lei: "lei";
     naicCompanyCode: "naicCompanyCode";
     ncesLeaId: "ncesLeaId";
@@ -60,10 +61,12 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     signalNfxCompany: "signalNfxCompany";
     signalNfxFirm: "signalNfxFirm";
     signalNfxPerson: "signalNfxPerson";
+    swissUid: "swissUid";
     ticker: "ticker";
     ukCompanyNumber: "ukCompanyNumber";
     ukraineEdrpou: "ukraineEdrpou";
     usptoPractitioner: "usptoPractitioner";
+    vietnamTaxCode: "vietnamTaxCode";
 }>, z.ZodString]> & {
     enum: {
         belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
@@ -85,6 +88,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         isin: "isin";
         israelCompanyNumber: "israelCompanyNumber";
         japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
+        koreaBusinessRegistrationNumber: "koreaBusinessRegistrationNumber";
         lei: "lei";
         naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";
@@ -101,10 +105,12 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         signalNfxCompany: "signalNfxCompany";
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
+        swissUid: "swissUid";
         ticker: "ticker";
         ukCompanyNumber: "ukCompanyNumber";
         ukraineEdrpou: "ukraineEdrpou";
         usptoPractitioner: "usptoPractitioner";
+        vietnamTaxCode: "vietnamTaxCode";
     };
 };
 export type UniqueIdType = z.infer<typeof UniqueIdTypeSchema>;
