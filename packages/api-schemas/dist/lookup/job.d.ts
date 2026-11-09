@@ -171,6 +171,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 URL_DUPLICATE: "URL_DUPLICATE";
             };
         }>>;
+        filingRefusalDetail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -1250,6 +1251,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 statusUrl: string;
             } | null | undefined;
             filingRefusal?: string | null | undefined;
+            filingRefusalDetail?: string | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
@@ -2366,6 +2368,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 statusUrl: string;
             } | null | undefined;
             filingRefusal?: string | null | undefined;
+            filingRefusalDetail?: string | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {

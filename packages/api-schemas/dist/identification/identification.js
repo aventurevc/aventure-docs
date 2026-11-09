@@ -36,6 +36,8 @@ export const IdentificationSchema = z.object({
     filing: JobEnqueueSchema.nullish(),
     /** Conflict kind that refused creating the shell, from ProblemDetail.details.conflictType. Absent when no typed conflict refused filing; detail retains the explanation. */
     filingRefusal: DomainConflictTypeSchema.nullish(),
+    /** Reason that pre-insert validation refused filing; present for verified previews as well as filing requests when validation refuses the subject. Absent when validation admits it; a preview never creates a record or claims a source identifier. */
+    filingRefusalDetail: z.string().nullish(),
     /** Present only for callers that sent Prefer: respond-async. For a completed filing job, whether that request inserted created. */
     inserted: z.boolean().nullish(),
     /** true when the match was settled on a second, slower review; confirm it before relying on it. Absent otherwise. */

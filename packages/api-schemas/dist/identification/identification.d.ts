@@ -176,6 +176,7 @@ export declare const IdentificationSchema: z.ZodObject<{
             URL_DUPLICATE: "URL_DUPLICATE";
         };
     }>>;
+    filingRefusalDetail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
