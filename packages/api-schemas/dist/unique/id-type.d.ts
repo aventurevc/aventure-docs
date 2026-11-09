@@ -40,8 +40,10 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     holdingCompanyRssd: "holdingCompanyRssd";
     indiaCin: "indiaCin";
     ipedsUnitId: "ipedsUnitId";
+    irelandCompanyNumber: "irelandCompanyNumber";
     isin: "isin";
     israelCompanyNumber: "israelCompanyNumber";
+    japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
     lei: "lei";
     naicCompanyCode: "naicCompanyCode";
     ncesLeaId: "ncesLeaId";
@@ -79,8 +81,10 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         holdingCompanyRssd: "holdingCompanyRssd";
         indiaCin: "indiaCin";
         ipedsUnitId: "ipedsUnitId";
+        irelandCompanyNumber: "irelandCompanyNumber";
         isin: "isin";
         israelCompanyNumber: "israelCompanyNumber";
+        japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
         lei: "lei";
         naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";

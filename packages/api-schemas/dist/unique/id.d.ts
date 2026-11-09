@@ -21,8 +21,10 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         holdingCompanyRssd: "holdingCompanyRssd";
         indiaCin: "indiaCin";
         ipedsUnitId: "ipedsUnitId";
+        irelandCompanyNumber: "irelandCompanyNumber";
         isin: "isin";
         israelCompanyNumber: "israelCompanyNumber";
+        japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
         lei: "lei";
         naicCompanyCode: "naicCompanyCode";
         ncesLeaId: "ncesLeaId";
@@ -60,8 +62,10 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             holdingCompanyRssd: "holdingCompanyRssd";
             indiaCin: "indiaCin";
             ipedsUnitId: "ipedsUnitId";
+            irelandCompanyNumber: "irelandCompanyNumber";
             isin: "isin";
             israelCompanyNumber: "israelCompanyNumber";
+            japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
             lei: "lei";
             naicCompanyCode: "naicCompanyCode";
             ncesLeaId: "ncesLeaId";

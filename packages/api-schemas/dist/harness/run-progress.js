@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { HarnessRunRequestOutcomeSchema } from "./run-request-outcome.js";
 /**
  * Current public progress of a harness run
  *
@@ -22,6 +23,8 @@ export const HarnessRunProgressSchema = z.object({
     gateRemaining: z.array(z.string()),
     /** Optional progress note from the loop */
     note: z.string().nullish(),
+    /** The requester's typed request, one entry per distinct change it asks for, which the run.requestOutcome completion gate grades; null when the run reports none */
+    requestOutcome: z.array(HarnessRunRequestOutcomeSchema).nullish(),
     /** Additional work the loop reports as remaining */
     whatElseRemaining: z.array(z.string()),
     /** Writes completed during the current loop iteration */

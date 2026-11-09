@@ -5,6 +5,8 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "secCik",
     "israelCompanyNumber",
     "ukCompanyNumber",
+    "irelandCompanyNumber",
+    "japanCryptoAssetExchangeRegistration",
     "ukraineEdrpou",
     "franceSiren",
     "belgiumEnterpriseNumber",

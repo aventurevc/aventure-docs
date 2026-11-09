@@ -733,6 +733,14 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "harness/run-progress",
         schemaName: "HarnessRunProgressSchema",
     },
+    HarnessRunRequestOutcome: {
+        modulePath: "harness/run-request-outcome",
+        schemaName: "HarnessRunRequestOutcomeSchema",
+    },
+    HarnessRunRequestOutcomeStatus: {
+        modulePath: "harness/run-request-outcome-status",
+        schemaName: "HarnessRunRequestOutcomeStatusSchema",
+    },
     HarnessRunStatus: { modulePath: "harness/run-status", schemaName: "HarnessRunStatusSchema" },
     HarnessRunTurn: { modulePath: "harness/run-turn", schemaName: "HarnessRunTurnSchema" },
     HarnessRunType: { modulePath: "harness/run-type", schemaName: "HarnessRunTypeSchema" },
