@@ -18,6 +18,7 @@ export declare const HarnessRunTerminalDecisionSchema: z.ZodObject<{
     finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     iteration: z.ZodInt;
     lockedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    requesterRemoved: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     sequence: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     status: z.ZodEnum<{
         completed: "completed";

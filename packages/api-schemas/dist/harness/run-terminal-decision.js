@@ -24,6 +24,8 @@ export const HarnessRunTerminalDecisionSchema = z.object({
     iteration: z.int(),
     /** Lease generation at the terminal transition */
     lockedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Requester deletion verified for this terminal completion */
+    requesterRemoved: z.boolean().nullish(),
     /** Server event sequence on run reads; the event stream supplies it separately */
     sequence: z.int().nullish(),
     /** Admitted terminal status */
