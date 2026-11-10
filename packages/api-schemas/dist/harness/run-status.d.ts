@@ -10,6 +10,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/{personId}/enrichments
  * @endpoint POST /v1/research/runs
  * @usedBySchema HarnessRunSchema
+ * @usedBySchema HarnessRunTerminalDecisionSchema
  * @contractShape harness.run-status
  * @contractRole canonical
  */

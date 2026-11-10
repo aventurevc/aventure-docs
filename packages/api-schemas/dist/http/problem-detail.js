@@ -26,6 +26,8 @@ export const ProblemDetailSchema = z.object({
     code: z
         .union([
         z.enum([
+            /** The run's suppression of its accepted full-run entity is unverified. Retain the original failure outcome and terminal evidence. */
+            "harness_suppression_unverified",
             /** An anonymous caller cannot own a lookup job. Sign in to request async. */
             "async_lookup_sign_in_required",
             /** Caller is authenticated but lacks the required role for this operation. Agent action: surface the requiredRole field on the ProblemDetail and stop; do not retry without role escalation. */

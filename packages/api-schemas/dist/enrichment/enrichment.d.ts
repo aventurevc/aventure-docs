@@ -121,6 +121,22 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
         subagentModel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         subagentModelRouted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         taskPresetKey: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+        terminalDecision: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            engineId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            iteration: z.ZodInt;
+            lockedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            sequence: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+            status: z.ZodEnum<{
+                completed: "completed";
+                failed: "failed";
+                queued: "queued";
+                running: "running";
+                stopped: "stopped";
+            }>;
+            suppressionEntityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
+            suppressionProvenanceEventId: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+        }, z.core.$strip>>>;
         type: z.ZodEnum<{
             ENRICHMENT: "ENRICHMENT";
             TASK: "TASK";

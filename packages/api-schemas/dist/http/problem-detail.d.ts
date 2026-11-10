@@ -68,6 +68,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         fundraise_evidence_unsupported: "fundraise_evidence_unsupported";
         geocode_provider_error: "geocode_provider_error";
         github_fetch_failed: "github_fetch_failed";
+        harness_suppression_unverified: "harness_suppression_unverified";
         image_blocklist_match: "image_blocklist_match";
         image_brand_mismatch: "image_brand_mismatch";
         image_monochrome: "image_monochrome";

@@ -9,6 +9,7 @@ import { HarnessRunExecutionSchema } from "./run-execution.js";
 import { HarnessRunFollowUpAdmissionSchema } from "./run-follow-up-admission.js";
 import { HarnessRunLaneSchema } from "./run-lane.js";
 import { HarnessRunStatusSchema } from "./run-status.js";
+import { HarnessRunTerminalDecisionSchema } from "./run-terminal-decision.js";
 import { HarnessRunTypeSchema } from "./run-type.js";
 import { ResearchAllowanceTypeSchema } from "../research/allowance-type.js";
 /**
@@ -94,6 +95,8 @@ export const HarnessRunSchema = z.object({
     subagentModelRouted: z.boolean().nullish(),
     /** Research presets filed with the run */
     taskPresetKey: z.array(z.string()).nullish(),
+    /** Newest server terminal decision; mutable progress cannot replace it */
+    terminalDecision: HarnessRunTerminalDecisionSchema.nullish(),
     /** Run kind: ENRICHMENT for a research request a caller filed, TASK for a narrower run aVenture scheduled */
     type: HarnessRunTypeSchema,
     /** Last update timestamp */
