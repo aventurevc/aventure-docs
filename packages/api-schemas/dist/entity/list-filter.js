@@ -70,7 +70,7 @@ export const EntityListFilterSchema = z.strictObject({
     investorPopulation: z.boolean().nullish(),
     /** First letter of the display name. */
     letter: z.string().nullish(),
-    /** Geographic classification values. */
+    /** Markets served, not HQ or offices. */
     location: z.array(z.string()).optional(),
     /** Logo sort priority. */
     logoOption: EntityFilterLogoOptionSchema.optional(),
@@ -94,7 +94,7 @@ export const EntityListFilterSchema = z.strictObject({
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),
-    /** Free-text semantic search phrase, this body's query text (there is no query field), such as "AI tools for dental clinics". To filter this search to companies by name, send this body's entityName field instead; to identify one record from a name, call lookupRecord (POST /v1/lookup) with name, which accepts no entityName. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity. */
+    /** Free-text semantic search phrase, this body's query text (there is no query field), such as "AI tools for dental clinics". For an existing-record name read, send this body's entityName field instead, compare the returned candidates' identity fields and evidenced URLs, then read the confirmed id. Search results are candidates, not identity verdicts; an empty result means no visible match for those filters, not permission to file. Use universal lookup (POST /v1/lookup) only when its possible filing effect is intended; it accepts name, not entityName. Executable on POST /v1/entities/search; saved views persist it for replay. A semantic page ranks a bounded nearest-neighbor window: totalElements counts the ranked candidates reachable through continuation, not every matching entity. */
     semanticQuery: z.string().nullish(),
     /** Restrict results to entity slugs. */
     slug: z

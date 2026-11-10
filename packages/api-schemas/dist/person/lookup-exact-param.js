@@ -25,7 +25,7 @@ export const PersonLookupExactParamSchema = z.object({
     maxAssociations: z.int().optional(),
     /** Group C — candidate lookup signal: loose name match (any of given/family/full). A name alone never resolves; combine it with other group-C signals or url. Mutually exclusive with id and slug. */
     nameAny: z.string().optional(),
-    /** Group C — candidate lookup signal: person full name. A name alone never resolves (404): pair it with other group-C signals (location, urlDomain) or url. To find a person by name, use lookupRecord with kind PERSON; for the people at a company, use listEntityPersonAssociations. Mutually exclusive with id and slug. */
+    /** Group C — candidate lookup signal: person full name. A name alone never resolves (404): pair it with other group-C signals (location, urlDomain) or url. To find an existing person by name, use searchPeople with personName, compare candidate identity fields, roles, and evidenced URLs, then read the confirmed id. Search results are candidates, not identity verdicts. Choose universal lookup only when its possible filing effect is intended. For the people at a company, use listEntityPersonAssociations. Mutually exclusive with id and slug. */
     nameFull: z.string().optional(),
     /** Permit generated monogram photo fallback (default: true). Set false to exclude monogram photos in response. */
     permitMonogram: z.boolean().optional(),

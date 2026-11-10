@@ -74,7 +74,7 @@ export const EntityFilterSchema = z.strictObject({
     investorPopulation: z.boolean().nullish(),
     /** First letter of the display name. */
     letter: z.string().nullish(),
-    /** Geographic classification values. */
+    /** Markets served, not HQ or offices. */
     location: z.array(z.string()).optional(),
     /** Logo sort priority. */
     logoOption: EntityFilterLogoOptionSchema.optional(),
