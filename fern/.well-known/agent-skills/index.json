@@ -13,7 +13,7 @@
       "type": "skill-md",
       "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
       "url": "/.well-known/agent-skills/aventure/SKILL.md",
-      "digest": "sha256:52fe9768de4984254fdd00d18b0bb3aea575dc5838dcd6bc9dd529fe562b3dac"
+      "digest": "sha256:df80822c7e3f21d20ac2d0eb99668ef24a9cb2864fdc359ba7ab8a06d0936792"
     },
     {
       "name": "business-cycle-analysis",
