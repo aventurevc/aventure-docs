@@ -14558,13 +14558,21 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     section: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodEnum<{
         company: "company";
+        fund: "fund";
+        investmentFirm: "investmentFirm";
         investor: "investor";
+        operatingCompany: "operatingCompany";
+        otherOrganization: "otherOrganization";
         person: "person";
         productService: "productService";
     }>, z.ZodString]> & {
         enum: {
             company: "company";
+            fund: "fund";
+            investmentFirm: "investmentFirm";
             investor: "investor";
+            operatingCompany: "operatingCompany";
+            otherOrganization: "otherOrganization";
             person: "person";
             productService: "productService";
         };

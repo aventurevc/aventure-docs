@@ -2,9 +2,9 @@
 import { z } from "zod/v4";
 import { UniqueIdOwnerScopeSchema } from "./id-owner-scope.js";
 const UniqueIdTypeAliasSchemaDefinition = z.object({
-    /** Other spellings accepted for this identifier type on writes. */
+    /** Other catalog-recognized spellings for this identifier type. */
     alias: z.array(z.string()),
-    /** Identifier type value, as returned in responses and accepted on writes. */
+    /** Canonical catalog identifier. Public reads and writes admit only types enabled for the public API. */
     canonical: z.string(),
     /** Human-readable label. */
     label: z.string(),

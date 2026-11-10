@@ -5,9 +5,13 @@ const FederatedSearchSectionSchemaKnownMembers = z.enum([
     "company",
     "productService",
     "investor",
+    "operatingCompany",
+    "otherOrganization",
+    "investmentFirm",
+    "fund",
 ]);
 /**
- * Result section a search page renders: people; companies (operating companies, business lines, nonprofits, and governments); products and services; or investors (investment firms and funds).
+ * Result section a search page renders: people; operating companies and business lines; other organizations (nonprofits and governments); products and services; investment firms; or funds. Legacy company aggregates operating companies, business lines, nonprofits, and governments; legacy investor aggregates investment firms and funds. Neither legacy aggregate is emitted in section order.
  *
  * @openapiSchema FederatedSearchSection
  * @endpoint GET /v1/search/link

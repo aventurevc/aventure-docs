@@ -28,7 +28,7 @@ const FederatedSearchSchemaDefinition = z.object({
     provenance: FederatedSearchProvenanceSchema,
     /** A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */
     qualifier: SearchQualifierSchema.nullish(),
-    /** Result sections from most to least relevant. People lead when `personLead` is true and come last otherwise. Companies, products and services, and investors follow the rank of each section's best entity row, so a name whose best match is an investment firm leads with investors; sections with no entity row follow in that same fixed order. */
+    /** Result sections from most to least relevant. People lead when `personLead` is true and come last otherwise. An executed entity type scope leads only when all its expanded types select one section. Remaining sections follow their best entity row's rank, then missing sections follow in Companies, Other Organizations, Products and Services, Investment Firms, Funds order. Legacy company and investor aggregates are not emitted. */
     section: z.array(FederatedSearchSectionSchema).optional(),
 });
 /**
