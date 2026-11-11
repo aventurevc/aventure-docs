@@ -12,6 +12,7 @@
 # 4. The Fern-managed <site>/openapi.json still lists every operation.
 # 5. The public agent-skill index is byte-identical to its checked-in source.
 #    A redirect alone cannot distinguish a served manifest from an error page.
+# 6. Every advertised skill download matches its source SHA-256 digest.
 # Requires Node.js 24 and Bash; site verification also needs cmp, curl, jq,
 # shasum. Exit 1 on any discrepancy.
 set -euo pipefail
@@ -157,6 +158,20 @@ report managed_extra_operations "$TMP/managed_extra"
 if "${CURL[@]}" "$BASE/.well-known/agent-skills/index.json" -o "$TMP/skill-index.json"; then
   if cmp -s "$ROOT/fern/.well-known/agent-skills/index.json" "$TMP/skill-index.json"; then
     echo agent_skill_index_identical=true
+    while IFS=$'\t' read -r name path digest; do
+      if ! "${CURL[@]}" "$BASE$path" > "$TMP/skill-artifact"; then
+        printf 'skill_download_available=false name=%s\n' "$name"
+        fail=1
+        continue
+      fi
+      actual="sha256:$(shasum -a 256 "$TMP/skill-artifact" | cut -d' ' -f1)"
+      if [ "$actual" = "$digest" ]; then
+        printf 'skill_download_identical=true name=%s\n' "$name"
+      else
+        printf 'skill_download_identical=false name=%s\n' "$name"
+        fail=1
+      fi
+    done < <(jq -r '.skills[] | [.name, .url, .digest] | @tsv' "$ROOT/fern/.well-known/agent-skills/index.json")
   else
     echo agent_skill_index_identical=false
     fail=1
