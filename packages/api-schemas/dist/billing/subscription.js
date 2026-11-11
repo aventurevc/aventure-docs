@@ -9,11 +9,11 @@ const BillingSubscriptionSchemaDefinition = z.object({
     additionalUsage: BillingAdditionalUsageSchema,
     /** Used, cap, and reset time of each monthly allowance */
     allowance: ResearchAllowanceUsageSchema,
-    /** True when this account may buy App Store consumable research credit; independent of who bills its plan. Absent on older servers; clients must require true before offering a purchase. Existing balances remain usable when purchases are unavailable. */
+    /** True when an entitled eligible paid plan may buy App Store consumable research credit, independent of who bills its plan. Absent on older servers; clients must require true before offering a purchase. Retained balances remain visible but spending requires an eligible subscription. */
     appStoreCreditPurchasable: z.boolean().nullish(),
     /** True when the plan is cancelled and ends at periodEnd */
     cancelAtPeriodEnd: z.boolean(),
-    /** True when POST /v1/billing/credit-purchases sells this account a prepaid credit pack; false for an operator, a plan the App Store bills, an Unlimited plan, or a continuing paid plan that is not entitled (INCOMPLETE, PAST_DUE, UNPAID, or PAUSED) */
+    /** True when POST /v1/billing/credit-purchases sells this account a prepaid credit pack; requires an entitled eligible paid plan and is false for an operator, an App Store plan, or any absent, expired or non-entitled plan (INCOMPLETE, PAST_DUE, UNPAID, or PAUSED) */
     creditPurchasable: z.boolean(),
     /** True while the subscription grants its paid tier */
     entitled: z.boolean(),
