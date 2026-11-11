@@ -42,7 +42,7 @@ jobs:
           NODE_OPTIONS: --import=${{ github.workspace }}/scripts/fern-ledger-response.mjs
         run: |
           set -eo pipefail
-          # Raw DEBUG includes token fragments; retain only the ledger's bounded identity messages.
+          # Raw DEBUG includes token fragments; retain only bounded publication metadata.
           fern generate --docs --log-level debug 2>&1 | python3 -u -c '
           import re, sys
           ansi = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
@@ -71,6 +71,8 @@ jobs:
                   print("[ledger-sdk] error=body-parse", flush=True)
               elif "Invalid OpenAPI response format." in line:
                   print("[ledger-sdk] error=response-format", flush=True)
+              elif (skills := re.search(r"\bCollected ([0-9]+) well-known agent skills files$", line)):
+                  print(f"[skills] collected={skills.group(1)}", flush=True)
               elif line.endswith("Docs deploy mode: ledger"):
                   print("Docs deploy mode: ledger", flush=True)
               elif "Failed to locate API section" in line:
