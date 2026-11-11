@@ -23,12 +23,19 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
             UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
         };
     };
-    tier: z.ZodEnum<{
+    tier: z.ZodUnion<readonly [z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
         UNLIMITED: "UNLIMITED";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            ESSENTIAL: "ESSENTIAL";
+            PLUS: "PLUS";
+            PRO: "PRO";
+            UNLIMITED: "UNLIMITED";
+        };
+    };
     unitAmount: z.ZodNumber;
 }, z.core.$strip>;
 type BillingCatalogPlanDefinition = z.infer<typeof BillingCatalogPlanSchemaDefinition>;

@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 import { BillingAdditionalUsageSchema } from "./additional-usage.js";
 import { BillingPlanTypeSchema } from "./plan-type.js";
 import { BillingRecurringPriceSchema } from "./recurring-price.js";
+import { BillingTierTypeSchema } from "./tier-type.js";
 import { ResearchAllowanceUsageSchema } from "../research/allowance-usage.js";
 const BillingSubscriptionSchemaDefinition = z.object({
     additionalUsage: BillingAdditionalUsageSchema,
@@ -44,7 +45,7 @@ const BillingSubscriptionSchemaDefinition = z.object({
         "PAUSED",
     ]),
     /** Tier whose monthly allowances apply now */
-    tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
+    tier: BillingTierTypeSchema,
 });
 /**
  * Current plan (Essential, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.

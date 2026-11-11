@@ -236,12 +236,19 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         TRIALING: "TRIALING";
         UNPAID: "UNPAID";
     }>;
-    tier: z.ZodEnum<{
+    tier: z.ZodUnion<readonly [z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
         UNLIMITED: "UNLIMITED";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            ESSENTIAL: "ESSENTIAL";
+            PLUS: "PLUS";
+            PRO: "PRO";
+            UNLIMITED: "UNLIMITED";
+        };
+    };
 }, z.core.$strip>;
 type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDefinition>;
 export interface BillingSubscriptionSchemaInput extends z.input<typeof BillingSubscriptionSchemaDefinition> {

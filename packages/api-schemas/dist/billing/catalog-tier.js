@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { BillingCatalogAllowanceSchema } from "./catalog-allowance.js";
+import { BillingTierTypeSchema } from "./tier-type.js";
 const BillingCatalogTierSchemaDefinition = z.object({
     /** Researchly AI credits per Researchly billing period; 0 withholds them and absent means uncapped. */
     aiCreditLimit: z.int().nullish(),
@@ -12,7 +13,7 @@ const BillingCatalogTierSchemaDefinition = z.object({
     lookupDailyLimit: z.int().nullish(),
     /** Searches per UTC day without a paid plan: plain-English company, people, and federated search, one per request; link search always needs a paid plan. Past it a search answers 402 subscription_required until the next UTC day. Absent on a paid tier, which has no daily search gate. */
     searchDailyLimit: z.int().nullish(),
-    tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
+    tier: BillingTierTypeSchema,
 });
 /**
  * One subscription tier, its monthly caps, and its free daily allowances.

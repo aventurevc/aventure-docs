@@ -12,12 +12,19 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
     displayName: z.ZodString;
     lookupDailyLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     searchDailyLimit: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    tier: z.ZodEnum<{
+    tier: z.ZodUnion<readonly [z.ZodEnum<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
         UNLIMITED: "UNLIMITED";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            ESSENTIAL: "ESSENTIAL";
+            PLUS: "PLUS";
+            PRO: "PRO";
+            UNLIMITED: "UNLIMITED";
+        };
+    };
 }, z.core.$strip>;
 type BillingCatalogTierDefinition = z.infer<typeof BillingCatalogTierSchemaDefinition>;
 export interface BillingCatalogTierSchemaInput extends z.input<typeof BillingCatalogTierSchemaDefinition> {

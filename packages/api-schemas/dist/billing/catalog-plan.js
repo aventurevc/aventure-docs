@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { BillingPlanTypeSchema } from "./plan-type.js";
+import { BillingTierTypeSchema } from "./tier-type.js";
 const BillingCatalogPlanSchemaDefinition = z.object({
     /** App Store product id that sells this plan in the iOS and Mac apps; absent when the plan sells only on the web. */
     appStoreProductId: z.string().nullish(),
@@ -14,7 +15,7 @@ const BillingCatalogPlanSchemaDefinition = z.object({
     /** First invoice amount in currency minor units (USD cents) when an automatic, one-time Checkout offer is available; absent otherwise. Renewals use unitAmount. */
     introductoryAmount: z.number().int().nullish(),
     plan: BillingPlanTypeSchema,
-    tier: z.enum(["ESSENTIAL", "PLUS", "PRO", "UNLIMITED"]),
+    tier: BillingTierTypeSchema,
     /** Price per cadence in currency minor units, not major units: USD cents (4900 means USD 49.00). */
     unitAmount: z.number().int(),
 });

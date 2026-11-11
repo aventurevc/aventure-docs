@@ -164,6 +164,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/subscription-mutation",
         schemaName: "BillingSubscriptionMutationSchema",
     },
+    BillingTierType: { modulePath: "billing/tier-type", schemaName: "BillingTierTypeSchema" },
     BlogPost: { modulePath: "blog/post", schemaName: "BlogPostSchema" },
     BlogPostType: { modulePath: "blog/post-type", schemaName: "BlogPostTypeSchema" },
     ChartBucket: { modulePath: "chart/bucket", schemaName: "ChartBucketSchema" },

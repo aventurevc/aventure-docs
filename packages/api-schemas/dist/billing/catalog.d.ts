@@ -25,7 +25,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         freeTrialDays?: number | null | undefined;
         introductoryAmount?: number | null | undefined;
         plan: string;
-        tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
+        tier: string;
         unitAmount: number;
     }, import("./catalog-plan.ts").BillingCatalogPlanSchemaInput, z.core.$ZodTypeInternals<{
         appStoreProductId?: string | null | undefined;
@@ -35,7 +35,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         freeTrialDays?: number | null | undefined;
         introductoryAmount?: number | null | undefined;
         plan: string;
-        tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
+        tier: string;
         unitAmount: number;
     }, import("./catalog-plan.ts").BillingCatalogPlanSchemaInput>>>;
     tier: z.ZodArray<z.ZodType<{
@@ -48,7 +48,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         displayName: string;
         lookupDailyLimit?: number | null | undefined;
         searchDailyLimit?: number | null | undefined;
-        tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
+        tier: string;
     }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput, z.core.$ZodTypeInternals<{
         aiCreditLimit?: number | null | undefined;
         allowance: {
@@ -59,7 +59,7 @@ declare const BillingCatalogSchemaDefinition: z.ZodObject<{
         displayName: string;
         lookupDailyLimit?: number | null | undefined;
         searchDailyLimit?: number | null | undefined;
-        tier: "ESSENTIAL" | "PLUS" | "PRO" | "UNLIMITED";
+        tier: string;
     }, import("./catalog-tier.ts").BillingCatalogTierSchemaInput>>>;
 }, z.core.$strip>;
 type BillingCatalogDefinition = z.infer<typeof BillingCatalogSchemaDefinition>;
