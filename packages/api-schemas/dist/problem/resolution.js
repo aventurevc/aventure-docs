@@ -5,6 +5,7 @@ import { z } from "zod/v4";
  *
  * @openapiSchema ProblemResolution
  * @standardProblemResponse
+ * @usedBySchema IdentificationSchema
  * @usedBySchema ProblemDetailSchema
  * @contractShape problem.resolution
  * @contractRole canonical

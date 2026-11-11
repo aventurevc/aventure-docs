@@ -8,6 +8,7 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "irelandCompanyNumber",
     "japanCryptoAssetExchangeRegistration",
     "ukraineEdrpou",
+    "australiaAbn",
     "franceSiren",
     "belgiumEnterpriseNumber",
     "chinaUnifiedSocialCreditCode",

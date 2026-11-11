@@ -177,6 +177,21 @@ export declare const IdentificationSchema: z.ZodObject<{
         };
     }>>;
     filingRefusalDetail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    filingResolution: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        acceptedValue: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+        action: z.ZodEnum<{
+            authenticate: "authenticate";
+            removeParameter: "removeParameter";
+            reviewCandidates: "reviewCandidates";
+            setField: "setField";
+            setParameter: "setParameter";
+            useEndpoint: "useEndpoint";
+        }>;
+        endpoint: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        fieldPath: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        parameter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        retryable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    }, z.core.$strip>>>;
     inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     match: z.ZodOptional<z.ZodNullable<z.ZodObject<{

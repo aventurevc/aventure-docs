@@ -15,6 +15,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     AddressState: { modulePath: "address/state", schemaName: "AddressStateSchema" },
     AgentHelp: { modulePath: "agent/help", schemaName: "AgentHelpSchema" },
     AgentHelpQuestion: { modulePath: "agent/help-question", schemaName: "AgentHelpQuestionSchema" },
+    AgentSuggestion: { modulePath: "agent/suggestion", schemaName: "AgentSuggestionSchema" },
+    AgentSuggestionList: {
+        modulePath: "agent/suggestion-list",
+        schemaName: "AgentSuggestionListSchema",
+    },
     AgentTaskPreset: { modulePath: "agent/task-preset", schemaName: "AgentTaskPresetSchema" },
     AgentTaskPresetCatalog: {
         modulePath: "agent/task-preset-catalog",

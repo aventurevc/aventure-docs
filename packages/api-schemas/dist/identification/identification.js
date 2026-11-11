@@ -4,6 +4,7 @@ import { DomainConflictTypeSchema } from "../domain/conflict-type.js";
 import { EntityPersonOwnerSchema } from "../entity/person-owner.js";
 import { IdentificationCandidateSchema } from "./candidate.js";
 import { JobEnqueueSchema } from "../job/enqueue.js";
+import { ProblemResolutionSchema } from "../problem/resolution.js";
 import { UrlHostFormResolutionSchema } from "../url/host-form-resolution.js";
 /**
  * Which existing entity or person satisfies the requested identity, type, and provider scope, how that was settled, and the candidates considered, most probable first.
@@ -38,6 +39,8 @@ export const IdentificationSchema = z.object({
     filingRefusal: DomainConflictTypeSchema.nullish(),
     /** Reason that pre-insert validation refused filing; present for verified previews as well as filing requests when validation refuses the subject. Absent when validation admits it; a preview never creates a record or claims a source identifier. */
     filingRefusalDetail: z.string().nullish(),
+    /** The naming owner's typed correction for a refused verified preview or filing. Absent on older responses or when no correction was supplied; absence never permits a retry. */
+    filingResolution: ProblemResolutionSchema.nullish(),
     /** Present only for callers that sent Prefer: respond-async. For a completed filing job, whether that request inserted created. */
     inserted: z.boolean().nullish(),
     /** true when the match was settled on a second, slower review; confirm it before relying on it. Absent otherwise. */

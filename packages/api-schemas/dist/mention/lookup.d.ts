@@ -1011,6 +1011,14 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             filingRefusal?: string | null | undefined;
             filingRefusalDetail?: string | null | undefined;
+            filingResolution?: {
+                acceptedValue?: string[] | null | undefined;
+                action: "authenticate" | "removeParameter" | "reviewCandidates" | "setField" | "setParameter" | "useEndpoint";
+                endpoint?: string | null | undefined;
+                fieldPath?: string | null | undefined;
+                parameter?: string | null | undefined;
+                retryable?: boolean | null | undefined;
+            } | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
@@ -2128,6 +2136,14 @@ declare const MentionLookupSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             filingRefusal?: string | null | undefined;
             filingRefusalDetail?: string | null | undefined;
+            filingResolution?: {
+                acceptedValue?: string[] | null | undefined;
+                action: "authenticate" | "removeParameter" | "reviewCandidates" | "setField" | "setParameter" | "useEndpoint";
+                endpoint?: string | null | undefined;
+                fieldPath?: string | null | undefined;
+                parameter?: string | null | undefined;
+                retryable?: boolean | null | undefined;
+            } | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {

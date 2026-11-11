@@ -172,6 +172,21 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             };
         }>>;
         filingRefusalDetail: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        filingResolution: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+            acceptedValue: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString>>>;
+            action: z.ZodEnum<{
+                authenticate: "authenticate";
+                removeParameter: "removeParameter";
+                reviewCandidates: "reviewCandidates";
+                setField: "setField";
+                setParameter: "setParameter";
+                useEndpoint: "useEndpoint";
+            }>;
+            endpoint: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            fieldPath: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            parameter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+            retryable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        }, z.core.$strip>>>;
         inserted: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         languageModelSettled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         match: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -1252,6 +1267,14 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             filingRefusal?: string | null | undefined;
             filingRefusalDetail?: string | null | undefined;
+            filingResolution?: {
+                acceptedValue?: string[] | null | undefined;
+                action: "authenticate" | "removeParameter" | "reviewCandidates" | "setField" | "setParameter" | "useEndpoint";
+                endpoint?: string | null | undefined;
+                fieldPath?: string | null | undefined;
+                parameter?: string | null | undefined;
+                retryable?: boolean | null | undefined;
+            } | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {
@@ -2369,6 +2392,14 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             filingRefusal?: string | null | undefined;
             filingRefusalDetail?: string | null | undefined;
+            filingResolution?: {
+                acceptedValue?: string[] | null | undefined;
+                action: "authenticate" | "removeParameter" | "reviewCandidates" | "setField" | "setParameter" | "useEndpoint";
+                endpoint?: string | null | undefined;
+                fieldPath?: string | null | undefined;
+                parameter?: string | null | undefined;
+                retryable?: boolean | null | undefined;
+            } | null | undefined;
             inserted?: boolean | null | undefined;
             languageModelSettled?: boolean | null | undefined;
             match?: {

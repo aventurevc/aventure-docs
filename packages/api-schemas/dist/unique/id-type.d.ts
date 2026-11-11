@@ -25,6 +25,7 @@ import { z } from "zod/v4";
  * @contractRole canonical
  */
 export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
+    australiaAbn: "australiaAbn";
     belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
     brazilCnpj: "brazilCnpj";
     chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
@@ -69,6 +70,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     vietnamTaxCode: "vietnamTaxCode";
 }>, z.ZodString]> & {
     enum: {
+        australiaAbn: "australiaAbn";
         belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
         brazilCnpj: "brazilCnpj";
         chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";

@@ -6,6 +6,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
     id: z.ZodInt;
     identifier: z.ZodString;
     idType: z.ZodUnion<readonly [z.ZodEnum<{
+        australiaAbn: "australiaAbn";
         belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
         brazilCnpj: "brazilCnpj";
         chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
@@ -50,6 +51,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         vietnamTaxCode: "vietnamTaxCode";
     }>, z.ZodString]> & {
         enum: {
+            australiaAbn: "australiaAbn";
             belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
             brazilCnpj: "brazilCnpj";
             chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
