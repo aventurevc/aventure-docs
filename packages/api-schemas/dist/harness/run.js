@@ -103,7 +103,7 @@ export const HarnessRunSchema = z.object({
     updatedAt: z.iso.datetime({ offset: true }),
     /** URL of the company, Product, Service, or person under research */
     url: z.string(),
-    /** Optional instructions filed with the run */
+    /** Optional engine instructions. POST /v1/research/runs filing responses acknowledge only the submitted note; subsequent requester list and detail reads omit the combined instructions. Privileged and engine reads retain the full brief. */
     userPrompt: z.string().nullish(),
 });
 //# sourceMappingURL=run.js.map
