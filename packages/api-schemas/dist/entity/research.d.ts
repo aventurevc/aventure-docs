@@ -156,6 +156,23 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         valueResearchDetail?: string | null | undefined;
         valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
     }, import("./research-detail.ts").EntityResearchDetailSchemaInput>>>;
+    financial: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        currency: string | null;
+        entityId: string;
+        functionalCurrency: string | null;
+        id: number;
+        period: string;
+        revenue: string | null;
+        year: number;
+    }, import("./financial.ts").EntityFinancialSchemaInput, z.core.$ZodTypeInternals<{
+        currency: string | null;
+        entityId: string;
+        functionalCurrency: string | null;
+        id: number;
+        period: string;
+        revenue: string | null;
+        year: number;
+    }, import("./financial.ts").EntityFinancialSchemaInput>>>>>;
     snippet: z.ZodArray<z.ZodObject<{
         compliance: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             characterCount: z.ZodInt;

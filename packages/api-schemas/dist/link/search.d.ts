@@ -5245,6 +5245,15 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     valueResearchDetail?: string | null | undefined;
                     valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
                 }[];
+                financial?: {
+                    currency: string | null;
+                    entityId: string;
+                    functionalCurrency: string | null;
+                    id: number;
+                    period: string;
+                    revenue: string | null;
+                    year: number;
+                }[] | null | undefined;
                 snippet: {
                     compliance?: {
                         characterCount: number;
@@ -12577,6 +12586,15 @@ declare const LinkSearchSchemaDefinition: z.ZodObject<{
                     valueResearchDetail?: string | null | undefined;
                     valueType: "date" | "monetary" | "numeric" | "percentage" | "text";
                 }[];
+                financial?: {
+                    currency: string | null;
+                    entityId: string;
+                    functionalCurrency: string | null;
+                    id: number;
+                    period: string;
+                    revenue: string | null;
+                    year: number;
+                }[] | null | undefined;
                 snippet: {
                     compliance?: {
                         characterCount: number;

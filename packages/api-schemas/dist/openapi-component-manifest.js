@@ -477,6 +477,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/filter-ui-meta",
         schemaName: "EntityFilterUiMetaSchema",
     },
+    EntityFinancial: { modulePath: "entity/financial", schemaName: "EntityFinancialSchema" },
     EntityFundingDetail: {
         modulePath: "entity/funding-detail",
         schemaName: "EntityFundingDetailSchema",
