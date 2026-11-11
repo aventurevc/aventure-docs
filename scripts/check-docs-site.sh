@@ -7,8 +7,8 @@
 #    <site>/api-reference/llms.txt, and each page's Markdown declares the
 #    expected METHOD and path (a missing page returns a 200 "similar pages"
 #    stub, so status codes prove nothing).
-# 3. The immutable OpenAPI artifact linked from the API overview page is
-#    byte-identical to the checked-in input.
+# 3. The immutable OpenAPI artifact linked from the API overview page and
+#    <site>/openapi/latest.json are byte-identical to the checked-in input.
 # 4. The Fern-managed <site>/openapi.json still lists every operation.
 # 5. The public agent-skill index is byte-identical to its checked-in source.
 #    A redirect alone cannot distinguish a served manifest from an error page.
@@ -143,6 +143,19 @@ else
   got="$(shasum -a 256 "$TMP/artifact.json" | cut -d' ' -f1)"
   printf 'artifact_url=%s\nartifact_sha256=%s\nexpected_sha256=%s\n' "${artifact_url%%\?*}" "$got" "$want"
   if [ "$want" = "$got" ]; then echo artifact_identical=true; else echo artifact_identical=false; fail=1; fi
+fi
+
+if "${CURL[@]}" "$BASE/openapi/latest.json" -o "$TMP/stable-artifact.json"; then
+  echo stable_artifact_available=true
+  if cmp -s "$SPEC" "$TMP/stable-artifact.json"; then
+    echo stable_artifact_identical=true
+  else
+    echo stable_artifact_identical=false
+    fail=1
+  fi
+else
+  echo stable_artifact_available=false
+  fail=1
 fi
 
 # --- 4. Fern-managed spec still carries every operation --------------------

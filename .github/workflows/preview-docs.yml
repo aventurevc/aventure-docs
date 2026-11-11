@@ -38,6 +38,14 @@ jobs:
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
         run: |
+          # Previews must read this checkout revision's artifacts, not main.
+          node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync } from 'node:fs';
+          writeFileSync('fern/docs.yml', readFileSync('fern/docs.yml', 'utf8').replaceAll(
+            'https://raw.githubusercontent.com/aventurevc/aventure-docs/main/',
+            `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/${process.env.GITHUB_SHA}/`
+          ));
+          NODE
           if ! OUTPUT=$(fern generate --docs --preview 2>&1); then echo "$OUTPUT"; exit 1; fi
           echo "$OUTPUT"
           # A layout key that no longer matches a spec tag is only a warning to Fern.
