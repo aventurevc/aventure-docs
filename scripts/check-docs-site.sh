@@ -10,6 +10,8 @@
 # 3. The immutable OpenAPI artifact linked from the API overview page is
 #    byte-identical to the checked-in input.
 # 4. The Fern-managed <site>/openapi.json still lists every operation.
+# 5. The public agent-skill index is byte-identical to its checked-in source.
+#    A redirect alone cannot distinguish a served manifest from an error page.
 # Requires Node.js 24 and Bash; site verification also needs cmp, curl, jq,
 # shasum. Exit 1 on any discrepancy.
 set -euo pipefail
@@ -150,6 +152,19 @@ comm -23 "$TMP/expected" "$TMP/managed_ops" > "$TMP/managed_missing"
 report managed_missing_operations "$TMP/managed_missing"
 comm -13 "$TMP/expected" "$TMP/managed_ops" > "$TMP/managed_extra"
 report managed_extra_operations "$TMP/managed_extra"
+
+# --- 5. public agent-skill discovery bytes ----------------------------------
+if "${CURL[@]}" "$BASE/.well-known/agent-skills/index.json" -o "$TMP/skill-index.json"; then
+  if cmp -s "$ROOT/fern/.well-known/agent-skills/index.json" "$TMP/skill-index.json"; then
+    echo agent_skill_index_identical=true
+  else
+    echo agent_skill_index_identical=false
+    fail=1
+  fi
+else
+  echo agent_skill_index_fetch=FAILED
+  fail=1
+fi
 
 if [ "$fail" -eq 0 ]; then echo RESULT=PASS; else echo RESULT=FAIL; fi
 exit "$fail"
