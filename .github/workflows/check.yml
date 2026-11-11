@@ -1,6 +1,13 @@
 name: fern-check
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('fern-check {0}', inputs.source_sha) || '' }}
 
 on:
+  workflow_dispatch:
+    inputs:
+      source_sha:
+        description: Full 40-character commit SHA of the delivered docs commit to check
+        required: true
+        type: string
   pull_request:
     paths:
       - ".github/actions/**"
@@ -20,10 +27,13 @@ on:
       - "packages/api-schemas/**"
       - "scripts/**"
 
-# The public release train waits on each pushed commit's own run, so a push
-# run never shares a group; a newer pull request run cancels the older one.
+env:
+  SOURCE_SHA: ${{ inputs.source_sha }}
+
+# The public release train waits on each pushed commit's own run, so push and
+# dispatch runs never share a group; a newer pull request run cancels the older one.
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'pull_request' && 'pr' || github.sha }}
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event_name == 'workflow_dispatch' && github.run_id || github.event_name == 'pull_request' && 'pr' || github.sha }}
   cancel-in-progress: true
 
 jobs:
@@ -31,8 +41,18 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 3
     steps:
+      - name: Validate the requested commit SHA
+        if: github.event_name == 'workflow_dispatch'
+        run: '[[ "$SOURCE_SHA" =~ ^[0-9a-f]{40}$ ]]'
+
       - name: Checkout repository
         uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.source_sha || github.sha }}
+
+      - name: Verify the requested commit
+        if: github.event_name == 'workflow_dispatch'
+        run: '[ "$(git rev-parse HEAD)" = "$SOURCE_SHA" ]'
 
       - name: Setup Node.js
         uses: actions/setup-node@v5
