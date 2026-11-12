@@ -239,14 +239,14 @@ redirects:
     destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/openapi/openapi.json"
   # The docs host 404s the agent-skills discovery paths, so route the manifest
   # and every bundle to the identical bytes this repository serves on GitHub
-  # raw. The bundle lives outside .well-known so Fern's skills feature does not
-  # claim the namespace and shadow these redirects.
+  # raw. Fern's skills feature reserves the namespace and shadows these
+  # redirects, so they only take effect behind an edge proxy.
   - source: "/.well-known/agent-skills/index.json"
-    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/skills-bundle/index.json"
+    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/index.json"
   - source: "/.well-known/agent-skills/:slug(.*)"
-    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/skills-bundle/:slug(.*)"
+    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/:slug(.*)"
   - source: "/.well-known/agent-skills/:slug*"
-    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/skills-bundle/:slug*"
+    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/:slug*"
   # skip-slug on the API entry removed the title-derived a-venture-api segment.
   - source: "/api-reference/a-venture-api"
     destination: "/api-reference"
