@@ -175,6 +175,23 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     }, z.core.$strip>>>;
     publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    report: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        paragraph: z.ZodArray<z.ZodType<{
+            source: {
+                quote: string;
+                title?: string | null | undefined;
+                url: string;
+            }[];
+            text: string;
+        }, import("../research/run-report-paragraph.ts").ResearchRunReportParagraphSchemaInput, z.core.$ZodTypeInternals<{
+            source: {
+                quote: string;
+                title?: string | null | undefined;
+                url: string;
+            }[];
+            text: string;
+        }, import("../research/run-report-paragraph.ts").ResearchRunReportParagraphSchemaInput>>>;
+    }, z.core.$strip>>>;
     run: z.ZodObject<{
         attempt: z.ZodInt;
         callerCanFollowRun: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;

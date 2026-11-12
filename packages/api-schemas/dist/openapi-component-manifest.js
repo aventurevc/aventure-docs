@@ -1157,6 +1157,15 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "research/paragraph-shape",
         schemaName: "ResearchParagraphShapeSchema",
     },
+    ResearchRunReport: { modulePath: "research/run-report", schemaName: "ResearchRunReportSchema" },
+    ResearchRunReportParagraph: {
+        modulePath: "research/run-report-paragraph",
+        schemaName: "ResearchRunReportParagraphSchema",
+    },
+    ResearchRunReportSource: {
+        modulePath: "research/run-report-source",
+        schemaName: "ResearchRunReportSourceSchema",
+    },
     ResearchRunView: { modulePath: "research/run-view", schemaName: "ResearchRunViewSchema" },
     ResearchSnippetType: {
         modulePath: "research/snippet-type",

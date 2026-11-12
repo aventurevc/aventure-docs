@@ -88,7 +88,7 @@ export const ProblemDetailSchema = z.object({
             "JOBRUNR_DISABLED",
             /** JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error). */
             "jobrunr_disabled",
-            /** A catalog task step runs an operation this API instance does not serve, so its plan cannot be projected: rollout skew, or an instance whose configuration disables that operation. Agent action: retry after the rollout; on a deployed instance that persists, report it as rollout skew. */
+            /** A catalog task step names an operation this API instance's command catalog does not expose, so its plan cannot be projected. Causes include rollout skew, configuration or a removed operation. Agent action: have an operator check the selected task catalog and deployed operation list before retrying; do not assume a rollout will restore it. */
             "task_plan_operation_unserved",
             /** JobRunr storage (Postgres) is down. Agent action: stop until it recovers. */
             "JOBRUNR_STORAGE_UNAVAILABLE",

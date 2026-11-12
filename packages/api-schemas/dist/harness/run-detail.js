@@ -4,6 +4,7 @@ import { EntitySchema } from "../entity/entity.js";
 import { HarnessRunFollowUpSchema } from "./run-follow-up.js";
 import { HarnessRunProgressSchema } from "./run-progress.js";
 import { HarnessRunSchema } from "./run.js";
+import { ResearchRunReportSchema } from "../research/run-report.js";
 const HarnessRunDetailSchemaDefinition = z.object({
     /** Current public profile the run resolved to */
     entity: EntitySchema.nullish(),
@@ -17,6 +18,8 @@ const HarnessRunDetailSchemaDefinition = z.object({
     provider: EntitySchema.nullish(),
     /** Exact renderable public profile URL for the resolved entity */
     publicUrl: z.string().nullish(),
+    /** Written report and its citations, when the run submitted one */
+    report: ResearchRunReportSchema.nullish(),
     /** The research run */
     run: HarnessRunSchema,
 });
