@@ -1,0 +1,90 @@
+---
+name: aventure-cookbook
+description: "Use for multi-step aVenture research: company briefs, funding and investors, portfolios, founder backgrounds, competitors, news monitoring, and resolving name lists."
+metadata:
+  title: aVenture Cookbook
+---
+
+# aVenture Cookbook
+
+Each recipe chains aVenture reads into one answer. The `aventure` skill owns setup, finding an operation, lookup statuses, visibility filters, and error handling; read it first. Commands are CLI spellings; Related Records (`aventure` §4.1) names each one's MCP `operationId`, and `aventure help <command>` prints its CLI, MCP, and REST forms. Add `--data` when fields matter.
+
+## §1 Resolve First
+
+Objective:
+- Resolve the subject id before following a recipe's related-record reads.
+
+Steps:
+1. Every recipe starts from an id. An aventure.vc URL, website, or slug resolves with full detail in one call (MCP Quick Path, `aventure` §0). For an existing-record name read, use `aventure entities search --entity-name "<name>"` or `aventure people search --person-name "<name>"`; confirm the candidate from its identity evidence before reading its id. Universal `aventure lookup` can file a missing record, so use it only when that effect is intended, never as a read-only name sweep.
+2. Continue on a confirmed existing record or exact detail. An empty name search leaves that branch without a visible match for its filters; apply Visibility and History Filters (`aventure` §3.1), report the gap, and do not silently switch to filing. When universal lookup is intended, follow Identity Lookup (`aventure` §4)'s status and evidence rules: continue on `MATCHED`, refine `NEEDS_REVIEW`, and use a returned `created.owner` without creating it again. If no record was matched or created, offer Request Research or Record Updates (`aventure` §4.2) research and stop that branch.
+
+Prohibited:
+- A status decision that bypasses Identity Lookup (`aventure` §4)'s evidence rules.
+
+## §2 Company Brief
+
+1. The §1 exact lookup already returns names, description, headquarters, founding year, logo, links, rounds, people, news, and research (MCP Quick Path, `aventure` §0); from a bare id, read `aventure entities get --entity-id "<id>"` (`getEntity`).
+2. For a section the detail omits or truncates, issue its reads together (MCP Quick Path, `aventure` §0): `entities fundraise-rounds list --entity-id "<id>"` (`listEntityFundraiseRounds`) for rounds; `entities people list --entity-id "<id>" --is-current true` (`listEntityPersonAssociations`) for current leaders; `news list --owner-entity-id "<id>" --size 5` (`listNews`) for coverage.
+3. Report each fact with the record and its source URL. Omit a section whose read returned nothing, rather than guessing it.
+4. The rounds section lists the rounds aVenture records, not every round the company raised, so title it with the latest recorded round's date. When the record's news or research, or any other source in the answer, names a round missing from that list, add the round as a row marked as not in aVenture with its source URL, and offer Request Research or Record Updates (`aventure` §4.2) research for it.
+
+## §3 Who Invested in a Round
+
+1. `aventure entities fundraise-rounds list --entity-id "<company-id>"` and pick the round's label, such as `Series B`.
+2. `aventure entities fundraise-investor-joins list --entity-id "<company-id>" --round "<label>"`: one row per investor; each names `investor.entityId` or `investor.personId`.
+3. Read an investor by that id with `entities get` or `people get` when the user needs more than the name.
+
+## §4 Investor Portfolio
+
+1. Resolve the firm (§1).
+2. `aventure entities investments list --entity-id "<investor-id>"`: what it backed. Narrow with `--round`, `--date-from`, `--date-to`, `--min-amount`, or `--max-amount`; `--latest-per-entity true` keeps one row per portfolio company.
+3. For an angel, resolve the person and run `aventure people investments list --person-id "<id>"`.
+4. `aventure entities investors list --entity-id "<company-id>"` answers the reverse question: who backed this company.
+
+## §5 Founder Background
+
+1. Resolve the person (§1), checking the company and role evidence when the name is common. A read-only `people search` can narrow associated companies with `--entity-name`; `--context` belongs only to intended universal lookup.
+2. `aventure people get --person-id "<id>"`: profile and links.
+3. `aventure people entities list --person-id "<id>"`: every company role, current and past.
+4. `aventure people investments list --person-id "<id>"`: angel investments.
+
+## §6 Competitors and Peers
+
+1. Resolve the company (§1). To discover competitors, first establish what each of its products or services does and for which buyer, then search by that description; an empty stored list or a source that does not name rivals is not "no competitors."
+2. To read stored peers, call `aventure entities similar list --entity-id "<id>"` (`listEntitySimilarEntities` via `aventure_read`, `pathParams.entityId` = the resolved id). For “fintech startups similar to Brex”, resolve Brex and read its ranked peers; keep only those whose returned fields support the requested scope. Add `--relationship-type competitor` only for stored competitors, not general similarity.
+   When the request covers every peer, use `--json` and read the served `X-Next-Cursor` from `data.nextCursor`; `--data` omits this metadata. Follow it with `--cursor`, keeping filters and size unchanged, until no cursor remains. Capture stable entity ids across every page; if a ranked-roster change requires restarting traversal, retain the already captured ids and reconcile the union rather than replacing the roster with the new first page. An existing queue entry is not a membership requirement: selected peers without one remain in scope.
+3. Cite each returned record and distinguish ranked similarity from a stored competitor relationship; never substitute competitors from memory. Never claim similarity retrieval failed without making that call; report an actual error or empty stored result as such, without treating it as discovered absence of competitors.
+4. `aventure entities relationships list --entity-id "<id>"`: parents, subsidiaries, products, and other stored links.
+5. To discover companies rather than peers of a known company, follow the filter-first search route (`aventure` §7 item 2, cited as §7.2); use its natural-search step for description matching while the daily search allowance lasts, and read `interpretation` before trusting the scope. Company discovery is not competitor discovery; competitor discovery stays on step 1.
+
+## §7 News Monitoring
+
+1. `aventure news list --owner-entity-id "<id>" --published-after "<YYYY-MM-DD>"`: articles about a company since a date; `--owner-person-id` does the same for a person.
+2. `aventure entities trending-news list --entity-id "<id>"`: the most-read coverage.
+3. `aventure news get --news-id "<id>"` reads the full article `content`.
+4. Choose the article path by outcome: `aventure lookup mentions --source-url "<article-url>"` returns synchronous identifications and may file thin shells (a company public, a person hidden), queueing research on them only with `--schedule-enrichment true`; `aventure lookup mentions --max-names "<N>" --source-url "<article-url>"` is lookup-only bounded work with no shells or enrichment, answered as a job. Read a returned job with `aventure lookup jobs get --job-id "<job-id>"`.
+
+## §8 Resolve a List of Names
+
+Objective:
+- Return resolved rows after each ambiguous row's source evidence is checked.
+
+Steps:
+1. Resolve company ids, slugs, or URLs together with one `aventure entities lookup-matches` call, which answers `MATCHED`, `AMBIGUOUS`, or `MISSING` per input. For a read-only name list, search each name with `entities search --entity-name` or `people search --person-name` and confirm candidates against the supplied website, location, industry, and source evidence. Retain unmatched or ambiguous rows without filing them. Use universal `aventure lookup --kind ENTITY|PERSON` only for rows where filing a proven missing subject is intended (§1).
+2. Keep search candidates distinct from universal lookup statuses. Record each read-only row's confirmed id or unresolved identity evidence; for universal lookup rows, apply Identity Lookup (`aventure` §4)'s refinement to `NEEDS_REVIEW` and retain its actual status, matched or created id, and remaining candidates.
+3. Return the table in input order. Ask only for the remaining separating fact that the user alone can provide; keep externally researchable identity gaps in the evidence workflow.
+
+Prohibited:
+- Filling a `NO_MATCH` row with a guessed record or asking for a decision before its evidence refinement.
+
+## §9 Analyze Business Implications
+
+Use this method for article analysis and company research, within the selected framework and the reader's decision. It governs research and judgment, not extra report headings or a transcript of the reasoning.
+
+1. Separate the event from the question it changes. Establish what happened, when, to which business, buyer, and market. Ask what must be true for the apparent implication to follow, then which evidence could overturn that premise. Prioritize the unanswered question whose answer would most change the judgment; do not recursively generate questions that cannot affect it.
+2. Establish the wider context with dated evidence: the relevant industry cycle, buyer budgets, capacity, financing, regulation, litigation, and competing technologies. Investigate only factors with a plausible connection to this event or company. Compare conditions before and after the event; an industry trend alone does not prove company-specific exposure or causation.
+3. Research in successive, evidence-led queries: establish the context, investigate the decisive causal link, then seek the strongest competing explanation and subsequent independent reporting. Adapt each query to what the previous sources leave unresolved; do not repeat the headline in different words. Read the underlying pages. Syndicated announcements count as one account; publication dates and event dates are different. Stop when another query is unlikely to change the answer or the assigned budget is reached, stating any decisive uncertainty at the affected conclusion.
+4. Trace each material implication from the event through the affected buyer, supplier, competitor, or regulator to a business outcome over a stated horizon. Consider sales and pipeline prospects, demand, supply, pricing, delivery costs, legal exposure, revenue, profit, and growth only where relevant. Explain the mechanism and conditions; do not force a verdict for every metric. Ask who benefits, who bears the cost, and which response or constraint could offset or reverse the first-order effect.
+5. Distinguish observed facts, attributed claims, evidence-supported deductions, and conditional scenarios. A funding round is not revenue; capacity is not utilization; a partnership is not booked sales; revenue growth is not profit growth; an announcement is not an implemented rule. Quantify only with supported inputs on matching units and periods. An unsupported causal link remains a condition, not a forecast or a fact made safe by adding "may".
+6. Challenge the conclusion with a counterfactual: what would likely happen without this event, and what other explanation fits the same evidence? State the strongest counterevidence and the observable development that would strengthen, weaken, or reverse the judgment. Do not invent probabilities, forecasts, or absence from an unsuccessful search.
+7. Write the conclusion and its supported mechanism once. Keep a contextual fact only if it changes the answer, tests a premise, or explains a material uncertainty. Cut headline paraphrases presented as analysis, generic observations, repeated company descriptions, and filler such as "this highlights the importance of innovation". Prefer a narrower useful conclusion to an unsupported bigger story; keep the research process out of the reader's prose.

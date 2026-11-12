@@ -1,0 +1,117 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "aventure-cookbook",
+      "type": "skill-md",
+      "description": "Use for multi-step aVenture research: company briefs, funding and investors, portfolios, founder backgrounds, competitors, news monitoring, and resolving name lists.",
+      "url": "/.well-known/agent-skills/aventure-cookbook/SKILL.md",
+      "digest": "sha256:630e83aa07d40e099c79a2220296ff74bbb7b6a38aa09c1aeda3636f0890a8b7"
+    },
+    {
+      "name": "aventure",
+      "type": "skill-md",
+      "description": "Use to read aVenture research data on private companies, founders, investors, funding rounds, and news through its API, CLI, or MCP server.",
+      "url": "/.well-known/agent-skills/aventure/SKILL.md",
+      "digest": "sha256:23543c060a6f0cdf6818b45838052d78616909c588182ac5b562550df07a70a0"
+    },
+    {
+      "name": "business-cycle-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked where a company's specific sub-sector sits in its business cycle: demand, capacity, pricing, capital, and regulation phases, dated evidence, and the implications for the company against named alternatives.",
+      "url": "/.well-known/agent-skills/business-cycle-analysis/SKILL.md",
+      "digest": "sha256:c7c5407c073d65943d04bdb5c5cfcc1ce73892c54e915d5d4a2503679e48189a"
+    },
+    {
+      "name": "buyer-persona-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked for buyer personas, buyer archetypes, buying committees, or who buys a company's products or services and how they decide: personas rolled up from roles observed at named accounts, each with the initiative that starts its purchase, the results it expects, the barriers that stop it, how it compares and eliminates options, and its decision criteria, drawn from buyers and from buyers who chose a rival or the status quo, with where each persona does not apply. For named accounts, segments, or an ideal customer profile, use customer-analysis.",
+      "url": "/.well-known/agent-skills/buyer-persona-analysis/SKILL.md",
+      "digest": "sha256:fcb92b27a390926359b1c8627d3b8e0effcf72bfd1e8b78ba3c1d36780198a15"
+    },
+    {
+      "name": "competitive-landscape",
+      "type": "skill-md",
+      "description": "Use only when asked for a competitive landscape report on a company, product, or investment firm: the field within a stated boundary, player classes, the axes buyers trade off, a sourced player table, recent funding and M&A, unmet needs, and the subject's position.",
+      "url": "/.well-known/agent-skills/competitive-landscape/SKILL.md",
+      "digest": "sha256:fb48f0159ffc7b8d159c73bf7501e47541cfc4771775f40b48d32ae8f5ea5612"
+    },
+    {
+      "name": "competitor-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked for a competitor analysis of a company or product: head-to-head comparison with its closest rivals on product, total cost, customers, distribution, traction, economics, and team, with the subject's relative strength judged on evidence.",
+      "url": "/.well-known/agent-skills/competitor-analysis/SKILL.md",
+      "digest": "sha256:a0c74ab2c7a27e80180b34d4d43a30099ec7610b7e49d11e2cff0b28a63ebad7"
+    },
+    {
+      "name": "customer-analysis",
+      "type": "archive",
+      "description": "Identifies a company's customers from public evidence. Use for who buys or uses a product, current adoption, named accounts, buying roles and motives, and evidence-backed purchase rankings. For full buyer persona profiles use buyer-persona-analysis; for a tiered inventory of what a product is used for, use-case-analysis; for what published testimonials and case studies prove, testimonial-case-study-analysis.",
+      "url": "/.well-known/agent-skills/customer-analysis.tgz",
+      "digest": "sha256:0a4562378820f03aac33812c52e3b5c0650e57cd3d081d68e283e9c29f424bd5"
+    },
+    {
+      "name": "fundraising-environment",
+      "type": "skill-md",
+      "description": "Use only when asked about the venture and growth capital environment for a company's specific sub-sector: round counts and sizes, valuation direction, active and retreating investors, exits, and implications for its next raise.",
+      "url": "/.well-known/agent-skills/fundraising-environment/SKILL.md",
+      "digest": "sha256:6e46e89506cebee81382419bd336ad43639d2321f9a4c10d4ae4b1ff45adb2e9"
+    },
+    {
+      "name": "investor-portfolio-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked for a portfolio analysis of an investment firm or individual investor: funds, observed deal activity by year, stage, sector, and geography, lead and follow-on behavior with coverage stated, verified outcomes, co-investors, stated versus revealed thesis, and recent activity.",
+      "url": "/.well-known/agent-skills/investor-portfolio-analysis/SKILL.md",
+      "digest": "sha256:97d20bcd8d12d1f9ffbfd7e4a0e1948993aa0225eed34b883f57532fec368d8b"
+    },
+    {
+      "name": "leadership-track-record",
+      "type": "skill-md",
+      "description": "Use only when asked for a track record of a founder, executive, or investor: a verified, dated role history, outcomes during each tenure with careful attribution, board seats and investments, public record matters, and unverified claims flagged.",
+      "url": "/.well-known/agent-skills/leadership-track-record/SKILL.md",
+      "digest": "sha256:d1179173aa3951ce402b91c1be1351865aee623f511717778834115f1f508534"
+    },
+    {
+      "name": "market-research",
+      "type": "skill-md",
+      "description": "Use only when asked for a market research report on the market a company or product sells into: market boundary, size with shown arithmetic, growth, segments, buyers, pricing, regulation, and the subject's position.",
+      "url": "/.well-known/agent-skills/market-research/SKILL.md",
+      "digest": "sha256:15d4b67764d53367f7b690e946531a7b3763b522f7e8cef73b51dd9f4ebfe167"
+    },
+    {
+      "name": "market-sizing",
+      "type": "archive",
+      "description": "Use only when asked to size the market a company or product sells into: TAM, SAM, and SOM, current spend versus addressable potential, penetration, implied share, and growth, built bottom-up from counted buyers and prices, checked top-down against published totals and a rival-revenue floor, with every input cited or flagged. For the full market report (segments, buyers, pricing, regulation, position), use market-research, which loads this skill for its sizing.",
+      "url": "/.well-known/agent-skills/market-sizing.tgz",
+      "digest": "sha256:bcfd474b5720614055402bcad4bd719e78799072e47d41245f0bb093366f5bbf"
+    },
+    {
+      "name": "porters-five-forces",
+      "type": "skill-md",
+      "description": "Use only when asked for a Porter's Five Forces analysis of the industry a company or product competes in: a defined industry boundary, each force rated from structural evidence, its direction, the profit implication, and the subject's position.",
+      "url": "/.well-known/agent-skills/porters-five-forces/SKILL.md",
+      "digest": "sha256:7914a292178be263d44f762c1940b668ae9b828697e5edd62d40b8327795ba05"
+    },
+    {
+      "name": "swot-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked for a SWOT analysis of a company, product, or investment firm: internal strengths and weaknesses, external opportunities and threats, each specific and sourced, ranked for the reader's decision, and crossed into feasible actions.",
+      "url": "/.well-known/agent-skills/swot-analysis/SKILL.md",
+      "digest": "sha256:5a7d3d80d00dce091ec3d50e433ea6039e75bba838b186f6f37eb0ba3954f1bc"
+    },
+    {
+      "name": "testimonial-case-study-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked to analyze, verify, or summarize a company's customer testimonials, case studies, customer stories, outcome or ROI claims, or review-site profiles: every story coded for its problem, prior alternative, deployment scope, and outcome with baseline, period, and measurer; each claim graded by who made it and how it was measured; the claims worth repeating checked against the customer's own later statements; and the outcomes that recur across independent named customers, counted against the stories the company chose to publish. For who the customers are, use customer-analysis.",
+      "url": "/.well-known/agent-skills/testimonial-case-study-analysis/SKILL.md",
+      "digest": "sha256:b6037036375cef8ff893a97f7d4dc2091b245a061ab8d7ec92ea809f782cbd26"
+    },
+    {
+      "name": "use-case-analysis",
+      "type": "skill-md",
+      "description": "Use only when asked what a company's products or services are used for, its use cases, the jobs to be done it serves, or which marketed use cases are real: each job written as a solution-free statement with the person who does it and the circumstance, evidenced from named customers, documentation, required integrations, pricing, and buyers' own words, and tiered proven, partly evidenced, marketed only, or not served. For named customer accounts, use customer-analysis.",
+      "url": "/.well-known/agent-skills/use-case-analysis/SKILL.md",
+      "digest": "sha256:b8224d08d0830ec55e1189920f0a7fc869ea06773e7092cd049b4c0ac24d5ab5"
+    }
+  ]
+}

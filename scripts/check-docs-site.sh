@@ -171,7 +171,7 @@ report managed_extra_operations "$TMP/managed_extra"
 
 # --- 5. public agent-skill discovery bytes ----------------------------------
 if "${CURL[@]}" "$BASE/.well-known/agent-skills/index.json" -o "$TMP/skill-index.json"; then
-  if cmp -s "$ROOT/fern/.well-known/agent-skills/index.json" "$TMP/skill-index.json"; then
+  if cmp -s "$ROOT/fern/skills-bundle/index.json" "$TMP/skill-index.json"; then
     echo agent_skill_index_identical=true
     while IFS=$'\t' read -r name path digest; do
       if ! "${CURL[@]}" "$BASE$path" > "$TMP/skill-artifact"; then
@@ -186,7 +186,7 @@ if "${CURL[@]}" "$BASE/.well-known/agent-skills/index.json" -o "$TMP/skill-index
         printf 'skill_download_identical=false name=%s\n' "$name"
         fail=1
       fi
-    done < <(jq -r '.skills[] | [.name, .url, .digest] | @tsv' "$ROOT/fern/.well-known/agent-skills/index.json")
+    done < <(jq -r '.skills[] | [.name, .url, .digest] | @tsv' "$ROOT/fern/skills-bundle/index.json")
   else
     echo agent_skill_index_identical=false
     fail=1
