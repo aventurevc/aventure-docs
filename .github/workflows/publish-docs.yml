@@ -39,6 +39,9 @@ jobs:
       - name: Publish Docs
         env:
           FERN_TOKEN: ${{ secrets.FERN_TOKEN }}
+          # The ledger deploy path uploads the .well-known/agent-skills bundle but
+          # the new docs hosting does not serve it; the legacy path does.
+          FERN_DOCS_DEPLOY_MODE: legacy
           NODE_OPTIONS: --import=${{ github.workspace }}/scripts/fern-ledger-response.mjs
         run: |
           set -eo pipefail
