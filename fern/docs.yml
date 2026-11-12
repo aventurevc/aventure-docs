@@ -242,8 +242,12 @@ redirects:
   # raw. The exact manifest precedes the wildcard; first match wins.
   - source: "/.well-known/agent-skills/index.json"
     destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/index.json"
+  - source: "/.well-known/agent-skills/:slug(.*)"
+    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/:slug(.*)"
   - source: "/.well-known/agent-skills/:slug*"
     destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/:slug*"
+  - source: "/.well-known/probe.json"
+    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/index.json"
   # skip-slug on the API entry removed the title-derived a-venture-api segment.
   - source: "/api-reference/a-venture-api"
     destination: "/api-reference"
