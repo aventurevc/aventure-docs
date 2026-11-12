@@ -24,6 +24,22 @@ function bodyShape(text, phase) {
   return `json=${type} keys=${known.join(',') || 'none'} otherKeys=${keys.length - known.length} missing=${missing.join(',') || 'none'} code=${code} errorStatus=${status}`;
 }
 
+function fileKeys(input, phase) {
+  const locales = input?.locales;
+  if (!Array.isArray(locales)) return;
+  const publicPath = /^(?:\/?llms\.txt|\/?\.well-known\/agent-skills\/(?:index\.json|[a-z0-9-]+(?:\/SKILL\.md|\.tgz)))$/;
+  let selected = 0;
+  for (const locale of locales) {
+    for (const [path, file] of Object.entries(locale.fileManifest ?? {})) {
+      if (!publicPath.test(path) || !/^[0-9a-f]{64}$/.test(file?.hash)
+        || !Number.isSafeInteger(file.contentLength) || file.contentLength < 0) continue;
+      console.log(`[ledger-file] phase=${phase} path=${path} hash=${file.hash} bytes=${file.contentLength}`);
+      selected++;
+    }
+  }
+  console.log(`[ledger-files] phase=${phase} observed=true locales=${locales.length} selected=${selected}`);
+}
+
 globalThis.fetch = function (...args) {
   let phase;
   try {
@@ -36,6 +52,9 @@ globalThis.fetch = function (...args) {
     // Leave invalid input validation to fetch.
   }
   if (!phase) return Reflect.apply(fetch, this, args);
+  // The pinned oRPC fetch adapter supplies its original typed input as argument 5.
+  // Read only public file metadata; never inspect headers or consume the request body.
+  fileKeys(args[4], phase);
   const start = performance.now();
   return Reflect.apply(fetch, this, args).then((response) => {
     const mediaType = response.headers.get('content-type')?.split(';', 1)[0].trim().toLowerCase();
