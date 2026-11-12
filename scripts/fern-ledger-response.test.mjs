@@ -3,7 +3,7 @@ import { createServer } from 'node:http';
 import { once } from 'node:events';
 import test from 'node:test';
 
-async function observeResponse(handler, consume) {
+async function observeResponse(handler, consume, input) {
   const server = createServer(handler).listen(0, '127.0.0.1');
   await once(server, 'listening');
   const nativeFetch = globalThis.fetch;
@@ -20,7 +20,7 @@ async function observeResponse(handler, consume) {
   console.log = (line) => lines.push(line);
   try {
     await import(`./fern-ledger-response.mjs?case=${Math.random()}`);
-    const response = await fetch(new Request('https://registry.buildwithfern.com/docs-ledger/register/finish'));
+    const response = await fetch(new Request('https://registry.buildwithfern.com/docs-ledger/register/finish'), {}, undefined, ['finish'], input);
     assert.equal(calls, 1);
     assert.equal(response, actualResponse);
     assert.equal(response.bodyUsed, false);
@@ -75,6 +75,26 @@ test('classifies malformed and successful JSON without retaining their content',
       assert.ok(!lines.join('\n').includes('SECRET'));
     });
   }
+});
+
+test('records public publisher file keys and digests without retaining private input', async () => {
+  const indexHash = 'a'.repeat(64);
+  const llmsHash = 'b'.repeat(64);
+  const input = { token: 'SECRET_TOKEN', locales: [{ fileManifest: {
+    '.well-known/agent-skills/index.json': { hash: indexHash, contentLength: 9315 },
+    'llms.txt': { hash: llmsHash, contentLength: 5870 },
+    'private/SECRET_FILE': { hash: 'c'.repeat(64), contentLength: 10 },
+  } }] };
+  await observeResponse((_request, response) => {
+    response.writeHead(200, { 'content-type': 'application/json' });
+    response.end('{}');
+  }, async (response, lines) => {
+    assert.equal(lines[0], `[ledger-file] phase=finish path=.well-known/agent-skills/index.json hash=${indexHash} bytes=9315`);
+    assert.equal(lines[1], `[ledger-file] phase=finish path=llms.txt hash=${llmsHash} bytes=5870`);
+    assert.equal(lines[2], '[ledger-files] phase=finish observed=true locales=1 selected=2');
+    assert.ok(!lines.join('\n').includes('SECRET'));
+    assert.equal(await response.text(), '{}');
+  }, input);
 });
 
 test('observes a real interrupted JSON body while preserving the original read error', async () => {
