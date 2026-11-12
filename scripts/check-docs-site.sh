@@ -10,11 +10,11 @@
 # 3. The immutable OpenAPI artifact linked from the API overview page and
 #    <site>/openapi/latest.json are byte-identical to the checked-in input.
 # 4. The Fern-managed <site>/openapi.json still lists every operation.
-# 5. The public agent-skill index, when the host serves it, is byte-identical
-#    to its checked-in source and every advertised skill download matches its
-#    source SHA-256 digest. Fern's host does not yet serve the skill paths its
-#    publisher accepts, so no publish can change that: an unserved manifest is
-#    reported without failing, and a served one is verified strictly.
+# 5. The public agent-skill index is byte-identical to its checked-in source
+#    and every advertised skill download matches its source SHA-256 digest.
+#    The publisher uploads the bundle in both deploy modes, but the host
+#    returns 404 for every skill path, so an unserved manifest fails the check
+#    until the host serves it.
 # Requires Node.js 24 and Bash; site verification also needs cmp, curl, jq,
 # shasum. Exit 1 on any discrepancy.
 set -euo pipefail
