@@ -194,6 +194,7 @@ if "${CURL[@]}" "$BASE/.well-known/agent-skills/index.json" -o "$TMP/skill-index
 else
   echo agent_skill_index_fetch=FAILED
   echo agent_skill_index_served=false
+  fail=1
 fi
 
 if [ "$fail" -eq 0 ]; then echo RESULT=PASS; else echo RESULT=FAIL; fi
