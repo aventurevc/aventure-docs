@@ -28,13 +28,6 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     readonly UNEXPECTED_ERROR: "https://api.aventure.vc/errors/unexpected-error";
     readonly NOT_IMPLEMENTED: "https://api.aventure.vc/errors/not-implemented";
     readonly AUTHENTICATION_REQUIRED: "https://api.aventure.vc/errors/authentication-required";
-    readonly AUTH_DOCS_REQUIRED: "https://api.aventure.vc/errors/auth.docs-required";
-    readonly AUTH_ADMIN_KEY_NOT_CONFIGURED: "https://api.aventure.vc/errors/auth.admin-key-not-configured";
-    readonly AUTH_EMPTY_ADMIN_KEY: "https://api.aventure.vc/errors/auth.empty-admin-key";
-    readonly AUTH_EMPTY_ADMIN_BEARER: "https://api.aventure.vc/errors/auth.empty-admin-bearer";
-    readonly AUTH_INVALID_ADMIN_KEY: "https://api.aventure.vc/errors/auth.invalid-admin-key";
-    readonly AUTH_MISSING_ADMIN_KEY: "https://api.aventure.vc/errors/auth.missing-admin-key";
-    readonly AUTH_METRICS_UNAUTHORIZED: "https://api.aventure.vc/errors/auth.metrics-unauthorized";
     readonly ACCESS_DENIED: "https://api.aventure.vc/errors/access-denied";
     readonly NOT_FOUND: "https://api.aventure.vc/errors/not-found";
     readonly ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found";
@@ -93,13 +86,6 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         readonly UNEXPECTED_ERROR: "https://api.aventure.vc/errors/unexpected-error";
         readonly NOT_IMPLEMENTED: "https://api.aventure.vc/errors/not-implemented";
         readonly AUTHENTICATION_REQUIRED: "https://api.aventure.vc/errors/authentication-required";
-        readonly AUTH_DOCS_REQUIRED: "https://api.aventure.vc/errors/auth.docs-required";
-        readonly AUTH_ADMIN_KEY_NOT_CONFIGURED: "https://api.aventure.vc/errors/auth.admin-key-not-configured";
-        readonly AUTH_EMPTY_ADMIN_KEY: "https://api.aventure.vc/errors/auth.empty-admin-key";
-        readonly AUTH_EMPTY_ADMIN_BEARER: "https://api.aventure.vc/errors/auth.empty-admin-bearer";
-        readonly AUTH_INVALID_ADMIN_KEY: "https://api.aventure.vc/errors/auth.invalid-admin-key";
-        readonly AUTH_MISSING_ADMIN_KEY: "https://api.aventure.vc/errors/auth.missing-admin-key";
-        readonly AUTH_METRICS_UNAUTHORIZED: "https://api.aventure.vc/errors/auth.metrics-unauthorized";
         readonly ACCESS_DENIED: "https://api.aventure.vc/errors/access-denied";
         readonly NOT_FOUND: "https://api.aventure.vc/errors/not-found";
         readonly ENDPOINT_NOT_FOUND: "https://api.aventure.vc/errors/endpoint-not-found";

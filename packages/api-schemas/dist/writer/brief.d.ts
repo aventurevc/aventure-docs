@@ -13,6 +13,7 @@ import { z } from "zod/v4";
 export declare const WriterBriefSchema: z.ZodObject<{
     claim: z.ZodArray<z.ZodType<{
         end?: number | null | undefined;
+        evidenceView?: string | null | undefined;
         gateId?: string | null | undefined;
         quote?: string | undefined;
         sourceDocumentId?: string | null | undefined;
@@ -22,6 +23,7 @@ export declare const WriterBriefSchema: z.ZodObject<{
         writerSurface?: string | null | undefined;
     }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
         end?: number | null | undefined;
+        evidenceView?: string | null | undefined;
         gateId?: string | null | undefined;
         quote?: string | undefined;
         sourceDocumentId?: string | null | undefined;

@@ -1307,6 +1307,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "sort/order-person-sort-field",
         schemaName: "SortOrderPersonSortFieldSchema",
     },
+    SourceDocumentEvidenceView: {
+        modulePath: "source/document-evidence-view",
+        schemaName: "SourceDocumentEvidenceViewSchema",
+    },
     SourceDocumentList: {
         modulePath: "source/document-list",
         schemaName: "SourceDocumentListSchema",

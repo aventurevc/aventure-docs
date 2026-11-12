@@ -24,15 +24,15 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
             "claude-agent-sdk": "claude-agent-sdk";
             "pi-agent-sdk": "pi-agent-sdk";
         }>>>;
-        chassisRouted: z.ZodBoolean;
+        chassisRouted: z.ZodOptional<z.ZodBoolean>;
         createdAt: z.ZodISODateTime;
         entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-        environment: z.ZodEnum<{
+        environment: z.ZodOptional<z.ZodEnum<{
             development: "development";
             production: "production";
             staging: "staging";
             unassigned: "unassigned";
-        }>;
+        }>>;
         error: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         execution: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             DIRECT: "DIRECT";
@@ -74,8 +74,8 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
             "openai-chat": "openai-chat";
             "openai-responses": "openai-responses";
         }>>>;
-        maxIteration: z.ZodInt;
-        maxScoutConcurrent: z.ZodInt;
+        maxIteration: z.ZodOptional<z.ZodInt>;
+        maxScoutConcurrent: z.ZodOptional<z.ZodInt>;
         mode: z.ZodEnum<{
             COMPREHENSIVE: "COMPREHENSIVE";
             INDIVIDUAL: "INDIVIDUAL";

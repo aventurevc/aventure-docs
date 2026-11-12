@@ -219,22 +219,16 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
         freshness?: "auto" | "cached" | undefined;
         mode?: string | undefined;
         model?: string | null | undefined;
-        modelCatalogRevision?: number | null | undefined;
         query: string;
         reasoningEffort?: string | null | undefined;
-        searchCatalogRevision?: number | null | undefined;
-        tenantPolicyRevision?: number | null | undefined;
     }, import("../natural/search.ts").NaturalSearchSchemaInput, z.core.$ZodTypeInternals<{
         answerModel?: string | null | undefined;
         cacheMode?: "bypass" | "refresh" | "use" | undefined;
         freshness?: "auto" | "cached" | undefined;
         mode?: string | undefined;
         model?: string | null | undefined;
-        modelCatalogRevision?: number | null | undefined;
         query: string;
         reasoningEffort?: string | null | undefined;
-        searchCatalogRevision?: number | null | undefined;
-        tenantPolicyRevision?: number | null | undefined;
     }, import("../natural/search.ts").NaturalSearchSchemaInput>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;

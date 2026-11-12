@@ -1,9 +1,12 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SourceDocumentEvidenceViewSchema } from "../source/document-evidence-view.js";
 import { WriterClaimSurfaceSchema } from "../writer/claim-surface.js";
 const ResearchFindingSchemaDefinition = z.object({
     /** Exclusive UTF-16 end offset, as an entity folio fact's end. */
     end: z.int().nullish(),
+    /** Evidence view returned with the folio span; omitted values retain LEGACY offsets. Copy this value with sourceDocumentId, start and end. */
+    evidenceView: SourceDocumentEvidenceViewSchema.nullish(),
     /** Profile field the fact fills, when known; omit it and the run picks the field the fact belongs to. */
     gateId: z.string().nullish(),
     /** The exact text on sourceUrl that states the fact, copied verbatim; a fragment short enough to appear on any page is refused. Send either quote or the complete sourceDocumentId, start, end span, never both. */

@@ -2,6 +2,7 @@ import { z } from "zod/v4";
 declare const EnrichmentPromptSchemaDefinition: z.ZodObject<{
     finding: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
         end?: number | null | undefined;
+        evidenceView?: string | null | undefined;
         gateId?: string | null | undefined;
         quote?: string | undefined;
         sourceDocumentId?: string | null | undefined;
@@ -11,6 +12,7 @@ declare const EnrichmentPromptSchemaDefinition: z.ZodObject<{
         writerSurface?: string | null | undefined;
     }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
         end?: number | null | undefined;
+        evidenceView?: string | null | undefined;
         gateId?: string | null | undefined;
         quote?: string | undefined;
         sourceDocumentId?: string | null | undefined;

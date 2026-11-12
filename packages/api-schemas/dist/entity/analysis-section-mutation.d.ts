@@ -1,9 +1,11 @@
 import { z } from "zod/v4";
 declare const EntityAnalysisSectionMutationSchemaDefinition: z.ZodObject<{
     citation: z.ZodArray<z.ZodType<{
+        evidenceView?: string | null | undefined;
         quote: string;
         sourceDocumentId: string;
     }, import("./analysis-citation.ts").EntityAnalysisCitationSchemaInput, z.core.$ZodTypeInternals<{
+        evidenceView?: string | null | undefined;
         quote: string;
         sourceDocumentId: string;
     }, import("./analysis-citation.ts").EntityAnalysisCitationSchemaInput>>>;
@@ -51,6 +53,7 @@ declare const EntityAnalysisSectionMutationSchemaDefinition: z.ZodObject<{
     writerBrief: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         claim: z.ZodArray<z.ZodType<{
             end?: number | null | undefined;
+            evidenceView?: string | null | undefined;
             gateId?: string | null | undefined;
             quote?: string | undefined;
             sourceDocumentId?: string | null | undefined;
@@ -60,6 +63,7 @@ declare const EntityAnalysisSectionMutationSchemaDefinition: z.ZodObject<{
             writerSurface?: string | null | undefined;
         }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
             end?: number | null | undefined;
+            evidenceView?: string | null | undefined;
             gateId?: string | null | undefined;
             quote?: string | undefined;
             sourceDocumentId?: string | null | undefined;

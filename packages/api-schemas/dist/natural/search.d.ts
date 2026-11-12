@@ -28,7 +28,6 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
         };
     }>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    modelCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     query: z.ZodString;
     reasoningEffort: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         high: "high";
@@ -47,8 +46,6 @@ declare const NaturalSearchSchemaDefinition: z.ZodObject<{
             xhigh: "xhigh";
         };
     }>>;
-    searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    tenantPolicyRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type NaturalSearchDefinition = z.infer<typeof NaturalSearchSchemaDefinition>;
 export interface NaturalSearchSchemaInput extends z.input<typeof NaturalSearchSchemaDefinition> {

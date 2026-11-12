@@ -4,6 +4,7 @@ declare const EntityAnalysisDraftSchemaDefinition: z.ZodObject<{
     runId: z.ZodUUID;
     section: z.ZodArray<z.ZodType<{
         citation: {
+            evidenceView?: string | null | undefined;
             quote: string;
             sourceDocumentId: string;
         }[];
@@ -28,6 +29,7 @@ declare const EntityAnalysisDraftSchemaDefinition: z.ZodObject<{
         title: string;
     }, import("./analysis-section.ts").EntityAnalysisSectionSchemaInput, z.core.$ZodTypeInternals<{
         citation: {
+            evidenceView?: string | null | undefined;
             quote: string;
             sourceDocumentId: string;
         }[];

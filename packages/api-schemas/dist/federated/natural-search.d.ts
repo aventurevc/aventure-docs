@@ -241,7 +241,6 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
         };
     }>>;
     model: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    modelCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     newsSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     personSize: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     query: z.ZodString;
@@ -262,9 +261,7 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
             xhigh: "xhigh";
         };
     }>>;
-    searchCatalogRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     sourceNewsId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
-    tenantPolicyRevision: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type FederatedNaturalSearchDefinition = z.infer<typeof FederatedNaturalSearchSchemaDefinition>;
 export interface FederatedNaturalSearchSchemaInput extends z.input<typeof FederatedNaturalSearchSchemaDefinition> {

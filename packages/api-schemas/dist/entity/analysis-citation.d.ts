@@ -1,5 +1,14 @@
 import { z } from "zod/v4";
 declare const EntityAnalysisCitationSchemaDefinition: z.ZodObject<{
+    evidenceView: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        ARTICLE_V1: "ARTICLE_V1";
+        LEGACY: "LEGACY";
+    }>, z.ZodString]> & {
+        enum: {
+            ARTICLE_V1: "ARTICLE_V1";
+            LEGACY: "LEGACY";
+        };
+    }>>;
     quote: z.ZodString;
     sourceDocumentId: z.ZodUUID;
 }, z.core.$strip>;

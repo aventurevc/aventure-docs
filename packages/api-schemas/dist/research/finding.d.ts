@@ -1,6 +1,15 @@
 import { z } from "zod/v4";
 declare const ResearchFindingSchemaDefinition: z.ZodObject<{
     end: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+    evidenceView: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        ARTICLE_V1: "ARTICLE_V1";
+        LEGACY: "LEGACY";
+    }>, z.ZodString]> & {
+        enum: {
+            ARTICLE_V1: "ARTICLE_V1";
+            LEGACY: "LEGACY";
+        };
+    }>>;
     gateId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     quote: z.ZodOptional<z.ZodString>;
     sourceDocumentId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;

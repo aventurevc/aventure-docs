@@ -54,13 +54,13 @@ export const ProblemDetailSchema = z.object({
             "billing_plan_change_required",
             /** A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email. */
             "account_exists",
-            /** Detail-origin cold-miss coalescing is saturated. Agent action: treat as backend capacity impairment, back off, and inspect backend pool/bulkhead metrics; this is not a caller throttle. */
+            /** Record-detail reads are at capacity. Agent action: back off and retry later; this is a service capacity condition, not a caller throttle. */
             "origin_detail_capacity",
-            /** Detail-origin cold-miss scheduler rejected work because this instance is shutting down for a redeploy. Agent action: retry shortly; the platform routes the retry to a healthy instance. This is deploy-window noise, not backend saturation. */
+            /** A record-detail read was refused because the serving instance is restarting. Agent action: retry shortly; the retry reaches a healthy instance. */
             "origin_detail_shutdown",
-            /** A read overran its database query budget and was shed before answering, so the identical request can be replayed. Agent action: retry after a short backoff; the shed is expected and files no incident. */
+            /** A read overran its time budget and was shed before answering, so the identical request can be replayed. Agent action: retry after a short backoff; the shed is expected and files no incident. */
             "query_deadline_shed",
-            /** Primary read capacity was saturated; retry after retryAfterSeconds. */
+            /** Read capacity was saturated; retry after retryAfterSeconds. */
             "primary_read_saturated",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
             "suspectedShellStrip",
@@ -84,26 +84,22 @@ export const ProblemDetailSchema = z.object({
             "source_grounding_at_capacity",
             /** A URL was submitted to the wrong write surface. Agent action: move the URL to the specific surface named by ProblemDetail.hint/resolution, for example EntityUrl.urlType=ycombinator via entities urls create instead of News.newsUrlOriginal. */
             "url_surface_misclassification",
-            /** JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error). */
+            /** Background job processing is disabled on this API. Agent action: stop; this is a service configuration condition, not a retriable caller error. */
             "JOBRUNR_DISABLED",
-            /** JobRunr background worker is disabled in this environment. Agent action: stop (this is an admin/ops configuration condition, not a retriable user error). */
+            /** Background job processing is disabled on this API. Agent action: stop; this is a service configuration condition, not a retriable caller error. */
             "jobrunr_disabled",
             /** A catalog task step names an operation this API instance's command catalog does not expose, so its plan cannot be projected. Causes include rollout skew, configuration or a removed operation. Agent action: have an operator check the selected task catalog and deployed operation list before retrying; do not assume a rollout will restore it. */
             "task_plan_operation_unserved",
-            /** JobRunr storage (Postgres) is down. Agent action: stop until it recovers. */
+            /** Background job storage is down. Agent action: stop until it recovers. */
             "JOBRUNR_STORAGE_UNAVAILABLE",
-            /** JobRunr storage (Postgres) is down. Agent action: stop until it recovers. */
+            /** Background job storage is down. Agent action: stop until it recovers. */
             "jobrunr_storage_unavailable",
-            /** RBAC role lookup failed (app_user read did not return). Agent action: retry once; persistent failure indicates a database outage. */
+            /** Account role lookup failed. Agent action: retry once; persistent failure indicates a service outage. */
             "rbac_lookup_unavailable",
-            /** Geocoding provider (Google Maps Platform) call failed. Agent action: surface the error; address fields can be submitted without normalization as a fallback. */
+            /** Geocoding provider call failed. Agent action: surface the error; address fields can be submitted without normalization as a fallback. */
             "GEOCODE_PROVIDER_ERROR",
-            /** Geocoding provider (Google Maps Platform) call failed. Agent action: surface the error; address fields can be submitted without normalization as a fallback. */
+            /** Geocoding provider call failed. Agent action: surface the error; address fields can be submitted without normalization as a fallback. */
             "geocode_provider_error",
-            /** Sentry API call failed (used by error-triage endpoints). Agent action: surface; Sentry outages do not affect the primary application path. */
-            "sentry_api_error",
-            /** Frontend cache epoch requires the cache invalidation outbox consumer to run in targeted mode. Agent action: stop polling; this 503 is a designed cutover guard, and only the operator switching the outbox mode to targeted (docs/database/cache-invalidation.md) makes the epoch readable. */
-            "frontend_cache_epoch_mode_not_targeted",
             /** Image is blocklisted; follow ProblemDetail.hint, never resend it. */
             "image_blocklist_match",
             /** Image is blank or monochrome; follow ProblemDetail.hint, never resend it. */
@@ -152,19 +148,19 @@ export const ProblemDetailSchema = z.object({
             "callback_challenge_failed",
             /** Caller already holds the maximum number of news subscriptions. Agent action: unsubscribe one before subscribing again. */
             "news_subscription_limit",
-            /** Cloudflare R2 object fetch failed during a read operation. Agent action: retry once with backoff; persistent failure indicates R2 outage or asset deletion. */
+            /** Stored object fetch failed during a read operation. Agent action: retry once with backoff; persistent failure indicates a storage outage or asset deletion. */
             "r2_fetch_failed",
-            /** Cloudflare R2 object delete failed during a cleanup operation. Agent action: surface; retrying may produce duplicate-delete errors. */
+            /** Stored object delete failed during a cleanup operation. Agent action: surface; retrying may produce duplicate-delete errors. */
             "r2_delete_failed",
-            /** Cloudflare R2 object upload failed during a write operation. Agent action: retry once with the same payload; persistent failure indicates R2 outage. */
+            /** Stored object upload failed during a write operation. Agent action: retry once with the same payload; persistent failure indicates a storage outage. */
             "r2_upload_failed",
-            /** Stored source-document raw bytes could not be served: the row's inline-or-R2 raw authority is incomplete or failed digest verification. Agent action: surface; the stored authority needs operator reconciliation before this body can be read. */
+            /** Stored source-document raw bytes could not be served: the stored copy is incomplete or failed digest verification. Agent action: surface; aVenture must repair the stored copy before this body can be read. */
             "source_document_body_unavailable",
             /** A source-document capture stopped before retaining a provider response over this service's configured byte limit. Agent action: this is a designed containment boundary, not a provider outage or a service defect; do not retry the same request expecting a different outcome. */
             "source_document_capture_limit_exceeded",
             /** News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking. */
             "news_similarity_embedding_unavailable",
-            /** The web search provider is not configured for this environment. Agent action: stop; admin/ops must configure the provider key before this endpoint succeeds. */
+            /** Web search is not configured on this API. Agent action: stop; retrying cannot succeed until aVenture restores it. */
             "search_provider_not_configured",
             /** Search provider call failed. Agent action: inspect detail and source. Provider credential or credit refusals (401, 402, or 407) are terminal: restore the provider credential or credits first. TERMINAL means refused or already retried: record the outage, never resend. TRANSIENT: retry once per Retry-After. */
             "search_provider_error",
@@ -176,9 +172,9 @@ export const ProblemDetailSchema = z.object({
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only. */
             "github_fetch_failed",
-            /** Clerk M2M token API failed. Agent action: retry after retryAfterSeconds. */
+            /** Machine-token sign-in service failed. Agent action: retry after retryAfterSeconds. */
             "clerk_m2m_unavailable",
-            /** Clerk OAuth API failed. Agent action: retry after retryAfterSeconds. */
+            /** OAuth sign-in service failed. Agent action: retry after retryAfterSeconds. */
             "clerk_oauth_unavailable",
             /** Researchly usage API failed. Agent action: retry after retryAfterSeconds. */
             "researchly_usage_unavailable",
@@ -194,13 +190,13 @@ export const ProblemDetailSchema = z.object({
             "INFERENCE_PROVIDER_INVALID_JSON",
             /** LLM inference provider returned a response that failed JSON parsing. Agent action: surface; the prompt or response schema may need adjustment. */
             "inference_provider_invalid_json",
-            /** Inference profile catalog is missing or empty. Agent action: stop; admin/ops must configure inference profiles before this endpoint will succeed. */
+            /** Language-model configuration is missing. Agent action: stop; retrying cannot succeed until aVenture restores it. */
             "INFERENCE_PROFILES_MISSING",
-            /** Inference profile catalog is missing or empty. Agent action: stop; admin/ops must configure inference profiles before this endpoint will succeed. */
+            /** Language-model configuration is missing. Agent action: stop; retrying cannot succeed until aVenture restores it. */
             "inference_profiles_missing",
-            /** Inference profile is configured but its API key is missing from secret storage. Agent action: stop; admin/ops must populate the API key in secret storage. */
+            /** Language-model credentials are missing. Agent action: stop; retrying cannot succeed until aVenture restores them. */
             "INFERENCE_PROFILE_API_KEY_MISSING",
-            /** Inference profile is configured but its API key is missing from secret storage. Agent action: stop; admin/ops must populate the API key in secret storage. */
+            /** Language-model credentials are missing. Agent action: stop; retrying cannot succeed until aVenture restores them. */
             "inference_profile_api_key_missing",
         ]),
         z.string().max(128),
@@ -242,8 +238,6 @@ export const ProblemDetailSchema = z.object({
             "IP",
             /** A request-rate limit refused the request; retry after retryAfterSeconds. */
             "UNKNOWN",
-            /** The service is handling too many requests at once; retry after a short backoff. */
-            "RESILIENCE4J",
             /** Too many live web searches; retry after retryAfterSeconds. */
             "WEB_SEARCH",
             /** Too many help questions; retry after retryAfterSeconds. */
@@ -254,14 +248,6 @@ export const ProblemDetailSchema = z.object({
             "BILLING_ALLOWANCE",
             /** The additional-usage spend cap or prepaid credit is used up, counted in cents: stop rather than retry until the cap is raised or credit is added. */
             "BILLING_ADDITIONAL_USAGE",
-            /** Too many command-line sign-in requests; retry after retryAfterSeconds. */
-            "CLERK_PUBLIC_ADMISSION",
-            /** Too many sign-in page load reports; retry after retryAfterSeconds. */
-            "CLERK_SCRIPT_LOAD",
-            /** Not currently sent. If seen, retry after retryAfterSeconds. */
-            "ORIGIN_DETAIL",
-            /** A model service this request depends on is at capacity; retry after retryAfterSeconds. */
-            "INFERENCE_PROVIDER",
         ]),
         z.string(),
     ])

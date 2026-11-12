@@ -20,7 +20,7 @@ const BlogPostSchemaDefinition = z.object({
     /** Owning record, nested ids only: owner.entityId or owner.personId — exactly one is set. */
     owner: EntityPersonOwnerSchema,
     publishedAt: z.iso.datetime({ offset: true }).nullish(),
-    /** LLM-generated blog-post summary from blog-post-ingest */
+    /** Short generated summary of the post */
     summary: z.string().nullish(),
     /** Timestamp when summary was last generated */
     summaryGeneratedAt: z.iso.datetime({ offset: true }).nullish(),

@@ -4,6 +4,7 @@ declare const HarnessTaskInputBindingSchemaDefinition: z.ZodObject<{
     entityWriterBrief: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         claim: z.ZodArray<z.ZodType<{
             end?: number | null | undefined;
+            evidenceView?: string | null | undefined;
             gateId?: string | null | undefined;
             quote?: string | undefined;
             sourceDocumentId?: string | null | undefined;
@@ -13,6 +14,7 @@ declare const HarnessTaskInputBindingSchemaDefinition: z.ZodObject<{
             writerSurface?: string | null | undefined;
         }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
             end?: number | null | undefined;
+            evidenceView?: string | null | undefined;
             gateId?: string | null | undefined;
             quote?: string | undefined;
             sourceDocumentId?: string | null | undefined;
@@ -99,6 +101,7 @@ declare const HarnessTaskInputBindingSchemaDefinition: z.ZodObject<{
     writerBrief: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         claim: z.ZodArray<z.ZodType<{
             end?: number | null | undefined;
+            evidenceView?: string | null | undefined;
             gateId?: string | null | undefined;
             quote?: string | undefined;
             sourceDocumentId?: string | null | undefined;
@@ -108,6 +111,7 @@ declare const HarnessTaskInputBindingSchemaDefinition: z.ZodObject<{
             writerSurface?: string | null | undefined;
         }, import("../research/finding.ts").ResearchFindingSchemaInput, z.core.$ZodTypeInternals<{
             end?: number | null | undefined;
+            evidenceView?: string | null | undefined;
             gateId?: string | null | undefined;
             quote?: string | undefined;
             sourceDocumentId?: string | null | undefined;

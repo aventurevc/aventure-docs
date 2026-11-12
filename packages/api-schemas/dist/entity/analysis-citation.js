@@ -1,6 +1,9 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { SourceDocumentEvidenceViewSchema } from "../source/document-evidence-view.js";
 const EntityAnalysisCitationSchemaDefinition = z.object({
+    /** Captured-text view of this quote; omitted values retain LEGACY. */
+    evidenceView: SourceDocumentEvidenceViewSchema.nullish(),
     /** Nonempty verbatim quote to verify against the archived document. */
     quote: z.string(),
     /** Canonical archived source document UUID. */

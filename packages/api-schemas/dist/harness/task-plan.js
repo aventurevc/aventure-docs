@@ -14,7 +14,7 @@ import { HarnessTaskSchema } from "./task.js";
 export const HarnessTaskPlanSchema = z.object({
     /** Stored catalog revision this plan was read from. */
     catalogRevision: z.int().optional(),
-    /** Ids of the completion checks this task must pass, as listed in the completion check catalog. */
+    /** Ids of the completion checks this task must pass, as listed in the completion check catalog. A run's own plan lists only the checks its accepted target owes; a check that target's entity type or funding stage excludes is omitted. */
     gateId: z.array(z.string()).optional(),
     /** Typed task inputs; required inputs must be bound before it runs. */
     input: z.array(HarnessTaskSchema),

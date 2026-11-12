@@ -1,9 +1,11 @@
 import { z } from "zod/v4";
 declare const EntityAnalysisSectionSchemaDefinition: z.ZodObject<{
     citation: z.ZodArray<z.ZodType<{
+        evidenceView?: string | null | undefined;
         quote: string;
         sourceDocumentId: string;
     }, import("./analysis-citation.ts").EntityAnalysisCitationSchemaInput, z.core.$ZodTypeInternals<{
+        evidenceView?: string | null | undefined;
         quote: string;
         sourceDocumentId: string;
     }, import("./analysis-citation.ts").EntityAnalysisCitationSchemaInput>>>;

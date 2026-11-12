@@ -64,7 +64,6 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         clerk_oauth_unavailable: "clerk_oauth_unavailable";
         cvc_inherited_headcount: "cvc_inherited_headcount";
         entity_name_casing_rejected: "entity_name_casing_rejected";
-        frontend_cache_epoch_mode_not_targeted: "frontend_cache_epoch_mode_not_targeted";
         fundraise_evidence_unsupported: "fundraise_evidence_unsupported";
         geocode_provider_error: "geocode_provider_error";
         github_fetch_failed: "github_fetch_failed";
@@ -112,7 +111,6 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         search_provider_not_configured: "search_provider_not_configured";
         search_still_running: "search_still_running";
         sec_edgar_fetch_failed: "sec_edgar_fetch_failed";
-        sentry_api_error: "sentry_api_error";
         source_document_body_unavailable: "source_document_body_unavailable";
         source_document_capture_limit_exceeded: "source_document_capture_limit_exceeded";
         source_document_fetch_busy: "source_document_fetch_busy";
@@ -295,15 +293,10 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         AGENT_HELP: "AGENT_HELP";
         BILLING_ADDITIONAL_USAGE: "BILLING_ADDITIONAL_USAGE";
         BILLING_ALLOWANCE: "BILLING_ALLOWANCE";
-        CLERK_PUBLIC_ADMISSION: "CLERK_PUBLIC_ADMISSION";
-        CLERK_SCRIPT_LOAD: "CLERK_SCRIPT_LOAD";
         FORM: "FORM";
         GLOBAL: "GLOBAL";
-        INFERENCE_PROVIDER: "INFERENCE_PROVIDER";
         IP: "IP";
         NATURAL_SEARCH: "NATURAL_SEARCH";
-        ORIGIN_DETAIL: "ORIGIN_DETAIL";
-        RESILIENCE4J: "RESILIENCE4J";
         SUBNET: "SUBNET";
         UNKNOWN: "UNKNOWN";
         WEB_SEARCH: "WEB_SEARCH";
