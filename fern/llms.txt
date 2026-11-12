@@ -36,3 +36,7 @@ AI agents search and read companies, founders, investors, funding rounds, and ne
 - [aVenture CLI Source](https://github.com/aventurevc/aventure-cli) and [`@aventurevc/aventure-cli`](https://www.npmjs.com/package/@aventurevc/aventure-cli) on npm.
 - [aVenture MCP Source](https://github.com/aventurevc/aventure-mcp) and [`@aventurevc/mcp-server`](https://www.npmjs.com/package/@aventurevc/mcp-server) on npm, for running the server locally (rarely needed; most clients use the hosted server).
 - [`@aventurevc/api-schemas`](https://www.npmjs.com/package/@aventurevc/api-schemas) provides TypeScript schemas and types.
+
+## Agent Skills
+
+- [Agent Skills Manifest](https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/.well-known/agent-skills/index.json): Agent skills for aVenture research, written as SKILL.md files with each address and sha256 digest; read it when a task needs company, investor, or founder research, a market or competitive report, or a research workflow. Skills: `aventure`, `aventure-cookbook`, `business-cycle-analysis`, `buyer-persona-analysis`, `competitive-landscape`, `competitor-analysis`, `customer-analysis`, `fundraising-environment`, `investor-portfolio-analysis`, `leadership-track-record`, `market-research`, `market-sizing`, `porters-five-forces`, `swot-analysis`, `testimonial-case-study-analysis`, `use-case-analysis`.
