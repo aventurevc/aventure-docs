@@ -247,8 +247,6 @@ redirects:
     destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/skills-bundle/:slug(.*)"
   - source: "/.well-known/agent-skills/:slug*"
     destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/skills-bundle/:slug*"
-  - source: "/.well-known/probe.json"
-    destination: "https://raw.githubusercontent.com/aventurevc/aventure-docs/main/fern/skills-bundle/index.json"
   # skip-slug on the API entry removed the title-derived a-venture-api segment.
   - source: "/api-reference/a-venture-api"
     destination: "/api-reference"
