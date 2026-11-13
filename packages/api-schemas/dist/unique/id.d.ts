@@ -36,6 +36,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         npi: "npi";
         nyAttorneyRegistration: "nyAttorneyRegistration";
         orcid: "orcid";
+        peruRuc: "peruRuc";
         rssd: "rssd";
         samUei: "samUei";
         secCik: "secCik";
@@ -81,6 +82,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             npi: "npi";
             nyAttorneyRegistration: "nyAttorneyRegistration";
             orcid: "orcid";
+            peruRuc: "peruRuc";
             rssd: "rssd";
             samUei: "samUei";
             secCik: "secCik";

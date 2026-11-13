@@ -19,7 +19,7 @@ export const HarnessTaskPlanSchema = z.object({
     gateId: z.array(z.string()).optional(),
     /** Typed task inputs; required inputs must be bound before it runs. */
     input: z.array(HarnessTaskSchema),
-    /** Whether a run may complete with no committed required mutation when every gateId already passes on the target, because those gates measure the required write. False means the run must commit its required write. */
+    /** Whether a run may complete with no committed required mutation when every gateId already passes on the target, because those gates measure the required write. False means this opt-in does not apply, not that a write is always required: a requester task that ends with accepted findings, a run whose required write a root run already satisfied, and a run reporting one of noWriteOutcome also complete without committing a write. */
     noWriteCompletion: z.boolean().optional(),
     /** Outcome classes a run may report to complete with no committed required mutation; the harness checks the reported class against the run's tool stream and records it on the mutation receipt. Empty means this task accepts no such outcome. */
     noWriteOutcome: z.array(HarnessTaskNoWriteOutcomeSchema).optional(),

@@ -48,7 +48,7 @@
       "type": "archive",
       "description": "Identifies a company's customers from public evidence. Use for who buys or uses a product, current adoption, named accounts, buying roles and motives, and evidence-backed purchase rankings. For full buyer persona profiles use buyer-persona-analysis; for a tiered inventory of what a product is used for, use-case-analysis; for what published testimonials and case studies prove, testimonial-case-study-analysis.",
       "url": "/.well-known/agent-skills/customer-analysis.tgz",
-      "digest": "sha256:0a4562378820f03aac33812c52e3b5c0650e57cd3d081d68e283e9c29f424bd5"
+      "digest": "sha256:9c683e72e1676f19e40e9f417445b0667e2db00fd9cd2c96f1d1bdbd498bfac2"
     },
     {
       "name": "fundraising-environment",
@@ -83,7 +83,7 @@
       "type": "archive",
       "description": "Use only when asked to size the market a company or product sells into: TAM, SAM, and SOM, current spend versus addressable potential, penetration, implied share, and growth, built bottom-up from counted buyers and prices, checked top-down against published totals and a rival-revenue floor, with every input cited or flagged. For the full market report (segments, buyers, pricing, regulation, position), use market-research, which loads this skill for its sizing.",
       "url": "/.well-known/agent-skills/market-sizing.tgz",
-      "digest": "sha256:bcfd474b5720614055402bcad4bd719e78799072e47d41245f0bb093366f5bbf"
+      "digest": "sha256:f0c2815bfa9ae3de911c914bb8a77acf3a643c2782b509ad87ac156f2396924b"
     },
     {
       "name": "porters-five-forces",

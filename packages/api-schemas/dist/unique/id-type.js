@@ -17,6 +17,7 @@ const UniqueIdTypeSchemaKnownMembers = z.enum([
     "koreaBusinessRegistrationNumber",
     "swissUid",
     "vietnamTaxCode",
+    "peruRuc",
     "ticker",
     "lei",
     "duns",

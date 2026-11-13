@@ -55,6 +55,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     npi: "npi";
     nyAttorneyRegistration: "nyAttorneyRegistration";
     orcid: "orcid";
+    peruRuc: "peruRuc";
     rssd: "rssd";
     samUei: "samUei";
     secCik: "secCik";
@@ -100,6 +101,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         npi: "npi";
         nyAttorneyRegistration: "nyAttorneyRegistration";
         orcid: "orcid";
+        peruRuc: "peruRuc";
         rssd: "rssd";
         samUei: "samUei";
         secCik: "secCik";
