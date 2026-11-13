@@ -83,9 +83,12 @@ fi
 
 # --- 2. generated API llms.txt operation pages -----------------------------
 "${CURL[@]}" "$BASE/api-reference/llms.txt" > "$TMP/llms.txt"
-# Operation lines look like: "- <API> > <Section> [Title](https://host/.../slug.md)"
-grep -oE '^- [^[]+ > [^[]+\[[^]]*\]\([^)]+\.md\)' "$TMP/llms.txt" \
-  | sed -E 's/.*\(([^)]+)\)$/\1/' > "$TMP/pages" || true
+# Operation lines carry a breadcrumb and a Markdown link in either order:
+# "- <API> > <Section> [Title](https://host/.../slug.md)" or
+# "- [Title](https://host/.../slug.md): <API> > <Section>".
+grep -E '^- .* > ' "$TMP/llms.txt" \
+  | grep -oE '\]\([^)]+\.md\)' \
+  | sed -E 's/^\]\((.*)\)$/\1/' > "$TMP/pages" || true
 [ -s "$TMP/pages" ] || { echo "llms_operation_pages=0 (empty llms.txt or changed line format)"; echo RESULT=FAIL; exit 1; }
 : > "$TMP/found"
 : > "$TMP/unparsed"
