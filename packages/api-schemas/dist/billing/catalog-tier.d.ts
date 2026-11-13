@@ -16,12 +16,14 @@ declare const BillingCatalogTierSchemaDefinition: z.ZodObject<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
+        STARTUPS: "STARTUPS";
         UNLIMITED: "UNLIMITED";
     }>, z.ZodString]> & {
         enum: {
             ESSENTIAL: "ESSENTIAL";
             PLUS: "PLUS";
             PRO: "PRO";
+            STARTUPS: "STARTUPS";
             UNLIMITED: "UNLIMITED";
         };
     };

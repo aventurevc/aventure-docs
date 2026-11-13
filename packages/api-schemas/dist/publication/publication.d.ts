@@ -18,6 +18,7 @@ declare const PublicationSchemaDefinition: z.ZodObject<{
         about: "about";
         by: "by";
     }>>>;
+    screenshotUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     summary: z.ZodOptional<z.ZodNullable<z.ZodString>>;

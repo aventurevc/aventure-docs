@@ -769,6 +769,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "harness/task-input-type",
         schemaName: "HarnessTaskInputTypeSchema",
     },
+    HarnessTaskNoWriteOutcome: {
+        modulePath: "harness/task-no-write-outcome",
+        schemaName: "HarnessTaskNoWriteOutcomeSchema",
+    },
     HarnessTaskPlan: { modulePath: "harness/task-plan", schemaName: "HarnessTaskPlanSchema" },
     HarnessTaskPlanStep: {
         modulePath: "harness/task-plan-step",

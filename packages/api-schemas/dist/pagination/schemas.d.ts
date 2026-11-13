@@ -21331,6 +21331,7 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
         createdAt?: string | null | undefined;
         publishedAt?: string | null | undefined;
         relation?: "about" | "by" | null | undefined;
+        screenshotUrl?: string | null | undefined;
         sourceDomain?: string | null | undefined;
         sourceName?: string | null | undefined;
         summary?: string | null | undefined;
@@ -21346,6 +21347,7 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
         createdAt?: string | null | undefined;
         publishedAt?: string | null | undefined;
         relation?: "about" | "by" | null | undefined;
+        screenshotUrl?: string | null | undefined;
         sourceDomain?: string | null | undefined;
         sourceName?: string | null | undefined;
         summary?: string | null | undefined;

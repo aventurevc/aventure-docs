@@ -6,6 +6,7 @@ const BillingPlanTypeSchemaKnownMembers = z.enum([
     "PRO_MONTHLY",
     "PRO_YEARLY",
     "PRO_YEARLY_PROMOTION",
+    "STARTUPS_MONTHLY",
     "UNLIMITED_MONTHLY",
 ]);
 /**

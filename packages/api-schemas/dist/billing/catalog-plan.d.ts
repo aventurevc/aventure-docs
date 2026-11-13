@@ -12,6 +12,7 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]> & {
         enum: {
@@ -20,6 +21,7 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
             PRO_MONTHLY: "PRO_MONTHLY";
             PRO_YEARLY: "PRO_YEARLY";
             PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
             UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
         };
     };
@@ -27,12 +29,14 @@ declare const BillingCatalogPlanSchemaDefinition: z.ZodObject<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
+        STARTUPS: "STARTUPS";
         UNLIMITED: "UNLIMITED";
     }>, z.ZodString]> & {
         enum: {
             ESSENTIAL: "ESSENTIAL";
             PLUS: "PLUS";
             PRO: "PRO";
+            STARTUPS: "STARTUPS";
             UNLIMITED: "UNLIMITED";
         };
     };

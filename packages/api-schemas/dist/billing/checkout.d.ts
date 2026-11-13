@@ -8,6 +8,7 @@ declare const BillingCheckoutSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]> & {
         enum: {
@@ -16,6 +17,7 @@ declare const BillingCheckoutSchemaDefinition: z.ZodObject<{
             PRO_MONTHLY: "PRO_MONTHLY";
             PRO_YEARLY: "PRO_YEARLY";
             PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
             UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
         };
     };

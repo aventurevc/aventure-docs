@@ -185,6 +185,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]> & {
         enum: {
@@ -193,6 +194,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             PRO_MONTHLY: "PRO_MONTHLY";
             PRO_YEARLY: "PRO_YEARLY";
             PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
             UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
         };
     }>>;
@@ -205,6 +207,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     }>, z.ZodString]> & {
         enum: {
@@ -213,6 +216,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
             PRO_MONTHLY: "PRO_MONTHLY";
             PRO_YEARLY: "PRO_YEARLY";
             PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
             UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
         };
     }>>;
@@ -240,12 +244,14 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
+        STARTUPS: "STARTUPS";
         UNLIMITED: "UNLIMITED";
     }>, z.ZodString]> & {
         enum: {
             ESSENTIAL: "ESSENTIAL";
             PLUS: "PLUS";
             PRO: "PRO";
+            STARTUPS: "STARTUPS";
             UNLIMITED: "UNLIMITED";
         };
     };
@@ -254,7 +260,7 @@ type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDef
 export interface BillingSubscriptionSchemaInput extends z.input<typeof BillingSubscriptionSchemaDefinition> {
 }
 /**
- * Current plan (Essential, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
+ * Current plan (Essential, Startups, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
  *
  * @openapiSchema BillingSubscription
  * @endpoint GET /v1/billing/subscription

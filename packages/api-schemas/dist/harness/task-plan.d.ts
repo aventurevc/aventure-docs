@@ -24,6 +24,18 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
         required?: boolean | undefined;
         type: string;
     }, import("./task.ts").HarnessTaskSchemaInput>>>;
+    noWriteCompletion: z.ZodOptional<z.ZodBoolean>;
+    noWriteOutcome: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodEnum<{
+        ALREADY_PRESENT: "ALREADY_PRESENT";
+        NO_LEADS: "NO_LEADS";
+        UNRESOLVED: "UNRESOLVED";
+    }>, z.ZodString]> & {
+        enum: {
+            ALREADY_PRESENT: "ALREADY_PRESENT";
+            NO_LEADS: "NO_LEADS";
+            UNRESOLVED: "UNRESOLVED";
+        };
+    }>>;
     step: z.ZodArray<z.ZodType<{
         cliCommand: string;
         mcpTool?: string | null | undefined;

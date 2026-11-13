@@ -13,7 +13,7 @@ const BillingCatalogSchemaDefinition = z.object({
     tier: z.array(BillingCatalogTierSchema),
 });
 /**
- * Every self-serve subscription tier with its monthly allowance caps and free daily allowances, every plan Checkout sells, and the prices of eligible usage past those caps. The Unlimited tier is not sold through Checkout and is omitted.
+ * Every self-serve subscription tier with its monthly allowance caps and free daily allowances, every plan Checkout sells, and the prices of eligible usage past those caps. The operator-granted Startups and Unlimited tiers are not sold through Checkout and are omitted.
  *
  * @openapiSchema BillingCatalog
  * @endpoint GET /v1/billing/plans

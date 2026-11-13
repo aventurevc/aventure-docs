@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { HarnessTaskNoWriteOutcomeSchema } from "./task-no-write-outcome.js";
 import { HarnessTaskPlanStepSchema } from "./task-plan-step.js";
 import { HarnessTaskSchema } from "./task.js";
 /**
@@ -18,6 +19,10 @@ export const HarnessTaskPlanSchema = z.object({
     gateId: z.array(z.string()).optional(),
     /** Typed task inputs; required inputs must be bound before it runs. */
     input: z.array(HarnessTaskSchema),
+    /** Whether a run may complete with no committed required mutation when every gateId already passes on the target, because those gates measure the required write. False means the run must commit its required write. */
+    noWriteCompletion: z.boolean().optional(),
+    /** Outcome classes a run may report to complete with no committed required mutation; the harness checks the reported class against the run's tool stream and records it on the mutation receipt. Empty means this task accepts no such outcome. */
+    noWriteOutcome: z.array(HarnessTaskNoWriteOutcomeSchema).optional(),
     /** Steps in run order; an empty list means this catalog task is unplanned. */
     step: z.array(HarnessTaskPlanStepSchema),
     /** Agent-task catalog key. */

@@ -48,7 +48,7 @@ const BillingSubscriptionSchemaDefinition = z.object({
     tier: BillingTierTypeSchema,
 });
 /**
- * Current plan (Essential, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
+ * Current plan (Essential, Startups, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
  *
  * @openapiSchema BillingSubscription
  * @endpoint GET /v1/billing/subscription

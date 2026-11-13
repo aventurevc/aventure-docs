@@ -15,12 +15,14 @@ export declare const BillingTierTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     ESSENTIAL: "ESSENTIAL";
     PLUS: "PLUS";
     PRO: "PRO";
+    STARTUPS: "STARTUPS";
     UNLIMITED: "UNLIMITED";
 }>, z.ZodString]> & {
     enum: {
         ESSENTIAL: "ESSENTIAL";
         PLUS: "PLUS";
         PRO: "PRO";
+        STARTUPS: "STARTUPS";
         UNLIMITED: "UNLIMITED";
     };
 };

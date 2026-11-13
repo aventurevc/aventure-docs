@@ -23,6 +23,7 @@ export declare const BillingPlanTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     PRO_MONTHLY: "PRO_MONTHLY";
     PRO_YEARLY: "PRO_YEARLY";
     PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+    STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
     UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
 }>, z.ZodString]> & {
     enum: {
@@ -31,6 +32,7 @@ export declare const BillingPlanTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         PRO_MONTHLY: "PRO_MONTHLY";
         PRO_YEARLY: "PRO_YEARLY";
         PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+        STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
         UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
     };
 };
