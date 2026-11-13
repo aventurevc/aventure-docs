@@ -1,0 +1,9 @@
+{
+  "$schema": "https://unpkg.com/wrangler@4.158.0/config-schema.json",
+  "name": "docs-agent-skills",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-15",
+  "account_id": "90614a58f5e62cec999c23ae1e9ca801",
+  "workers_dev": false,
+  "routes": [{ "pattern": "docs.aventure.vc/.well-known/agent-skills*", "zone_name": "aventure.vc" }]
+}
