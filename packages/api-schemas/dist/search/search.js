@@ -25,9 +25,9 @@ const SearchSchemaDefinition = z.object({
     freshness: SearchFreshnessSchema.default("auto").optional(),
     /** Search language code */
     language: z.string().nullish(),
-    /** Provider to search; omitted keeps the default, SerpAPI. EXA runs Exa's instant search with highlights and never falls back to SerpAPI: an Exa failure answers 503. EXA_DEEP runs Exa's slower, broader deep search (higher recall for market and provider questions, about 3-6 s) and falls back to SerpAPI on an Exa failure. Both Exa providers answer synchronously (`Prefer: respond-async` does not apply), are stored apart from SerpAPI results, and are charged like any search. */
+    /** Provider to search; omitted keeps the default, SerpAPI. EXA runs Exa's instant search with highlights. EXA_DEEP runs Exa's slower, broader deep search (higher recall for market and provider questions, about 3-6 s). Both name each result's own page, answer synchronously, and fall back to SerpAPI on an Exa failure; `document.provider` names the provider that answered, and a SerpAPI fallback can answer 202 under `Prefer: respond-async`. Exa results are stored apart from SerpAPI results and are charged like any search. */
     provider: WebSearchProviderSchema.nullish(),
-    /** Return only results Google dates within this window; SERPAPI or BRIGHT_DATA only, refused with 400 for other providers. Omitted searches every date. */
+    /** Return only results dated within this window: Google's own result date for SERPAPI and BRIGHT_DATA, the page's publication date for EXA and EXA_DEEP. Omitted searches every date. */
     recency: WebSearchRecencySchema.nullish(),
     /** Search region code */
     region: z.string().nullish(),
