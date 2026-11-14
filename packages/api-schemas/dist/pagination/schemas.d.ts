@@ -470,7 +470,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         relationshipId: number;
         status: "Acquired" | "Acquired Subsidiary" | "Acquisition";
-        transactionStatus?: "Active" | "Announced" | "Announced; subject to approvals and closing conditions" | "Closed" | "Completed" | "In Progress" | "Open" | null | undefined;
+        transactionStatus?: string | null | undefined;
         updatedAt?: string | null | undefined;
     }, import("../entity/acquisition.ts").EntityAcquisitionSchemaInput, z.core.$ZodTypeInternals<{
         acquiredEntity: {
@@ -586,7 +586,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         } | null | undefined;
         relationshipId: number;
         status: "Acquired" | "Acquired Subsidiary" | "Acquisition";
-        transactionStatus?: "Active" | "Announced" | "Announced; subject to approvals and closing conditions" | "Closed" | "Completed" | "In Progress" | "Open" | null | undefined;
+        transactionStatus?: string | null | undefined;
         updatedAt?: string | null | undefined;
     }, import("../entity/acquisition.ts").EntityAcquisitionSchemaInput>>>>;
     empty: z.ZodOptional<z.ZodBoolean>;

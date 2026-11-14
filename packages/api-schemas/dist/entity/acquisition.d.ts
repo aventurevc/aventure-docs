@@ -195,7 +195,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         "Acquired Subsidiary": "Acquired Subsidiary";
         Acquisition: "Acquisition";
     }>;
-    transactionStatus: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    transactionStatus: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         Active: "Active";
         Announced: "Announced";
         "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
@@ -203,7 +203,17 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         Completed: "Completed";
         "In Progress": "In Progress";
         Open: "Open";
-    }>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            Active: "Active";
+            Announced: "Announced";
+            "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
+            Closed: "Closed";
+            Completed: "Completed";
+            "In Progress": "In Progress";
+            Open: "Open";
+        };
+    }>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
 type EntityAcquisitionDefinition = z.infer<typeof EntityAcquisitionSchemaDefinition>;

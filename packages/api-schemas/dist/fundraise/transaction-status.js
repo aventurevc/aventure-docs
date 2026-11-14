@@ -1,5 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+const FundraiseTransactionStatusSchemaKnownMembers = z.enum([
+    "Announced",
+    "Announced; subject to approvals and closing conditions",
+    "Active",
+    "Closed",
+    "Completed",
+    "In Progress",
+    "Open",
+]);
 /**
  * Fundraise transaction status label
  *
@@ -10,13 +19,5 @@ import { z } from "zod/v4";
  * @contractShape fundraise.transaction-status
  * @contractRole canonical
  */
-export const FundraiseTransactionStatusSchema = z.enum([
-    "Announced",
-    "Announced; subject to approvals and closing conditions",
-    "Active",
-    "Closed",
-    "Completed",
-    "In Progress",
-    "Open",
-]);
+export const FundraiseTransactionStatusSchema = Object.assign(z.union([FundraiseTransactionStatusSchemaKnownMembers, z.string()]), { enum: FundraiseTransactionStatusSchemaKnownMembers.enum });
 //# sourceMappingURL=transaction-status.js.map

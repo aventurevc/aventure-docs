@@ -9,7 +9,7 @@ import { z } from "zod/v4";
  * @contractShape fundraise.transaction-status
  * @contractRole canonical
  */
-export declare const FundraiseTransactionStatusSchema: z.ZodEnum<{
+export declare const FundraiseTransactionStatusSchema: z.ZodUnion<readonly [z.ZodEnum<{
     Active: "Active";
     Announced: "Announced";
     "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
@@ -17,6 +17,16 @@ export declare const FundraiseTransactionStatusSchema: z.ZodEnum<{
     Completed: "Completed";
     "In Progress": "In Progress";
     Open: "Open";
-}>;
+}>, z.ZodString]> & {
+    enum: {
+        Active: "Active";
+        Announced: "Announced";
+        "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
+        Closed: "Closed";
+        Completed: "Completed";
+        "In Progress": "In Progress";
+        Open: "Open";
+    };
+};
 export type FundraiseTransactionStatus = z.infer<typeof FundraiseTransactionStatusSchema>;
 //# sourceMappingURL=transaction-status.d.ts.map
