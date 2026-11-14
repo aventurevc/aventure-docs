@@ -13,6 +13,7 @@ export declare const FundraiseTransactionStatusSchema: z.ZodUnion<readonly [z.Zo
     Active: "Active";
     Announced: "Announced";
     "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
+    Canceled: "Canceled";
     Closed: "Closed";
     Completed: "Completed";
     "In Progress": "In Progress";
@@ -22,6 +23,7 @@ export declare const FundraiseTransactionStatusSchema: z.ZodUnion<readonly [z.Zo
         Active: "Active";
         Announced: "Announced";
         "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
+        Canceled: "Canceled";
         Closed: "Closed";
         Completed: "Completed";
         "In Progress": "In Progress";

@@ -199,6 +199,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         Active: "Active";
         Announced: "Announced";
         "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
+        Canceled: "Canceled";
         Closed: "Closed";
         Completed: "Completed";
         "In Progress": "In Progress";
@@ -208,6 +209,7 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
             Active: "Active";
             Announced: "Announced";
             "Announced; subject to approvals and closing conditions": "Announced; subject to approvals and closing conditions";
+            Canceled: "Canceled";
             Closed: "Closed";
             Completed: "Completed";
             "In Progress": "In Progress";

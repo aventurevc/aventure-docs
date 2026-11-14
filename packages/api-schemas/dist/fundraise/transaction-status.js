@@ -6,6 +6,7 @@ const FundraiseTransactionStatusSchemaKnownMembers = z.enum([
     "Active",
     "Closed",
     "Completed",
+    "Canceled",
     "In Progress",
     "Open",
 ]);
