@@ -15,10 +15,14 @@ const EntityClassificationSchemaDefinition = z.object({
     tag: z.array(EntityTagSchema).default([]).optional(),
     /** Type customer filter values */
     typeCustomer: z.array(EntityTagSchema).default([]).optional(),
+    /** What an investment firm or fund invests in (e.g. Venture Capital, Private Equity, Real Estate), from a closed list; one value may be primary. */
+    typeInvestor: z.array(EntityTagSchema).default([]).optional(),
     /** Type model filter values */
     typeModel: z.array(EntityTagSchema).default([]).optional(),
     /** Type ownership filter values */
     typeOwnership: z.array(EntityTagSchema).default([]).optional(),
+    /** How a regulator classifies an investment firm or fund (e.g. SEC-Registered Investment Adviser, Exempt Reporting Adviser, Private Fund), from a closed list. The regulator's own number is a unique id, not a value here. */
+    typeRegulatory: z.array(EntityTagSchema).default([]).optional(),
     /** Type revenue filter values */
     typeRevenue: z.array(EntityTagSchema).default([]).optional(),
     /** Type technology used filter values */

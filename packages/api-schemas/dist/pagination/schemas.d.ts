@@ -965,6 +965,23 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -983,6 +1000,23 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -1232,6 +1266,23 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -1250,6 +1301,23 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -5853,6 +5921,23 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         type: string;
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
+                    typeInvestor?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
                     typeModel?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -5871,6 +5956,23 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
+                    typeRegulatory?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
@@ -8129,6 +8231,23 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         type: string;
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
+                    typeInvestor?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
                     typeModel?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -8147,6 +8266,23 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
+                    typeRegulatory?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
@@ -10417,6 +10553,23 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -10435,6 +10588,23 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -11152,6 +11322,23 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -11170,6 +11357,23 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -12677,6 +12881,23 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         type: string;
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
+                    typeInvestor?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
                     typeModel?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -12695,6 +12916,23 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
+                    typeRegulatory?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
@@ -13426,6 +13664,23 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         type: string;
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
+                    typeInvestor?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
                     typeModel?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -13444,6 +13699,23 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
+                    typeRegulatory?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
@@ -21631,6 +21903,23 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -21649,6 +21938,23 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -22366,6 +22672,23 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -22384,6 +22707,23 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;

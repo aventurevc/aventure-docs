@@ -234,6 +234,23 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -252,6 +269,23 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -969,6 +1003,23 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -987,6 +1038,23 @@ declare const EntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;

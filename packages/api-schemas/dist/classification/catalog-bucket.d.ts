@@ -28,6 +28,7 @@ declare const ClassificationCatalogBucketSchemaDefinition: z.ZodObject<{
     }, z.core.$strip>>>;
     tagCount: z.ZodInt;
     type: z.ZodString;
+    vocabulary: z.ZodOptional<z.ZodDefault<z.ZodArray<z.ZodString>>>;
 }, z.core.$strip>;
 type ClassificationCatalogBucketDefinition = z.infer<typeof ClassificationCatalogBucketSchemaDefinition>;
 export interface ClassificationCatalogBucketSchemaInput extends z.input<typeof ClassificationCatalogBucketSchemaDefinition> {

@@ -24,6 +24,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
         })[];
         tagCount: number;
         type: string;
+        vocabulary?: string[] | undefined;
     }, import("./catalog-bucket.ts").ClassificationCatalogBucketSchemaInput, z.core.$ZodTypeInternals<{
         alias: string[];
         bucket?: string | null | undefined;
@@ -48,6 +49,7 @@ declare const ClassificationCatalogSchemaDefinition: z.ZodObject<{
         })[];
         tagCount: number;
         type: string;
+        vocabulary?: string[] | undefined;
     }, import("./catalog-bucket.ts").ClassificationCatalogBucketSchemaInput>>>;
     category: z.ZodArray<z.ZodType<{
         alias: string[];

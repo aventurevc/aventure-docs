@@ -16,6 +16,8 @@ const ClassificationCatalogBucketSchemaDefinition = z.object({
     tagCount: z.int(),
     /** Canonical wire value — use as ?type= for /tags, as ?bucketType= for /catalog, and as Tag.type when round-tripping. Matches Tag.type returned in this bucket's tag[]. */
     type: z.string(),
+    /** Every name a closed bucket accepts by type plus name, in its stored spelling, including values no entity holds yet. Empty when the bucket is open, or when its accepted values are exactly its active tags. */
+    vocabulary: z.array(z.string()).default([]).optional(),
 });
 /**
  * Classification bucket with active registry tags and accepted-spelling aliases.

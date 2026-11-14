@@ -58,6 +58,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     peruRuc: "peruRuc";
     rssd: "rssd";
     samUei: "samUei";
+    secAdviserFileNumber: "secAdviserFileNumber";
     secCik: "secCik";
     secPrivateFundId: "secPrivateFundId";
     signalNfxCompany: "signalNfxCompany";
@@ -104,6 +105,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         peruRuc: "peruRuc";
         rssd: "rssd";
         samUei: "samUei";
+        secAdviserFileNumber: "secAdviserFileNumber";
         secCik: "secCik";
         secPrivateFundId: "secPrivateFundId";
         signalNfxCompany: "signalNfxCompany";

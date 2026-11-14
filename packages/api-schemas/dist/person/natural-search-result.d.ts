@@ -126,9 +126,11 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     tag?: string[] | undefined;
                     textSearch?: string | null | undefined;
                     typeCustomer?: string[] | undefined;
+                    typeInvestor?: string[] | undefined;
                     typeModel?: string[] | undefined;
                     typeOwnership?: string[] | undefined;
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                    typeRegulatory?: string[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
                     uniqueId?: {
@@ -282,9 +284,11 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 tag?: string[] | undefined;
                 textSearch?: string | null | undefined;
                 typeCustomer?: string[] | undefined;
+                typeInvestor?: string[] | undefined;
                 typeModel?: string[] | undefined;
                 typeOwnership?: string[] | undefined;
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                typeRegulatory?: string[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
                 uniqueId?: {
@@ -476,9 +480,11 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                     tag?: string[] | undefined;
                     textSearch?: string | null | undefined;
                     typeCustomer?: string[] | undefined;
+                    typeInvestor?: string[] | undefined;
                     typeModel?: string[] | undefined;
                     typeOwnership?: string[] | undefined;
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                    typeRegulatory?: string[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
                     uniqueId?: {
@@ -632,9 +638,11 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
                 tag?: string[] | undefined;
                 textSearch?: string | null | undefined;
                 typeCustomer?: string[] | undefined;
+                typeInvestor?: string[] | undefined;
                 typeModel?: string[] | undefined;
                 typeOwnership?: string[] | undefined;
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                typeRegulatory?: string[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
                 uniqueId?: {

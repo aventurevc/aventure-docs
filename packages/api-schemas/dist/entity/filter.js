@@ -121,12 +121,16 @@ export const EntityFilterSchema = z.strictObject({
     textSearch: z.string().nullish(),
     /** Customer-type classification values. */
     typeCustomer: z.array(z.string()).optional(),
+    /** Investor-type values. */
+    typeInvestor: z.array(z.string()).optional(),
     /** Business-model values. */
     typeModel: z.array(z.string()).optional(),
     /** Ownership-model values. */
     typeOwnership: z.array(z.string()).optional(),
     /** Entity type filter. Organization expands to Company, Investment Firm, Nonprofit, Government, and Business Line; omit to include every entity type. */
     typeRecord: z.array(EntityTypeSchema).optional(),
+    /** Regulatory-classification values. */
+    typeRegulatory: z.array(z.string()).optional(),
     /** Revenue-model classification values. */
     typeRevenue: z.array(z.string()).optional(),
     /** Technology-used values. */

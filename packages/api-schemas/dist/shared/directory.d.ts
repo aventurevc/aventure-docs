@@ -178,6 +178,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
         tag: z.ZodOptional<z.ZodArray<z.ZodString>>;
         textSearch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         typeCustomer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeInvestor: z.ZodOptional<z.ZodArray<z.ZodString>>;
         typeModel: z.ZodOptional<z.ZodArray<z.ZodString>>;
         typeOwnership: z.ZodOptional<z.ZodArray<z.ZodString>>;
         typeRecord: z.ZodOptional<z.ZodArray<z.ZodEnum<{
@@ -191,6 +192,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
             Product: "Product";
             Service: "Service";
         }>>>;
+        typeRegulatory: z.ZodOptional<z.ZodArray<z.ZodString>>;
         typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
         typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
         uniqueId: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -393,6 +395,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
                 tag: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 textSearch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
                 typeCustomer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+                typeInvestor: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 typeModel: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 typeOwnership: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 typeRecord: z.ZodOptional<z.ZodArray<z.ZodEnum<{
@@ -406,6 +409,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
                     Product: "Product";
                     Service: "Service";
                 }>>>;
+                typeRegulatory: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
                 uniqueId: z.ZodOptional<z.ZodArray<z.ZodType<{
@@ -647,6 +651,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
             tag: z.ZodOptional<z.ZodArray<z.ZodString>>;
             textSearch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             typeCustomer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            typeInvestor: z.ZodOptional<z.ZodArray<z.ZodString>>;
             typeModel: z.ZodOptional<z.ZodArray<z.ZodString>>;
             typeOwnership: z.ZodOptional<z.ZodArray<z.ZodString>>;
             typeRecord: z.ZodOptional<z.ZodArray<z.ZodEnum<{
@@ -660,6 +665,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
                 Product: "Product";
                 Service: "Service";
             }>>>;
+            typeRegulatory: z.ZodOptional<z.ZodArray<z.ZodString>>;
             typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
             typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
             uniqueId: z.ZodOptional<z.ZodArray<z.ZodType<{

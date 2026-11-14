@@ -157,9 +157,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 tag?: string[] | undefined;
                 textSearch?: string | null | undefined;
                 typeCustomer?: string[] | undefined;
+                typeInvestor?: string[] | undefined;
                 typeModel?: string[] | undefined;
                 typeOwnership?: string[] | undefined;
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                typeRegulatory?: string[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
                 uniqueId?: {
@@ -295,9 +297,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         tag?: string[] | undefined;
                         textSearch?: string | null | undefined;
                         typeCustomer?: string[] | undefined;
+                        typeInvestor?: string[] | undefined;
                         typeModel?: string[] | undefined;
                         typeOwnership?: string[] | undefined;
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                        typeRegulatory?: string[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
                         uniqueId?: {
@@ -451,9 +455,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     tag?: string[] | undefined;
                     textSearch?: string | null | undefined;
                     typeCustomer?: string[] | undefined;
+                    typeInvestor?: string[] | undefined;
                     typeModel?: string[] | undefined;
                     typeOwnership?: string[] | undefined;
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                    typeRegulatory?: string[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
                     uniqueId?: {
@@ -1044,6 +1050,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             type: string;
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
+                        typeInvestor?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
                         typeModel?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -1062,6 +1085,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
                         typeOwnership?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
+                        typeRegulatory?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
@@ -1796,6 +1836,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             type: string;
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
+                        typeInvestor?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
                         typeModel?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -1814,6 +1871,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
                         typeOwnership?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
+                        typeRegulatory?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
@@ -2538,6 +2612,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         type: string;
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
+                    typeInvestor?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
                     typeModel?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -2556,6 +2647,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
+                    typeRegulatory?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
@@ -3197,9 +3305,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 tag?: string[] | undefined;
                 textSearch?: string | null | undefined;
                 typeCustomer?: string[] | undefined;
+                typeInvestor?: string[] | undefined;
                 typeModel?: string[] | undefined;
                 typeOwnership?: string[] | undefined;
                 typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                typeRegulatory?: string[] | undefined;
                 typeRevenue?: string[] | undefined;
                 typeTechnologyUsed?: string[] | undefined;
                 uniqueId?: {
@@ -3335,9 +3445,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         tag?: string[] | undefined;
                         textSearch?: string | null | undefined;
                         typeCustomer?: string[] | undefined;
+                        typeInvestor?: string[] | undefined;
                         typeModel?: string[] | undefined;
                         typeOwnership?: string[] | undefined;
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                        typeRegulatory?: string[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
                         uniqueId?: {
@@ -3491,9 +3603,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     tag?: string[] | undefined;
                     textSearch?: string | null | undefined;
                     typeCustomer?: string[] | undefined;
+                    typeInvestor?: string[] | undefined;
                     typeModel?: string[] | undefined;
                     typeOwnership?: string[] | undefined;
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                    typeRegulatory?: string[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
                     uniqueId?: {
@@ -4084,6 +4198,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             type: string;
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
+                        typeInvestor?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
                         typeModel?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -4102,6 +4233,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
                         typeOwnership?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
+                        typeRegulatory?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
@@ -4836,6 +4984,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             type: string;
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
+                        typeInvestor?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
                         typeModel?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
@@ -4854,6 +5019,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             updatedAt?: string | null | undefined;
                         })[] | undefined;
                         typeOwnership?: ({
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            registry: string;
+                        } & {
+                            bucket?: string | null | undefined;
+                            classificationId?: number | null | undefined;
+                            createdAt?: string | null | undefined;
+                            id: number;
+                            isCurrent?: boolean | null | undefined;
+                            isPrimary?: boolean | null | undefined;
+                            name: string;
+                            slug?: string | null | undefined;
+                            type: string;
+                            updatedAt?: string | null | undefined;
+                        })[] | undefined;
+                        typeRegulatory?: ({
                             isCurrent?: boolean | null | undefined;
                             isPrimary?: boolean | null | undefined;
                             name: string;
@@ -5578,6 +5760,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         type: string;
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
+                    typeInvestor?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
                     typeModel?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
@@ -5596,6 +5795,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         updatedAt?: string | null | undefined;
                     })[] | undefined;
                     typeOwnership?: ({
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        registry: string;
+                    } & {
+                        bucket?: string | null | undefined;
+                        classificationId?: number | null | undefined;
+                        createdAt?: string | null | undefined;
+                        id: number;
+                        isCurrent?: boolean | null | undefined;
+                        isPrimary?: boolean | null | undefined;
+                        name: string;
+                        slug?: string | null | undefined;
+                        type: string;
+                        updatedAt?: string | null | undefined;
+                    })[] | undefined;
+                    typeRegulatory?: ({
                         isCurrent?: boolean | null | undefined;
                         isPrimary?: boolean | null | undefined;
                         name: string;
@@ -6420,6 +6636,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -6438,6 +6671,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -6687,6 +6937,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     type: string;
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
+                typeInvestor?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
                 typeModel?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
@@ -6705,6 +6972,23 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     updatedAt?: string | null | undefined;
                 })[] | undefined;
                 typeOwnership?: ({
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    registry: string;
+                } & {
+                    bucket?: string | null | undefined;
+                    classificationId?: number | null | undefined;
+                    createdAt?: string | null | undefined;
+                    id: number;
+                    isCurrent?: boolean | null | undefined;
+                    isPrimary?: boolean | null | undefined;
+                    name: string;
+                    slug?: string | null | undefined;
+                    type: string;
+                    updatedAt?: string | null | undefined;
+                })[] | undefined;
+                typeRegulatory?: ({
                     isCurrent?: boolean | null | undefined;
                     isPrimary?: boolean | null | undefined;
                     name: string;
@@ -10748,9 +11032,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         tag?: string[] | undefined;
                         textSearch?: string | null | undefined;
                         typeCustomer?: string[] | undefined;
+                        typeInvestor?: string[] | undefined;
                         typeModel?: string[] | undefined;
                         typeOwnership?: string[] | undefined;
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                        typeRegulatory?: string[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
                         uniqueId?: {
@@ -10904,9 +11190,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     tag?: string[] | undefined;
                     textSearch?: string | null | undefined;
                     typeCustomer?: string[] | undefined;
+                    typeInvestor?: string[] | undefined;
                     typeModel?: string[] | undefined;
                     typeOwnership?: string[] | undefined;
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                    typeRegulatory?: string[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
                     uniqueId?: {
@@ -11414,9 +11702,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         tag?: string[] | undefined;
                         textSearch?: string | null | undefined;
                         typeCustomer?: string[] | undefined;
+                        typeInvestor?: string[] | undefined;
                         typeModel?: string[] | undefined;
                         typeOwnership?: string[] | undefined;
                         typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                        typeRegulatory?: string[] | undefined;
                         typeRevenue?: string[] | undefined;
                         typeTechnologyUsed?: string[] | undefined;
                         uniqueId?: {
@@ -11570,9 +11860,11 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     tag?: string[] | undefined;
                     textSearch?: string | null | undefined;
                     typeCustomer?: string[] | undefined;
+                    typeInvestor?: string[] | undefined;
                     typeModel?: string[] | undefined;
                     typeOwnership?: string[] | undefined;
                     typeRecord?: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[] | undefined;
+                    typeRegulatory?: string[] | undefined;
                     typeRevenue?: string[] | undefined;
                     typeTechnologyUsed?: string[] | undefined;
                     uniqueId?: {

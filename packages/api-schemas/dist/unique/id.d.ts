@@ -39,6 +39,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         peruRuc: "peruRuc";
         rssd: "rssd";
         samUei: "samUei";
+        secAdviserFileNumber: "secAdviserFileNumber";
         secCik: "secCik";
         secPrivateFundId: "secPrivateFundId";
         signalNfxCompany: "signalNfxCompany";
@@ -85,6 +86,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             peruRuc: "peruRuc";
             rssd: "rssd";
             samUei: "samUei";
+            secAdviserFileNumber: "secAdviserFileNumber";
             secCik: "secCik";
             secPrivateFundId: "secPrivateFundId";
             signalNfxCompany: "signalNfxCompany";
