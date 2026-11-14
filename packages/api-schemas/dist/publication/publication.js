@@ -15,7 +15,7 @@ const PublicationSchemaDefinition = z.object({
     publishedAt: z.iso.datetime({ offset: true }).nullish(),
     /** How this content relates to the requested owner. */
     relation: PublicationRelationSchema.nullish(),
-    /** CDN URL of the newest screenshot of this page. Only webPage cards for the first page of a section the web-crawl contract flags for screenshots carry one; null for other cards and before the first capture. */
+    /** CDN URL of a stored screenshot of this content card's exact primary URL. Available for any publication type; absent until a capture is stored. */
     screenshotUrl: z.string().nullish(),
     /** Registrable source domain when known. */
     sourceDomain: z.string().nullish(),

@@ -1,5 +1,9 @@
 import { z } from "zod/v4";
 declare const AgentTaskPresetSchemaDefinition: z.ZodObject<{
+    completionRequirement: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        MUTATION: "MUTATION";
+        REPORT: "REPORT";
+    }>>>;
     execution: z.ZodUnion<readonly [z.ZodEnum<{
         FULL: "FULL";
         INTERACTIVE: "INTERACTIVE";

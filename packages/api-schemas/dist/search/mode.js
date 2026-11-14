@@ -17,6 +17,7 @@ const SearchModeSchemaKnownMembers = z.enum([
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
  * @endpoint POST /v1/content/search
+ * @endpoint POST /v1/research/runs
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people

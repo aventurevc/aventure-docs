@@ -55,10 +55,12 @@ export interface NaturalSearchSchemaInput extends z.input<typeof NaturalSearchSc
  *
  * @openapiSchema NaturalSearch
  * @endpoint POST /v1/content/search
+ * @endpoint POST /v1/research/runs
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
  * @usedBySchema EntityNaturalSearchSchema
  * @usedBySchema PersonNaturalSearchSchema
+ * @usedBySchema ResearchRunSearchContextSchema
  * @contractShape natural.search
  * @contractRole canonical
  */

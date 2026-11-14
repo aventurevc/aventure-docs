@@ -17,6 +17,7 @@ import { IntRangeSchema } from "../int/range.js";
  * @endpoint POST /v1/entities/filters/search
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/people/search
+ * @endpoint POST /v1/research/runs
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/natural/entities
  * @endpoint POST /v1/search/natural/people
