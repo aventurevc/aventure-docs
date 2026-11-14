@@ -158,6 +158,17 @@ declare const EntityAcquisitionSchemaDefinition: z.ZodObject<{
         Medium: "Medium";
         Verified: "Verified";
     }>>>;
+    dealStatus: z.ZodOptional<z.ZodUnion<readonly [z.ZodEnum<{
+        Canceled: "Canceled";
+        Completed: "Completed";
+        Pending: "Pending";
+    }>, z.ZodString]> & {
+        enum: {
+            Canceled: "Canceled";
+            Completed: "Completed";
+            Pending: "Pending";
+        };
+    }>;
     evidence: z.ZodType<{
         fundraiseInvestorJoin: boolean;
         fundraiseTransaction: boolean;

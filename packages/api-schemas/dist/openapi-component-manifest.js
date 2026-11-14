@@ -308,6 +308,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityAcceleratorParticipationSchema",
     },
     EntityAcquisition: { modulePath: "entity/acquisition", schemaName: "EntityAcquisitionSchema" },
+    EntityAcquisitionDealStatus: {
+        modulePath: "entity/acquisition-deal-status",
+        schemaName: "EntityAcquisitionDealStatusSchema",
+    },
     EntityAcquisitionEvidence: {
         modulePath: "entity/acquisition-evidence",
         schemaName: "EntityAcquisitionEvidenceSchema",

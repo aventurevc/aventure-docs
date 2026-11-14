@@ -452,6 +452,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
         dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+        dealStatus?: string | undefined;
         evidence: {
             fundraiseInvestorJoin: boolean;
             fundraiseTransaction: boolean;
@@ -567,6 +568,7 @@ declare const PageEntityAcquisitionSchemaDefinition: z.ZodObject<{
         createdAt?: string | null | undefined;
         currency?: string | null | undefined;
         dataConfidence?: "High" | "Low" | "Medium" | "Verified" | null | undefined;
+        dealStatus?: string | undefined;
         evidence: {
             fundraiseInvestorJoin: boolean;
             fundraiseTransaction: boolean;

@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { EntityAcquisitionDealStatusSchema } from "./acquisition-deal-status.js";
 import { EntityAcquisitionEvidenceSchema } from "./acquisition-evidence.js";
 import { EntityAcquisitionStageSchema } from "./acquisition-stage.js";
 import { EntitySchema } from "./entity.js";
@@ -30,6 +31,8 @@ const EntityAcquisitionSchemaDefinition = z.object({
     createdAt: z.iso.datetime({ offset: true }).nullish(),
     currency: z.string().nullish(),
     dataConfidence: FundraiseDataConfidenceSchema.nullish(),
+    /** Whether the deal is Pending (announced, not closed), Completed, or Canceled before closing. The server derives it from transactionStatus and completedAt; present this value instead of interpreting those fields. */
+    dealStatus: EntityAcquisitionDealStatusSchema.optional(),
     evidence: EntityAcquisitionEvidenceSchema,
     /** Funding round id (UUID) */
     fundraiseTransactionId: z.uuid().nullish(),
