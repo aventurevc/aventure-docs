@@ -14,6 +14,7 @@ const ImageVariantSchemaDefinition = z.object({
  * A stored image variant with verified dimensions and content type
  *
  * @openapiSchema ImageVariant
+ * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
@@ -48,6 +49,7 @@ const ImageVariantSchemaDefinition = z.object({
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
@@ -60,6 +62,7 @@ const ImageVariantSchemaDefinition = z.object({
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityImageSchema
  * @usedBySchema PersonImageSchema
+ * @usedBySchema PublicationSchema
  * @contractShape image.variant
  * @contractRole canonical
  */

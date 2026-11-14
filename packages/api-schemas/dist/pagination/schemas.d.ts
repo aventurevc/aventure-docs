@@ -21606,6 +21606,12 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         relation?: "about" | "by" | null | undefined;
         screenshotUrl?: string | null | undefined;
+        screenshotVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
         sourceDomain?: string | null | undefined;
         sourceName?: string | null | undefined;
         summary?: string | null | undefined;
@@ -21622,6 +21628,12 @@ declare const PagePublicationSchemaDefinition: z.ZodObject<{
         publishedAt?: string | null | undefined;
         relation?: "about" | "by" | null | undefined;
         screenshotUrl?: string | null | undefined;
+        screenshotVariant?: {
+            contentType: string;
+            height: number;
+            path: string;
+            width: number;
+        }[] | null | undefined;
         sourceDomain?: string | null | undefined;
         sourceName?: string | null | undefined;
         summary?: string | null | undefined;

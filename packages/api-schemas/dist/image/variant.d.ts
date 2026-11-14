@@ -12,6 +12,7 @@ export interface ImageVariantSchemaInput extends z.input<typeof ImageVariantSche
  * A stored image variant with verified dimensions and content type
  *
  * @openapiSchema ImageVariant
+ * @endpoint GET /v1/content
  * @endpoint GET /v1/entities/brand
  * @endpoint GET /v1/entities/lookup-exact
  * @endpoint GET /v1/people/lookup-exact
@@ -46,6 +47,7 @@ export interface ImageVariantSchemaInput extends z.input<typeof ImageVariantSche
  * @endpoint GET /v1/search/link/jobs/{jobId}
  * @endpoint GET /v1/search/shared/{id}
  * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/content/search
  * @endpoint POST /v1/entities/lookup-batch
  * @endpoint POST /v1/entities/lookup-matches
  * @endpoint POST /v1/entities/search
@@ -58,6 +60,7 @@ export interface ImageVariantSchemaInput extends z.input<typeof ImageVariantSche
  * @endpoint POST /v1/search/shared
  * @usedBySchema EntityImageSchema
  * @usedBySchema PersonImageSchema
+ * @usedBySchema PublicationSchema
  * @contractShape image.variant
  * @contractRole canonical
  */

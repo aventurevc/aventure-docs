@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { ImageVariantSchema } from "../image/variant.js";
 import { PublicationRelationSchema } from "./relation.js";
 import { PublicationTypeSchema } from "./type.js";
 const PublicationSchemaDefinition = z.object({
@@ -17,6 +18,8 @@ const PublicationSchemaDefinition = z.object({
     relation: PublicationRelationSchema.nullish(),
     /** CDN URL of a stored screenshot of this content card's exact primary URL. Available for any publication type; absent until a capture is stored. */
     screenshotUrl: z.string().nullish(),
+    /** Verified variants of screenshotUrl's exact master path; null means unknown, an empty array means known-empty. Use the master when absent or empty. */
+    screenshotVariant: z.array(ImageVariantSchema).nullish(),
     /** Registrable source domain when known. */
     sourceDomain: z.string().nullish(),
     /** Publication, platform owner, or source label. */

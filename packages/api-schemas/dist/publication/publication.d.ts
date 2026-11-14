@@ -19,6 +19,17 @@ declare const PublicationSchemaDefinition: z.ZodObject<{
         by: "by";
     }>>>;
     screenshotUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    screenshotVariant: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput, z.core.$ZodTypeInternals<{
+        contentType: string;
+        height: number;
+        path: string;
+        width: number;
+    }, import("../image/variant.ts").ImageVariantSchemaInput>>>>>;
     sourceDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sourceName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     summary: z.ZodOptional<z.ZodNullable<z.ZodString>>;
