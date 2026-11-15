@@ -13,6 +13,7 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/entities/search
  * @endpoint POST /v1/lookup
  * @endpoint POST /v1/lookup/mentions
+ * @endpoint POST /v1/web/search
  * @endpoint PUT /v1/research/runs/{runId}/draft/sections/{sectionKey}
  * @usedBySchema IdentificationSchema
  * @usedBySchema LookupSourceReadSchema
