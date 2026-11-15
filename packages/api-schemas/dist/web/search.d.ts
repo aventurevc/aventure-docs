@@ -91,6 +91,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         hostOnly?: boolean | undefined;
         image?: string | null | undefined;
         publishedDate?: string | null | undefined;
+        redirectUrl?: string | null | undefined;
         relevanceScore: number;
         snippet: string;
         title: string;
@@ -99,6 +100,7 @@ declare const WebSearchSchemaDefinition: z.ZodObject<{
         hostOnly?: boolean | undefined;
         image?: string | null | undefined;
         publishedDate?: string | null | undefined;
+        redirectUrl?: string | null | undefined;
         relevanceScore: number;
         snippet: string;
         title: string;

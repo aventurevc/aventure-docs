@@ -7,6 +7,8 @@ const SearchHitSchemaDefinition = z.object({
     image: z.string().nullish(),
     /** Provider-reported source publication calendar date, retaining the date in its reported offset rather than converting to UTC. Null when no valid complete ISO publication date is supplied; never inferred from the URL or retrieval time. */
     publishedDate: z.iso.date().nullish(),
+    /** Set only on a host-only hit: the provider's Google redirect link for this result. Open it with web page lookup to read the page; cite the lookup's returned redirectedUrl, never this link. */
+    redirectUrl: z.string().nullish(),
     relevanceScore: z.number(),
     snippet: z.string(),
     title: z.string(),

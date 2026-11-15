@@ -3,6 +3,7 @@ declare const SearchHitSchemaDefinition: z.ZodObject<{
     hostOnly: z.ZodOptional<z.ZodBoolean>;
     image: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     publishedDate: z.ZodOptional<z.ZodNullable<z.ZodISODate>>;
+    redirectUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     relevanceScore: z.ZodNumber;
     snippet: z.ZodString;
     title: z.ZodString;
