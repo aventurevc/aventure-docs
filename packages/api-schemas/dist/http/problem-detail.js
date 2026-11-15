@@ -120,7 +120,7 @@ export const ProblemDetailSchema = z.object({
             "image_reference_unavailable",
             /** No usable first-party logo found. Set a direct image; do not retry. */
             "logo_first_party_missing",
-            /** Dead or parked logo source. Supply a live first-party source; do not retry. */
+            /** Dead/parked logo source. Supply a live first-party source; do not retry. */
             "logo_source_dead",
             /** Image is a photo, not a mark; follow ProblemDetail.hint, never resend it. */
             "image_photographic",
@@ -174,7 +174,7 @@ export const ProblemDetailSchema = z.object({
             "github_fetch_failed",
             /** Machine-token sign-in service failed. Agent action: retry after retryAfterSeconds. */
             "clerk_m2m_unavailable",
-            /** OAuth sign-in service failed. Agent action: retry after retryAfterSeconds. */
+            /** OAuth sign-in failed. Agent action: retry after retryAfterSeconds. */
             "clerk_oauth_unavailable",
             /** Researchly usage API failed. Agent action: retry after retryAfterSeconds. */
             "researchly_usage_unavailable",
@@ -182,6 +182,8 @@ export const ProblemDetailSchema = z.object({
             "INFERENCE_PROVIDER_ERROR",
             /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
             "inference_provider_error",
+            /** Text write job ended: stop polling; resubmit if TRANSIENT, else report. */
+            "text_write_job_ended",
             /** LLM inference provider returned an empty response body. Agent action: retry once; persistent empty responses indicate prompt or provider misconfiguration. */
             "INFERENCE_PROVIDER_RESPONSE_EMPTY",
             /** LLM inference provider returned an empty response body. Agent action: retry once; persistent empty responses indicate prompt or provider misconfiguration. */
