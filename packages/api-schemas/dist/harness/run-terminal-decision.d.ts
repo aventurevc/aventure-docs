@@ -18,6 +18,19 @@ export declare const HarnessRunTerminalDecisionSchema: z.ZodObject<{
     finishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     iteration: z.ZodInt;
     lockedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    noWriteOutcome: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        ALREADY_PRESENT: "ALREADY_PRESENT";
+        NO_LEADS: "NO_LEADS";
+        STILL_OPERATING: "STILL_OPERATING";
+        UNRESOLVED: "UNRESOLVED";
+    }>, z.ZodString]> & {
+        enum: {
+            ALREADY_PRESENT: "ALREADY_PRESENT";
+            NO_LEADS: "NO_LEADS";
+            STILL_OPERATING: "STILL_OPERATING";
+            UNRESOLVED: "UNRESOLVED";
+        };
+    }>>;
     requesterRemoved: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     sequence: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     status: z.ZodEnum<{

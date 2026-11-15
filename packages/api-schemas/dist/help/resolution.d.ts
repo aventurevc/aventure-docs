@@ -51,11 +51,13 @@ export declare const HelpResolutionSchema: z.ZodObject<{
         noWriteOutcome: z.ZodOptional<z.ZodArray<z.ZodUnion<readonly [z.ZodEnum<{
             ALREADY_PRESENT: "ALREADY_PRESENT";
             NO_LEADS: "NO_LEADS";
+            STILL_OPERATING: "STILL_OPERATING";
             UNRESOLVED: "UNRESOLVED";
         }>, z.ZodString]> & {
             enum: {
                 ALREADY_PRESENT: "ALREADY_PRESENT";
                 NO_LEADS: "NO_LEADS";
+                STILL_OPERATING: "STILL_OPERATING";
                 UNRESOLVED: "UNRESOLVED";
             };
         }>>;

@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { HarnessRunStatusSchema } from "./run-status.js";
+import { HarnessTaskNoWriteOutcomeSchema } from "./task-no-write-outcome.js";
 /**
  * Server admission for one terminal transition
  *
@@ -24,6 +25,8 @@ export const HarnessRunTerminalDecisionSchema = z.object({
     iteration: z.int(),
     /** Lease generation at the terminal transition */
     lockedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Server-admitted typed no-write outcome */
+    noWriteOutcome: HarnessTaskNoWriteOutcomeSchema.nullish(),
     /** Requester deletion verified for this terminal completion */
     requesterRemoved: z.boolean().nullish(),
     /** Server event sequence on run reads; the event stream supplies it separately */
