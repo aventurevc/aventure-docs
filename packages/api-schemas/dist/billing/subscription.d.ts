@@ -260,7 +260,7 @@ type BillingSubscriptionDefinition = z.infer<typeof BillingSubscriptionSchemaDef
 export interface BillingSubscriptionSchemaInput extends z.input<typeof BillingSubscriptionSchemaDefinition> {
 }
 /**
- * Current plan (Essential, Startups, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
+ * Current plan (Free, Startups, AI Plus, AI Pro, or Unlimited), subscription status, and monthly usage.
  *
  * @openapiSchema BillingSubscription
  * @endpoint GET /v1/billing/subscription
