@@ -164,9 +164,9 @@ export const ProblemDetailSchema = z.object({
             "search_provider_not_configured",
             /** Search provider call failed. Agent action: inspect detail and source. Provider credential or credit refusals (401, 402, or 407) are terminal: restore the provider credential or credits first. TERMINAL means refused or already retried: record the outage, never resend. TRANSIENT: retry once per Retry-After. */
             "search_provider_error",
-            /** aVenture stopped waiting for a web search or profile scrape the provider is still running; it keeps running and its result is stored. Agent action: tell the requester it is taking longer than expected, then after Retry-After read the Location URL or retry the same request; this is not a provider failure. */
+            /** aVenture stopped waiting for a web search or profile scrape the provider is still running and holds no status URL for it; it keeps running and its result is stored. Work that has a status URL answers 202 with that Location instead. Agent action: tell the requester it is taking longer than expected, then after Retry-After retry the same request; this is not a provider failure. */
             "search_still_running",
-            /** A lookup sent with Prefer: respond-async was accepted as a lookup job instead of answered in the request. Agent action: poll the Location status URL after Retry-After. */
+            /** A lookup was accepted as a lookup job instead of answered in the request: it asked for it with Prefer: respond-async, or its live attempt ran out of time. Agent action: poll the Location status URL after Retry-After. */
             "lookup_still_running",
             /** SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or throttling affect only the public-company preview. */
             "sec_edgar_fetch_failed",
