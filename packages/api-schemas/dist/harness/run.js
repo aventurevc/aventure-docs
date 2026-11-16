@@ -75,7 +75,7 @@ export const HarnessRunSchema = z.object({
     mode: EnrichmentModeSchema,
     /** Model id the run uses; absent when none applies */
     model: z.string().nullish(),
-    /** True when the requester left `model` to the auto router, which picks it again each time the run leaves the queue; null when not reported */
+    /** True for auto-router models, reselected on dequeue; null if unreported */
     modelRouted: z.boolean().nullish(),
     /** Earliest re-claim time when waiting on retry backoff */
     nextAttemptAt: z.iso.datetime({ offset: true }).nullish(),
