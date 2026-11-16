@@ -33,7 +33,7 @@ export const IdentificationSchema = z.object({
     duplicate: z.array(IdentificationCandidateSchema),
     /** Research request filed for the created record; absent without created, when the lookup did not request research on it, and when the record is already public. */
     enrichmentRunId: z.uuid().nullish(),
-    /** Present only for callers that sent Prefer: respond-async. The identification is settled, but filing is pending. Poll statusUrl until the lookup job completes and use its identification; do not treat this as a final unfiled absence. */
+    /** The identification is settled, but filing is pending after the live wait or Prefer: respond-async skipped that wait. Poll statusUrl until the lookup job completes and use its identification; do not treat this as a final unfiled absence. */
     filing: JobEnqueueSchema.nullish(),
     /** Conflict kind that refused creating the shell, from ProblemDetail.details.conflictType. Absent when no typed conflict refused filing; detail retains the explanation. */
     filingRefusal: DomainConflictTypeSchema.nullish(),
@@ -41,7 +41,7 @@ export const IdentificationSchema = z.object({
     filingRefusalDetail: z.string().nullish(),
     /** The naming owner's typed correction for a refused verified preview or filing. Absent on older responses or when no correction was supplied; absence never permits a retry. */
     filingResolution: ProblemResolutionSchema.nullish(),
-    /** Present only for callers that sent Prefer: respond-async. For a completed filing job, whether that request inserted created. */
+    /** For a completed filing job, whether the original request inserted created, including an insert committed by its live attempt. */
     inserted: z.boolean().nullish(),
     /** true when the match was settled on a second, slower review; confirm it before relying on it. Absent otherwise. */
     languageModelSettled: z.boolean().nullish(),
