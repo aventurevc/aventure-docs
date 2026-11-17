@@ -1,5 +1,13 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
+    AcceleratorParticipationDetail: {
+        modulePath: "accelerator/participation-detail",
+        schemaName: "AcceleratorParticipationDetailSchema",
+    },
+    AcceleratorParticipationFilter: {
+        modulePath: "accelerator/participation-filter",
+        schemaName: "AcceleratorParticipationFilterSchema",
+    },
     Address: { modulePath: "address/address", schemaName: "AddressSchema" },
     AddressAssociation: {
         modulePath: "address/association",

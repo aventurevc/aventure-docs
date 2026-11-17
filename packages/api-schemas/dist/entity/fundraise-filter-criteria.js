@@ -53,9 +53,11 @@ export const EntityFundraiseFilterCriteriaSchema = z.object({
     investorActivity: InvestorActivityFilterSchema.optional(),
     /** Investor entity ids. Restricts returned entities to the portfolio the investor's own investments list shows: fundraises it joined directly or through a fund it currently manages as primary manager. */
     investorEntityId: z.array(z.uuid()).optional(),
+    /** Investment-group root entity ids. Each selects the root and its current primary controlled investment entities, including their current primary managed funds. Members of one family are alternatives; investorNameMatch combines families with exact investor selectors without merging their scope identities. */
+    investorFamilyEntityId: z.array(z.uuid()).optional(),
     /** Deprecated for organizations: select a firm or fund by investorEntityId. It stays the only selector for an individual (angel) investor, matched by exact full name, until an investor person id filter replaces it. Investor names. Each resolves to at most one investor entity, whose portfolio investorEntityId would select: a live Investment Firm or Fund whose brand or alias equals it ignoring case and punctuation, else the entity with the most recorded investments whose brand, legal name, or alias equals it, else the public entity whose brand the name begins as whole words ("Sequoia") holding many times the recorded investments of every other such entity (Sequoia Capital). A name also matches an individual investor's exact full name. */
     investorName: z.array(z.string()).optional(),
-    /** How investorEntityId ids and investorName names combine: any (default) returns companies one named investor backed; every returns companies every named investor backed, each in any of the company's fundraises. */
+    /** How exact investorEntityId ids, investorFamilyEntityId roots, and investorName names combine: any (default) requires one selector; every requires every selector, possibly in different qualifying fundraises. Each family's members are alternatives, and exact and family selectors remain distinct even for the same entity id. */
     investorNameMatch: InvestorNameMatchModeSchema.nullish(),
     /** Last-round-year ranges for each entity's most recent fundraise round. */
     lastRoundYearRange: z.array(IntRangeSchema).optional(),

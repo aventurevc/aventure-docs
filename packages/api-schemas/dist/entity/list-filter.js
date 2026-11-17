@@ -1,5 +1,6 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { AcceleratorParticipationFilterSchema } from "../accelerator/participation-filter.js";
 import { EmployeeCountRangeSchema } from "../employee/count-range.js";
 import { EntityFilterLogoOptionSchema } from "./filter-logo-option.js";
 import { EntityFundraiseFilterCriteriaSchema } from "./fundraise-filter-criteria.js";
@@ -41,6 +42,8 @@ export const EntityListFilterSchema = z.strictObject({
     acceleratorCohort: z.array(z.string()).optional(),
     /** Specific accelerator program name. */
     acceleratorName: z.array(z.string()).optional(),
+    /** Match any exact accelerator/program/batch tuple on one primary row. */
+    acceleratorParticipation: z.array(AcceleratorParticipationFilterSchema).optional(),
     /** Accelerator participation status. */
     acceleratorStatus: z.array(z.string()).optional(),
     /** Affinity provider organization names accepted by the companies list filter. Affinity rows are member -> provider; use provider names here, not member names. */

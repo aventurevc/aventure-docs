@@ -44,6 +44,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 acceleratorBrand?: string[] | undefined;
                 acceleratorCohort?: string[] | undefined;
                 acceleratorName?: string[] | undefined;
+                acceleratorParticipation?: {
+                    acceleratorEntityId: string;
+                    detail: {
+                        batch: string;
+                        program?: string | null | undefined;
+                    };
+                }[] | undefined;
                 acceleratorStatus?: string[] | undefined;
                 affinity?: string[] | undefined;
                 closedLast?: boolean | undefined;
@@ -103,6 +110,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                     investorEntityId?: string[] | undefined;
+                    investorFamilyEntityId?: string[] | undefined;
                     investorName?: string[] | undefined;
                     investorNameMatch?: "any" | "every" | null | undefined;
                     lastRoundYearRange?: {
@@ -185,6 +193,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         acceleratorBrand?: string[] | undefined;
                         acceleratorCohort?: string[] | undefined;
                         acceleratorName?: string[] | undefined;
+                        acceleratorParticipation?: {
+                            acceleratorEntityId: string;
+                            detail: {
+                                batch: string;
+                                program?: string | null | undefined;
+                            };
+                        }[] | undefined;
                         acceleratorStatus?: string[] | undefined;
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
@@ -244,6 +259,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 }[] | undefined;
                             } | undefined;
                             investorEntityId?: string[] | undefined;
+                            investorFamilyEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -343,6 +359,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     acceleratorBrand?: string[] | undefined;
                     acceleratorCohort?: string[] | undefined;
                     acceleratorName?: string[] | undefined;
+                    acceleratorParticipation?: {
+                        acceleratorEntityId: string;
+                        detail: {
+                            batch: string;
+                            program?: string | null | undefined;
+                        };
+                    }[] | undefined;
                     acceleratorStatus?: string[] | undefined;
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
@@ -402,6 +425,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             }[] | undefined;
                         } | undefined;
                         investorEntityId?: string[] | undefined;
+                        investorFamilyEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {
@@ -3195,6 +3219,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 acceleratorBrand?: string[] | undefined;
                 acceleratorCohort?: string[] | undefined;
                 acceleratorName?: string[] | undefined;
+                acceleratorParticipation?: {
+                    acceleratorEntityId: string;
+                    detail: {
+                        batch: string;
+                        program?: string | null | undefined;
+                    };
+                }[] | undefined;
                 acceleratorStatus?: string[] | undefined;
                 affinity?: string[] | undefined;
                 closedLast?: boolean | undefined;
@@ -3254,6 +3285,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         }[] | undefined;
                     } | undefined;
                     investorEntityId?: string[] | undefined;
+                    investorFamilyEntityId?: string[] | undefined;
                     investorName?: string[] | undefined;
                     investorNameMatch?: "any" | "every" | null | undefined;
                     lastRoundYearRange?: {
@@ -3336,6 +3368,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         acceleratorBrand?: string[] | undefined;
                         acceleratorCohort?: string[] | undefined;
                         acceleratorName?: string[] | undefined;
+                        acceleratorParticipation?: {
+                            acceleratorEntityId: string;
+                            detail: {
+                                batch: string;
+                                program?: string | null | undefined;
+                            };
+                        }[] | undefined;
                         acceleratorStatus?: string[] | undefined;
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
@@ -3395,6 +3434,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 }[] | undefined;
                             } | undefined;
                             investorEntityId?: string[] | undefined;
+                            investorFamilyEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -3494,6 +3534,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     acceleratorBrand?: string[] | undefined;
                     acceleratorCohort?: string[] | undefined;
                     acceleratorName?: string[] | undefined;
+                    acceleratorParticipation?: {
+                        acceleratorEntityId: string;
+                        detail: {
+                            batch: string;
+                            program?: string | null | undefined;
+                        };
+                    }[] | undefined;
                     acceleratorStatus?: string[] | undefined;
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
@@ -3553,6 +3600,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             }[] | undefined;
                         } | undefined;
                         investorEntityId?: string[] | undefined;
+                        investorFamilyEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {
@@ -10934,6 +10982,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         acceleratorBrand?: string[] | undefined;
                         acceleratorCohort?: string[] | undefined;
                         acceleratorName?: string[] | undefined;
+                        acceleratorParticipation?: {
+                            acceleratorEntityId: string;
+                            detail: {
+                                batch: string;
+                                program?: string | null | undefined;
+                            };
+                        }[] | undefined;
                         acceleratorStatus?: string[] | undefined;
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
@@ -10993,6 +11048,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 }[] | undefined;
                             } | undefined;
                             investorEntityId?: string[] | undefined;
+                            investorFamilyEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -11092,6 +11148,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     acceleratorBrand?: string[] | undefined;
                     acceleratorCohort?: string[] | undefined;
                     acceleratorName?: string[] | undefined;
+                    acceleratorParticipation?: {
+                        acceleratorEntityId: string;
+                        detail: {
+                            batch: string;
+                            program?: string | null | undefined;
+                        };
+                    }[] | undefined;
                     acceleratorStatus?: string[] | undefined;
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
@@ -11151,6 +11214,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             }[] | undefined;
                         } | undefined;
                         investorEntityId?: string[] | undefined;
+                        investorFamilyEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {
@@ -11604,6 +11668,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                         acceleratorBrand?: string[] | undefined;
                         acceleratorCohort?: string[] | undefined;
                         acceleratorName?: string[] | undefined;
+                        acceleratorParticipation?: {
+                            acceleratorEntityId: string;
+                            detail: {
+                                batch: string;
+                                program?: string | null | undefined;
+                            };
+                        }[] | undefined;
                         acceleratorStatus?: string[] | undefined;
                         affinity?: string[] | undefined;
                         closedLast?: boolean | undefined;
@@ -11663,6 +11734,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                                 }[] | undefined;
                             } | undefined;
                             investorEntityId?: string[] | undefined;
+                            investorFamilyEntityId?: string[] | undefined;
                             investorName?: string[] | undefined;
                             investorNameMatch?: "any" | "every" | null | undefined;
                             lastRoundYearRange?: {
@@ -11762,6 +11834,13 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                     acceleratorBrand?: string[] | undefined;
                     acceleratorCohort?: string[] | undefined;
                     acceleratorName?: string[] | undefined;
+                    acceleratorParticipation?: {
+                        acceleratorEntityId: string;
+                        detail: {
+                            batch: string;
+                            program?: string | null | undefined;
+                        };
+                    }[] | undefined;
                     acceleratorStatus?: string[] | undefined;
                     affinity?: string[] | undefined;
                     closedLast?: boolean | undefined;
@@ -11821,6 +11900,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                             }[] | undefined;
                         } | undefined;
                         investorEntityId?: string[] | undefined;
+                        investorFamilyEntityId?: string[] | undefined;
                         investorName?: string[] | undefined;
                         investorNameMatch?: "any" | "every" | null | undefined;
                         lastRoundYearRange?: {

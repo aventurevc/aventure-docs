@@ -30,6 +30,19 @@ export declare const EntityFilterSchema: z.ZodObject<{
     acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;
     acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    acceleratorParticipation: z.ZodOptional<z.ZodArray<z.ZodType<{
+        acceleratorEntityId: string;
+        detail: {
+            batch: string;
+            program?: string | null | undefined;
+        };
+    }, import("../accelerator/participation-filter.ts").AcceleratorParticipationFilterSchemaInput, z.core.$ZodTypeInternals<{
+        acceleratorEntityId: string;
+        detail: {
+            batch: string;
+            program?: string | null | undefined;
+        };
+    }, import("../accelerator/participation-filter.ts").AcceleratorParticipationFilterSchemaInput>>>>;
     acceleratorStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
     affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
     closedLast: z.ZodOptional<z.ZodBoolean>;
@@ -117,6 +130,7 @@ export declare const EntityFilterSchema: z.ZodObject<{
             }, import("../int/range.ts").IntRangeSchemaInput>>>>;
         }, z.core.$strip>>;
         investorEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
+        investorFamilyEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
         investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
         investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
             any: "any";
