@@ -50,6 +50,7 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         batch?: string | null | undefined;
         id: string;
         program?: string | null | undefined;
+        publicUrl?: string | null | undefined;
         status?: string | null | undefined;
     }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput, z.core.$ZodTypeInternals<{
         accelerator: {
@@ -101,6 +102,7 @@ declare const EntityListResearchSchemaDefinition: z.ZodObject<{
         batch?: string | null | undefined;
         id: string;
         program?: string | null | undefined;
+        publicUrl?: string | null | undefined;
         status?: string | null | undefined;
     }, import("./accelerator-participation.ts").EntityAcceleratorParticipationSchemaInput>>>;
     detail: z.ZodArray<z.ZodType<{

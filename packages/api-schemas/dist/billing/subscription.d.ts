@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
     additionalUsage: z.ZodType<{
+        assistantPurchaseEnabled?: boolean | undefined;
         availableCreditCents: number;
         blocked: boolean;
         enabled: boolean;
@@ -16,6 +17,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
         spentCents: number;
         unbilledCents: number;
     }, import("./additional-usage.ts").BillingAdditionalUsageSchemaInput, z.core.$ZodTypeInternals<{
+        assistantPurchaseEnabled?: boolean | undefined;
         availableCreditCents: number;
         blocked: boolean;
         enabled: boolean;

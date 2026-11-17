@@ -1351,6 +1351,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             batch?: string | null | undefined;
             id: string;
             program?: string | null | undefined;
+            publicUrl?: string | null | undefined;
             status?: string | null | undefined;
         }[];
         detail: {
@@ -1431,6 +1432,7 @@ declare const EntityListSchemaDefinition: z.ZodObject<{
             batch?: string | null | undefined;
             id: string;
             program?: string | null | undefined;
+            publicUrl?: string | null | undefined;
             status?: string | null | undefined;
         }[];
         detail: {

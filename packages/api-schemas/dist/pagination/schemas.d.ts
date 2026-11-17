@@ -4910,6 +4910,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {
@@ -5018,6 +5019,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {
@@ -7869,6 +7871,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     batch?: string | null | undefined;
                     id: string;
                     program?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
                     status?: string | null | undefined;
                 }[];
                 detail: {
@@ -10179,6 +10182,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     batch?: string | null | undefined;
                     id: string;
                     program?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
                     status?: string | null | undefined;
                 }[];
                 detail: {
@@ -11050,6 +11054,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {
@@ -11819,6 +11824,7 @@ declare const PageEntityListSchemaDefinition: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {
@@ -13378,6 +13384,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     batch?: string | null | undefined;
                     id: string;
                     program?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
                     status?: string | null | undefined;
                 }[];
                 detail: {
@@ -14161,6 +14168,7 @@ declare const PageEntitySimilarityResultSchemaDefinition: z.ZodObject<{
                     batch?: string | null | undefined;
                     id: string;
                     program?: string | null | undefined;
+                    publicUrl?: string | null | undefined;
                     status?: string | null | undefined;
                 }[];
                 detail: {
@@ -22425,6 +22433,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {
@@ -23194,6 +23203,7 @@ declare const PageResultEntityListSchemaDefinition: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {

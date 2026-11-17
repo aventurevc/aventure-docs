@@ -4291,6 +4291,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {
@@ -4399,6 +4400,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 batch?: string | null | undefined;
                 id: string;
                 program?: string | null | undefined;
+                publicUrl?: string | null | undefined;
                 status?: string | null | undefined;
             }[];
             detail: {

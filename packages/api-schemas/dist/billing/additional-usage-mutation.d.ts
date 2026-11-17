@@ -1,5 +1,7 @@
 import { z } from "zod/v4";
 declare const BillingAdditionalUsageMutationSchemaDefinition: z.ZodObject<{
+    assistantPurchaseEnabled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    authorizationQuote: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     enabled: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     funding: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         PREPAID_CREDIT: "PREPAID_CREDIT";
@@ -12,7 +14,7 @@ type BillingAdditionalUsageMutationDefinition = z.infer<typeof BillingAdditional
 export interface BillingAdditionalUsageMutationSchemaInput extends z.input<typeof BillingAdditionalUsageMutationSchemaDefinition> {
 }
 /**
- * Merge patch of the additional-usage settings. Enabling requires funding; USAGE_INVOICE also requires spendCapCents and invoiceIncrementCents.
+ * Merge patch of additional-usage settings: omission preserves a setting and null clears it. Enabling requires funding; USAGE_INVOICE also requires invoiceIncrementCents. A permission-only initial save stays disabled with PREPAID_CREDIT and provisions nothing.
  *
  * @openapiSchema BillingAdditionalUsageMutation
  * @endpoint PATCH /v1/billing/additional-usage

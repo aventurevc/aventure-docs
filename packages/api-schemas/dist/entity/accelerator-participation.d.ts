@@ -78,6 +78,7 @@ declare const EntityAcceleratorParticipationSchemaDefinition: z.ZodObject<{
     batch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     id: z.ZodString;
     program: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type EntityAcceleratorParticipationDefinition = z.infer<typeof EntityAcceleratorParticipationSchemaDefinition>;

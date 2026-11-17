@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * One metered allowance a paid subscriber may use past its included cap.
+ * One metered allowance an eligible account may fund past its included cap.
  *
  * @openapiSchema BillingAdditionalUsageType
  * @endpoint GET /v1/billing/plans

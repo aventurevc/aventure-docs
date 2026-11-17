@@ -1,14 +1,33 @@
 import { z } from "zod/v4";
 declare const BillingCreditPurchaseSchemaDefinition: z.ZodObject<{
-    expiresAt: z.ZodISODateTime;
+    amountCents: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    currency: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    expiresAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     id: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
-    pack: z.ZodEnum<{
+    pack: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
         USD_100: "USD_100";
         USD_25: "USD_25";
         USD_250: "USD_250";
         USD_50: "USD_50";
-    }>;
-    url: z.ZodString;
+    }>>>;
+    paymentClientSecret: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    publishableKey: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    status: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        AUTHENTICATION_REQUIRED: "AUTHENTICATION_REQUIRED";
+        FAILED: "FAILED";
+        PAID: "PAID";
+        PENDING: "PENDING";
+        PROCESSING: "PROCESSING";
+    }>, z.ZodString]> & {
+        enum: {
+            AUTHENTICATION_REQUIRED: "AUTHENTICATION_REQUIRED";
+            FAILED: "FAILED";
+            PAID: "PAID";
+            PENDING: "PENDING";
+            PROCESSING: "PROCESSING";
+        };
+    }>>;
+    url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
 type BillingCreditPurchaseDefinition = z.infer<typeof BillingCreditPurchaseSchemaDefinition>;
 export interface BillingCreditPurchaseSchemaInput extends z.input<typeof BillingCreditPurchaseSchemaDefinition> {

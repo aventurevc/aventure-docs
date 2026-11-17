@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const BillingAdditionalUsageSchemaDefinition: z.ZodObject<{
+    assistantPurchaseEnabled: z.ZodOptional<z.ZodDefault<z.ZodBoolean>>;
     availableCreditCents: z.ZodNumber;
     blocked: z.ZodBoolean;
     enabled: z.ZodBoolean;

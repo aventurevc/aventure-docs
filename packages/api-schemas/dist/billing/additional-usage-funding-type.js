@@ -1,7 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 /**
- * PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, up to spendCapCents per month.
+ * PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, subject to an optional monthly spendCapCents.
  *
  * @openapiSchema BillingAdditionalUsageFundingType
  * @endpoint GET /v1/billing/subscription

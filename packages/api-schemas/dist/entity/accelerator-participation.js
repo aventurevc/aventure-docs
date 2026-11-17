@@ -16,6 +16,8 @@ const EntityAcceleratorParticipationSchemaDefinition = z.object({
     id: z.string(),
     /** Accelerator program name, when the source distinguishes one */
     program: z.string().nullish(),
+    /** Absolute canonical public profile URL of the accelerator, including its parent route family when it is a Business Line; absent when no public route exists */
+    publicUrl: z.string().nullish(),
     /** Accelerator participation status */
     status: z.string().nullish(),
 });

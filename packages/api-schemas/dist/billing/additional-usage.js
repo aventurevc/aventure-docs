@@ -3,6 +3,8 @@ import { z } from "zod/v4";
 import { BillingAdditionalUsageFundingTypeSchema } from "./additional-usage-funding-type.js";
 import { BillingAdditionalUsageMeterSchema } from "./additional-usage-meter.js";
 const BillingAdditionalUsageSchemaDefinition = z.object({
+    /** Whether assistants may request billing changes with an exact user authorization quote. Defaults to false; only a verified first-party user session may change it. This permission neither enables usage nor buys credit. */
+    assistantPurchaseEnabled: z.boolean().default(false).optional(),
     /** Spendable prepaid credit after pending usage and invoice-line rounding reserves, in cents. */
     availableCreditCents: z.number(),
     /** True while a failed threshold invoice blocks additional usage; paying it in Billing Portal clears the block. */
@@ -15,7 +17,7 @@ const BillingAdditionalUsageSchemaDefinition = z.object({
     meter: z.array(BillingAdditionalUsageMeterSchema),
     /** When spentCents returns to zero: the next UTC month. */
     resetAt: z.iso.datetime({ offset: true }),
-    /** Monthly spend cap in cents. Required for USAGE_INVOICE; absent for PREPAID_CREDIT means only the prepaid credit bounds usage. */
+    /** Optional monthly usage spend cap in cents for either funding type. Null means no configured monthly cap, not unlimited credit or a purchase budget. */
     spendCapCents: z.number().int().nullish(),
     /** Additional usage priced this UTC month, in cents. */
     spentCents: z.number(),

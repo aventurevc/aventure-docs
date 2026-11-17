@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, up to spendCapCents per month.
+ * PREPAID_CREDIT spends purchased credit packs and stops when they run out. USAGE_INVOICE bills an invoice each time unbilled usage reaches invoiceIncrementCents, subject to an optional monthly spendCapCents.
  *
  * @openapiSchema BillingAdditionalUsageFundingType
  * @endpoint GET /v1/billing/subscription

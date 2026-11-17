@@ -1,10 +1,15 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BillingCreditPurchaseStatusSchema } from "./credit-purchase-status.js";
 const BillingCreditPurchaseConfirmationSchemaDefinition = z.object({
     amountCents: z.number().int(),
     closedAt: z.iso.datetime({ offset: true }).nullish(),
+    currency: z.string().nullish(),
     grantedAt: z.iso.datetime({ offset: true }).nullish(),
     id: z.uuid(),
+    paymentClientSecret: z.string().nullish(),
+    publishableKey: z.string().nullish(),
+    status: BillingCreditPurchaseStatusSchema.nullish(),
 });
 /**
  * One account-owned purchase's confirmed credit grant or checkout closure.
