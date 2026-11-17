@@ -127,9 +127,17 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/credit-purchase",
         schemaName: "BillingCreditPurchaseSchema",
     },
+    BillingCreditPurchaseCapDecision: {
+        modulePath: "billing/credit-purchase-cap-decision",
+        schemaName: "BillingCreditPurchaseCapDecisionSchema",
+    },
     BillingCreditPurchaseConfirmation: {
         modulePath: "billing/credit-purchase-confirmation",
         schemaName: "BillingCreditPurchaseConfirmationSchema",
+    },
+    BillingCreditPurchaseMode: {
+        modulePath: "billing/credit-purchase-mode",
+        schemaName: "BillingCreditPurchaseModeSchema",
     },
     BillingCreditPurchaseMutation: {
         modulePath: "billing/credit-purchase-mutation",

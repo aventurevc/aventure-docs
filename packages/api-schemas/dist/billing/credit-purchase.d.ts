@@ -33,7 +33,7 @@ type BillingCreditPurchaseDefinition = z.infer<typeof BillingCreditPurchaseSchem
 export interface BillingCreditPurchaseSchemaInput extends z.input<typeof BillingCreditPurchaseSchemaDefinition> {
 }
 /**
- * Hosted Checkout destination and expiry for a prepaid credit pack.
+ * One credit pack's hosted payment destination. Payment is not proof of a fulfilled credit grant.
  *
  * @openapiSchema BillingCreditPurchase
  * @endpoint POST /v1/billing/credit-purchases
