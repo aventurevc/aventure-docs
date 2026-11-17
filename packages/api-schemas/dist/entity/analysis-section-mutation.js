@@ -12,7 +12,7 @@ const EntityAnalysisSectionMutationSchemaDefinition = z.object({
     figure: z.array(EntityAnalysisFigureSchema).optional(),
     /** Exact research snippet typeValue, matching the section path key. */
     key: z.string(),
-    /** Author hint; the server assigns origin from the credential. */
+    /** Author hint; the server assigns origin from the credential or DIRECT claim. */
     origin: EntityAnalysisSectionOriginSchema,
     /** Catalog-ordered paragraphs; omit when supplying writerBrief. */
     paragraph: z.array(EntityAnalysisParagraphSchema).nullish(),
