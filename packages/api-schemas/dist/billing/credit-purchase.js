@@ -5,14 +5,14 @@ import { BillingCreditPurchaseStatusSchema } from "./credit-purchase-status.js";
 const BillingCreditPurchaseSchemaDefinition = z.object({
     amountCents: z.number().int().nullish(),
     currency: z.string().nullish(),
-    expiresAt: z.iso.datetime({ offset: true }).nullish(),
+    expiresAt: z.iso.datetime({ offset: true }),
     id: z.uuid().nullish(),
-    pack: BillingCreditPackTypeSchema.nullish(),
+    pack: BillingCreditPackTypeSchema,
     /** Only when bank authentication is required; finish with Stripe.js, then reread this purchase. */
     paymentClientSecret: z.string().nullish(),
     publishableKey: z.string().nullish(),
     status: BillingCreditPurchaseStatusSchema.nullish(),
-    url: z.string().nullish(),
+    url: z.string(),
 });
 /**
  * Hosted Checkout destination and expiry for a prepaid credit pack.
