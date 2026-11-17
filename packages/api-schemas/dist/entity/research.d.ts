@@ -184,6 +184,8 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>>;
         entityId: z.ZodUUID;
         id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodBoolean>;
+        isPrimary: z.ZodOptional<z.ZodBoolean>;
         publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -193,6 +195,7 @@ declare const EntityResearchSchemaDefinition: z.ZodObject<{
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        visible: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>;
 }, z.core.$strip>;
 type EntityResearchDefinition = z.infer<typeof EntityResearchSchemaDefinition>;

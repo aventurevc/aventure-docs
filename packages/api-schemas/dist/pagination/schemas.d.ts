@@ -4958,6 +4958,8 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                isCurrent?: boolean | undefined;
+                isPrimary?: boolean | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -4967,6 +4969,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
+                visible?: boolean | undefined;
             }[];
         }, import("../entity/research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
@@ -5067,6 +5070,8 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                isCurrent?: boolean | undefined;
+                isPrimary?: boolean | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -5076,6 +5081,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
+                visible?: boolean | undefined;
             }[];
         }, import("../entity/research.ts").EntityResearchSchemaInput>>;
         sitemap: z.ZodObject<{
@@ -7919,6 +7925,8 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     entityId: string;
                     id: number;
+                    isCurrent?: boolean | undefined;
+                    isPrimary?: boolean | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
@@ -7928,6 +7936,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
+                    visible?: boolean | undefined;
                 }[];
             };
             sitemap: {
@@ -10230,6 +10239,8 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     entityId: string;
                     id: number;
+                    isCurrent?: boolean | undefined;
+                    isPrimary?: boolean | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
@@ -10239,6 +10250,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
+                    visible?: boolean | undefined;
                 }[];
             };
             sitemap: {
@@ -12605,6 +12617,8 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>>;
         entityId: z.ZodUUID;
         id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodBoolean>;
+        isPrimary: z.ZodOptional<z.ZodBoolean>;
         publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -12614,6 +12628,7 @@ declare const PageEntityResearchSnippetSchemaDefinition: z.ZodObject<{
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        visible: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>;
     empty: z.ZodOptional<z.ZodBoolean>;
     first: z.ZodOptional<z.ZodBoolean>;

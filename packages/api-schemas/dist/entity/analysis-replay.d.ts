@@ -27,6 +27,8 @@ declare const EntityAnalysisReplaySchemaDefinition: z.ZodObject<{
         }, z.core.$strip>>>;
         entityId: z.ZodUUID;
         id: z.ZodInt;
+        isCurrent: z.ZodOptional<z.ZodBoolean>;
+        isPrimary: z.ZodOptional<z.ZodBoolean>;
         publicSource: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             lastFetchedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
             publishedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
@@ -36,6 +38,7 @@ declare const EntityAnalysisReplaySchemaDefinition: z.ZodObject<{
         text: z.ZodString;
         textType: z.ZodString;
         updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+        visible: z.ZodOptional<z.ZodBoolean>;
     }, z.core.$strip>>>;
     section: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;

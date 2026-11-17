@@ -15,6 +15,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         cusip: "cusip";
         duns: "duns";
         ein: "ein";
+        euid: "euid";
         fdicCert: "fdicCert";
         federalAgencyCode: "federalAgencyCode";
         firmCrd: "firmCrd";
@@ -26,6 +27,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         irelandCompanyNumber: "irelandCompanyNumber";
         isin: "isin";
         israelCompanyNumber: "israelCompanyNumber";
+        italyPartitaIva: "italyPartitaIva";
         japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
         koreaBusinessRegistrationNumber: "koreaBusinessRegistrationNumber";
         lei: "lei";
@@ -34,10 +36,15 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         ncesPssId: "ncesPssId";
         ncesSchoolId: "ncesSchoolId";
         ncuaCharter: "ncuaCharter";
+        nmlsId: "nmlsId";
         npi: "npi";
         nyAttorneyRegistration: "nyAttorneyRegistration";
         orcid: "orcid";
         peruRuc: "peruRuc";
+        polandKrs: "polandKrs";
+        polandNip: "polandNip";
+        polandRegon: "polandRegon";
+        portugalNipc: "portugalNipc";
         rssd: "rssd";
         samUei: "samUei";
         secAdviserFileNumber: "secAdviserFileNumber";
@@ -46,6 +53,8 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         signalNfxCompany: "signalNfxCompany";
         signalNfxFirm: "signalNfxFirm";
         signalNfxPerson: "signalNfxPerson";
+        spainCif: "spainCif";
+        swedenOrganisationsnummer: "swedenOrganisationsnummer";
         swissUid: "swissUid";
         ticker: "ticker";
         ukCompanyNumber: "ukCompanyNumber";
@@ -63,6 +72,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             cusip: "cusip";
             duns: "duns";
             ein: "ein";
+            euid: "euid";
             fdicCert: "fdicCert";
             federalAgencyCode: "federalAgencyCode";
             firmCrd: "firmCrd";
@@ -74,6 +84,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             irelandCompanyNumber: "irelandCompanyNumber";
             isin: "isin";
             israelCompanyNumber: "israelCompanyNumber";
+            italyPartitaIva: "italyPartitaIva";
             japanCryptoAssetExchangeRegistration: "japanCryptoAssetExchangeRegistration";
             koreaBusinessRegistrationNumber: "koreaBusinessRegistrationNumber";
             lei: "lei";
@@ -82,10 +93,15 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             ncesPssId: "ncesPssId";
             ncesSchoolId: "ncesSchoolId";
             ncuaCharter: "ncuaCharter";
+            nmlsId: "nmlsId";
             npi: "npi";
             nyAttorneyRegistration: "nyAttorneyRegistration";
             orcid: "orcid";
             peruRuc: "peruRuc";
+            polandKrs: "polandKrs";
+            polandNip: "polandNip";
+            polandRegon: "polandRegon";
+            portugalNipc: "portugalNipc";
             rssd: "rssd";
             samUei: "samUei";
             secAdviserFileNumber: "secAdviserFileNumber";
@@ -94,6 +110,8 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             signalNfxCompany: "signalNfxCompany";
             signalNfxFirm: "signalNfxFirm";
             signalNfxPerson: "signalNfxPerson";
+            spainCif: "spainCif";
+            swedenOrganisationsnummer: "swedenOrganisationsnummer";
             swissUid: "swissUid";
             ticker: "ticker";
             ukCompanyNumber: "ukCompanyNumber";

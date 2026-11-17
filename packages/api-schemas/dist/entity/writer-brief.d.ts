@@ -36,15 +36,15 @@ export declare const EntityWriterBriefSchema: z.ZodObject<{
             statement: string;
         };
         asOfDate: string;
-        changeSignal: {
+        changeSignal?: {
             claim: number[];
             statement: string;
-        }[];
-        gap: {
+        }[] | undefined;
+        gap?: {
             claim: number[];
             reason: string;
             statement: string;
-        }[];
+        }[] | undefined;
         question: string;
         scope: {
             boundary: string;
@@ -57,15 +57,15 @@ export declare const EntityWriterBriefSchema: z.ZodObject<{
             statement: string;
         };
         asOfDate: string;
-        changeSignal: {
+        changeSignal?: {
             claim: number[];
             statement: string;
-        }[];
-        gap: {
+        }[] | undefined;
+        gap?: {
             claim: number[];
             reason: string;
             statement: string;
-        }[];
+        }[] | undefined;
         question: string;
         scope: {
             boundary: string;
@@ -75,15 +75,15 @@ export declare const EntityWriterBriefSchema: z.ZodObject<{
     }, import("./writer-meta-analysis.ts").EntityWriterMetaAnalysisSchemaInput>>;
     outputClaim: z.ZodOptional<z.ZodArray<z.ZodInt>>;
     paragraph: z.ZodArray<z.ZodType<{
-        analysis: {
+        analysis?: {
             answer: boolean;
-        };
+        } | undefined;
         claim: number[];
         positioning: string[];
     }, import("./writer-paragraph.ts").EntityWriterParagraphSchemaInput, z.core.$ZodTypeInternals<{
-        analysis: {
+        analysis?: {
             answer: boolean;
-        };
+        } | undefined;
         claim: number[];
         positioning: string[];
     }, import("./writer-paragraph.ts").EntityWriterParagraphSchemaInput>>>;

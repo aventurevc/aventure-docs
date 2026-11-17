@@ -4,7 +4,7 @@ import { EntityWriterParagraphAnalysisSchema } from "./writer-paragraph-analysis
 import { WriterPositioningElementSchema } from "../writer/positioning-element.js";
 const EntityWriterParagraphSchemaDefinition = z.object({
     /** Overall research answer assigned to this paragraph. */
-    analysis: EntityWriterParagraphAnalysisSchema,
+    analysis: EntityWriterParagraphAnalysisSchema.optional(),
     /** Output claims this paragraph states, in order. */
     claim: z.array(z.int()),
     /** Positioning decisions this paragraph must consume. */

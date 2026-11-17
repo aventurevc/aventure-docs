@@ -4339,6 +4339,8 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                isCurrent?: boolean | undefined;
+                isPrimary?: boolean | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -4348,6 +4350,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
+                visible?: boolean | undefined;
             }[];
         }, import("./research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
@@ -4448,6 +4451,8 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                isCurrent?: boolean | undefined;
+                isPrimary?: boolean | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -4457,6 +4462,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
+                visible?: boolean | undefined;
             }[];
         }, import("./research.ts").EntityResearchSchemaInput>>;
         sitemap: z.ZodObject<{

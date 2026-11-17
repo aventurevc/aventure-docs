@@ -1,10 +1,8 @@
 import { z } from "zod/v4";
 declare const EntityWriterParagraphSchemaDefinition: z.ZodObject<{
-    analysis: z.ZodType<{
-        answer: boolean;
-    }, import("./writer-paragraph-analysis.ts").EntityWriterParagraphAnalysisSchemaInput, z.core.$ZodTypeInternals<{
-        answer: boolean;
-    }, import("./writer-paragraph-analysis.ts").EntityWriterParagraphAnalysisSchemaInput>>;
+    analysis: z.ZodOptional<z.ZodObject<{
+        answer: z.ZodBoolean;
+    }, z.core.$strip>>;
     claim: z.ZodArray<z.ZodInt>;
     positioning: z.ZodArray<z.ZodUnion<readonly [z.ZodEnum<{
         ALTERNATIVE: "ALTERNATIVE";

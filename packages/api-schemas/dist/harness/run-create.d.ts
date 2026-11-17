@@ -1052,15 +1052,15 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
                     statement: string;
                 };
                 asOfDate: string;
-                changeSignal: {
+                changeSignal?: {
                     claim: number[];
                     statement: string;
-                }[];
-                gap: {
+                }[] | undefined;
+                gap?: {
                     claim: number[];
                     reason: string;
                     statement: string;
-                }[];
+                }[] | undefined;
                 question: string;
                 scope: {
                     boundary: string;
@@ -1070,9 +1070,9 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
             };
             outputClaim?: number[] | undefined;
             paragraph: {
-                analysis: {
+                analysis?: {
                     answer: boolean;
-                };
+                } | undefined;
                 claim: number[];
                 positioning: string[];
             }[];
@@ -1166,15 +1166,15 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
                     statement: string;
                 };
                 asOfDate: string;
-                changeSignal: {
+                changeSignal?: {
                     claim: number[];
                     statement: string;
-                }[];
-                gap: {
+                }[] | undefined;
+                gap?: {
                     claim: number[];
                     reason: string;
                     statement: string;
-                }[];
+                }[] | undefined;
                 question: string;
                 scope: {
                     boundary: string;
@@ -1184,9 +1184,9 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
             };
             outputClaim?: number[] | undefined;
             paragraph: {
-                analysis: {
+                analysis?: {
                     answer: boolean;
-                };
+                } | undefined;
                 claim: number[];
                 positioning: string[];
             }[];

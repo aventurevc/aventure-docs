@@ -5420,6 +5420,8 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     entityId: string;
                     id: number;
+                    isCurrent?: boolean | undefined;
+                    isPrimary?: boolean | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
@@ -5429,6 +5431,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
+                    visible?: boolean | undefined;
                 }[];
             };
             sitemap: {
@@ -12911,6 +12914,8 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     entityId: string;
                     id: number;
+                    isCurrent?: boolean | undefined;
+                    isPrimary?: boolean | undefined;
                     publicSource?: {
                         lastFetchedAt?: string | null | undefined;
                         publishedAt?: string | null | undefined;
@@ -12920,6 +12925,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     text: string;
                     textType: string;
                     updatedAt?: string | null | undefined;
+                    visible?: boolean | undefined;
                 }[];
             };
             sitemap: {

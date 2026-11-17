@@ -8,14 +8,14 @@ declare const EntityWriterMetaAnalysisSchemaDefinition: z.ZodObject<{
         statement: string;
     }, import("../writer/judgment.ts").WriterJudgmentSchemaInput>>;
     asOfDate: z.ZodISODate;
-    changeSignal: z.ZodArray<z.ZodType<{
+    changeSignal: z.ZodOptional<z.ZodArray<z.ZodType<{
         claim: number[];
         statement: string;
     }, import("../writer/change-signal.ts").WriterChangeSignalSchemaInput, z.core.$ZodTypeInternals<{
         claim: number[];
         statement: string;
-    }, import("../writer/change-signal.ts").WriterChangeSignalSchemaInput>>>;
-    gap: z.ZodArray<z.ZodType<{
+    }, import("../writer/change-signal.ts").WriterChangeSignalSchemaInput>>>>;
+    gap: z.ZodOptional<z.ZodArray<z.ZodType<{
         claim: number[];
         reason: string;
         statement: string;
@@ -23,7 +23,7 @@ declare const EntityWriterMetaAnalysisSchemaDefinition: z.ZodObject<{
         claim: number[];
         reason: string;
         statement: string;
-    }, import("../writer/gap.ts").WriterGapSchemaInput>>>;
+    }, import("../writer/gap.ts").WriterGapSchemaInput>>>>;
     question: z.ZodString;
     scope: z.ZodType<{
         boundary: string;

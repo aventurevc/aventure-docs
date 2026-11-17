@@ -10,9 +10,9 @@ const EntityWriterMetaAnalysisSchemaDefinition = z.object({
     /** Date through which the judgment is current. */
     asOfDate: z.iso.date(),
     /** Evidence that would change the supplied view. */
-    changeSignal: z.array(WriterChangeSignalSchema),
+    changeSignal: z.array(WriterChangeSignalSchema).optional(),
     /** Known gaps or conflicts that must not become invented facts. */
-    gap: z.array(WriterGapSchema),
+    gap: z.array(WriterGapSchema).optional(),
     /** Question the research answered. */
     question: z.string(),
     /** Boundary and period used by the research. */

@@ -34,10 +34,16 @@ export const EntityResearchSnippetSchema = z.object({
     /** Entity id (UUID) */
     entityId: z.uuid(),
     id: z.int(),
+    /** Current row. The live snippet for its type; demoted historical rows read only with includePrivate. */
+    isCurrent: z.boolean().optional(),
+    /** Primary row among the current snippets of its type. */
+    isPrimary: z.boolean().optional(),
     /** Published page behind this value, read from the provenance event that wrote it; absent for internal sources. */
     publicSource: EntityResearchPublicSourceSchema.nullish(),
     text: z.string(),
     textType: z.string(),
     updatedAt: z.iso.datetime({ offset: true }).nullish(),
+    /** Whether the snippet appears in default reads. Admin/private reads (includePrivate) also return hidden rows. */
+    visible: z.boolean().optional(),
 });
 //# sourceMappingURL=research-snippet.js.map

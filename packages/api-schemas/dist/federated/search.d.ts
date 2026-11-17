@@ -10633,6 +10633,8 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                isCurrent?: boolean | undefined;
+                isPrimary?: boolean | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -10642,6 +10644,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
+                visible?: boolean | undefined;
             }[];
         }, import("../entity/research.ts").EntityResearchSchemaInput, z.core.$ZodTypeInternals<{
             acceleratorParticipation: {
@@ -10742,6 +10745,8 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 entityId: string;
                 id: number;
+                isCurrent?: boolean | undefined;
+                isPrimary?: boolean | undefined;
                 publicSource?: {
                     lastFetchedAt?: string | null | undefined;
                     publishedAt?: string | null | undefined;
@@ -10751,6 +10756,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 text: string;
                 textType: string;
                 updatedAt?: string | null | undefined;
+                visible?: boolean | undefined;
             }[];
         }, import("../entity/research.ts").EntityResearchSchemaInput>>;
         sitemap: z.ZodObject<{
