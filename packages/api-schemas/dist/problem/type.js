@@ -37,6 +37,7 @@ const ProblemTypeSchemaKnownMembers = z.enum({
     STATE_CONFLICT: "https://api.aventure.vc/errors/state-conflict",
     ANALYSIS_TURN_PENDING: "https://api.aventure.vc/errors/analysis-turn-pending",
     HARNESS_RUN_LEASE_MISMATCH: "https://api.aventure.vc/errors/harness-run-lease-mismatch",
+    SEARCH_PHRASE_WINDOW_EXHAUSTED: "https://api.aventure.vc/errors/search-phrase-window-exhausted",
     SLUG_HELD_BY_RECORD: "https://api.aventure.vc/errors/slug-held-by-record",
     SLUG_HELD_BY_REDIRECT: "https://api.aventure.vc/errors/slug-held-by-redirect",
     SLUG_AMBIGUOUS: "https://api.aventure.vc/errors/slug-ambiguous",

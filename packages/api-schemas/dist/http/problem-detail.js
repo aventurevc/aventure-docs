@@ -46,7 +46,7 @@ export const ProblemDetailSchema = z.object({
             "subscription_paused",
             /** The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt, when the meter refills (typically weeks away). Do not retry inside the period even though the status is 429. */
             "billing_allowance_exhausted",
-            /** The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt; raise the cap or buy credit through /v1/billing/additional-usage, or wait for resetAt. */
+            /** The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt, then follow ProblemDetail.resolution: when prepaid credit is used up, buy credit through POST /v1/billing/credit-purchases only with the user's exact quoted approval of the amount; when the monthly cap is reached, raise spendCapCents through /v1/billing/additional-usage or wait for resetAt. */
             "billing_additional_usage_cap_reached",
             /** The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key. */
             "billing_credit_checkout_closed",

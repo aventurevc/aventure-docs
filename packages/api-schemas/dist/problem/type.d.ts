@@ -45,6 +45,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     readonly STATE_CONFLICT: "https://api.aventure.vc/errors/state-conflict";
     readonly ANALYSIS_TURN_PENDING: "https://api.aventure.vc/errors/analysis-turn-pending";
     readonly HARNESS_RUN_LEASE_MISMATCH: "https://api.aventure.vc/errors/harness-run-lease-mismatch";
+    readonly SEARCH_PHRASE_WINDOW_EXHAUSTED: "https://api.aventure.vc/errors/search-phrase-window-exhausted";
     readonly SLUG_HELD_BY_RECORD: "https://api.aventure.vc/errors/slug-held-by-record";
     readonly SLUG_HELD_BY_REDIRECT: "https://api.aventure.vc/errors/slug-held-by-redirect";
     readonly SLUG_AMBIGUOUS: "https://api.aventure.vc/errors/slug-ambiguous";
@@ -104,6 +105,7 @@ export declare const ProblemTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         readonly STATE_CONFLICT: "https://api.aventure.vc/errors/state-conflict";
         readonly ANALYSIS_TURN_PENDING: "https://api.aventure.vc/errors/analysis-turn-pending";
         readonly HARNESS_RUN_LEASE_MISMATCH: "https://api.aventure.vc/errors/harness-run-lease-mismatch";
+        readonly SEARCH_PHRASE_WINDOW_EXHAUSTED: "https://api.aventure.vc/errors/search-phrase-window-exhausted";
         readonly SLUG_HELD_BY_RECORD: "https://api.aventure.vc/errors/slug-held-by-record";
         readonly SLUG_HELD_BY_REDIRECT: "https://api.aventure.vc/errors/slug-held-by-redirect";
         readonly SLUG_AMBIGUOUS: "https://api.aventure.vc/errors/slug-ambiguous";
