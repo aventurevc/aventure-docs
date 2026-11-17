@@ -48,4 +48,17 @@ export declare const OpenApiWriteReadbackSchema: z.ZodObject<{
     }, z.core.$strict>>;
 }, z.core.$strict>;
 export type OpenApiWriteReadback = z.infer<typeof OpenApiWriteReadbackSchema>;
+/**
+ * @usedByEndpoint none:external-root
+ * @shared primitive:multi OpenAPI read postcondition metadata; not direct because consumers interpret source-owned extension values rather than endpoint payloads
+ * @contractShape http.openapi-read-postcondition
+ * @contractRole canonical
+ * @ownerModule http/openapi-metadata.ts
+ */
+export declare const OpenApiReadPostconditionSchema: z.ZodObject<{
+    readPointer: z.ZodUnion<readonly [z.ZodLiteral<"">, z.ZodString]>;
+    equals: z.ZodBoolean;
+    omittedIn: z.ZodLiteral<"public">;
+}, z.core.$strict>;
+export type OpenApiReadPostcondition = z.infer<typeof OpenApiReadPostconditionSchema>;
 //# sourceMappingURL=openapi-metadata.d.ts.map

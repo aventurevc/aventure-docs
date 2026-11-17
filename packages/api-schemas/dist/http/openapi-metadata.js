@@ -52,4 +52,16 @@ export const OpenApiWriteReadbackSchema = z.strictObject({
     })
         .optional(),
 });
+/**
+ * @usedByEndpoint none:external-root
+ * @shared primitive:multi OpenAPI read postcondition metadata; not direct because consumers interpret source-owned extension values rather than endpoint payloads
+ * @contractShape http.openapi-read-postcondition
+ * @contractRole canonical
+ * @ownerModule http/openapi-metadata.ts
+ */
+export const OpenApiReadPostconditionSchema = z.strictObject({
+    readPointer: OpenApiJsonPointerSchema,
+    equals: z.boolean(),
+    omittedIn: z.literal("public"),
+});
 //# sourceMappingURL=openapi-metadata.js.map
