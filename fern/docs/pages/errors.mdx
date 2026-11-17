@@ -121,10 +121,19 @@ or from your MCP client as described in
 `resetAt`. `resolution.endpoint` names the call that starts the upgrade:
 checkout for the free plan, a plan change for a paid one.
 
-On plans with additional usage turned on, a `429` with `code`
-`billing_additional_usage_cap_reached` means you reached the spending cap you
-set or used your prepaid credit. Raise the cap in
-[subscription settings](https://aventure.vc/settings/subscription) to continue.
+With additional usage turned on, a `429` with `code`
+`billing_additional_usage_cap_reached` can mean either. In both cases,
+`resolution.action` is `useEndpoint`:
+
+- **Monthly usage cap reached:** `resolution.endpoint` is
+  `/v1/billing/additional-usage`. Raise the cap in
+  [subscription settings](https://aventure.vc/settings/subscription) or wait for
+  `resetAt`.
+- **Prepaid credit exhausted:** `resolution.endpoint` is
+  `/v1/billing/credit-purchases`. Add credit through
+  `POST /v1/billing/credit-purchases`, or switch to `USAGE_INVOICE` if you have
+  an eligible paid Stripe plan. [Plans and usage](/plans-and-usage#when-you-reach-a-limit)
+  explains purchase authorization and payment options.
 
 ## Redirects on Changed Slugs
 

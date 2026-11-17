@@ -25,9 +25,9 @@ Expert adds custom reports, a CRM integration, and a dedicated analyst;
   the API, CLI, and MCP server, and adds link search, page reads, competitor, provider, and investor-activity questions, saved lists,
   unlimited search results, and industry briefs. Its research requests fill or
   refresh a company or person profile, including its Analysis tab.
-- Pay-as-you-go top-ups: credit packs of \$25, \$50, \$100, and \$250. Overage
-  unit prices: company research \$2.50, person research \$0.65, profile view
-  \$0.025, web search \$0.025.
+- Pay Per Use: with or without a subscription, buy prepaid credit in any amount
+  from \$5 to \$1,000 on the website. Overage unit prices: company research \$2.50, person research \$0.65,
+  profile view \$0.025, web search \$0.025, company brand lookup \$0.001.
 - The same sign-in works on the website, the iPhone, iPad, and Mac apps, the
   CLI (`aventure`, npm `@aventurevc/aventure-cli`), and the MCP server
   (`@aventurevc/mcp-server`, hosted at `https://mcp.aventure.vc/mcp`).
@@ -46,12 +46,12 @@ Expert adds custom reports, a CRM integration, and a dedicated analyst;
   with `limitType` `NATURAL_SEARCH` means wait the `Retry-After` seconds, not
   upgrade.
 - **Research requests** count against the allowance for adding or updating a
-  company or person. Research requires an entitled eligible paid subscription.
-  Prepaid credit only extends that subscription's allowance with additional usage
-  turned on; it does not grant research access to Essential (free).
+  company or person. Research requires an entitled AI Plus or AI Pro plan.
+  Prepaid credit only extends that plan's allowance when additional usage is on.
 - **Features outside your plan**, such as link search or page reads on the
-  free plan, answer `402` with `code` `subscription_required`. Prepaid credit
-  does not unlock paid-only link search or page reads.
+  free plan, answer `402` with `code` `subscription_required`. Buying credit
+  does not unlock paid features or remove the free plan's daily caps on
+  plain-English searches and name lookups.
 
 Allowances reset at the start of each calendar month (UTC).
 
@@ -73,5 +73,21 @@ Over MCP, your assistant can list aVenture plans, but it cannot change your
 plan; upgrade on the website or with the CLI.
 
 If an upgrade needs a payment you have not made yet, the response includes a
-payment link to finish it. On plans that offer additional usage, you can turn it
-on so requests continue past the allowance up to a spending cap you set.
+payment link to finish it. You can also turn on additional usage in
+[subscription settings](https://aventure.vc/settings/subscription) to continue
+eligible requests past their allowance, subject to your monthly usage cap if set.
+`PREPAID_CREDIT` uses purchased credit without a subscription; `USAGE_INVOICE`
+requires an eligible paid Stripe plan. Credit does not change plan entitlements.
+
+Buy prepaid credit on the website or through `POST /v1/billing/credit-purchases`.
+Choose a pack or an amount from 500 to 100000 USD cents. `HOSTED_CHECKOUT` opens
+a payment page; `ATTACHED_CARD` charges the existing default saved card. Retrying
+with the same `Idempotency-Key` and identical terms resumes the same payment.
+`GET /v1/billing/credit-purchases/{purchaseId}` returns its status.
+
+For a delegated purchase, such as an OAuth or API-key call by an assistant,
+the user must first enable assistant purchasing in web settings. The request
+must preserve the user's exact `authorizationQuote` verbatim and include an
+explicit `capDecision` to keep, set, or clear the monthly usage cap. The cap
+limits usage, not the credit purchase. Delegated changes to additional usage
+settings also require permission and the user's exact authorization quote.
