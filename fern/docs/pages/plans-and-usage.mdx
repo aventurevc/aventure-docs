@@ -11,7 +11,7 @@ API, CLI, and MCP calls all draw on the same account. [Sign up free](https://ave
 
 | Tier | Price | Company research requests / mo | Person research requests / mo | Company profile views / mo | Person profile views / mo | Web searches / mo | Brand lookups / mo |
 |---|---|---|---|---|---|---|---|
-| Essential (free) | \$0 | 0 | 0 | 25 | 25 | 25 | 250 |
+| Essential (free) | \$0 | 0 | 0 | 15 | 15 | 25 | 250 |
 | AI Plus | \$49/mo or \$490/yr | 30 | 30 | 500 | 500 | 200 | 5,000 |
 | AI Pro | \$199/mo or \$1,999/yr | 270 | 270 | 5,000 | 5,000 | 1,000 | 50,000 |
 
@@ -46,7 +46,7 @@ Expert adds custom reports, a CRM integration, and a dedicated analyst;
   with `limitType` `NATURAL_SEARCH` means wait the `Retry-After` seconds, not
   upgrade.
 - **Research requests** count against the allowance for adding or updating a
-  company or person. Research requires an entitled AI Plus or AI Pro plan.
+  company or person. Research requires a paid plan that includes research requests.
   Prepaid credit only extends that plan's allowance when additional usage is on.
 - **Features outside your plan**, such as link search or page reads on the
   free plan, answer `402` with `code` `subscription_required`. Buying credit
@@ -81,13 +81,16 @@ requires an eligible paid Stripe plan. Credit does not change plan entitlements.
 
 Buy prepaid credit on the website or through `POST /v1/billing/credit-purchases`.
 Choose a pack or an amount from 500 to 100000 USD cents. `HOSTED_CHECKOUT` opens
-a payment page; `ATTACHED_CARD` charges the existing default saved card. Retrying
-with the same `Idempotency-Key` and identical terms resumes the same payment.
+a payment page; `ATTACHED_CARD` charges the existing default saved card. Send a
+required `Idempotency-Key` header; retrying with the same key and identical
+terms resumes the same payment.
 `GET /v1/billing/credit-purchases/{purchaseId}` returns its status.
 
 For a delegated purchase, such as an OAuth or API-key call by an assistant,
 the user must first enable assistant purchasing in web settings. The request
 must preserve the user's exact `authorizationQuote` verbatim and include an
-explicit `capDecision` to keep, set, or clear the monthly usage cap. The cap
+explicit `capDecision` to keep, set (`SET_CAP` with `spendCapCents`), or clear
+the monthly usage cap. The cap
 limits usage, not the credit purchase. Delegated changes to additional usage
-settings also require permission and the user's exact authorization quote.
+settings also require permission, and the user's exact authorization quote
+when they turn usage on or change funding or limits.

@@ -102,12 +102,12 @@ profile views, or web searches, the API answers `429` with `code`
   "title": "Usage limit reached",
   "status": 429,
   "code": "billing_allowance_exhausted",
-  "detail": "Usage limit reached: your Essential plan includes 25 company profile views per month, and you have used them all.",
+  "detail": "Usage limit reached: your Essential plan includes 15 company profile views per month, and you have used them all.",
   "hint": "Upgrade now at https://aventure.vc/settings/subscription (plans: https://aventure.vc/pricing). In the aVenture CLI, the `billing plans list` command shows monthly and annual prices; in an MCP client, ask your assistant to upgrade. Otherwise the allowance refills at 2026-10-01T00:00Z.",
   "allowanceType": "ENTITY_VIEW",
   "limitType": "BILLING_ALLOWANCE",
-  "limit": 25,
-  "used": 25,
+  "limit": 15,
+  "used": 15,
   "remaining": 0,
   "resetAt": "2026-10-01T00:00:00Z",
   "resolution": { "action": "useEndpoint", "endpoint": "/v1/billing/checkout-sessions" }
@@ -131,7 +131,8 @@ With additional usage turned on, a `429` with `code`
   `resetAt`.
 - **Prepaid credit exhausted:** `resolution.endpoint` is
   `/v1/billing/credit-purchases`. Add credit through
-  `POST /v1/billing/credit-purchases`, or switch to `USAGE_INVOICE` if you have
+  `POST /v1/billing/credit-purchases`, or switch to `USAGE_INVOICE` with
+  `PATCH /v1/billing/additional-usage` if you have
   an eligible paid Stripe plan. [Plans and usage](/plans-and-usage#when-you-reach-a-limit)
   explains purchase authorization and payment options.
 
