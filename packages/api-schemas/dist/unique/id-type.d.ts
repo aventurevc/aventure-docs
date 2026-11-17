@@ -28,6 +28,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     australiaAbn: "australiaAbn";
     belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
     brazilCnpj: "brazilCnpj";
+    canadaBusinessNumber: "canadaBusinessNumber";
     chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
     crd: "crd";
     cusip: "cusip";
@@ -75,6 +76,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         australiaAbn: "australiaAbn";
         belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
         brazilCnpj: "brazilCnpj";
+        canadaBusinessNumber: "canadaBusinessNumber";
         chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
         crd: "crd";
         cusip: "cusip";

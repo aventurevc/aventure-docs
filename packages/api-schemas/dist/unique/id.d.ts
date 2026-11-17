@@ -9,6 +9,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         australiaAbn: "australiaAbn";
         belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
         brazilCnpj: "brazilCnpj";
+        canadaBusinessNumber: "canadaBusinessNumber";
         chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
         crd: "crd";
         cusip: "cusip";
@@ -56,6 +57,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             australiaAbn: "australiaAbn";
             belgiumEnterpriseNumber: "belgiumEnterpriseNumber";
             brazilCnpj: "brazilCnpj";
+            canadaBusinessNumber: "canadaBusinessNumber";
             chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
             crd: "crd";
             cusip: "cusip";
