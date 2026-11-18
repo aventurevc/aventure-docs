@@ -10,7 +10,7 @@ const DuplicateCreateReviewSchemaDefinition = z.object({
     conflictType: DomainConflictTypeSchema,
     /** News candidates returned by lookup or create duplicate review. If a candidate is the requested article, read/update that article by id. Otherwise block until source evidence proves a distinct article. */
     newsCandidate: z.array(NewsCandidateScoreSchema).nullish(),
-    /** Create endpoint to retry only after reviewing the returned candidates and supplying overrideGate=duplicate and overrideReason as query parameters. Null for detail lookup ambiguity, where the next action is review/update/block. */
+    /** Create endpoint to retry only after reviewing the returned candidates and supplying overrideGate=duplicate and overrideReason as query parameters. Keep overrides already reviewed for this request. If overrideGate already names another gate, append this gate and its source-backed reason as an overrideReview entry instead of replacing that override. Null for detail lookup ambiguity, where the next action is review/update/block. */
     overridePath: z.string().nullish(),
     /** Review threshold used by duplicate scoring. Scores below this value can still be useful candidate context; this value does not prove absence or authorize create. */
     threshold: z.int(),
