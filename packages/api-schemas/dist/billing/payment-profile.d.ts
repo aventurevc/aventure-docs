@@ -8,6 +8,7 @@ declare const BillingPaymentProfileSchemaDefinition: z.ZodObject<{
         expiryYear: z.ZodInt;
         last4: z.ZodString;
     }, z.core.$strip>>>;
+    portalAvailable: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
 type BillingPaymentProfileDefinition = z.infer<typeof BillingPaymentProfileSchemaDefinition>;
 export interface BillingPaymentProfileSchemaInput extends z.input<typeof BillingPaymentProfileSchemaDefinition> {

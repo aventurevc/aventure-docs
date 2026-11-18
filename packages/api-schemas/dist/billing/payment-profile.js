@@ -6,8 +6,10 @@ const BillingPaymentProfileSchemaDefinition = z.object({
     freeTrialEligible: z.boolean().optional(),
     /** Whether the caller's next purchase or upgrade to a plan with an introductoryAmount is charged that amount: true when the catalog offers introductoryAmount, the App Store does not bill the account, and either it has no earlier subscription, payment, or unvoided invoice, or it pays an active subscription on a cheaper sold plan and has never redeemed the introductory discount; false otherwise */
     introductoryOfferEligible: z.boolean(),
-    /** Card that pays the continuing Stripe subscription; absent without one or when it is paid by something other than a card */
+    /** Selected default card: subscription default, otherwise customer invoice default; absent when neither selects a card. */
     paymentMethod: BillingPaymentMethodSchema.nullish(),
+    /** Whether the Stripe billing portal is available. */
+    portalAvailable: z.boolean().optional(),
 });
 /**
  * The caller's card on file, paid introductory discount eligibility, and eligibility for a free trial on a new Stripe Checkout, read live from Stripe.
