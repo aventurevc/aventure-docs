@@ -5,6 +5,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
     problem: z.ZodUnion<readonly [z.ZodEnum<{
         analysis: "analysis";
         chained: "chained";
+        contact: "contact";
         disclaimer: "disclaimer";
         evidenceAuthority: "evidenceAuthority";
         factList: "factList";
@@ -13,6 +14,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         marketing: "marketing";
         markup: "markup";
         mojibake: "mojibake";
+        promotionalClaim: "promotionalClaim";
         record: "record";
         source: "source";
         structured: "structured";
@@ -25,6 +27,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
         enum: {
             analysis: "analysis";
             chained: "chained";
+            contact: "contact";
             disclaimer: "disclaimer";
             evidenceAuthority: "evidenceAuthority";
             factList: "factList";
@@ -33,6 +36,7 @@ declare const ProseViolationSchemaDefinition: z.ZodObject<{
             marketing: "marketing";
             markup: "markup";
             mojibake: "mojibake";
+            promotionalClaim: "promotionalClaim";
             record: "record";
             source: "source";
             structured: "structured";

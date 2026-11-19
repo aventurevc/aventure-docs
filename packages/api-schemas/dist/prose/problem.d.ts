@@ -13,6 +13,7 @@ import { z } from "zod/v4";
 export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     analysis: "analysis";
     chained: "chained";
+    contact: "contact";
     disclaimer: "disclaimer";
     evidenceAuthority: "evidenceAuthority";
     factList: "factList";
@@ -21,6 +22,7 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     marketing: "marketing";
     markup: "markup";
     mojibake: "mojibake";
+    promotionalClaim: "promotionalClaim";
     record: "record";
     source: "source";
     structured: "structured";
@@ -33,6 +35,7 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
     enum: {
         analysis: "analysis";
         chained: "chained";
+        contact: "contact";
         disclaimer: "disclaimer";
         evidenceAuthority: "evidenceAuthority";
         factList: "factList";
@@ -41,6 +44,7 @@ export declare const ProseProblemSchema: z.ZodUnion<readonly [z.ZodEnum<{
         marketing: "marketing";
         markup: "markup";
         mojibake: "mojibake";
+        promotionalClaim: "promotionalClaim";
         record: "record";
         source: "source";
         structured: "structured";

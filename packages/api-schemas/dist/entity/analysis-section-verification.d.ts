@@ -33,6 +33,7 @@ declare const EntityAnalysisSectionVerificationSchemaDefinition: z.ZodObject<{
     proseProblem: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         analysis: "analysis";
         chained: "chained";
+        contact: "contact";
         disclaimer: "disclaimer";
         evidenceAuthority: "evidenceAuthority";
         factList: "factList";
@@ -41,6 +42,7 @@ declare const EntityAnalysisSectionVerificationSchemaDefinition: z.ZodObject<{
         marketing: "marketing";
         markup: "markup";
         mojibake: "mojibake";
+        promotionalClaim: "promotionalClaim";
         record: "record";
         source: "source";
         structured: "structured";
@@ -53,6 +55,7 @@ declare const EntityAnalysisSectionVerificationSchemaDefinition: z.ZodObject<{
         enum: {
             analysis: "analysis";
             chained: "chained";
+            contact: "contact";
             disclaimer: "disclaimer";
             evidenceAuthority: "evidenceAuthority";
             factList: "factList";
@@ -61,6 +64,7 @@ declare const EntityAnalysisSectionVerificationSchemaDefinition: z.ZodObject<{
             marketing: "marketing";
             markup: "markup";
             mojibake: "mojibake";
+            promotionalClaim: "promotionalClaim";
             record: "record";
             source: "source";
             structured: "structured";

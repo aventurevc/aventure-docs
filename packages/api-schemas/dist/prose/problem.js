@@ -13,11 +13,13 @@ const ProseProblemSchemaKnownMembers = z.enum([
     "factList",
     "mojibake",
     "markup",
+    "contact",
     "unsupported",
     "legalSource",
     "textContract",
     "evidenceAuthority",
     "internalRepetition",
+    "promotionalClaim",
     "analysis",
 ]);
 /**
