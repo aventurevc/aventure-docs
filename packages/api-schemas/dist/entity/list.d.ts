@@ -1506,7 +1506,7 @@ type EntityListDefinition = z.infer<typeof EntityListSchemaDefinition>;
 export interface EntityListSchemaInput extends z.input<typeof EntityListSchemaDefinition> {
 }
 /**
- * Entity row returned by list and batch-list reads. It includes core identity, additional data, research details, accelerator participation, and funding rounds, but not the relationship, newsArticle, person, sitemap, and research snippet sections that detail reads return. List rows show only current classifications; to see past ones, call the entity classifications endpoint with includeInactive=true. Addresses are a few current locations, not every office; use the entity addresses endpoint to list every office and association.
+ * Entity row returned by list and batch-list reads. It includes core identity, additional data, research details, accelerator participation, funding rounds, and which profile pages exist (core.sitemap), but not the relationship, newsArticle, person, and research snippet sections that detail reads return. List rows show only current classifications; to see past ones, call the entity classifications endpoint with includeInactive=true. Addresses are a few current locations, not every office; use the entity addresses endpoint to list every office and association.
  *
  * @openapiSchema EntityList
  * @endpoint GET /v1/search/link
