@@ -16,6 +16,7 @@ export declare const LookupSourceReadSchema: z.ZodObject<{
         jobId: z.ZodUUID;
         maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         mode: z.ZodString;
+        notificationMessage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         statusUrl: z.ZodString;
     }, z.core.$strip>>>;
     faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;

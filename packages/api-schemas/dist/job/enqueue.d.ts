@@ -25,6 +25,7 @@ export declare const JobEnqueueSchema: z.ZodObject<{
     jobId: z.ZodUUID;
     maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     mode: z.ZodString;
+    notificationMessage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     statusUrl: z.ZodString;
 }, z.core.$strip>;
 export type JobEnqueue = z.infer<typeof JobEnqueueSchema>;

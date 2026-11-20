@@ -28,6 +28,8 @@ export const JobEnqueueSchema = z.object({
     /** Longest the accepted background write may run, in seconds, so a caller knows how long to keep polling `statusUrl`; absent on jobs that state no runtime. */
     maxRuntimeSeconds: z.number().int().nullish(),
     mode: z.string(),
+    /** Present only when the requester is enrolled for a Notifications alert when this job finishes; tells them they can leave the page. */
+    notificationMessage: z.string().nullish(),
     /** Endpoint to poll for asynchronous job state and result. */
     statusUrl: z.string(),
 });

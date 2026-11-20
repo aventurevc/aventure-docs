@@ -154,6 +154,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             jobId: z.ZodUUID;
             maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             mode: z.ZodString;
+            notificationMessage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             statusUrl: z.ZodString;
         }, z.core.$strip>>>;
         filingRefusal: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
@@ -1298,6 +1299,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 jobId: string;
                 maxRuntimeSeconds?: number | null | undefined;
                 mode: string;
+                notificationMessage?: string | null | undefined;
                 statusUrl: string;
             } | null | undefined;
             filingRefusal?: string | null | undefined;
@@ -2458,6 +2460,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
                 jobId: string;
                 maxRuntimeSeconds?: number | null | undefined;
                 mode: string;
+                notificationMessage?: string | null | undefined;
                 statusUrl: string;
             } | null | undefined;
             filingRefusal?: string | null | undefined;
@@ -2787,6 +2790,7 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
             jobId: z.ZodUUID;
             maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
             mode: z.ZodString;
+            notificationMessage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
             statusUrl: z.ZodString;
         }, z.core.$strip>>>;
         faviconUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;

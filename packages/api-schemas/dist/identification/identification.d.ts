@@ -159,6 +159,7 @@ export declare const IdentificationSchema: z.ZodObject<{
         jobId: z.ZodUUID;
         maxRuntimeSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
         mode: z.ZodString;
+        notificationMessage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         statusUrl: z.ZodString;
     }, z.core.$strip>>>;
     filingRefusal: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
