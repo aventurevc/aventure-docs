@@ -1,0 +1,46 @@
+---
+title: Add the aVenture MCP Server to Gemini CLI
+description: Add aVenture with Streamable HTTP in Gemini CLI, authorize the server from the terminal, and verify that MCP returned a real company profile.
+slug: mcp/gemini-cli
+---
+
+Use these steps if you start your coding session with `gemini`. Google moved unpaid and Google One users to [Antigravity CLI](/mcp/antigravity-cli).
+
+## Set Up and Test in Gemini CLI
+
+Copy this prompt into an interactive Gemini CLI session. It adds the server only to the current project.
+
+<div className="mcp-prompt">
+
+```text title="Gemini CLI setup prompt" wordWrap maxLines=7
+Connect Gemini CLI to aVenture and verify it with a company lookup.
+
+Reuse a working aVenture connection. Otherwise check names and URLs only in .gemini/settings.json and ~/.gemini/settings.json. Do not print raw config or run gemini mcp list. If you confirm the server is missing, run:
+
+gemini mcp add --scope project \
+  --transport http aventure \
+  https://mcp.aventure.vc/mcp
+
+Report conflicts without changes. Do not commit the project settings. If disabled, ask me to run /mcp enable aventure. If sign-in is needed, ask me to run /mcp auth aventure and sign in in my browser. If the server isn't listed, ask me to reopen Gemini CLI in this project. Do not ask for credentials.
+
+Once connected, call aventure_read with operationId getEntityLookup and query {"urlDomain":"stripe.com"}. Return the company name and publicUrl from that record, or explain what failed. Do not use the web or memory.
+```
+
+</div>
+
+After signing in or reopening the project, paste the same prompt again if the lookup didn't run.
+
+## Set Up Manually
+
+1. Run this in your terminal to add aVenture across your projects. Use `--scope project` instead to limit it to the current project.
+
+   ```bash showLineNumbers=false
+   gemini mcp add --scope user \
+     --transport http aventure \
+     https://mcp.aventure.vc/mcp
+   ```
+
+2. In Gemini CLI, enter `/mcp auth aventure` and sign in on the same machine. If the server was disabled, enter `/mcp enable aventure` first.
+3. Confirm `/mcp list` shows `aventure` as connected, then [test the connection](/mcp#check-the-connection).
+
+If the remote machine can't receive the browser redirect, run Gemini CLI on your local machine. [Google's Gemini CLI MCP guide](https://geminicli.com/docs/tools/mcp-server/) explains how to sign in and inspect the connection.

@@ -1,0 +1,23 @@
+---
+title: Set Up aVenture as a Remote MCP Connector in Perplexity
+description: Add the aVenture remote MCP connector in Perplexity with OAuth and Streamable HTTP, then enable it and test a company lookup.
+slug: mcp/perplexity
+---
+
+## Add a Remote Connector in Perplexity
+
+If you use Perplexity through an organization, an admin must turn on **Allow members to add custom connectors** before you can add your own.
+
+1. Open [Plugins](https://www.perplexity.ai/computer/plugins) and choose **Add custom → Add MCP connector → Remote**.
+2. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp` as the **MCP server URL**.
+3. Under **Advanced**, set **Authentication** to **OAuth** and **Transport** to **Streamable HTTP**. Leave the client ID and secret blank.
+4. Check the acknowledgement box and select **Add**.
+5. Open the **aVenture** connector card to sign in and enable it. You can use a [free aVenture account](https://aventure.vc/sign-up) without an API key. Return to Perplexity.
+
+[Perplexity's remote connector instructions](https://www.perplexity.ai/help-center/en/articles/13915507-adding-custom-remote-connectors) also cover organization-wide setup.
+
+## Test the Connection
+
+<Markdown src="/snippets/mcp-check.mdx" />
+
+If the lookup fails, [troubleshoot the connection](/mcp#troubleshooting).

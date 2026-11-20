@@ -1,0 +1,43 @@
+---
+title: Set Up aVenture MCP in Google Antigravity CLI
+description: Configure the aVenture MCP server in Antigravity CLI using serverUrl, sign in from the MCP manager, and verify an actual company lookup.
+slug: mcp/antigravity-cli
+---
+
+## Set Up and Test in Antigravity CLI
+
+Copy this prompt into an interactive session started with `agy`. It uses a different configuration file from [Gemini CLI](/mcp/gemini-cli).
+
+<div className="mcp-prompt">
+
+```text title="Antigravity CLI setup prompt" wordWrap maxLines=7
+Connect Antigravity CLI to aVenture and verify it with a company lookup.
+
+Reuse a working aVenture connection. Otherwise check only the server names and URLs in the workspace and global MCP configs, without printing the raw files. If the server is missing, add an aventure entry to mcpServers in .agents/mcp_config.json with this serverUrl:
+
+https://mcp.aventure.vc/mcp
+
+Keep other entries. Do not edit global settings or commit the workspace config. Report any conflict without changing it.
+
+If needed, ask me to open /mcp, reload the configuration, and sign in to aventure. Do not ask for credentials.
+
+Once connected, call aventure_read with operationId getEntityLookup and query {"urlDomain":"stripe.com"}. Return the company name and publicUrl from that record, or explain what failed. Do not use the web or memory.
+```
+
+</div>
+
+After signing in or reloading, paste the same prompt again if the lookup didn't run.
+
+## Set Up Manually
+
+Add the entry to `.agents/mcp_config.json` for this workspace or `~/.gemini/config/mcp_config.json` for all workspaces. Merge it into `mcpServers` without replacing other servers.
+
+```json title="Antigravity CLI MCP configuration" wordWrap
+{
+  "mcpServers": {
+    "aventure": { "serverUrl": "https://mcp.aventure.vc/mcp" }
+  }
+}
+```
+
+Open `/mcp` to reload the configuration and follow any sign-in prompt. Then [test the connection](/mcp#check-the-connection). [Google's Antigravity MCP guide](https://antigravity.google/docs/cli/mcp) covers the manager and browser sign-in.

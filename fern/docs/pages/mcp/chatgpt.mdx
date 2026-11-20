@@ -1,0 +1,23 @@
+---
+title: Add aVenture as a Custom MCP Server in ChatGPT
+description: Install the aVenture MCP plugin in ChatGPT on the web, connect your account with OAuth, and test a company lookup in a new chat.
+slug: mcp/chatgpt
+---
+
+## Add and Install the ChatGPT Plugin
+
+Use ChatGPT on the web. If **Add custom MCP server** is missing, check your ChatGPT plan and workspace permissions. You can connect with a [free aVenture account](https://aventure.vc/sign-up) and no API key, but that doesn't change which features your ChatGPT plan offers.
+
+1. Open [ChatGPT Plugins](https://chatgpt.com/plugins). Choose **+ → Add custom MCP server**.
+2. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp` as the server URL.
+3. Choose **OAuth** and automatic registration if prompted. Leave the client ID and secret blank.
+4. Review the warning, select **I understand and want to continue**, then select **Create as a plugin**. Install the plugin and sign in to aVenture when prompted.
+5. In a new chat, type `@` and select the installed **aVenture** plugin.
+
+If aVenture isn't in the `@` menu, check that you installed the plugin in your current workspace. Creating it does not install it. [OpenAI's custom MCP server guide](https://developers.openai.com/api/docs/guides/custom-mcp-server) covers workspace settings and installation.
+
+## Test the Connection
+
+<Markdown src="/snippets/mcp-check.mdx" />
+
+If the lookup fails, [troubleshoot the connection](/mcp#troubleshooting).

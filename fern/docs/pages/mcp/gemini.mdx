@@ -1,0 +1,22 @@
+---
+title: Connect aVenture to Google Gemini as a Custom App
+description: Check Google's account requirements, add aVenture as a custom MCP app in Gemini on the web, and test it with a company lookup.
+slug: mcp/gemini
+---
+
+## Add a Custom App in Gemini
+
+Google requires a personal Google Account, age 18 or older, access from the US, English, and Gemini **History** turned on. Add aVenture on the web; you can use it on the web or mobile afterward. [Google's custom app instructions](https://support.google.com/gemini/answer/17209137?hl=en) list the current requirements.
+
+1. Open [Gemini](https://gemini.google.com). Go to **Settings → Connected Apps**, then **Custom apps**. In some versions, **Connected Apps** is under **Personal Intelligence**.
+2. Paste `https://mcp.aventure.vc/mcp` into the **Add a custom app** field, or select **Add a custom app** first if you already have one. Select **Next**.
+3. Sign in to aVenture and approve the connection. You can use a [free aVenture account](https://aventure.vc/sign-up) without an API key. Return to Gemini.
+4. In a chat, type `@` and select **aVenture**.
+
+If you use Gemini in the terminal, follow the [Gemini CLI setup](/mcp/gemini-cli) instead.
+
+## Test the Connection
+
+<Markdown src="/snippets/mcp-check.mdx" />
+
+If the lookup fails, [troubleshoot the connection](/mcp#troubleshooting).

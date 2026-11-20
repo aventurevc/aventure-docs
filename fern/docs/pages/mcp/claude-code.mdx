@@ -1,0 +1,46 @@
+---
+title: Add the aVenture MCP Server to Claude Code
+description: Connect Claude Code to aVenture in one project or across all projects, sign in from the MCP menu, and verify the connection with a company lookup.
+slug: mcp/claude-code
+---
+
+## Set Up and Test in Claude Code
+
+Copy this prompt into an interactive Claude Code session. It adds aVenture for the current project without editing shared settings.
+
+<div className="mcp-prompt">
+
+```text title="Claude Code setup prompt" wordWrap maxLines=7
+Connect Claude Code to aVenture and verify it with a company lookup.
+
+Reuse a working aVenture data connection. Otherwise check server names and URLs in ~/.claude.json and .mcp.json only. Do not print raw config or run mcp get. If you confirm the server is missing, run:
+
+claude mcp add --scope local \
+  --transport http aventure \
+  https://mcp.aventure.vc/mcp
+
+Report any URL conflict without changing the existing entry. If needed, ask me to open /mcp, enable the server, and sign in. If the server is missing from /mcp, ask me to reopen Claude Code in this project. Do not ask for credentials.
+
+Once connected, call aventure_read with operationId getEntityLookup and query {"urlDomain":"stripe.com"}. Return the company name and publicUrl from that record, or explain what failed. Do not use the web or memory.
+```
+
+</div>
+
+If the prompt asks you to sign in or start a new session, finish that step and paste the same prompt again.
+
+## Set Up Manually
+
+Check `/mcp` first. If `aventure` is listed, verify its URL is `https://mcp.aventure.vc/mcp` before signing in. Reuse it if the URL matches. If the URL differs, stop instead of signing in or adding another entry. If you use the [web connector](/mcp/claude), it can appear in Claude Code when you are signed in with your Claude subscription.
+
+1. Only if the server is missing, run the command below. Omit `--scope user` to make aVenture available only in the current project.
+
+   ```bash showLineNumbers=false
+   claude mcp add --scope user \
+     --transport http aventure \
+     https://mcp.aventure.vc/mcp
+   ```
+
+2. Open `/mcp` in Claude Code and confirm the active URL. Enable `aventure` if it is disabled. If it needs sign-in, select **Authenticate** and sign in to aVenture in your browser.
+3. When `/mcp` shows `aventure` as connected, [test the connection](/mcp#check-the-connection).
+
+If you can't use `/mcp` to sign in, run `claude mcp login aventure` from the project in an interactive terminal. [Claude Code's authentication guide](https://code.claude.com/docs/en/mcp#authenticate-with-remote-mcp-servers) covers SSH. For a connection or plan error, use [MCP troubleshooting](/mcp#troubleshooting).

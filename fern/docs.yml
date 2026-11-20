@@ -21,8 +21,32 @@ navigation:
         contents:
           - page: Welcome
             path: docs/pages/welcome.mdx
-          - page: AI Apps (MCP)
+          - section: AI Apps (MCP)
             path: docs/pages/mcp-quickstart.mdx
+            collapsed: true
+            contents:
+              - page: Claude
+                path: docs/pages/mcp/claude.mdx
+              - page: ChatGPT
+                path: docs/pages/mcp/chatgpt.mdx
+              - page: Grok
+                path: docs/pages/mcp/grok.mdx
+              - page: Perplexity
+                path: docs/pages/mcp/perplexity.mdx
+              - page: Gemini
+                path: docs/pages/mcp/gemini.mdx
+              - page: Researchly
+                path: docs/pages/mcp/researchly.mdx
+              - page: Claude Code
+                path: docs/pages/mcp/claude-code.mdx
+              - page: Codex
+                path: docs/pages/mcp/codex.mdx
+              - page: Cursor
+                path: docs/pages/mcp/cursor.mdx
+              - page: Antigravity CLI
+                path: docs/pages/mcp/antigravity-cli.mdx
+              - page: Gemini CLI
+                path: docs/pages/mcp/gemini-cli.mdx
           - page: Terminal (CLI)
             path: docs/pages/cli-quickstart.mdx
           - page: Your Code (API)

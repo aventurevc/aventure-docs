@@ -1,0 +1,36 @@
+---
+title: Connect Codex to the aVenture MCP Server
+description: Add aVenture to a trusted Codex project's config.toml, sign in from the CLI or ChatGPT desktop app, and test an actual company lookup.
+slug: mcp/codex
+---
+
+## Set Up and Test in Codex
+
+Copy this prompt into Codex in a local project you already trust. It only adds project settings. ChatGPT in a browser uses the [plugin setup](/mcp/chatgpt) instead.
+
+<div className="mcp-prompt">
+
+```text title="Codex setup prompt" wordWrap maxLines=7
+Connect Codex to aVenture and verify it with a company lookup.
+
+Reuse a working aVenture connection. Otherwise check only MCP server names and URLs in the active config, without printing the raw file. Only if you confirm the server is missing, add this to .codex/config.toml:
+
+[mcp_servers.aventure]
+url = "https://mcp.aventure.vc/mcp"
+
+Keep other settings. Do not edit global config, change project trust, or commit the file. If the name points elsewhere, report the conflict without changing it.
+
+If sign-in is needed, direct me to Authenticate in the desktop app's MCP settings, or to OpenAI's MCP guide for terminal sign-in. If the server is not visible, ask me to reopen the client. Do not ask for credentials.
+
+Once connected, call aventure_read with operationId getEntityLookup and query {"urlDomain":"stripe.com"}. Return the company name and publicUrl from that record, or explain what failed. Do not use the web or memory.
+```
+
+</div>
+
+If you sign in or reopen the client, paste the same prompt again to finish the lookup.
+
+## Set Up Manually
+
+For just this project, add the `[mcp_servers.aventure]` table above to `.codex/config.toml`. In the ChatGPT desktop app, you can instead use **Settings → MCP servers → Add server**. Name it **aVenture**, choose **Streamable HTTP**, and enter `https://mcp.aventure.vc/mcp`. Restart if prompted, then select **Authenticate** when aVenture needs sign-in.
+
+In the CLI, check `/mcp` and follow [OpenAI's MCP sign-in instructions](https://developers.openai.com/codex/extend/mcp) when required. Once connected, [test the connection](/mcp#check-the-connection) or check [common MCP errors](/mcp#troubleshooting).

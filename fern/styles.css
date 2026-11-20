@@ -203,6 +203,43 @@ html.light .fern-callout[data-intent="warning"] {
   }
 }
 
+.mcp-client-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: 0.75rem 1.5rem;
+}
+
+.mcp-client-links h4 {
+  margin: 0;
+  font: inherit;
+}
+
+/* Show prompt actions before hover, and wrap prose at word boundaries. */
+.mcp-prompt .fern-code-block > div:has(> button[aria-label="Copy to clipboard"]) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mcp-prompt pre,
+.mcp-prompt pre code,
+.mcp-prompt pre .line {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Fern mounts the expanded code preview outside the article. */
+body:has(.mcp-prompt) > div.fixed:has(button[aria-label="Close"]) pre.code-block-root {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+body:has(.mcp-prompt) > div.fixed:has(button[aria-label="Close"]) .code-block-line-group {
+  inline-size: 100%;
+  min-inline-size: 0;
+  grid-template-columns: minmax(0, 1fr);
+}
+
 /* Search and Ask AI form one capsule, like the desktop app's command bar:
    Search opens the search sheet (which also offers Ask AI), and the attached
    segment opens the Ask AI panel directly. */

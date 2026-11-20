@@ -15,7 +15,7 @@
 #    The publisher uploads the bundle in both deploy modes, but the host
 #    returns 404 for every skill path, so an unserved manifest is reported as
 #    a warning until the host serves it; a served manifest is verified strictly.
-# 6. The Markdown quickstart preamble points to the data MCP, not docs search.
+# 6. The Markdown quickstart points to the data MCP and links to client guides.
 # Requires Node.js 24 and Bash; site verification also needs cmp, curl, jq,
 # shasum. Exit 1 on any discrepancy.
 set -euo pipefail
@@ -86,7 +86,7 @@ fi
 # promotes the docs-search server before a reader sees the data-server URL.
 "${CURL[@]}" "$BASE/mcp.md" > "$TMP/mcp.md"
 sed '/^## Choose Your AI App$/,$d' "$TMP/mcp.md" > "$TMP/mcp-intro"
-if grep -Eq '^#{3,4} Claude$' "$TMP/mcp.md" &&
+if grep -Fq '/mcp/claude)' "$TMP/mcp.md" &&
    grep -Fq 'https://mcp.aventure.vc/mcp' "$TMP/mcp-intro" &&
    ! grep -Eiq 'connect to the MCP server at [^ ]*/_mcp/server' "$TMP/mcp-intro"; then
   echo markdown_connects_to_data_mcp=true

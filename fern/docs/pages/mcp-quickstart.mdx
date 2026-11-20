@@ -1,398 +1,93 @@
 ---
-title: Connect aVenture to Your AI App
-subtitle: Use aVenture in Claude, ChatGPT, or another app to look up private companies and people.
+title: aVenture MCP Setup Guides
+description: Choose your AI app, connect to the aVenture MCP server, and verify your first company lookup. Guides for Claude, ChatGPT, Cursor, and more.
 slug: mcp
+layout: overview
 ---
 
-Choose your app below. You'll sign in to your AI app and to [aVenture](https://aventure.vc/sign-up) separately. You can try the connection with a free aVenture account and no API key. Your AI app may have its own requirements.
+Connect your AI app to aVenture's data on companies, people, funding, and news. You can test the connection with a [free aVenture account](https://aventure.vc/sign-up). Browser sign-in does not require an API key.
 
 ## Choose Your AI App
 
-- **Chat apps:** [Claude](#claude), [ChatGPT](#chatgpt), [Grok](#grok), [Perplexity](#perplexity), [Gemini](#gemini)
-- **Coding tools:** [Claude Code](#claude-code), [Codex](#codex), [Cursor](#cursor), [Antigravity CLI](#antigravity-cli), [Gemini CLI](#gemini-cli)
-- **Other:** [Researchly](#researchly), [Another MCP client](#another-mcp-client)
+### Chat Apps
 
-In chat apps, connect aVenture in settings before you paste the lookup prompt. In a coding tool, use the **Set up and check in one prompt** option if you want the agent to configure the connection. You still sign in yourself. If your agent asks you to start a new session, paste the same prompt again; it checks what is already set up before making changes.
+<div className="mcp-client-links">
 
-### Claude
+#### [Claude](/mcp/claude)
 
-Set up the connector on Claude's website or in Claude Desktop. Claude Free allows one custom connector.
+#### [ChatGPT](/mcp/chatgpt)
 
-On Team or Enterprise, an owner adds the connector under [Organization settings → Connectors](https://claude.ai/admin-settings/connectors). Once it appears under [your connectors](https://claude.ai/customize/connectors/yours), select **Connect** and continue at step 4.
+#### [Grok](/mcp/grok)
 
-1. Open [Customize → Connectors](https://claude.ai/customize/connectors). Choose **Add → Custom → Web**, or **Add → Add custom connector** if that's what your menu shows.
-2. Name the connector **aVenture**, paste `https://mcp.aventure.vc/mcp`, and select **Continue**.
-3. Review the detected settings and select **Continue** if Claude shows it again. Set **Authentication** to **Sign in now** and **OAuth client** to **Register automatically**, even if Claude recommends its published identity. aVenture lets Claude register automatically; you don't supply a client ID or secret. Select **Add**.
-4. If Claude shows a **Connect** button, select it. When aVenture opens, sign in to your aVenture account and approve the connection. Return to Claude.
-5. Open a chat, select **+ → Connectors**, and turn on **aVenture**. Then [try a lookup](#check-the-connection).
+#### [Perplexity](/mcp/perplexity)
 
-If Claude asks for permission to use an aVenture tool, select **Allow once**. Expand the tool call in the chat to see what aVenture returned.
+#### [Gemini](/mcp/gemini)
 
-If the menu looks different, check [Claude's custom connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) for your version.
+#### [Researchly](/mcp/researchly)
 
-### ChatGPT
+</div>
 
-Use ChatGPT on the web. If **Add custom MCP server** is missing, check your ChatGPT plan and workspace permissions. A free aVenture account doesn't change which features your ChatGPT plan offers.
+### Coding Tools
 
-1. Open [ChatGPT Plugins](https://chatgpt.com/plugins). Choose **+ → Add custom MCP server**.
-2. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp` as the server URL.
-3. Choose **OAuth** and automatic registration if prompted. Leave the client ID and secret blank.
-4. Review the warning, select **I understand and want to continue**, then select **Create as a plugin**. Install the plugin and sign in to aVenture when prompted.
-5. In a new chat, type `@` and select the installed **aVenture** plugin. Then [try a lookup](#check-the-connection).
+<div className="mcp-client-links">
 
-If aVenture isn't in the `@` menu, check that you installed the plugin in the workspace you're using. Creating it does not install it.
+#### [Claude Code](/mcp/claude-code)
 
-[ChatGPT's custom server instructions](https://developers.openai.com/api/docs/guides/custom-mcp-server) cover workspace settings and plugin installation.
+#### [Codex](/mcp/codex)
 
-### Grok
+#### [Cursor](/mcp/cursor)
 
-On Grok Business or Enterprise, ask a team admin to [add aVenture to your team's connectors](https://docs.x.ai/grok/connector-management). Once they add it, open [Grok Connectors](https://grok.com/connectors), choose **aVenture**, and continue at step 3.
+#### [Antigravity CLI](/mcp/antigravity-cli)
 
-1. Open [Grok Connectors](https://grok.com/connectors). Choose **New Connector → Custom**.
-2. Enter `https://mcp.aventure.vc/mcp` and name the connector **aVenture** if asked.
-3. Sign in to aVenture and approve the connection. Return to Grok, open a chat, and [try a lookup](#check-the-connection).
+#### [Gemini CLI](/mcp/gemini-cli)
 
-[Grok's connector instructions](https://docs.x.ai/grok/connectors) explain personal and team setup.
+</div>
 
-### Perplexity
+## Another MCP Client
 
-If you use Perplexity through an organization, an admin must turn on **Allow members to add custom connectors** before you can add your own.
+Add a remote server named **aVenture**:
 
-1. Open [Plugins](https://www.perplexity.ai/computer/plugins) and choose **Add custom → Add MCP connector → Remote**.
-2. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp` as the **MCP server URL**.
-3. Under **Advanced**, set **Authentication** to **OAuth** and **Transport** to **Streamable HTTP**. Leave the client ID and secret blank.
-4. Check the acknowledgement box and select **Add**.
-5. Open the **aVenture** connector card to sign in and enable it. Return to Perplexity and [try a lookup](#check-the-connection).
-
-[Perplexity's remote connector instructions](https://www.perplexity.ai/help-center/en/articles/13915507-adding-custom-remote-connectors) also cover organization-wide setup.
-
-### Gemini
-
-Google requires a personal Google Account, age 18 or older, US access, English, and Gemini **History** turned on. Add the connector on the web; you can use it on web or mobile afterward.
-
-1. Open [Gemini](https://gemini.google.com). Go to **Settings → Connected Apps**, then **Custom apps**. In some versions, **Connected Apps** is under **Personal Intelligence**.
-2. Paste `https://mcp.aventure.vc/mcp` into the **Add a custom app** field, or select **Add a custom app** first if you already have one. Select **Next**.
-3. Sign in to aVenture and approve the connection. Return to Gemini.
-4. In a chat, type `@`, select **aVenture**, and [try a lookup](#check-the-connection).
-
-[Google's custom app instructions](https://support.google.com/gemini/answer/17209137?hl=en) list the current account requirements.
-
-### Claude Code
-
-If you already connected aVenture in Claude on the web, check `/mcp` in Claude Code first. When you sign in to Claude Code with your Claude subscription, web connectors can appear there without another setup.
-
-<Accordion title="Set up and check in one prompt">
-
-Paste this into an interactive Claude Code session in the project where you want to use aVenture. The prompt adds the connection for this project only, without editing a file shared with your team.
-
-```text title="Claude Code prompt" wordWrap maxLines=0
-Connect and test aVenture.
-
-Reuse the aVenture data server if
-it's already connected. Otherwise
-check server names and URLs in
-~/.claude.json and .mcp.json only.
-Don't print raw config or run mcp get.
-Only if you confirm it's missing, run:
-claude mcp add --scope local \
-  --transport http aventure \
-  https://mcp.aventure.vc/mcp
-Report a URL conflict without
-changing the existing entry.
-
-Ask me to open /mcp if needed.
-I'll enable the server if disabled
-and authenticate if asked.
-If it's missing from /mcp, ask me
-to reopen this project instead.
-Don't ask me for credentials.
-
-Then call aVenture's aventure_read
-with operationId getEntityLookup
-and query {"urlDomain":"stripe.com"}.
-Return the name and publicUrl from
-the record, or say what failed.
-Don't use the web or memory.
-```
-
-</Accordion>
-
-**Set up manually**
-
-1. Run this in your terminal. `--scope user` makes aVenture available across your projects on this machine. Omit it to add the server only for the current project.
-
-   ```bash showLineNumbers=false
-   claude mcp add --scope user \
-     --transport http aventure \
-     https://mcp.aventure.vc/mcp
-   ```
-
-2. Open an interactive Claude Code session. Enter `/mcp`, select `aventure`, and choose **Authenticate**. Sign in to aVenture and approve the connection in your browser.
-3. Return to Claude Code. Confirm `/mcp` shows `aventure` as connected, then [try a lookup](#check-the-connection).
-
-If `aventure` is already configured, check its URL in `/mcp` before adding another entry. Enable it there if it is disabled. Current Claude Code versions also support `claude mcp login aventure` from the terminal. [Claude Code's MCP instructions](https://code.claude.com/docs/en/mcp#authenticate-with-remote-mcp-servers) cover command-line sign-in over SSH.
-
-### Codex
-
-Use this section for a local project in the ChatGPT desktop app, Codex CLI, or IDE extension. ChatGPT on the web uses the [plugin setup](#chatgpt) instead.
-
-<Accordion title="Set up and check in one prompt">
-
-Paste this into a Codex session in a project you already trust. The prompt only adds project settings.
-
-```text title="Codex prompt" wordWrap maxLines=0
-Connect and test aVenture.
-
-Reuse a working aVenture server.
-Otherwise check only server names
-and URLs in the active config.
-Don't print raw config. If you can
-confirm the server is missing,
-add this to .codex/config.toml:
-
-[mcp_servers.aventure]
-url = "https://mcp.aventure.vc/mcp"
-
-Keep existing settings intact.
-Don't edit global settings, change
-project trust, or commit the file.
-Report conflicts without changes.
-
-If aVenture isn't connected,
-ask me to restart if needed and
-authenticate in MCP settings.
-For CLI sign-in, point me to
-OpenAI's MCP guide linked below.
-Don't ask me to share credentials.
-
-Then call aVenture's aventure_read
-with operationId getEntityLookup
-and query {"urlDomain":"stripe.com"}.
-Return the name and publicUrl from
-the record, or say what failed.
-Don't use the web or memory.
-```
-
-</Accordion>
-
-**Set up manually:** For just this project, add the `[mcp_servers.aventure]` table above to `.codex/config.toml` in a trusted project. In the desktop app, you can instead use **Settings → MCP servers → Add server**, name it **aVenture**, choose **Streamable HTTP**, and enter `https://mcp.aventure.vc/mcp`. Restart if prompted and select **Authenticate** when aVenture needs sign-in. In the CLI, check `/mcp` and follow [OpenAI's MCP sign-in instructions](https://developers.openai.com/codex/extend/mcp) if required. Then [try a lookup](#check-the-connection).
-
-### Cursor
-
-<Accordion title="Set up and check in one prompt">
-
-Paste this into **Agent** mode in a local Cursor project. For Cursor Cloud Agents, sign-in is separate from your local Cursor sign-in.
-
-```text title="Cursor prompt" wordWrap maxLines=0
-Connect and test aVenture.
-
-Reuse the aVenture data server if
-it's already connected. Otherwise
-check project and global MCP server
-names and URLs. If missing, add an
-aventure entry under mcpServers in
-.cursor/mcp.json. Set its url to:
-https://mcp.aventure.vc/mcp
-Preserve other entries. Don't edit
-global settings or commit the file.
-Report conflicts without changes.
-
-If needed, ask me to enable and
-sign in to aVenture in Customize,
-or restart Cursor if the new config
-isn't visible. Don't ask for secrets.
-
-Then call aVenture's aventure_read
-with operationId getEntityLookup
-and query {"urlDomain":"stripe.com"}.
-Return the name and publicUrl from
-the record, or say what failed.
-Don't use the web or memory.
-```
-
-</Accordion>
-
-**Set up manually:** Add this entry to `.cursor/mcp.json` for the current project or `~/.cursor/mcp.json` for all projects. Add it inside `mcpServers` without replacing other entries.
-
-```json
-{
-  "mcpServers": {
-    "aventure": { "url": "https://mcp.aventure.vc/mcp" }
-  }
-}
-```
-
-In **Customize**, open the server and sign in to aVenture when prompted. In chat, check that aVenture's tools appear under **Available Tools**, then [try a lookup](#check-the-connection). If you're using Cursor's terminal agent, `agent mcp list` shows the configured servers and `agent mcp login aventure` starts sign-in.
-
-[Cursor's MCP guide](https://cursor.com/docs/mcp) explains project and global configuration, tool approval, and Cloud Agent sign-in.
-
-### Antigravity CLI
-
-Use this section if you start Google Antigravity in the terminal with `agy`. It uses a different MCP configuration from Gemini CLI.
-
-<Accordion title="Set up and check in one prompt">
-
-Paste this into an interactive Antigravity CLI session in your workspace.
-
-```text title="Antigravity CLI prompt" wordWrap maxLines=0
-Connect and test aVenture.
-
-Reuse the aVenture data server if
-it's already connected. Otherwise
-check workspace and global MCP
-server names and URLs. If missing,
-add an aventure entry under
-mcpServers in .agents/mcp_config.json.
-Set its serverUrl to:
-https://mcp.aventure.vc/mcp
-Preserve other entries. Don't edit
-global settings or commit the file.
-Report conflicts without changes.
-
-If needed, ask me to open /mcp,
-reload the config and sign in to
-aventure. Don't ask for credentials.
-
-Then call aVenture's aventure_read
-with operationId getEntityLookup
-and query {"urlDomain":"stripe.com"}.
-Return the name and publicUrl from
-the record, or say what failed.
-Don't use the web or memory.
-```
-
-</Accordion>
-
-**Set up manually:** Add this server to `.agents/mcp_config.json` in your workspace or `~/.gemini/config/mcp_config.json` for all workspaces. Merge it into `mcpServers` if the file already exists.
-
-```json
-{
-  "mcpServers": {
-    "aventure": { "serverUrl": "https://mcp.aventure.vc/mcp" }
-  }
-}
-```
-
-Open `/mcp` to reload the configuration and check the connection. Follow any sign-in prompt, then [try a lookup](#check-the-connection). [Google's Antigravity MCP guide](https://antigravity.google/docs/cli/mcp) covers the manager and browser sign-in.
-
-### Gemini CLI
-
-Google moved unpaid and Google One users to [Antigravity CLI](#antigravity-cli). Use these steps if you still start your coding session with `gemini`.
-
-<Accordion title="Set up and check in one prompt">
-
-Paste this into an interactive Gemini CLI session. It adds the server only to the current project.
-
-```text title="Gemini CLI prompt" wordWrap maxLines=0
-Connect and test aVenture.
-
-Reuse the aVenture data server if
-it's already connected. Otherwise
-check names and URLs only in
-.gemini/settings.json and
-~/.gemini/settings.json. Don't
-print config or run gemini mcp list.
-Only if you confirm it's missing, run:
-gemini mcp add --scope project \
-  --transport http aventure \
-  https://mcp.aventure.vc/mcp
-Report conflicts without changes.
-Don't commit the project settings.
-
-Ask me to run /mcp enable aventure
-if disabled, or /mcp auth aventure
-if sign-in is needed.
-If the server isn't listed, ask me
-to reopen Gemini CLI here first.
-Don't ask me for credentials.
-
-Then call aVenture's aventure_read
-with operationId getEntityLookup
-and query {"urlDomain":"stripe.com"}.
-Return the name and publicUrl from
-the record, or say what failed.
-Don't use the web or memory.
-```
-
-</Accordion>
-
-**Set up manually**
-
-1. Run this in your terminal to add aVenture across your projects on this machine:
-
-   ```bash showLineNumbers=false
-   gemini mcp add --scope user \
-     --transport http aventure \
-     https://mcp.aventure.vc/mcp
-   ```
-
-2. Open Gemini CLI, enter `/mcp auth aventure`, and complete the aVenture sign-in in a browser on the same machine.
-3. Return to Gemini CLI. Confirm `/mcp list` shows `aventure` as connected, then [try a lookup](#check-the-connection).
-
-If your remote machine can't open a browser and receive the sign-in redirect, run Gemini CLI on your local machine instead. [Gemini CLI's MCP instructions](https://geminicli.com/docs/tools/mcp-server/) explain how it signs in and lists connected servers.
-
-### Researchly
-
-aVenture is already built into Researchly. Open [Profile → MCP servers](https://researchly.chat/profile/mcp-servers), choose **Connect aVenture**, and sign in. Then [try a lookup](#check-the-connection).
-
-### Another MCP Client
-
-Add a remote server named **aVenture** and paste this server URL:
-
-```text wordWrap
+```text title="MCP server URL" wordWrap
 https://mcp.aventure.vc/mcp
 ```
 
 - **Transport:** Streamable HTTP
 - **Authentication:** OAuth (sign in to aVenture in your browser)
 
-If asked how to register the OAuth client, choose automatic registration. You don't need to create an API key or enter a client secret for browser sign-in. Then [try a lookup](#check-the-connection).
+If asked how to register the OAuth client, choose automatic registration. You do not need a client secret for browser sign-in.
 
 <span id="ask-your-first-question" />
 
 ## Check the Connection
 
-If you used a setup-and-check prompt above, it already includes this lookup. Otherwise, after you connect aVenture and enable it for your chat, paste this:
-
-```text wordWrap
-Read the aVenture record for
-stripe.com. Use aventure_read,
-operation getEntityLookup,
-with query.urlDomain stripe.com.
-Give me the company name and
-the publicUrl from that result.
-If either is missing, say so.
-Don't use the web or memory.
-```
-
-The check passes when aVenture returns the Stripe record and the answer includes the profile link from that result. A help message, a failed tool call, or a link from a web search doesn't count. This check reads an existing profile; it doesn't start a research run.
+<Markdown src="/snippets/mcp-check.mdx" />
 
 ## Troubleshooting
 
-- **aVenture is connected, but the answer uses the web.** Enable or select aVenture in this chat, then retry. If the app asks to use an aVenture tool, allow the lookup.
-- **The connector only answers questions about these docs.** If the server URL ends in `/_mcp/server`, it searches documentation, not company data. Replace it with the server URL in [your app's setup steps](#choose-your-ai-app).
-- **The server URL shows `405` in your browser.** Paste it into your app's connector settings instead. It isn't a web page.
-- **Sign-in finished, but the app still shows aVenture as disconnected.** Return to the connector settings and choose **Connect** or **Authenticate** again. If it still fails, send [support](/support) your app name, the step that failed, and the exact error. Leave out tokens, keys, and sign-in links.
-- **A connection that worked before now returns `401`.** Sign in again from your app's connector settings. `/mcp` opens those settings in Claude Code.
-- **A tool returns `402` (`subscription_required`).** The app reached aVenture. Try the website lookup above, or check [which plan includes the feature](/plans-and-usage).
-- **A tool returns `429`.** Check the error for which limit you reached and when to retry. [Plans and usage](/plans-and-usage#when-you-reach-a-limit) explains allowances.
+- **Your answer comes from the web.** Enable or select aVenture in this chat and allow the tool to run.
+- **The connector only answers questions about these docs.** A URL ending in `/_mcp/server` searches documentation, not company data. Use the server URL above.
+- **The URL shows `405` in your browser.** Paste it into the connector settings. It is not a web page.
+- **Sign-in finished, but the app still shows aVenture as disconnected.** Return to the connector settings and select **Connect** or **Authenticate**. If it still fails, tell [support](/support) the app name, failed step, and exact error. Leave out tokens, keys, and sign-in links.
+- **A connection that worked before now returns `401`.** Sign in again from the connector settings. In Claude Code, open `/mcp`.
+- **A tool returns `402` (`subscription_required`).** The app reached aVenture. Try the lookup above or check [which plan includes the feature](/plans-and-usage).
+- **A tool returns `429`.** Check what limit you reached and when to retry in [Plans and usage](/plans-and-usage#when-you-reach-a-limit).
 
 ## Next Steps
 
-Try “Who founded Ramp?” or “Find seed-stage climate software companies in Austin.” The free plan includes a daily allowance for name lookups and plain-English searches. After you reach a daily search limit, you can still ask for a company by its exact website if you have profile views left. [Plans and usage](/plans-and-usage) explains the limits and which features need a paid plan.
+Try “Who founded Ramp?” or “Find seed-stage climate software companies in Austin.” The free plan includes daily name lookups and plain-English searches. After reaching a daily search limit, you can still look up a company by its exact website if you have profile views left.
 
 [Answer a real question](/first-answer) shows how to combine search, profiles, and funding rounds. If you're writing code, [call the MCP tools directly](/mcp-tools).
 
-<Accordion title="Run the Server Yourself">
+## Run the Server Yourself
 
-If you need to run the server inside your own network, use Node.js 24.22.1 or a newer 24.x release:
+If you need the server inside your own network, use Node.js 24.22.1 or a newer 24.x release:
 
 ```bash
 npm install --global @aventurevc/mcp-server
 aventure-mcp-server
 ```
 
-Leave it running and set `http://localhost:3333/mcp` as the URL in your local MCP client. Use Streamable HTTP and send an [aVenture API key](/authentication#create-an-api-key) as the bearer token on each request:
+Leave it running and set `http://localhost:3333/mcp` as the URL in your MCP client. Use Streamable HTTP and send an [aVenture API key](/authentication#create-an-api-key) as the bearer token:
 
 ```json
 {
@@ -400,14 +95,10 @@ Leave it running and set `http://localhost:3333/mcp` as the URL in your local MC
     "aventure": {
       "type": "http",
       "url": "http://localhost:3333/mcp",
-      "headers": {
-        "Authorization": "Bearer <your-api-key>"
-      }
+      "headers": { "Authorization": "Bearer <your-api-key>" }
     }
   }
 }
 ```
 
-Keep the key in your client's secret storage, not in version control. If you change `AVENTURE_MCP_PORT` or `AVENTURE_MCP_PATH`, update the URL in your client too. The package is on [npm](https://www.npmjs.com/package/@aventurevc/mcp-server) and its source is on [GitHub](https://github.com/aventurevc/aventure-mcp).
-
-</Accordion>
+Keep the key in secret storage, not version control. If you change `AVENTURE_MCP_PORT` or `AVENTURE_MCP_PATH`, update the URL in your client. The package is on [npm](https://www.npmjs.com/package/@aventurevc/mcp-server) and its source is on [GitHub](https://github.com/aventurevc/aventure-mcp).

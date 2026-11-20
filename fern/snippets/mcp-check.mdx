@@ -1,0 +1,13 @@
+Paste this into a chat where aVenture is enabled:
+
+<div className="mcp-prompt">
+
+```text title="Connection test prompt" wordWrap maxLines=5
+Read the aVenture record for stripe.com using the connected aVenture MCP server.
+
+Call aventure_read with operationId getEntityLookup and query {"urlDomain":"stripe.com"}. Give me the company name and publicUrl from that record. If either is missing, say so. Do not use the web or memory.
+```
+
+</div>
+
+The connection works when the tool returns Stripe’s record and the answer includes the aVenture profile link from that result. A help message or a web search does not count. The test reads an existing profile; it does not start research.

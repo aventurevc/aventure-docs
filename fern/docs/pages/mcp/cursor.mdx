@@ -1,0 +1,46 @@
+---
+title: Cursor MCP Setup
+headline: Add the aVenture MCP Server to Cursor
+description: Connect Cursor Agent to aVenture with .cursor/mcp.json, authorize access in Customize, and verify that a company profile came from MCP.
+slug: mcp/cursor
+---
+
+## Setup and Verification Prompt
+
+Copy this prompt into **Agent** mode in a local Cursor project. Cursor Cloud Agents sign in separately from your local editor.
+
+<div className="mcp-prompt">
+
+```text title="Cursor setup prompt" wordWrap maxLines=7
+Connect Cursor to aVenture and verify it with a company lookup.
+
+Reuse a working aVenture connection. Otherwise check only the server names and URLs in the project and global MCP configs, without printing the raw files. If the server is missing, add an aventure entry to mcpServers in .cursor/mcp.json with this url:
+
+https://mcp.aventure.vc/mcp
+
+Keep other entries. Do not edit global settings or commit the project config. Report any conflict without changing it.
+
+If needed, ask me to enable aVenture in Customize and sign in. If the new server isn't visible, ask me to restart Cursor. Do not ask for credentials.
+
+Once connected, call aventure_read with operationId getEntityLookup and query {"urlDomain":"stripe.com"}. Return the company name and publicUrl from that record, or explain what failed. Do not use the web or memory.
+```
+
+</div>
+
+After signing in or restarting Cursor, paste the same prompt again if the lookup didn't run.
+
+## Set Up Manually
+
+Add the `aventure` entry to `.cursor/mcp.json` for this project or `~/.cursor/mcp.json` for all projects. Merge it into `mcpServers` without replacing existing servers.
+
+```json title="Cursor MCP configuration" wordWrap
+{
+  "mcpServers": {
+    "aventure": { "url": "https://mcp.aventure.vc/mcp" }
+  }
+}
+```
+
+Open **Customize**, enable aVenture, and sign in when prompted. Check **Available Tools** in Agent chat, then [test the connection](/mcp#check-the-connection). Cursor's terminal agent also supports `agent mcp list` and `agent mcp login aventure`.
+
+[Cursor's MCP guide](https://cursor.com/docs/mcp) covers project and global configuration, tool approval, and Cloud Agent sign-in.

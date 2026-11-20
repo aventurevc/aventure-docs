@@ -1,0 +1,25 @@
+---
+title: Set Up the aVenture MCP Connector in Claude
+description: Add the aVenture MCP connector in Claude on the web or in Claude Desktop, sign in, and verify it with a company lookup.
+slug: mcp/claude
+---
+
+## Add a Custom Connector in Claude
+
+Set up aVenture on Claude's website or in Claude Desktop. Claude Free allows one custom connector. You can use a [free aVenture account](https://aventure.vc/sign-up) without an API key.
+
+On Team or Enterprise, an owner adds the connector in [Organization settings → Connectors](https://claude.ai/admin-settings/connectors). Once aVenture appears under [your connectors](https://claude.ai/customize/connectors/yours), select **Connect** and skip to step 4.
+
+1. Open [Customize → Connectors](https://claude.ai/customize/connectors). Choose **Add → Custom → Web**, or **Add → Add custom connector** if that's what your menu shows.
+2. Name the connector **aVenture**, paste `https://mcp.aventure.vc/mcp`, and select **Continue**.
+3. Review the detected settings and select **Continue** if Claude shows it again. Set **Authentication** to **Sign in now** and **OAuth client** to **Register automatically**, even if Claude recommends its published identity. Leave the client ID and secret blank, then select **Add**.
+4. If Claude shows **Connect**, select it. When aVenture opens, sign in and approve the connection. Return to Claude.
+5. Open a chat, select **+ → Connectors**, and turn on **aVenture**.
+
+If the menu looks different, check [Claude's custom connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities). For the terminal, use the [Claude Code setup](/mcp/claude-code).
+
+## Test the Connection
+
+<Markdown src="/snippets/mcp-check.mdx" />
+
+If Claude asks to use an aVenture tool, select **Allow once**. Expand the tool call to see what aVenture returned. If the lookup fails, [troubleshoot the connection](/mcp#troubleshooting).
