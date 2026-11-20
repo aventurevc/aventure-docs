@@ -552,6 +552,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     status?: string | null | undefined;
                     tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
                 } | null | undefined;
+                profileUnresolved?: boolean | undefined;
                 sort: {
                     order: {
                         descending: boolean;
@@ -793,6 +794,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     sourceType: string;
                 } | null | undefined;
             }[];
+            joinedEntityId?: string[] | null | undefined;
             judgment: {
                 entityId: string;
                 matchedOffering?: {
@@ -8086,6 +8088,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     status?: string | null | undefined;
                     tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
                 } | null | undefined;
+                profileUnresolved?: boolean | undefined;
                 sort: {
                     order: {
                         descending: boolean;
@@ -8327,6 +8330,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     sourceType: string;
                 } | null | undefined;
             }[];
+            joinedEntityId?: string[] | null | undefined;
             judgment: {
                 entityId: string;
                 matchedOffering?: {

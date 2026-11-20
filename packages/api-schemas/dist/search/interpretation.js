@@ -21,6 +21,7 @@ const SearchInterpretationSchemaDefinition = z.object({
     interpretation: z.string(),
     /** Return only the companies through which a person matching this people filter holds its primary association, such as startups founded by former Revolut executives. */
     personAssociation: PersonFilterSchema.nullish(),
+    profileUnresolved: z.boolean().optional(),
     /** Ordering applied to the result page: the relevance rank that ran first, if any, then the sortable-column terms. */
     sort: SearchOrderingEntityFilterSortableSchema,
     /** Brand or legal names of the entities the question is about, as written in the query; usually empty for discovery questions, but retained for an unresolved typed offering profile. A name does not establish an accepted entity ID. */

@@ -810,6 +810,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
             PAST: "PAST";
         }>>>;
     }, z.core.$strip>>>;
+    profileUnresolved: z.ZodOptional<z.ZodBoolean>;
     sort: z.ZodType<{
         order: {
             descending: boolean;

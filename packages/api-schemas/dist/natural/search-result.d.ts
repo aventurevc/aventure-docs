@@ -561,6 +561,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             status?: string | null | undefined;
             tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         } | null | undefined;
+        profileUnresolved?: boolean | undefined;
         sort: {
             order: {
                 descending: boolean;
@@ -1077,6 +1078,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             status?: string | null | undefined;
             tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         } | null | undefined;
+        profileUnresolved?: boolean | undefined;
         sort: {
             order: {
                 descending: boolean;
@@ -1547,6 +1549,7 @@ declare const NaturalSearchResultSchemaDefinition: z.ZodObject<{
             sourceType: string;
         } | null | undefined;
     }, import("../search/investment.ts").SearchInvestmentSchemaInput>>>;
+    joinedEntityId: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodUUID>>>;
     judgment: z.ZodArray<z.ZodType<{
         entityId: string;
         matchedOffering?: {

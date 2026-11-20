@@ -20,6 +20,8 @@ const NaturalSearchResultSchemaDefinition = z.object({
     interpretation: SearchInterpretationSchema,
     /** Recorded investment participation supporting investor discovery. Each row keeps its entity or personal investor, portfolio company, transaction attribution, and query-matched offering evidence. Empty for other question intents. */
     investment: z.array(SearchInvestmentSchema),
+    /** Entity IDs added during follow-up discovery on this stored page. */
+    joinedEntityId: z.array(z.uuid()).nullish(),
     /** Judged rows of the `result` page for a competitor, market, or provider question: the same entities in the same order, each with its judged probability. Empty for other questions. */
     judgment: z.array(SearchJudgmentSchema),
     /** Passages that best answer the question, ranked by score; empty unless the request asks for the `passage` layer. */

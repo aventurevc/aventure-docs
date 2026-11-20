@@ -534,6 +534,7 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
                 status?: string | null | undefined;
                 tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
             } | null | undefined;
+            profileUnresolved?: boolean | undefined;
             sort: {
                 order: {
                     descending: boolean;
@@ -1050,6 +1051,7 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
                 status?: string | null | undefined;
                 tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
             } | null | undefined;
+            profileUnresolved?: boolean | undefined;
             sort: {
                 order: {
                     descending: boolean;

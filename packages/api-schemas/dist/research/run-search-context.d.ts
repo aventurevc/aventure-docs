@@ -515,6 +515,7 @@ export declare const ResearchRunSearchContextSchema: z.ZodObject<{
             status?: string | null | undefined;
             tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         } | null | undefined;
+        profileUnresolved?: boolean | undefined;
         sort: {
             order: {
                 descending: boolean;
@@ -1031,6 +1032,7 @@ export declare const ResearchRunSearchContextSchema: z.ZodObject<{
             status?: string | null | undefined;
             tenure?: "ANY" | "CURRENT" | "PAST" | null | undefined;
         } | null | undefined;
+        profileUnresolved?: boolean | undefined;
         sort: {
             order: {
                 descending: boolean;
