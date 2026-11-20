@@ -133,7 +133,7 @@ so you can join the answer back to a spreadsheet or CRM export. Each row's
 
 ```bash
 curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" -H "Content-Type: application/json" \
-  -d '{"url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"]}' \
+  -d '{"url": ["stripe.com", "zzqx-unknown-domain-4417.com"]}' \
   "https://api.aventure.vc/v1/entities/lookup-matches"
 ```
 
@@ -141,23 +141,23 @@ curl -X POST -H "Authorization: Bearer $AUTH_TOKEN" -H "Content-Type: applicatio
 <Tab title="CLI">
 
 ```bash
-aventure entities lookup-matches --url stripe.com notion.so zzqx-unknown-domain-4417.com --data
+aventure entities lookup-matches --url stripe.com zzqx-unknown-domain-4417.com --data
 ```
 
 </Tab>
 <Tab title="MCP">
 
-Call `aventure_lookup`:
+Call `aventure_read`:
 
 ```json
-{"operationId": "lookupEntityMatches", "body": {"url": ["stripe.com", "notion.so", "zzqx-unknown-domain-4417.com"]}}
+{"operationId": "lookupEntityMatches", "body": {"url": ["stripe.com", "zzqx-unknown-domain-4417.com"]}}
 ```
 
 </Tab>
 </Tabs>
 
 ```json
-[{"input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Stripe"}}}, {"input": "notion.so", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Notion", "slug": "notion"}}}, {"input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": []}]
+[{"input": "stripe.com", "inputType": "URL", "status": "MATCHED", "detail": {"core": {"nameBrand": "Stripe"}}}, {"input": "zzqx-unknown-domain-4417.com", "inputType": "URL", "status": "MISSING", "candidateEntityId": []}]
 ```
 
 An `AMBIGUOUS` row lists the records that share the URL in

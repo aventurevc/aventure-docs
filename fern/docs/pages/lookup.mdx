@@ -113,7 +113,7 @@ curl -X POST "https://api.aventure.vc/v1/lookup" \
 aventure lookup-from-file --kind ENTITY --name Mercury --url https://mercury.com --location "San Francisco"
 ```
 
-```json title="MCP (aventure_lookup)"
+```json title="MCP (aventure_job)"
 {
   "operationId": "lookupRecord",
   "body": { "name": "Mercury", "kind": "ENTITY", "url": ["https://mercury.com"], "location": "San Francisco" }
@@ -135,7 +135,7 @@ curl -X POST "https://api.aventure.vc/v1/lookup" \
 aventure lookup-from-file --kind PERSON --name "Patrick Collison" --context "Stripe co-founder"
 ```
 
-```json title="MCP (aventure_lookup)"
+```json title="MCP (aventure_job)"
 { "operationId": "lookupRecord", "body": { "name": "Patrick Collison", "kind": "PERSON", "context": "Stripe co-founder" } }
 ```
 </CodeBlocks>
@@ -154,7 +154,7 @@ curl -X POST "https://api.aventure.vc/v1/lookup" \
 aventure lookup-from-file --name Mercury --url https://mercury.com
 ```
 
-```json title="MCP (aventure_lookup)"
+```json title="MCP (aventure_job)"
 { "operationId": "lookupRecord", "body": { "name": "Mercury", "url": ["https://mercury.com"] } }
 ```
 </CodeBlocks>

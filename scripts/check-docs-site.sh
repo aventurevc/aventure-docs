@@ -85,9 +85,10 @@ fi
 # Fern prepends this text to Markdown before the first heading. The default
 # promotes the docs-search server before a reader sees the data-server URL.
 "${CURL[@]}" "$BASE/mcp.md" > "$TMP/mcp.md"
-sed '/^# /,$d' "$TMP/mcp.md" > "$TMP/mcp-preamble"
-if grep -Fq 'https://mcp.aventure.vc/mcp' "$TMP/mcp-preamble" &&
-   ! grep -Fq '/_mcp/server' "$TMP/mcp-preamble"; then
+sed '/^## Choose Your AI App$/,$d' "$TMP/mcp.md" > "$TMP/mcp-intro"
+if grep -Eq '^#{3,4} Claude$' "$TMP/mcp.md" &&
+   grep -Fq 'https://mcp.aventure.vc/mcp' "$TMP/mcp-intro" &&
+   ! grep -Eiq 'connect to the MCP server at [^ ]*/_mcp/server' "$TMP/mcp-intro"; then
   echo markdown_connects_to_data_mcp=true
 else
   echo markdown_connects_to_data_mcp=false

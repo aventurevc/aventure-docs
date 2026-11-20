@@ -8,8 +8,7 @@ Assistants pick tools and inputs on their own. This page is for code or prompts
 that call the aVenture MCP tools directly. Connect first with the
 [MCP quickstart](/mcp).
 
-The read, lookup, search, and job tools each run one operation from
-the [API reference](/api-reference). Every call must name that operation with
+`aventure_read` runs reads, including exact lookups and searches that don't change records. `aventure_job` handles operations that can start work or change records. Each runs one operation from the [API reference](/api-reference). Every call must name that operation with
 `operationId`, or with `method` and `path` together. A call that carries only a
 query is rejected with `Pass operationId or method+path.`
 
@@ -45,16 +44,13 @@ operations beyond the returned rows. Compact field names do not tell you
 whether a body field takes a string, array, or nested object. Check the API
 reference before building the request.
 
-For example, finding the company a name refers to is `lookupRecord`
-(`POST /v1/lookup`), which runs through `aventure_lookup` and takes the name and
-known kind in its JSON body. `url` is an array even for one URL:
+For example, to read an existing company by its website without starting a job, call `aventure_read`:
 
 ```json
-{ "operationId": "lookupRecord", "body": { "name": "Stripe", "kind": "ENTITY", "url": ["https://stripe.com"] }, "responseFormat": "json" }
+{ "operationId": "getEntityLookup", "query": { "urlDomain": "stripe.com" }, "responseFormat": "json" }
 ```
 
-The answer reports whether the name matched a record and, when it did, the
-record's `id` and `slug` for the reads that follow.
+The result contains the company record and its `publicUrl` when available. To identify a name that may not match an existing record, use the [universal lookup](/lookup) through `aventure_job` instead. It can file a missing record.
 
 Use the returned `mcpCall` when available. For a catalog row, use its
 `operationId`, or pass its `method` and `path` exactly as printed.
@@ -84,8 +80,7 @@ under `body.search.query`, with explicit constraints in `body.filter`.
 MCP query and path keys use the API's wire names, not CLI flag names. For
 example, company news takes `query: { "owner.entityId": "<entityId>" }`,
 not `ownerEntityId` or `owner-entity-id`. Only declared parameters and headers
-are accepted. Use the tool matching the operation's intent; a read operation
-does not run through `aventure_search` merely because it has filters.
+are accepted. Use the tool named by `aventure_help`; adding filters doesn't change which tool runs the operation.
 
 ## Read the Result Before Continuing
 

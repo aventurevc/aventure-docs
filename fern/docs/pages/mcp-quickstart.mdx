@@ -14,31 +14,33 @@ Choose your app below. You'll sign in to your AI app and to [aVenture](https://a
 
 ### Claude
 
-Set up the connector on Claude's website or in Claude Desktop. Claude Free allows one custom connector. If you're on a Team or Enterprise workspace, an owner may need to enable custom connectors for your workspace.
+Set up the connector on Claude's website or in Claude Desktop. Claude Free allows one custom connector.
 
-1. Open [Customize → Connectors](https://claude.ai/customize/connectors). Choose **Add → Custom → Web**.
+On Team or Enterprise, an owner adds the connector under [Organization settings → Connectors](https://claude.ai/admin-settings/connectors). Once it appears under [your connectors](https://claude.ai/customize/connectors/yours), select **Connect** and continue at step 4.
+
+1. Open [Customize → Connectors](https://claude.ai/customize/connectors). Choose **Add → Custom → Web**, or **Add → Add custom connector** if that's what your menu shows.
 2. Name the connector **aVenture**, paste `https://mcp.aventure.vc/mcp`, and select **Continue**.
-3. Keep the detected authentication settings. Choose **Sign in now** and **Register automatically**, then select **Add**.
-4. When aVenture opens, sign in to your aVenture account and approve the connection. Return to Claude.
+3. Review the detected settings and select **Continue** if Claude shows it again. Set **Authentication** to **Sign in now** and **OAuth client** to **Register automatically**, even if Claude recommends its published identity. aVenture lets Claude register automatically; you don't supply a client ID or secret. Select **Add**.
+4. If Claude shows a **Connect** button, select it. When aVenture opens, sign in to your aVenture account and approve the connection. Return to Claude.
 5. Open a chat, select **+ → Connectors**, and turn on **aVenture**. Then [try a lookup](#check-the-connection).
 
 If the menu looks different, check [Claude's custom connector instructions](https://support.claude.com/en/articles/11176164-use-connectors-to-extend-claude-s-capabilities) for your version.
 
 ### ChatGPT
 
-Use ChatGPT on the web. If the option to add a custom server is missing, check your workspace permissions.
+Use ChatGPT on the web. If **Add custom MCP server** is missing, check your ChatGPT plan and workspace permissions. A free aVenture account doesn't change which features your ChatGPT plan offers.
 
 1. Open [ChatGPT Plugins](https://chatgpt.com/plugins). Choose **+ → Add custom MCP server**.
 2. Name it **aVenture** and enter `https://mcp.aventure.vc/mcp` as the server URL.
 3. Choose **OAuth** and automatic registration if prompted. Leave the client ID and secret blank.
-4. Review and accept the warning, then select **Create as a plugin**. Install the plugin and sign in to aVenture when prompted.
+4. Review the warning, select **I understand and want to continue**, then select **Create as a plugin**. Install the plugin and sign in to aVenture when prompted.
 5. In a new chat, type `@` and select the installed **aVenture** plugin. Then [try a lookup](#check-the-connection).
 
 [ChatGPT's custom server instructions](https://developers.openai.com/api/docs/guides/custom-mcp-server) cover workspace settings and plugin installation.
 
 ### Grok
 
-On Grok Business or Enterprise, ask a team admin to make the connector available first.
+On Grok Business or Enterprise, ask a team admin to [add aVenture to your team's connectors](https://docs.x.ai/grok/connector-management). Once they add it, open [Grok Connectors](https://grok.com/connectors), choose **aVenture**, and continue at step 3.
 
 1. Open [Grok Connectors](https://grok.com/connectors). Choose **New Connector → Custom**.
 2. Enter `https://mcp.aventure.vc/mcp` and name the connector **aVenture** if asked.
@@ -62,14 +64,16 @@ If you use Perplexity through an organization, an admin must turn on **Allow mem
 
 Google requires a personal Google Account, age 18 or older, US access, English, and Gemini **History** turned on. Add the connector on the web; you can use it on web or mobile afterward.
 
-1. Open [Gemini](https://gemini.google.com) and go to **Settings → Connected Apps → Custom apps**.
-2. Choose **Add a custom app**, enter `https://mcp.aventure.vc/mcp`, and select **Next**.
+1. Open [Gemini](https://gemini.google.com). Go to **Settings → Connected Apps**, then **Custom apps**. In some versions, **Connected Apps** is under **Personal Intelligence**.
+2. Paste `https://mcp.aventure.vc/mcp` into the **Add a custom app** field, or select **Add a custom app** first if you already have one. Select **Next**.
 3. Sign in to aVenture and approve the connection. Return to Gemini.
 4. In a chat, type `@`, select **aVenture**, and [try a lookup](#check-the-connection).
 
 [Google's custom app instructions](https://support.google.com/gemini/answer/17209137?hl=en) list the current account requirements.
 
 ### Claude Code
+
+If you already connected aVenture in Claude on the web, check `/mcp` in Claude Code first. When you sign in to Claude Code with your Claude subscription, web connectors can appear there without another setup.
 
 1. Run this in your terminal. `--scope user` makes aVenture available across your projects on this machine. Omit it to add the server only for the current project.
 
@@ -98,6 +102,8 @@ In **Customize**, open the server and sign in to aVenture when prompted. In chat
 
 ### Gemini CLI
 
+Google moved unpaid and Google One users from Gemini CLI to [Antigravity CLI](https://developers.googleblog.com/an-important-update-transitioning-gemini-cli-to-antigravity-cli). Use these steps if you still use Gemini CLI.
+
 1. Run this in your terminal to add aVenture across your projects on this machine:
 
    ```bash
@@ -125,29 +131,36 @@ Add a remote server named **aVenture** with these settings:
 
 If asked how to register the OAuth client, choose automatic registration. You don't need to create an API key or enter a client secret for browser sign-in. Then [try a lookup](#check-the-connection).
 
+<span id="ask-your-first-question" />
+
 ## Check the Connection
 
 After you connect aVenture and enable it for your chat, paste this:
 
-```text
-Use aVenture to find the company whose website is stripe.com. Give me the company name and its aVenture profile link. If aVenture doesn't return a result, tell me the error instead of answering from the web or memory.
+```text wordWrap
+Read the aVenture record for
+stripe.com. Use aventure_read,
+operation getEntityLookup,
+with query.urlDomain stripe.com.
+Give me the company name and
+the publicUrl from that result.
+If either is missing, say so.
+Don't use the web or memory.
 ```
 
-Look for an aVenture tool call in the chat and a link to the Stripe profile on `aventure.vc`. A description of Stripe without a tool call doesn't confirm that your connection works. This check reads an existing profile; it doesn't start a new research run.
+The check passes when aVenture returns the Stripe record and the answer includes the profile link from that result. A help message, a failed tool call, or a link from a web search doesn't count. This check reads an existing profile; it doesn't start a research run.
 
 ## Troubleshooting
 
-| What you see | What to do |
-|--------------|------------|
-| aVenture is connected, but the answer uses the web instead | Enable or select **aVenture** in this chat and retry the lookup. If the app asks whether it may use a tool, allow this lookup. |
-| The connector only answers questions about these docs | Check the server URL. `https://docs.aventure.vc/_mcp/server` searches this documentation. `https://mcp.aventure.vc/mcp` gets company and people data. |
-| The server URL shows `405` when you open it in a browser | Paste the URL into your app's connector settings. It isn't a web page. |
-| The sign-in window closes, but aVenture still shows as disconnected | Return to your app's connector settings and choose **Connect** or **Authenticate** again. If it still fails, send [support](/support) the app name, the step that failed, and the exact error. Leave out tokens, keys, and sign-in links. |
-| A connection that worked before now returns `401` | Sign in again from your app's connector settings. In Claude Code, open `/mcp` and select `aventure`. |
-| A tool returns `402` (`subscription_required`) | The app reached aVenture. Retry with the website lookup above, or check [which plan includes the feature](/plans-and-usage). |
-| A tool returns `429` | Check the error for which limit you reached and when to retry. [Plans and usage](/plans-and-usage#when-you-reach-a-limit) explains allowances. |
+- **aVenture is connected, but the answer uses the web.** Enable or select aVenture in this chat, then retry. If the app asks to use an aVenture tool, allow the lookup.
+- **The connector only answers questions about these docs.** If the server URL ends in `/_mcp/server`, it searches documentation, not company data. Replace it with the server URL in [your app's setup steps](#choose-your-ai-app).
+- **The server URL shows `405` in your browser.** Paste it into your app's connector settings instead. It isn't a web page.
+- **Sign-in finished, but the app still shows aVenture as disconnected.** Return to the connector settings and choose **Connect** or **Authenticate** again. If it still fails, send [support](/support) your app name, the step that failed, and the exact error. Leave out tokens, keys, and sign-in links.
+- **A connection that worked before now returns `401`.** Sign in again from your app's connector settings. `/mcp` opens those settings in Claude Code.
+- **A tool returns `402` (`subscription_required`).** The app reached aVenture. Try the website lookup above, or check [which plan includes the feature](/plans-and-usage).
+- **A tool returns `429`.** Check the error for which limit you reached and when to retry. [Plans and usage](/plans-and-usage#when-you-reach-a-limit) explains allowances.
 
-## Ask Another Question
+## Next Steps
 
 Try “Who founded Ramp?” or “Find seed-stage climate software companies in Austin.” The free plan includes a daily allowance for name lookups and plain-English searches. After you reach a daily search limit, you can still ask for a company by its exact website if you have profile views left. [Plans and usage](/plans-and-usage) explains the limits and which features need a paid plan.
 
@@ -155,7 +168,7 @@ Try “Who founded Ramp?” or “Find seed-stage climate software companies in 
 
 <Accordion title="Run the Server Yourself">
 
-If you need to run the server inside your own network, install it with Node.js 24.22.1 or later:
+If you need to run the server inside your own network, use Node.js 24.22.1 or a newer 24.x release:
 
 ```bash
 npm install --global @aventurevc/mcp-server
