@@ -226,6 +226,7 @@ settings:
 ai-search: {}
 agents:
   llms-txt: ./llms.txt
+  page-directive: "Browse the aVenture documentation at https://docs.aventure.vc/llms.txt. To look up companies, people, investors, funding rounds, or news from an AI app, use https://mcp.aventure.vc/mcp. Follow the setup steps for your app at https://docs.aventure.vc/mcp."
 
 redirects:
   # The retired resolver's public URL now points to universal lookup; send

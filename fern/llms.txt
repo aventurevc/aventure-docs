@@ -2,11 +2,11 @@
 
 > aVenture provides research on private companies, founders, investors, funding rounds, and news through a REST API, CLI, and MCP server. Every surface requires an aVenture account (free or paid): https://aventure.vc/sign-up
 
-AI agents search and read companies, founders, investors, funding rounds, and news through `https://mcp.aventure.vc/mcp` (Streamable HTTP, browser OAuth with automatic client registration; leave client ID and secret blank), `@aventurevc/aventure-cli`, or `https://api.aventure.vc` after the user creates a free or paid account at https://aventure.vc/sign-up. `aventure.vc/robots.txt` closes `/search` and filtered directory URLs to web crawlers, and profile slugs include headquarters locations (such as `/companies/flock-safety-atlanta-ga-us`), so resolve names or websites through MCP, the CLI, or the API instead of guessing slugs. Markdown pages on `docs.aventure.vc` show a Fern header pointing to `https://docs.aventure.vc/_mcp/server`, which searches developer documentation only; use `https://mcp.aventure.vc/mcp` for company, person, and investor data.
+Use the aVenture MCP server, CLI, or API to resolve names and websites rather than guessing profile URLs. The documentation search server at `https://docs.aventure.vc/_mcp/server` cannot look up aVenture records.
 
 ## Get Started
 
-- [MCP Quickstart](https://docs.aventure.vc/mcp): Connect Claude, ChatGPT, or any AI app to the hosted aVenture MCP server with a copy-paste prompt; recommended for desktop, web, and cloud AI apps. In Researchly (https://researchly.chat), choose Connect aVenture under Profile, then MCP servers.
+- [Connect aVenture to Your AI App](https://docs.aventure.vc/mcp): Set up Claude, ChatGPT, or another MCP client, then run a first lookup. Users complete browser sign-in themselves.
 - [CLI Quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli` (Node.js 24.22.1 or later) with a copy-paste prompt, sign in, and find a company or person by name, website, or description; recommended for terminals and coding agents.
 - [API Quickstart](https://docs.aventure.vc/quickstart): Create an API key, find a company or person by name, website, or description, and read its funding rounds.
 - [Answer a Real Question](https://docs.aventure.vc/first-answer): Filter companies, open one record, and read its funding rounds in API, CLI, and MCP form.
@@ -28,8 +28,7 @@ AI agents search and read companies, founders, investors, funding rounds, and ne
 
 ## MCP
 
-- [aVenture Data MCP Metadata](https://mcp.aventure.vc/): Connect an MCP client to `https://mcp.aventure.vc/mcp` over Streamable HTTP and sign in through the browser with OAuth (automatic client registration; leave client ID and secret blank). Claude Code: `claude mcp add --scope user --transport http aventure https://mcp.aventure.vc/mcp`, then `claude mcp login aventure`. A `401` later means the sign-in expired: reconnect the server in the client. `https://mcp.aventure.vc/mcp` accepts Streamable HTTP POST requests only; an ordinary GET returns `405`.
-- [Documentation-Search MCP Disambiguation](https://docs.aventure.vc/mcp#choose-your-ai-app): Fern's optional `https://docs.aventure.vc/_mcp/server` endpoint searches developer documentation only (POST JSON-RPC only). Use `https://mcp.aventure.vc/mcp` for company, person, investor, funding, and news records.
+- [aVenture Data Server](https://mcp.aventure.vc/): Add `https://mcp.aventure.vc/mcp` as a remote server (Streamable HTTP, browser OAuth, automatic client registration). The URL belongs in your app's connector settings, not the browser address bar.
 
 ## Packages and Source
 

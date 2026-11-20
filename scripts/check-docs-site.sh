@@ -15,6 +15,7 @@
 #    The publisher uploads the bundle in both deploy modes, but the host
 #    returns 404 for every skill path, so an unserved manifest is reported as
 #    a warning until the host serves it; a served manifest is verified strictly.
+# 6. The Markdown quickstart preamble points to the data MCP, not docs search.
 # Requires Node.js 24 and Bash; site verification also needs cmp, curl, jq,
 # shasum. Exit 1 on any discrepancy.
 set -euo pipefail
@@ -78,6 +79,18 @@ if cmp -s "$ROOT_LLMS" "$TMP/root-llms.txt"; then
   echo custom_root_llms_identical=true
 else
   echo custom_root_llms_identical=false
+  fail=1
+fi
+
+# Fern prepends this text to Markdown before the first heading. The default
+# promotes the docs-search server before a reader sees the data-server URL.
+"${CURL[@]}" "$BASE/mcp.md" > "$TMP/mcp.md"
+sed '/^# /,$d' "$TMP/mcp.md" > "$TMP/mcp-preamble"
+if grep -Fq 'https://mcp.aventure.vc/mcp' "$TMP/mcp-preamble" &&
+   ! grep -Fq '/_mcp/server' "$TMP/mcp-preamble"; then
+  echo markdown_connects_to_data_mcp=true
+else
+  echo markdown_connects_to_data_mcp=false
   fail=1
 fi
 
