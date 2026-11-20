@@ -9,7 +9,7 @@ Choose your app below. You'll sign in to your AI app and to [aVenture](https://a
 ## Choose Your AI App
 
 - **Chat apps:** [Claude](#claude), [ChatGPT](#chatgpt), [Grok](#grok), [Perplexity](#perplexity), [Gemini](#gemini)
-- **Coding tools:** [Claude Code](#claude-code), [Cursor](#cursor), [Antigravity CLI](#antigravity-cli), [Gemini CLI](#gemini-cli)
+- **Coding tools:** [Claude Code](#claude-code), [Codex](#codex), [Cursor](#cursor), [Antigravity CLI](#antigravity-cli), [Gemini CLI](#gemini-cli)
 - **Other:** [Researchly](#researchly), [Another MCP client](#another-mcp-client)
 
 In chat apps, connect aVenture in settings before you paste the lookup prompt. In a coding tool, use the **Set up and check in one prompt** option if you want the agent to configure the connection. You still sign in yourself. If your agent asks you to start a new session, paste the same prompt again; it checks what is already set up before making changes.
@@ -131,6 +131,51 @@ Don't use the web or memory.
 3. Return to Claude Code. Confirm `/mcp` shows `aventure` as connected, then [try a lookup](#check-the-connection).
 
 If `aventure` is already configured, check its URL in `/mcp` before adding another entry. Enable it there if it is disabled. Current Claude Code versions also support `claude mcp login aventure` from the terminal. [Claude Code's MCP instructions](https://code.claude.com/docs/en/mcp#authenticate-with-remote-mcp-servers) cover command-line sign-in over SSH.
+
+### Codex
+
+Use this section for a local project in the ChatGPT desktop app, Codex CLI, or IDE extension. ChatGPT on the web uses the [plugin setup](#chatgpt) instead.
+
+<Accordion title="Set up and check in one prompt">
+
+Paste this into a Codex session in a project you already trust. The prompt only adds project settings.
+
+```text title="Codex prompt" wordWrap maxLines=0
+Connect and test aVenture.
+
+Reuse a working aVenture server.
+Otherwise check only server names
+and URLs in the active config.
+Don't print raw config. If you can
+confirm the server is missing,
+add this to .codex/config.toml:
+
+[mcp_servers.aventure]
+url = "https://mcp.aventure.vc/mcp"
+
+Keep existing settings intact.
+Don't edit global settings, change
+project trust, or commit the file.
+Report conflicts without changes.
+
+If aVenture isn't connected,
+ask me to restart if needed and
+authenticate in MCP settings.
+For CLI sign-in, point me to
+OpenAI's MCP guide linked below.
+Don't ask me to share credentials.
+
+Then call aVenture's aventure_read
+with operationId getEntityLookup
+and query {"urlDomain":"stripe.com"}.
+Return the name and publicUrl from
+the record, or say what failed.
+Don't use the web or memory.
+```
+
+</Accordion>
+
+**Set up manually:** For just this project, add the `[mcp_servers.aventure]` table above to `.codex/config.toml` in a trusted project. In the desktop app, you can instead use **Settings → MCP servers → Add server**, name it **aVenture**, choose **Streamable HTTP**, and enter `https://mcp.aventure.vc/mcp`. Restart if prompted and select **Authenticate** when aVenture needs sign-in. In the CLI, check `/mcp` and follow [OpenAI's MCP sign-in instructions](https://developers.openai.com/codex/extend/mcp) if required. Then [try a lookup](#check-the-connection).
 
 ### Cursor
 
