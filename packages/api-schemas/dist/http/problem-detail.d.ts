@@ -52,6 +52,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         async_lookup_sign_in_required: "async_lookup_sign_in_required";
         billing_additional_usage_cap_reached: "billing_additional_usage_cap_reached";
         billing_allowance_exhausted: "billing_allowance_exhausted";
+        billing_complimentary_term: "billing_complimentary_term";
         billing_credit_checkout_closed: "billing_credit_checkout_closed";
         billing_plan_change_required: "billing_plan_change_required";
         callback_challenge_failed: "callback_challenge_failed";

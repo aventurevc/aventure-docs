@@ -32,9 +32,9 @@ export const ProblemDetailSchema = z.object({
             "async_lookup_sign_in_required",
             /** Caller is authenticated but lacks the required role for this operation. Agent action: surface the requiredRole field on the ProblemDetail and stop; do not retry without role escalation. */
             "not_authorized",
-            /** Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance. */
+            /** Request was throttled. Agent action: wait at least retryAfterSeconds (or the Retry-After header), then back off exponentially on repeated 429s; with resetAt, wait until that time instead of retrying the spent monthly allowance. */
             "rateLimited",
-            /** Request was throttled. Agent action: wait at least retryAfterSeconds (also in the Retry-After header), then increase the delay exponentially on repeated 429s. When resetAt is present, wait until that time instead of retrying the exhausted monthly allowance. */
+            /** Request was throttled. Agent action: wait at least retryAfterSeconds (or the Retry-After header), then back off exponentially on repeated 429s; with resetAt, wait until that time instead of retrying the spent monthly allowance. */
             "rate_limited",
             /** Caller is authenticated but the subscription on their account does not include this operation. Agent action: surface ProblemDetail.detail explaining the subscription requirement and stop; never retry until the account changes plan. */
             "subscription_required",
@@ -44,8 +44,10 @@ export const ProblemDetailSchema = z.object({
             "subscription_past_due",
             /** Caller's subscription is paused, so it does not include this operation. Agent action: surface ProblemDetail.detail and stop; the account must add a payment method through the resolution's Billing Portal endpoint, then resume with PATCH /v1/billing/subscription and paused false. */
             "subscription_paused",
-            /** The caller's metered allowance for this operation is spent for the current period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt, when the meter refills (typically weeks away). Do not retry inside the period even though the status is 429. */
+            /** The caller's metered allowance for this operation is spent for the period. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt (often weeks away); never retry before then, despite the 429 status. */
             "billing_allowance_exhausted",
+            /** A complimentary term is set; only upgrading to a paid plan changes it. */
+            "billing_complimentary_term",
             /** The caller's monthly allowance is spent and the next additional-usage unit would pass the monthly spend cap or the prepaid credit left. Agent action: stop and report ProblemDetail.allowanceType, limit, used, remaining, and resetAt, then follow ProblemDetail.resolution: when prepaid credit is used up, buy credit through POST /v1/billing/credit-purchases only with the user's exact quoted approval of the amount; when the monthly cap is reached, raise spendCapCents through /v1/billing/additional-usage or wait for resetAt. */
             "billing_additional_usage_cap_reached",
             /** The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key. */
