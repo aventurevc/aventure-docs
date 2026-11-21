@@ -2821,14 +2821,23 @@ declare const LookupJobSchemaDefinition: z.ZodObject<{
         };
         publication: z.ZodString;
     }, z.core.$strip>>>;
-    state: z.ZodEnum<{
+    state: z.ZodUnion<readonly [z.ZodEnum<{
         CANCELED: "CANCELED";
         COMPLETED: "COMPLETED";
         FAILED: "FAILED";
         PENDING: "PENDING";
         RUNNING: "RUNNING";
         UNKNOWN: "UNKNOWN";
-    }>;
+    }>, z.ZodString]> & {
+        enum: {
+            CANCELED: "CANCELED";
+            COMPLETED: "COMPLETED";
+            FAILED: "FAILED";
+            PENDING: "PENDING";
+            RUNNING: "RUNNING";
+            UNKNOWN: "UNKNOWN";
+        };
+    };
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
 type LookupJobDefinition = z.infer<typeof LookupJobSchemaDefinition>;

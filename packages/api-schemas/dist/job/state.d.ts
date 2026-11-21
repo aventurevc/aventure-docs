@@ -8,13 +8,22 @@ import { z } from "zod/v4";
  * @contractShape job.state
  * @contractRole canonical
  */
-export declare const JobStateSchema: z.ZodEnum<{
+export declare const JobStateSchema: z.ZodUnion<readonly [z.ZodEnum<{
     CANCELED: "CANCELED";
     COMPLETED: "COMPLETED";
     FAILED: "FAILED";
     PENDING: "PENDING";
     RUNNING: "RUNNING";
     UNKNOWN: "UNKNOWN";
-}>;
+}>, z.ZodString]> & {
+    enum: {
+        CANCELED: "CANCELED";
+        COMPLETED: "COMPLETED";
+        FAILED: "FAILED";
+        PENDING: "PENDING";
+        RUNNING: "RUNNING";
+        UNKNOWN: "UNKNOWN";
+    };
+};
 export type JobState = z.infer<typeof JobStateSchema>;
 //# sourceMappingURL=state.d.ts.map
