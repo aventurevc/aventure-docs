@@ -126,6 +126,10 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         text_send_limit_reached: "text_send_limit_reached";
         text_write_job_ended: "text_write_job_ended";
         url_surface_misclassification: "url_surface_misclassification";
+        vault_last_admin_cannot_leave: "vault_last_admin_cannot_leave";
+        vault_owner_cannot_leave: "vault_owner_cannot_leave";
+        vault_scanner_not_configured: "vault_scanner_not_configured";
+        vault_writers_not_enabled: "vault_writers_not_enabled";
         web_crawl_fetch_failed: "web_crawl_fetch_failed";
         website_not_own_live_site: "website_not_own_live_site";
     }>, z.ZodString]>>>;

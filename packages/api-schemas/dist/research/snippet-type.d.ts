@@ -29,6 +29,15 @@ declare const ResearchSnippetTypeSchemaDefinition: z.ZodObject<{
     readerQuestion: z.ZodString;
     recognized: z.ZodBoolean;
     targetPath: z.ZodString;
+    terminalParagraphShape: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        maxChars: z.ZodInt;
+        maxClaimWords: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        maxParagraphs: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
+        maxSentences: z.ZodInt;
+        minChars: z.ZodInt;
+        minParagraphs: z.ZodInt;
+        minSentences: z.ZodInt;
+    }, z.core.$strip>>>;
     typeValue: z.ZodString;
     writeHint: z.ZodString;
 }, z.core.$strip>;

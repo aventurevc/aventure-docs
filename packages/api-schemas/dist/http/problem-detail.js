@@ -138,13 +138,13 @@ export const ProblemDetailSchema = z.object({
             "news_rss_article_fetch_failed",
             /** News subscription webhook verification could not connect to delivery.url. Agent action: confirm the endpoint is publicly reachable over https, then subscribe again. */
             "callback_connection_refused",
-            /** News subscription webhook verification timed out. Agent action: make the endpoint answer the challenge within the delivery read timeout, then subscribe again. */
+            /** Webhook verification timed out; answer faster, then resubscribe. */
             "callback_timeout",
             /** News subscription webhook verification failed the TLS handshake. Agent action: serve a publicly trusted certificate for the delivery.url host, then subscribe again. */
             "callback_tls_error",
-            /** News subscription webhook verification got a 4xx answer. Agent action: make the endpoint accept the signed verification POST, then subscribe again. */
+            /** Webhook verification got a 4xx answer; accept the signed POST, resubscribe. */
             "callback_http_4xx",
-            /** News subscription webhook verification got a 5xx answer. Agent action: fix or wait for the endpoint, then subscribe again. */
+            /** Webhook verification got a 5xx answer; fix or wait, then resubscribe. */
             "callback_http_5xx",
             /** News subscription webhook verification got a 2xx answer whose body was not {"challenge":"<nonce>"} with the sent nonce. Agent action: echo the challenge exactly, then subscribe again. */
             "callback_challenge_failed",
@@ -202,6 +202,14 @@ export const ProblemDetailSchema = z.object({
             "INFERENCE_PROFILE_API_KEY_MISSING",
             /** Language-model credentials are missing. Agent action: stop; retrying cannot succeed until aVenture restores them. */
             "inference_profile_api_key_missing",
+            /** No virus scanner is configured; uploads are refused. Do not retry. */
+            "vault_scanner_not_configured",
+            /** Library writes are not enabled on this deployment. Do not retry. */
+            "vault_writers_not_enabled",
+            /** The workspace owner cannot leave or be removed. Do not retry. */
+            "vault_owner_cannot_leave",
+            /** The last active admin cannot leave until another admin exists. */
+            "vault_last_admin_cannot_leave",
         ]),
         z.string().max(128),
     ])
