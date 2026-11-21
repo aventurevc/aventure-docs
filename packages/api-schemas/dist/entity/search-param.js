@@ -16,6 +16,8 @@ export const EntitySearchParamSchema = PageParamSchema.extend({
     countOnly: z.boolean().optional(),
     /** Opaque entity cursor; reuse filters and sort. Cursor is unsupported with countOnly; semanticQuery depends on the endpoint. */
     cursor: z.string().optional(),
+    /** Require the US company, investment firm, or fund browse criteria. */
+    directoryBrowse: z.boolean().optional(),
     /** Set true to return each match as a company detail search record instead of the list row: the headquarters address, the first 5 people (most recently updated association first), and the first 5 news articles (newest first). Full lists: GET /v1/entities/{entityId}/addresses, GET /v1/entities/{entityId}/people, and GET /v1/news?owner.entityId=. */
     includeFullDetail: z.boolean().optional(),
     /** Allow generated monogram logos in results. */

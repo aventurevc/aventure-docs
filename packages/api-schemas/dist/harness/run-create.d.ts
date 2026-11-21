@@ -497,6 +497,7 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 entitySlug?: string | null | undefined;
                 firstName?: string | null | undefined;
+                hasRealPhoto?: boolean | null | undefined;
                 includeAddress?: boolean | null | undefined;
                 includeUrl?: boolean | null | undefined;
                 investorActivity?: {
@@ -1014,6 +1015,7 @@ declare const HarnessRunCreateSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 entitySlug?: string | null | undefined;
                 firstName?: string | null | undefined;
+                hasRealPhoto?: boolean | null | undefined;
                 includeAddress?: boolean | null | undefined;
                 includeUrl?: boolean | null | undefined;
                 investorActivity?: {

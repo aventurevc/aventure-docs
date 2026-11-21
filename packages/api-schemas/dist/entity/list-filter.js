@@ -94,7 +94,7 @@ export const EntityListFilterSchema = z.strictObject({
     portfolioHeadquartersCountry: z.array(z.string()).optional(),
     /** Portfolio-company headquarters state or region values. */
     portfolioHeadquartersState: z.array(z.string()).optional(),
-    /** Extra listing check: COMPANY_LISTING_READY or NONE (default, no check). */
+    /** Extra listing check. */
     qualityGate: EntityListQualityGateSchema.optional(),
     /** Rank most prominent first (funding, stage, headcount, momentum, recent news, investor breadth), ahead of sort: what best, top, or most promising mean. */
     rankByProminence: z.boolean().nullish(),

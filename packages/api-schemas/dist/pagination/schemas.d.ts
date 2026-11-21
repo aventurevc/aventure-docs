@@ -4606,6 +4606,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
+            cohortEnd?: string | null | undefined;
             comparisonSignals?: {
                 acquirer?: {
                     defaultCurrency?: string | null | undefined;
@@ -4733,6 +4734,7 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
+            cohortEnd?: string | null | undefined;
             comparisonSignals?: {
                 acquirer?: {
                     defaultCurrency?: string | null | undefined;
@@ -7700,6 +7702,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             publicUrl?: string | null | undefined;
             relationship: {
                 asOf?: string | null | undefined;
+                cohortEnd?: string | null | undefined;
                 comparisonSignals?: {
                     acquirer?: {
                         defaultCurrency?: string | null | undefined;
@@ -10014,6 +10017,7 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
             publicUrl?: string | null | undefined;
             relationship: {
                 asOf?: string | null | undefined;
+                cohortEnd?: string | null | undefined;
                 comparisonSignals?: {
                     acquirer?: {
                         defaultCurrency?: string | null | undefined;
@@ -12224,6 +12228,7 @@ export type PageEntityPersonAssociation = z.infer<typeof PageEntityPersonAssocia
 declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
     content: z.ZodOptional<z.ZodArray<z.ZodType<{
         asOf?: string | null | undefined;
+        cohortEnd?: string | null | undefined;
         comparisonSignals?: {
             acquirer?: {
                 defaultCurrency?: string | null | undefined;
@@ -12351,6 +12356,7 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         updatedAt?: string | null | undefined;
     }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
         asOf?: string | null | undefined;
+        cohortEnd?: string | null | undefined;
         comparisonSignals?: {
             acquirer?: {
                 defaultCurrency?: string | null | undefined;

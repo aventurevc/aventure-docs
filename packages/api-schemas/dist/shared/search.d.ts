@@ -515,6 +515,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     entitySlug?: string | null | undefined;
                     firstName?: string | null | undefined;
+                    hasRealPhoto?: boolean | null | undefined;
                     includeAddress?: boolean | null | undefined;
                     includeUrl?: boolean | null | undefined;
                     investorActivity?: {
@@ -5221,6 +5222,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             publicUrl?: string | null | undefined;
             relationship: {
                 asOf?: string | null | undefined;
+                cohortEnd?: string | null | undefined;
                 comparisonSignals?: {
                     acquirer?: {
                         defaultCurrency?: string | null | undefined;
@@ -5870,6 +5872,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     entitySlug?: string | null | undefined;
                     firstName?: string | null | undefined;
+                    hasRealPhoto?: boolean | null | undefined;
                     includeAddress?: boolean | null | undefined;
                     includeUrl?: boolean | null | undefined;
                     investorActivity?: {
@@ -8051,6 +8054,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     entitySlug?: string | null | undefined;
                     firstName?: string | null | undefined;
+                    hasRealPhoto?: boolean | null | undefined;
                     includeAddress?: boolean | null | undefined;
                     includeUrl?: boolean | null | undefined;
                     investorActivity?: {
@@ -12757,6 +12761,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
             publicUrl?: string | null | undefined;
             relationship: {
                 asOf?: string | null | undefined;
+                cohortEnd?: string | null | undefined;
                 comparisonSignals?: {
                     acquirer?: {
                         defaultCurrency?: string | null | undefined;
@@ -13406,6 +13411,7 @@ declare const SharedSearchSchemaDefinition: z.ZodObject<{
                     entityId?: string | null | undefined;
                     entitySlug?: string | null | undefined;
                     firstName?: string | null | undefined;
+                    hasRealPhoto?: boolean | null | undefined;
                     includeAddress?: boolean | null | undefined;
                     includeUrl?: boolean | null | undefined;
                     investorActivity?: {

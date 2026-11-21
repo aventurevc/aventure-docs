@@ -796,6 +796,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         firstName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        hasRealPhoto: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         includeAddress: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         includeUrl: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         investorActivity: z.ZodOptional<z.ZodObject<{

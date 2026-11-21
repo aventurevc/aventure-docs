@@ -323,6 +323,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             entityId?: string | null | undefined;
             entitySlug?: string | null | undefined;
             firstName?: string | null | undefined;
+            hasRealPhoto?: boolean | null | undefined;
             includeAddress?: boolean | null | undefined;
             includeUrl?: boolean | null | undefined;
             investorActivity?: {
@@ -693,6 +694,7 @@ declare const PersonNaturalSearchResultSchemaDefinition: z.ZodObject<{
             entityId?: string | null | undefined;
             entitySlug?: string | null | undefined;
             firstName?: string | null | undefined;
+            hasRealPhoto?: boolean | null | undefined;
             includeAddress?: boolean | null | undefined;
             includeUrl?: boolean | null | undefined;
             investorActivity?: {

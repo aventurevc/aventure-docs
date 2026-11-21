@@ -44,6 +44,8 @@ export const PersonFilterSchema = z.object({
     entitySlug: z.string().nullish(),
     /** Person first name. */
     firstName: z.string().nullish(),
+    /** True selects people with a stored nonblank, non-monogram photo. False selects people with no photo or only a monogram. */
+    hasRealPhoto: z.boolean().nullish(),
     /** Include addresses on each person */
     includeAddress: z.boolean().nullish(),
     /** Include URL links on each person */

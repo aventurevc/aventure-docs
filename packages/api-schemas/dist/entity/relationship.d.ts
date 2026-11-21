@@ -1,6 +1,7 @@
 import { z } from "zod/v4";
 declare const EntityRelationshipSchemaDefinition: z.ZodObject<{
     asOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    cohortEnd: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     comparisonSignals: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         acquirer: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             defaultCurrency: z.ZodOptional<z.ZodNullable<z.ZodString>>;

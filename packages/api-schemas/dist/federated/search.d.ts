@@ -502,6 +502,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 entitySlug?: string | null | undefined;
                 firstName?: string | null | undefined;
+                hasRealPhoto?: boolean | null | undefined;
                 includeAddress?: boolean | null | undefined;
                 includeUrl?: boolean | null | undefined;
                 investorActivity?: {
@@ -3679,6 +3680,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 entitySlug?: string | null | undefined;
                 firstName?: string | null | undefined;
+                hasRealPhoto?: boolean | null | undefined;
                 includeAddress?: boolean | null | undefined;
                 includeUrl?: boolean | null | undefined;
                 investorActivity?: {
@@ -10333,6 +10335,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
+            cohortEnd?: string | null | undefined;
             comparisonSignals?: {
                 acquirer?: {
                     defaultCurrency?: string | null | undefined;
@@ -10460,6 +10463,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
             updatedAt?: string | null | undefined;
         }, import("../entity/relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
+            cohortEnd?: string | null | undefined;
             comparisonSignals?: {
                 acquirer?: {
                     defaultCurrency?: string | null | undefined;
@@ -11295,6 +11299,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 entitySlug?: string | null | undefined;
                 firstName?: string | null | undefined;
+                hasRealPhoto?: boolean | null | undefined;
                 includeAddress?: boolean | null | undefined;
                 includeUrl?: boolean | null | undefined;
                 investorActivity?: {
@@ -11981,6 +11986,7 @@ declare const FederatedSearchSchemaDefinition: z.ZodObject<{
                 entityId?: string | null | undefined;
                 entitySlug?: string | null | undefined;
                 firstName?: string | null | undefined;
+                hasRealPhoto?: boolean | null | undefined;
                 includeAddress?: boolean | null | undefined;
                 includeUrl?: boolean | null | undefined;
                 investorActivity?: {

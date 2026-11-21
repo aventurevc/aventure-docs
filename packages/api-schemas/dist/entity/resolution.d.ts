@@ -3987,6 +3987,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
         publicUrl: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         relationship: z.ZodArray<z.ZodType<{
             asOf?: string | null | undefined;
+            cohortEnd?: string | null | undefined;
             comparisonSignals?: {
                 acquirer?: {
                     defaultCurrency?: string | null | undefined;
@@ -4114,6 +4115,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
             updatedAt?: string | null | undefined;
         }, import("./relationship.ts").EntityRelationshipSchemaInput, z.core.$ZodTypeInternals<{
             asOf?: string | null | undefined;
+            cohortEnd?: string | null | undefined;
             comparisonSignals?: {
                 acquirer?: {
                     defaultCurrency?: string | null | undefined;
