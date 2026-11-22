@@ -6,6 +6,7 @@ Use the aVenture MCP server, CLI, or API to resolve names and websites rather th
 
 ## Get Started
 
+- [All Guides and Changelog](https://docs.aventure.vc/docs/llms.txt): Find the complete guides index, including setup for each MCP client and release notes.
 - [Connect aVenture to Your AI App](https://docs.aventure.vc/mcp): Set up Claude, ChatGPT, or another MCP client, then run a first lookup. Users complete browser sign-in themselves.
 - [CLI Quickstart](https://docs.aventure.vc/cli): Install `@aventurevc/aventure-cli` (Node.js 24.22.1 or later) with a copy-paste prompt, sign in, and find a company or person by name, website, or description; recommended for terminals and coding agents.
 - [API Quickstart](https://docs.aventure.vc/quickstart): Create an API key, find a company or person by name, website, or description, and read its funding rounds.
@@ -25,6 +26,7 @@ Use the aVenture MCP server, CLI, or API to resolve names and websites rather th
 - [Errors](https://docs.aventure.vc/errors): Interpret error responses, rate limits, and plan usage limits.
 - [API Reference](https://docs.aventure.vc/api-reference): Every endpoint, parameter, and schema.
 - [API Operation Index](https://docs.aventure.vc/api-reference/llms.txt): Index of API operation pages.
+- [Released OpenAPI Document](https://docs.aventure.vc/openapi/latest.json): The exact published specification for code generation and contract validation.
 
 ## MCP
 
