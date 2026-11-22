@@ -130,6 +130,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         vault_last_admin_cannot_leave: "vault_last_admin_cannot_leave";
         vault_owner_cannot_leave: "vault_owner_cannot_leave";
         vault_scanner_not_configured: "vault_scanner_not_configured";
+        vault_storage_not_configured: "vault_storage_not_configured";
         vault_writers_not_enabled: "vault_writers_not_enabled";
         web_crawl_fetch_failed: "web_crawl_fetch_failed";
         website_not_own_live_site: "website_not_own_live_site";

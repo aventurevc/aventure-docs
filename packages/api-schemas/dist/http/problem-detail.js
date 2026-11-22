@@ -206,6 +206,8 @@ export const ProblemDetailSchema = z.object({
             "inference_profile_api_key_missing",
             /** No virus scanner is configured; uploads are refused. Do not retry. */
             "vault_scanner_not_configured",
+            /** Vault object storage is not configured; uploads are refused. Do not retry. */
+            "vault_storage_not_configured",
             /** Library writes are not enabled on this deployment. Do not retry. */
             "vault_writers_not_enabled",
             /** The workspace owner cannot leave or be removed. Do not retry. */
