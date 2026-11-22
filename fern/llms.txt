@@ -1,6 +1,6 @@
 # aVenture Documentation
 
-> aVenture provides research on private companies, founders, investors, funding rounds, and news through a REST API, CLI, and MCP server. Every surface requires an aVenture account (free or paid): https://aventure.vc/sign-up
+> aVenture provides research on private companies, founders, investors, funding rounds, and news through a REST API, CLI, and MCP server. Sign in to a free or paid aVenture account for the CLI, MCP, and authenticated API endpoints: https://aventure.vc/sign-up
 
 Use the aVenture MCP server, CLI, or API to resolve names and websites rather than guessing profile URLs. The documentation search server at `https://docs.aventure.vc/_mcp/server` cannot look up aVenture records.
 
