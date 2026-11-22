@@ -7,7 +7,7 @@ import { NewsSchema } from "../news/news.js";
 const MentionLookupSchemaDefinition = z.object({
     /** Present only for callers that sent Prefer: respond-async. Identifications are settled but shell filing is pending. Poll statusUrl until the lookup job completes; merge its filing outcomes by mentionType and name. */
     filing: JobEnqueueSchema.nullish(),
-    /** Each distinct name: the page's own company first, then the order the source shows them, with news outlets and the page's bylined authors last. */
+    /** Each distinct name: the page's own company first, then the order the source shows them, with news publishers and the page's bylined authors last. */
     mention: z.array(LookupJobMentionSchema),
     /** The stored aVenture news article the source page is, when it is one; absent otherwise. */
     news: NewsSchema.nullish(),

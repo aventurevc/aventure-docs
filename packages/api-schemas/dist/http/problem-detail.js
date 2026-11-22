@@ -30,6 +30,8 @@ export const ProblemDetailSchema = z.object({
             "harness_suppression_unverified",
             /** An anonymous caller cannot own a lookup job. Sign in to request async. */
             "async_lookup_sign_in_required",
+            /** Credential already binds its run; resend without the research claim. */
+            "research_binding_conflicts_with_run",
             /** Caller is authenticated but lacks the required role for this operation. Agent action: surface the requiredRole field on the ProblemDetail and stop; do not retry without role escalation. */
             "not_authorized",
             /** Request was throttled. Agent action: wait at least retryAfterSeconds (or the Retry-After header), then back off exponentially on repeated 429s; with resetAt, wait until that time instead of retrying the spent monthly allowance. */

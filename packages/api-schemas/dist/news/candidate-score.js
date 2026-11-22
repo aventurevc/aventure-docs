@@ -14,7 +14,7 @@ export const NewsCandidateScoreSchema = z.object({
     externalId: z.string().nullish(),
     /** News article id to read or update when this candidate is the requested article. */
     id: z.int(),
-    /** Portion of score contributed by the publication match alone; 0 when the publication did not match. A candidate whose score minus publicationScore falls below the review threshold matched only on its outlet, not its story. */
+    /** Portion of score contributed by the publication match alone; 0 when the publication did not match. A candidate whose score minus publicationScore falls below the review threshold matched only on its publisher, not its story. */
     publicationScore: z.int(),
     /** Match reasons for reviewing the candidate. Exact reasons are decision signals regardless of whether score crosses the review threshold. */
     reason: z.array(z.string()),
