@@ -27,8 +27,12 @@ navigation:
             contents:
               - page: Claude
                 path: docs/pages/mcp/claude.mdx
+              - page: Claude Code
+                path: docs/pages/mcp/claude-code.mdx
               - page: ChatGPT
                 path: docs/pages/mcp/chatgpt.mdx
+              - page: Codex CLI
+                path: docs/pages/mcp/codex.mdx
               - page: Grok
                 path: docs/pages/mcp/grok.mdx
               - page: Perplexity
@@ -37,10 +41,6 @@ navigation:
                 path: docs/pages/mcp/gemini.mdx
               - page: Researchly
                 path: docs/pages/mcp/researchly.mdx
-              - page: Claude Code
-                path: docs/pages/mcp/claude-code.mdx
-              - page: Codex
-                path: docs/pages/mcp/codex.mdx
               - page: Cursor
                 path: docs/pages/mcp/cursor.mdx
               - page: Antigravity CLI
