@@ -11,8 +11,10 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         brazilCnpj: "brazilCnpj";
         canadaBusinessNumber: "canadaBusinessNumber";
         chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
+        cmsCcn: "cmsCcn";
         crd: "crd";
         cusip: "cusip";
+        denmarkCvr: "denmarkCvr";
         duns: "duns";
         ein: "ein";
         euid: "euid";
@@ -37,6 +39,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
         ncesSchoolId: "ncesSchoolId";
         ncuaCharter: "ncuaCharter";
         nmlsId: "nmlsId";
+        norwayOrgNr: "norwayOrgNr";
         npi: "npi";
         nyAttorneyRegistration: "nyAttorneyRegistration";
         orcid: "orcid";
@@ -68,8 +71,10 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             brazilCnpj: "brazilCnpj";
             canadaBusinessNumber: "canadaBusinessNumber";
             chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
+            cmsCcn: "cmsCcn";
             crd: "crd";
             cusip: "cusip";
+            denmarkCvr: "denmarkCvr";
             duns: "duns";
             ein: "ein";
             euid: "euid";
@@ -94,6 +99,7 @@ declare const UniqueIdSchemaDefinition: z.ZodObject<{
             ncesSchoolId: "ncesSchoolId";
             ncuaCharter: "ncuaCharter";
             nmlsId: "nmlsId";
+            norwayOrgNr: "norwayOrgNr";
             npi: "npi";
             nyAttorneyRegistration: "nyAttorneyRegistration";
             orcid: "orcid";

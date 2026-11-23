@@ -30,8 +30,10 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     brazilCnpj: "brazilCnpj";
     canadaBusinessNumber: "canadaBusinessNumber";
     chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
+    cmsCcn: "cmsCcn";
     crd: "crd";
     cusip: "cusip";
+    denmarkCvr: "denmarkCvr";
     duns: "duns";
     ein: "ein";
     euid: "euid";
@@ -56,6 +58,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
     ncesSchoolId: "ncesSchoolId";
     ncuaCharter: "ncuaCharter";
     nmlsId: "nmlsId";
+    norwayOrgNr: "norwayOrgNr";
     npi: "npi";
     nyAttorneyRegistration: "nyAttorneyRegistration";
     orcid: "orcid";
@@ -87,8 +90,10 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         brazilCnpj: "brazilCnpj";
         canadaBusinessNumber: "canadaBusinessNumber";
         chinaUnifiedSocialCreditCode: "chinaUnifiedSocialCreditCode";
+        cmsCcn: "cmsCcn";
         crd: "crd";
         cusip: "cusip";
+        denmarkCvr: "denmarkCvr";
         duns: "duns";
         ein: "ein";
         euid: "euid";
@@ -113,6 +118,7 @@ export declare const UniqueIdTypeSchema: z.ZodUnion<readonly [z.ZodEnum<{
         ncesSchoolId: "ncesSchoolId";
         ncuaCharter: "ncuaCharter";
         nmlsId: "nmlsId";
+        norwayOrgNr: "norwayOrgNr";
         npi: "npi";
         nyAttorneyRegistration: "nyAttorneyRegistration";
         orcid: "orcid";
