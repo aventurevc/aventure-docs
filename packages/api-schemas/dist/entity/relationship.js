@@ -36,7 +36,7 @@ const EntityRelationshipSchemaDefinition = z.object({
     get relationship() {
         return z.array(EntityRelationshipSchemaDefinition);
     },
-    /** Canonical relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Similarity endpoint rows use the stored relationship type when one exists and calculated when the row comes from similarity alone. */
+    /** Canonical relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, comparablePeer, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. Similarity endpoint rows use the stored relationship type when one exists and calculated when the row comes from similarity alone. */
     relationshipType: z.string(),
     /** Canonical source entity UUID stored on the relationship row. Compare with the requested entity id and `/v1/entities/relationships/types` sourceRole/targetRole to orient directional relationships such as parent. */
     sourceEntityId: z.uuid().nullish(),

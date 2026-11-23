@@ -19,7 +19,7 @@ export const EntitySimilarParamSchema = z.object({
     page: z.int().min(0).default(0).optional(),
     /** Permit monogram fallback */
     permitMonogram: z.boolean().optional(),
-    /** Filter by stored relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. */
+    /** Filter by stored relationship type, one of: acceleratorParticipant, acquirer, affinity, calculated, comparablePeer, competingProductService, competitor, customer, fundManagerFirm, parent, productService, serviceProvider, similarCompany, spinOffFrom, successor. */
     relationshipType: z.string().optional(),
     /** The size of the page to be returned */
     size: z.int().min(1).default(20).optional(),
