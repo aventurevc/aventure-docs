@@ -527,6 +527,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "entity/fundraise-transaction-entity",
         schemaName: "EntityFundraiseTransactionEntitySchema",
     },
+    EntityHeadcountEstimate: {
+        modulePath: "entity/headcount-estimate",
+        schemaName: "EntityHeadcountEstimateSchema",
+    },
     EntityImage: { modulePath: "entity/image", schemaName: "EntityImageSchema" },
     EntityInvestorParticipation: {
         modulePath: "entity/investor-participation",
@@ -623,6 +627,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityResearchValueTypeSchema",
     },
     EntityResolution: { modulePath: "entity/resolution", schemaName: "EntityResolutionSchema" },
+    EntityRevenueEstimate: {
+        modulePath: "entity/revenue-estimate",
+        schemaName: "EntityRevenueEstimateSchema",
+    },
     EntitySimilarityContext: {
         modulePath: "entity/similarity-context",
         schemaName: "EntitySimilarityContextSchema",
@@ -1227,6 +1235,18 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "research/value-shape-type",
         schemaName: "ResearchValueShapeTypeSchema",
     },
+    RevenueDriverContribution: {
+        modulePath: "revenue/driver-contribution",
+        schemaName: "RevenueDriverContributionSchema",
+    },
+    RevenueDriverDirection: {
+        modulePath: "revenue/driver-direction",
+        schemaName: "RevenueDriverDirectionSchema",
+    },
+    RevenueEstimateRegime: {
+        modulePath: "revenue/estimate-regime",
+        schemaName: "RevenueEstimateRegimeSchema",
+    },
     RoundLabel: { modulePath: "round/label", schemaName: "RoundLabelSchema" },
     Search: { modulePath: "search/search", schemaName: "SearchSchema" },
     SearchAccountingReceipt: {
@@ -1344,6 +1364,11 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "shared/search-mutation",
         schemaName: "SharedSearchMutationSchema",
     },
+    SignalEvidenceClass: {
+        modulePath: "signal/evidence-class",
+        schemaName: "SignalEvidenceClassSchema",
+    },
+    SignalFamilyScore: { modulePath: "signal/family-score", schemaName: "SignalFamilyScoreSchema" },
     SlugLocation: { modulePath: "slug/location", schemaName: "SlugLocationSchema" },
     SlugResource: { modulePath: "redirect/slug-resource", schemaName: "SlugResourceSchema" },
     SortObject: { modulePath: "sort/object", schemaName: "SortObjectSchema" },

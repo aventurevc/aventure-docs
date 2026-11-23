@@ -8,8 +8,10 @@ import { z } from "zod/v4";
  * @endpoint GET /v1/search/link
  * @endpoint GET /v1/entities/{entityId}
  * @endpoint GET /v1/entities/{entityId}/employee-counts
+ * @endpoint GET /v1/entities/{entityId}/headcount-estimate
  * @endpoint GET /v1/entities/{entityId}/investors
  * @endpoint GET /v1/entities/{entityId}/investors/people
+ * @endpoint GET /v1/entities/{entityId}/revenue-estimate
  * @endpoint GET /v1/entities/{entityId}/valuations
  * @endpoint GET /v1/people/{personId}
  * @endpoint GET /v1/people/{personId}/graph
@@ -22,7 +24,9 @@ import { z } from "zod/v4";
  * @endpoint POST /v1/people/lookup-batch
  * @endpoint POST /v1/search
  * @endpoint POST /v1/search/shared
+ * @usedBySchema EntityHeadcountEstimateSchema
  * @usedBySchema EntityResearchFactValueSchema
+ * @usedBySchema EntityRevenueEstimateSchema
  * @usedBySchema EntityValuationTimeSeriesPointSchema
  * @contractShape entity.valuation-data-confidence
  * @contractRole canonical
