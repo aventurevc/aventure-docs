@@ -2,6 +2,7 @@
 import { z } from "zod/v4";
 import { EntityAcceleratorParticipationSchema } from "./accelerator-participation.js";
 import { EntityFinancialSchema } from "./financial.js";
+import { EntityMarketMultipleSchema } from "./market-multiple.js";
 import { EntityResearchDetailSchema } from "./research-detail.js";
 import { EntityResearchSnippetSchema } from "./research-snippet.js";
 const EntityResearchSchemaDefinition = z.object({
@@ -11,6 +12,8 @@ const EntityResearchSchemaDefinition = z.object({
     detail: z.array(EntityResearchDetailSchema),
     /** Stored financial facts selected by financialYear and financialPeriod; omitted when not selected, empty when no matching row exists. Includes no private provenance. */
     financial: z.array(EntityFinancialSchema).nullish(),
+    /** Precomputed daily public market valuation and comparable-peer multiple benchmarks; omitted when neither exists. */
+    marketMultiple: EntityMarketMultipleSchema.nullish(),
     /** Research text snippets for this entity */
     snippet: z.array(EntityResearchSnippetSchema),
 });

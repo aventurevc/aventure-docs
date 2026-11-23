@@ -1,6 +1,7 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
 import { EntitySchema } from "./entity.js";
+import { EntityPeerValuationSnapshotSchema } from "./peer-valuation-snapshot.js";
 import { EntityProfileStatusSchema } from "./profile-status.js";
 import { FundingStageSchema } from "../funding/stage.js";
 /**
@@ -32,6 +33,8 @@ export const EntityComparisonSignalsSchema = z.object({
     disclosedStage: z.string().nullish(),
     /** Latest funding stage when known */
     fundingStage: FundingStageSchema.nullish(),
+    /** Precomputed daily public market valuation snapshot for the provider when publicly quoted. */
+    marketValuation: EntityPeerValuationSnapshotSchema.nullish(),
     /** Provider ownership from current tags and current primary parent or acquirer relationships */
     ownership: z.array(z.string()),
     /** Provider pricing/revenue model (current typeRevenue tags) */

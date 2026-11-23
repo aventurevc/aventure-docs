@@ -543,6 +543,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         schemaName: "EntityListResearchSchema",
     },
     EntityLogoType: { modulePath: "entity/logo-type", schemaName: "EntityLogoTypeSchema" },
+    EntityMarketMultiple: {
+        modulePath: "entity/market-multiple",
+        schemaName: "EntityMarketMultipleSchema",
+    },
     EntityNameAliasEntityAliasType: {
         modulePath: "entity/name-alias-entity-alias-type",
         schemaName: "EntityNameAliasEntityAliasTypeSchema",
@@ -558,6 +562,18 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
     EntityOperatingStatus: {
         modulePath: "entity/operating-status",
         schemaName: "EntityOperatingStatusSchema",
+    },
+    EntityPeerMetricSummary: {
+        modulePath: "entity/peer-metric-summary",
+        schemaName: "EntityPeerMetricSummarySchema",
+    },
+    EntityPeerMultipleSummary: {
+        modulePath: "entity/peer-multiple-summary",
+        schemaName: "EntityPeerMultipleSummarySchema",
+    },
+    EntityPeerValuationSnapshot: {
+        modulePath: "entity/peer-valuation-snapshot",
+        schemaName: "EntityPeerValuationSnapshotSchema",
     },
     EntityPersonAssociation: {
         modulePath: "entity/person-association",

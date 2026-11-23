@@ -4654,6 +4654,40 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 disclosedStage?: string | null | undefined;
                 fundingStage?: string | null | undefined;
+                marketValuation?: {
+                    cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                    closePriceUsd: number;
+                    computedAt: string;
+                    ebitdaMargin?: number | null | undefined;
+                    enterpriseValueUsd?: number | null | undefined;
+                    evToEbit?: number | null | undefined;
+                    evToEbitda?: number | null | undefined;
+                    evToFreeCashFlow?: number | null | undefined;
+                    evToGrossProfit?: number | null | undefined;
+                    evToRevenue?: number | null | undefined;
+                    exchange?: string | null | undefined;
+                    freeCashFlowMargin?: number | null | undefined;
+                    grossMargin?: number | null | undefined;
+                    ltmEbitdaUsd?: number | null | undefined;
+                    ltmEbitUsd?: number | null | undefined;
+                    ltmFreeCashFlowUsd?: number | null | undefined;
+                    ltmGrossProfitUsd?: number | null | undefined;
+                    ltmNetIncomeUsd?: number | null | undefined;
+                    ltmOperatingCashFlowUsd?: number | null | undefined;
+                    ltmRevenueUsd?: number | null | undefined;
+                    marketCapUsd?: number | null | undefined;
+                    netDebtUsd?: number | null | undefined;
+                    netMargin?: number | null | undefined;
+                    operatingMargin?: number | null | undefined;
+                    priceDate: string;
+                    priceSource: string;
+                    priceStatus: string;
+                    priceToEarnings?: number | null | undefined;
+                    revenueGrowthYoy?: number | null | undefined;
+                    sharesOutstanding?: number | null | undefined;
+                    ticker: string;
+                    totalDebtUsd?: number | null | undefined;
+                } | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
                 profileStatus?: {
@@ -4715,6 +4749,40 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             id?: number | null | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
+            marketValuation?: {
+                cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                closePriceUsd: number;
+                computedAt: string;
+                ebitdaMargin?: number | null | undefined;
+                enterpriseValueUsd?: number | null | undefined;
+                evToEbit?: number | null | undefined;
+                evToEbitda?: number | null | undefined;
+                evToFreeCashFlow?: number | null | undefined;
+                evToGrossProfit?: number | null | undefined;
+                evToRevenue?: number | null | undefined;
+                exchange?: string | null | undefined;
+                freeCashFlowMargin?: number | null | undefined;
+                grossMargin?: number | null | undefined;
+                ltmEbitdaUsd?: number | null | undefined;
+                ltmEbitUsd?: number | null | undefined;
+                ltmFreeCashFlowUsd?: number | null | undefined;
+                ltmGrossProfitUsd?: number | null | undefined;
+                ltmNetIncomeUsd?: number | null | undefined;
+                ltmOperatingCashFlowUsd?: number | null | undefined;
+                ltmRevenueUsd?: number | null | undefined;
+                marketCapUsd?: number | null | undefined;
+                netDebtUsd?: number | null | undefined;
+                netMargin?: number | null | undefined;
+                operatingMargin?: number | null | undefined;
+                priceDate: string;
+                priceSource: string;
+                priceStatus: string;
+                priceToEarnings?: number | null | undefined;
+                revenueGrowthYoy?: number | null | undefined;
+                sharesOutstanding?: number | null | undefined;
+                ticker: string;
+                totalDebtUsd?: number | null | undefined;
+            } | null | undefined;
             profileStatus?: {
                 headline: string;
                 isAcquired?: boolean | null | undefined;
@@ -4782,6 +4850,40 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 } | null | undefined;
                 disclosedStage?: string | null | undefined;
                 fundingStage?: string | null | undefined;
+                marketValuation?: {
+                    cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                    closePriceUsd: number;
+                    computedAt: string;
+                    ebitdaMargin?: number | null | undefined;
+                    enterpriseValueUsd?: number | null | undefined;
+                    evToEbit?: number | null | undefined;
+                    evToEbitda?: number | null | undefined;
+                    evToFreeCashFlow?: number | null | undefined;
+                    evToGrossProfit?: number | null | undefined;
+                    evToRevenue?: number | null | undefined;
+                    exchange?: string | null | undefined;
+                    freeCashFlowMargin?: number | null | undefined;
+                    grossMargin?: number | null | undefined;
+                    ltmEbitdaUsd?: number | null | undefined;
+                    ltmEbitUsd?: number | null | undefined;
+                    ltmFreeCashFlowUsd?: number | null | undefined;
+                    ltmGrossProfitUsd?: number | null | undefined;
+                    ltmNetIncomeUsd?: number | null | undefined;
+                    ltmOperatingCashFlowUsd?: number | null | undefined;
+                    ltmRevenueUsd?: number | null | undefined;
+                    marketCapUsd?: number | null | undefined;
+                    netDebtUsd?: number | null | undefined;
+                    netMargin?: number | null | undefined;
+                    operatingMargin?: number | null | undefined;
+                    priceDate: string;
+                    priceSource: string;
+                    priceStatus: string;
+                    priceToEarnings?: number | null | undefined;
+                    revenueGrowthYoy?: number | null | undefined;
+                    sharesOutstanding?: number | null | undefined;
+                    ticker: string;
+                    totalDebtUsd?: number | null | undefined;
+                } | null | undefined;
                 ownership: string[];
                 pricingModel: string[];
                 profileStatus?: {
@@ -4843,6 +4945,40 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
             id?: number | null | undefined;
             isCurrent?: boolean | null | undefined;
             isPrimary?: boolean | null | undefined;
+            marketValuation?: {
+                cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                closePriceUsd: number;
+                computedAt: string;
+                ebitdaMargin?: number | null | undefined;
+                enterpriseValueUsd?: number | null | undefined;
+                evToEbit?: number | null | undefined;
+                evToEbitda?: number | null | undefined;
+                evToFreeCashFlow?: number | null | undefined;
+                evToGrossProfit?: number | null | undefined;
+                evToRevenue?: number | null | undefined;
+                exchange?: string | null | undefined;
+                freeCashFlowMargin?: number | null | undefined;
+                grossMargin?: number | null | undefined;
+                ltmEbitdaUsd?: number | null | undefined;
+                ltmEbitUsd?: number | null | undefined;
+                ltmFreeCashFlowUsd?: number | null | undefined;
+                ltmGrossProfitUsd?: number | null | undefined;
+                ltmNetIncomeUsd?: number | null | undefined;
+                ltmOperatingCashFlowUsd?: number | null | undefined;
+                ltmRevenueUsd?: number | null | undefined;
+                marketCapUsd?: number | null | undefined;
+                netDebtUsd?: number | null | undefined;
+                netMargin?: number | null | undefined;
+                operatingMargin?: number | null | undefined;
+                priceDate: string;
+                priceSource: string;
+                priceStatus: string;
+                priceToEarnings?: number | null | undefined;
+                revenueGrowthYoy?: number | null | undefined;
+                sharesOutstanding?: number | null | undefined;
+                ticker: string;
+                totalDebtUsd?: number | null | undefined;
+            } | null | undefined;
             profileStatus?: {
                 headline: string;
                 isAcquired?: boolean | null | undefined;
@@ -4951,6 +5087,133 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 revenue: string | null;
                 year: number;
             }[] | null | undefined;
+            marketMultiple?: {
+                peerGroup?: {
+                    asOfDate?: string | null | undefined;
+                    computedAt: string;
+                    ebitdaMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToEbit?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToEbitda?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToFreeCashFlow?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToGrossProfit?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToRevenue?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    freeCashFlowMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    grossMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    netMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    operatingMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    peerCount: number;
+                    priceToEarnings?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    revenueGrowthYoy?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    selfIncluded: boolean;
+                    valuedPeerCount: number;
+                } | null | undefined;
+                valuation?: {
+                    cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                    closePriceUsd: number;
+                    computedAt: string;
+                    ebitdaMargin?: number | null | undefined;
+                    enterpriseValueUsd?: number | null | undefined;
+                    evToEbit?: number | null | undefined;
+                    evToEbitda?: number | null | undefined;
+                    evToFreeCashFlow?: number | null | undefined;
+                    evToGrossProfit?: number | null | undefined;
+                    evToRevenue?: number | null | undefined;
+                    exchange?: string | null | undefined;
+                    freeCashFlowMargin?: number | null | undefined;
+                    grossMargin?: number | null | undefined;
+                    ltmEbitdaUsd?: number | null | undefined;
+                    ltmEbitUsd?: number | null | undefined;
+                    ltmFreeCashFlowUsd?: number | null | undefined;
+                    ltmGrossProfitUsd?: number | null | undefined;
+                    ltmNetIncomeUsd?: number | null | undefined;
+                    ltmOperatingCashFlowUsd?: number | null | undefined;
+                    ltmRevenueUsd?: number | null | undefined;
+                    marketCapUsd?: number | null | undefined;
+                    netDebtUsd?: number | null | undefined;
+                    netMargin?: number | null | undefined;
+                    operatingMargin?: number | null | undefined;
+                    priceDate: string;
+                    priceSource: string;
+                    priceStatus: string;
+                    priceToEarnings?: number | null | undefined;
+                    revenueGrowthYoy?: number | null | undefined;
+                    sharesOutstanding?: number | null | undefined;
+                    ticker: string;
+                    totalDebtUsd?: number | null | undefined;
+                } | null | undefined;
+            } | null | undefined;
             snippet: {
                 compliance?: {
                     characterCount: number;
@@ -5063,6 +5326,133 @@ declare const PageEntityDetailSchemaDefinition: z.ZodObject<{
                 revenue: string | null;
                 year: number;
             }[] | null | undefined;
+            marketMultiple?: {
+                peerGroup?: {
+                    asOfDate?: string | null | undefined;
+                    computedAt: string;
+                    ebitdaMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToEbit?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToEbitda?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToFreeCashFlow?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToGrossProfit?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    evToRevenue?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    freeCashFlowMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    grossMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    netMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    operatingMargin?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    peerCount: number;
+                    priceToEarnings?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    revenueGrowthYoy?: {
+                        max?: number | null | undefined;
+                        mean?: number | null | undefined;
+                        median?: number | null | undefined;
+                        min?: number | null | undefined;
+                        sampleCount: number;
+                    } | null | undefined;
+                    selfIncluded: boolean;
+                    valuedPeerCount: number;
+                } | null | undefined;
+                valuation?: {
+                    cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                    closePriceUsd: number;
+                    computedAt: string;
+                    ebitdaMargin?: number | null | undefined;
+                    enterpriseValueUsd?: number | null | undefined;
+                    evToEbit?: number | null | undefined;
+                    evToEbitda?: number | null | undefined;
+                    evToFreeCashFlow?: number | null | undefined;
+                    evToGrossProfit?: number | null | undefined;
+                    evToRevenue?: number | null | undefined;
+                    exchange?: string | null | undefined;
+                    freeCashFlowMargin?: number | null | undefined;
+                    grossMargin?: number | null | undefined;
+                    ltmEbitdaUsd?: number | null | undefined;
+                    ltmEbitUsd?: number | null | undefined;
+                    ltmFreeCashFlowUsd?: number | null | undefined;
+                    ltmGrossProfitUsd?: number | null | undefined;
+                    ltmNetIncomeUsd?: number | null | undefined;
+                    ltmOperatingCashFlowUsd?: number | null | undefined;
+                    ltmRevenueUsd?: number | null | undefined;
+                    marketCapUsd?: number | null | undefined;
+                    netDebtUsd?: number | null | undefined;
+                    netMargin?: number | null | undefined;
+                    operatingMargin?: number | null | undefined;
+                    priceDate: string;
+                    priceSource: string;
+                    priceStatus: string;
+                    priceToEarnings?: number | null | undefined;
+                    revenueGrowthYoy?: number | null | undefined;
+                    sharesOutstanding?: number | null | undefined;
+                    ticker: string;
+                    totalDebtUsd?: number | null | undefined;
+                } | null | undefined;
+            } | null | undefined;
             snippet: {
                 compliance?: {
                     characterCount: number;
@@ -7750,6 +8140,40 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     disclosedStage?: string | null | undefined;
                     fundingStage?: string | null | undefined;
+                    marketValuation?: {
+                        cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                        closePriceUsd: number;
+                        computedAt: string;
+                        ebitdaMargin?: number | null | undefined;
+                        enterpriseValueUsd?: number | null | undefined;
+                        evToEbit?: number | null | undefined;
+                        evToEbitda?: number | null | undefined;
+                        evToFreeCashFlow?: number | null | undefined;
+                        evToGrossProfit?: number | null | undefined;
+                        evToRevenue?: number | null | undefined;
+                        exchange?: string | null | undefined;
+                        freeCashFlowMargin?: number | null | undefined;
+                        grossMargin?: number | null | undefined;
+                        ltmEbitdaUsd?: number | null | undefined;
+                        ltmEbitUsd?: number | null | undefined;
+                        ltmFreeCashFlowUsd?: number | null | undefined;
+                        ltmGrossProfitUsd?: number | null | undefined;
+                        ltmNetIncomeUsd?: number | null | undefined;
+                        ltmOperatingCashFlowUsd?: number | null | undefined;
+                        ltmRevenueUsd?: number | null | undefined;
+                        marketCapUsd?: number | null | undefined;
+                        netDebtUsd?: number | null | undefined;
+                        netMargin?: number | null | undefined;
+                        operatingMargin?: number | null | undefined;
+                        priceDate: string;
+                        priceSource: string;
+                        priceStatus: string;
+                        priceToEarnings?: number | null | undefined;
+                        revenueGrowthYoy?: number | null | undefined;
+                        sharesOutstanding?: number | null | undefined;
+                        ticker: string;
+                        totalDebtUsd?: number | null | undefined;
+                    } | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
                     profileStatus?: {
@@ -7811,6 +8235,40 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 id?: number | null | undefined;
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
+                marketValuation?: {
+                    cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                    closePriceUsd: number;
+                    computedAt: string;
+                    ebitdaMargin?: number | null | undefined;
+                    enterpriseValueUsd?: number | null | undefined;
+                    evToEbit?: number | null | undefined;
+                    evToEbitda?: number | null | undefined;
+                    evToFreeCashFlow?: number | null | undefined;
+                    evToGrossProfit?: number | null | undefined;
+                    evToRevenue?: number | null | undefined;
+                    exchange?: string | null | undefined;
+                    freeCashFlowMargin?: number | null | undefined;
+                    grossMargin?: number | null | undefined;
+                    ltmEbitdaUsd?: number | null | undefined;
+                    ltmEbitUsd?: number | null | undefined;
+                    ltmFreeCashFlowUsd?: number | null | undefined;
+                    ltmGrossProfitUsd?: number | null | undefined;
+                    ltmNetIncomeUsd?: number | null | undefined;
+                    ltmOperatingCashFlowUsd?: number | null | undefined;
+                    ltmRevenueUsd?: number | null | undefined;
+                    marketCapUsd?: number | null | undefined;
+                    netDebtUsd?: number | null | undefined;
+                    netMargin?: number | null | undefined;
+                    operatingMargin?: number | null | undefined;
+                    priceDate: string;
+                    priceSource: string;
+                    priceStatus: string;
+                    priceToEarnings?: number | null | undefined;
+                    revenueGrowthYoy?: number | null | undefined;
+                    sharesOutstanding?: number | null | undefined;
+                    ticker: string;
+                    totalDebtUsd?: number | null | undefined;
+                } | null | undefined;
                 profileStatus?: {
                     headline: string;
                     isAcquired?: boolean | null | undefined;
@@ -7919,6 +8377,133 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     revenue: string | null;
                     year: number;
                 }[] | null | undefined;
+                marketMultiple?: {
+                    peerGroup?: {
+                        asOfDate?: string | null | undefined;
+                        computedAt: string;
+                        ebitdaMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToEbit?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToEbitda?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToFreeCashFlow?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToGrossProfit?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToRevenue?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        freeCashFlowMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        grossMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        netMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        operatingMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        peerCount: number;
+                        priceToEarnings?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        revenueGrowthYoy?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        selfIncluded: boolean;
+                        valuedPeerCount: number;
+                    } | null | undefined;
+                    valuation?: {
+                        cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                        closePriceUsd: number;
+                        computedAt: string;
+                        ebitdaMargin?: number | null | undefined;
+                        enterpriseValueUsd?: number | null | undefined;
+                        evToEbit?: number | null | undefined;
+                        evToEbitda?: number | null | undefined;
+                        evToFreeCashFlow?: number | null | undefined;
+                        evToGrossProfit?: number | null | undefined;
+                        evToRevenue?: number | null | undefined;
+                        exchange?: string | null | undefined;
+                        freeCashFlowMargin?: number | null | undefined;
+                        grossMargin?: number | null | undefined;
+                        ltmEbitdaUsd?: number | null | undefined;
+                        ltmEbitUsd?: number | null | undefined;
+                        ltmFreeCashFlowUsd?: number | null | undefined;
+                        ltmGrossProfitUsd?: number | null | undefined;
+                        ltmNetIncomeUsd?: number | null | undefined;
+                        ltmOperatingCashFlowUsd?: number | null | undefined;
+                        ltmRevenueUsd?: number | null | undefined;
+                        marketCapUsd?: number | null | undefined;
+                        netDebtUsd?: number | null | undefined;
+                        netMargin?: number | null | undefined;
+                        operatingMargin?: number | null | undefined;
+                        priceDate: string;
+                        priceSource: string;
+                        priceStatus: string;
+                        priceToEarnings?: number | null | undefined;
+                        revenueGrowthYoy?: number | null | undefined;
+                        sharesOutstanding?: number | null | undefined;
+                        ticker: string;
+                        totalDebtUsd?: number | null | undefined;
+                    } | null | undefined;
+                } | null | undefined;
                 snippet: {
                     compliance?: {
                         characterCount: number;
@@ -10065,6 +10650,40 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     } | null | undefined;
                     disclosedStage?: string | null | undefined;
                     fundingStage?: string | null | undefined;
+                    marketValuation?: {
+                        cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                        closePriceUsd: number;
+                        computedAt: string;
+                        ebitdaMargin?: number | null | undefined;
+                        enterpriseValueUsd?: number | null | undefined;
+                        evToEbit?: number | null | undefined;
+                        evToEbitda?: number | null | undefined;
+                        evToFreeCashFlow?: number | null | undefined;
+                        evToGrossProfit?: number | null | undefined;
+                        evToRevenue?: number | null | undefined;
+                        exchange?: string | null | undefined;
+                        freeCashFlowMargin?: number | null | undefined;
+                        grossMargin?: number | null | undefined;
+                        ltmEbitdaUsd?: number | null | undefined;
+                        ltmEbitUsd?: number | null | undefined;
+                        ltmFreeCashFlowUsd?: number | null | undefined;
+                        ltmGrossProfitUsd?: number | null | undefined;
+                        ltmNetIncomeUsd?: number | null | undefined;
+                        ltmOperatingCashFlowUsd?: number | null | undefined;
+                        ltmRevenueUsd?: number | null | undefined;
+                        marketCapUsd?: number | null | undefined;
+                        netDebtUsd?: number | null | undefined;
+                        netMargin?: number | null | undefined;
+                        operatingMargin?: number | null | undefined;
+                        priceDate: string;
+                        priceSource: string;
+                        priceStatus: string;
+                        priceToEarnings?: number | null | undefined;
+                        revenueGrowthYoy?: number | null | undefined;
+                        sharesOutstanding?: number | null | undefined;
+                        ticker: string;
+                        totalDebtUsd?: number | null | undefined;
+                    } | null | undefined;
                     ownership: string[];
                     pricingModel: string[];
                     profileStatus?: {
@@ -10126,6 +10745,40 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                 id?: number | null | undefined;
                 isCurrent?: boolean | null | undefined;
                 isPrimary?: boolean | null | undefined;
+                marketValuation?: {
+                    cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                    closePriceUsd: number;
+                    computedAt: string;
+                    ebitdaMargin?: number | null | undefined;
+                    enterpriseValueUsd?: number | null | undefined;
+                    evToEbit?: number | null | undefined;
+                    evToEbitda?: number | null | undefined;
+                    evToFreeCashFlow?: number | null | undefined;
+                    evToGrossProfit?: number | null | undefined;
+                    evToRevenue?: number | null | undefined;
+                    exchange?: string | null | undefined;
+                    freeCashFlowMargin?: number | null | undefined;
+                    grossMargin?: number | null | undefined;
+                    ltmEbitdaUsd?: number | null | undefined;
+                    ltmEbitUsd?: number | null | undefined;
+                    ltmFreeCashFlowUsd?: number | null | undefined;
+                    ltmGrossProfitUsd?: number | null | undefined;
+                    ltmNetIncomeUsd?: number | null | undefined;
+                    ltmOperatingCashFlowUsd?: number | null | undefined;
+                    ltmRevenueUsd?: number | null | undefined;
+                    marketCapUsd?: number | null | undefined;
+                    netDebtUsd?: number | null | undefined;
+                    netMargin?: number | null | undefined;
+                    operatingMargin?: number | null | undefined;
+                    priceDate: string;
+                    priceSource: string;
+                    priceStatus: string;
+                    priceToEarnings?: number | null | undefined;
+                    revenueGrowthYoy?: number | null | undefined;
+                    sharesOutstanding?: number | null | undefined;
+                    ticker: string;
+                    totalDebtUsd?: number | null | undefined;
+                } | null | undefined;
                 profileStatus?: {
                     headline: string;
                     isAcquired?: boolean | null | undefined;
@@ -10234,6 +10887,133 @@ declare const PageEntityInvestorParticipationSchemaDefinition: z.ZodObject<{
                     revenue: string | null;
                     year: number;
                 }[] | null | undefined;
+                marketMultiple?: {
+                    peerGroup?: {
+                        asOfDate?: string | null | undefined;
+                        computedAt: string;
+                        ebitdaMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToEbit?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToEbitda?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToFreeCashFlow?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToGrossProfit?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        evToRevenue?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        freeCashFlowMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        grossMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        netMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        operatingMargin?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        peerCount: number;
+                        priceToEarnings?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        revenueGrowthYoy?: {
+                            max?: number | null | undefined;
+                            mean?: number | null | undefined;
+                            median?: number | null | undefined;
+                            min?: number | null | undefined;
+                            sampleCount: number;
+                        } | null | undefined;
+                        selfIncluded: boolean;
+                        valuedPeerCount: number;
+                    } | null | undefined;
+                    valuation?: {
+                        cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                        closePriceUsd: number;
+                        computedAt: string;
+                        ebitdaMargin?: number | null | undefined;
+                        enterpriseValueUsd?: number | null | undefined;
+                        evToEbit?: number | null | undefined;
+                        evToEbitda?: number | null | undefined;
+                        evToFreeCashFlow?: number | null | undefined;
+                        evToGrossProfit?: number | null | undefined;
+                        evToRevenue?: number | null | undefined;
+                        exchange?: string | null | undefined;
+                        freeCashFlowMargin?: number | null | undefined;
+                        grossMargin?: number | null | undefined;
+                        ltmEbitdaUsd?: number | null | undefined;
+                        ltmEbitUsd?: number | null | undefined;
+                        ltmFreeCashFlowUsd?: number | null | undefined;
+                        ltmGrossProfitUsd?: number | null | undefined;
+                        ltmNetIncomeUsd?: number | null | undefined;
+                        ltmOperatingCashFlowUsd?: number | null | undefined;
+                        ltmRevenueUsd?: number | null | undefined;
+                        marketCapUsd?: number | null | undefined;
+                        netDebtUsd?: number | null | undefined;
+                        netMargin?: number | null | undefined;
+                        operatingMargin?: number | null | undefined;
+                        priceDate: string;
+                        priceSource: string;
+                        priceStatus: string;
+                        priceToEarnings?: number | null | undefined;
+                        revenueGrowthYoy?: number | null | undefined;
+                        sharesOutstanding?: number | null | undefined;
+                        ticker: string;
+                        totalDebtUsd?: number | null | undefined;
+                    } | null | undefined;
+                } | null | undefined;
                 snippet: {
                     compliance?: {
                         characterCount: number;
@@ -12276,6 +13056,40 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             disclosedStage?: string | null | undefined;
             fundingStage?: string | null | undefined;
+            marketValuation?: {
+                cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                closePriceUsd: number;
+                computedAt: string;
+                ebitdaMargin?: number | null | undefined;
+                enterpriseValueUsd?: number | null | undefined;
+                evToEbit?: number | null | undefined;
+                evToEbitda?: number | null | undefined;
+                evToFreeCashFlow?: number | null | undefined;
+                evToGrossProfit?: number | null | undefined;
+                evToRevenue?: number | null | undefined;
+                exchange?: string | null | undefined;
+                freeCashFlowMargin?: number | null | undefined;
+                grossMargin?: number | null | undefined;
+                ltmEbitdaUsd?: number | null | undefined;
+                ltmEbitUsd?: number | null | undefined;
+                ltmFreeCashFlowUsd?: number | null | undefined;
+                ltmGrossProfitUsd?: number | null | undefined;
+                ltmNetIncomeUsd?: number | null | undefined;
+                ltmOperatingCashFlowUsd?: number | null | undefined;
+                ltmRevenueUsd?: number | null | undefined;
+                marketCapUsd?: number | null | undefined;
+                netDebtUsd?: number | null | undefined;
+                netMargin?: number | null | undefined;
+                operatingMargin?: number | null | undefined;
+                priceDate: string;
+                priceSource: string;
+                priceStatus: string;
+                priceToEarnings?: number | null | undefined;
+                revenueGrowthYoy?: number | null | undefined;
+                sharesOutstanding?: number | null | undefined;
+                ticker: string;
+                totalDebtUsd?: number | null | undefined;
+            } | null | undefined;
             ownership: string[];
             pricingModel: string[];
             profileStatus?: {
@@ -12337,6 +13151,40 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         id?: number | null | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
+        marketValuation?: {
+            cashAndShortTermInvestmentsUsd?: number | null | undefined;
+            closePriceUsd: number;
+            computedAt: string;
+            ebitdaMargin?: number | null | undefined;
+            enterpriseValueUsd?: number | null | undefined;
+            evToEbit?: number | null | undefined;
+            evToEbitda?: number | null | undefined;
+            evToFreeCashFlow?: number | null | undefined;
+            evToGrossProfit?: number | null | undefined;
+            evToRevenue?: number | null | undefined;
+            exchange?: string | null | undefined;
+            freeCashFlowMargin?: number | null | undefined;
+            grossMargin?: number | null | undefined;
+            ltmEbitdaUsd?: number | null | undefined;
+            ltmEbitUsd?: number | null | undefined;
+            ltmFreeCashFlowUsd?: number | null | undefined;
+            ltmGrossProfitUsd?: number | null | undefined;
+            ltmNetIncomeUsd?: number | null | undefined;
+            ltmOperatingCashFlowUsd?: number | null | undefined;
+            ltmRevenueUsd?: number | null | undefined;
+            marketCapUsd?: number | null | undefined;
+            netDebtUsd?: number | null | undefined;
+            netMargin?: number | null | undefined;
+            operatingMargin?: number | null | undefined;
+            priceDate: string;
+            priceSource: string;
+            priceStatus: string;
+            priceToEarnings?: number | null | undefined;
+            revenueGrowthYoy?: number | null | undefined;
+            sharesOutstanding?: number | null | undefined;
+            ticker: string;
+            totalDebtUsd?: number | null | undefined;
+        } | null | undefined;
         profileStatus?: {
             headline: string;
             isAcquired?: boolean | null | undefined;
@@ -12404,6 +13252,40 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
             } | null | undefined;
             disclosedStage?: string | null | undefined;
             fundingStage?: string | null | undefined;
+            marketValuation?: {
+                cashAndShortTermInvestmentsUsd?: number | null | undefined;
+                closePriceUsd: number;
+                computedAt: string;
+                ebitdaMargin?: number | null | undefined;
+                enterpriseValueUsd?: number | null | undefined;
+                evToEbit?: number | null | undefined;
+                evToEbitda?: number | null | undefined;
+                evToFreeCashFlow?: number | null | undefined;
+                evToGrossProfit?: number | null | undefined;
+                evToRevenue?: number | null | undefined;
+                exchange?: string | null | undefined;
+                freeCashFlowMargin?: number | null | undefined;
+                grossMargin?: number | null | undefined;
+                ltmEbitdaUsd?: number | null | undefined;
+                ltmEbitUsd?: number | null | undefined;
+                ltmFreeCashFlowUsd?: number | null | undefined;
+                ltmGrossProfitUsd?: number | null | undefined;
+                ltmNetIncomeUsd?: number | null | undefined;
+                ltmOperatingCashFlowUsd?: number | null | undefined;
+                ltmRevenueUsd?: number | null | undefined;
+                marketCapUsd?: number | null | undefined;
+                netDebtUsd?: number | null | undefined;
+                netMargin?: number | null | undefined;
+                operatingMargin?: number | null | undefined;
+                priceDate: string;
+                priceSource: string;
+                priceStatus: string;
+                priceToEarnings?: number | null | undefined;
+                revenueGrowthYoy?: number | null | undefined;
+                sharesOutstanding?: number | null | undefined;
+                ticker: string;
+                totalDebtUsd?: number | null | undefined;
+            } | null | undefined;
             ownership: string[];
             pricingModel: string[];
             profileStatus?: {
@@ -12465,6 +13347,40 @@ declare const PageEntityRelationshipSchemaDefinition: z.ZodObject<{
         id?: number | null | undefined;
         isCurrent?: boolean | null | undefined;
         isPrimary?: boolean | null | undefined;
+        marketValuation?: {
+            cashAndShortTermInvestmentsUsd?: number | null | undefined;
+            closePriceUsd: number;
+            computedAt: string;
+            ebitdaMargin?: number | null | undefined;
+            enterpriseValueUsd?: number | null | undefined;
+            evToEbit?: number | null | undefined;
+            evToEbitda?: number | null | undefined;
+            evToFreeCashFlow?: number | null | undefined;
+            evToGrossProfit?: number | null | undefined;
+            evToRevenue?: number | null | undefined;
+            exchange?: string | null | undefined;
+            freeCashFlowMargin?: number | null | undefined;
+            grossMargin?: number | null | undefined;
+            ltmEbitdaUsd?: number | null | undefined;
+            ltmEbitUsd?: number | null | undefined;
+            ltmFreeCashFlowUsd?: number | null | undefined;
+            ltmGrossProfitUsd?: number | null | undefined;
+            ltmNetIncomeUsd?: number | null | undefined;
+            ltmOperatingCashFlowUsd?: number | null | undefined;
+            ltmRevenueUsd?: number | null | undefined;
+            marketCapUsd?: number | null | undefined;
+            netDebtUsd?: number | null | undefined;
+            netMargin?: number | null | undefined;
+            operatingMargin?: number | null | undefined;
+            priceDate: string;
+            priceSource: string;
+            priceStatus: string;
+            priceToEarnings?: number | null | undefined;
+            revenueGrowthYoy?: number | null | undefined;
+            sharesOutstanding?: number | null | undefined;
+            ticker: string;
+            totalDebtUsd?: number | null | undefined;
+        } | null | undefined;
         profileStatus?: {
             headline: string;
             isAcquired?: boolean | null | undefined;
