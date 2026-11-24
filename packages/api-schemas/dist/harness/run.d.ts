@@ -18,10 +18,15 @@ import { z } from "zod/v4";
 export declare const HarnessRunSchema: z.ZodObject<{
     attempt: z.ZodInt;
     callerCanFollowRun: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
-    chassis: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+    chassis: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         "claude-agent-sdk": "claude-agent-sdk";
         "pi-agent-sdk": "pi-agent-sdk";
-    }>>>;
+    }>, z.ZodString]> & {
+        enum: {
+            "claude-agent-sdk": "claude-agent-sdk";
+            "pi-agent-sdk": "pi-agent-sdk";
+        };
+    }>>;
     chassisRouted: z.ZodOptional<z.ZodBoolean>;
     createdAt: z.ZodISODateTime;
     entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;

@@ -124,6 +124,9 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         suspectedShellStrip: "suspectedShellStrip";
         suspected_shell_strip: "suspected_shell_strip";
         task_plan_operation_unserved: "task_plan_operation_unserved";
+        team_last_admin_cannot_leave: "team_last_admin_cannot_leave";
+        team_owner_cannot_leave: "team_owner_cannot_leave";
+        team_seat_limit_reached: "team_seat_limit_reached";
         text_send_limit_reached: "text_send_limit_reached";
         text_write_job_ended: "text_write_job_ended";
         url_surface_misclassification: "url_surface_misclassification";

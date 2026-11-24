@@ -172,37 +172,37 @@ export const ProblemDetailSchema = z.object({
             "search_still_running",
             /** A lookup was accepted as a lookup job instead of answered in the request: it asked for it with Prefer: respond-async, or its live attempt ran out of time. Agent action: poll the Location status URL after Retry-After. */
             "lookup_still_running",
-            /** SEC EDGAR lookup failed (ticker catalog or company submissions). Agent action: surface; SEC outages or throttling affect only the public-company preview. */
+            /** SEC EDGAR lookup failed; SEC outages or throttling affect public-company preview. */
             "sec_edgar_fetch_failed",
-            /** GitHub repository fetch failed (account, listing, or single repo). Agent action: surface; GitHub outages or rate limiting affect github-repo sync endpoints only. */
+            /** GitHub repository fetch failed; outages or rate limits affect github-repo sync. */
             "github_fetch_failed",
-            /** Machine-token sign-in service failed. Agent action: retry after retryAfterSeconds. */
+            /** Machine-token sign-in service failed. Retry after retryAfterSeconds. */
             "clerk_m2m_unavailable",
             /** OAuth sign-in failed. Agent action: retry after retryAfterSeconds. */
             "clerk_oauth_unavailable",
             /** Researchly usage API failed. Agent action: retry after retryAfterSeconds. */
             "researchly_usage_unavailable",
-            /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
+            /** LLM inference failed. Retry once with backoff for TRANSIENT only. */
             "INFERENCE_PROVIDER_ERROR",
-            /** LLM inference failed. Agent action: follow disposition; retry once with backoff only for TRANSIENT; do not replay TERMINAL unchanged. */
+            /** LLM inference failed. Retry once with backoff for TRANSIENT only. */
             "inference_provider_error",
             /** Text write job ended: stop polling; resubmit if TRANSIENT, else report. */
             "text_write_job_ended",
-            /** LLM inference provider returned an empty response body. Agent action: retry once; persistent empty responses indicate prompt or provider misconfiguration. */
+            /** Inference provider returned empty body. Retry once; inspect config if persistent. */
             "INFERENCE_PROVIDER_RESPONSE_EMPTY",
-            /** LLM inference provider returned an empty response body. Agent action: retry once; persistent empty responses indicate prompt or provider misconfiguration. */
+            /** Inference provider returned empty body. Retry once; inspect config if persistent. */
             "inference_provider_response_empty",
-            /** LLM inference provider returned a response that failed JSON parsing. Agent action: surface; the prompt or response schema may need adjustment. */
+            /** Inference provider returned invalid JSON; prompt or schema may need adjustment. */
             "INFERENCE_PROVIDER_INVALID_JSON",
-            /** LLM inference provider returned a response that failed JSON parsing. Agent action: surface; the prompt or response schema may need adjustment. */
+            /** Inference provider returned invalid JSON; prompt or schema may need adjustment. */
             "inference_provider_invalid_json",
-            /** Language-model configuration is missing. Agent action: stop; retrying cannot succeed until aVenture restores it. */
+            /** Language-model configuration is missing; wait until aVenture restores it. */
             "INFERENCE_PROFILES_MISSING",
-            /** Language-model configuration is missing. Agent action: stop; retrying cannot succeed until aVenture restores it. */
+            /** Language-model configuration is missing; wait until aVenture restores it. */
             "inference_profiles_missing",
-            /** Language-model credentials are missing. Agent action: stop; retrying cannot succeed until aVenture restores them. */
+            /** Language-model credentials are missing; wait until aVenture restores them. */
             "INFERENCE_PROFILE_API_KEY_MISSING",
-            /** Language-model credentials are missing. Agent action: stop; retrying cannot succeed until aVenture restores them. */
+            /** Language-model credentials are missing; wait until aVenture restores them. */
             "inference_profile_api_key_missing",
             /** No virus scanner is configured; uploads are refused. Do not retry. */
             "vault_scanner_not_configured",
@@ -210,6 +210,12 @@ export const ProblemDetailSchema = z.object({
             "vault_storage_not_configured",
             /** Library writes are not enabled on this deployment. Do not retry. */
             "vault_writers_not_enabled",
+            /** The team seat limit has been reached. Do not retry until a seat frees. */
+            "team_seat_limit_reached",
+            /** The team owner cannot leave or be removed. Do not retry. */
+            "team_owner_cannot_leave",
+            /** The last active team admin cannot leave until another admin exists. */
+            "team_last_admin_cannot_leave",
             /** The workspace owner cannot leave or be removed. Do not retry. */
             "vault_owner_cannot_leave",
             /** The last active admin cannot leave until another admin exists. */
