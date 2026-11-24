@@ -14,7 +14,7 @@ const BillingPlanChangeSchemaDefinition = z.object({
     publishableKey: z.string().nullish(),
 });
 /**
- * Plan change outcome: an upgrade applies now with a prorated invoice, a downgrade waits for the current period end.
+ * Plan change outcome: an immediate change applies now with a prorated invoice, a period-end change waits for the current period end.
  *
  * @openapiSchema BillingPlanChange
  * @endpoint POST /v1/billing/plan-changes

@@ -3,11 +3,13 @@ import { z } from "zod/v4";
 const BillingSubscriptionMutationSchemaDefinition = z.object({
     /** true ends the subscription at the current period end and drops a scheduled plan change; false resumes it and restores the plan change scheduled before the cancellation. Omit to change nothing. */
     cancelAtPeriodEnd: z.boolean().nullish(),
-    /** false resumes a subscription Stripe paused because its trial ended without a payment method; add one with POST /v1/billing/portal-sessions first. The resumption starts a new billing period now and charges the plan to that card; a declined or authentication-held charge answers 409. true, or cancelAtPeriodEnd in the same request, is refused. Omit to change nothing. */
+    /** true ends the subscription immediately with proration for unused time. Mutually exclusive with cancelAtPeriodEnd and paused; false is refused. Omit to change nothing. */
+    cancelNow: z.boolean().nullish(),
+    /** false resumes a subscription Stripe paused because its trial ended without a payment method; add one with POST /v1/billing/portal-sessions first. The resumption starts a new billing period now and charges the plan to that card; a declined or authentication-held charge answers 409. true, or another action in the same request, is refused. Omit to change nothing. */
     paused: z.boolean().nullish(),
 });
 /**
- * Merge patch of a continuing AI Plus or AI Pro subscription: cancel it at the period end or resume it, including one Stripe paused.
+ * Merge patch of a continuing AI Plus or AI Pro subscription: cancel it at the period end, cancel it immediately with proration, or resume it, including one Stripe paused.
  *
  * @openapiSchema BillingSubscriptionMutation
  * @endpoint PATCH /v1/billing/subscription

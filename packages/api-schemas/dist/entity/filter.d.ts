@@ -23,6 +23,7 @@ import { z } from "zod/v4";
  * @usedBySchema EntityPersonAssociationFilterSchema
  * @usedBySchema FederatedNaturalSearchSchema
  * @usedBySchema PersonFilterSchema
+ * @usedBySchema SearchNarrowingOptionSchema
  * @contractShape entity.filter
  * @contractRole canonical
  */

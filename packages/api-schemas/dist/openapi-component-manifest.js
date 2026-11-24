@@ -110,6 +110,10 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/catalog-tier",
         schemaName: "BillingCatalogTierSchema",
     },
+    BillingChangeTimingType: {
+        modulePath: "billing/change-timing-type",
+        schemaName: "BillingChangeTimingTypeSchema",
+    },
     BillingCheckout: { modulePath: "billing/checkout", schemaName: "BillingCheckoutSchema" },
     BillingCheckoutMutation: {
         modulePath: "billing/checkout-mutation",
@@ -1312,6 +1316,19 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/mode-execution",
         schemaName: "SearchModeExecutionSchema",
     },
+    SearchNarrowing: { modulePath: "search/narrowing", schemaName: "SearchNarrowingSchema" },
+    SearchNarrowingDimension: {
+        modulePath: "search/narrowing-dimension",
+        schemaName: "SearchNarrowingDimensionSchema",
+    },
+    SearchNarrowingOption: {
+        modulePath: "search/narrowing-option",
+        schemaName: "SearchNarrowingOptionSchema",
+    },
+    SearchNarrowingQuestion: {
+        modulePath: "search/narrowing-question",
+        schemaName: "SearchNarrowingQuestionSchema",
+    },
     SearchOrderingEntityFilterSortable: {
         modulePath: "search/ordering-entity-filter-sortable",
         schemaName: "SearchOrderingEntityFilterSortableSchema",
@@ -1325,6 +1342,7 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "search/person-profile",
         schemaName: "SearchPersonProfileSchema",
     },
+    SearchPlaceLevel: { modulePath: "search/place-level", schemaName: "SearchPlaceLevelSchema" },
     SearchQualifier: { modulePath: "search/qualifier", schemaName: "SearchQualifierSchema" },
     SearchQualifierOption: {
         modulePath: "search/qualifier-option",

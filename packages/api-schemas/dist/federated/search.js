@@ -8,12 +8,15 @@ import { NewsEntityMentionSchema } from "../news/entity-mention.js";
 import { PageResultNewsSchema } from "../pagination/schemas.js";
 import { PersonDetailSchema } from "../person/detail.js";
 import { PersonNaturalSearchResultSchema } from "../person/natural-search-result.js";
+import { SearchNarrowingSchema } from "../search/narrowing.js";
 import { SearchQualifierSchema } from "../search/qualifier.js";
 const FederatedSearchSchemaDefinition = z.object({
     /** Canonical entity natural-search result. */
     entity: NaturalSearchResultSchema,
     /** Public detail for Product/Service rows on the entity result page, in search rank order. Other entity types are not hydrated. */
     entityDetail: z.array(EntityDetailSchema),
+    /** Questions that narrow a broad company-category search with structured entityFilter fragments; null when the search is not broad category discovery, nothing would narrow it, or the questions missed their time budget (provenance.narrowingUnavailable). */
+    narrowing: SearchNarrowingSchema.nullish(),
     /** Page of news results from keyword search. */
     news: PageResultNewsSchema,
     /** Public entities each news row on the page links to, in news page order; a row with no public entity link has no entry. */
@@ -26,7 +29,7 @@ const FederatedSearchSchemaDefinition = z.object({
     personLead: z.boolean(),
     /** Requested and executed strategy for each search scope. */
     provenance: FederatedSearchProvenanceSchema,
-    /** A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */
+    /** Deprecated: read narrowing instead; served unchanged until clients stop reading it. A prompt with rewritten queries offered beside a broad query's results, from the search catalog revision the search read; null when no qualifier rule matches. */
     qualifier: SearchQualifierSchema.nullish(),
     /** Result sections from most to least relevant. People lead when `personLead` is true and come last otherwise. An executed entity type scope leads only when all its expanded types select one section. Remaining sections follow their best entity row's rank, then missing sections follow in Companies, Other Organizations, Products and Services, Investment Firms, Funds order. Legacy company and investor aggregates are not emitted. */
     section: z.array(FederatedSearchSectionSchema).optional(),

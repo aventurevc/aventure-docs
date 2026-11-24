@@ -20,6 +20,10 @@ declare const BillingPlanChangeMutationSchemaDefinition: z.ZodObject<{
         };
     };
     prorationDate: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
+    timing: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+        IMMEDIATE: "IMMEDIATE";
+        PERIOD_END: "PERIOD_END";
+    }>>>;
 }, z.core.$strip>;
 type BillingPlanChangeMutationDefinition = z.infer<typeof BillingPlanChangeMutationSchemaDefinition>;
 export interface BillingPlanChangeMutationSchemaInput extends z.input<typeof BillingPlanChangeMutationSchemaDefinition> {

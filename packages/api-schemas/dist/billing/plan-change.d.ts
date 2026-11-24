@@ -28,7 +28,7 @@ type BillingPlanChangeDefinition = z.infer<typeof BillingPlanChangeSchemaDefinit
 export interface BillingPlanChangeSchemaInput extends z.input<typeof BillingPlanChangeSchemaDefinition> {
 }
 /**
- * Plan change outcome: an upgrade applies now with a prorated invoice, a downgrade waits for the current period end.
+ * Plan change outcome: an immediate change applies now with a prorated invoice, a period-end change waits for the current period end.
  *
  * @openapiSchema BillingPlanChange
  * @endpoint POST /v1/billing/plan-changes

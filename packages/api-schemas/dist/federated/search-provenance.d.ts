@@ -13,6 +13,7 @@ declare const FederatedSearchProvenanceSchemaDefinition: z.ZodObject<{
         news: "news";
         person: "person";
     }>>>;
+    narrowingUnavailable: z.ZodOptional<z.ZodBoolean>;
     news: z.ZodType<{
         modeRequested: string;
         modeUsed: string;

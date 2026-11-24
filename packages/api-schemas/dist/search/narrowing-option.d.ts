@@ -1,0 +1,266 @@
+import { z } from "zod/v4";
+declare const SearchNarrowingOptionSchemaDefinition: z.ZodObject<{
+    count: z.ZodInt;
+    entityFilter: z.ZodObject<{
+        acceleratorBrand: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        acceleratorCohort: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        acceleratorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        acceleratorParticipation: z.ZodOptional<z.ZodArray<z.ZodType<{
+            acceleratorEntityId: string;
+            detail: {
+                batch: string;
+                program?: string | null | undefined;
+            };
+        }, import("../accelerator/participation-filter.ts").AcceleratorParticipationFilterSchemaInput, z.core.$ZodTypeInternals<{
+            acceleratorEntityId: string;
+            detail: {
+                batch: string;
+                program?: string | null | undefined;
+            };
+        }, import("../accelerator/participation-filter.ts").AcceleratorParticipationFilterSchemaInput>>>>;
+        acceleratorStatus: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        affinity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        closedLast: z.ZodOptional<z.ZodBoolean>;
+        employeeCountRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+            matchMode?: string | null | undefined;
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput, z.core.$ZodTypeInternals<{
+            matchMode?: string | null | undefined;
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, import("../employee/count-range.ts").EmployeeCountRangeSchemaInput>>>>;
+        entityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
+        entityName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        featured: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        fundraiseActivity: z.ZodOptional<z.ZodObject<{
+            amountInvestedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            amountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            dateAnnouncedRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            }, z.core.$strip>>>;
+            dateFundingCompleteRange: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+                max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+                min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+            }, z.core.$strip>>>;
+            investedAmountRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            investedCompanyName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedIndustry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investedRound: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investorActivity: z.ZodOptional<z.ZodObject<{
+                averageAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                largestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                smallestAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                totalAmountInvestedUsdRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+                totalInvestmentRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+                    max?: number | null | undefined;
+                    min?: number | null | undefined;
+                }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+            }, z.core.$strip>>;
+            investorEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
+            investorFamilyEntityId: z.ZodOptional<z.ZodArray<z.ZodUUID>>;
+            investorName: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            investorNameMatch: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+                any: "any";
+                every: "every";
+            }>>>;
+            lastRoundYearRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+            rankByInvestmentActivity: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+            round: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            totalRaisedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+            valuationRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput, z.core.$ZodTypeInternals<{
+                max?: number | null | undefined;
+                min?: number | null | undefined;
+            }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
+        }, z.core.$strip>>;
+        hasFundraising: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        headquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        headquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        headquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        industry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        investorPopulation: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        letter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        location: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        logoOption: z.ZodOptional<z.ZodObject<{
+            sortPriority: z.ZodOptional<z.ZodEnum<{
+                ANY_LOGO_FIRST: "ANY_LOGO_FIRST";
+                NONE: "NONE";
+                REAL_LOGO_FIRST: "REAL_LOGO_FIRST";
+            }>>;
+        }, z.core.$strip>>;
+        mainProduct: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        noteworthyOnly: z.ZodOptional<z.ZodBoolean>;
+        operatingStatus: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+            Acquired: "Acquired";
+            "Acquired Subsidiary": "Acquired Subsidiary";
+            Closed: "Closed";
+            "Closed (Acquihire)": "Closed (Acquihire)";
+            Inactive: "Inactive";
+            Operating: "Operating";
+        }>>>;
+        originCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        person: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        portfolioHeadquartersCity: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        portfolioHeadquartersCountry: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        portfolioHeadquartersState: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        qualityGate: z.ZodOptional<z.ZodEnum<{
+            COMPANY_LISTING_READY: "COMPANY_LISTING_READY";
+            NONE: "NONE";
+        }>>;
+        rankByProminence: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        slug: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        stage: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        standardizedClassification: z.ZodOptional<z.ZodArray<z.ZodType<{
+            category: string;
+            code?: number | null | undefined;
+            codeText?: string | null | undefined;
+            edition?: string | null | undefined;
+            hasEdition?: boolean | null | undefined;
+        }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput, z.core.$ZodTypeInternals<{
+            category: string;
+            code?: number | null | undefined;
+            codeText?: string | null | undefined;
+            edition?: string | null | undefined;
+            hasEdition?: boolean | null | undefined;
+        }, import("../standardized/classification-filter.ts").StandardizedClassificationFilterSchemaInput>>>>;
+        suppressLateStage: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        suppressNonOperating: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        suppressZeroTotalRaised: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+        tag: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        textSearch: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        typeCustomer: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeInvestor: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeModel: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeOwnership: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeRecord: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+            "Business Line": "Business Line";
+            Company: "Company";
+            Fund: "Fund";
+            Government: "Government";
+            "Investment Firm": "Investment Firm";
+            Nonprofit: "Nonprofit";
+            Organization: "Organization";
+            Product: "Product";
+            Service: "Service";
+        }>>>;
+        typeRegulatory: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeRevenue: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        typeTechnologyUsed: z.ZodOptional<z.ZodArray<z.ZodString>>;
+        uniqueId: z.ZodOptional<z.ZodArray<z.ZodType<{
+            identifier?: string | null | undefined;
+            idType: string;
+        }, import("../entity/unique-id-filter.ts").EntityUniqueIdFilterSchemaInput, z.core.$ZodTypeInternals<{
+            identifier?: string | null | undefined;
+            idType: string;
+        }, import("../entity/unique-id-filter.ts").EntityUniqueIdFilterSchemaInput>>>>;
+        url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        urlDomain: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        urlMatchMode: z.ZodOptional<z.ZodNullable<z.ZodEnum<{
+            domain: "domain";
+            hostPath: "hostPath";
+        }>>>;
+        urlType: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        yearFoundedRange: z.ZodOptional<z.ZodArray<z.ZodType<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, import("../int/range.ts").IntRangeSchemaInput, z.core.$ZodTypeInternals<{
+            max?: number | null | undefined;
+            min?: number | null | undefined;
+        }, import("../int/range.ts").IntRangeSchemaInput>>>>;
+    }, z.core.$strict>;
+    label: z.ZodString;
+    level: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
+        city: "city";
+        country: "country";
+        state: "state";
+    }>, z.ZodString]> & {
+        enum: {
+            city: "city";
+            country: "country";
+            state: "state";
+        };
+    }>>;
+}, z.core.$strip>;
+type SearchNarrowingOptionDefinition = z.infer<typeof SearchNarrowingOptionSchemaDefinition>;
+export interface SearchNarrowingOptionSchemaInput extends z.input<typeof SearchNarrowingOptionSchemaDefinition> {
+}
+/**
+ * One answer to a narrowing question.
+ *
+ * @openapiSchema SearchNarrowingOption
+ * @endpoint GET /v1/search/link
+ * @endpoint GET /v1/search/link/jobs/{jobId}
+ * @endpoint GET /v1/search/shared/{id}
+ * @endpoint GET /v1/search/shared/slug/{slug}
+ * @endpoint POST /v1/search
+ * @endpoint POST /v1/search/shared
+ * @usedBySchema SearchNarrowingQuestionSchema
+ * @contractShape search.narrowing-option
+ * @contractRole canonical
+ */
+export declare const SearchNarrowingOptionSchema: z.ZodType<SearchNarrowingOptionDefinition, SearchNarrowingOptionSchemaInput>;
+export type SearchNarrowingOption = z.infer<typeof SearchNarrowingOptionSchema>;
+export {};
+//# sourceMappingURL=narrowing-option.d.ts.map

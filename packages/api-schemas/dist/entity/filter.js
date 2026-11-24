@@ -36,6 +36,7 @@ import { UrlMatchModeSchema } from "../url/match-mode.js";
  * @usedBySchema EntityPersonAssociationFilterSchema
  * @usedBySchema FederatedNaturalSearchSchema
  * @usedBySchema PersonFilterSchema
+ * @usedBySchema SearchNarrowingOptionSchema
  * @contractShape entity.filter
  * @contractRole canonical
  */

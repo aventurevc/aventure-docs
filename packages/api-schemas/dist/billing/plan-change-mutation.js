@@ -1,11 +1,14 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BillingChangeTimingTypeSchema } from "./change-timing-type.js";
 import { BillingPlanTypeSchema } from "./plan-type.js";
 const BillingPlanChangeMutationSchemaDefinition = z.object({
     /** AI Plus or AI Pro plan to move to; the current plan cancels a scheduled change */
     plan: BillingPlanTypeSchema,
-    /** Unix epoch-second timestamp from an upgrade preview that pins its prorated amount on confirmation; omit it when no upgrade preview applies */
+    /** Unix epoch-second timestamp from an immediate-change preview that pins its prorated amount on confirmation; omit it for period-end changes or without a preview */
     prorationDate: z.number().int().nullish(),
+    /** When the change applies: IMMEDIATE prorates now, PERIOD_END schedules for renewal. Defaults to IMMEDIATE for upgrades or metered accounts, PERIOD_END for downgrades. */
+    timing: BillingChangeTimingTypeSchema.nullish(),
 });
 /**
  * Caller-selected plan for changing a continuing AI Plus or AI Pro subscription.

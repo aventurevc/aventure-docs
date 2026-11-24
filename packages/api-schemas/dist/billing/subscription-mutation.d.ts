@@ -1,13 +1,14 @@
 import { z } from "zod/v4";
 declare const BillingSubscriptionMutationSchemaDefinition: z.ZodObject<{
     cancelAtPeriodEnd: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
+    cancelNow: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     paused: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
 }, z.core.$strip>;
 type BillingSubscriptionMutationDefinition = z.infer<typeof BillingSubscriptionMutationSchemaDefinition>;
 export interface BillingSubscriptionMutationSchemaInput extends z.input<typeof BillingSubscriptionMutationSchemaDefinition> {
 }
 /**
- * Merge patch of a continuing AI Plus or AI Pro subscription: cancel it at the period end or resume it, including one Stripe paused.
+ * Merge patch of a continuing AI Plus or AI Pro subscription: cancel it at the period end, cancel it immediately with proration, or resume it, including one Stripe paused.
  *
  * @openapiSchema BillingSubscriptionMutation
  * @endpoint PATCH /v1/billing/subscription

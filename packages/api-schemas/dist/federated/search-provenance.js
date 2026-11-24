@@ -9,6 +9,8 @@ const FederatedSearchProvenanceSchemaDefinition = z.object({
     entity: SearchModeExecutionSchema,
     /** Scopes whose required named subjects could not be resolved, or whose optional sources or candidate judgments did not all complete. Returned rows remain usable but the requested population is incomplete, so this response must not be cached as final. Clarifying the named subjects or retrying may complete these scopes. */
     incompleteScope: z.array(z.enum(["entity", "person", "news"])).optional(),
+    /** True when narrowing questions were eligible but missed their time budget or their read failed, so narrowing is null. Rows are unaffected and the search is not incomplete; retrying may ask them. */
+    narrowingUnavailable: z.boolean().optional(),
     /** Search method requested and used for news. */
     news: SearchModeExecutionSchema,
     /** Search method requested and used for people. */
