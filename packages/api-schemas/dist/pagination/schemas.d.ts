@@ -15812,10 +15812,12 @@ declare const PageHarnessRunSchemaDefinition: z.ZodObject<{
         callerCanFollowRun: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
         chassis: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
             "claude-agent-sdk": "claude-agent-sdk";
+            "mistral-vibe": "mistral-vibe";
             "pi-agent-sdk": "pi-agent-sdk";
         }>, z.ZodString]> & {
             enum: {
                 "claude-agent-sdk": "claude-agent-sdk";
+                "mistral-vibe": "mistral-vibe";
                 "pi-agent-sdk": "pi-agent-sdk";
             };
         }>>;

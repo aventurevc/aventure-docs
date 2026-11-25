@@ -28,6 +28,8 @@ export const ProblemDetailSchema = z.object({
         z.enum([
             /** The run's suppression of its accepted full-run entity is unverified. Retain the original failure outcome and terminal evidence. */
             "harness_suppression_unverified",
+            /** The EIN has no verified tax owner. Retain it for review; retrying cannot verify it. */
+            "ein_tax_owner_unverified",
             /** An anonymous caller cannot own a lookup job. Sign in to request async. */
             "async_lookup_sign_in_required",
             /** Credential already binds its run; resend without the research claim. */

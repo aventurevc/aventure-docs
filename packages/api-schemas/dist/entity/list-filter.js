@@ -35,7 +35,7 @@ import { UrlMatchModeSchema } from "../url/match-mode.js";
  * @contractShape entity.list-filter
  * @contractRole canonical
  */
-export const EntityListFilterSchema = z.strictObject({
+export const EntityListFilterSchema = z.object({
     /** Accelerator brand or operator name. */
     acceleratorBrand: z.array(z.string()).optional(),
     /** Accelerator batch or cohort label. */

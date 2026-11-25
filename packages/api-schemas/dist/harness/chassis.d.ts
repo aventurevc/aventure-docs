@@ -1,6 +1,6 @@
 import { z } from "zod/v4";
 /**
- * Agent framework a research run executes on: the Claude Agent SDK, Pi agent SDK, or additional harness chassis
+ * Agent framework a research run executes on: the Claude Agent SDK, the Pi agent SDK, the Mistral Vibe app server (only for catalog models that list it), or additional harness chassis
  *
  * @openapiSchema HarnessChassis
  * @endpoint GET /v1/research/runs
@@ -15,10 +15,12 @@ import { z } from "zod/v4";
  */
 export declare const HarnessChassisSchema: z.ZodUnion<readonly [z.ZodEnum<{
     "claude-agent-sdk": "claude-agent-sdk";
+    "mistral-vibe": "mistral-vibe";
     "pi-agent-sdk": "pi-agent-sdk";
 }>, z.ZodString]> & {
     enum: {
         "claude-agent-sdk": "claude-agent-sdk";
+        "mistral-vibe": "mistral-vibe";
         "pi-agent-sdk": "pi-agent-sdk";
     };
 };

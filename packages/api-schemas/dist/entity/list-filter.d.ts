@@ -251,6 +251,6 @@ export declare const EntityListFilterSchema: z.ZodObject<{
         max?: number | null | undefined;
         min?: number | null | undefined;
     }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-}, z.core.$strict>;
+}, z.core.$strip>;
 export type EntityListFilter = z.infer<typeof EntityListFilterSchema>;
 //# sourceMappingURL=list-filter.d.ts.map

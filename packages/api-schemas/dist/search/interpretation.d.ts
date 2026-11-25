@@ -242,7 +242,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strict>;
+    }, z.core.$strip>;
     intent: z.ZodEnum<{
         comparison: "comparison";
         discovery: "discovery";
@@ -480,7 +480,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
                 }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-            }, z.core.$strict>>>;
+            }, z.core.$strip>>>;
             isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             personTitle: z.ZodOptional<z.ZodArray<z.ZodString>>;
         }, z.core.$strip>>>;
@@ -750,7 +750,7 @@ declare const SearchInterpretationSchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-        }, z.core.$strict>>;
+        }, z.core.$strip>>;
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         firstName: z.ZodOptional<z.ZodNullable<z.ZodString>>;

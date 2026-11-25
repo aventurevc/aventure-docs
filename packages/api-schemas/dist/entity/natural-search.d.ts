@@ -228,7 +228,7 @@ declare const EntityNaturalSearchSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strict>>;
+    }, z.core.$strip>>;
     search: z.ZodType<{
         answerModel?: string | null | undefined;
         cacheMode?: "bypass" | "refresh" | "use" | undefined;

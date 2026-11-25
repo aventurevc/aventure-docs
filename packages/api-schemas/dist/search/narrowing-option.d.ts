@@ -229,7 +229,7 @@ declare const SearchNarrowingOptionSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strict>;
+    }, z.core.$strip>;
     label: z.ZodString;
     level: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         city: "city";
