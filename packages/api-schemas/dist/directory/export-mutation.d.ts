@@ -289,7 +289,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strip>>>;
+    }, z.core.$strict>>>;
     id: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodUUID>>>;
     page: z.ZodInt;
     personFilter: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -522,7 +522,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
                 }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-            }, z.core.$strip>>>;
+            }, z.core.$strict>>>;
             isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             personTitle: z.ZodOptional<z.ZodArray<z.ZodString>>;
         }, z.core.$strip>>>;
@@ -792,7 +792,7 @@ declare const DirectoryExportMutationSchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-        }, z.core.$strip>>;
+        }, z.core.$strict>>;
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         firstName: z.ZodOptional<z.ZodNullable<z.ZodString>>;

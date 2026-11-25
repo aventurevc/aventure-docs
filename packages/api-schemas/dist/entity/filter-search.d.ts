@@ -231,7 +231,7 @@ declare const EntityFilterSearchSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strip>>;
+    }, z.core.$strict>>;
 }, z.core.$strict>;
 type EntityFilterSearchDefinition = z.infer<typeof EntityFilterSearchSchemaDefinition>;
 export interface EntityFilterSearchSchemaInput extends z.input<typeof EntityFilterSearchSchemaDefinition> {

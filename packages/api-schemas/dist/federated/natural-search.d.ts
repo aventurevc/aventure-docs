@@ -234,7 +234,7 @@ declare const FederatedNaturalSearchSchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strip>>;
+    }, z.core.$strict>>;
     freshness: z.ZodOptional<z.ZodDefault<z.ZodEnum<{
         auto: "auto";
         cached: "cached";

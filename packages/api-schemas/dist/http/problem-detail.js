@@ -28,8 +28,12 @@ export const ProblemDetailSchema = z.object({
         z.enum([
             /** The run's suppression of its accepted full-run entity is unverified. Retain the original failure outcome and terminal evidence. */
             "harness_suppression_unverified",
-            /** The EIN has no verified tax owner. Retain it for review; retrying cannot verify it. */
+            /** No verified tax owner for this EIN: retain it; a retry cannot verify it. */
             "ein_tax_owner_unverified",
+            /** Owner holds this type's one identifier; retain the new value for review. */
+            "unique_id_owner_limit",
+            /** A concurrent writer changed the planned record; nothing written, replan. */
+            "unique_id_concurrent_change",
             /** An anonymous caller cannot own a lookup job. Sign in to request async. */
             "async_lookup_sign_in_required",
             /** Credential already binds its run; resend without the research claim. */
@@ -176,7 +180,7 @@ export const ProblemDetailSchema = z.object({
             "search_still_running",
             /** A lookup was accepted as a lookup job instead of answered in the request: it asked for it with Prefer: respond-async, or its live attempt ran out of time. Agent action: poll the Location status URL after Retry-After. */
             "lookup_still_running",
-            /** SEC EDGAR lookup failed; SEC outages or throttling affect public-company preview. */
+            /** SEC EDGAR read failed (preview, imports, Form D, facts): outage or throttling. */
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed; outages or rate limits affect github-repo sync. */
             "github_fetch_failed",

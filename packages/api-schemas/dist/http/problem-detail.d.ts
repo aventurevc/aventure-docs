@@ -131,6 +131,8 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         team_seat_limit_reached: "team_seat_limit_reached";
         text_send_limit_reached: "text_send_limit_reached";
         text_write_job_ended: "text_write_job_ended";
+        unique_id_concurrent_change: "unique_id_concurrent_change";
+        unique_id_owner_limit: "unique_id_owner_limit";
         url_surface_misclassification: "url_surface_misclassification";
         vault_last_admin_cannot_leave: "vault_last_admin_cannot_leave";
         vault_owner_cannot_leave: "vault_owner_cannot_leave";

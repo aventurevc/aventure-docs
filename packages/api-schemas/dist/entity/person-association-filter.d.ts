@@ -249,7 +249,7 @@ export declare const EntityPersonAssociationFilterSchema: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strip>>>;
+    }, z.core.$strict>>>;
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     personTitle: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;

@@ -230,7 +230,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
             max?: number | null | undefined;
             min?: number | null | undefined;
         }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-    }, z.core.$strip>>>;
+    }, z.core.$strict>>>;
     personFilter: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         additionalAssociation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
             entityFilter: z.ZodOptional<z.ZodNullable<z.ZodObject<{
@@ -461,7 +461,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
                     max?: number | null | undefined;
                     min?: number | null | undefined;
                 }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-            }, z.core.$strip>>>;
+            }, z.core.$strict>>>;
             isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
             personTitle: z.ZodOptional<z.ZodArray<z.ZodString>>;
         }, z.core.$strip>>>;
@@ -731,7 +731,7 @@ declare const SharedDirectorySchemaDefinition: z.ZodObject<{
                 max?: number | null | undefined;
                 min?: number | null | undefined;
             }, import("../int/range.ts").IntRangeSchemaInput>>>>;
-        }, z.core.$strip>>;
+        }, z.core.$strict>>;
         entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
         entitySlug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         firstName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
