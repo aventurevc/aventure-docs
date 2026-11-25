@@ -32,6 +32,8 @@ export const ProblemDetailSchema = z.object({
             "async_lookup_sign_in_required",
             /** Credential already binds its run; resend without the research claim. */
             "research_binding_conflicts_with_run",
+            /** The news ingest catalog revision a scheduler pinned was discarded. The caller's run is stale: leave the article for the next run, which reads the served revision. */
+            "news_catalog_revision_discarded",
             /** Missing required role: report requiredRole and stop; do not retry. */
             "not_authorized",
             /** Request was throttled. Agent action: wait at least retryAfterSeconds (or the Retry-After header), then back off exponentially on repeated 429s; with resetAt, wait until that time instead of retrying the spent monthly allowance. */

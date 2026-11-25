@@ -89,6 +89,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         logo_first_party_missing: "logo_first_party_missing";
         logo_source_dead: "logo_source_dead";
         lookup_still_running: "lookup_still_running";
+        news_catalog_revision_discarded: "news_catalog_revision_discarded";
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";
         news_similarity_embedding_unavailable: "news_similarity_embedding_unavailable";
