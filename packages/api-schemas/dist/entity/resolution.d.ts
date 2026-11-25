@@ -4913,5 +4913,7 @@ export declare const EntityResolutionSchema: z.ZodObject<{
         MISSING: "MISSING";
     }>;
 }, z.core.$strip>;
+export interface EntityResolutionSchemaInput extends z.input<typeof EntityResolutionSchema> {
+}
 export type EntityResolution = z.infer<typeof EntityResolutionSchema>;
 //# sourceMappingURL=resolution.d.ts.map

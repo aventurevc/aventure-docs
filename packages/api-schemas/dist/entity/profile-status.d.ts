@@ -71,5 +71,7 @@ export declare const EntityProfileStatusSchema: z.ZodObject<{
     isClosed: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     isTerminal: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
 }, z.core.$strip>;
+export interface EntityProfileStatusSchemaInput extends z.input<typeof EntityProfileStatusSchema> {
+}
 export type EntityProfileStatus = z.infer<typeof EntityProfileStatusSchema>;
 //# sourceMappingURL=profile-status.d.ts.map

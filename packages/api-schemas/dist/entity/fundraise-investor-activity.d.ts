@@ -365,5 +365,7 @@ export declare const EntityFundraiseInvestorActivitySchema: z.ZodObject<{
     totalPortfolioExit: z.ZodInt;
     totalWriteOff: z.ZodInt;
 }, z.core.$strip>;
+export interface EntityFundraiseInvestorActivitySchemaInput extends z.input<typeof EntityFundraiseInvestorActivitySchema> {
+}
 export type EntityFundraiseInvestorActivity = z.infer<typeof EntityFundraiseInvestorActivitySchema>;
 //# sourceMappingURL=fundraise-investor-activity.d.ts.map

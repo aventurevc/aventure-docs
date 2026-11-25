@@ -53,5 +53,7 @@ export declare const EntityResearchPublicSourceSchema: z.ZodObject<{
     recordedAt: z.ZodISODateTime;
     sourceDetail: z.ZodString;
 }, z.core.$strip>;
+export interface EntityResearchPublicSourceSchemaInput extends z.input<typeof EntityResearchPublicSourceSchema> {
+}
 export type EntityResearchPublicSource = z.infer<typeof EntityResearchPublicSourceSchema>;
 //# sourceMappingURL=research-public-source.d.ts.map

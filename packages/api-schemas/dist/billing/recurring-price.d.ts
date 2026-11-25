@@ -13,5 +13,7 @@ export declare const BillingRecurringPriceSchema: z.ZodObject<{
     currency: z.ZodString;
     unitAmount: z.ZodNumber;
 }, z.core.$strip>;
+export interface BillingRecurringPriceSchemaInput extends z.input<typeof BillingRecurringPriceSchema> {
+}
 export type BillingRecurringPrice = z.infer<typeof BillingRecurringPriceSchema>;
 //# sourceMappingURL=recurring-price.d.ts.map

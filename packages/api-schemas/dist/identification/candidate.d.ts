@@ -55,5 +55,7 @@ export declare const IdentificationCandidateSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface IdentificationCandidateSchemaInput extends z.input<typeof IdentificationCandidateSchema> {
+}
 export type IdentificationCandidate = z.infer<typeof IdentificationCandidateSchema>;
 //# sourceMappingURL=candidate.d.ts.map

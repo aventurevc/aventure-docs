@@ -81,5 +81,7 @@ export declare const HarnessTaskPlanSchema: z.ZodObject<{
     }, import("./task-plan-step.ts").HarnessTaskPlanStepSchemaInput>>>;
     taskKey: z.ZodOptional<z.ZodString>;
 }, z.core.$strip>;
+export interface HarnessTaskPlanSchemaInput extends z.input<typeof HarnessTaskPlanSchema> {
+}
 export type HarnessTaskPlan = z.infer<typeof HarnessTaskPlanSchema>;
 //# sourceMappingURL=task-plan.d.ts.map

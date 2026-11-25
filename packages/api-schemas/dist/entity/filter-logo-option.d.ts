@@ -31,5 +31,7 @@ export declare const EntityFilterLogoOptionSchema: z.ZodObject<{
         REAL_LOGO_FIRST: "REAL_LOGO_FIRST";
     }>>;
 }, z.core.$strip>;
+export interface EntityFilterLogoOptionSchemaInput extends z.input<typeof EntityFilterLogoOptionSchema> {
+}
 export type EntityFilterLogoOption = z.infer<typeof EntityFilterLogoOptionSchema>;
 //# sourceMappingURL=filter-logo-option.d.ts.map

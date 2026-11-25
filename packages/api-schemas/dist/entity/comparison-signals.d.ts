@@ -259,5 +259,7 @@ export declare const EntityComparisonSignalsSchema: z.ZodObject<{
     totalRaised: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface EntityComparisonSignalsSchemaInput extends z.input<typeof EntityComparisonSignalsSchema> {
+}
 export type EntityComparisonSignals = z.infer<typeof EntityComparisonSignalsSchema>;
 //# sourceMappingURL=comparison-signals.d.ts.map

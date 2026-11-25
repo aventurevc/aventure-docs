@@ -22,5 +22,7 @@ export declare const SearchKnowledgeGraphSchema: z.ZodObject<{
     type: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     website: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface SearchKnowledgeGraphSchemaInput extends z.input<typeof SearchKnowledgeGraphSchema> {
+}
 export type SearchKnowledgeGraph = z.infer<typeof SearchKnowledgeGraphSchema>;
 //# sourceMappingURL=knowledge-graph.d.ts.map

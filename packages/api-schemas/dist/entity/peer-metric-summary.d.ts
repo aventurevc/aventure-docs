@@ -27,5 +27,7 @@ export declare const EntityPeerMetricSummarySchema: z.ZodObject<{
     min: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     sampleCount: z.ZodInt;
 }, z.core.$strip>;
+export interface EntityPeerMetricSummarySchemaInput extends z.input<typeof EntityPeerMetricSummarySchema> {
+}
 export type EntityPeerMetricSummary = z.infer<typeof EntityPeerMetricSummarySchema>;
 //# sourceMappingURL=peer-metric-summary.d.ts.map

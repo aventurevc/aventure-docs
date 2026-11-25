@@ -256,5 +256,7 @@ export declare const EntityFilterSchema: z.ZodObject<{
         min?: number | null | undefined;
     }, import("../int/range.ts").IntRangeSchemaInput>>>>;
 }, z.core.$strict>;
+export interface EntityFilterSchemaInput extends z.input<typeof EntityFilterSchema> {
+}
 export type EntityFilter = z.infer<typeof EntityFilterSchema>;
 //# sourceMappingURL=filter.d.ts.map

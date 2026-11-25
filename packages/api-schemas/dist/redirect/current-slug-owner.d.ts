@@ -23,5 +23,7 @@ export declare const CurrentSlugOwnerSchema: z.ZodObject<{
     showOnSitemap: z.ZodBoolean;
     slug: z.ZodString;
 }, z.core.$strip>;
+export interface CurrentSlugOwnerSchemaInput extends z.input<typeof CurrentSlugOwnerSchema> {
+}
 export type CurrentSlugOwner = z.infer<typeof CurrentSlugOwnerSchema>;
 //# sourceMappingURL=current-slug-owner.d.ts.map

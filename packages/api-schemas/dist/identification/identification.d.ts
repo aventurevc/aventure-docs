@@ -266,5 +266,7 @@ export declare const IdentificationSchema: z.ZodObject<{
         url: string;
     }, import("../url/host-form-resolution.ts").UrlHostFormResolutionSchemaInput>>>;
 }, z.core.$strip>;
+export interface IdentificationSchemaInput extends z.input<typeof IdentificationSchema> {
+}
 export type Identification = z.infer<typeof IdentificationSchema>;
 //# sourceMappingURL=identification.d.ts.map

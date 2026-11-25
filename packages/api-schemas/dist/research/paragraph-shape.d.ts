@@ -19,5 +19,7 @@ export declare const ResearchParagraphShapeSchema: z.ZodObject<{
     minParagraphs: z.ZodInt;
     minSentences: z.ZodInt;
 }, z.core.$strip>;
+export interface ResearchParagraphShapeSchemaInput extends z.input<typeof ResearchParagraphShapeSchema> {
+}
 export type ResearchParagraphShape = z.infer<typeof ResearchParagraphShapeSchema>;
 //# sourceMappingURL=paragraph-shape.d.ts.map

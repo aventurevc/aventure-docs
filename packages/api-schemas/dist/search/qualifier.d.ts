@@ -24,5 +24,7 @@ export declare const SearchQualifierSchema: z.ZodObject<{
     }, import("./qualifier-option.ts").SearchQualifierOptionSchemaInput>>>;
     prompt: z.ZodString;
 }, z.core.$strip>;
+export interface SearchQualifierSchemaInput extends z.input<typeof SearchQualifierSchema> {
+}
 export type SearchQualifier = z.infer<typeof SearchQualifierSchema>;
 //# sourceMappingURL=qualifier.d.ts.map

@@ -33,5 +33,7 @@ export declare const NewsAnalysisSchema: z.ZodObject<{
     }, import("./analysis-section.ts").NewsAnalysisSectionSchemaInput>>>;
     version: z.ZodInt;
 }, z.core.$strip>;
+export interface NewsAnalysisSchemaInput extends z.input<typeof NewsAnalysisSchema> {
+}
 export type NewsAnalysis = z.infer<typeof NewsAnalysisSchema>;
 //# sourceMappingURL=analysis.d.ts.map

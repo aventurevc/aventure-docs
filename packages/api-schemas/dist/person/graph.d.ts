@@ -905,5 +905,7 @@ export declare const PersonGraphSchema: z.ZodObject<{
     }, import("./graph-co-investor.ts").PersonGraphCoInvestorSchemaInput>>>;
     computedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
+export interface PersonGraphSchemaInput extends z.input<typeof PersonGraphSchema> {
+}
 export type PersonGraph = z.infer<typeof PersonGraphSchema>;
 //# sourceMappingURL=graph.d.ts.map

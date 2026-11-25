@@ -126,5 +126,7 @@ export declare const EntityFundraiseFilterCriteriaSchema: z.ZodObject<{
         min?: number | null | undefined;
     }, import("../decimal/range.ts").DecimalRangeSchemaInput>>>>;
 }, z.core.$strip>;
+export interface EntityFundraiseFilterCriteriaSchemaInput extends z.input<typeof EntityFundraiseFilterCriteriaSchema> {
+}
 export type EntityFundraiseFilterCriteria = z.infer<typeof EntityFundraiseFilterCriteriaSchema>;
 //# sourceMappingURL=fundraise-filter-criteria.d.ts.map

@@ -13,5 +13,7 @@ export declare const HarnessTaskFactSchema: z.ZodObject<{
     sourceUrl: z.ZodString;
     statement: z.ZodString;
 }, z.core.$strip>;
+export interface HarnessTaskFactSchemaInput extends z.input<typeof HarnessTaskFactSchema> {
+}
 export type HarnessTaskFact = z.infer<typeof HarnessTaskFactSchema>;
 //# sourceMappingURL=task-fact.d.ts.map

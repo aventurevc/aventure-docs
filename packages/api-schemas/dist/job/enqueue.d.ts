@@ -28,5 +28,7 @@ export declare const JobEnqueueSchema: z.ZodObject<{
     notificationMessage: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     statusUrl: z.ZodString;
 }, z.core.$strip>;
+export interface JobEnqueueSchemaInput extends z.input<typeof JobEnqueueSchema> {
+}
 export type JobEnqueue = z.infer<typeof JobEnqueueSchema>;
 //# sourceMappingURL=enqueue.d.ts.map

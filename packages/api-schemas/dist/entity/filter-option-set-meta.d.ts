@@ -33,5 +33,7 @@ export declare const EntityFilterOptionSetMetaSchema: z.ZodObject<{
         typeRecord: ("Business Line" | "Company" | "Fund" | "Government" | "Investment Firm" | "Nonprofit" | "Organization" | "Product" | "Service")[];
     }, import("./type-group-membership.ts").EntityTypeGroupMembershipSchemaInput>>>>;
 }, z.core.$strip>;
+export interface EntityFilterOptionSetMetaSchemaInput extends z.input<typeof EntityFilterOptionSetMetaSchema> {
+}
 export type EntityFilterOptionSetMeta = z.infer<typeof EntityFilterOptionSetMetaSchema>;
 //# sourceMappingURL=filter-option-set-meta.d.ts.map

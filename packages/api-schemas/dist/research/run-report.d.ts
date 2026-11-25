@@ -25,5 +25,7 @@ export declare const ResearchRunReportSchema: z.ZodObject<{
         text: string;
     }, import("./run-report-paragraph.ts").ResearchRunReportParagraphSchemaInput>>>;
 }, z.core.$strip>;
+export interface ResearchRunReportSchemaInput extends z.input<typeof ResearchRunReportSchema> {
+}
 export type ResearchRunReport = z.infer<typeof ResearchRunReportSchema>;
 //# sourceMappingURL=run-report.d.ts.map

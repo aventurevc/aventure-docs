@@ -90,5 +90,7 @@ export declare const EntityUrlLinkSchema: z.ZodObject<{
     url: z.ZodString;
     urlType: z.ZodString;
 }, z.core.$strip>;
+export interface EntityUrlLinkSchemaInput extends z.input<typeof EntityUrlLinkSchema> {
+}
 export type EntityUrlLink = z.infer<typeof EntityUrlLinkSchema>;
 //# sourceMappingURL=url-link.d.ts.map

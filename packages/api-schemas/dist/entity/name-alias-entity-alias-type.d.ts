@@ -53,5 +53,7 @@ export declare const EntityNameAliasEntityAliasTypeSchema: z.ZodObject<{
         relatedLegal: "relatedLegal";
     }>>>;
 }, z.core.$strip>;
+export interface EntityNameAliasEntityAliasTypeSchemaInput extends z.input<typeof EntityNameAliasEntityAliasTypeSchema> {
+}
 export type EntityNameAliasEntityAliasType = z.infer<typeof EntityNameAliasEntityAliasTypeSchema>;
 //# sourceMappingURL=name-alias-entity-alias-type.d.ts.map

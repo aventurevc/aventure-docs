@@ -67,5 +67,7 @@ export declare const EntityFundraiseSchema: z.ZodObject<{
     status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     valuationPostMoney: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
+export interface EntityFundraiseSchemaInput extends z.input<typeof EntityFundraiseSchema> {
+}
 export type EntityFundraise = z.infer<typeof EntityFundraiseSchema>;
 //# sourceMappingURL=fundraise.d.ts.map

@@ -58,5 +58,7 @@ export declare const PersonListArrayFilterSchema: z.ZodObject<{
         Service: "Service";
     }>>>>;
 }, z.core.$strip>;
+export interface PersonListArrayFilterSchemaInput extends z.input<typeof PersonListArrayFilterSchema> {
+}
 export type PersonListArrayFilter = z.infer<typeof PersonListArrayFilterSchema>;
 //# sourceMappingURL=list-array-filter.d.ts.map

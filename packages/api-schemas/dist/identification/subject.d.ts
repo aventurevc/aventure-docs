@@ -108,5 +108,7 @@ export declare const IdentificationSubjectSchema: z.ZodObject<{
     }>>>;
     url: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;
+export interface IdentificationSubjectSchemaInput extends z.input<typeof IdentificationSubjectSchema> {
+}
 export type IdentificationSubject = z.infer<typeof IdentificationSubjectSchema>;
 //# sourceMappingURL=subject.d.ts.map

@@ -111,5 +111,7 @@ export declare const EntityPeerMultipleSummarySchema: z.ZodObject<{
     selfIncluded: z.ZodBoolean;
     valuedPeerCount: z.ZodInt;
 }, z.core.$strip>;
+export interface EntityPeerMultipleSummarySchemaInput extends z.input<typeof EntityPeerMultipleSummarySchema> {
+}
 export type EntityPeerMultipleSummary = z.infer<typeof EntityPeerMultipleSummarySchema>;
 //# sourceMappingURL=peer-multiple-summary.d.ts.map

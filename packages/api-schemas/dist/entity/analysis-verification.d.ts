@@ -44,5 +44,7 @@ export declare const EntityAnalysisVerificationSchema: z.ZodObject<{
     }, import("./analysis-section-verification.ts").EntityAnalysisSectionVerificationSchemaInput>>>;
     version: z.ZodInt;
 }, z.core.$strip>;
+export interface EntityAnalysisVerificationSchemaInput extends z.input<typeof EntityAnalysisVerificationSchema> {
+}
 export type EntityAnalysisVerification = z.infer<typeof EntityAnalysisVerificationSchema>;
 //# sourceMappingURL=analysis-verification.d.ts.map

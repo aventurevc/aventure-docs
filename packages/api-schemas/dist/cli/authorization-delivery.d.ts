@@ -17,5 +17,7 @@ export declare const CliAuthorizationDeliverySchema: z.ZodObject<{
     nonce: z.ZodString;
     wrappedKey: z.ZodString;
 }, z.core.$strip>;
+export interface CliAuthorizationDeliverySchemaInput extends z.input<typeof CliAuthorizationDeliverySchema> {
+}
 export type CliAuthorizationDelivery = z.infer<typeof CliAuthorizationDeliverySchema>;
 //# sourceMappingURL=authorization-delivery.d.ts.map

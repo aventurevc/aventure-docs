@@ -53,5 +53,7 @@ export declare const EntityValuationSchema: z.ZodObject<{
     }>;
     sourceRef: z.ZodString;
 }, z.core.$strip>;
+export interface EntityValuationSchemaInput extends z.input<typeof EntityValuationSchema> {
+}
 export type EntityValuation = z.infer<typeof EntityValuationSchema>;
 //# sourceMappingURL=valuation.d.ts.map

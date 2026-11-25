@@ -164,5 +164,7 @@ export declare const HarnessRunSchema: z.ZodObject<{
     url: z.ZodString;
     userPrompt: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface HarnessRunSchemaInput extends z.input<typeof HarnessRunSchema> {
+}
 export type HarnessRun = z.infer<typeof HarnessRunSchema>;
 //# sourceMappingURL=run.d.ts.map

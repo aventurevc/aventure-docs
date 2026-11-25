@@ -90,5 +90,7 @@ export declare const AddressSchema: z.ZodObject<{
     street: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
+export interface AddressSchemaInput extends z.input<typeof AddressSchema> {
+}
 export type Address = z.infer<typeof AddressSchema>;
 //# sourceMappingURL=address.d.ts.map

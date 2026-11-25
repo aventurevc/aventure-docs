@@ -32,5 +32,7 @@ export declare const UniqueIdMutationSchema: z.ZodObject<{
     standingAsOf: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     venue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface UniqueIdMutationSchemaInput extends z.input<typeof UniqueIdMutationSchema> {
+}
 export type UniqueIdMutation = z.infer<typeof UniqueIdMutationSchema>;
 //# sourceMappingURL=id-mutation.d.ts.map

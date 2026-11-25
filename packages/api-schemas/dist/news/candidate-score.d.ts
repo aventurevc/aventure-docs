@@ -16,5 +16,7 @@ export declare const NewsCandidateScoreSchema: z.ZodObject<{
     score: z.ZodInt;
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface NewsCandidateScoreSchemaInput extends z.input<typeof NewsCandidateScoreSchema> {
+}
 export type NewsCandidateScore = z.infer<typeof NewsCandidateScoreSchema>;
 //# sourceMappingURL=candidate-score.d.ts.map

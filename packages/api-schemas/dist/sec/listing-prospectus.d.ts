@@ -14,5 +14,7 @@ export declare const SecListingProspectusSchema: z.ZodObject<{
     filingDate: z.ZodISODate;
     form: z.ZodString;
 }, z.core.$strip>;
+export interface SecListingProspectusSchemaInput extends z.input<typeof SecListingProspectusSchema> {
+}
 export type SecListingProspectus = z.infer<typeof SecListingProspectusSchema>;
 //# sourceMappingURL=listing-prospectus.d.ts.map

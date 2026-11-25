@@ -93,5 +93,7 @@ export declare const SortObjectSchema: z.ZodObject<{
     sorted: z.ZodOptional<z.ZodBoolean>;
     unsorted: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
+export interface SortObjectSchemaInput extends z.input<typeof SortObjectSchema> {
+}
 export type SortObject = z.infer<typeof SortObjectSchema>;
 //# sourceMappingURL=object.d.ts.map

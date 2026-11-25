@@ -158,5 +158,7 @@ export declare const EntityFundingDetailSchema: z.ZodObject<{
     totalRaisedUsdRoundCount: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     unconvertedRoundCount: z.ZodInt;
 }, z.core.$strip>;
+export interface EntityFundingDetailSchemaInput extends z.input<typeof EntityFundingDetailSchema> {
+}
 export type EntityFundingDetail = z.infer<typeof EntityFundingDetailSchema>;
 //# sourceMappingURL=funding-detail.d.ts.map

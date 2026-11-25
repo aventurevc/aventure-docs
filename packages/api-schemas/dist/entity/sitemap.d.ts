@@ -54,5 +54,7 @@ export declare const EntitySitemapSchema: z.ZodObject<{
     hasNews: z.ZodBoolean;
     productServiceSlug: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
+export interface EntitySitemapSchemaInput extends z.input<typeof EntitySitemapSchema> {
+}
 export type EntitySitemap = z.infer<typeof EntitySitemapSchema>;
 //# sourceMappingURL=sitemap.d.ts.map

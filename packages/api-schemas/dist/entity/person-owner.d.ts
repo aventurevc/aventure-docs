@@ -27,5 +27,7 @@ export declare const EntityPersonOwnerSchema: z.ZodObject<{
     entityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     personId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
 }, z.core.$strip>;
+export interface EntityPersonOwnerSchemaInput extends z.input<typeof EntityPersonOwnerSchema> {
+}
 export type EntityPersonOwner = z.infer<typeof EntityPersonOwnerSchema>;
 //# sourceMappingURL=person-owner.d.ts.map

@@ -47,5 +47,7 @@ export declare const LookupSourceReadSchema: z.ZodObject<{
     };
     publication: z.ZodString;
 }, z.core.$strip>;
+export interface LookupSourceReadSchemaInput extends z.input<typeof LookupSourceReadSchema> {
+}
 export type LookupSourceRead = z.infer<typeof LookupSourceReadSchema>;
 //# sourceMappingURL=source-read.d.ts.map

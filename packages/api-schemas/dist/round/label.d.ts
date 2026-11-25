@@ -38,5 +38,7 @@ import { z } from "zod/v4";
 export declare const RoundLabelSchema: z.ZodObject<{
     round: z.ZodString;
 }, z.core.$strip>;
+export interface RoundLabelSchemaInput extends z.input<typeof RoundLabelSchema> {
+}
 export type RoundLabel = z.infer<typeof RoundLabelSchema>;
 //# sourceMappingURL=label.d.ts.map

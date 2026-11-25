@@ -1064,5 +1064,7 @@ export declare const ResearchRunSearchContextSchema: z.ZodObject<{
         reasoningEffort?: string | null | undefined;
     }, import("../natural/search.ts").NaturalSearchSchemaInput>>;
 }, z.core.$strip>;
+export interface ResearchRunSearchContextSchemaInput extends z.input<typeof ResearchRunSearchContextSchema> {
+}
 export type ResearchRunSearchContext = z.infer<typeof ResearchRunSearchContextSchema>;
 //# sourceMappingURL=run-search-context.d.ts.map

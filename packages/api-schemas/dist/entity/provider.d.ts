@@ -152,5 +152,7 @@ export declare const EntityProviderSchema: z.ZodObject<{
         productService: "productService";
     }>;
 }, z.core.$strip>;
+export interface EntityProviderSchemaInput extends z.input<typeof EntityProviderSchema> {
+}
 export type EntityProvider = z.infer<typeof EntityProviderSchema>;
 //# sourceMappingURL=provider.d.ts.map

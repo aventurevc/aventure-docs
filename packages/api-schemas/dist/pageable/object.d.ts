@@ -99,5 +99,7 @@ export declare const PageableObjectSchema: z.ZodObject<{
     }, z.core.$strip>>;
     unpaged: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
+export interface PageableObjectSchemaInput extends z.input<typeof PageableObjectSchema> {
+}
 export type PageableObject = z.infer<typeof PageableObjectSchema>;
 //# sourceMappingURL=object.d.ts.map

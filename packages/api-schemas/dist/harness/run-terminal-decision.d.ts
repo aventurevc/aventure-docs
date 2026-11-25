@@ -43,5 +43,7 @@ export declare const HarnessRunTerminalDecisionSchema: z.ZodObject<{
     suppressionEntityId: z.ZodOptional<z.ZodNullable<z.ZodUUID>>;
     suppressionProvenanceEventId: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
+export interface HarnessRunTerminalDecisionSchemaInput extends z.input<typeof HarnessRunTerminalDecisionSchema> {
+}
 export type HarnessRunTerminalDecision = z.infer<typeof HarnessRunTerminalDecisionSchema>;
 //# sourceMappingURL=run-terminal-decision.d.ts.map

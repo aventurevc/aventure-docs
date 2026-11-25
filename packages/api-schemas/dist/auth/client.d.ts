@@ -14,5 +14,7 @@ export declare const AuthClientSchema: z.ZodObject<{
     resource: z.ZodString;
     scope: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
+export interface AuthClientSchemaInput extends z.input<typeof AuthClientSchema> {
+}
 export type AuthClient = z.infer<typeof AuthClientSchema>;
 //# sourceMappingURL=client.d.ts.map

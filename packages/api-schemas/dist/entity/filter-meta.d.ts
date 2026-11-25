@@ -57,5 +57,7 @@ export declare const EntityFilterMetaSchema: z.ZodObject<{
         }, z.core.$strip>>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
+export interface EntityFilterMetaSchemaInput extends z.input<typeof EntityFilterMetaSchema> {
+}
 export type EntityFilterMeta = z.infer<typeof EntityFilterMetaSchema>;
 //# sourceMappingURL=filter-meta.d.ts.map

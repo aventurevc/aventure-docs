@@ -27,5 +27,7 @@ export declare const EntityFilterUiMetaSchema: z.ZodObject<{
         }, import("./filter-headquarters-country.ts").EntityFilterHeadquartersCountrySchemaInput>>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
+export interface EntityFilterUiMetaSchemaInput extends z.input<typeof EntityFilterUiMetaSchema> {
+}
 export type EntityFilterUiMeta = z.infer<typeof EntityFilterUiMetaSchema>;
 //# sourceMappingURL=filter-ui-meta.d.ts.map

@@ -21,5 +21,7 @@ export declare const RedirectSlugPathSchema: z.ZodObject<{
         person: "person";
     }>>>;
 }, z.core.$strip>;
+export interface RedirectSlugPathSchemaInput extends z.input<typeof RedirectSlugPathSchema> {
+}
 export type RedirectSlugPath = z.infer<typeof RedirectSlugPathSchema>;
 //# sourceMappingURL=redirect-slug-path.d.ts.map

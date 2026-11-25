@@ -42,5 +42,7 @@ export declare const AddressCitySchema: z.ZodObject<{
     id: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
     name: z.ZodString;
 }, z.core.$strip>;
+export interface AddressCitySchemaInput extends z.input<typeof AddressCitySchema> {
+}
 export type AddressCity = z.infer<typeof AddressCitySchema>;
 //# sourceMappingURL=city.d.ts.map

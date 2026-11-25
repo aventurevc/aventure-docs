@@ -586,5 +586,7 @@ export declare const PersonFilterSchema: z.ZodObject<{
         PAST: "PAST";
     }>>>;
 }, z.core.$strip>;
+export interface PersonFilterSchemaInput extends z.input<typeof PersonFilterSchema> {
+}
 export type PersonFilter = z.infer<typeof PersonFilterSchema>;
 //# sourceMappingURL=filter.d.ts.map

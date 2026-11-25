@@ -27,5 +27,7 @@ export declare const EntityFilterRequestBindingSchema: z.ZodObject<{
         };
     };
 }, z.core.$strip>;
+export interface EntityFilterRequestBindingSchemaInput extends z.input<typeof EntityFilterRequestBindingSchema> {
+}
 export type EntityFilterRequestBinding = z.infer<typeof EntityFilterRequestBindingSchema>;
 //# sourceMappingURL=filter-request-binding.d.ts.map

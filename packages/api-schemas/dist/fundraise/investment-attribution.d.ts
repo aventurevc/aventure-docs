@@ -52,5 +52,7 @@ export declare const FundraiseInvestmentAttributionSchema: z.ZodObject<{
     }, z.core.$strip>>>;
     transactionId: z.ZodUUID;
 }, z.core.$strip>;
+export interface FundraiseInvestmentAttributionSchemaInput extends z.input<typeof FundraiseInvestmentAttributionSchema> {
+}
 export type FundraiseInvestmentAttribution = z.infer<typeof FundraiseInvestmentAttributionSchema>;
 //# sourceMappingURL=investment-attribution.d.ts.map

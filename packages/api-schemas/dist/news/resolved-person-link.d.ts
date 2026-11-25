@@ -45,5 +45,7 @@ export declare const NewsResolvedPersonLinkSchema: z.ZodObject<{
     slug: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
+export interface NewsResolvedPersonLinkSchemaInput extends z.input<typeof NewsResolvedPersonLinkSchema> {
+}
 export type NewsResolvedPersonLink = z.infer<typeof NewsResolvedPersonLinkSchema>;
 //# sourceMappingURL=resolved-person-link.d.ts.map

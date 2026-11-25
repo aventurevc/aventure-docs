@@ -15,5 +15,7 @@ export declare const EntityFilterScopeSchema: z.ZodObject<{
     max: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     min: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strict>;
+export interface EntityFilterScopeSchemaInput extends z.input<typeof EntityFilterScopeSchema> {
+}
 export type EntityFilterScope = z.infer<typeof EntityFilterScopeSchema>;
 //# sourceMappingURL=filter-scope.d.ts.map

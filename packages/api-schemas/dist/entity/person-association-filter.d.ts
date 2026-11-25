@@ -253,5 +253,7 @@ export declare const EntityPersonAssociationFilterSchema: z.ZodObject<{
     isCurrent: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
     personTitle: z.ZodOptional<z.ZodArray<z.ZodString>>;
 }, z.core.$strip>;
+export interface EntityPersonAssociationFilterSchemaInput extends z.input<typeof EntityPersonAssociationFilterSchema> {
+}
 export type EntityPersonAssociationFilter = z.infer<typeof EntityPersonAssociationFilterSchema>;
 //# sourceMappingURL=person-association-filter.d.ts.map

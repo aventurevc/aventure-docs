@@ -47,5 +47,7 @@ export declare const EntityResearchSnippetSchema: z.ZodObject<{
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     visible: z.ZodOptional<z.ZodBoolean>;
 }, z.core.$strip>;
+export interface EntityResearchSnippetSchemaInput extends z.input<typeof EntityResearchSnippetSchema> {
+}
 export type EntityResearchSnippet = z.infer<typeof EntityResearchSnippetSchema>;
 //# sourceMappingURL=research-snippet.d.ts.map

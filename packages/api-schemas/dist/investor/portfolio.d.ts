@@ -342,5 +342,7 @@ export declare const InvestorPortfolioSchema: z.ZodObject<{
     }, import("../pagination/schemas.ts").PageInvestorPortfolioSectorSchemaInput>>>;
     unknownSectorCount: z.ZodInt;
 }, z.core.$strip>;
+export interface InvestorPortfolioSchemaInput extends z.input<typeof InvestorPortfolioSchema> {
+}
 export type InvestorPortfolio = z.infer<typeof InvestorPortfolioSchema>;
 //# sourceMappingURL=portfolio.d.ts.map

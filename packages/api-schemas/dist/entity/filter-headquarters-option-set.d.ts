@@ -25,5 +25,7 @@ export declare const EntityFilterHeadquartersOptionSetSchema: z.ZodObject<{
         }[];
     }, import("./filter-headquarters-country.ts").EntityFilterHeadquartersCountrySchemaInput>>>;
 }, z.core.$strip>;
+export interface EntityFilterHeadquartersOptionSetSchemaInput extends z.input<typeof EntityFilterHeadquartersOptionSetSchema> {
+}
 export type EntityFilterHeadquartersOptionSet = z.infer<typeof EntityFilterHeadquartersOptionSetSchema>;
 //# sourceMappingURL=filter-headquarters-option-set.d.ts.map

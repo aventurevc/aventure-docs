@@ -11,5 +11,7 @@ import { z } from "zod/v4";
 export declare const EntityWriterParagraphAnalysisSchema: z.ZodObject<{
     answer: z.ZodBoolean;
 }, z.core.$strip>;
+export interface EntityWriterParagraphAnalysisSchemaInput extends z.input<typeof EntityWriterParagraphAnalysisSchema> {
+}
 export type EntityWriterParagraphAnalysis = z.infer<typeof EntityWriterParagraphAnalysisSchema>;
 //# sourceMappingURL=writer-paragraph-analysis.d.ts.map

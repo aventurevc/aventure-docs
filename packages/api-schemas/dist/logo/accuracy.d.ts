@@ -47,5 +47,7 @@ export declare const LogoAccuracySchema: z.ZodObject<{
     referenceObserved: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     sharedFeature: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface LogoAccuracySchemaInput extends z.input<typeof LogoAccuracySchema> {
+}
 export type LogoAccuracy = z.infer<typeof LogoAccuracySchema>;
 //# sourceMappingURL=accuracy.d.ts.map

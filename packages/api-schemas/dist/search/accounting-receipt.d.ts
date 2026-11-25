@@ -11,5 +11,7 @@ export declare const SearchAccountingReceiptSchema: z.ZodObject<{
     executionId: z.ZodUUID;
     workId: z.ZodUUID;
 }, z.core.$strip>;
+export interface SearchAccountingReceiptSchemaInput extends z.input<typeof SearchAccountingReceiptSchema> {
+}
 export type SearchAccountingReceipt = z.infer<typeof SearchAccountingReceiptSchema>;
 //# sourceMappingURL=accounting-receipt.d.ts.map

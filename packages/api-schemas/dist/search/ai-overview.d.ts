@@ -25,5 +25,7 @@ export declare const SearchAiOverviewSchema: z.ZodObject<{
     }, import("./ai-overview-reference.ts").SearchAiOverviewReferenceSchemaInput>>>;
     text: z.ZodString;
 }, z.core.$strip>;
+export interface SearchAiOverviewSchemaInput extends z.input<typeof SearchAiOverviewSchema> {
+}
 export type SearchAiOverview = z.infer<typeof SearchAiOverviewSchema>;
 //# sourceMappingURL=ai-overview.d.ts.map

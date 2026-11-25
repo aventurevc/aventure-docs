@@ -371,5 +371,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
     value: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     windowSeconds: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
+export interface ProblemDetailSchemaInput extends z.input<typeof ProblemDetailSchema> {
+}
 export type ProblemDetail = z.infer<typeof ProblemDetailSchema>;
 //# sourceMappingURL=problem-detail.d.ts.map

@@ -10,5 +10,7 @@ export declare const ResearchValueRangeSchema: z.ZodObject<{
     max: z.ZodNumber;
     min: z.ZodNumber;
 }, z.core.$strip>;
+export interface ResearchValueRangeSchemaInput extends z.input<typeof ResearchValueRangeSchema> {
+}
 export type ResearchValueRange = z.infer<typeof ResearchValueRangeSchema>;
 //# sourceMappingURL=value-range.d.ts.map

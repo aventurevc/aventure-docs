@@ -16,5 +16,7 @@ export declare const HarnessTaskWriteGuidanceSchema: z.ZodObject<{
     reject: z.ZodArray<z.ZodString>;
     typeCatalog: z.ZodString;
 }, z.core.$strip>;
+export interface HarnessTaskWriteGuidanceSchemaInput extends z.input<typeof HarnessTaskWriteGuidanceSchema> {
+}
 export type HarnessTaskWriteGuidance = z.infer<typeof HarnessTaskWriteGuidanceSchema>;
 //# sourceMappingURL=task-write-guidance.d.ts.map

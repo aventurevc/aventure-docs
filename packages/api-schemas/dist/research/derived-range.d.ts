@@ -40,5 +40,7 @@ export declare const ResearchDerivedRangeSchema: z.ZodObject<{
     monthsFromNow: z.ZodInt;
     targetDate: z.ZodISODateTime;
 }, z.core.$strip>;
+export interface ResearchDerivedRangeSchemaInput extends z.input<typeof ResearchDerivedRangeSchema> {
+}
 export type ResearchDerivedRange = z.infer<typeof ResearchDerivedRangeSchema>;
 //# sourceMappingURL=derived-range.d.ts.map

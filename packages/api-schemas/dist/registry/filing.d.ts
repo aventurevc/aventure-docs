@@ -56,5 +56,7 @@ export declare const RegistryFilingSchema: z.ZodObject<{
         venue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
+export interface RegistryFilingSchemaInput extends z.input<typeof RegistryFilingSchema> {
+}
 export type RegistryFiling = z.infer<typeof RegistryFilingSchema>;
 //# sourceMappingURL=filing.d.ts.map

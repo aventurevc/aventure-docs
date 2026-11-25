@@ -297,5 +297,7 @@ export declare const EntityPersonAssociationSchema: z.ZodObject<{
     titleLevel: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     titleName: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface EntityPersonAssociationSchemaInput extends z.input<typeof EntityPersonAssociationSchema> {
+}
 export type EntityPersonAssociation = z.infer<typeof EntityPersonAssociationSchema>;
 //# sourceMappingURL=person-association.d.ts.map

@@ -16,5 +16,7 @@ export declare const SearchAnswerBoxSchema: z.ZodObject<{
     type: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     url: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface SearchAnswerBoxSchemaInput extends z.input<typeof SearchAnswerBoxSchema> {
+}
 export type SearchAnswerBox = z.infer<typeof SearchAnswerBoxSchema>;
 //# sourceMappingURL=answer-box.d.ts.map

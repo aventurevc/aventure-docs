@@ -22,5 +22,7 @@ export declare const DatasourceSourceMetadataSchema: z.ZodObject<{
     sourceId: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     status: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface DatasourceSourceMetadataSchemaInput extends z.input<typeof DatasourceSourceMetadataSchema> {
+}
 export type DatasourceSourceMetadata = z.infer<typeof DatasourceSourceMetadataSchema>;
 //# sourceMappingURL=source-metadata.d.ts.map

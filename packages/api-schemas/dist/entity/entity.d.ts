@@ -133,5 +133,7 @@ export declare const EntitySchema: z.ZodObject<{
     }>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
+export interface EntitySchemaInput extends z.input<typeof EntitySchema> {
+}
 export type Entity = z.infer<typeof EntitySchema>;
 //# sourceMappingURL=entity.d.ts.map

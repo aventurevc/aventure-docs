@@ -324,5 +324,7 @@ export declare const SearchNarrowingSchema: z.ZodObject<{
     }, import("./narrowing-question.ts").SearchNarrowingQuestionSchemaInput>>>;
     sampleCount: z.ZodInt;
 }, z.core.$strip>;
+export interface SearchNarrowingSchemaInput extends z.input<typeof SearchNarrowingSchema> {
+}
 export type SearchNarrowing = z.infer<typeof SearchNarrowingSchema>;
 //# sourceMappingURL=narrowing.d.ts.map

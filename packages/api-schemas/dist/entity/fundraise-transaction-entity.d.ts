@@ -302,5 +302,7 @@ export declare const EntityFundraiseTransactionEntitySchema: z.ZodObject<{
         unconvertedRoundCount: z.ZodInt;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
+export interface EntityFundraiseTransactionEntitySchemaInput extends z.input<typeof EntityFundraiseTransactionEntitySchema> {
+}
 export type EntityFundraiseTransactionEntity = z.infer<typeof EntityFundraiseTransactionEntitySchema>;
 //# sourceMappingURL=fundraise-transaction-entity.d.ts.map

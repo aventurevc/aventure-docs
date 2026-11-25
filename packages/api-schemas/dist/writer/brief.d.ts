@@ -107,5 +107,7 @@ export declare const WriterBriefSchema: z.ZodObject<{
         statement: string;
     }, import("./positioning.ts").WriterPositioningSchemaInput>>>;
 }, z.core.$strip>;
+export interface WriterBriefSchemaInput extends z.input<typeof WriterBriefSchema> {
+}
 export type WriterBrief = z.infer<typeof WriterBriefSchema>;
 //# sourceMappingURL=brief.d.ts.map

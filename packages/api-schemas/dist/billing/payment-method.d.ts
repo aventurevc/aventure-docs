@@ -16,5 +16,7 @@ export declare const BillingPaymentMethodSchema: z.ZodObject<{
     expiryYear: z.ZodInt;
     last4: z.ZodString;
 }, z.core.$strip>;
+export interface BillingPaymentMethodSchemaInput extends z.input<typeof BillingPaymentMethodSchema> {
+}
 export type BillingPaymentMethod = z.infer<typeof BillingPaymentMethodSchema>;
 //# sourceMappingURL=payment-method.d.ts.map

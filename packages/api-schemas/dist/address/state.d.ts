@@ -43,5 +43,7 @@ export declare const AddressStateSchema: z.ZodObject<{
     name: z.ZodString;
     stateAbbrev: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface AddressStateSchemaInput extends z.input<typeof AddressStateSchema> {
+}
 export type AddressState = z.infer<typeof AddressStateSchema>;
 //# sourceMappingURL=state.d.ts.map

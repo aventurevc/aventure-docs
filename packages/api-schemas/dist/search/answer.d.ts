@@ -68,5 +68,7 @@ export declare const SearchAnswerSchema: z.ZodObject<{
     text: z.ZodString;
     title: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface SearchAnswerSchemaInput extends z.input<typeof SearchAnswerSchema> {
+}
 export type SearchAnswer = z.infer<typeof SearchAnswerSchema>;
 //# sourceMappingURL=answer.d.ts.map

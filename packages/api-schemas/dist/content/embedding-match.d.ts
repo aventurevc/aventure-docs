@@ -71,5 +71,7 @@ export declare const ContentEmbeddingMatchSchema: z.ZodObject<{
         };
     };
 }, z.core.$strip>;
+export interface ContentEmbeddingMatchSchemaInput extends z.input<typeof ContentEmbeddingMatchSchema> {
+}
 export type ContentEmbeddingMatch = z.infer<typeof ContentEmbeddingMatchSchema>;
 //# sourceMappingURL=embedding-match.d.ts.map

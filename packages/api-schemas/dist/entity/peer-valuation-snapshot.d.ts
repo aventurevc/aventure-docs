@@ -58,5 +58,7 @@ export declare const EntityPeerValuationSnapshotSchema: z.ZodObject<{
     ticker: z.ZodString;
     totalDebtUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
 }, z.core.$strip>;
+export interface EntityPeerValuationSnapshotSchemaInput extends z.input<typeof EntityPeerValuationSnapshotSchema> {
+}
 export type EntityPeerValuationSnapshot = z.infer<typeof EntityPeerValuationSnapshotSchema>;
 //# sourceMappingURL=peer-valuation-snapshot.d.ts.map

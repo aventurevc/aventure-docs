@@ -32,5 +32,7 @@ export declare const ContentComplianceSchema: z.ZodObject<{
     violation: z.ZodArray<z.ZodString>;
     wordCount: z.ZodInt;
 }, z.core.$strip>;
+export interface ContentComplianceSchemaInput extends z.input<typeof ContentComplianceSchema> {
+}
 export type ContentCompliance = z.infer<typeof ContentComplianceSchema>;
 //# sourceMappingURL=compliance.d.ts.map

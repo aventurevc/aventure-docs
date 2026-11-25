@@ -24,5 +24,7 @@ export declare const ProblemResolutionSchema: z.ZodObject<{
     parameter: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     retryable: z.ZodOptional<z.ZodNullable<z.ZodBoolean>>;
 }, z.core.$strip>;
+export interface ProblemResolutionSchemaInput extends z.input<typeof ProblemResolutionSchema> {
+}
 export type ProblemResolution = z.infer<typeof ProblemResolutionSchema>;
 //# sourceMappingURL=resolution.d.ts.map

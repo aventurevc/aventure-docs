@@ -99,5 +99,7 @@ export declare const NewsSchema: z.ZodObject<{
     }, import("./title-mention.ts").NewsTitleMentionSchemaInput>>>>;
     updatedAt: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
+export interface NewsSchemaInput extends z.input<typeof NewsSchema> {
+}
 export type News = z.infer<typeof NewsSchema>;
 //# sourceMappingURL=news.d.ts.map

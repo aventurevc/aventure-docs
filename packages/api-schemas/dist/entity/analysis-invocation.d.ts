@@ -16,5 +16,7 @@ export declare const EntityAnalysisInvocationSchema: z.ZodObject<{
         RENDER_SECTION: "RENDER_SECTION";
     }>;
 }, z.core.$strip>;
+export interface EntityAnalysisInvocationSchemaInput extends z.input<typeof EntityAnalysisInvocationSchema> {
+}
 export type EntityAnalysisInvocation = z.infer<typeof EntityAnalysisInvocationSchema>;
 //# sourceMappingURL=analysis-invocation.d.ts.map

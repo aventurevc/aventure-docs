@@ -25,5 +25,7 @@ export declare const HarnessRunProgressSchema: z.ZodObject<{
     whatElseRemaining: z.ZodArray<z.ZodString>;
     writeThisIteration: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
+export interface HarnessRunProgressSchemaInput extends z.input<typeof HarnessRunProgressSchema> {
+}
 export type HarnessRunProgress = z.infer<typeof HarnessRunProgressSchema>;
 //# sourceMappingURL=run-progress.d.ts.map

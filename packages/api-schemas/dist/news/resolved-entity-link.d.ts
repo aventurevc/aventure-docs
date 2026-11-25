@@ -58,5 +58,7 @@ export declare const NewsResolvedEntityLinkSchema: z.ZodObject<{
     }>>>;
     updatedAt: z.ZodISODateTime;
 }, z.core.$strip>;
+export interface NewsResolvedEntityLinkSchemaInput extends z.input<typeof NewsResolvedEntityLinkSchema> {
+}
 export type NewsResolvedEntityLink = z.infer<typeof NewsResolvedEntityLinkSchema>;
 //# sourceMappingURL=resolved-entity-link.d.ts.map

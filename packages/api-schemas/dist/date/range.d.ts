@@ -27,5 +27,7 @@ export declare const DateRangeSchema: z.ZodObject<{
     max: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     min: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
 }, z.core.$strip>;
+export interface DateRangeSchemaInput extends z.input<typeof DateRangeSchema> {
+}
 export type DateRange = z.infer<typeof DateRangeSchema>;
 //# sourceMappingURL=range.d.ts.map

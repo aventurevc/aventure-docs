@@ -4914,5 +4914,7 @@ export declare const EntityDetailSchema: z.ZodObject<{
         venue?: string | null | undefined;
     }, import("../unique/id.ts").UniqueIdSchemaInput>>>;
 }, z.core.$strip>;
+export interface EntityDetailSchemaInput extends z.input<typeof EntityDetailSchema> {
+}
 export type EntityDetail = z.infer<typeof EntityDetailSchema>;
 //# sourceMappingURL=detail.d.ts.map

@@ -18,5 +18,7 @@ export declare const HarnessRunFollowUpSchema: z.ZodObject<{
     hasMore: z.ZodBoolean;
     runId: z.ZodArray<z.ZodUUID>;
 }, z.core.$strip>;
+export interface HarnessRunFollowUpSchemaInput extends z.input<typeof HarnessRunFollowUpSchema> {
+}
 export type HarnessRunFollowUp = z.infer<typeof HarnessRunFollowUpSchema>;
 //# sourceMappingURL=run-follow-up.d.ts.map

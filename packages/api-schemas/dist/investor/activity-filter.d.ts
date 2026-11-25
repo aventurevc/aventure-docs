@@ -61,5 +61,7 @@ export declare const InvestorActivityFilterSchema: z.ZodObject<{
         min?: number | null | undefined;
     }, import("../int/range.ts").IntRangeSchemaInput>>>>;
 }, z.core.$strip>;
+export interface InvestorActivityFilterSchemaInput extends z.input<typeof InvestorActivityFilterSchema> {
+}
 export type InvestorActivityFilter = z.infer<typeof InvestorActivityFilterSchema>;
 //# sourceMappingURL=activity-filter.d.ts.map

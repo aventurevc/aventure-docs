@@ -147,5 +147,7 @@ export declare const EntityMarketMultipleSchema: z.ZodObject<{
         totalDebtUsd: z.ZodOptional<z.ZodNullable<z.ZodNumber>>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
+export interface EntityMarketMultipleSchemaInput extends z.input<typeof EntityMarketMultipleSchema> {
+}
 export type EntityMarketMultiple = z.infer<typeof EntityMarketMultipleSchema>;
 //# sourceMappingURL=market-multiple.d.ts.map

@@ -59,5 +59,7 @@ export declare const EmployeeCountSchema: z.ZodObject<{
     }, import("../entity/research-fact-value.ts").EntityResearchFactValueSchemaInput>>;
     id: z.ZodString;
 }, z.core.$strip>;
+export interface EmployeeCountSchemaInput extends z.input<typeof EmployeeCountSchema> {
+}
 export type EmployeeCount = z.infer<typeof EmployeeCountSchema>;
 //# sourceMappingURL=count.d.ts.map

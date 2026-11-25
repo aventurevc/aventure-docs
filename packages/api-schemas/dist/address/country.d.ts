@@ -46,5 +46,7 @@ export declare const AddressCountrySchema: z.ZodObject<{
     unRegion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     unSubregion: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface AddressCountrySchemaInput extends z.input<typeof AddressCountrySchema> {
+}
 export type AddressCountry = z.infer<typeof AddressCountrySchema>;
 //# sourceMappingURL=country.d.ts.map

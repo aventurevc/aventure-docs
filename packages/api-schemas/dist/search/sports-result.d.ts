@@ -21,5 +21,7 @@ export declare const SearchSportsResultSchema: z.ZodObject<{
     }, import("./sports-team.ts").SearchSportsTeamSchemaInput>>>>>;
     venue: z.ZodOptional<z.ZodNullable<z.ZodString>>;
 }, z.core.$strip>;
+export interface SearchSportsResultSchemaInput extends z.input<typeof SearchSportsResultSchema> {
+}
 export type SearchSportsResult = z.infer<typeof SearchSportsResultSchema>;
 //# sourceMappingURL=sports-result.d.ts.map

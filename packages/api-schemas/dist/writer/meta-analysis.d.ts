@@ -58,5 +58,7 @@ export declare const WriterMetaAnalysisSchema: z.ZodObject<{
         label: string;
     }, import("./analysis-section.ts").WriterAnalysisSectionSchemaInput>>>;
 }, z.core.$strip>;
+export interface WriterMetaAnalysisSchemaInput extends z.input<typeof WriterMetaAnalysisSchema> {
+}
 export type WriterMetaAnalysis = z.infer<typeof WriterMetaAnalysisSchema>;
 //# sourceMappingURL=meta-analysis.d.ts.map

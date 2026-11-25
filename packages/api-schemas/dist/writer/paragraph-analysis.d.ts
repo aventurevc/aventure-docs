@@ -13,5 +13,7 @@ export declare const WriterParagraphAnalysisSchema: z.ZodObject<{
     answer: z.ZodBoolean;
     section: z.ZodArray<z.ZodString>;
 }, z.core.$strip>;
+export interface WriterParagraphAnalysisSchemaInput extends z.input<typeof WriterParagraphAnalysisSchema> {
+}
 export type WriterParagraphAnalysis = z.infer<typeof WriterParagraphAnalysisSchema>;
 //# sourceMappingURL=paragraph-analysis.d.ts.map

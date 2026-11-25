@@ -97,5 +97,7 @@ export declare const EntityWriterBriefSchema: z.ZodObject<{
         statement: string;
     }, import("../writer/positioning.ts").WriterPositioningSchemaInput>>>;
 }, z.core.$strip>;
+export interface EntityWriterBriefSchemaInput extends z.input<typeof EntityWriterBriefSchema> {
+}
 export type EntityWriterBrief = z.infer<typeof EntityWriterBriefSchema>;
 //# sourceMappingURL=writer-brief.d.ts.map

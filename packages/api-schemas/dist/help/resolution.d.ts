@@ -105,5 +105,7 @@ export declare const HelpResolutionSchema: z.ZodObject<{
         taskKey: z.ZodOptional<z.ZodString>;
     }, z.core.$strip>>>;
 }, z.core.$strip>;
+export interface HelpResolutionSchemaInput extends z.input<typeof HelpResolutionSchema> {
+}
 export type HelpResolution = z.infer<typeof HelpResolutionSchema>;
 //# sourceMappingURL=resolution.d.ts.map
