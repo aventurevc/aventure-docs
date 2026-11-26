@@ -138,6 +138,8 @@ export const ProblemDetailSchema = z.object({
             "image_photographic",
             /** An outbound fetch from an external target site (robots.txt, sitemap, page, or logo or thumbnail image) failed after retries or with the breaker open. Agent action: the failure belongs to the target; crawl jobs may fall back to rendered extraction; do not retry immediately. */
             "web_crawl_fetch_failed",
+            /** Stored profile URL names another profile; fix or retire it, never retry. */
+            "web_profile_identity_mismatch",
             /** A request that must not wait found another request already fetching its source document. Agent action: retry after retryAfterSeconds (also in the Retry-After header); the existing fetch keeps running and this request did not start another. */
             "source_document_fetch_busy",
             /** A crawl-run request named an entity or person that has no current primary website URL. Agent action: add or activate the owner's website URL, then resubmit; retrying the unchanged request cannot succeed. */
@@ -182,7 +184,7 @@ export const ProblemDetailSchema = z.object({
             "lookup_still_running",
             /** SEC EDGAR read failed (preview, imports, Form D, facts): outage or throttling. */
             "sec_edgar_fetch_failed",
-            /** GitHub repository fetch failed; outages or rate limits affect github-repo sync. */
+            /** GitHub repository fetch failed; outages or rate limits affect sync. */
             "github_fetch_failed",
             /** Machine-token sign-in service failed. Retry after retryAfterSeconds. */
             "clerk_m2m_unavailable",
