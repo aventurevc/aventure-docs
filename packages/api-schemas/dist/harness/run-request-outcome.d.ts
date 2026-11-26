@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const HarnessRunRequestOutcomeSchemaDefinition: z.ZodObject<{
+    quote: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     reason: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     request: z.ZodString;
     status: z.ZodUnion<readonly [z.ZodEnum<{
@@ -17,6 +18,7 @@ declare const HarnessRunRequestOutcomeSchemaDefinition: z.ZodObject<{
             written: "written";
         };
     };
+    textId: z.ZodOptional<z.ZodNullable<z.ZodInt>>;
 }, z.core.$strip>;
 type HarnessRunRequestOutcomeDefinition = z.infer<typeof HarnessRunRequestOutcomeSchemaDefinition>;
 export interface HarnessRunRequestOutcomeSchemaInput extends z.input<typeof HarnessRunRequestOutcomeSchemaDefinition> {

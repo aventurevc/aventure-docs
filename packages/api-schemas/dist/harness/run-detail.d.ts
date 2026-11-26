@@ -90,13 +90,17 @@ declare const HarnessRunDetailSchemaDefinition: z.ZodObject<{
         gateRemaining: z.ZodArray<z.ZodString>;
         note: z.ZodOptional<z.ZodNullable<z.ZodString>>;
         requestOutcome: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodType<{
+            quote?: string | null | undefined;
             reason?: string | null | undefined;
             request: string;
             status: string;
+            textId?: number | null | undefined;
         }, import("./run-request-outcome.ts").HarnessRunRequestOutcomeSchemaInput, z.core.$ZodTypeInternals<{
+            quote?: string | null | undefined;
             reason?: string | null | undefined;
             request: string;
             status: string;
+            textId?: number | null | undefined;
         }, import("./run-request-outcome.ts").HarnessRunRequestOutcomeSchemaInput>>>>>;
         whatElseRemaining: z.ZodArray<z.ZodString>;
         writeThisIteration: z.ZodArray<z.ZodString>;

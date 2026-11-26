@@ -2,12 +2,16 @@
 import { z } from "zod/v4";
 import { HarnessRunRequestOutcomeStatusSchema } from "./run-request-outcome-status.js";
 const HarnessRunRequestOutcomeSchemaDefinition = z.object({
+    /** Readback proves the quoted text is stored on the run's subject, not that it answers the request. */
+    quote: z.string().nullish(),
     /** Why the change was not written; a refuted entry names the URL of the page that contradicts the request */
     reason: z.string().nullish(),
     /** The change the request asks for, in the requester's terms */
     request: z.string(),
     /** What the run did about the change */
     status: HarnessRunRequestOutcomeStatusSchema,
+    /** Text row containing the passage that satisfies this request */
+    textId: z.int().nullish(),
 });
 /**
  * One distinct change the requester asked for and what the run did about it
