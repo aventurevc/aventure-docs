@@ -15,12 +15,16 @@ const BillingPlanTypeSchemaKnownMembers = z.enum([
  * @openapiSchema BillingPlanType
  * @endpoint GET /v1/billing/plans
  * @endpoint GET /v1/billing/subscription
+ * @endpoint GET /v1/billing/subscription/next-charge
  * @endpoint POST /v1/billing/checkout-sessions
  * @endpoint POST /v1/billing/plan-change-previews
  * @endpoint POST /v1/billing/plan-changes
+ * @endpoint PUT /v1/billing/subscription/complimentary-continuation
  * @usedBySchema BillingCatalogPlanSchema
  * @usedBySchema BillingCheckoutMutationSchema
  * @usedBySchema BillingCheckoutSchema
+ * @usedBySchema BillingComplimentaryContinuationMutationSchema
+ * @usedBySchema BillingComplimentaryContinuationSchema
  * @usedBySchema BillingPlanChangeMutationSchema
  * @usedBySchema BillingPlanChangeSchema
  * @usedBySchema BillingSubscriptionSchema

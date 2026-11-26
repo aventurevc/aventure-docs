@@ -1,13 +1,23 @@
 // LLM AGENTS MAY NOT EDIT THIS FILE UNDER ANY CIRCUMSTANCES. DO NOT EDIT - generated from Kotlin data classes via OpenAPI. Edit the backend owner and run: make docs-openapi && make docs-zod
 import { z } from "zod/v4";
+import { BillingComplimentaryContinuationSchema } from "./complimentary-continuation.js";
+import { BillingComplimentaryUsageSchema } from "./complimentary-usage.js";
 import { BillingDiscountSchema } from "./discount.js";
 const BillingNextChargeSchemaDefinition = z.object({
     /** Amount the next invoice will charge in the currency's minor unit, after discounts, credits, and usage so far; 0 when a discount covers it */
     amountDue: z.number().int(),
     /** When the next invoice is raised and charged. When the subscription ends before raising another invoice, this is that end and both amounts are 0. */
     chargeAt: z.iso.datetime({ offset: true }),
+    /** The account's choice to keep its complimentary plan on paid billing; absent until it chooses, after an Undo, and once the conversion could not carry it out. Its undoable says whether DELETE /v1/billing/subscription/complimentary-continuation can still undo it. */
+    complimentaryContinuation: BillingComplimentaryContinuationSchema.nullish(),
+    /** Opaque revision to send to PUT /v1/billing/subscription/complimentary-continuation to keep this complimentary plan on paid billing when it ends, or to change the plan it continues on; present only while the account can still choose: an administrator granted the plan for a term that ends at complimentaryUntil, within the current billing period, on a plan the web sells, with no pending plan change or cancellation, and the conversion has not started. It changes whenever the subscription, plan, term end, or recorded choice changes, including an Undo. Absent for every other subscription. While it is present, POST /v1/billing/plan-changes answers 409 for a target on this plan's tier: that tier continues only through the PUT */
+    complimentaryContinuationOfferRevision: z.string().nullish(),
+    /** When the administrator's complimentary plan with a term started; absent for every other subscription */
+    complimentarySince: z.iso.datetime({ offset: true }).nullish(),
     /** When the free stretch ends: the end of a complimentary plan granted for a term, or the first renewal that coupons no longer make free; the plan charge is 0 until then. Absent when coupons do not make the next invoice's plan charge free, or when it stays free with no end */
     complimentaryUntil: z.iso.datetime({ offset: true }).nullish(),
+    /** What the account used since complimentarySince, present only when that usage is significant: its profile views or its research runs reach the server's configured threshold for that count */
+    complimentaryUsage: BillingComplimentaryUsageSchema.nullish(),
     /** ISO 4217 currency code. */
     currency: z.string(),
     /** Discounts applied to the next invoice; empty when none apply */

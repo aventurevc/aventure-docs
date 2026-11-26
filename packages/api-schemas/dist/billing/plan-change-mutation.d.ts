@@ -1,5 +1,6 @@
 import { z } from "zod/v4";
 declare const BillingPlanChangeMutationSchemaDefinition: z.ZodObject<{
+    pendingChangeRevision: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     plan: z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";

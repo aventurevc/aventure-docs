@@ -2,7 +2,37 @@ import { z } from "zod/v4";
 declare const BillingNextChargeSchemaDefinition: z.ZodObject<{
     amountDue: z.ZodNumber;
     chargeAt: z.ZodISODateTime;
+    complimentaryContinuation: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        continuesAt: z.ZodISODateTime;
+        plan: z.ZodUnion<readonly [z.ZodEnum<{
+            PLUS_MONTHLY: "PLUS_MONTHLY";
+            PLUS_YEARLY: "PLUS_YEARLY";
+            PRO_MONTHLY: "PRO_MONTHLY";
+            PRO_YEARLY: "PRO_YEARLY";
+            PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+            STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
+            UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+        }>, z.ZodString]> & {
+            enum: {
+                PLUS_MONTHLY: "PLUS_MONTHLY";
+                PLUS_YEARLY: "PLUS_YEARLY";
+                PRO_MONTHLY: "PRO_MONTHLY";
+                PRO_YEARLY: "PRO_YEARLY";
+                PRO_YEARLY_PROMOTION: "PRO_YEARLY_PROMOTION";
+                STARTUPS_MONTHLY: "STARTUPS_MONTHLY";
+                UNLIMITED_MONTHLY: "UNLIMITED_MONTHLY";
+            };
+        };
+        revision: z.ZodString;
+        undoable: z.ZodBoolean;
+    }, z.core.$strip>>>;
+    complimentaryContinuationOfferRevision: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+    complimentarySince: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
     complimentaryUntil: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    complimentaryUsage: z.ZodOptional<z.ZodNullable<z.ZodObject<{
+        profileViewCount: z.ZodInt;
+        researchRunCount: z.ZodInt;
+    }, z.core.$strip>>>;
     currency: z.ZodString;
     discount: z.ZodArray<z.ZodType<{
         amountOff?: number | null | undefined;

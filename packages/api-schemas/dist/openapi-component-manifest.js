@@ -123,6 +123,18 @@ export const OPENAPI_COMPONENT_MANIFEST = Object.freeze({
         modulePath: "billing/checkout-ui-mode",
         schemaName: "BillingCheckoutUiModeSchema",
     },
+    BillingComplimentaryContinuation: {
+        modulePath: "billing/complimentary-continuation",
+        schemaName: "BillingComplimentaryContinuationSchema",
+    },
+    BillingComplimentaryContinuationMutation: {
+        modulePath: "billing/complimentary-continuation-mutation",
+        schemaName: "BillingComplimentaryContinuationMutationSchema",
+    },
+    BillingComplimentaryUsage: {
+        modulePath: "billing/complimentary-usage",
+        schemaName: "BillingComplimentaryUsageSchema",
+    },
     BillingCreditPackType: {
         modulePath: "billing/credit-pack-type",
         schemaName: "BillingCreditPackTypeSchema",

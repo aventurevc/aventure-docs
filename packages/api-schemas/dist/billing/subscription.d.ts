@@ -181,6 +181,7 @@ declare const BillingSubscriptionSchemaDefinition: z.ZodObject<{
     creditPurchasable: z.ZodBoolean;
     entitled: z.ZodBoolean;
     originalStart: z.ZodOptional<z.ZodNullable<z.ZodISODateTime>>;
+    pendingChangeRevision: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     pendingPlan: z.ZodOptional<z.ZodNullable<z.ZodUnion<readonly [z.ZodEnum<{
         PLUS_MONTHLY: "PLUS_MONTHLY";
         PLUS_YEARLY: "PLUS_YEARLY";
