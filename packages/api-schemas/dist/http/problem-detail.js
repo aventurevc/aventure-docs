@@ -182,6 +182,8 @@ export const ProblemDetailSchema = z.object({
             "search_still_running",
             /** A lookup was accepted as a lookup job instead of answered in the request: it asked for it with Prefer: respond-async, or its live attempt ran out of time. Agent action: poll the Location status URL after Retry-After. */
             "lookup_still_running",
+            /** Name and location exceed the web query limit; shorten them or give a URL. */
+            "identification_web_query_too_long",
             /** SEC EDGAR read failed (preview, imports, Form D, facts): outage or throttling. */
             "sec_edgar_fetch_failed",
             /** GitHub repository fetch failed; outages or rate limits affect sync. */
@@ -216,7 +218,7 @@ export const ProblemDetailSchema = z.object({
             "inference_profile_api_key_missing",
             /** No virus scanner is configured; uploads are refused. Do not retry. */
             "vault_scanner_not_configured",
-            /** Vault object storage is not configured; uploads are refused. Do not retry. */
+            /** Vault storage is not configured; uploads are refused. Do not retry. */
             "vault_storage_not_configured",
             /** Library writes are not enabled on this deployment. Do not retry. */
             "vault_writers_not_enabled",
