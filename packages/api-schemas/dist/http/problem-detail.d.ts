@@ -54,6 +54,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         billing_allowance_exhausted: "billing_allowance_exhausted";
         billing_complimentary_term: "billing_complimentary_term";
         billing_credit_checkout_closed: "billing_credit_checkout_closed";
+        billing_credit_grant_in_flight: "billing_credit_grant_in_flight";
         billing_plan_change_required: "billing_plan_change_required";
         callback_challenge_failed: "callback_challenge_failed";
         callback_connection_refused: "callback_connection_refused";
@@ -61,6 +62,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         callback_http_5xx: "callback_http_5xx";
         callback_timeout: "callback_timeout";
         callback_tls_error: "callback_tls_error";
+        caller_admission_expired: "caller_admission_expired";
         clerk_m2m_unavailable: "clerk_m2m_unavailable";
         clerk_oauth_unavailable: "clerk_oauth_unavailable";
         cvc_inherited_headcount: "cvc_inherited_headcount";
@@ -92,6 +94,7 @@ export declare const ProblemDetailSchema: z.ZodObject<{
         logo_source_dead: "logo_source_dead";
         lookup_still_running: "lookup_still_running";
         news_catalog_revision_discarded: "news_catalog_revision_discarded";
+        news_page_changed: "news_page_changed";
         news_rss_article_fetch_failed: "news_rss_article_fetch_failed";
         news_rss_feed_fetch_failed: "news_rss_feed_fetch_failed";
         news_similarity_embedding_unavailable: "news_similarity_embedding_unavailable";

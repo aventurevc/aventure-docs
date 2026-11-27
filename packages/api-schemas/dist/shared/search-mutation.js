@@ -5,7 +5,7 @@ const SharedSearchMutationSchemaDefinition = z.object({
     id: z.uuid().nullish(),
     /** Plain-English query to run against public records and publish. */
     query: z.string().max(2000).nullish(),
-    /** entity.searchRequestId of the federated search response the sharing page showed. When that search was signed in, asked this query (ignoring case), and its shareable answer is still kept, the share publishes exactly that answer without searching again; otherwise it runs the default public search. */
+    /** entity.searchRequestId of the federated search response the sharing page showed. When that search was signed in, asked this query (ignoring case), and its shareable answer is still kept, the share publishes exactly that answer without searching again; otherwise it runs the default public search. A replacement requires it and never searches: a missing or expired kept answer is refused. */
     searchRequestId: z.uuid().nullish(),
 });
 /**

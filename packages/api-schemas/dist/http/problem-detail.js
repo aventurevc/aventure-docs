@@ -62,6 +62,8 @@ export const ProblemDetailSchema = z.object({
             "billing_additional_usage_cap_reached",
             /** The prepaid credit Checkout is paid, expired, or closed. Retire this purchase intent before explicitly starting another Checkout; ambiguous transport failures and in-progress conflicts must keep the original key. */
             "billing_credit_checkout_closed",
+            /** A credit grant is still being recorded; retry after it settles. */
+            "billing_credit_grant_in_flight",
             /** Checkout refused: the account already has a continuing Stripe subscription. Agent action: change its plan with POST /v1/billing/plan-changes; never retry Checkout. */
             "billing_plan_change_required",
             /** A signed-out purchase named an email that already belongs to an account. Agent action: sign that account in with its email code, then subscribe signed in; never retry the signed-out purchase for that email. */
@@ -74,6 +76,8 @@ export const ProblemDetailSchema = z.object({
             "query_deadline_shed",
             /** Read capacity was saturated; retry after retryAfterSeconds. */
             "primary_read_saturated",
+            /** Refused before a further step began; earlier steps may have run. */
+            "caller_admission_expired",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
             "suspectedShellStrip",
             /** Request prose looks shell-mangled around a money phrase: either shell expansion stripped a leading dollar sign ('50 million' where '$50 million' was meant) or an escape character survived into the text ('\$50 million', standalone '/$50 million'). Agent action: write '$' literally and re-send the JSON body from a file or stdin, or quote it so the shell does not expand '$'; use allowSuspectedShellStrip only when the value is intentional. */
@@ -174,6 +178,8 @@ export const ProblemDetailSchema = z.object({
             "source_document_capture_limit_exceeded",
             /** News similarity cannot run because the target embedding is unavailable or live similarity capacity is full. Agent action: surface the 503 and retry later; this endpoint does not fall back to lexical ranking. */
             "news_similarity_embedding_unavailable",
+            /** The news page could not be read consistently; replay the request. */
+            "news_page_changed",
             /** Web search is not configured on this API. Agent action: stop; retrying cannot succeed until aVenture restores it. */
             "search_provider_not_configured",
             /** Search provider call failed. Agent action: inspect detail and source. Provider credential or credit refusals (401, 402, or 407) are terminal: restore the provider credential or credits first. TERMINAL means refused or already retried: record the outage, never resend. TRANSIENT: retry once per Retry-After. */
