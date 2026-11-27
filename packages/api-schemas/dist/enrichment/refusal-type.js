@@ -5,9 +5,10 @@ const EnrichmentRefusalTypeSchemaKnownMembers = z.enum([
     "ALLOWANCE_EXHAUSTED",
     "AMBIGUOUS",
     "SUBSCRIPTION_REQUIRED",
+    "TURN_CAPPED",
 ]);
 /**
- * Why a batch enrichment filed no run: NOT_FOUND for an unknown record; ALLOWANCE_EXHAUSTED when the record's company or person research allowance is spent and additional usage is off or at its spend cap or prepaid credit; AMBIGUOUS when the record's profile matches more than one current record; SUBSCRIPTION_REQUIRED when the subscription stopped covering research mid-batch, such as additional usage while past due. Readers accept members they do not yet know
+ * Why a batch enrichment filed no run: NOT_FOUND for an unknown record; ALLOWANCE_EXHAUSTED when the record's company or person research allowance is spent and additional usage is off or at its spend cap or prepaid credit; AMBIGUOUS when the record's profile matches more than one current record; TURN_CAPPED when a queued run has reached its turn limit and cannot accept an edit; SUBSCRIPTION_REQUIRED when the subscription stopped covering research mid-batch, such as additional usage while past due. Readers accept members they do not yet know
  *
  * @openapiSchema EnrichmentRefusalType
  * @endpoint POST /v1/enrichments

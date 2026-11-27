@@ -9,12 +9,14 @@ declare const EnrichmentSchemaDefinition: z.ZodObject<{
         AMBIGUOUS: "AMBIGUOUS";
         NOT_FOUND: "NOT_FOUND";
         SUBSCRIPTION_REQUIRED: "SUBSCRIPTION_REQUIRED";
+        TURN_CAPPED: "TURN_CAPPED";
     }>, z.ZodString]> & {
         enum: {
             ALLOWANCE_EXHAUSTED: "ALLOWANCE_EXHAUSTED";
             AMBIGUOUS: "AMBIGUOUS";
             NOT_FOUND: "NOT_FOUND";
             SUBSCRIPTION_REQUIRED: "SUBSCRIPTION_REQUIRED";
+            TURN_CAPPED: "TURN_CAPPED";
         };
     }>>;
     run: z.ZodOptional<z.ZodNullable<z.ZodObject<{
